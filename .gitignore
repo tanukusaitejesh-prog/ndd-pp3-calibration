@@ -1,0 +1,6 @@
+data/
+work/
+results/
+selftest_out/
+__pycache__/
+*.pyc
