@@ -42,21 +42,20 @@ one_chrom() {
   echo "chr$N: downloading $(basename "$f")"
   fetch "$BASE/$(basename "$f")" "$f"
   fetch "$BASE/$(basename "$f").csi" "$f.csi"
+  # a complete BGZF file ends with the fixed 28-byte empty EOF block; a truncated download does not
+  if [ "$(tail -c 28 "$f" | od -An -tx1 | tr -d ' \n')" != "1f8b08040000000000ff0600424302001b0003000000000000000000" ]; then
+    echo "chr$N: $(basename "$f") lacks the BGZF end-of-file block (truncated download) - removing its .ok markers"
+    rm -f "$f.ok" "$f.csi.ok"; return 1
+  fi
   echo "chr$N: extracting coding sites"
   if ! bcftools query -R "$reg" \
     -f '%POS\t%REF\t%ALT\t%FILTER\t%INFO/PN\t%INFO/MR\t%INFO/AR\t%INFO/MG\t%INFO/MC\n' "$f" | gzip -1 > "$out.tmp"; then
     echo "chr$N: bcftools failed - the download may be corrupt; its .ok markers are removed so a re-run fetches it again"
     rm -f "$f.ok" "$f.csi.ok"; return 1
   fi
-  local n last_pos last_reg
+  local n
   n=$(gzip -dc "$out.tmp" | wc -l | tr -d ' ')
   if [ "$n" -lt 1000 ]; then echo "chr$N: extraction gave only $n lines - something is wrong"; return 1; fi
-  last_pos=$(gzip -dc "$out.tmp" | tail -n 1 | cut -f1)
-  last_reg=$(tail -n 1 "$reg" | cut -f2)
-  if [ "$last_pos" -lt "$last_reg" ]; then   # truncated input: the last coding region was never reached
-    echo "chr$N: extraction stops at $last_pos, before the last region ($last_reg) - removing the download's .ok markers"
-    rm -f "$f.ok" "$f.csi.ok"; return 1
-  fi
   mv "$out.tmp" "$out"
   touch "$out.ok"
   echo "chr$N: $n coding-site records kept"

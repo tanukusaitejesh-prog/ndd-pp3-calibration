@@ -126,4 +126,4 @@ These were made before the pre-registration commit, after an independent review 
 
 | Date | Change | Reason |
 |---|---|---|
-| | | |
+| 2026-10-05 | `get_roulette.sh`: the truncation check "last extracted position ≥ start of the last coding region" is replaced by a check that the downloaded VCF ends with the BGZF end-of-file block. The extraction command is unchanged. | Bug fix, no effect on any estimate. The old check gave a false alarm on chr5, whose last coding region (OR4F3, 5:181,367,287–181,368,222) has no Roulette records at all: `bcftools query -r` returns 0, and the flanking sequence and the previous region are fully present. Roulette omits some duplicated regions. The chr5 VCF was intact: its size equals the server's Content-Length and its EOF block is present. Found during processing; no calibration result had been computed. |
