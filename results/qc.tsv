@@ -1,0 +1,6 @@
+metric	value
+transcripts_pass_rate	0.9668967766483666
+dnv_map_rate	0.9339591294234922
+dnv_map_rate_after_filter_informational	0.909093426372044
+ref_mismatch_rate	2.7261327081402323e-05
+G0	PASS

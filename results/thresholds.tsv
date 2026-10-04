@@ -1,0 +1,65 @@
+analysis	kind	direction	level	LR_cutoff	AM_threshold
+all_genes	marginal	PP3	Supporting	2.406	0.98
+all_genes	marginal	PP3	Moderate	5.79	0.99
+all_genes	marginal	PP3	Strong	33.53	
+all_genes	marginal	PP3	VeryStrong	1124.0	
+all_genes	marginal	BP4	Supporting	0.41563	
+all_genes	marginal	BP4	Moderate	0.17271	
+all_genes	marginal	BP4	Strong	0.02982	
+all_genes	marginal	BP4	VeryStrong	0.00089	
+all_genes	within_gene	PP3	Supporting	2.406	0.99
+all_genes	within_gene	PP3	Moderate	5.79	
+all_genes	within_gene	PP3	Strong	33.53	
+all_genes	within_gene	PP3	VeryStrong	1124.0	
+all_genes	within_gene	BP4	Supporting	0.41563	
+all_genes	within_gene	BP4	Moderate	0.17271	
+all_genes	within_gene	BP4	Strong	0.02982	
+all_genes	within_gene	BP4	VeryStrong	0.00089	
+ddg2p_monoallelic	marginal	PP3	Supporting	2.406	0.99
+ddg2p_monoallelic	marginal	PP3	Moderate	5.79	
+ddg2p_monoallelic	marginal	PP3	Strong	33.53	
+ddg2p_monoallelic	marginal	PP3	VeryStrong	1124.0	
+ddg2p_monoallelic	marginal	BP4	Supporting	0.41563	0.6
+ddg2p_monoallelic	marginal	BP4	Moderate	0.17271	0.3
+ddg2p_monoallelic	marginal	BP4	Strong	0.02982	
+ddg2p_monoallelic	marginal	BP4	VeryStrong	0.00089	
+ddg2p_monoallelic	within_gene	PP3	Supporting	2.406	0.99
+ddg2p_monoallelic	within_gene	PP3	Moderate	5.79	
+ddg2p_monoallelic	within_gene	PP3	Strong	33.53	
+ddg2p_monoallelic	within_gene	PP3	VeryStrong	1124.0	
+ddg2p_monoallelic	within_gene	BP4	Supporting	0.41563	0.6
+ddg2p_monoallelic	within_gene	BP4	Moderate	0.17271	
+ddg2p_monoallelic	within_gene	BP4	Strong	0.02982	
+ddg2p_monoallelic	within_gene	BP4	VeryStrong	0.00089	
+shet_high	marginal	PP3	Supporting	2.406	0.98
+shet_high	marginal	PP3	Moderate	5.79	
+shet_high	marginal	PP3	Strong	33.53	
+shet_high	marginal	PP3	VeryStrong	1124.0	
+shet_high	marginal	BP4	Supporting	0.41563	0.2
+shet_high	marginal	BP4	Moderate	0.17271	
+shet_high	marginal	BP4	Strong	0.02982	
+shet_high	marginal	BP4	VeryStrong	0.00089	
+shet_high	within_gene	PP3	Supporting	2.406	0.99
+shet_high	within_gene	PP3	Moderate	5.79	
+shet_high	within_gene	PP3	Strong	33.53	
+shet_high	within_gene	PP3	VeryStrong	1124.0	
+shet_high	within_gene	BP4	Supporting	0.41563	
+shet_high	within_gene	BP4	Moderate	0.17271	
+shet_high	within_gene	BP4	Strong	0.02982	
+shet_high	within_gene	BP4	VeryStrong	0.00089	
+shet_low	marginal	PP3	Supporting	2.406	0.98
+shet_low	marginal	PP3	Moderate	5.79	0.99
+shet_low	marginal	PP3	Strong	33.53	
+shet_low	marginal	PP3	VeryStrong	1124.0	
+shet_low	marginal	BP4	Supporting	0.41563	
+shet_low	marginal	BP4	Moderate	0.17271	
+shet_low	marginal	BP4	Strong	0.02982	
+shet_low	marginal	BP4	VeryStrong	0.00089	
+shet_low	within_gene	PP3	Supporting	2.406	0.99
+shet_low	within_gene	PP3	Moderate	5.79	
+shet_low	within_gene	PP3	Strong	33.53	
+shet_low	within_gene	PP3	VeryStrong	1124.0	
+shet_low	within_gene	BP4	Supporting	0.41563	
+shet_low	within_gene	BP4	Moderate	0.17271	
+shet_low	within_gene	BP4	Strong	0.02982	
+shet_low	within_gene	BP4	VeryStrong	0.00089	
