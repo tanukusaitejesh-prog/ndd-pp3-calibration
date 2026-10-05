@@ -87,7 +87,7 @@ We used this design to measure the conditional evidence of 55 missense predictor
 
 **Replication cohort.** Published de novo SNVs from SPARK, SSC, ASC and MSSNG (Zhou et al. 2022).
 
-- 12,316 autism probands, with unaffected siblings (n = 4,051) as a negative control.
+- The supplementary tables list coding de novos for 13,103 affected individuals who carry at least one; trios without a coding de novo are not listed. Of these, 12,501 carry at least one SNV. After restricting to autosomes, removing duplicates, liftover and site matching, **12,316 autism probands** carry at least one analysable SNV. Unaffected siblings (4,100 with at least one SNV; 4,051 analysable) are a negative control. Individuals without a de novo do not affect the estimates: the scale factor comes from synonymous counts, and a zero-count individual adds nothing to any bootstrap replicate.
 - Individuals sharing ≥ 2 identical de novo SNVs with a DD proband were removed as likely duplicates (n = 64).
 
 **Site filters.** Sites within 3 bp of an exon boundary were excluded on both the observed and expected side. This is a pre-registered fix for a splice-edge artefact found at the gate. After filters, the DD analysis set contains 23,851 missense and 8,222 synonymous de novos.
@@ -386,6 +386,14 @@ ClinGen's cap removes this by construction (0 variants), as does the conditional
 - **Consistency:** RUMC (0.72 [0.59, 0.88]) and GeneDx cold genes (0.76 [0.65, 0.90]) agree.
 - **More information made within-gene performance worse, not better:** adding structure and newer tools improved the marginal LR but reduced within-gene evidence relative to v1 (0.92 [0.89, 0.96]).
 - **Model class did not matter:** the MLP and ensemble did not differ materially from gradient boosting.
+- **Nested levels (DDD).** The models kept less of their evidence at every level than AlphaMissense:
+
+| Predictor | r(B) | r(C) | E2 LR |
+|---|---|---|---|
+| v2-GBDT | 0.35 | 0.17 | 1.52 |
+| AlphaMissense | 0.54 | 0.34 | 2.10 |
+
+  No model reached Supporting at E2.
 
 **Interpretation.** A model optimised on the genome-wide de novo excess learns mainly which genes and regions carry it. This shows from another direction that the de novo excess, like ClinVar, rewards between-gene information unless the comparison is made within gene.
 
@@ -412,6 +420,10 @@ After all three are held fixed, no predictor keeps calibrated Supporting-level e
 
 **Clinical implications.**
 
+- **What the finding is and is not.** Evidence lost to position is not evidence that a predictor is wrong. If damaging variants concentrate in a domain and a predictor scores that domain highly, the predictor is correct, but it carries the same information as the variant's location.
+  - The finding is therefore one of **overlap**, not of predictors failing.
+  - Where position-based criteria such as PM1 are not applied, a predictor's positional knowledge remains legitimate evidence.
+  - Where they are applied, counting both overstates the evidence.
 - **PP3 with PM1 or PP2.** When a variant already receives PM1 for location in a hotspot or critical domain, or PP2 for a missense-constrained gene, PP3 at full ClinVar-calibrated strength counts much of the same information again.
 - **ClinGen's cap.** ClinGen's cap of PP3 + PM1 at Strong is directionally right. For de novo variants in DD genes our data suggest the overlap is larger than the cap allows: inside PM1-like regions, AlphaMissense's remaining evidence is below Supporting (within-region LR 2.04 for RMC o/e < 0.4).
 - **What to do instead.** One option is to calibrate PP3 conditionally, within gene and region, as here. The other is to discount its points by the overlapping share when it is combined with gene- or region-level criteria.
@@ -430,7 +442,7 @@ After all three are held fixed, no predictor keeps calibrated Supporting-level e
   - AlphaMissense was evaluated on DD de novos against controls (Cheng et al. 2023);
   - popEVE built its test set from DD de novos and unaffected autism siblings (Orenbuch et al. 2025).
   - Those studies measure discrimination across genes.
-- **Pooled benchmarks are dominated by gene identity.** It has been shown that gene identity dominates pooled ClinVar benchmarks (Harrizi et al. 2026).
+- **Pooled benchmarks are dominated by gene identity.** A gene-only null model reaches AUROC 0.92 on ClinVar, and under within-gene evaluation the ranking of predictors changes, with AlphaMissense rising to first (Harrizi et al. 2026). Our label-free results agree: AlphaMissense outperformed every model we trained when compared within gene.
 - **What is new here** is narrower: predictor evidence expressed as calibrated likelihood ratios derived from the de novo excess without clinical labels, and measured conditionally on gene, protein position and constraint, on the scale ACMG/AMP uses.
 
 **Estimand.** Our LR compares the score distribution of the de novo *excess* (observed minus expected, i.e. the disease-associated de novos) with that of the mutational background.
@@ -446,10 +458,16 @@ After all three are held fixed, no predictor keeps calibrated Supporting-level e
 
 1. **Primary readout.** The primary pre-registered DD readout did not meet its threshold under D1. The conclusion rests on D2, adopted afterwards with a recorded reason, then confirmed prospectively in two independent tests.
 2. **Mutation-rate model.** It has residual miscalibration of about 10%, mostly over-prediction at CpG transitions. δ is designed to absorb it, but finer-scale model error could still bias within-window estimates.
-3. **Small units.** 50-residue windows contain few de novos individually. The within-unit estimator pools across units, but small-stratum estimates (some mechanism classes) are unstable.
-4. **Ancestry.** The cohorts are predominantly of European ancestry.
-5. **Training labels.** Labels for several tools are recorded from their papers' descriptions rather than re-derived.
-6. **Top 2% only.** Retention is measured on each tool's top 2%. Applying it to all score intervals (A4.1) is an approximation.
+3. **Transfer to ClinVar.** Retention shares were measured on de novo variants in developmental-disorder and autism probands. Applying them to all ClinVar missense variants, including other phenotypes and inherited or recessive variants, assumes they transfer, and this was not tested.
+   - The ClinVar overlap (30% of PP3-positive P/LP at PM1-like sites) and the uncapped double-counting counts do not depend on this assumption.
+   - The conditional point totals do.
+4. **Small units.** 50-residue windows contain few de novos individually.
+   - The within-unit estimator pools across units.
+   - The random-partition control shows that conditioning on units of this size removes little evidence by itself: r 0.51 against 0.56 for gene.
+   - Small-stratum estimates, such as some mechanism classes, remain unstable.
+5. **Ancestry.** The cohorts are predominantly of European ancestry.
+6. **Training labels.** Labels for several tools are recorded from their papers' descriptions rather than re-derived.
+7. **Top 2% only.** Retention is measured on each tool's top 2%. Applying it to all score intervals (A4.1) is an approximation.
 
 **Conclusion.** Missense predictors are powerful at telling which genes and regions matter, and much weaker at telling which variants matter within them. Variant classification should calibrate predictor evidence conditionally on the gene- and region-level criteria it is combined with.
 
@@ -493,7 +511,12 @@ Dashed lines mark the ClinGen LR cut-offs for PP3 Supporting (2.406) and Moderat
   - this study's within-unit E2 thresholds.
 - **(Right)** The number of ClinVar VUS whose PP3 + PM1 points alone reach Likely Pathogenic (≥ 6) when both are applied at full strength without the cap, against under conditional points.
 
-**Figure 5. Null-contrast models** [PENDING]. Calibration of predicted against empirical LR on held-out DDD trios, and the within-gene top-2% LR of each model against AlphaMissense on cold genes, with the paired bootstrap.
+**Figure 5. Models trained on the de novo excess** (`fig5_models.png`). Top-2% LRs in held-out DDD trios, on all genes (solid) and on cold genes never used in training (light), with 95% bootstrap intervals:
+
+- **(Left)** Marginal LR. The models trained on the genome-wide de novo excess (v1, v2) exceed every published predictor.
+- **(Right)** Within-gene LR. AlphaMissense exceeds every model.
+- The gene-matched model (v3; post hoc, pre-registered before fitting) is shown where available.
+- The dashed line is PP3 Supporting (2.406).
 
 **Supplementary:** training-data ledger; per-tool thresholds; the mechanism contrast; the pre-registration timeline and deviation log.
 
@@ -507,13 +530,13 @@ Dashed lines mark the ClinGen LR cut-offs for PP3 Supporting (2.406) and Moderat
 - Zhou X, et al. Integrating de novo and inherited variants in 42,607 autism cases identifies mutations in new moderate-risk genes. *Nat Genet* 2022. doi:10.1038/s41588-022-01148-2.
 - Cheng J, et al. Accurate proteome-wide missense variant effect prediction with AlphaMissense. *Science* 2023.
 - Orenbuch R, et al. Proteome-wide model for human disease genetics (popEVE). *Nat Genet* 2025.
-- Seplyarskiy V, et al. Roulette mutation-rate model. [citation to be checked]
-- Chao KR, et al. Regional missense constraint (gnomAD). [citation to be checked]
+- Seplyarskiy V, et al. A mutation rate model at the basepair resolution identifies the mutagenic effect of polymerase III transcription (Roulette). *Nat Genet* 2023.
+- Chao KR, et al. The landscape of regional missense mutational intolerance quantified from 125,748 exomes. bioRxiv 2024, doi:10.1101/2024.04.11.588920.
 - Havrilla JM, et al. Constrained coding regions. *Nat Genet* 2019.
 - Badonyi M, Marsh JA. *PLOS ONE* 2024. doi:10.1371/journal.pone.0307312.
-- Liu X, et al. dbNSFP v4 / v5. [citations to be checked]
+- Liu X, Li C, Mou C, Dong Y, Tu Y. dbNSFP v4: a comprehensive database of transcript-specific functional predictions and annotations for human nonsynonymous and splice-site SNVs. *Genome Med* 2020;12:103. doi:10.1186/s13073-020-00803-9. (Release 4.1a; release 5.4a, academic licence.)
 - Pathak 2026, PhD thesis, University of Edinburgh.
 - Chen et al. 2026, Research Square preprint.
-- Harrizi et al. 2026. [citation to be checked]
+- Harrizi et al. Gene identity, not variant effect, dominates ClinVar benchmarks of missense pathogenicity predictors. bioRxiv 2026, doi:10.64898/2026.08.21.746180.
 - Richards S, et al. ACMG/AMP standards. *Genet Med* 2015.
 - Tavtigian SV, et al. Bayesian points framework. *Hum Mutat* 2020.

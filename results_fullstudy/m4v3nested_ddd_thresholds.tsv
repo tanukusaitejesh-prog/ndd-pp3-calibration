@@ -1,0 +1,45 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+AlphaMissense	gene	all_genes	marginal	0.9818	0.9945						
+AlphaMissense	gene	all_genes	within_unit	0.9930000000000001							
+AlphaMissense	rmc	all_genes	marginal	0.9818	0.9945						
+AlphaMissense	rmc	all_genes	within_unit								
+AlphaMissense	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+AlphaMissense	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+AlphaMissense	rmc	not_pm1like_rmc	marginal	0.9870500000000001							
+AlphaMissense	rmc	not_pm1like_rmc	within_unit								
+AlphaMissense	ccr	all_genes	marginal	0.9818	0.9958						
+AlphaMissense	ccr	all_genes	within_unit								
+AlphaMissense	ccr	pm1like_ccr_ge_95	marginal					0.07395000000000002	0.06445000000000001		
+AlphaMissense	ccr	pm1like_ccr_ge_95	within_unit					0.06445000000000001	0.06445000000000001		
+AlphaMissense	ccr	not_pm1like_ccr	marginal	0.9870500000000001	0.9958						
+AlphaMissense	ccr	not_pm1like_ccr	within_unit	0.9958							
+AlphaMissense	pseudo	all_genes	marginal	0.9818	0.9945						
+AlphaMissense	pseudo	all_genes	within_unit								
+AlphaMissense	win50	all_genes	marginal	0.9818	0.9945						
+AlphaMissense	win50	all_genes	within_unit								
+AlphaMissense	pseudo_rmc	all_genes	marginal	0.9818	0.9945						
+AlphaMissense	pseudo_rmc	all_genes	within_unit								
+AlphaMissense	win50_rmc	all_genes	marginal	0.9818	0.9945						
+AlphaMissense	win50_rmc	all_genes	within_unit								
+Aim4v3_GBDT	gene	all_genes	marginal	0.19022							
+Aim4v3_GBDT	gene	all_genes	within_unit					0.0			
+Aim4v3_GBDT	rmc	all_genes	marginal	0.19022							
+Aim4v3_GBDT	rmc	all_genes	within_unit								
+Aim4v3_GBDT	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.0			
+Aim4v3_GBDT	rmc	pm1like_rmc_oe_lt_0.4	within_unit					0.0			
+Aim4v3_GBDT	rmc	not_pm1like_rmc	marginal	0.19022							
+Aim4v3_GBDT	rmc	not_pm1like_rmc	within_unit								
+Aim4v3_GBDT	ccr	all_genes	marginal	0.19022							
+Aim4v3_GBDT	ccr	all_genes	within_unit								
+Aim4v3_GBDT	ccr	pm1like_ccr_ge_95	marginal					0.0			
+Aim4v3_GBDT	ccr	pm1like_ccr_ge_95	within_unit					0.0			
+Aim4v3_GBDT	ccr	not_pm1like_ccr	marginal	0.19022							
+Aim4v3_GBDT	ccr	not_pm1like_ccr	within_unit								
+Aim4v3_GBDT	pseudo	all_genes	marginal	0.19022							
+Aim4v3_GBDT	pseudo	all_genes	within_unit								
+Aim4v3_GBDT	win50	all_genes	marginal	0.19022							
+Aim4v3_GBDT	win50	all_genes	within_unit								
+Aim4v3_GBDT	pseudo_rmc	all_genes	marginal	0.19022							
+Aim4v3_GBDT	pseudo_rmc	all_genes	within_unit								
+Aim4v3_GBDT	win50_rmc	all_genes	marginal	0.19022							
+Aim4v3_GBDT	win50_rmc	all_genes	within_unit								

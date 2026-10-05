@@ -1,0 +1,5 @@
+tools: 1; informative (marginal top-group LR >= 2.406): 1
+readout 1 (primary, D2): share with r(D2) < 0.5 = 1.00 -> SYSTEMATIC (>= 0.75); D1 secondary: 1.00
+readout 2: constraint beyond position r(D2)-r(E2) median 0.023 [IQR 0.023, 0.023]; r(D1)-r(E1) median 0.077
+readout 3: tools with E2 one-sided lower bound >= 2.406: 0 of 1 (); E1: 0
+AlphaMissense A-E (top 2%): A 16.76, B 4.56, C 2.63, D1 3.18, D2 2.27, E1 2.46, E2 2.10
