@@ -366,7 +366,30 @@ ClinGen's cap removes this by construction (0 variants), as does the conditional
 
 ### Can a model trained on the de novo signal do better?
 
-[PENDING Aim 4 v1 and A5: calibration of predicted LRs on DDD; within-gene top-2% LR of v2-GBDT vs AlphaMissense on cold genes (primary), with the paired bootstrap; v2-MLP and ensemble; nested levels A–E for the model]
+**The model.** We trained classifiers to separate real GeneDx de novo missense variants (n = 11,203, training genes) from 10× as many sites drawn in proportion to mutation rate (n = 115,100), without clinical labels.
+
+- **v1:** predictor scores, amino acids and regional constraint, 118 features.
+- **v2:** adds the 17 dbNSFP 5.4a tools and AlphaFold structure features, 158 features.
+- **Models:** gradient-boosted trees, a five-seed MLP ensemble, and their average.
+
+**Marginal versus within gene** (held-out DDD trios):
+
+| Predictor | Marginal top-2% LR | Within-gene top-2% LR |
+|---|---|---|
+| AlphaMissense | 16.8 | **4.56** [4.17, 4.95] |
+| v1 | 26.4 | 3.43 |
+| v2-GBDT | **27.3** | 3.17 |
+| v2-MLP | 25.6 | 2.96 |
+
+- The models have the **largest marginal LRs of any predictor in the study**, but carry **less within-gene evidence** than AlphaMissense.
+- **Pre-registered primary comparison:** v2-GBDT / AlphaMissense within gene, cold genes = 0.69 [0.57, 0.84]. AlphaMissense was better.
+- **Consistency:** RUMC (0.72 [0.59, 0.88]) and GeneDx cold genes (0.76 [0.65, 0.90]) agree.
+- **More information made within-gene performance worse, not better:** adding structure and newer tools improved the marginal LR but reduced within-gene evidence relative to v1 (0.92 [0.89, 0.96]).
+- **Model class did not matter:** the MLP and ensemble did not differ materially from gradient boosting.
+
+**Interpretation.** A model optimised on the genome-wide de novo excess learns mainly which genes and regions carry it. This shows from another direction that the de novo excess, like ClinVar, rewards between-gene information unless the comparison is made within gene.
+
+**Gene-matched model (amendment A7).** After seeing this result, we pre-registered (before fitting) a model whose null sites are drawn from the same transcript as each real de novo, so that its objective is within-gene. It is reported as a post hoc analysis. [PENDING A7 v3 result and A6.3 autism evaluation of all models]
 
 ---
 
