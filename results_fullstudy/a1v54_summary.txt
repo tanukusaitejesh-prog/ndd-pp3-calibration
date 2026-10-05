@@ -1,0 +1,6 @@
+POWER CHECK: total missense O/E one-sided lower bound nan (> 1 needed); AlphaMissense top-2% within-gene LR lower 95% bound nan (> 1 needed) -> UNDERPOWERED (readouts descriptive only)
+tools: 17; informative (replication marginal top-group LR >= 2.406): 14
+readout 1 (primary, D2): share with r(D2) < 0.5 = 0.93 -> SYSTEMATIC (>= 0.75); D1 secondary: 0.57
+readout 2: constraint beyond position r(D2)-r(E2) median 0.014 [IQR 0.013, 0.016]; r(D1)-r(E1) median 0.063
+readout 3: tools with E2 one-sided lower bound >= 2.406: 0 of 17 (); E1: 0
+(no AlphaMissense in this run; power check not applicable)

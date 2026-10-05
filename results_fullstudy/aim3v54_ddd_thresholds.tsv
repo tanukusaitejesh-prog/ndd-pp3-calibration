@@ -1,0 +1,69 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+MetaRNN	gene	all_genes	marginal	0.9006500000000001							
+MetaRNN	gene	all_genes	within_unit	0.9583400000000001							
+MetaRNN	gene	ddg2p_monoallelic	marginal	0.9006500000000001				0.04545500000000001	0.028865000000000002		
+MetaRNN	gene	ddg2p_monoallelic	within_unit	0.94228				0.032805			
+MutPred2	gene	all_genes	marginal	0.91322							
+MutPred2	gene	all_genes	within_unit								
+MutPred2	gene	ddg2p_monoallelic	marginal	0.9020950000000001				0.17128000000000002			
+MutPred2	gene	ddg2p_monoallelic	within_unit	0.9481000000000002							
+gMVP	gene	all_genes	marginal	0.9241600000000001							
+gMVP	gene	all_genes	within_unit								
+gMVP	gene	ddg2p_monoallelic	marginal	0.9404800000000001				0.320635			
+gMVP	gene	ddg2p_monoallelic	within_unit								
+MisFit_D	gene	all_genes	marginal	0.9247650000000001							
+MisFit_D	gene	all_genes	within_unit	0.9605100000000001							
+MisFit_D	gene	ddg2p_monoallelic	marginal	0.9072600000000001				0.030655			
+MisFit_D	gene	ddg2p_monoallelic	within_unit	0.9306800000000002							
+MisFit_S	gene	all_genes	marginal	0.929035	0.9674600000000001						
+MisFit_S	gene	all_genes	within_unit								
+MisFit_S	gene	ddg2p_monoallelic	marginal	0.9619800000000001							
+MisFit_S	gene	ddg2p_monoallelic	within_unit								
+VARITY_R	gene	all_genes	marginal	0.8799100000000001							
+VARITY_R	gene	all_genes	within_unit	0.957095							
+VARITY_R	gene	ddg2p_monoallelic	marginal	0.8519700000000001				0.05747000000000001			
+VARITY_R	gene	ddg2p_monoallelic	within_unit	0.929865							
+VARITY_ER	gene	all_genes	marginal	0.889105							
+VARITY_ER	gene	all_genes	within_unit	0.9421950000000001							
+VARITY_ER	gene	ddg2p_monoallelic	marginal	0.882935				0.08551500000000001	0.01382		
+VARITY_ER	gene	ddg2p_monoallelic	within_unit	0.9213850000000001				0.01382			
+VARITY_R_LOO	gene	all_genes	marginal	0.8977650000000001							
+VARITY_R_LOO	gene	all_genes	within_unit	0.9571100000000001							
+VARITY_R_LOO	gene	ddg2p_monoallelic	marginal	0.8574250000000001				0.061635			
+VARITY_R_LOO	gene	ddg2p_monoallelic	within_unit	0.923235							
+VARITY_ER_LOO	gene	all_genes	marginal	0.9081650000000001							
+VARITY_ER_LOO	gene	all_genes	within_unit	0.9492800000000001							
+VARITY_ER_LOO	gene	ddg2p_monoallelic	marginal	0.8708750000000001				0.08554500000000001	0.01382		
+VARITY_ER_LOO	gene	ddg2p_monoallelic	within_unit	0.921425				0.01382			
+ESM1b	gene	all_genes	marginal	0.8581750000000001							
+ESM1b	gene	all_genes	within_unit								
+ESM1b	gene	ddg2p_monoallelic	marginal	0.87995				0.064715			
+ESM1b	gene	ddg2p_monoallelic	within_unit	0.9291550000000002							
+PHACTboost	gene	all_genes	marginal	0.9324300000000001	0.9585100000000001						
+PHACTboost	gene	all_genes	within_unit								
+PHACTboost	gene	ddg2p_monoallelic	marginal	0.9478800000000001				0.035620000000000006			
+PHACTboost	gene	ddg2p_monoallelic	within_unit								
+MutFormer	gene	all_genes	marginal	0.9212450000000001				0.036070000000000005			
+MutFormer	gene	all_genes	within_unit								
+MutFormer	gene	ddg2p_monoallelic	marginal					0.07775	0.07775	0.06228	0.06228
+MutFormer	gene	ddg2p_monoallelic	within_unit					0.07215	0.06228	0.06228	0.06228
+MutScore	gene	all_genes	marginal	0.9467700000000001							
+MutScore	gene	all_genes	within_unit								
+MutScore	gene	ddg2p_monoallelic	marginal	0.9467700000000001				0.27632	0.1033		
+MutScore	gene	ddg2p_monoallelic	within_unit	0.9680000000000001				0.11379000000000002	0.03554		
+GPN-MSA	gene	all_genes	marginal	0.85777							
+GPN-MSA	gene	all_genes	within_unit								
+GPN-MSA	gene	ddg2p_monoallelic	marginal	0.91547				0.025965000000000002			
+GPN-MSA	gene	ddg2p_monoallelic	within_unit								
+GERP_92m	gene	all_genes	marginal								
+GERP_92m	gene	all_genes	within_unit								
+GERP_92m	gene	ddg2p_monoallelic	marginal								
+GERP_92m	gene	ddg2p_monoallelic	within_unit								
+phyloP470way	gene	all_genes	marginal								
+phyloP470way	gene	all_genes	within_unit								
+phyloP470way	gene	ddg2p_monoallelic	marginal								
+phyloP470way	gene	ddg2p_monoallelic	within_unit								
+phastCons470way	gene	all_genes	marginal								
+phastCons470way	gene	all_genes	within_unit								
+phastCons470way	gene	ddg2p_monoallelic	marginal					0.09543			
+phastCons470way	gene	ddg2p_monoallelic	within_unit								

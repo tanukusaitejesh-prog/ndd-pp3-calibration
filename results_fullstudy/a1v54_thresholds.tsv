@@ -1,0 +1,613 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+MetaRNN	gene	all_genes	marginal	0.9102350000000001							
+MetaRNN	gene	all_genes	within_unit	0.9655550000000002							
+MetaRNN	gene	ddg2p_monoallelic	marginal	0.90534				0.598995	0.03819		
+MetaRNN	gene	ddg2p_monoallelic	within_unit	0.94003				0.04259	0.009605		
+MetaRNN	rmc	all_genes	marginal	0.9102350000000001							
+MetaRNN	rmc	all_genes	within_unit								
+MetaRNN	rmc	ddg2p_monoallelic	marginal	0.90534				0.598995	0.03819		
+MetaRNN	rmc	ddg2p_monoallelic	within_unit					0.009605			
+MetaRNN	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.94003				0.009605			
+MetaRNN	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MetaRNN	rmc	not_pm1like_rmc	marginal								
+MetaRNN	rmc	not_pm1like_rmc	within_unit								
+MetaRNN	ccr	all_genes	marginal	0.9102350000000001							
+MetaRNN	ccr	all_genes	within_unit								
+MetaRNN	ccr	ddg2p_monoallelic	marginal	0.90534				0.598995	0.03819		
+MetaRNN	ccr	ddg2p_monoallelic	within_unit	0.970685				0.02985			
+MetaRNN	ccr	pm1like_ccr_ge_95	marginal	0.9604000000000001							
+MetaRNN	ccr	pm1like_ccr_ge_95	within_unit								
+MetaRNN	ccr	not_pm1like_ccr	marginal	0.955295							
+MetaRNN	ccr	not_pm1like_ccr	within_unit								
+MetaRNN	pseudo	all_genes	marginal	0.9102350000000001							
+MetaRNN	pseudo	all_genes	within_unit								
+MetaRNN	pseudo	ddg2p_monoallelic	marginal	0.90534				0.598995	0.03819		
+MetaRNN	pseudo	ddg2p_monoallelic	within_unit	0.970685				0.02985			
+MetaRNN	win50	all_genes	marginal	0.9102350000000001							
+MetaRNN	win50	all_genes	within_unit								
+MetaRNN	win50	ddg2p_monoallelic	marginal	0.90534				0.598995	0.03819		
+MetaRNN	win50	ddg2p_monoallelic	within_unit								
+MetaRNN	pseudo_rmc	all_genes	marginal	0.9102350000000001							
+MetaRNN	pseudo_rmc	all_genes	within_unit								
+MetaRNN	pseudo_rmc	ddg2p_monoallelic	marginal	0.90534				0.598995	0.03819		
+MetaRNN	pseudo_rmc	ddg2p_monoallelic	within_unit								
+MetaRNN	win50_rmc	all_genes	marginal	0.9102350000000001							
+MetaRNN	win50_rmc	all_genes	within_unit								
+MetaRNN	win50_rmc	ddg2p_monoallelic	marginal	0.90534				0.598995	0.03819		
+MetaRNN	win50_rmc	ddg2p_monoallelic	within_unit								
+MutPred2	gene	all_genes	marginal	0.91185							
+MutPred2	gene	all_genes	within_unit								
+MutPred2	gene	ddg2p_monoallelic	marginal	0.91185				0.49469500000000005			
+MutPred2	gene	ddg2p_monoallelic	within_unit	0.9561200000000001							
+MutPred2	rmc	all_genes	marginal	0.91185							
+MutPred2	rmc	all_genes	within_unit								
+MutPred2	rmc	ddg2p_monoallelic	marginal	0.91185				0.49469500000000005			
+MutPred2	rmc	ddg2p_monoallelic	within_unit								
+MutPred2	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MutPred2	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MutPred2	rmc	not_pm1like_rmc	marginal								
+MutPred2	rmc	not_pm1like_rmc	within_unit								
+MutPred2	ccr	all_genes	marginal	0.91185							
+MutPred2	ccr	all_genes	within_unit								
+MutPred2	ccr	ddg2p_monoallelic	marginal	0.91185				0.49469500000000005			
+MutPred2	ccr	ddg2p_monoallelic	within_unit								
+MutPred2	ccr	pm1like_ccr_ge_95	marginal					0.023490000000000004			
+MutPred2	ccr	pm1like_ccr_ge_95	within_unit								
+MutPred2	ccr	not_pm1like_ccr	marginal	0.9334800000000001							
+MutPred2	ccr	not_pm1like_ccr	within_unit								
+MutPred2	pseudo	all_genes	marginal	0.91185							
+MutPred2	pseudo	all_genes	within_unit								
+MutPred2	pseudo	ddg2p_monoallelic	marginal	0.91185				0.49469500000000005			
+MutPred2	pseudo	ddg2p_monoallelic	within_unit								
+MutPred2	win50	all_genes	marginal	0.91185							
+MutPred2	win50	all_genes	within_unit								
+MutPred2	win50	ddg2p_monoallelic	marginal	0.91185				0.49469500000000005			
+MutPred2	win50	ddg2p_monoallelic	within_unit								
+MutPred2	pseudo_rmc	all_genes	marginal	0.91185							
+MutPred2	pseudo_rmc	all_genes	within_unit								
+MutPred2	pseudo_rmc	ddg2p_monoallelic	marginal	0.91185				0.49469500000000005			
+MutPred2	pseudo_rmc	ddg2p_monoallelic	within_unit								
+MutPred2	win50_rmc	all_genes	marginal	0.91185							
+MutPred2	win50_rmc	all_genes	within_unit								
+MutPred2	win50_rmc	ddg2p_monoallelic	marginal	0.91185				0.49469500000000005			
+MutPred2	win50_rmc	ddg2p_monoallelic	within_unit								
+gMVP	gene	all_genes	marginal	0.9223950000000001							
+gMVP	gene	all_genes	within_unit								
+gMVP	gene	ddg2p_monoallelic	marginal	0.9378000000000001				0.275135			
+gMVP	gene	ddg2p_monoallelic	within_unit								
+gMVP	rmc	all_genes	marginal	0.9223950000000001							
+gMVP	rmc	all_genes	within_unit								
+gMVP	rmc	ddg2p_monoallelic	marginal	0.9378000000000001				0.275135			
+gMVP	rmc	ddg2p_monoallelic	within_unit								
+gMVP	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+gMVP	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+gMVP	rmc	not_pm1like_rmc	marginal	0.9589700000000001							
+gMVP	rmc	not_pm1like_rmc	within_unit								
+gMVP	ccr	all_genes	marginal	0.9223950000000001							
+gMVP	ccr	all_genes	within_unit								
+gMVP	ccr	ddg2p_monoallelic	marginal	0.9378000000000001				0.275135			
+gMVP	ccr	ddg2p_monoallelic	within_unit								
+gMVP	ccr	pm1like_ccr_ge_95	marginal					0.16616000000000003	0.06078		
+gMVP	ccr	pm1like_ccr_ge_95	within_unit								
+gMVP	ccr	not_pm1like_ccr	marginal	0.9378000000000001							
+gMVP	ccr	not_pm1like_ccr	within_unit								
+gMVP	pseudo	all_genes	marginal	0.9223950000000001							
+gMVP	pseudo	all_genes	within_unit								
+gMVP	pseudo	ddg2p_monoallelic	marginal	0.9378000000000001				0.275135			
+gMVP	pseudo	ddg2p_monoallelic	within_unit								
+gMVP	win50	all_genes	marginal	0.9223950000000001							
+gMVP	win50	all_genes	within_unit								
+gMVP	win50	ddg2p_monoallelic	marginal	0.9378000000000001				0.275135			
+gMVP	win50	ddg2p_monoallelic	within_unit								
+gMVP	pseudo_rmc	all_genes	marginal	0.9223950000000001							
+gMVP	pseudo_rmc	all_genes	within_unit								
+gMVP	pseudo_rmc	ddg2p_monoallelic	marginal	0.9378000000000001				0.275135			
+gMVP	pseudo_rmc	ddg2p_monoallelic	within_unit								
+gMVP	win50_rmc	all_genes	marginal	0.9223950000000001							
+gMVP	win50_rmc	all_genes	within_unit								
+gMVP	win50_rmc	ddg2p_monoallelic	marginal	0.9378000000000001				0.275135			
+gMVP	win50_rmc	ddg2p_monoallelic	within_unit								
+MisFit_D	gene	all_genes	marginal	0.9226300000000001							
+MisFit_D	gene	all_genes	within_unit	0.968145							
+MisFit_D	gene	ddg2p_monoallelic	marginal	0.90591				0.032025000000000005			
+MisFit_D	gene	ddg2p_monoallelic	within_unit	0.9282650000000001				0.02724			
+MisFit_D	rmc	all_genes	marginal	0.9226300000000001							
+MisFit_D	rmc	all_genes	within_unit								
+MisFit_D	rmc	ddg2p_monoallelic	marginal	0.90591				0.032025000000000005			
+MisFit_D	rmc	ddg2p_monoallelic	within_unit								
+MisFit_D	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MisFit_D	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MisFit_D	rmc	not_pm1like_rmc	marginal	0.968145							
+MisFit_D	rmc	not_pm1like_rmc	within_unit								
+MisFit_D	ccr	all_genes	marginal	0.9226300000000001							
+MisFit_D	ccr	all_genes	within_unit								
+MisFit_D	ccr	ddg2p_monoallelic	marginal	0.90591				0.032025000000000005			
+MisFit_D	ccr	ddg2p_monoallelic	within_unit								
+MisFit_D	ccr	pm1like_ccr_ge_95	marginal	0.968145							
+MisFit_D	ccr	pm1like_ccr_ge_95	within_unit								
+MisFit_D	ccr	not_pm1like_ccr	marginal	0.95098							
+MisFit_D	ccr	not_pm1like_ccr	within_unit								
+MisFit_D	pseudo	all_genes	marginal	0.9226300000000001							
+MisFit_D	pseudo	all_genes	within_unit								
+MisFit_D	pseudo	ddg2p_monoallelic	marginal	0.90591				0.032025000000000005			
+MisFit_D	pseudo	ddg2p_monoallelic	within_unit								
+MisFit_D	win50	all_genes	marginal	0.9226300000000001							
+MisFit_D	win50	all_genes	within_unit								
+MisFit_D	win50	ddg2p_monoallelic	marginal	0.90591				0.032025000000000005			
+MisFit_D	win50	ddg2p_monoallelic	within_unit								
+MisFit_D	pseudo_rmc	all_genes	marginal	0.9226300000000001							
+MisFit_D	pseudo_rmc	all_genes	within_unit								
+MisFit_D	pseudo_rmc	ddg2p_monoallelic	marginal	0.90591				0.032025000000000005			
+MisFit_D	pseudo_rmc	ddg2p_monoallelic	within_unit								
+MisFit_D	win50_rmc	all_genes	marginal	0.9226300000000001							
+MisFit_D	win50_rmc	all_genes	within_unit								
+MisFit_D	win50_rmc	ddg2p_monoallelic	marginal	0.90591				0.032025000000000005			
+MisFit_D	win50_rmc	ddg2p_monoallelic	within_unit								
+MisFit_S	gene	all_genes	marginal	0.9330800000000001	0.9694200000000001						
+MisFit_S	gene	all_genes	within_unit								
+MisFit_S	gene	ddg2p_monoallelic	marginal	0.9642300000000001				0.034800000000000005			
+MisFit_S	gene	ddg2p_monoallelic	within_unit								
+MisFit_S	rmc	all_genes	marginal	0.9330800000000001	0.9694200000000001						
+MisFit_S	rmc	all_genes	within_unit								
+MisFit_S	rmc	ddg2p_monoallelic	marginal	0.9642300000000001				0.034800000000000005			
+MisFit_S	rmc	ddg2p_monoallelic	within_unit								
+MisFit_S	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MisFit_S	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MisFit_S	rmc	not_pm1like_rmc	marginal	0.95903							
+MisFit_S	rmc	not_pm1like_rmc	within_unit								
+MisFit_S	ccr	all_genes	marginal	0.9330800000000001	0.9694200000000001						
+MisFit_S	ccr	all_genes	within_unit								
+MisFit_S	ccr	ddg2p_monoallelic	marginal	0.9642300000000001				0.034800000000000005			
+MisFit_S	ccr	ddg2p_monoallelic	within_unit								
+MisFit_S	ccr	pm1like_ccr_ge_95	marginal					0.034800000000000005			
+MisFit_S	ccr	pm1like_ccr_ge_95	within_unit								
+MisFit_S	ccr	not_pm1like_ccr	marginal	0.9382750000000001							
+MisFit_S	ccr	not_pm1like_ccr	within_unit								
+MisFit_S	pseudo	all_genes	marginal	0.9330800000000001	0.9694200000000001						
+MisFit_S	pseudo	all_genes	within_unit								
+MisFit_S	pseudo	ddg2p_monoallelic	marginal	0.9642300000000001				0.034800000000000005			
+MisFit_S	pseudo	ddg2p_monoallelic	within_unit								
+MisFit_S	win50	all_genes	marginal	0.9330800000000001	0.9694200000000001						
+MisFit_S	win50	all_genes	within_unit								
+MisFit_S	win50	ddg2p_monoallelic	marginal	0.9642300000000001				0.034800000000000005			
+MisFit_S	win50	ddg2p_monoallelic	within_unit								
+MisFit_S	pseudo_rmc	all_genes	marginal	0.9330800000000001	0.9694200000000001						
+MisFit_S	pseudo_rmc	all_genes	within_unit								
+MisFit_S	pseudo_rmc	ddg2p_monoallelic	marginal	0.9642300000000001				0.034800000000000005			
+MisFit_S	pseudo_rmc	ddg2p_monoallelic	within_unit								
+MisFit_S	win50_rmc	all_genes	marginal	0.9330800000000001	0.9694200000000001						
+MisFit_S	win50_rmc	all_genes	within_unit								
+MisFit_S	win50_rmc	ddg2p_monoallelic	marginal	0.9642300000000001				0.034800000000000005			
+MisFit_S	win50_rmc	ddg2p_monoallelic	within_unit								
+VARITY_R	gene	all_genes	marginal	0.8797100000000001							
+VARITY_R	gene	all_genes	within_unit	0.9593100000000001							
+VARITY_R	gene	ddg2p_monoallelic	marginal	0.86351				0.5266550000000001			
+VARITY_R	gene	ddg2p_monoallelic	within_unit	0.9145800000000002							
+VARITY_R	rmc	all_genes	marginal	0.8797100000000001							
+VARITY_R	rmc	all_genes	within_unit								
+VARITY_R	rmc	ddg2p_monoallelic	marginal	0.86351				0.5266550000000001			
+VARITY_R	rmc	ddg2p_monoallelic	within_unit								
+VARITY_R	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.952725							
+VARITY_R	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+VARITY_R	rmc	not_pm1like_rmc	marginal								
+VARITY_R	rmc	not_pm1like_rmc	within_unit								
+VARITY_R	ccr	all_genes	marginal	0.8797100000000001							
+VARITY_R	ccr	all_genes	within_unit								
+VARITY_R	ccr	ddg2p_monoallelic	marginal	0.86351				0.5266550000000001			
+VARITY_R	ccr	ddg2p_monoallelic	within_unit								
+VARITY_R	ccr	pm1like_ccr_ge_95	marginal	0.9593100000000001							
+VARITY_R	ccr	pm1like_ccr_ge_95	within_unit								
+VARITY_R	ccr	not_pm1like_ccr	marginal	0.9085350000000001							
+VARITY_R	ccr	not_pm1like_ccr	within_unit								
+VARITY_R	pseudo	all_genes	marginal	0.8797100000000001							
+VARITY_R	pseudo	all_genes	within_unit								
+VARITY_R	pseudo	ddg2p_monoallelic	marginal	0.86351				0.5266550000000001			
+VARITY_R	pseudo	ddg2p_monoallelic	within_unit								
+VARITY_R	win50	all_genes	marginal	0.8797100000000001							
+VARITY_R	win50	all_genes	within_unit								
+VARITY_R	win50	ddg2p_monoallelic	marginal	0.86351				0.5266550000000001			
+VARITY_R	win50	ddg2p_monoallelic	within_unit								
+VARITY_R	pseudo_rmc	all_genes	marginal	0.8797100000000001							
+VARITY_R	pseudo_rmc	all_genes	within_unit								
+VARITY_R	pseudo_rmc	ddg2p_monoallelic	marginal	0.86351				0.5266550000000001			
+VARITY_R	pseudo_rmc	ddg2p_monoallelic	within_unit								
+VARITY_R	win50_rmc	all_genes	marginal	0.8797100000000001							
+VARITY_R	win50_rmc	all_genes	within_unit								
+VARITY_R	win50_rmc	ddg2p_monoallelic	marginal	0.86351				0.5266550000000001			
+VARITY_R	win50_rmc	ddg2p_monoallelic	within_unit								
+VARITY_ER	gene	all_genes	marginal	0.8945350000000001							
+VARITY_ER	gene	all_genes	within_unit	0.9522200000000001							
+VARITY_ER	gene	ddg2p_monoallelic	marginal	0.85995				0.42108500000000004			
+VARITY_ER	gene	ddg2p_monoallelic	within_unit	0.9256550000000001							
+VARITY_ER	rmc	all_genes	marginal	0.8945350000000001							
+VARITY_ER	rmc	all_genes	within_unit								
+VARITY_ER	rmc	ddg2p_monoallelic	marginal	0.85995				0.42108500000000004			
+VARITY_ER	rmc	ddg2p_monoallelic	within_unit								
+VARITY_ER	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9388150000000001				0.04605000000000001			
+VARITY_ER	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+VARITY_ER	rmc	not_pm1like_rmc	marginal								
+VARITY_ER	rmc	not_pm1like_rmc	within_unit								
+VARITY_ER	ccr	all_genes	marginal	0.8945350000000001							
+VARITY_ER	ccr	all_genes	within_unit								
+VARITY_ER	ccr	ddg2p_monoallelic	marginal	0.85995				0.42108500000000004			
+VARITY_ER	ccr	ddg2p_monoallelic	within_unit								
+VARITY_ER	ccr	pm1like_ccr_ge_95	marginal	0.9589700000000001				0.04605000000000001	0.013940000000000001		
+VARITY_ER	ccr	pm1like_ccr_ge_95	within_unit								
+VARITY_ER	ccr	not_pm1like_ccr	marginal	0.9321900000000001							
+VARITY_ER	ccr	not_pm1like_ccr	within_unit								
+VARITY_ER	pseudo	all_genes	marginal	0.8945350000000001							
+VARITY_ER	pseudo	all_genes	within_unit								
+VARITY_ER	pseudo	ddg2p_monoallelic	marginal	0.85995				0.42108500000000004			
+VARITY_ER	pseudo	ddg2p_monoallelic	within_unit								
+VARITY_ER	win50	all_genes	marginal	0.8945350000000001							
+VARITY_ER	win50	all_genes	within_unit								
+VARITY_ER	win50	ddg2p_monoallelic	marginal	0.85995				0.42108500000000004			
+VARITY_ER	win50	ddg2p_monoallelic	within_unit								
+VARITY_ER	pseudo_rmc	all_genes	marginal	0.8945350000000001							
+VARITY_ER	pseudo_rmc	all_genes	within_unit								
+VARITY_ER	pseudo_rmc	ddg2p_monoallelic	marginal	0.85995				0.42108500000000004			
+VARITY_ER	pseudo_rmc	ddg2p_monoallelic	within_unit								
+VARITY_ER	win50_rmc	all_genes	marginal	0.8945350000000001							
+VARITY_ER	win50_rmc	all_genes	within_unit								
+VARITY_ER	win50_rmc	ddg2p_monoallelic	marginal	0.85995				0.42108500000000004			
+VARITY_ER	win50_rmc	ddg2p_monoallelic	within_unit								
+VARITY_R_LOO	gene	all_genes	marginal	0.8908950000000001							
+VARITY_R_LOO	gene	all_genes	within_unit	0.9593250000000001							
+VARITY_R_LOO	gene	ddg2p_monoallelic	marginal	0.8742300000000001				0.526675			
+VARITY_R_LOO	gene	ddg2p_monoallelic	within_unit	0.9207000000000001							
+VARITY_R_LOO	rmc	all_genes	marginal	0.8908950000000001							
+VARITY_R_LOO	rmc	all_genes	within_unit								
+VARITY_R_LOO	rmc	ddg2p_monoallelic	marginal	0.8742300000000001				0.526675			
+VARITY_R_LOO	rmc	ddg2p_monoallelic	within_unit								
+VARITY_R_LOO	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9527150000000001							
+VARITY_R_LOO	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+VARITY_R_LOO	rmc	not_pm1like_rmc	marginal								
+VARITY_R_LOO	rmc	not_pm1like_rmc	within_unit								
+VARITY_R_LOO	ccr	all_genes	marginal	0.8908950000000001							
+VARITY_R_LOO	ccr	all_genes	within_unit								
+VARITY_R_LOO	ccr	ddg2p_monoallelic	marginal	0.8742300000000001				0.526675			
+VARITY_R_LOO	ccr	ddg2p_monoallelic	within_unit								
+VARITY_R_LOO	ccr	pm1like_ccr_ge_95	marginal	0.9527150000000001							
+VARITY_R_LOO	ccr	pm1like_ccr_ge_95	within_unit								
+VARITY_R_LOO	ccr	not_pm1like_ccr	marginal	0.9145650000000001							
+VARITY_R_LOO	ccr	not_pm1like_ccr	within_unit								
+VARITY_R_LOO	pseudo	all_genes	marginal	0.8908950000000001							
+VARITY_R_LOO	pseudo	all_genes	within_unit								
+VARITY_R_LOO	pseudo	ddg2p_monoallelic	marginal	0.8742300000000001				0.526675			
+VARITY_R_LOO	pseudo	ddg2p_monoallelic	within_unit								
+VARITY_R_LOO	win50	all_genes	marginal	0.8908950000000001							
+VARITY_R_LOO	win50	all_genes	within_unit								
+VARITY_R_LOO	win50	ddg2p_monoallelic	marginal	0.8742300000000001				0.526675			
+VARITY_R_LOO	win50	ddg2p_monoallelic	within_unit								
+VARITY_R_LOO	pseudo_rmc	all_genes	marginal	0.8908950000000001							
+VARITY_R_LOO	pseudo_rmc	all_genes	within_unit								
+VARITY_R_LOO	pseudo_rmc	ddg2p_monoallelic	marginal	0.8742300000000001				0.526675			
+VARITY_R_LOO	pseudo_rmc	ddg2p_monoallelic	within_unit								
+VARITY_R_LOO	win50_rmc	all_genes	marginal	0.8908950000000001							
+VARITY_R_LOO	win50_rmc	all_genes	within_unit								
+VARITY_R_LOO	win50_rmc	ddg2p_monoallelic	marginal	0.8742300000000001				0.526675			
+VARITY_R_LOO	win50_rmc	ddg2p_monoallelic	within_unit								
+VARITY_ER_LOO	gene	all_genes	marginal	0.8946050000000001							
+VARITY_ER_LOO	gene	all_genes	within_unit	0.9522300000000001							
+VARITY_ER_LOO	gene	ddg2p_monoallelic	marginal	0.859975				0.46168000000000003			
+VARITY_ER_LOO	gene	ddg2p_monoallelic	within_unit	0.9192600000000001							
+VARITY_ER_LOO	rmc	all_genes	marginal	0.8946050000000001							
+VARITY_ER_LOO	rmc	all_genes	within_unit								
+VARITY_ER_LOO	rmc	ddg2p_monoallelic	marginal	0.859975				0.46168000000000003			
+VARITY_ER_LOO	rmc	ddg2p_monoallelic	within_unit								
+VARITY_ER_LOO	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9522300000000001				0.04608			
+VARITY_ER_LOO	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+VARITY_ER_LOO	rmc	not_pm1like_rmc	marginal								
+VARITY_ER_LOO	rmc	not_pm1like_rmc	within_unit								
+VARITY_ER_LOO	ccr	all_genes	marginal	0.8946050000000001							
+VARITY_ER_LOO	ccr	all_genes	within_unit								
+VARITY_ER_LOO	ccr	ddg2p_monoallelic	marginal	0.859975				0.46168000000000003			
+VARITY_ER_LOO	ccr	ddg2p_monoallelic	within_unit								
+VARITY_ER_LOO	ccr	pm1like_ccr_ge_95	marginal	0.9589700000000001				0.04608	0.01396		
+VARITY_ER_LOO	ccr	pm1like_ccr_ge_95	within_unit								
+VARITY_ER_LOO	ccr	not_pm1like_ccr	marginal	0.932215							
+VARITY_ER_LOO	ccr	not_pm1like_ccr	within_unit								
+VARITY_ER_LOO	pseudo	all_genes	marginal	0.8946050000000001							
+VARITY_ER_LOO	pseudo	all_genes	within_unit								
+VARITY_ER_LOO	pseudo	ddg2p_monoallelic	marginal	0.859975				0.46168000000000003			
+VARITY_ER_LOO	pseudo	ddg2p_monoallelic	within_unit								
+VARITY_ER_LOO	win50	all_genes	marginal	0.8946050000000001							
+VARITY_ER_LOO	win50	all_genes	within_unit								
+VARITY_ER_LOO	win50	ddg2p_monoallelic	marginal	0.859975				0.46168000000000003			
+VARITY_ER_LOO	win50	ddg2p_monoallelic	within_unit								
+VARITY_ER_LOO	pseudo_rmc	all_genes	marginal	0.8946050000000001							
+VARITY_ER_LOO	pseudo_rmc	all_genes	within_unit								
+VARITY_ER_LOO	pseudo_rmc	ddg2p_monoallelic	marginal	0.859975				0.46168000000000003			
+VARITY_ER_LOO	pseudo_rmc	ddg2p_monoallelic	within_unit								
+VARITY_ER_LOO	win50_rmc	all_genes	marginal	0.8946050000000001							
+VARITY_ER_LOO	win50_rmc	all_genes	within_unit								
+VARITY_ER_LOO	win50_rmc	ddg2p_monoallelic	marginal	0.859975				0.46168000000000003			
+VARITY_ER_LOO	win50_rmc	ddg2p_monoallelic	within_unit								
+ESM1b	gene	all_genes	marginal	0.87334							
+ESM1b	gene	all_genes	within_unit								
+ESM1b	gene	ddg2p_monoallelic	marginal	0.88405				0.18441000000000002			
+ESM1b	gene	ddg2p_monoallelic	within_unit	0.9251850000000001							
+ESM1b	rmc	all_genes	marginal	0.87334							
+ESM1b	rmc	all_genes	within_unit								
+ESM1b	rmc	ddg2p_monoallelic	marginal	0.88405				0.18441000000000002			
+ESM1b	rmc	ddg2p_monoallelic	within_unit								
+ESM1b	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.083945			
+ESM1b	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+ESM1b	rmc	not_pm1like_rmc	marginal	0.9317150000000001							
+ESM1b	rmc	not_pm1like_rmc	within_unit								
+ESM1b	ccr	all_genes	marginal	0.87334							
+ESM1b	ccr	all_genes	within_unit								
+ESM1b	ccr	ddg2p_monoallelic	marginal	0.88405				0.18441000000000002			
+ESM1b	ccr	ddg2p_monoallelic	within_unit								
+ESM1b	ccr	pm1like_ccr_ge_95	marginal					0.029975			
+ESM1b	ccr	pm1like_ccr_ge_95	within_unit								
+ESM1b	ccr	not_pm1like_ccr	marginal	0.8951250000000001							
+ESM1b	ccr	not_pm1like_ccr	within_unit								
+ESM1b	pseudo	all_genes	marginal	0.87334							
+ESM1b	pseudo	all_genes	within_unit								
+ESM1b	pseudo	ddg2p_monoallelic	marginal	0.88405				0.18441000000000002			
+ESM1b	pseudo	ddg2p_monoallelic	within_unit								
+ESM1b	win50	all_genes	marginal	0.87334							
+ESM1b	win50	all_genes	within_unit								
+ESM1b	win50	ddg2p_monoallelic	marginal	0.88405				0.18441000000000002			
+ESM1b	win50	ddg2p_monoallelic	within_unit								
+ESM1b	pseudo_rmc	all_genes	marginal	0.87334							
+ESM1b	pseudo_rmc	all_genes	within_unit								
+ESM1b	pseudo_rmc	ddg2p_monoallelic	marginal	0.88405				0.18441000000000002			
+ESM1b	pseudo_rmc	ddg2p_monoallelic	within_unit								
+ESM1b	win50_rmc	all_genes	marginal	0.87334							
+ESM1b	win50_rmc	all_genes	within_unit								
+ESM1b	win50_rmc	ddg2p_monoallelic	marginal	0.88405				0.18441000000000002			
+ESM1b	win50_rmc	ddg2p_monoallelic	within_unit								
+PHACTboost	gene	all_genes	marginal	0.9266750000000001	0.965775						
+PHACTboost	gene	all_genes	within_unit								
+PHACTboost	gene	ddg2p_monoallelic	marginal	0.9508800000000002				0.77512			
+PHACTboost	gene	ddg2p_monoallelic	within_unit								
+PHACTboost	rmc	all_genes	marginal	0.9266750000000001	0.965775						
+PHACTboost	rmc	all_genes	within_unit								
+PHACTboost	rmc	ddg2p_monoallelic	marginal	0.9508800000000002				0.77512			
+PHACTboost	rmc	ddg2p_monoallelic	within_unit								
+PHACTboost	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+PHACTboost	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+PHACTboost	rmc	not_pm1like_rmc	marginal	0.9411800000000001							
+PHACTboost	rmc	not_pm1like_rmc	within_unit								
+PHACTboost	ccr	all_genes	marginal	0.9266750000000001	0.965775						
+PHACTboost	ccr	all_genes	within_unit								
+PHACTboost	ccr	ddg2p_monoallelic	marginal	0.9508800000000002				0.77512			
+PHACTboost	ccr	ddg2p_monoallelic	within_unit								
+PHACTboost	ccr	pm1like_ccr_ge_95	marginal	0.965775				0.04284			
+PHACTboost	ccr	pm1like_ccr_ge_95	within_unit								
+PHACTboost	ccr	not_pm1like_ccr	marginal	0.9266750000000001	0.965775						
+PHACTboost	ccr	not_pm1like_ccr	within_unit								
+PHACTboost	pseudo	all_genes	marginal	0.9266750000000001	0.965775						
+PHACTboost	pseudo	all_genes	within_unit								
+PHACTboost	pseudo	ddg2p_monoallelic	marginal	0.9508800000000002				0.77512			
+PHACTboost	pseudo	ddg2p_monoallelic	within_unit								
+PHACTboost	win50	all_genes	marginal	0.9266750000000001	0.965775						
+PHACTboost	win50	all_genes	within_unit								
+PHACTboost	win50	ddg2p_monoallelic	marginal	0.9508800000000002				0.77512			
+PHACTboost	win50	ddg2p_monoallelic	within_unit								
+PHACTboost	pseudo_rmc	all_genes	marginal	0.9266750000000001	0.965775						
+PHACTboost	pseudo_rmc	all_genes	within_unit								
+PHACTboost	pseudo_rmc	ddg2p_monoallelic	marginal	0.9508800000000002				0.77512			
+PHACTboost	pseudo_rmc	ddg2p_monoallelic	within_unit								
+PHACTboost	win50_rmc	all_genes	marginal	0.9266750000000001	0.965775						
+PHACTboost	win50_rmc	all_genes	within_unit								
+PHACTboost	win50_rmc	ddg2p_monoallelic	marginal	0.9508800000000002				0.77512			
+PHACTboost	win50_rmc	ddg2p_monoallelic	within_unit								
+MutFormer	gene	all_genes	marginal	0.9235850000000001							
+MutFormer	gene	all_genes	within_unit								
+MutFormer	gene	ddg2p_monoallelic	marginal					0.27715			
+MutFormer	gene	ddg2p_monoallelic	within_unit								
+MutFormer	rmc	all_genes	marginal	0.9235850000000001							
+MutFormer	rmc	all_genes	within_unit								
+MutFormer	rmc	ddg2p_monoallelic	marginal					0.27715			
+MutFormer	rmc	ddg2p_monoallelic	within_unit								
+MutFormer	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9520000000000001							
+MutFormer	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MutFormer	rmc	not_pm1like_rmc	marginal	0.9709450000000001							
+MutFormer	rmc	not_pm1like_rmc	within_unit								
+MutFormer	ccr	all_genes	marginal	0.9235850000000001							
+MutFormer	ccr	all_genes	within_unit								
+MutFormer	ccr	ddg2p_monoallelic	marginal					0.27715			
+MutFormer	ccr	ddg2p_monoallelic	within_unit								
+MutFormer	ccr	pm1like_ccr_ge_95	marginal	0.942555				0.051750000000000004			
+MutFormer	ccr	pm1like_ccr_ge_95	within_unit								
+MutFormer	ccr	not_pm1like_ccr	marginal	0.96143							
+MutFormer	ccr	not_pm1like_ccr	within_unit								
+MutFormer	pseudo	all_genes	marginal	0.9235850000000001							
+MutFormer	pseudo	all_genes	within_unit								
+MutFormer	pseudo	ddg2p_monoallelic	marginal					0.27715			
+MutFormer	pseudo	ddg2p_monoallelic	within_unit								
+MutFormer	win50	all_genes	marginal	0.9235850000000001							
+MutFormer	win50	all_genes	within_unit								
+MutFormer	win50	ddg2p_monoallelic	marginal					0.27715			
+MutFormer	win50	ddg2p_monoallelic	within_unit								
+MutFormer	pseudo_rmc	all_genes	marginal	0.9235850000000001							
+MutFormer	pseudo_rmc	all_genes	within_unit								
+MutFormer	pseudo_rmc	ddg2p_monoallelic	marginal					0.27715			
+MutFormer	pseudo_rmc	ddg2p_monoallelic	within_unit								
+MutFormer	win50_rmc	all_genes	marginal	0.9235850000000001							
+MutFormer	win50_rmc	all_genes	within_unit								
+MutFormer	win50_rmc	ddg2p_monoallelic	marginal					0.27715			
+MutFormer	win50_rmc	ddg2p_monoallelic	within_unit								
+MutScore	gene	all_genes	marginal	0.9497850000000001							
+MutScore	gene	all_genes	within_unit								
+MutScore	gene	ddg2p_monoallelic	marginal	0.9546300000000001				0.55557	0.058070000000000004		
+MutScore	gene	ddg2p_monoallelic	within_unit	0.96952				0.1033			
+MutScore	rmc	all_genes	marginal	0.9497850000000001							
+MutScore	rmc	all_genes	within_unit								
+MutScore	rmc	ddg2p_monoallelic	marginal	0.9546300000000001				0.55557	0.058070000000000004		
+MutScore	rmc	ddg2p_monoallelic	within_unit								
+MutScore	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.96952							
+MutScore	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MutScore	rmc	not_pm1like_rmc	marginal	0.96952							
+MutScore	rmc	not_pm1like_rmc	within_unit								
+MutScore	ccr	all_genes	marginal	0.9497850000000001							
+MutScore	ccr	all_genes	within_unit								
+MutScore	ccr	ddg2p_monoallelic	marginal	0.9546300000000001				0.55557	0.058070000000000004		
+MutScore	ccr	ddg2p_monoallelic	within_unit								
+MutScore	ccr	pm1like_ccr_ge_95	marginal	0.96952							
+MutScore	ccr	pm1like_ccr_ge_95	within_unit								
+MutScore	ccr	not_pm1like_ccr	marginal	0.9546300000000001							
+MutScore	ccr	not_pm1like_ccr	within_unit								
+MutScore	pseudo	all_genes	marginal	0.9497850000000001							
+MutScore	pseudo	all_genes	within_unit								
+MutScore	pseudo	ddg2p_monoallelic	marginal	0.9546300000000001				0.55557	0.058070000000000004		
+MutScore	pseudo	ddg2p_monoallelic	within_unit								
+MutScore	win50	all_genes	marginal	0.9497850000000001							
+MutScore	win50	all_genes	within_unit								
+MutScore	win50	ddg2p_monoallelic	marginal	0.9546300000000001				0.55557	0.058070000000000004		
+MutScore	win50	ddg2p_monoallelic	within_unit								
+MutScore	pseudo_rmc	all_genes	marginal	0.9497850000000001							
+MutScore	pseudo_rmc	all_genes	within_unit								
+MutScore	pseudo_rmc	ddg2p_monoallelic	marginal	0.9546300000000001				0.55557	0.058070000000000004		
+MutScore	pseudo_rmc	ddg2p_monoallelic	within_unit								
+MutScore	win50_rmc	all_genes	marginal	0.9497850000000001							
+MutScore	win50_rmc	all_genes	within_unit								
+MutScore	win50_rmc	ddg2p_monoallelic	marginal	0.9546300000000001				0.55557	0.058070000000000004		
+MutScore	win50_rmc	ddg2p_monoallelic	within_unit								
+GPN-MSA	gene	all_genes	marginal	0.857365							
+GPN-MSA	gene	all_genes	within_unit								
+GPN-MSA	gene	ddg2p_monoallelic	marginal	0.9191950000000001				0.52973			
+GPN-MSA	gene	ddg2p_monoallelic	within_unit								
+GPN-MSA	rmc	all_genes	marginal	0.857365							
+GPN-MSA	rmc	all_genes	within_unit								
+GPN-MSA	rmc	ddg2p_monoallelic	marginal	0.9191950000000001				0.52973			
+GPN-MSA	rmc	ddg2p_monoallelic	within_unit								
+GPN-MSA	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+GPN-MSA	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+GPN-MSA	rmc	not_pm1like_rmc	marginal	0.9117950000000001							
+GPN-MSA	rmc	not_pm1like_rmc	within_unit								
+GPN-MSA	ccr	all_genes	marginal	0.857365							
+GPN-MSA	ccr	all_genes	within_unit								
+GPN-MSA	ccr	ddg2p_monoallelic	marginal	0.9191950000000001				0.52973			
+GPN-MSA	ccr	ddg2p_monoallelic	within_unit								
+GPN-MSA	ccr	pm1like_ccr_ge_95	marginal								
+GPN-MSA	ccr	pm1like_ccr_ge_95	within_unit								
+GPN-MSA	ccr	not_pm1like_ccr	marginal	0.8833300000000001							
+GPN-MSA	ccr	not_pm1like_ccr	within_unit								
+GPN-MSA	pseudo	all_genes	marginal	0.857365							
+GPN-MSA	pseudo	all_genes	within_unit								
+GPN-MSA	pseudo	ddg2p_monoallelic	marginal	0.9191950000000001				0.52973			
+GPN-MSA	pseudo	ddg2p_monoallelic	within_unit								
+GPN-MSA	win50	all_genes	marginal	0.857365							
+GPN-MSA	win50	all_genes	within_unit								
+GPN-MSA	win50	ddg2p_monoallelic	marginal	0.9191950000000001				0.52973			
+GPN-MSA	win50	ddg2p_monoallelic	within_unit								
+GPN-MSA	pseudo_rmc	all_genes	marginal	0.857365							
+GPN-MSA	pseudo_rmc	all_genes	within_unit								
+GPN-MSA	pseudo_rmc	ddg2p_monoallelic	marginal	0.9191950000000001				0.52973			
+GPN-MSA	pseudo_rmc	ddg2p_monoallelic	within_unit								
+GPN-MSA	win50_rmc	all_genes	marginal	0.857365							
+GPN-MSA	win50_rmc	all_genes	within_unit								
+GPN-MSA	win50_rmc	ddg2p_monoallelic	marginal	0.9191950000000001				0.52973			
+GPN-MSA	win50_rmc	ddg2p_monoallelic	within_unit								
+GERP_92m	gene	all_genes	marginal								
+GERP_92m	gene	all_genes	within_unit								
+GERP_92m	gene	ddg2p_monoallelic	marginal								
+GERP_92m	gene	ddg2p_monoallelic	within_unit								
+GERP_92m	rmc	all_genes	marginal								
+GERP_92m	rmc	all_genes	within_unit								
+GERP_92m	rmc	ddg2p_monoallelic	marginal								
+GERP_92m	rmc	ddg2p_monoallelic	within_unit								
+GERP_92m	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+GERP_92m	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+GERP_92m	rmc	not_pm1like_rmc	marginal								
+GERP_92m	rmc	not_pm1like_rmc	within_unit								
+GERP_92m	ccr	all_genes	marginal								
+GERP_92m	ccr	all_genes	within_unit								
+GERP_92m	ccr	ddg2p_monoallelic	marginal								
+GERP_92m	ccr	ddg2p_monoallelic	within_unit								
+GERP_92m	ccr	pm1like_ccr_ge_95	marginal								
+GERP_92m	ccr	pm1like_ccr_ge_95	within_unit								
+GERP_92m	ccr	not_pm1like_ccr	marginal								
+GERP_92m	ccr	not_pm1like_ccr	within_unit								
+GERP_92m	pseudo	all_genes	marginal								
+GERP_92m	pseudo	all_genes	within_unit								
+GERP_92m	pseudo	ddg2p_monoallelic	marginal								
+GERP_92m	pseudo	ddg2p_monoallelic	within_unit								
+GERP_92m	win50	all_genes	marginal								
+GERP_92m	win50	all_genes	within_unit								
+GERP_92m	win50	ddg2p_monoallelic	marginal								
+GERP_92m	win50	ddg2p_monoallelic	within_unit								
+GERP_92m	pseudo_rmc	all_genes	marginal								
+GERP_92m	pseudo_rmc	all_genes	within_unit								
+GERP_92m	pseudo_rmc	ddg2p_monoallelic	marginal								
+GERP_92m	pseudo_rmc	ddg2p_monoallelic	within_unit								
+GERP_92m	win50_rmc	all_genes	marginal								
+GERP_92m	win50_rmc	all_genes	within_unit								
+GERP_92m	win50_rmc	ddg2p_monoallelic	marginal								
+GERP_92m	win50_rmc	ddg2p_monoallelic	within_unit								
+phyloP470way	gene	all_genes	marginal								
+phyloP470way	gene	all_genes	within_unit								
+phyloP470way	gene	ddg2p_monoallelic	marginal								
+phyloP470way	gene	ddg2p_monoallelic	within_unit								
+phyloP470way	rmc	all_genes	marginal								
+phyloP470way	rmc	all_genes	within_unit								
+phyloP470way	rmc	ddg2p_monoallelic	marginal								
+phyloP470way	rmc	ddg2p_monoallelic	within_unit								
+phyloP470way	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+phyloP470way	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+phyloP470way	rmc	not_pm1like_rmc	marginal								
+phyloP470way	rmc	not_pm1like_rmc	within_unit								
+phyloP470way	ccr	all_genes	marginal								
+phyloP470way	ccr	all_genes	within_unit								
+phyloP470way	ccr	ddg2p_monoallelic	marginal								
+phyloP470way	ccr	ddg2p_monoallelic	within_unit								
+phyloP470way	ccr	pm1like_ccr_ge_95	marginal								
+phyloP470way	ccr	pm1like_ccr_ge_95	within_unit								
+phyloP470way	ccr	not_pm1like_ccr	marginal								
+phyloP470way	ccr	not_pm1like_ccr	within_unit								
+phyloP470way	pseudo	all_genes	marginal								
+phyloP470way	pseudo	all_genes	within_unit								
+phyloP470way	pseudo	ddg2p_monoallelic	marginal								
+phyloP470way	pseudo	ddg2p_monoallelic	within_unit								
+phyloP470way	win50	all_genes	marginal								
+phyloP470way	win50	all_genes	within_unit								
+phyloP470way	win50	ddg2p_monoallelic	marginal								
+phyloP470way	win50	ddg2p_monoallelic	within_unit								
+phyloP470way	pseudo_rmc	all_genes	marginal								
+phyloP470way	pseudo_rmc	all_genes	within_unit								
+phyloP470way	pseudo_rmc	ddg2p_monoallelic	marginal								
+phyloP470way	pseudo_rmc	ddg2p_monoallelic	within_unit								
+phyloP470way	win50_rmc	all_genes	marginal								
+phyloP470way	win50_rmc	all_genes	within_unit								
+phyloP470way	win50_rmc	ddg2p_monoallelic	marginal								
+phyloP470way	win50_rmc	ddg2p_monoallelic	within_unit								
+phastCons470way	gene	all_genes	marginal								
+phastCons470way	gene	all_genes	within_unit								
+phastCons470way	gene	ddg2p_monoallelic	marginal					0.09543			
+phastCons470way	gene	ddg2p_monoallelic	within_unit								
+phastCons470way	rmc	all_genes	marginal								
+phastCons470way	rmc	all_genes	within_unit								
+phastCons470way	rmc	ddg2p_monoallelic	marginal					0.09543			
+phastCons470way	rmc	ddg2p_monoallelic	within_unit								
+phastCons470way	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+phastCons470way	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+phastCons470way	rmc	not_pm1like_rmc	marginal								
+phastCons470way	rmc	not_pm1like_rmc	within_unit								
+phastCons470way	ccr	all_genes	marginal								
+phastCons470way	ccr	all_genes	within_unit								
+phastCons470way	ccr	ddg2p_monoallelic	marginal					0.09543			
+phastCons470way	ccr	ddg2p_monoallelic	within_unit								
+phastCons470way	ccr	pm1like_ccr_ge_95	marginal								
+phastCons470way	ccr	pm1like_ccr_ge_95	within_unit								
+phastCons470way	ccr	not_pm1like_ccr	marginal								
+phastCons470way	ccr	not_pm1like_ccr	within_unit								
+phastCons470way	pseudo	all_genes	marginal								
+phastCons470way	pseudo	all_genes	within_unit								
+phastCons470way	pseudo	ddg2p_monoallelic	marginal					0.09543			
+phastCons470way	pseudo	ddg2p_monoallelic	within_unit								
+phastCons470way	win50	all_genes	marginal								
+phastCons470way	win50	all_genes	within_unit								
+phastCons470way	win50	ddg2p_monoallelic	marginal					0.09543			
+phastCons470way	win50	ddg2p_monoallelic	within_unit								
+phastCons470way	pseudo_rmc	all_genes	marginal								
+phastCons470way	pseudo_rmc	all_genes	within_unit								
+phastCons470way	pseudo_rmc	ddg2p_monoallelic	marginal					0.09543			
+phastCons470way	pseudo_rmc	ddg2p_monoallelic	within_unit								
+phastCons470way	win50_rmc	all_genes	marginal								
+phastCons470way	win50_rmc	all_genes	within_unit								
+phastCons470way	win50_rmc	ddg2p_monoallelic	marginal					0.09543			
+phastCons470way	win50_rmc	ddg2p_monoallelic	within_unit								

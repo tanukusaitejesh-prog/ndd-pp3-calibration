@@ -1,0 +1,375 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+MetaRNN	gene	all_genes	marginal	0.9150800000000001							
+MetaRNN	gene	all_genes	within_unit	0.9655550000000002							
+MetaRNN	rmc	all_genes	marginal	0.9150800000000001							
+MetaRNN	rmc	all_genes	within_unit								
+MetaRNN	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9604000000000001							
+MetaRNN	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MetaRNN	rmc	not_pm1like_rmc	marginal								
+MetaRNN	rmc	not_pm1like_rmc	within_unit								
+MetaRNN	ccr	all_genes	marginal	0.9150800000000001							
+MetaRNN	ccr	all_genes	within_unit								
+MetaRNN	ccr	pm1like_ccr_ge_95	marginal	0.970685							
+MetaRNN	ccr	pm1like_ccr_ge_95	within_unit								
+MetaRNN	ccr	not_pm1like_ccr	marginal	0.970685							
+MetaRNN	ccr	not_pm1like_ccr	within_unit								
+MetaRNN	pseudo	all_genes	marginal	0.9150800000000001							
+MetaRNN	pseudo	all_genes	within_unit								
+MetaRNN	win50	all_genes	marginal	0.9150800000000001							
+MetaRNN	win50	all_genes	within_unit								
+MetaRNN	pseudo_rmc	all_genes	marginal	0.9150800000000001							
+MetaRNN	pseudo_rmc	all_genes	within_unit								
+MetaRNN	win50_rmc	all_genes	marginal	0.9150800000000001							
+MetaRNN	win50_rmc	all_genes	within_unit								
+MutPred2	gene	all_genes	marginal	0.928045							
+MutPred2	gene	all_genes	within_unit								
+MutPred2	rmc	all_genes	marginal	0.928045							
+MutPred2	rmc	all_genes	within_unit								
+MutPred2	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MutPred2	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MutPred2	rmc	not_pm1like_rmc	marginal								
+MutPred2	rmc	not_pm1like_rmc	within_unit								
+MutPred2	ccr	all_genes	marginal	0.928045							
+MutPred2	ccr	all_genes	within_unit								
+MutPred2	ccr	pm1like_ccr_ge_95	marginal								
+MutPred2	ccr	pm1like_ccr_ge_95	within_unit								
+MutPred2	ccr	not_pm1like_ccr	marginal	0.9504100000000001							
+MutPred2	ccr	not_pm1like_ccr	within_unit								
+MutPred2	pseudo	all_genes	marginal	0.928045							
+MutPred2	pseudo	all_genes	within_unit								
+MutPred2	win50	all_genes	marginal	0.928045							
+MutPred2	win50	all_genes	within_unit								
+MutPred2	pseudo_rmc	all_genes	marginal	0.928045							
+MutPred2	pseudo_rmc	all_genes	within_unit								
+MutPred2	win50_rmc	all_genes	marginal	0.928045							
+MutPred2	win50_rmc	all_genes	within_unit								
+gMVP	gene	all_genes	marginal	0.9326350000000001							
+gMVP	gene	all_genes	within_unit								
+gMVP	rmc	all_genes	marginal	0.9326350000000001							
+gMVP	rmc	all_genes	within_unit								
+gMVP	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+gMVP	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+gMVP	rmc	not_pm1like_rmc	marginal								
+gMVP	rmc	not_pm1like_rmc	within_unit								
+gMVP	ccr	all_genes	marginal	0.9326350000000001							
+gMVP	ccr	all_genes	within_unit								
+gMVP	ccr	pm1like_ccr_ge_95	marginal					0.07952000000000001	0.06078	0.06078	0.06078
+gMVP	ccr	pm1like_ccr_ge_95	within_unit					0.06078	0.06078	0.06078	0.06078
+gMVP	ccr	not_pm1like_ccr	marginal	0.9378000000000001							
+gMVP	ccr	not_pm1like_ccr	within_unit								
+gMVP	pseudo	all_genes	marginal	0.9326350000000001							
+gMVP	pseudo	all_genes	within_unit								
+gMVP	win50	all_genes	marginal	0.9326350000000001							
+gMVP	win50	all_genes	within_unit								
+gMVP	pseudo_rmc	all_genes	marginal	0.9326350000000001							
+gMVP	pseudo_rmc	all_genes	within_unit								
+gMVP	win50_rmc	all_genes	marginal	0.9326350000000001							
+gMVP	win50_rmc	all_genes	within_unit								
+MisFit_D	gene	all_genes	marginal	0.9395950000000001							
+MisFit_D	gene	all_genes	within_unit	0.968145							
+MisFit_D	rmc	all_genes	marginal	0.9395950000000001							
+MisFit_D	rmc	all_genes	within_unit								
+MisFit_D	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.022525000000000003			
+MisFit_D	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MisFit_D	rmc	not_pm1like_rmc	marginal								
+MisFit_D	rmc	not_pm1like_rmc	within_unit								
+MisFit_D	ccr	all_genes	marginal	0.9395950000000001							
+MisFit_D	ccr	all_genes	within_unit								
+MisFit_D	ccr	pm1like_ccr_ge_95	marginal								
+MisFit_D	ccr	pm1like_ccr_ge_95	within_unit								
+MisFit_D	ccr	not_pm1like_ccr	marginal	0.9624300000000001							
+MisFit_D	ccr	not_pm1like_ccr	within_unit								
+MisFit_D	pseudo	all_genes	marginal	0.9395950000000001							
+MisFit_D	pseudo	all_genes	within_unit								
+MisFit_D	win50	all_genes	marginal	0.9395950000000001							
+MisFit_D	win50	all_genes	within_unit								
+MisFit_D	pseudo_rmc	all_genes	marginal	0.9395950000000001							
+MisFit_D	pseudo_rmc	all_genes	within_unit								
+MisFit_D	win50_rmc	all_genes	marginal	0.9395950000000001							
+MisFit_D	win50_rmc	all_genes	within_unit								
+MisFit_S	gene	all_genes	marginal	0.9382750000000001							
+MisFit_S	gene	all_genes	within_unit								
+MisFit_S	rmc	all_genes	marginal	0.9382750000000001							
+MisFit_S	rmc	all_genes	within_unit								
+MisFit_S	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MisFit_S	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MisFit_S	rmc	not_pm1like_rmc	marginal	0.95903							
+MisFit_S	rmc	not_pm1like_rmc	within_unit								
+MisFit_S	ccr	all_genes	marginal	0.9382750000000001							
+MisFit_S	ccr	all_genes	within_unit								
+MisFit_S	ccr	pm1like_ccr_ge_95	marginal								
+MisFit_S	ccr	pm1like_ccr_ge_95	within_unit								
+MisFit_S	ccr	not_pm1like_ccr	marginal	0.9434800000000001							
+MisFit_S	ccr	not_pm1like_ccr	within_unit								
+MisFit_S	pseudo	all_genes	marginal	0.9382750000000001							
+MisFit_S	pseudo	all_genes	within_unit								
+MisFit_S	win50	all_genes	marginal	0.9382750000000001							
+MisFit_S	win50	all_genes	within_unit								
+MisFit_S	pseudo_rmc	all_genes	marginal	0.9382750000000001							
+MisFit_S	pseudo_rmc	all_genes	within_unit								
+MisFit_S	win50_rmc	all_genes	marginal	0.9382750000000001							
+MisFit_S	win50_rmc	all_genes	within_unit								
+VARITY_R	gene	all_genes	marginal	0.88524							
+VARITY_R	gene	all_genes	within_unit								
+VARITY_R	rmc	all_genes	marginal	0.88524							
+VARITY_R	rmc	all_genes	within_unit								
+VARITY_R	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9593100000000001							
+VARITY_R	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+VARITY_R	rmc	not_pm1like_rmc	marginal								
+VARITY_R	rmc	not_pm1like_rmc	within_unit								
+VARITY_R	ccr	all_genes	marginal	0.88524							
+VARITY_R	ccr	all_genes	within_unit								
+VARITY_R	ccr	pm1like_ccr_ge_95	marginal								
+VARITY_R	ccr	pm1like_ccr_ge_95	within_unit								
+VARITY_R	ccr	not_pm1like_ccr	marginal	0.9461950000000001							
+VARITY_R	ccr	not_pm1like_ccr	within_unit								
+VARITY_R	pseudo	all_genes	marginal	0.88524							
+VARITY_R	pseudo	all_genes	within_unit								
+VARITY_R	win50	all_genes	marginal	0.88524							
+VARITY_R	win50	all_genes	within_unit								
+VARITY_R	pseudo_rmc	all_genes	marginal	0.88524							
+VARITY_R	pseudo_rmc	all_genes	within_unit								
+VARITY_R	win50_rmc	all_genes	marginal	0.88524							
+VARITY_R	win50_rmc	all_genes	within_unit								
+VARITY_ER	gene	all_genes	marginal	0.9128700000000001							
+VARITY_ER	gene	all_genes	within_unit	0.9522200000000001							
+VARITY_ER	rmc	all_genes	marginal	0.9128700000000001							
+VARITY_ER	rmc	all_genes	within_unit								
+VARITY_ER	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9522200000000001				0.023945	0.020515000000000002	0.020515000000000002	0.020515000000000002
+VARITY_ER	rmc	pm1like_rmc_oe_lt_0.4	within_unit					0.020515000000000002	0.020515000000000002	0.020515000000000002	0.020515000000000002
+VARITY_ER	rmc	not_pm1like_rmc	marginal								
+VARITY_ER	rmc	not_pm1like_rmc	within_unit								
+VARITY_ER	ccr	all_genes	marginal	0.9128700000000001							
+VARITY_ER	ccr	all_genes	within_unit								
+VARITY_ER	ccr	pm1like_ccr_ge_95	marginal								
+VARITY_ER	ccr	pm1like_ccr_ge_95	within_unit								
+VARITY_ER	ccr	not_pm1like_ccr	marginal	0.9388150000000001							
+VARITY_ER	ccr	not_pm1like_ccr	within_unit								
+VARITY_ER	pseudo	all_genes	marginal	0.9128700000000001							
+VARITY_ER	pseudo	all_genes	within_unit								
+VARITY_ER	win50	all_genes	marginal	0.9128700000000001							
+VARITY_ER	win50	all_genes	within_unit								
+VARITY_ER	pseudo_rmc	all_genes	marginal	0.9128700000000001							
+VARITY_ER	pseudo_rmc	all_genes	within_unit								
+VARITY_ER	win50_rmc	all_genes	marginal	0.9128700000000001							
+VARITY_ER	win50_rmc	all_genes	within_unit								
+VARITY_R_LOO	gene	all_genes	marginal	0.90852							
+VARITY_R_LOO	gene	all_genes	within_unit	0.9593250000000001							
+VARITY_R_LOO	rmc	all_genes	marginal	0.90852							
+VARITY_R_LOO	rmc	all_genes	within_unit								
+VARITY_R_LOO	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9527150000000001							
+VARITY_R_LOO	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+VARITY_R_LOO	rmc	not_pm1like_rmc	marginal								
+VARITY_R_LOO	rmc	not_pm1like_rmc	within_unit								
+VARITY_R_LOO	ccr	all_genes	marginal	0.90852							
+VARITY_R_LOO	ccr	all_genes	within_unit								
+VARITY_R_LOO	ccr	pm1like_ccr_ge_95	marginal								
+VARITY_R_LOO	ccr	pm1like_ccr_ge_95	within_unit								
+VARITY_R_LOO	ccr	not_pm1like_ccr	marginal	0.9397250000000001							
+VARITY_R_LOO	ccr	not_pm1like_ccr	within_unit								
+VARITY_R_LOO	pseudo	all_genes	marginal	0.90852							
+VARITY_R_LOO	pseudo	all_genes	within_unit								
+VARITY_R_LOO	win50	all_genes	marginal	0.90852							
+VARITY_R_LOO	win50	all_genes	within_unit								
+VARITY_R_LOO	pseudo_rmc	all_genes	marginal	0.90852							
+VARITY_R_LOO	pseudo_rmc	all_genes	within_unit								
+VARITY_R_LOO	win50_rmc	all_genes	marginal	0.90852							
+VARITY_R_LOO	win50_rmc	all_genes	within_unit								
+VARITY_ER_LOO	gene	all_genes	marginal	0.9129100000000001							
+VARITY_ER_LOO	gene	all_genes	within_unit	0.9589700000000001							
+VARITY_ER_LOO	rmc	all_genes	marginal	0.9129100000000001							
+VARITY_ER_LOO	rmc	all_genes	within_unit								
+VARITY_ER_LOO	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.9522300000000001				0.023975000000000003	0.020535	0.020535	0.020535
+VARITY_ER_LOO	rmc	pm1like_rmc_oe_lt_0.4	within_unit					0.020535	0.020535	0.020535	0.020535
+VARITY_ER_LOO	rmc	not_pm1like_rmc	marginal								
+VARITY_ER_LOO	rmc	not_pm1like_rmc	within_unit								
+VARITY_ER_LOO	ccr	all_genes	marginal	0.9129100000000001							
+VARITY_ER_LOO	ccr	all_genes	within_unit								
+VARITY_ER_LOO	ccr	pm1like_ccr_ge_95	marginal								
+VARITY_ER_LOO	ccr	pm1like_ccr_ge_95	within_unit								
+VARITY_ER_LOO	ccr	not_pm1like_ccr	marginal	0.9455250000000001							
+VARITY_ER_LOO	ccr	not_pm1like_ccr	within_unit								
+VARITY_ER_LOO	pseudo	all_genes	marginal	0.9129100000000001							
+VARITY_ER_LOO	pseudo	all_genes	within_unit								
+VARITY_ER_LOO	win50	all_genes	marginal	0.9129100000000001							
+VARITY_ER_LOO	win50	all_genes	within_unit								
+VARITY_ER_LOO	pseudo_rmc	all_genes	marginal	0.9129100000000001							
+VARITY_ER_LOO	pseudo_rmc	all_genes	within_unit								
+VARITY_ER_LOO	win50_rmc	all_genes	marginal	0.9129100000000001							
+VARITY_ER_LOO	win50_rmc	all_genes	within_unit								
+ESM1b	gene	all_genes	marginal	0.9008400000000001							
+ESM1b	gene	all_genes	within_unit								
+ESM1b	rmc	all_genes	marginal	0.9008400000000001							
+ESM1b	rmc	all_genes	within_unit								
+ESM1b	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.029975			
+ESM1b	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+ESM1b	rmc	not_pm1like_rmc	marginal								
+ESM1b	rmc	not_pm1like_rmc	within_unit								
+ESM1b	ccr	all_genes	marginal	0.9008400000000001							
+ESM1b	ccr	all_genes	within_unit								
+ESM1b	ccr	pm1like_ccr_ge_95	marginal					0.029975			
+ESM1b	ccr	pm1like_ccr_ge_95	within_unit								
+ESM1b	ccr	not_pm1like_ccr	marginal	0.9126400000000001							
+ESM1b	ccr	not_pm1like_ccr	within_unit								
+ESM1b	pseudo	all_genes	marginal	0.9008400000000001							
+ESM1b	pseudo	all_genes	within_unit								
+ESM1b	win50	all_genes	marginal	0.9008400000000001							
+ESM1b	win50	all_genes	within_unit								
+ESM1b	pseudo_rmc	all_genes	marginal	0.9008400000000001							
+ESM1b	pseudo_rmc	all_genes	within_unit								
+ESM1b	win50_rmc	all_genes	marginal	0.9008400000000001							
+ESM1b	win50_rmc	all_genes	within_unit								
+PHACTboost	gene	all_genes	marginal	0.9411800000000001	0.965775						
+PHACTboost	gene	all_genes	within_unit								
+PHACTboost	rmc	all_genes	marginal	0.9411800000000001	0.965775						
+PHACTboost	rmc	all_genes	within_unit								
+PHACTboost	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.03289	0.03289	0.03289	0.03289
+PHACTboost	rmc	pm1like_rmc_oe_lt_0.4	within_unit					0.03289	0.03289	0.03289	0.03289
+PHACTboost	rmc	not_pm1like_rmc	marginal	0.9558650000000001							
+PHACTboost	rmc	not_pm1like_rmc	within_unit								
+PHACTboost	ccr	all_genes	marginal	0.9411800000000001	0.965775						
+PHACTboost	ccr	all_genes	within_unit								
+PHACTboost	ccr	pm1like_ccr_ge_95	marginal	0.965775				0.04807			
+PHACTboost	ccr	pm1like_ccr_ge_95	within_unit								
+PHACTboost	ccr	not_pm1like_ccr	marginal	0.9411800000000001							
+PHACTboost	ccr	not_pm1like_ccr	within_unit								
+PHACTboost	pseudo	all_genes	marginal	0.9411800000000001	0.965775						
+PHACTboost	pseudo	all_genes	within_unit								
+PHACTboost	win50	all_genes	marginal	0.9411800000000001	0.965775						
+PHACTboost	win50	all_genes	within_unit								
+PHACTboost	pseudo_rmc	all_genes	marginal	0.9411800000000001	0.965775						
+PHACTboost	pseudo_rmc	all_genes	within_unit								
+PHACTboost	win50_rmc	all_genes	marginal	0.9411800000000001	0.965775						
+PHACTboost	win50_rmc	all_genes	within_unit								
+MutFormer	gene	all_genes	marginal	0.9235850000000001							
+MutFormer	gene	all_genes	within_unit								
+MutFormer	rmc	all_genes	marginal	0.9235850000000001							
+MutFormer	rmc	all_genes	within_unit								
+MutFormer	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.95672							
+MutFormer	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MutFormer	rmc	not_pm1like_rmc	marginal								
+MutFormer	rmc	not_pm1like_rmc	within_unit								
+MutFormer	ccr	all_genes	marginal	0.9235850000000001							
+MutFormer	ccr	all_genes	within_unit								
+MutFormer	ccr	pm1like_ccr_ge_95	marginal	0.9520000000000001				0.040630000000000006			
+MutFormer	ccr	pm1like_ccr_ge_95	within_unit								
+MutFormer	ccr	not_pm1like_ccr	marginal	0.96143							
+MutFormer	ccr	not_pm1like_ccr	within_unit								
+MutFormer	pseudo	all_genes	marginal	0.9235850000000001							
+MutFormer	pseudo	all_genes	within_unit								
+MutFormer	win50	all_genes	marginal	0.9235850000000001							
+MutFormer	win50	all_genes	within_unit								
+MutFormer	pseudo_rmc	all_genes	marginal	0.9235850000000001							
+MutFormer	pseudo_rmc	all_genes	within_unit								
+MutFormer	win50_rmc	all_genes	marginal	0.9235850000000001							
+MutFormer	win50_rmc	all_genes	within_unit								
+MutScore	gene	all_genes	marginal	0.9546300000000001							
+MutScore	gene	all_genes	within_unit								
+MutScore	rmc	all_genes	marginal	0.9546300000000001							
+MutScore	rmc	all_genes	within_unit								
+MutScore	rmc	pm1like_rmc_oe_lt_0.4	marginal	0.96952							
+MutScore	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MutScore	rmc	not_pm1like_rmc	marginal								
+MutScore	rmc	not_pm1like_rmc	within_unit								
+MutScore	ccr	all_genes	marginal	0.9546300000000001							
+MutScore	ccr	all_genes	within_unit								
+MutScore	ccr	pm1like_ccr_ge_95	marginal	0.96952				0.08220000000000001			
+MutScore	ccr	pm1like_ccr_ge_95	within_unit								
+MutScore	ccr	not_pm1like_ccr	marginal	0.96952							
+MutScore	ccr	not_pm1like_ccr	within_unit								
+MutScore	pseudo	all_genes	marginal	0.9546300000000001							
+MutScore	pseudo	all_genes	within_unit								
+MutScore	win50	all_genes	marginal	0.9546300000000001							
+MutScore	win50	all_genes	within_unit								
+MutScore	pseudo_rmc	all_genes	marginal	0.9546300000000001							
+MutScore	pseudo_rmc	all_genes	within_unit								
+MutScore	win50_rmc	all_genes	marginal	0.9546300000000001							
+MutScore	win50_rmc	all_genes	within_unit								
+GPN-MSA	gene	all_genes	marginal	0.8635800000000001							
+GPN-MSA	gene	all_genes	within_unit								
+GPN-MSA	rmc	all_genes	marginal	0.8635800000000001							
+GPN-MSA	rmc	all_genes	within_unit								
+GPN-MSA	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+GPN-MSA	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+GPN-MSA	rmc	not_pm1like_rmc	marginal	0.93476							
+GPN-MSA	rmc	not_pm1like_rmc	within_unit								
+GPN-MSA	ccr	all_genes	marginal	0.8635800000000001							
+GPN-MSA	ccr	all_genes	within_unit								
+GPN-MSA	ccr	pm1like_ccr_ge_95	marginal					0.044695	0.044695	0.044695	0.044695
+GPN-MSA	ccr	pm1like_ccr_ge_95	within_unit								
+GPN-MSA	ccr	not_pm1like_ccr	marginal	0.90422							
+GPN-MSA	ccr	not_pm1like_ccr	within_unit								
+GPN-MSA	pseudo	all_genes	marginal	0.8635800000000001							
+GPN-MSA	pseudo	all_genes	within_unit								
+GPN-MSA	win50	all_genes	marginal	0.8635800000000001							
+GPN-MSA	win50	all_genes	within_unit								
+GPN-MSA	pseudo_rmc	all_genes	marginal	0.8635800000000001							
+GPN-MSA	pseudo_rmc	all_genes	within_unit								
+GPN-MSA	win50_rmc	all_genes	marginal	0.8635800000000001							
+GPN-MSA	win50_rmc	all_genes	within_unit								
+GERP_92m	gene	all_genes	marginal								
+GERP_92m	gene	all_genes	within_unit								
+GERP_92m	rmc	all_genes	marginal								
+GERP_92m	rmc	all_genes	within_unit								
+GERP_92m	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+GERP_92m	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+GERP_92m	rmc	not_pm1like_rmc	marginal								
+GERP_92m	rmc	not_pm1like_rmc	within_unit								
+GERP_92m	ccr	all_genes	marginal								
+GERP_92m	ccr	all_genes	within_unit								
+GERP_92m	ccr	pm1like_ccr_ge_95	marginal								
+GERP_92m	ccr	pm1like_ccr_ge_95	within_unit								
+GERP_92m	ccr	not_pm1like_ccr	marginal								
+GERP_92m	ccr	not_pm1like_ccr	within_unit								
+GERP_92m	pseudo	all_genes	marginal								
+GERP_92m	pseudo	all_genes	within_unit								
+GERP_92m	win50	all_genes	marginal								
+GERP_92m	win50	all_genes	within_unit								
+GERP_92m	pseudo_rmc	all_genes	marginal								
+GERP_92m	pseudo_rmc	all_genes	within_unit								
+GERP_92m	win50_rmc	all_genes	marginal								
+GERP_92m	win50_rmc	all_genes	within_unit								
+phyloP470way	gene	all_genes	marginal								
+phyloP470way	gene	all_genes	within_unit								
+phyloP470way	rmc	all_genes	marginal								
+phyloP470way	rmc	all_genes	within_unit								
+phyloP470way	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+phyloP470way	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+phyloP470way	rmc	not_pm1like_rmc	marginal								
+phyloP470way	rmc	not_pm1like_rmc	within_unit								
+phyloP470way	ccr	all_genes	marginal								
+phyloP470way	ccr	all_genes	within_unit								
+phyloP470way	ccr	pm1like_ccr_ge_95	marginal								
+phyloP470way	ccr	pm1like_ccr_ge_95	within_unit								
+phyloP470way	ccr	not_pm1like_ccr	marginal								
+phyloP470way	ccr	not_pm1like_ccr	within_unit								
+phyloP470way	pseudo	all_genes	marginal								
+phyloP470way	pseudo	all_genes	within_unit								
+phyloP470way	win50	all_genes	marginal								
+phyloP470way	win50	all_genes	within_unit								
+phyloP470way	pseudo_rmc	all_genes	marginal								
+phyloP470way	pseudo_rmc	all_genes	within_unit								
+phyloP470way	win50_rmc	all_genes	marginal								
+phyloP470way	win50_rmc	all_genes	within_unit								
+phastCons470way	gene	all_genes	marginal								
+phastCons470way	gene	all_genes	within_unit								
+phastCons470way	rmc	all_genes	marginal								
+phastCons470way	rmc	all_genes	within_unit								
+phastCons470way	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+phastCons470way	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+phastCons470way	rmc	not_pm1like_rmc	marginal								
+phastCons470way	rmc	not_pm1like_rmc	within_unit								
+phastCons470way	ccr	all_genes	marginal								
+phastCons470way	ccr	all_genes	within_unit								
+phastCons470way	ccr	pm1like_ccr_ge_95	marginal								
+phastCons470way	ccr	pm1like_ccr_ge_95	within_unit								
+phastCons470way	ccr	not_pm1like_ccr	marginal								
+phastCons470way	ccr	not_pm1like_ccr	within_unit								
+phastCons470way	pseudo	all_genes	marginal								
+phastCons470way	pseudo	all_genes	within_unit								
+phastCons470way	win50	all_genes	marginal								
+phastCons470way	win50	all_genes	within_unit								
+phastCons470way	pseudo_rmc	all_genes	marginal								
+phastCons470way	pseudo_rmc	all_genes	within_unit								
+phastCons470way	win50_rmc	all_genes	marginal								
+phastCons470way	win50_rmc	all_genes	within_unit								

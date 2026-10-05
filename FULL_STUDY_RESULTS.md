@@ -183,7 +183,7 @@ For every tool, the de novo calibration is stricter than the ClinVar-based one, 
 
 **Training-data ledger** (`aim3_training_ledger.tsv`). The training-label column is **unverified** until it is checked against each tool's paper. Several top-ranked tools (ClinPred, REVEL, VEST4, MutPred) were trained on ClinVar/HGMD-type labels that could include variants from these cohorts.
 
-**Not yet included** (plan §5 v2): ESM1b, EVE, VARITY, gMVP, MetaRNN (dbNSFP 5.4a, access requested 2026-10-05); popEVE (to be evaluated on DDD only); PrimateAI-3D (licensed).
+**Plan §5 v2 tools.** These are now analysed under amendment A3 (section below). EVE is not included, since it is not a dbNSFP 5.4a column; its population-calibrated successor popEVE is. PrimateAI-3D is licensed and not included.
 
 ## Amendment A2: independent replication in autism de novos (Zhou et al. 2022)
 
@@ -243,6 +243,61 @@ Pre-registered in plan §3c (commit `c5b94e5`, OpenTimestamped) before any repli
 - In an independent cohort with a different phenotype, most predictor evidence is again explained by gene and position.
 - Constraint beyond position is again small.
 - No tool keeps calibrated Supporting evidence once gene, position and constraint are all accounted for.
+
+## Amendment A3: dbNSFP 5.4a predictors
+
+Pre-registered in plan §3d (commit `4d58eb2`, OpenTimestamped) before any 5.4a score was read. The dbNSFP 5.4a file is md5-verified (`d2ad53e1a974208fea6050117be8fee1`); extraction provenance is in `results_fullstudy/provenance/`. Outputs are in `a1v54_*`, `a1v54_popeve_ddd_*`, `aim3v54*` and the DDD-only sensitivity runs `*_ddd`.
+
+**Confirmatory readout (D2 primary): SYSTEMATIC.**
+
+- 17 new tools; popEVE is analysed separately, on DDD only.
+- 14 are informative (marginal top-2% LR ≥ 2.406).
+- 13 of the 14 (93%) keep < 50% of their log-evidence after gene and position. The only exception is MetaRNN, at r(D2) = 0.505.
+- D1 (secondary): 57%.
+
+**Constraint beyond position:** r(D2) − r(E2) median 0.014 [IQR 0.013, 0.016]; D1/E1 version 0.063.
+
+**Tools at Supporting after full adjustment: 0 of 17** at E2 and at E1.
+
+**Per tool**, top-2% LR (A marginal → B gene → D2 → E2 [one-sided lower bound]):
+
+| Tool | A | B | D2 | E2 [lower bound] | r(D2) |
+|---|---|---|---|---|---|
+| MisFit_S | 16.25 | 3.08 | 1.90 | 1.84 [1.74] | 0.23 |
+| MutScore | 15.12 | 3.88 | 1.78 | 1.72 [1.62] | 0.21 |
+| PHACTboost | 15.02 | 2.81 | 1.70 | 1.66 [1.57] | 0.20 |
+| gMVP | 12.11 | 3.18 | 1.82 | 1.76 [1.64] | 0.24 |
+| MutFormer | 7.76 | 2.02 | 1.42 | 1.39 [1.29] | 0.17 |
+| MisFit_D | 7.54 | 4.04 | 2.12 | 2.03 [1.82] | 0.37 |
+| ESM1b | 6.83 | 3.06 | 1.91 | 1.86 [1.64] | 0.34 |
+| MutPred2 | 6.58 | 2.46 | 1.73 | 1.69 [1.49] | 0.29 |
+| GPN-MSA | 6.16 | 2.09 | 1.51 | 1.47 [1.28] | 0.23 |
+| MetaRNN | 6.09 | 4.10 | 2.49 | 2.41 [2.12] | 0.505 |
+| VARITY (R, ER, R_LOO, ER_LOO) | 5.4–5.8 | 3.1–3.4 | 1.98–2.11 | 1.93–2.05 [1.67–1.78] | 0.40–0.43 |
+| phyloP 470-way | 2.24 | 1.18 | 1.02 | 1.03 | 0.03 |
+| phastCons 470-way, GERP 92m | ≤ 1.32 | — | — | — | not informative |
+
+**popEVE, DDD de novos only** (plan §6). The DDD scale factor is used throughout.
+
+- A 17.86 → B 3.13 → C 1.96 → D2 1.76 → E2 1.69, one-sided lower bound 1.58.
+- r(D2) = 0.20.
+- popEVE has the largest marginal LR of any predictor in the study, and one of the lowest retention shares.
+
+**Training-data ledger,** now covering the A3 tools (`aim3_training_ledger.tsv`):
+
+- **ClinVar/HGMD-type training labels:** MetaRNN, gMVP, VARITY, MutScore.
+- **No clinical labels:** MisFit (population data only; NDD de novos were used in evaluation), ESM1b and GPN-MSA.
+- **popEVE:** a DD cohort of ~31,000 families was used in its evaluation, hence the DDD-only rule.
+
+**Exploratory, not pre-specified: leakage check.** Across the informative tools in DD and A3, r(D2) does not differ between tools whose training labels could include these cohorts (median 0.29, n = 25) and label-free tools (0.37, n = 13); Mann–Whitney p = 0.48. Leakage would inflate within-unit evidence, i.e. bias against the main conclusion.
+
+**Stability of the pattern across the three settings** (median r over informative tools; descriptive):
+
+| Setting | B | C | D1 | D2 | E1 | E2 |
+|---|---|---|---|---|---|---|
+| DD, dbNSFP 4.1a | 0.56 | 0.38 | 0.42 | 0.33 | 0.36 | 0.32 |
+| Autism replication | 0.57 | 0.42 | 0.42 | 0.37 | 0.36 | 0.35 |
+| DD, dbNSFP 5.4a tools | 0.54 | 0.37 | 0.42 | 0.31 | 0.36 | 0.30 |
 
 ## Related work, verified from source (2026-10-05)
 

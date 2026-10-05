@@ -1,0 +1,23 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+popEVE	gene	all_genes	marginal	0.9324850000000001							
+popEVE	gene	all_genes	within_unit								
+popEVE	rmc	all_genes	marginal	0.9324850000000001							
+popEVE	rmc	all_genes	within_unit								
+popEVE	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+popEVE	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+popEVE	rmc	not_pm1like_rmc	marginal	0.9516100000000001							
+popEVE	rmc	not_pm1like_rmc	within_unit								
+popEVE	ccr	all_genes	marginal	0.9324850000000001							
+popEVE	ccr	all_genes	within_unit								
+popEVE	ccr	pm1like_ccr_ge_95	marginal					0.04918	0.025465		
+popEVE	ccr	pm1like_ccr_ge_95	within_unit								
+popEVE	ccr	not_pm1like_ccr	marginal	0.9324850000000001							
+popEVE	ccr	not_pm1like_ccr	within_unit								
+popEVE	pseudo	all_genes	marginal	0.9324850000000001							
+popEVE	pseudo	all_genes	within_unit								
+popEVE	win50	all_genes	marginal	0.9324850000000001							
+popEVE	win50	all_genes	within_unit								
+popEVE	pseudo_rmc	all_genes	marginal	0.9324850000000001							
+popEVE	pseudo_rmc	all_genes	within_unit								
+popEVE	win50_rmc	all_genes	marginal	0.9324850000000001							
+popEVE	win50_rmc	all_genes	within_unit								

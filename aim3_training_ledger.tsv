@@ -1,5 +1,5 @@
 tool	dbnsfp_column	citation_or_source_in_dbNSFP4.1a_readme	training_label_type_UNVERIFIED	could_training_positives_include_these_cohorts_UNVERIFIED	verification_status
-AlphaMissense	(gate file)	Cheng 2023 Science, doi:10.1126/science.adg7492	population frequency (primate/human common variants as benign; no clinical labels)	no (no clinical labels)	to check against paper
+AlphaMissense	(gate file)	Cheng 2023 Science, doi:10.1126/science.adg7492	population frequency (human and primate variants as weak benign labels); no ClinVar labels in training	no	verified: Cheng et al. 2023 Science
 SIFT	SIFT_converted_rankscore	dbNSFP readme (SIFT)	none (unsupervised, sequence conservation)	no	to check
 SIFT4G	SIFT4G_converted_rankscore	dbNSFP readme (SIFT4G)	none (unsupervised)	no	to check
 PolyPhen2_HDIV	Polyphen2_HDIV_rankscore	dbNSFP readme (PolyPhen-2 HumDiv)	UniProt disease variants vs divergence	possible	to check
@@ -29,10 +29,28 @@ fathmm-MKL	fathmm-MKL_coding_rankscore	doi:10.1093/bioinformatics/btv009	HGMD di
 fathmm-XF	fathmm-XF_coding_rankscore	fathmm-XF (dbNSFP readme)	HGMD disease vs neutral	possible	to check
 Eigen	Eigen-raw_coding_rankscore	columbia.edu/~ii2135/eigen.html (v1.1)	none (unsupervised spectral meta-score)	no	to check
 Eigen-PC	Eigen-PC-raw_coding_rankscore	as Eigen	none (unsupervised)	no	to check
-GERP++	GERP++_RS_rankscore	GERP++	none (conservation)	no	n/a
-phyloP100way	phyloP100way_vertebrate_rankscore	phyloP 100-way vertebrate	none (conservation)	no	n/a
-phyloP30way	phyloP30way_mammalian_rankscore	phyloP 30-way mammalian	none (conservation)	no	n/a
-phastCons100way	phastCons100way_vertebrate_rankscore	phastCons 100-way vertebrate	none (conservation)	no	n/a
-SiPhy	SiPhy_29way_logOdds_rankscore	SiPhy 29 mammals	none (conservation)	no	n/a
+GERP++	GERP++_RS_rankscore	GERP++	none (conservation)	no	
+phyloP100way	phyloP100way_vertebrate_rankscore	phyloP 100-way vertebrate	none (conservation)	no	
+phyloP30way	phyloP30way_mammalian_rankscore	phyloP 30-way mammalian	none (conservation)	no	
+phastCons100way	phastCons100way_vertebrate_rankscore	phastCons 100-way vertebrate	none (conservation)	no	
+SiPhy	SiPhy_29way_logOdds_rankscore	SiPhy 29 mammals	none (conservation)	no	
 GenoCanyon	GenoCanyon_rankscore	genocanyon.med.yale.edu (v1.0.3)	none (unsupervised functional annotation)	no	to check
 fitCons	integrated_fitCons_rankscore	fitCons	none (population-genetic fitness consequence)	no	to check
+MetaRNN	v54_MetaRNN_rankscore	Li et al. 2022 Genome Med doi:10.1186/s13073-022-01120-z	rare pathogenic vs rare benign (ClinVar-type curated labels); allele-frequency features	possible (ClinVar includes laboratory-submitted de novos)	verified: paper abstract
+MutPred2	v54_MutPred2_rankscore	Pejaver et al. 2020 Nat Commun	curated disease variants (HGMD, SwissVar, dbSNP, ClinVar) vs gnomAD as unlabeled	possible	from knowledge; to check against paper
+gMVP	v54_gMVP_rankscore	Zhang et al. 2022 Nat Mach Intell	curated pathogenic (HGMD, UniProt, ClinVar) vs random rare population missense (DiscovEHR)	possible	verified: search of paper/preprint
+MisFit_D	v54_MisFit_D_rankscore	Zhao et al. 2025 Nat Commun (medRxiv 2023)	none: population allele counts (236,017 Europeans); evaluated on NDD de novos	no (training); NDD de novos used in evaluation	verified: paper abstract
+MisFit_S	v54_MisFit_S_rankscore	as MisFit_D	as MisFit_D	no (training); NDD de novos used in evaluation	verified: paper abstract
+VARITY_R	v54_VARITY_R_rankscore	Wu et al. 2021 AJHG	rare ClinVar variants as core set plus weighted add-on sets (HGMD, gnomAD, MAVE)	possible	verified: paper abstract
+VARITY_ER	v54_VARITY_ER_rankscore	Wu et al. 2021 AJHG	extremely rare ClinVar core set plus add-on sets	possible	verified: paper abstract
+VARITY_R_LOO	v54_VARITY_R_LOO_rankscore	Wu et al. 2021 AJHG	as VARITY_R, leave-one-out predictions	possible	verified: paper abstract
+VARITY_ER_LOO	v54_VARITY_ER_LOO_rankscore	Wu et al. 2021 AJHG	as VARITY_ER, leave-one-out predictions	possible	verified: paper abstract
+ESM1b	v54_ESM1b_converted_rankscore	Brandes et al. 2023 Nat Genet	none (protein language model, zero-shot)	no	from knowledge (unsupervised by design)
+PHACTboost	v54_PHACTboost_rankscore	Dereli et al. 2024 (bioRxiv; Sabanci Univ.)	gradient boosting on phylogeny features; supervised on curated pathogenic/benign labels	possible	partially verified: method summary; label source to check
+MutFormer	v54_MutFormer_rankscore	Jiang et al. 2024	protein transformer fine-tuned on curated pathogenic/benign labels	possible	from knowledge; to check against paper
+MutScore	v54_MutScore_rankscore	Quinodoz et al. 2022 AJHG	ClinVar P/LP vs B/LB missense (Nov 2020) with positional clustering features	possible	verified: method description
+popEVE	v54_popEVE_converted_rankscore	Orenbuch et al. 2025 Nat Genet	EVE + ESM1v with population (UKB/gnomAD) calibration; no clinical labels; DD cohort of ~31,000 families used in evaluation	no (training); yes (evaluation on this cohort) -> DDD only (section 6)	verified: paper summary
+GPN-MSA	v54_GPN_MSA_converted_rankscore	Benegas et al. 2025 Nat Biotechnol	none (DNA language model on multi-species alignment)	no	from knowledge (unsupervised by design)
+GERP_92m	v54_GERP_92_mammals_rankscore	GERP (92 mammals)	none (conservation)	no	n/a
+phyloP470way	v54_phyloP470way_mammalian_rankscore	phyloP 470 mammals	none (conservation)	no	n/a
+phastCons470way	v54_phastCons470way_mammalian_rankscore	phastCons 470 mammals	none (conservation)	no	n/a

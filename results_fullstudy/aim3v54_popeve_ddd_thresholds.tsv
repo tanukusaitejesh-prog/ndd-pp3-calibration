@@ -1,0 +1,5 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+popEVE	gene	all_genes	marginal	0.9231750000000001	0.9498150000000001						
+popEVE	gene	all_genes	within_unit								
+popEVE	gene	ddg2p_monoallelic	marginal	0.9429750000000001				0.18549500000000002			
+popEVE	gene	ddg2p_monoallelic	within_unit					0.089145			
