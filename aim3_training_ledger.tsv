@@ -1,0 +1,38 @@
+tool	dbnsfp_column	citation_or_source_in_dbNSFP4.1a_readme	training_label_type_UNVERIFIED	could_training_positives_include_these_cohorts_UNVERIFIED	verification_status
+AlphaMissense	(gate file)	Cheng 2023 Science, doi:10.1126/science.adg7492	population frequency (primate/human common variants as benign; no clinical labels)	no (no clinical labels)	to check against paper
+SIFT	SIFT_converted_rankscore	dbNSFP readme (SIFT)	none (unsupervised, sequence conservation)	no	to check
+SIFT4G	SIFT4G_converted_rankscore	dbNSFP readme (SIFT4G)	none (unsupervised)	no	to check
+PolyPhen2_HDIV	Polyphen2_HDIV_rankscore	dbNSFP readme (PolyPhen-2 HumDiv)	UniProt disease variants vs divergence	possible	to check
+PolyPhen2_HVAR	Polyphen2_HVAR_rankscore	dbNSFP readme (PolyPhen-2 HumVar)	UniProt disease variants vs common human SNPs	possible	to check
+LRT	LRT_converted_rankscore	dbNSFP readme (LRT)	none (comparative genomics)	no	to check
+MutationTaster	MutationTaster_converted_rankscore	dbNSFP readme (MutationTaster)	HGMD/ClinVar-type disease variants vs polymorphisms	possible	to check
+MutationAssessor	MutationAssessor_rankscore	dbNSFP readme (MutationAssessor)	none (evolutionary conservation)	no	to check
+FATHMM	FATHMM_converted_rankscore	dbNSFP readme (FATHMM, weighted for inherited disease)	HGMD disease mutations (weighting)	possible	to check
+PROVEAN	PROVEAN_converted_rankscore	dbNSFP readme (PROVEAN)	none (unsupervised)	no	to check
+VEST4	VEST4_rankscore	dbNSFP readme (VEST 4.0)	HGMD disease variants vs common variants	possible	to check
+MetaSVM	MetaSVM_rankscore	doi:10.1093/hmg/ddu733	ensemble trained on curated disease vs neutral variants	possible	to check
+MetaLR	MetaLR_rankscore	doi:10.1093/hmg/ddu733	ensemble trained on curated disease vs neutral variants	possible	to check
+M-CAP	M-CAP_rankscore	bejerano.stanford.edu/MCAP (v1.3)	HGMD pathogenic vs rare benign	possible	to check
+REVEL	REVEL_rankscore	sites.google.com/site/revelgenomics	ensemble trained on HGMD disease vs rare neutral (ESP)	possible	to check
+MutPred	MutPred_rankscore	mutpred.mutdb.org (v1.2)	HGMD/SwissVar disease vs neutral	possible	to check
+MVP	MVP_rankscore	github.com/ShenLab/missense	ClinVar/HGMD/UniProt pathogenic vs benign	possible	to check
+MPC	MPC_rankscore	ExAC release1 regional_missense_constraint	regional constraint + fit to ClinVar pathogenic/benign; evaluated on de novo NDD cohorts	possible	to check (evaluation on de novo cohorts in the original paper)
+PrimateAI	PrimateAI_rankscore	github.com/Illumina/PrimateAI	common primate variants as benign (no clinical labels in training)	no	to check
+DEOGEN2	DEOGEN2_rankscore	deogen2.mutaframe.com	HUMSAVAR disease vs polymorphism	possible	to check
+BayesDel_addAF	BayesDel_addAF_rankscore	doi:10.1002/humu.23158	meta-score calibrated on curated variants; includes max allele frequency	possible	to check
+BayesDel_noAF	BayesDel_noAF_rankscore	doi:10.1002/humu.23158	as above, without allele frequency	possible	to check
+ClinPred	ClinPred_rankscore	doi:10.1016/j.ajhg.2018.08.005	ClinVar pathogenic vs benign; includes gnomAD allele frequency	possible	to check
+LIST-S2	LIST-S2_rankscore	doi:10.1093/nar/gkaa288	none (taxonomy-aware conservation)	no	to check
+CADD	CADD_raw_rankscore	Kircher 2014 Nat Genet 46:310 (v1.6)	simulated vs observed (proxy-neutral) variants; no clinical labels	no	to check
+DANN	DANN_rankscore	cbcl.ics.uci.edu/public_data/DANN	CADD training set (no clinical labels)	no	to check
+fathmm-MKL	fathmm-MKL_coding_rankscore	doi:10.1093/bioinformatics/btv009	HGMD disease vs 1000G neutral	possible	to check
+fathmm-XF	fathmm-XF_coding_rankscore	fathmm-XF (dbNSFP readme)	HGMD disease vs neutral	possible	to check
+Eigen	Eigen-raw_coding_rankscore	columbia.edu/~ii2135/eigen.html (v1.1)	none (unsupervised spectral meta-score)	no	to check
+Eigen-PC	Eigen-PC-raw_coding_rankscore	as Eigen	none (unsupervised)	no	to check
+GERP++	GERP++_RS_rankscore	GERP++	none (conservation)	no	n/a
+phyloP100way	phyloP100way_vertebrate_rankscore	phyloP 100-way vertebrate	none (conservation)	no	n/a
+phyloP30way	phyloP30way_mammalian_rankscore	phyloP 30-way mammalian	none (conservation)	no	n/a
+phastCons100way	phastCons100way_vertebrate_rankscore	phastCons 100-way vertebrate	none (conservation)	no	n/a
+SiPhy	SiPhy_29way_logOdds_rankscore	SiPhy 29 mammals	none (conservation)	no	n/a
+GenoCanyon	GenoCanyon_rankscore	genocanyon.med.yale.edu (v1.0.3)	none (unsupervised functional annotation)	no	to check
+fitCons	integrated_fitCons_rankscore	fitCons	none (population-genetic fitness consequence)	no	to check

@@ -199,3 +199,7 @@ RUMC is reported as internal validation.
 
 | Date | Change | Reason |
 |---|---|---|
+| 2026-10-05 | `validate` command: the engine's reproduction check against the gate uses the gate's unrounded δ (0.091189). All analyses use the pre-registered δ = 0.091. | Engineering. The plan's 0.091 is the gate's δ rounded. No effect on any full-study estimate. |
+| 2026-10-05 | Bug fixes before the analysis they affect was run: the Badonyi & Marsh S3 labels file is read as latin-1 (it mixes encodings); the dbNSFP join keeps raw scores for 13 tools, alongside the rankscores, so thresholds can be converted to Pejaver 2022 raw-score units; Aim 4 builds features in 400k-row slices and maps de novos during the pass (memory). | Engineering; no estimate affected. |
+| 2026-10-05 | **Exploratory control added after the Aim 1 result:** `aim1x`, the within-unit LR when each gene is cut into the same number of evenly spaced pseudo-regions as its RMC regions, on Aim 1's common site set. | To tell real constraint information from the generic effect of conditioning on finer positional units. Not pre-registered and labelled exploratory. The pre-registered Aim 1 readout is unchanged. |
+| 2026-10-05 | Aim 1 implementation detail: estimands (i)–(iv) are computed on one common site set, the missense sites with both an RMC region and a CCR value, so the four LRs are directly comparable. | Clarifies §3 ("sites with no region are excluded"); decided before Aim 1 was run. |

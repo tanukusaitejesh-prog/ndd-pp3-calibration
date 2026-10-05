@@ -1,0 +1,3 @@
+score	unit	contrast	dlogLRw_top2	lo95	hi95
+AlphaMissense	gene	ddg2p_LoF_vs_ddg2p_nonLoF	0.1099536572319395	-0.022711369626445238	0.24234653733995426
+AlphaMissense	gene	allgenes_LoF_vs_allgenes_nonLoF	-0.09494003097807702	-0.226232482278338	0.04679808915755117

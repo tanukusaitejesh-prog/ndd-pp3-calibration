@@ -1,0 +1,21 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+AlphaMissense	gene	all_genes	marginal	0.9780000000000001	0.9950000000000001						
+AlphaMissense	gene	all_genes	within_unit	0.9936500000000001							
+AlphaMissense	gene	ddg2p_monoallelic	marginal	0.9861500000000001				0.5487			
+AlphaMissense	gene	ddg2p_monoallelic	within_unit	0.9936500000000001				0.1044			
+AlphaMissense	rmc	all_genes	marginal	0.9780000000000001	0.9950000000000001						
+AlphaMissense	rmc	all_genes	within_unit								
+AlphaMissense	rmc	ddg2p_monoallelic	marginal	0.9861500000000001				0.5487			
+AlphaMissense	rmc	ddg2p_monoallelic	within_unit								
+AlphaMissense	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.0731			
+AlphaMissense	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+AlphaMissense	rmc	not_pm1like_rmc	marginal	0.9837							
+AlphaMissense	rmc	not_pm1like_rmc	within_unit								
+AlphaMissense	ccr	all_genes	marginal	0.9780000000000001	0.9950000000000001						
+AlphaMissense	ccr	all_genes	within_unit								
+AlphaMissense	ccr	ddg2p_monoallelic	marginal	0.9861500000000001				0.5487			
+AlphaMissense	ccr	ddg2p_monoallelic	within_unit					0.06620000000000001			
+AlphaMissense	ccr	pm1like_ccr_ge_95	marginal					0.0653			
+AlphaMissense	ccr	pm1like_ccr_ge_95	within_unit								
+AlphaMissense	ccr	not_pm1like_ccr	marginal	0.9810000000000001	0.9961000000000001						
+AlphaMissense	ccr	not_pm1like_ccr	within_unit	0.9961000000000001							

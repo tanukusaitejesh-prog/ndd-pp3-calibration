@@ -1,0 +1,9 @@
+genes with >= 20 missense de novos (primary filters, exon-edge excluded): 48
+genes with >= 10: 188; >= 5: 963
+Pejaver 2022 prior for comparison: 0.0441
+all_genes              pi = 0.200 [0.181, 0.220]   (O 23851, E 19090.0, genes 18398)
+ddg2p_monoallelic      pi = 0.729 [0.718, 0.739]   (O 3478, E 943.0, genes 512)
+shet_high              pi = 0.469 [0.449, 0.490]   (O 4128, E 2192.2, genes 1860)
+shet_low               pi = 0.163 [0.143, 0.185]   (O 16337, E 13666.4, genes 12925)
+ddg2p_LoF              pi = 0.631 [0.605, 0.656]   (O 984, E 363.3, genes 176)
+ddg2p_nonLoF           pi = 0.753 [0.736, 0.769]   (O 916, E 226.0, genes 125)

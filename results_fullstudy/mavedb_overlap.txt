@@ -1,0 +1,4 @@
+MaveDB overlap (FULL_STUDY_PLAN.md section 9; MaveDB /score-sets/mapped-genes, 557 score sets, 394 genes)
+genes with >= 20 missense de novos: 48; with a MaveDB score set: 7: BRAF, CHD7, KCNQ2, MAP2K1, NR2F1, SATB2, SPTAN1
+genes with >= 10 missense de novos: 188; with a MaveDB score set: 16: ANK1, ANK3, BRAF, CHD7, FBXO11, HECW2, KCNQ2, MAP2K1, NR2F1, PLCG2, PTEN, SATB2, SOX11, SOX5, SPTAN1, ZBTB20
+genes with >= 5 missense de novos: 963; with a MaveDB score set: 53: ADAR, ANK1, ANK2, ANK3, BAG3, BAZ2B, BPTF, BRAF, BRD4, CBL, CCAR1, CHD7, CUL9, CUX2, FBXO11, FLNB, GLI1, HECTD1, HECW2, HNRNPK, KCNQ2, KDM1A, KDM2B, KHSRP, KRAS, MAP2K1, MPDZ, MPL, NEDD4L, NR2F1, PARD3B, PLCG2, POU3F3, PRDM16, PRDM5, PTEN, RAF1, SATB1, SATB2, SCRIB, SETD2, SMARCB1, SOX11, SOX5, SPTAN1, TCERG1, TP73, TSC2, UBE4B, UBTF, ZBTB20, ZFHX2, ZFP36L2
