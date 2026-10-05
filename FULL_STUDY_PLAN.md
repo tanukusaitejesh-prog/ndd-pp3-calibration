@@ -76,6 +76,46 @@ Each is computed in coarse bins and local windows, in two strata: all genes, and
 - A site is flagged PM1-like if its RMC region has missense o/e < 0.4 **[default]**, or if its CCR ≥ 95.
 - For each flag value, the AM LR is reported within the stratum of sites with that value.
 
+## 3b. Amendment A1 (2026-10-05, before any per-tool Aim 1 result): nested conditioning on gene, position and constraint
+
+**Status at the time of this amendment:**
+
+- The AlphaMissense results for levels A–C, and the exploratory pseudo-region control (D1 for AlphaMissense only), had been seen.
+- **No result for any other tool at any level had been computed.**
+- For AlphaMissense, D and E are therefore exploratory. For the other 36 tools, everything in this section is confirmatory.
+
+**Nested levels.** Every one is a within-unit LR, using the §2 estimator, on Aim 1's common site set:
+
+| Level | Held fixed | Unit |
+|---|---|---|
+| A | nothing | marginal LR |
+| B | gene | gene |
+| C | gene + regional constraint | gene × RMC region (primary C); gene × CCR class (secondary) |
+| D1 | gene + generic position | gene × matched-count position chunk: each gene is cut into as many evenly spaced protein-position chunks as it has RMC regions |
+| D2 | gene + generic position | gene × fixed 50-residue window, by protein position: residues 1–50, 51–100, … |
+| E1 | gene + position + constraint | gene × D1 chunk × RMC region |
+| E2 | gene + position + constraint | gene × D2 window × RMC region |
+
+**Readout per tool.** The marginal and within-unit LR over the tool's top 2% of mutational opportunity (fine bins 980–999), with bootstrap 95% CIs and the δ one-sided bound. The coarse tables and window thresholds are as in §2.
+
+**Strata:** all genes; DDG2P monoallelic.
+
+**Decomposition of log-evidence**, all genes, per tool, with r(X) = ln LR_X / ln LR_A:
+
+- gene share: 1 − r(B);
+- position beyond gene: r(B) − r(D1);
+- constraint beyond position: r(D1) − r(E1).
+
+The same is reported with D2/E2.
+
+**Pre-specified readouts:**
+
+1. **Generalisation.** Restrict to tools whose marginal top-2% LR is ≥ 2.406. Attenuation is declared "systematic" if at least 75% of those tools have r(D1) < 0.5, i.e. less than half the log-evidence remains once gene and generic position are held fixed.
+2. **Constraint beyond position.** The median across tools of r(D1) − r(E1), with the across-tool interquartile range, reported for each tool and as a summary.
+3. **Clinical readout.** For each tool, whether the one-sided lower bound of the E1 LR in the top 2% reaches 2.406 (Supporting). This is the count of tools that keep Supporting-level evidence once gene, position and constraint are all held fixed.
+
+**Wording.** Results describe the "disease-associated de novo excess", not "pathogenic variants". RMC/CCR regions are "regional constraint", not PM1. PM1 is discussed as the clinical interpretation (§3 PM1-like strata are retained as defined).
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
@@ -202,4 +242,5 @@ RUMC is reported as internal validation.
 | 2026-10-05 | `validate` command: the engine's reproduction check against the gate uses the gate's unrounded δ (0.091189). All analyses use the pre-registered δ = 0.091. | Engineering. The plan's 0.091 is the gate's δ rounded. No effect on any full-study estimate. |
 | 2026-10-05 | Bug fixes before the analysis they affect was run: the Badonyi & Marsh S3 labels file is read as latin-1 (it mixes encodings); the dbNSFP join keeps raw scores for 13 tools, alongside the rankscores, so thresholds can be converted to Pejaver 2022 raw-score units; Aim 4 builds features in 400k-row slices and maps de novos during the pass (memory). | Engineering; no estimate affected. |
 | 2026-10-05 | **Exploratory control added after the Aim 1 result:** `aim1x`, the within-unit LR when each gene is cut into the same number of evenly spaced pseudo-regions as its RMC regions, on Aim 1's common site set. | To tell real constraint information from the generic effect of conditioning on finer positional units. Not pre-registered and labelled exploratory. The pre-registered Aim 1 readout is unchanged. |
+| 2026-10-05 | Engineering, no estimate affected:<br>• The dbNSFP join pre-selects columns with `zcat \| cut`. Its output on chr13 is identical to the straightforward reader's.<br>• A column store (`colstore`) holds one array per column per chromosome, so a streaming pass reads only the columns it needs. Its content is identical to the pickle path (checked on chr21).<br>• Tools are batched 8 per pass for gene-unit runs and 4 otherwise.<br>• Aim 3 and the per-tool Aim 2 strata run in one set of passes (`aim3`).<br>• Aim 1's estimands are run for every tool (`aim1tools`), as §3 specifies. | The first Aim 3 attempt re-read 17 GB of tables per batch from the USB drive (more than 25 min per batch of 4 tools). It was stopped before any of its output had been read. |
 | 2026-10-05 | Aim 1 implementation detail: estimands (i)–(iv) are computed on one common site set, the missense sites with both an RMC region and a CCR value, so the four LRs are directly comparable. | Clarifies §3 ("sites with no region are excluded"); decided before Aim 1 was run. |
