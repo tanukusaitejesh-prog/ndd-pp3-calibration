@@ -1,0 +1,217 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+AlphaMissense	gene	all_genes	marginal	0.9950500000000001							
+AlphaMissense	gene	all_genes	within_unit								
+AlphaMissense	gene	a5_cold_genes	marginal								
+AlphaMissense	gene	a5_cold_genes	within_unit								
+AlphaMissense	rmc	all_genes	marginal	0.9950500000000001							
+AlphaMissense	rmc	all_genes	within_unit								
+AlphaMissense	rmc	a5_cold_genes	marginal								
+AlphaMissense	rmc	a5_cold_genes	within_unit								
+AlphaMissense	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.06330000000000001			
+AlphaMissense	rmc	pm1like_rmc_oe_lt_0.4	within_unit					0.06330000000000001			
+AlphaMissense	rmc	not_pm1like_rmc	marginal								
+AlphaMissense	rmc	not_pm1like_rmc	within_unit								
+AlphaMissense	ccr	all_genes	marginal	0.9950500000000001							
+AlphaMissense	ccr	all_genes	within_unit								
+AlphaMissense	ccr	a5_cold_genes	marginal								
+AlphaMissense	ccr	a5_cold_genes	within_unit								
+AlphaMissense	ccr	pm1like_ccr_ge_95	marginal								
+AlphaMissense	ccr	pm1like_ccr_ge_95	within_unit								
+AlphaMissense	ccr	not_pm1like_ccr	marginal	0.9961500000000001							
+AlphaMissense	ccr	not_pm1like_ccr	within_unit								
+AlphaMissense	pseudo	all_genes	marginal	0.9950500000000001							
+AlphaMissense	pseudo	all_genes	within_unit								
+AlphaMissense	pseudo	a5_cold_genes	marginal								
+AlphaMissense	pseudo	a5_cold_genes	within_unit								
+AlphaMissense	win50	all_genes	marginal	0.9950500000000001							
+AlphaMissense	win50	all_genes	within_unit								
+AlphaMissense	win50	a5_cold_genes	marginal								
+AlphaMissense	win50	a5_cold_genes	within_unit								
+AlphaMissense	pseudo_rmc	all_genes	marginal	0.9950500000000001							
+AlphaMissense	pseudo_rmc	all_genes	within_unit								
+AlphaMissense	pseudo_rmc	a5_cold_genes	marginal								
+AlphaMissense	pseudo_rmc	a5_cold_genes	within_unit								
+AlphaMissense	win50_rmc	all_genes	marginal	0.9950500000000001							
+AlphaMissense	win50_rmc	all_genes	within_unit								
+AlphaMissense	win50_rmc	a5_cold_genes	marginal								
+AlphaMissense	win50_rmc	a5_cold_genes	within_unit								
+Aim4v1	gene	all_genes	marginal	0.22753250000000003				0.0			
+Aim4v1	gene	all_genes	within_unit								
+Aim4v1	gene	a5_cold_genes	marginal	0.25412250000000003							
+Aim4v1	gene	a5_cold_genes	within_unit								
+Aim4v1	rmc	all_genes	marginal	0.22753250000000003				0.0			
+Aim4v1	rmc	all_genes	within_unit								
+Aim4v1	rmc	a5_cold_genes	marginal	0.25412250000000003							
+Aim4v1	rmc	a5_cold_genes	within_unit								
+Aim4v1	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+Aim4v1	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Aim4v1	rmc	not_pm1like_rmc	marginal	0.2168				0.0			
+Aim4v1	rmc	not_pm1like_rmc	within_unit								
+Aim4v1	ccr	all_genes	marginal	0.22753250000000003				0.0			
+Aim4v1	ccr	all_genes	within_unit								
+Aim4v1	ccr	a5_cold_genes	marginal	0.25412250000000003							
+Aim4v1	ccr	a5_cold_genes	within_unit								
+Aim4v1	ccr	pm1like_ccr_ge_95	marginal					0.0			
+Aim4v1	ccr	pm1like_ccr_ge_95	within_unit								
+Aim4v1	ccr	not_pm1like_ccr	marginal	0.2168				0.0			
+Aim4v1	ccr	not_pm1like_ccr	within_unit								
+Aim4v1	pseudo	all_genes	marginal	0.22753250000000003				0.0			
+Aim4v1	pseudo	all_genes	within_unit								
+Aim4v1	pseudo	a5_cold_genes	marginal	0.25412250000000003							
+Aim4v1	pseudo	a5_cold_genes	within_unit								
+Aim4v1	win50	all_genes	marginal	0.22753250000000003				0.0			
+Aim4v1	win50	all_genes	within_unit								
+Aim4v1	win50	a5_cold_genes	marginal	0.25412250000000003							
+Aim4v1	win50	a5_cold_genes	within_unit								
+Aim4v1	pseudo_rmc	all_genes	marginal	0.22753250000000003				0.0			
+Aim4v1	pseudo_rmc	all_genes	within_unit								
+Aim4v1	pseudo_rmc	a5_cold_genes	marginal	0.25412250000000003							
+Aim4v1	pseudo_rmc	a5_cold_genes	within_unit								
+Aim4v1	win50_rmc	all_genes	marginal	0.22753250000000003				0.0			
+Aim4v1	win50_rmc	all_genes	within_unit								
+Aim4v1	win50_rmc	a5_cold_genes	marginal	0.25412250000000003							
+Aim4v1	win50_rmc	a5_cold_genes	within_unit								
+Aim4v2_GBDT	gene	all_genes	marginal	0.24186000000000002							
+Aim4v2_GBDT	gene	all_genes	within_unit								
+Aim4v2_GBDT	gene	a5_cold_genes	marginal	0.25549750000000004							
+Aim4v2_GBDT	gene	a5_cold_genes	within_unit								
+Aim4v2_GBDT	rmc	all_genes	marginal	0.24186000000000002							
+Aim4v2_GBDT	rmc	all_genes	within_unit								
+Aim4v2_GBDT	rmc	a5_cold_genes	marginal	0.25549750000000004							
+Aim4v2_GBDT	rmc	a5_cold_genes	within_unit								
+Aim4v2_GBDT	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+Aim4v2_GBDT	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Aim4v2_GBDT	rmc	not_pm1like_rmc	marginal	0.23012500000000002							
+Aim4v2_GBDT	rmc	not_pm1like_rmc	within_unit								
+Aim4v2_GBDT	ccr	all_genes	marginal	0.24186000000000002							
+Aim4v2_GBDT	ccr	all_genes	within_unit								
+Aim4v2_GBDT	ccr	a5_cold_genes	marginal	0.25549750000000004							
+Aim4v2_GBDT	ccr	a5_cold_genes	within_unit								
+Aim4v2_GBDT	ccr	pm1like_ccr_ge_95	marginal								
+Aim4v2_GBDT	ccr	pm1like_ccr_ge_95	within_unit								
+Aim4v2_GBDT	ccr	not_pm1like_ccr	marginal	0.24186000000000002							
+Aim4v2_GBDT	ccr	not_pm1like_ccr	within_unit								
+Aim4v2_GBDT	pseudo	all_genes	marginal	0.24186000000000002							
+Aim4v2_GBDT	pseudo	all_genes	within_unit								
+Aim4v2_GBDT	pseudo	a5_cold_genes	marginal	0.25549750000000004							
+Aim4v2_GBDT	pseudo	a5_cold_genes	within_unit								
+Aim4v2_GBDT	win50	all_genes	marginal	0.24186000000000002							
+Aim4v2_GBDT	win50	all_genes	within_unit								
+Aim4v2_GBDT	win50	a5_cold_genes	marginal	0.25549750000000004							
+Aim4v2_GBDT	win50	a5_cold_genes	within_unit								
+Aim4v2_GBDT	pseudo_rmc	all_genes	marginal	0.24186000000000002							
+Aim4v2_GBDT	pseudo_rmc	all_genes	within_unit								
+Aim4v2_GBDT	pseudo_rmc	a5_cold_genes	marginal	0.25549750000000004							
+Aim4v2_GBDT	pseudo_rmc	a5_cold_genes	within_unit								
+Aim4v2_GBDT	win50_rmc	all_genes	marginal	0.24186000000000002							
+Aim4v2_GBDT	win50_rmc	all_genes	within_unit								
+Aim4v2_GBDT	win50_rmc	a5_cold_genes	marginal	0.25549750000000004							
+Aim4v2_GBDT	win50_rmc	a5_cold_genes	within_unit								
+Aim4v2_MLP	gene	all_genes	marginal	0.2656575							
+Aim4v2_MLP	gene	all_genes	within_unit								
+Aim4v2_MLP	gene	a5_cold_genes	marginal	0.30268000000000006							
+Aim4v2_MLP	gene	a5_cold_genes	within_unit								
+Aim4v2_MLP	rmc	all_genes	marginal	0.2656575							
+Aim4v2_MLP	rmc	all_genes	within_unit								
+Aim4v2_MLP	rmc	a5_cold_genes	marginal	0.30268000000000006							
+Aim4v2_MLP	rmc	a5_cold_genes	within_unit								
+Aim4v2_MLP	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.0			
+Aim4v2_MLP	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Aim4v2_MLP	rmc	not_pm1like_rmc	marginal	0.2656575							
+Aim4v2_MLP	rmc	not_pm1like_rmc	within_unit								
+Aim4v2_MLP	ccr	all_genes	marginal	0.2656575							
+Aim4v2_MLP	ccr	all_genes	within_unit								
+Aim4v2_MLP	ccr	a5_cold_genes	marginal	0.30268000000000006							
+Aim4v2_MLP	ccr	a5_cold_genes	within_unit								
+Aim4v2_MLP	ccr	pm1like_ccr_ge_95	marginal					0.0			
+Aim4v2_MLP	ccr	pm1like_ccr_ge_95	within_unit								
+Aim4v2_MLP	ccr	not_pm1like_ccr	marginal	0.2656575							
+Aim4v2_MLP	ccr	not_pm1like_ccr	within_unit								
+Aim4v2_MLP	pseudo	all_genes	marginal	0.2656575							
+Aim4v2_MLP	pseudo	all_genes	within_unit								
+Aim4v2_MLP	pseudo	a5_cold_genes	marginal	0.30268000000000006							
+Aim4v2_MLP	pseudo	a5_cold_genes	within_unit								
+Aim4v2_MLP	win50	all_genes	marginal	0.2656575							
+Aim4v2_MLP	win50	all_genes	within_unit								
+Aim4v2_MLP	win50	a5_cold_genes	marginal	0.30268000000000006							
+Aim4v2_MLP	win50	a5_cold_genes	within_unit								
+Aim4v2_MLP	pseudo_rmc	all_genes	marginal	0.2656575							
+Aim4v2_MLP	pseudo_rmc	all_genes	within_unit								
+Aim4v2_MLP	pseudo_rmc	a5_cold_genes	marginal	0.30268000000000006							
+Aim4v2_MLP	pseudo_rmc	a5_cold_genes	within_unit								
+Aim4v2_MLP	win50_rmc	all_genes	marginal	0.2656575							
+Aim4v2_MLP	win50_rmc	all_genes	within_unit								
+Aim4v2_MLP	win50_rmc	a5_cold_genes	marginal	0.30268000000000006							
+Aim4v2_MLP	win50_rmc	a5_cold_genes	within_unit								
+Aim4v2_ENS	gene	all_genes	marginal	0.23312000000000002							
+Aim4v2_ENS	gene	all_genes	within_unit								
+Aim4v2_ENS	gene	a5_cold_genes	marginal	0.27507000000000004							
+Aim4v2_ENS	gene	a5_cold_genes	within_unit								
+Aim4v2_ENS	rmc	all_genes	marginal	0.23312000000000002							
+Aim4v2_ENS	rmc	all_genes	within_unit								
+Aim4v2_ENS	rmc	a5_cold_genes	marginal	0.27507000000000004							
+Aim4v2_ENS	rmc	a5_cold_genes	within_unit								
+Aim4v2_ENS	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.0			
+Aim4v2_ENS	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Aim4v2_ENS	rmc	not_pm1like_rmc	marginal	0.20641500000000002							
+Aim4v2_ENS	rmc	not_pm1like_rmc	within_unit								
+Aim4v2_ENS	ccr	all_genes	marginal	0.23312000000000002							
+Aim4v2_ENS	ccr	all_genes	within_unit								
+Aim4v2_ENS	ccr	a5_cold_genes	marginal	0.27507000000000004							
+Aim4v2_ENS	ccr	a5_cold_genes	within_unit								
+Aim4v2_ENS	ccr	pm1like_ccr_ge_95	marginal					0.0			
+Aim4v2_ENS	ccr	pm1like_ccr_ge_95	within_unit								
+Aim4v2_ENS	ccr	not_pm1like_ccr	marginal	0.22292750000000003							
+Aim4v2_ENS	ccr	not_pm1like_ccr	within_unit								
+Aim4v2_ENS	pseudo	all_genes	marginal	0.23312000000000002							
+Aim4v2_ENS	pseudo	all_genes	within_unit								
+Aim4v2_ENS	pseudo	a5_cold_genes	marginal	0.27507000000000004							
+Aim4v2_ENS	pseudo	a5_cold_genes	within_unit								
+Aim4v2_ENS	win50	all_genes	marginal	0.23312000000000002							
+Aim4v2_ENS	win50	all_genes	within_unit								
+Aim4v2_ENS	win50	a5_cold_genes	marginal	0.27507000000000004							
+Aim4v2_ENS	win50	a5_cold_genes	within_unit								
+Aim4v2_ENS	pseudo_rmc	all_genes	marginal	0.23312000000000002							
+Aim4v2_ENS	pseudo_rmc	all_genes	within_unit								
+Aim4v2_ENS	pseudo_rmc	a5_cold_genes	marginal	0.27507000000000004							
+Aim4v2_ENS	pseudo_rmc	a5_cold_genes	within_unit								
+Aim4v2_ENS	win50_rmc	all_genes	marginal	0.23312000000000002							
+Aim4v2_ENS	win50_rmc	all_genes	within_unit								
+Aim4v2_ENS	win50_rmc	a5_cold_genes	marginal	0.27507000000000004							
+Aim4v2_ENS	win50_rmc	a5_cold_genes	within_unit								
+Aim4v3_GBDT	gene	all_genes	marginal	0.200525							
+Aim4v3_GBDT	gene	all_genes	within_unit								
+Aim4v3_GBDT	gene	a5_cold_genes	marginal	0.20877500000000002							
+Aim4v3_GBDT	gene	a5_cold_genes	within_unit								
+Aim4v3_GBDT	rmc	all_genes	marginal	0.200525							
+Aim4v3_GBDT	rmc	all_genes	within_unit								
+Aim4v3_GBDT	rmc	a5_cold_genes	marginal	0.20877500000000002							
+Aim4v3_GBDT	rmc	a5_cold_genes	within_unit								
+Aim4v3_GBDT	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+Aim4v3_GBDT	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Aim4v3_GBDT	rmc	not_pm1like_rmc	marginal	0.20877500000000002							
+Aim4v3_GBDT	rmc	not_pm1like_rmc	within_unit								
+Aim4v3_GBDT	ccr	all_genes	marginal	0.200525							
+Aim4v3_GBDT	ccr	all_genes	within_unit								
+Aim4v3_GBDT	ccr	a5_cold_genes	marginal	0.20877500000000002							
+Aim4v3_GBDT	ccr	a5_cold_genes	within_unit								
+Aim4v3_GBDT	ccr	pm1like_ccr_ge_95	marginal								
+Aim4v3_GBDT	ccr	pm1like_ccr_ge_95	within_unit								
+Aim4v3_GBDT	ccr	not_pm1like_ccr	marginal	0.200525							
+Aim4v3_GBDT	ccr	not_pm1like_ccr	within_unit								
+Aim4v3_GBDT	pseudo	all_genes	marginal	0.200525							
+Aim4v3_GBDT	pseudo	all_genes	within_unit								
+Aim4v3_GBDT	pseudo	a5_cold_genes	marginal	0.20877500000000002							
+Aim4v3_GBDT	pseudo	a5_cold_genes	within_unit								
+Aim4v3_GBDT	win50	all_genes	marginal	0.200525							
+Aim4v3_GBDT	win50	all_genes	within_unit								
+Aim4v3_GBDT	win50	a5_cold_genes	marginal	0.20877500000000002							
+Aim4v3_GBDT	win50	a5_cold_genes	within_unit								
+Aim4v3_GBDT	pseudo_rmc	all_genes	marginal	0.200525							
+Aim4v3_GBDT	pseudo_rmc	all_genes	within_unit								
+Aim4v3_GBDT	pseudo_rmc	a5_cold_genes	marginal	0.20877500000000002							
+Aim4v3_GBDT	pseudo_rmc	a5_cold_genes	within_unit								
+Aim4v3_GBDT	win50_rmc	all_genes	marginal	0.200525							
+Aim4v3_GBDT	win50_rmc	all_genes	within_unit								
+Aim4v3_GBDT	win50_rmc	a5_cold_genes	marginal	0.20877500000000002							
+Aim4v3_GBDT	win50_rmc	a5_cold_genes	within_unit								

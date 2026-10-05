@@ -370,6 +370,54 @@ Frozen at `fffc57c` before any ClinVar variant was matched; a chr22-only code ch
 
 Both earlier works calibrate *with* ClinVar, and neither quantifies conditional or incremental evidence.
 
-## Aim 4: null-contrast learning
+## Aim 4: null-contrast learning (v1 §7, v2 amendment A5, v3 amendment A7)
 
-*(pending)*
+Outputs: `aim4v2_*` (v1 and v2), `aim4v3_*` (v3), `m4nested_ddd_*` and `m4v3nested_ddd_*` (nested levels on DDD).
+
+**Training.**
+
+- **Real:** 11,203 GeneDx de novos, training genes.
+- **Null for v1/v2:** 115,100 MR-weighted sites from all training genes.
+- **Null for v3:** 112,030 MR-weighted sites from the same transcript as each real de novo.
+- **π:** 0.185.
+- **Features:** v1 118, v2/v3 158.
+- **GBDT iterations:** v1 54, v2 115, v3 56. MLP epochs 14–17.
+
+**DDD, top 2%** (marginal / within-gene LR [95% CI]):
+
+| Model | All genes | Cold genes |
+|---|---|---|
+| AlphaMissense | 16.76 / 4.56 [4.17, 4.95] | 16.31 / 4.85 [3.92, 5.93] |
+| v1 | 26.38 / 3.43 [3.24, 3.63] | 26.13 / 3.87 [3.36, 4.42] |
+| v2-GBDT | 27.31 / 3.17 [3.01, 3.34] | 25.47 / 3.35 [2.93, 3.84] |
+| v2-MLP | 25.58 / 2.96 | 25.76 / 3.40 |
+| v2-ENS | 27.90 / 3.06 | 27.47 / 3.47 |
+| v3 (gene-matched) | 24.15 / 4.26 [4.01, 4.55] | 23.48 / 4.68 [4.00, 5.47] |
+
+**Pre-specified comparisons** (within-gene top-2% LR ratio, paired bootstrap):
+
+- **A5 primary**, v2-GBDT / AlphaMissense, DDD cold genes: **0.69 [0.57, 0.84]**. AlphaMissense is better.
+  - RUMC 0.72 [0.59, 0.88].
+  - GeneDx cold genes 0.76 [0.65, 0.90].
+  - v1 / AlphaMissense on DDD cold genes: 0.80 [0.67, 0.96].
+- **v2-GBDT / v1:** 0.92 [0.89, 0.96]. Adding the A3 tools and structure lowered within-gene evidence.
+- **v2-MLP and v2-ENS / v2-GBDT:** 0.93–1.04. Model class makes no material difference.
+- **A7 (post hoc, frozen before fitting)**, v3 / AlphaMissense, DDD cold genes: **0.96 [0.82, 1.14]**, no significant difference.
+  - DDD 0.93 [0.88, 1.00]; RUMC 1.02 [0.87, 1.21]; GeneDx cold genes 1.03 [0.90, 1.20].
+- **v3 / v2-GBDT:** 1.34–1.51 in every set, every interval > 1.
+
+**Nested levels, DDD** (A → B → D2 → E2; r(B), r(D2)):
+
+| Model | A | B | D2 | E2 [lower bound] | r(B) | r(D2) |
+|---|---|---|---|---|---|---|
+| AlphaMissense | 16.76 | 4.56 | 2.27 | 2.10 [1.92] | 0.54 | 0.29 |
+| v2-GBDT | 27.31 | 3.17 | 1.63 | 1.52 | 0.35 | — |
+| v3 | 24.15 | 4.26 | 2.01 | 1.87 [1.77] | 0.46 | 0.22 |
+
+No model reaches Supporting at E2.
+
+**Reading.**
+
+1. Trained against a genome-wide null, the models learn gene-level information: the largest marginal LRs in the study, but less within-gene evidence than AlphaMissense.
+2. Matching the null on gene recovers within-gene evidence to AlphaMissense's level, without exceeding it.
+3. Even the best model stays below Supporting beyond gene, position and constraint. This is consistent with a limited ceiling of variant-level evidence beyond position in these data.

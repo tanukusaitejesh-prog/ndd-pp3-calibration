@@ -1,0 +1,61 @@
+score	DD_A	DD_B	DD_D2	DD_E2	DD_E2_lo_sys	DD_r_B	DD_r_D2	DD_r_E2	set	cohort_DD	autism_A	autism_r_D2	autism_r_E2	autism_E2	autism_E2_lo_sys	clinical_training_labels	informative_DD	E2_reaches_Supporting	max_PP3_points_with_PM1	PP3_plus_PM1_max_points	retention_rank_E2
+PROVEAN	3.107	2.879	2.109	2.046	1.56	0.9328	0.6585	0.6316	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.231	0.6946	0.6905	1.74	0.4609	no	True	False	2.53	4.53	1
+VEST4	5.648	4.381	2.785	2.632	2.277	0.8532	0.5917	0.559	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	3.739	0.5081	0.48	1.883	1.057	possible	True	False	2.24	4.24	2
+MutPred	5.14	4.046	2.521	2.451	2.067	0.8539	0.565	0.5477	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	3.071	0.6957	0.6919	2.174	0.8876	possible	True	False	2.19	4.19	3
+MetaRNN	6.085	4.101	2.488	2.413	2.121	0.7814	0.5047	0.4879	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	1.95	3.95	4
+ClinPred	5.108	3.478	2.262	2.193	1.871	0.7644	0.5006	0.4816	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	3.883	0.5698	0.5541	2.12	1.234	possible	True	False	1.93	3.93	5
+MutationAssessor	4.674	3.515	2.164	2.084	1.772	0.8152	0.5006	0.4763	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.774	0.7674	0.7256	2.097	0.9179	no	True	False	1.91	3.91	6
+SIFT	2.733	2.222	1.645	1.594	1.345	0.794	0.4948	0.4635	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.948	0.4677	0.4454	1.346	0.6809	no	True	False	1.85	3.85	7
+PolyPhen2_HVAR	3.047	2.589	1.734	1.667	1.392	0.8537	0.4941	0.4587	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.055	0.5136	0.4876	1.421	0.628	possible	True	False	1.83	3.83	8
+VARITY_ER_LOO	5.572	3.362	2.105	2.047	1.78	0.7058	0.4333	0.4172	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	1.67	3.67	9
+Eigen	5.847	3.398	2.159	2.088	1.824	0.6927	0.4358	0.4169	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	3.396	0.3351	0.3038	1.45	0.7937	no	True	False	1.67	3.67	10
+VARITY_ER	5.421	3.272	2.061	2.004	1.735	0.7013	0.4279	0.4113	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	1.65	3.65	11
+VARITY_R	5.763	3.271	2.068	2.018	1.754	0.6767	0.4147	0.4009	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	1.6	3.6	12
+VARITY_R_LOO	5.497	3.128	1.975	1.929	1.674	0.6691	0.3993	0.3855	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	1.54	3.54	13
+Eigen-PC	5.249	2.986	1.929	1.877	1.607	0.6599	0.3961	0.3797	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	4.294	0.3854	0.3635	1.698	1.062	no	True	False	1.52	3.52	14
+MisFit_D	7.535	4.04	2.116	2.033	1.818	0.6914	0.3712	0.3513	dbNSFP 5.4a (A3)	DD (31,058 trios)						no	True	False	1.41	3.41	15
+fathmm-XF	3.391	1.863	1.552	1.532	1.229	0.5095	0.3599	0.3494	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.518	0.4047	0.4343	1.493	0.5921	possible	True	False	1.4	3.4	16
+LIST-S2	5.565	2.838	1.883	1.802	1.553	0.6077	0.3686	0.343	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	5.493	0.2913	0.2734	1.593	1.117	no	True	False	1.37	3.37	17
+CADD	3.827	2.091	1.598	1.581	1.279	0.5496	0.3492	0.3411	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.526	0.4028	0.3735	1.414	0.5081	no	True	False	1.36	3.36	18
+ESM1b	6.832	3.057	1.911	1.856	1.641	0.5815	0.3369	0.3219	dbNSFP 5.4a (A3)	DD (31,058 trios)						no	True	False	1.29	3.29	19
+REVEL	7.811	3.363	1.923	1.851	1.666	0.59	0.3181	0.2994	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	4.436	0.3638	0.3548	1.697	1.11	possible	True	False	1.2	3.2	20
+AlphaMissense	13.43	4.102	2.19	2.084	1.952	0.5433	0.3017	0.2827	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	8.667	0.3052	0.2976	1.902	1.502	no	True	False	1.13	3.13	21
+MutPred2	6.579	2.462	1.732	1.687	1.493	0.4782	0.2917	0.2776	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	1.11	3.11	22
+BayesDel_noAF	7.173	3.112	1.784	1.717	1.544	0.5762	0.2939	0.2743	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	3.895	0.3734	0.3759	1.667	1.022	possible	True	False	1.1	3.1	23
+BayesDel_addAF	7.641	3.083	1.762	1.692	1.533	0.5536	0.2785	0.2586	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	3.929	0.3262	0.3244	1.559	0.9533	possible	True	False	1.03	3.03	24
+MetaLR	7.423	2.844	1.735	1.678	1.522	0.5214	0.2749	0.2583	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	3.067	0.372	0.3464	1.474	0.756	possible	True	False	1.03	3.03	25
+M-CAP	9.11	2.475	1.689	1.652	1.525	0.4102	0.2373	0.2272	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	4.873	0.4033	0.3896	1.853	1.293	possible	True	False	0.91	2.91	26
+gMVP	12.11	3.181	1.816	1.756	1.644	0.464	0.2392	0.2259	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	0.9	2.9	27
+MVP	6.221	2.547	1.554	1.498	1.326	0.5115	0.241	0.2211	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	4.275	0.3243	0.3124	1.574	1.012	possible	True	False	0.88	2.88	28
+MisFit_S	16.25	3.084	1.902	1.838	1.743	0.4039	0.2306	0.2183	dbNSFP 5.4a (A3)	DD (31,058 trios)						no	True	False	0.87	2.87	29
+GPN-MSA	6.158	2.091	1.51	1.47	1.279	0.4058	0.2266	0.2118	dbNSFP 5.4a (A3)	DD (31,058 trios)						no	True	False	0.85	2.85	30
+phyloP100way	3.933	1.821	1.334	1.314	1.078	0.4375	0.2105	0.1996	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.558	-0.009755	-0.04485	0.9587	0.3421	no	True	False	0.8	2.8	31
+MutScore	15.12	3.878	1.782	1.717	1.624	0.499	0.2127	0.199	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	0.8	2.8	32
+Aim4v3_GBDT	24.15	4.259	2.011	1.868	1.766	0.4551	0.2194	0.1962	this study: null-contrast model (gene-matched, post hoc)	DDD only						none (this study)	True	False	0.78	2.78	33
+MetaSVM	5.927	2.353	1.458	1.411	1.245	0.4808	0.2117	0.1936	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.244	0.1089	0.1119	1.095	0.3421	possible	True	False	0.77	2.77	34
+PHACTboost	15.02	2.805	1.7	1.656	1.567	0.3806	0.1957	0.1861	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	0.74	2.74	35
+FATHMM	5.85	2.019	1.414	1.388	1.232	0.3979	0.1962	0.1857	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.993	0.3457	0.3114	1.24	0.2625	possible	True	False	0.74	2.74	36
+DEOGEN2	10.3	2.703	1.603	1.534	1.424	0.4265	0.2023	0.1834	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	4.337	0.1971	0.1775	1.297	0.8338	possible	True	False	0.73	2.73	37
+popEVE	17.86	3.132	1.76	1.694	1.583	0.3961	0.196	0.1829	popEVE (DDD only)	DDD only						no	True	False	0.73	2.73	38
+PrimateAI	8.436	2.323	1.483	1.424	1.299	0.3953	0.1848	0.1657	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	6.617	0.2237	0.206	1.476	1.123	no	True	False	0.66	2.66	39
+MutFormer	7.764	2.023	1.417	1.391	1.285	0.3438	0.1701	0.1611	dbNSFP 5.4a (A3)	DD (31,058 trios)						possible	True	False	0.64	2.64	40
+Aim4v1	26.38	3.425	1.755	1.61	1.534	0.3762	0.1718	0.1455	this study: null-contrast model	DDD only						none (this study)	True	False	0.58	2.58	41
+Aim4v2_GBDT	27.31	3.167	1.633	1.525	1.451	0.3485	0.1483	0.1275	this study: null-contrast model	DDD only						none (this study)	True	False	0.51	2.51	42
+Aim4v2_MLP	25.58	2.96	1.576	1.503	1.431	0.3348	0.1403	0.1257	this study: null-contrast model	DDD only						none (this study)	True	False	0.5	2.5	43
+Aim4v2_ENS	27.9	3.064	1.603	1.507	1.439	0.3364	0.1418	0.1231	this study: null-contrast model	DDD only						none (this study)	True	False	0.49	2.49	44
+MPC	13.61	1.952	1.281	1.254	1.186	0.2562	0.09479	0.08667	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	8.305	0.1179	0.1166	1.28	1.062	possible	True	False	0.35	2.35	45
+SIFT4G	2.359	2.424	1.643	1.595	1.305	1.032	0.5786	0.5439	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.772	0.5753	0.544	1.365	0.6159	no	False	False			
+PolyPhen2_HDIV	2.005	1.879	1.453	1.418	1.147	0.9063	0.5372	0.5023	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.584	0.4819	0.4732	1.243	0.5654	possible	False	False			
+phyloP30way	1.68	1.364	1.258	1.255	0.8868	0.5988	0.4417	0.4381	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.99	0.3698	0.3727	1.292	0.551	no	False	False			
+GERP++	2.118	1.49	1.271	1.292	0.9304	0.5314	0.3195	0.3411	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.142	0.254	0.2353	1.196	0.367	no	False	False			
+fathmm-MKL	2.354	1.328	1.343	1.337	0.9547	0.3317	0.344	0.3395	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.71	0.01863	-0.02147	0.9886	0.08283	possible	False	False			
+MutationTaster	2.093	1.377	1.179	1.165	0.9647	0.4331	0.2229	0.2069	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.951	0.1396	0.1327	1.093	0.6368	possible	False	False			
+LRT	2.01	1.346	1.148	1.135	0.9422	0.4258	0.1972	0.1819	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.783	0.01844	0.004246	1.002	0.5599	no	False	False			
+DANN	1.712	1.364	1.094	1.082	0.6566	0.5769	0.1679	0.1458	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.284	0.4339	0.387	1.377	0.3379	no	False	False			
+phastCons100way	1.482	1.118	1.05	1.045	0.7981	0.2842	0.1231	0.1111	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.528	0.07364	0.0697	1.03	0.4871	no	False	False			
+GenoCanyon	2.145	1.321	1.065	1.042	0.7932	0.3649	0.08303	0.05422	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	2.422	0.3232	0.3276	1.336	0.6625	no	False	False			
+phastCons470way	1.323	1.054	1.015	1.012	0.7469	0.1887	0.05478	0.04427	dbNSFP 5.4a (A3)	DD (31,058 trios)						no	False	False			
+phyloP470way	2.239	1.177	1.021	1.025	0.7257	0.2023	0.02617	0.03103	dbNSFP 5.4a (A3)	DD (31,058 trios)						no	False	False			
+SiPhy	1.715	1.077	0.9668	0.9649	0.6174	0.138	-0.06263	-0.0663	dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	1.907	0.2144	0.1919	1.132	0.2069	no	False	False			
+fitCons	0.9213	0.8432	1.094	1.12	0.4358				dbNSFP 4.1a + AlphaMissense	DD (31,058 trios)	0.9269			0.9544	-1.679	no	False	False			
+GERP_92m	0.9207	0.8015	0.7601	0.7645	0.1266				dbNSFP 5.4a (A3)	DD (31,058 trios)						no	False	False			

@@ -397,7 +397,42 @@ ClinGen's cap removes this by construction (0 variants), as does the conditional
 
 **Interpretation.** A model optimised on the genome-wide de novo excess learns mainly which genes and regions carry it. This shows from another direction that the de novo excess, like ClinVar, rewards between-gene information unless the comparison is made within gene.
 
-**Gene-matched model (amendment A7).** After seeing this result, we pre-registered (before fitting) a model whose null sites are drawn from the same transcript as each real de novo, so that its objective is within-gene. It is reported as a post hoc analysis. [PENDING A7 v3 result and A6.3 autism evaluation of all models]
+**Gene-matched model (amendment A7).** After seeing this result, we pre-registered (before fitting) a model, v3, that changes only the null: 10 sites drawn in proportion to mutation rate from **the same transcript** as each real de novo (n = 112,030), so that its objective is within-gene. It is reported as a post hoc analysis.
+
+**Effect of the objective.** Changing only the null raised within-gene evidence substantially in every evaluation set (v3 / v2-GBDT within-gene top-2% LR):
+
+| Evaluation set | v3 / v2-GBDT |
+|---|---|
+| DDD | 1.34 [1.29, 1.41] |
+| DDD cold genes | 1.40 [1.25, 1.54] |
+| RUMC | 1.42 [1.30, 1.57] |
+| GeneDx cold genes | 1.34 [1.23, 1.47] |
+
+**Comparison with AlphaMissense.** v3 was statistically indistinguishable from AlphaMissense within gene (v3 / AlphaMissense):
+
+| Evaluation set | v3 / AlphaMissense |
+|---|---|
+| DDD cold genes (primary A7 comparison) | 0.96 [0.82, 1.14] |
+| DDD | 0.93 [0.88, 1.00] |
+| RUMC | 1.02 [0.87, 1.21] |
+| GeneDx cold genes | 1.03 [0.90, 1.20] |
+
+**Marginal versus finer levels.** v3 kept a higher marginal LR than AlphaMissense (24.2 against 16.8). At the finer levels it was slightly below AlphaMissense:
+
+| Level | v3 | AlphaMissense |
+|---|---|---|
+| Within gene | 4.26 | 4.56 |
+| Within 50-residue windows | 2.01 | 2.27 |
+| Window × constraint (E2) | 1.87 | 2.10 |
+
+No model reached Supporting at E2 (v3 one-sided lower bound 1.77).
+
+**Reading.**
+
+1. **The training objective matters more than model class or features.** The same features and learner gave 34–51% more within-gene evidence when the null was matched on gene.
+2. **There is a ceiling.** A label-free combination of 53 predictor scores and AlphaFold structure, trained on the de novo excess with a within-gene objective, matches but does not exceed AlphaMissense within gene. Like every predictor in the study, it falls below Supporting once gene, position and constraint are held fixed. The limited variant-level evidence beyond position is therefore not a shortcoming of any single tool. It appears to be a property of what current inputs can resolve in these data.
+
+[PENDING A6.3: all models in the autism cohort]
 
 ---
 
