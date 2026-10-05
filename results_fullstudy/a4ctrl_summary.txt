@@ -1,5 +1,5 @@
 informative tools: 24 (+ AlphaMissense reported separately)
-median r: win50 0.312, win50s 0.294, rand50 0.508, dom nan, dom_rmc nan (B gene 0.560)
+median r: win50 0.312, win50s 0.294, rand50 0.508, dom 0.333, dom_rmc 0.303 (B gene 0.560)
 paired r(rand50) - r(win50): median 0.210 [IQR 0.180, 0.220]; positive for 24 of 24 tools
-r(win50s) - r(win50): median -0.016; r(dom) - r(win50): median nan
-AlphaMissense: A 15.42, gene 4.29, win50 2.20, win50s 2.19, rand50 3.80, dom nan, dom_rmc nan
+r(win50s) - r(win50): median -0.016; r(dom) - r(win50): median 0.026
+AlphaMissense: A 15.42, gene 4.29, win50 2.20, win50s 2.19, rand50 3.80, dom 2.38, dom_rmc 2.16

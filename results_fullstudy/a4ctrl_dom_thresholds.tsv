@@ -1,0 +1,151 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+AlphaMissense	gene	all_genes	marginal	0.9754	0.9930000000000001						
+AlphaMissense	gene	all_genes	within_unit	0.9930000000000001							
+AlphaMissense	dom	all_genes	marginal	0.9754	0.9930000000000001						
+AlphaMissense	dom	all_genes	within_unit								
+AlphaMissense	dom_rmc	all_genes	marginal	0.9754	0.9945						
+AlphaMissense	dom_rmc	all_genes	within_unit								
+SIFT	gene	all_genes	marginal								
+SIFT	gene	all_genes	within_unit								
+SIFT	dom	all_genes	marginal								
+SIFT	dom	all_genes	within_unit								
+SIFT	dom_rmc	all_genes	marginal								
+SIFT	dom_rmc	all_genes	within_unit								
+PolyPhen2_HVAR	gene	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	gene	all_genes	within_unit								
+PolyPhen2_HVAR	dom	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	dom	all_genes	within_unit								
+PolyPhen2_HVAR	dom_rmc	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	dom_rmc	all_genes	within_unit								
+MutationAssessor	gene	all_genes	marginal	0.95174							
+MutationAssessor	gene	all_genes	within_unit	0.962505							
+MutationAssessor	dom	all_genes	marginal	0.95174							
+MutationAssessor	dom	all_genes	within_unit								
+MutationAssessor	dom_rmc	all_genes	marginal	0.95174							
+MutationAssessor	dom_rmc	all_genes	within_unit								
+FATHMM	gene	all_genes	marginal	0.96716							
+FATHMM	gene	all_genes	within_unit								
+FATHMM	dom	all_genes	marginal	0.96716							
+FATHMM	dom	all_genes	within_unit								
+FATHMM	dom_rmc	all_genes	marginal	0.96716							
+FATHMM	dom_rmc	all_genes	within_unit								
+PROVEAN	gene	all_genes	marginal	0.93659							
+PROVEAN	gene	all_genes	within_unit								
+PROVEAN	dom	all_genes	marginal	0.93659							
+PROVEAN	dom	all_genes	within_unit								
+PROVEAN	dom_rmc	all_genes	marginal	0.93659							
+PROVEAN	dom_rmc	all_genes	within_unit								
+VEST4	gene	all_genes	marginal	0.93605							
+VEST4	gene	all_genes	within_unit	0.95608							
+VEST4	dom	all_genes	marginal	0.93605							
+VEST4	dom	all_genes	within_unit								
+VEST4	dom_rmc	all_genes	marginal	0.9407700000000001							
+VEST4	dom_rmc	all_genes	within_unit								
+MetaSVM	gene	all_genes	marginal	0.9366850000000001							
+MetaSVM	gene	all_genes	within_unit								
+MetaSVM	dom	all_genes	marginal	0.9366850000000001							
+MetaSVM	dom	all_genes	within_unit								
+MetaSVM	dom_rmc	all_genes	marginal	0.941225							
+MetaSVM	dom_rmc	all_genes	within_unit								
+MetaLR	gene	all_genes	marginal	0.9543100000000001							
+MetaLR	gene	all_genes	within_unit								
+MetaLR	dom	all_genes	marginal	0.9543100000000001							
+MetaLR	dom	all_genes	within_unit								
+MetaLR	dom_rmc	all_genes	marginal	0.95891							
+MetaLR	dom_rmc	all_genes	within_unit								
+M-CAP	gene	all_genes	marginal	0.935975							
+M-CAP	gene	all_genes	within_unit								
+M-CAP	dom	all_genes	marginal	0.935975							
+M-CAP	dom	all_genes	within_unit								
+M-CAP	dom_rmc	all_genes	marginal	0.9409500000000001							
+M-CAP	dom_rmc	all_genes	within_unit								
+REVEL	gene	all_genes	marginal	0.92459				0.02902			
+REVEL	gene	all_genes	within_unit								
+REVEL	dom	all_genes	marginal	0.92459				0.02902			
+REVEL	dom	all_genes	within_unit								
+REVEL	dom_rmc	all_genes	marginal	0.92459							
+REVEL	dom_rmc	all_genes	within_unit								
+MutPred	gene	all_genes	marginal	0.9372							
+MutPred	gene	all_genes	within_unit	0.9574550000000001							
+MutPred	dom	all_genes	marginal	0.9372							
+MutPred	dom	all_genes	within_unit								
+MutPred	dom_rmc	all_genes	marginal	0.9372							
+MutPred	dom_rmc	all_genes	within_unit								
+MVP	gene	all_genes	marginal	0.927635							
+MVP	gene	all_genes	within_unit								
+MVP	dom	all_genes	marginal	0.927635							
+MVP	dom	all_genes	within_unit								
+MVP	dom_rmc	all_genes	marginal	0.9322950000000001							
+MVP	dom_rmc	all_genes	within_unit								
+MPC	gene	all_genes	marginal	0.9329900000000001	0.9637000000000001						
+MPC	gene	all_genes	within_unit								
+MPC	dom	all_genes	marginal	0.9329900000000001	0.9637000000000001						
+MPC	dom	all_genes	within_unit								
+MPC	dom_rmc	all_genes	marginal	0.9329900000000001	0.9637000000000001						
+MPC	dom_rmc	all_genes	within_unit								
+PrimateAI	gene	all_genes	marginal	0.9083350000000001							
+PrimateAI	gene	all_genes	within_unit								
+PrimateAI	dom	all_genes	marginal	0.9083350000000001							
+PrimateAI	dom	all_genes	within_unit								
+PrimateAI	dom_rmc	all_genes	marginal	0.9083350000000001							
+PrimateAI	dom_rmc	all_genes	within_unit								
+DEOGEN2	gene	all_genes	marginal	0.9454800000000001							
+DEOGEN2	gene	all_genes	within_unit								
+DEOGEN2	dom	all_genes	marginal	0.9454800000000001							
+DEOGEN2	dom	all_genes	within_unit								
+DEOGEN2	dom_rmc	all_genes	marginal	0.950115							
+DEOGEN2	dom_rmc	all_genes	within_unit								
+BayesDel_addAF	gene	all_genes	marginal	0.85133							
+BayesDel_addAF	gene	all_genes	within_unit								
+BayesDel_addAF	dom	all_genes	marginal	0.85133							
+BayesDel_addAF	dom	all_genes	within_unit								
+BayesDel_addAF	dom_rmc	all_genes	marginal	0.85133							
+BayesDel_addAF	dom_rmc	all_genes	within_unit								
+BayesDel_noAF	gene	all_genes	marginal	0.857485							
+BayesDel_noAF	gene	all_genes	within_unit								
+BayesDel_noAF	dom	all_genes	marginal	0.857485							
+BayesDel_noAF	dom	all_genes	within_unit								
+BayesDel_noAF	dom_rmc	all_genes	marginal	0.857485							
+BayesDel_noAF	dom_rmc	all_genes	within_unit								
+ClinPred	gene	all_genes	marginal	0.8978700000000001							
+ClinPred	gene	all_genes	within_unit	0.9639500000000001							
+ClinPred	dom	all_genes	marginal	0.8978700000000001							
+ClinPred	dom	all_genes	within_unit								
+ClinPred	dom_rmc	all_genes	marginal	0.8978700000000001							
+ClinPred	dom_rmc	all_genes	within_unit								
+LIST-S2	gene	all_genes	marginal	0.9594900000000002							
+LIST-S2	gene	all_genes	within_unit								
+LIST-S2	dom	all_genes	marginal	0.9594900000000002							
+LIST-S2	dom	all_genes	within_unit								
+LIST-S2	dom_rmc	all_genes	marginal	0.9626400000000002							
+LIST-S2	dom_rmc	all_genes	within_unit								
+CADD	gene	all_genes	marginal	0.8727100000000001							
+CADD	gene	all_genes	within_unit								
+CADD	dom	all_genes	marginal	0.8727100000000001							
+CADD	dom	all_genes	within_unit								
+CADD	dom_rmc	all_genes	marginal	0.8765850000000001							
+CADD	dom_rmc	all_genes	within_unit								
+fathmm-XF	gene	all_genes	marginal	0.92417							
+fathmm-XF	gene	all_genes	within_unit								
+fathmm-XF	dom	all_genes	marginal	0.92417							
+fathmm-XF	dom	all_genes	within_unit								
+fathmm-XF	dom_rmc	all_genes	marginal	0.9059200000000001							
+fathmm-XF	dom_rmc	all_genes	within_unit								
+Eigen	gene	all_genes	marginal	0.8976500000000001							
+Eigen	gene	all_genes	within_unit								
+Eigen	dom	all_genes	marginal	0.8976500000000001							
+Eigen	dom	all_genes	within_unit								
+Eigen	dom_rmc	all_genes	marginal	0.8976500000000001							
+Eigen	dom_rmc	all_genes	within_unit								
+Eigen-PC	gene	all_genes	marginal	0.9050600000000001							
+Eigen-PC	gene	all_genes	within_unit								
+Eigen-PC	dom	all_genes	marginal	0.9050600000000001							
+Eigen-PC	dom	all_genes	within_unit								
+Eigen-PC	dom_rmc	all_genes	marginal	0.9050600000000001							
+Eigen-PC	dom_rmc	all_genes	within_unit								
+phyloP100way	gene	all_genes	marginal	0.9684250000000001							
+phyloP100way	gene	all_genes	within_unit								
+phyloP100way	dom	all_genes	marginal	0.9684250000000001							
+phyloP100way	dom	all_genes	within_unit								
+phyloP100way	dom_rmc	all_genes	marginal	0.9684250000000001							
+phyloP100way	dom_rmc	all_genes	within_unit								
