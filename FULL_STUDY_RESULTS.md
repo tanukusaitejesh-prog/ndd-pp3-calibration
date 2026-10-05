@@ -185,6 +185,65 @@ For every tool, the de novo calibration is stricter than the ClinVar-based one, 
 
 **Not yet included** (plan §5 v2): ESM1b, EVE, VARITY, gMVP, MetaRNN (dbNSFP 5.4a, access requested 2026-10-05); popEVE (to be evaluated on DDD only); PrimateAI-3D (licensed).
 
+## Amendment A2: independent replication in autism de novos (Zhou et al. 2022)
+
+Pre-registered in plan §3c (commit `c5b94e5`, OpenTimestamped) before any replication LR was computed. Outputs are in `results_fullstudy/replication_affected/` and `replication_unaffected/`.
+
+**Data.**
+
+- 21,603 SNVs from autism probands (SPARK, SSC, ASC, MSSNG).
+- **64 individuals removed** because they share ≥ 2 identical de novos with a Kaplanis 2020 proband.
+- After liftover and matching to the universe: 12,805 missense and 4,960 synonymous de novos in 12,316 individuals. Of these, 11,809 missense de novos pass the §1 filters.
+
+**Power check (pre-specified): adequately powered.**
+
+- The total missense O/E is 1.126 [1.089, 1.166], with a one-sided lower bound of 1.095 (> 1 required).
+- The AlphaMissense within-gene top-2% LR has a lower bound of 2.55 (> 1 required).
+
+**Readout 1 (primary, D2): SYSTEMATIC.**
+
+- 16 of 20 informative tools (80%) keep < 50% of their log-evidence after gene and position. The pre-specified threshold is 75%.
+- D1 (secondary) gives 75%.
+- For comparison, the DD cohort gave 79% under D2. Its pre-registered D1 verdict of 62% (not met) stands as reported.
+
+**Readout 2: constraint beyond position is small.** The median r(D2) − r(E2) is 0.017 [IQR 0.003, 0.026], and r(D1) − r(E1) is 0.065. Once position is controlled, regional constraint adds little.
+
+**Readout 3: no tool keeps Supporting.** 0 of 36 tools have an E2 one-sided lower bound ≥ 2.406, and 0 under E1. The highest E2 point estimates are:
+
+| Tool | E2 LR | Lower bound (δ) |
+|---|---|---|
+| MutPred | 2.17 | 0.89 |
+| ClinPred | 2.12 | 1.23 |
+| MutationAssessor | 2.10 | 0.92 |
+| AlphaMissense | 1.90 | 1.50 |
+
+**AlphaMissense, nested levels (top 2%), autism replication vs DD:**
+
+| Level | A raw | B gene | C RMC | D1 | D2 | E1 | E2 |
+|---|---|---|---|---|---|---|---|
+| Autism | 8.67 | 3.07 | 2.18 | 2.33 | 1.93 | 2.03 | 1.90 |
+| DD | 13.43 | 4.10 | 2.57 | 2.91 | 2.19 | 2.45 | 2.08 |
+
+**Consistency across cohorts.** These are descriptive, not pre-specified.
+
+- The tool ranking by raw LR agrees: Spearman ρ = 0.87 over 37 tools.
+- The share of evidence that survives position agrees: r(D2) has ρ = 0.76 over the 20 tools informative in both cohorts.
+- The tools that keep ≥ 50% of their evidence under D2 are almost the same in both cohorts:
+  - autism: MutationAssessor, VEST4, MutPred, ClinPred;
+  - DD: the same four, plus PROVEAN.
+
+**Negative control (unaffected siblings).**
+
+- 4,246 missense de novos in 4,051 siblings. The total missense O/E is 1.106 [1.045, 1.175], so the CI excludes 1.
+- This is the same roughly 10% offset seen in the gate's negative control: the Roulette expectation under-predicts missense relative to synonymous by a constant factor. The δ margin is designed to absorb this.
+- What matters: among AlphaMissense 0.99–1.00 sites, the siblings' O/E is **0.97 [0.81, 1.14]**, compared with **1.86 [1.73, 1.99]** in autism probands. The high-score excess is specific to affected individuals.
+
+**Interpretation.**
+
+- In an independent cohort with a different phenotype, most predictor evidence is again explained by gene and position.
+- Constraint beyond position is again small.
+- No tool keeps calibrated Supporting evidence once gene, position and constraint are all accounted for.
+
 ## Related work, verified from source (2026-10-05)
 
 **Pathak, *Harnessing the human mutational spectrum to advance missense variant effect prediction*, PhD thesis, University of Edinburgh, February 2026** (ERA).
