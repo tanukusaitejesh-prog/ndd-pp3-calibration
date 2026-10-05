@@ -1,3 +1,4 @@
 Affected	SNVs 21603	duplicates_removed 64	mapped 17765	missense 12805	synonymous 4960	individuals 12316
 Affected	SNVs 21603	duplicates_removed 64	mapped 17765	missense 12805	synonymous 4960	individuals 12316
 Affected	SNVs 21603	duplicates_removed 64	mapped 17765	missense 12805	synonymous 4960	individuals 12316
+Affected	SNVs 21603	duplicates_removed 64	mapped 17765	missense 12805	synonymous 4960	individuals 12316

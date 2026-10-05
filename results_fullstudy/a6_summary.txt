@@ -1,5 +1,13 @@
+A6.1 rerun of aim1tools_top2pct.tsv: point estimates IDENTICAL to the committed table
+A6.1 rerun of replication_affected/rep_top2pct.tsv: point estimates IDENTICAL to the committed table
+A6.1 rerun of a1v54_top2pct.tsv: point estimates IDENTICAL to the committed table
+A6.1 aim1tools: readout-1 share r(D2) < 0.5 = 0.79 [95% CI 0.71, 0.88] over 24 informative tools
+A6.1 rep: readout-1 share r(D2) < 0.5 = 0.80 [95% CI 0.60, 0.95] over 20 informative tools
+A6.1 a1v54: readout-1 share r(D2) < 0.5 = 0.93 [95% CI 0.93, 1.00] over 14 informative tools
+A6.1 aim1tools: AlphaMissense r(B) 0.54 [0.53, 0.56], r(D2) 0.30 [0.28, 0.32], r(E2) 0.28 [0.27, 0.30]
+A6.1 rep: AlphaMissense r(B) 0.52 [0.46, 0.58], r(D2) 0.31 [0.24, 0.36], r(E2) 0.30 [0.23, 0.36]
 A6.1 A4.2 median over tools of r(rand50) - r(D2): 0.210 [95% CI 0.190, 0.227]
-A6.2 sibling negative control: marginal top-2% lower bound >= 2.406 for 0 of 3 predictors -> PASS (<= 2 pre-specified); level B 0, level D2 0
+A6.2 sibling negative control: marginal top-2% lower bound >= 2.406 for 0 of 37 predictors -> PASS (<= 2 pre-specified); level B 0, level D2 0
 A6.3 m4rep all_genes: within-gene top-2% LR Aim4v1 / AlphaMissense = 0.76 [0.64, 0.91] -> AlphaMissense better
 A6.3 m4rep all_genes: within-gene top-2% LR Aim4v2_GBDT / AlphaMissense = 0.81 [0.68, 0.95] -> AlphaMissense better [A6 PRIMARY]
 A6.3 m4rep all_genes: within-gene top-2% LR Aim4v2_MLP / AlphaMissense = 0.66 [0.56, 0.79] -> AlphaMissense better
@@ -16,5 +24,19 @@ A6.3 m4rep Aim4v2_GBDT: marginal top-2% 13.98 (lower bound 10.89); within gene 2
 A6.3 m4rep Aim4v2_MLP: marginal top-2% 11.46 (lower bound 8.80); within gene 2.03 [1.78, 2.31]
 A6.3 m4rep Aim4v2_ENS: marginal top-2% 13.35 (lower bound 10.30); within gene 2.27 [2.03, 2.55]
 A6.3 m4rep Aim4v3_GBDT: marginal top-2% 12.56 (lower bound 9.66); within gene 3.16 [2.75, 3.63]
+A6.3 m4sib all_genes: within-gene top-2% LR Aim4v1 / AlphaMissense = nan [0.02, 19.72] -> no significant difference
+A6.3 m4sib all_genes: within-gene top-2% LR Aim4v2_GBDT / AlphaMissense = nan [nan, nan] -> no significant difference
+A6.3 m4sib all_genes: within-gene top-2% LR Aim4v2_MLP / AlphaMissense = nan [0.12, 81.21] -> no significant difference
+A6.3 m4sib all_genes: within-gene top-2% LR Aim4v2_ENS / AlphaMissense = nan [0.15, 7.64] -> no significant difference
+A6.3 m4sib all_genes: within-gene top-2% LR Aim4v3_GBDT / AlphaMissense = nan [0.20, 27.04] -> no significant difference
+A6.3 m4sib a5_cold_genes: within-gene top-2% LR Aim4v1 / AlphaMissense = nan [nan, nan] -> no significant difference
+A6.3 m4sib a5_cold_genes: within-gene top-2% LR Aim4v2_GBDT / AlphaMissense = nan [nan, nan] -> no significant difference
+A6.3 m4sib a5_cold_genes: within-gene top-2% LR Aim4v2_MLP / AlphaMissense = nan [nan, nan] -> no significant difference
+A6.3 m4sib a5_cold_genes: within-gene top-2% LR Aim4v2_ENS / AlphaMissense = nan [nan, nan] -> no significant difference
+A6.3 m4sib a5_cold_genes: within-gene top-2% LR Aim4v3_GBDT / AlphaMissense = nan [nan, nan] -> no significant difference
 A6.3 m4sib AlphaMissense: marginal top-2% -0.97 (lower bound -5.38); within gene -0.56 [-2.49, 0.62]
 A6.3 m4sib Aim4v1: marginal top-2% -1.53 (lower bound -6.27); within gene -1.07 [-5.33, 0.34]
+A6.3 m4sib Aim4v2_GBDT: marginal top-2% -1.82 (lower bound -6.47); within gene -1.16 [-5.16, 0.18]
+A6.3 m4sib Aim4v2_MLP: marginal top-2% 0.37 (lower bound -3.08); within gene 0.26 [-2.40, 2.10]
+A6.3 m4sib Aim4v2_ENS: marginal top-2% -1.53 (lower bound -5.85); within gene -1.04 [-6.45, 0.37]
+A6.3 m4sib Aim4v3_GBDT: marginal top-2% -0.21 (lower bound -4.10); within gene -0.14 [-2.60, 1.38]
