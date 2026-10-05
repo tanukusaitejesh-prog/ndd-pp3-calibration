@@ -2067,29 +2067,37 @@ def cmd_aim4v2(a):
         r = np.exp(lo) * ratio
         return np.maximum(0.0, (r - (1 - pi)) / pi)
 
-    # pass 2: LR of every analysed site for each model; written to the column store and kept for evaluation
+    # pass 2: LR of every analysed site for each model; written to the column store and kept for evaluation.
+    # Engineering (deviation log): columns are memory-mapped and read in 100k-row slices (the first run, which held a
+    # whole chromosome's ~80 columns in memory, was killed for memory on chr7; training is unchanged and deterministic).
+    n_real_, n_null_ = len(Xr2), len(Xn2)
+    del X2, y, Xr2, Xn2
+    gc.collect()
     store = {k: [] for k in list(M4_COLS) + ["am", "mr", "tx"]}
     drow, off = {}, 0
-    for c, u in site_chunks(a, cols=cols):
+    for c in AUTOSOMES:
+        od = P(a.fs, "col", f"chr{c}")
+        mm = {n: np.load(P(od, n.replace("/", "_") + ".npy"), mmap_mode="r") for n in cols}
+        n_c = len(mm["key"])
         parts = {k: [] for k in M4_COLS}
-        for s0 in range(0, len(u), 300_000):
-            X, _ = aim4_features_v2(u.iloc[s0:s0 + 300_000], med)
+        for s0 in range(0, n_c, 100_000):
+            u = pd.DataFrame({n: np.asarray(v[s0:s0 + 100_000]) for n, v in mm.items()})
+            X, _ = aim4_features_v2(u, med)
             for k, lo in models_lo(X).items():
                 parts[k].append(to_lr(lo).astype(np.float32))
-            del X
-        od = P(a.fs, "col", f"chr{c}")
+            del X, u
         for k, col in M4_COLS.items():
             v = np.concatenate(parts[k])
             store[k].append(v)
             np.save(P(od, col + ".npy"), (np.log1p(np.minimum(v, M4_LRMAX)) / np.log1p(M4_LRMAX)).astype(np.float32))
-        store["am"].append(u["am"].to_numpy(np.float32)); store["mr"].append(u[PRIMARY_MODEL].to_numpy(np.float32))
-        store["tx"].append(u["tx"].to_numpy(np.int32))
-        kk = u["key"].to_numpy()
+        store["am"].append(np.asarray(mm["am"], np.float32)); store["mr"].append(np.asarray(mm[PRIMARY_MODEL], np.float32))
+        store["tx"].append(np.asarray(mm["tx"], np.int32))
+        kk = np.asarray(mm["key"])
         hit = np.flatnonzero(np.isin(kk, d_mis.loc[d_mis["chrom"] == c, "key"].to_numpy()))
         drow.update(dict(zip(kk[hit].tolist(), (hit + off).tolist())))
-        off += len(u)
+        off += n_c
         log(f"chr{c}: Aim 4 v1/v2 predictions written")
-        del u, parts
+        del mm, parts, kk
         gc.collect()
     S = {k: np.concatenate(v) for k, v in store.items()}
     del store
@@ -2178,7 +2186,7 @@ def cmd_aim4v2(a):
     write(cmp_rows, ["centre", "genes", "model", "reference", "ratio_LRw_top2", "lo95", "hi95", "ci_excludes_1", "n_boot_finite"],
           P(a.results, "aim4v2_compare.tsv"))
     with open(P(a.results, "aim4v2_model.json"), "w") as f:
-        json.dump({"n_real": int(len(Xr2)), "n_null": int(len(Xn2)), "pi_genedx_train": float(pi),
+        json.dump({"n_real": int(n_real_), "n_null": int(n_null_), "pi_genedx_train": float(pi),
                    "gbdt_iter": {"v1": int(m_v1.n_iter_), "v2": int(m_gb.n_iter_)}, "mlp_epochs": [int(m.n_iter_) for m in mlps],
                    "features_v2": names2, "n_features_v1": n1, "medians": med}, f, indent=1)
     cmp = pd.DataFrame(cmp_rows, columns=["centre", "genes", "model", "reference", "ratio", "lo", "hi", "sig", "nb"])

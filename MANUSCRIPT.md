@@ -23,7 +23,7 @@ We applied this to 55 predictors: 36 from dbNSFP 4.1a, AlphaMissense, 17 dbNSFP 
 **Results.**
 
 - **Gene identity:** informative predictors kept a median of 0.56 of their log-evidence after conditioning on gene.
-- **Position:** 0.33 after conditioning on gene and 50-residue window.
+- **Position:** 0.33 after conditioning on gene and 50-residue window. A random partition of each gene into the same number of non-contiguous groups left 0.51, and real windows removed more evidence than the random partition for all 24 predictors, so the loss reflects protein position rather than conditioning on small units.
 - **Constraint:** 0.32 after adding regional constraint.
 - **Specific predictors:** AlphaMissense's top-2% LR fell from 13.4 to 2.08, and popEVE's from 17.9 to 1.69.
 - **Pre-registered tests.** The primary pre-registered test, in the DD cohort, did not meet its criterion under the originally specified position control: 15 of 24 informative predictors (62%) lost most of their evidence to gene and position, against a pre-specified 75%. Under fixed 50-residue windows the share was 19/24 (79%). With fixed windows made primary before the data were analysed, the criterion was met in the autism replication (16/20, 80%) and among the 17 newer predictors in the DD cohort (13/14, 93%).
@@ -167,7 +167,7 @@ The position control D1 was primary in the DD cohort (A1). D2 was made primary f
 - **rand50:** a random partition of each gene's residues into groups of the same number as D2, with no contiguity.
 - **dom:** gene × InterPro domain, a direct PM1 proxy.
 
-[PENDING]
+All three use AlphaMissense and the 24 informative DD predictors, all genes, and the unchanged estimators. The random partition assigns each residue to one of ⌈L/50⌉ groups of its gene with a seeded hash, so it keeps D2's unit count while removing position. If the drop from gene to window were an artefact of conditioning on many small units, r(rand50) would be close to r(D2). If it reflects position, r(rand50) would be close to r(B).
 
 ### Null-contrast models (Aim 4 and amendment A5)
 
@@ -241,7 +241,21 @@ Of 36 predictors, 24 were informative in the DD cohort (marginal top-2% LR ≥ 2
 
 **Arbitrary partitions do most of the work.** The pre-registered primary readout for AlphaMissense (bin 0.99–1.00) went from 3.37 within gene to 2.25 [2.16, 2.35] within gene × RMC region. Its lower bound of 2.10 falls short of Supporting. Evenly spaced pseudo-regions with the same unit count gave 2.50, so most of the step from gene to region does not depend on where the constraint boundaries lie.
 
-[PENDING A4.2: shifted windows, random partitions and InterPro domains]
+**The drop is position, not unit size** (amendment A4.2). Conditioning on many small units could in principle shrink any predictor's within-unit signal, so we compared real 50-residue windows with a random partition of each gene's residues into the same number of groups. Median r over the 24 informative predictors:
+
+| Unit | Median r |
+|---|---|
+| Gene | 0.56 |
+| Random partition (rand50) | 0.51 |
+| Real windows | 0.31 |
+| Windows shifted by 25 residues | 0.29 |
+
+- **Small units cost little.** Random partitions removed only a small part of the evidence. The paired difference r(rand50) − r(D2) was positive for **all 24 predictors** (median 0.21, IQR 0.18–0.22).
+- **AlphaMissense:** within-gene top-2% LR 4.29, random partition 3.80, real windows 2.20.
+- **Not a boundary artefact:** shifting window boundaries by half a window changed nothing (median difference −0.016).
+- **Conclusion:** most of the loss from gene to window is due to where variants fall in the protein, not to the conditioning itself.
+
+[PENDING: InterPro domain units, run last]
 
 ### Pre-registered generalisation tests
 
@@ -291,7 +305,11 @@ Of 36 predictors, 24 were informative in the DD cohort (marginal top-2% LR ≥ 2
 | BayesDel | ≥ 0.330 | ≥ 0.436 | 0.13 |
 | CADD | 29.2 | not reached | 25.3 |
 
-[PENDING: A3 DDD-only sensitivity, one sentence]
+**DDD-only sensitivity for the newer predictors.** Restricting to DDD de novos, with DDD's own scale factor, gave the same result:
+
+- 14 of 15 informative predictors kept < 50% of their evidence after gene and position (median r(D2) 0.33);
+- none reached Supporting at E2;
+- within-gene LRs were slightly higher than in the pooled cohort (e.g. MetaRNN 4.72 against 4.33).
 
 ### Mechanism dependence
 

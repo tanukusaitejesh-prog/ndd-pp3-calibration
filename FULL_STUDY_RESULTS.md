@@ -328,6 +328,26 @@ Frozen at `fffc57c` before any ClinVar variant was matched; a chr22-only code ch
 - Under the de novo E2 thresholds, no predictor adds PP3 at all.
 - The AUC rows are a pre-specified sanity check: the conditional rule rescales points and does not change ranking.
 
+## Amendment A4.2: position-unit controls (plan §3e)
+
+`a4ctrl_summary.txt` and `a4ctrl_nested.tsv` cover AlphaMissense and the 24 informative DD tools, all genes. The InterPro part runs last (`a4ctrl_dom`).
+
+| Unit | Median r over the 24 tools |
+|---|---|
+| B: gene | 0.560 |
+| rand50: random partition, same unit count as D2 | 0.508 |
+| D2: 50-residue windows | 0.312 |
+| win50s: windows shifted by 25 residues | 0.294 |
+
+**Paired comparisons:**
+
+- r(rand50) − r(win50): median 0.210 [IQR 0.180, 0.220]; positive for 24 of 24 tools.
+- r(win50s) − r(win50): median −0.016.
+
+**AlphaMissense (top 2%):** A 15.42, B 4.29, rand50 3.80, win50 2.20, win50s 2.19.
+
+**Reading.** Conditioning on many small units removes little evidence: 0.56 → 0.51. Real windows remove much more: 0.56 → 0.31, for every tool. The within-gene loss is positional and does not depend on where window boundaries fall. Paired bootstrap intervals for r(rand50) − r(D2) follow in A6.
+
 ## Related work, verified from source (2026-10-05)
 
 **Pathak, *Harnessing the human mutational spectrum to advance missense variant effect prediction*, PhD thesis, University of Edinburgh, February 2026** (ERA).
