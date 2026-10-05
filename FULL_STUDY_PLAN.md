@@ -337,6 +337,37 @@ These involve no analysis. Before submission they are checked against primary so
 - the Zhou et al. 2022 trio counts, alongside our count of individuals with ≥ 1 usable de novo SNV and each filter step;
 - informative-tool denominators next to every percentage.
 
+## 3h. Amendment A7 (2026-10-06): Aim 4 v3, a gene-matched null-contrast model, designed after the v1/v2 results
+
+**Status: written after the A5 results were seen.** This amendment is **not** independent of the data it follows. It was prompted by the A5 result:
+
+- A5 primary: v2-GBDT / AlphaMissense within-gene top-2% LR on DDD cold genes = 0.69 [0.57, 0.84].
+- The models had the largest marginal LRs in the study (v2-GBDT 27.3 against AlphaMissense 16.8 on DDD) and lower within-gene LRs (3.17 against 4.56).
+- **Interpretation recorded before v3 is fitted.** v1/v2 were trained against an MR-weighted null drawn from all training genes, so their objective rewards between-gene information.
+
+v3 changes only the null, so that the objective is within-gene. Its result is reported as a **post hoc, pre-registered-before-fitting** analysis. A5's confirmatory verdict stands as reported.
+
+**Not yet seen:** A6 (models in autism, sibling control, CIs), the A5 nested levels for the models (`m4_nested`, running), and the InterPro control.
+
+**Model v3.** Everything as v2-GBDT (§3f: features, hyperparameters, GeneDx training genes, seed, LR conversion), except the null:
+
+- For each real GeneDx training de novo, 10 null sites are drawn **from the same transcript**, with probability ∝ MR.
+- Transcripts have no other weighting; the null therefore matches the real de novos' gene distribution exactly.
+- Gene-level features are then nearly constant within each matched set and carry little information. They are not removed.
+
+**Evaluation.**
+
+- As in A5: DDD and RUMC (all genes and cold genes), GeneDx cold genes, calibration, and top 1/2/5% marginal and within-gene, all with the paired bootstrap.
+- The A1 nested levels on DDD de novos.
+- In A6.3, the autism and sibling evaluation includes v3.
+
+**Pre-specified comparisons:**
+
+1. Within-gene top-2% LR, v3 / AlphaMissense, on DDD cold genes. "Better" if the 95% interval excludes 1 in v3's favour.
+2. The same in the autism cohort, all genes (A6.3).
+3. v3 / v2-GBDT within gene.
+4. r(D2) for v3 against AlphaMissense on DDD.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
