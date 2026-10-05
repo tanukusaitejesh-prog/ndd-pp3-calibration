@@ -1,0 +1,16 @@
+ClinVar clinvar.vcf.gz (fileDate 2026-10-04, md5 c665dba2aa11f745fc38a6973af8025e); 1,987,084 missense variants matched to analysed sites; PM1-like 5.0%
+AlphaMissense P/LP  n=45,997 PP3>=Supp 34,013 of which PM1-like 30.3% | PM1-like mean PP3+PM1 pts: published(capped) 3.77 -> conditional 2.89 (de novo thr 2.00); >=4 -> <4: 9,614 of 9,614 | PP3+PM1 alone >=6 (LP): uncapped 7,035, capped 0, conditional 0
+AlphaMissense VUS   n=1,825,639 PP3>=Supp 271,551 of which PM1-like 13.2% | PM1-like mean PP3+PM1 pts: published(capped) 2.76 -> conditional 2.33 (de novo thr 2.00); >=4 -> <4: 28,882 of 28,882 | PP3+PM1 alone >=6 (LP): uncapped 14,343, capped 0, conditional 0
+AlphaMissense B/LB  n=115,448 PP3>=Supp  3,268 of which PM1-like 13.2% | PM1-like mean PP3+PM1 pts: published(capped) 2.30 -> conditional 2.12 (de novo thr 2.00); >=4 -> <4: 313 of 313 | PP3+PM1 alone >=6 (LP): uncapped 100, capped 0, conditional 0
+REVEL         P/LP  n=45,766 PP3>=Supp 37,913 of which PM1-like 24.3% | PM1-like mean PP3+PM1 pts: published(capped) 3.50 -> conditional 2.69 (de novo thr 2.00); >=4 -> <4: 7,701 of 7,701 | PP3+PM1 alone >=6 (LP): uncapped 3,471, capped 0, conditional 0
+REVEL         VUS   n=1,809,907 PP3>=Supp 246,099 of which PM1-like 10.4% | PM1-like mean PP3+PM1 pts: published(capped) 2.49 -> conditional 2.19 (de novo thr 2.00); >=4 -> <4: 16,453 of 16,453 | PP3+PM1 alone >=6 (LP): uncapped 4,065, capped 0, conditional 0
+REVEL         B/LB  n=114,539 PP3>=Supp  3,604 of which PM1-like 8.7% | PM1-like mean PP3+PM1 pts: published(capped) 2.19 -> conditional 2.06 (de novo thr 2.00); >=4 -> <4: 150 of 150 | PP3+PM1 alone >=6 (LP): uncapped 21, capped 0, conditional 0
+VEST4         P/LP  n=45,734 PP3>=Supp 38,509 of which PM1-like 24.4% | PM1-like mean PP3+PM1 pts: published(capped) 3.52 -> conditional 3.26 (de novo thr 2.00); >=4 -> <4: 5,044 of 7,485 | PP3+PM1 alone >=6 (LP): uncapped 2,441, capped 0, conditional 0
+VEST4         VUS   n=1,818,313 PP3>=Supp 392,828 of which PM1-like 8.0% | PM1-like mean PP3+PM1 pts: published(capped) 2.58 -> conditional 2.42 (de novo thr 2.00); >=4 -> <4: 15,287 of 18,291 | PP3+PM1 alone >=6 (LP): uncapped 3,004, capped 0, conditional 0
+VEST4         B/LB  n=115,032 PP3>=Supp  6,597 of which PM1-like 6.2% | PM1-like mean PP3+PM1 pts: published(capped) 2.23 -> conditional 2.15 (de novo thr 2.00); >=4 -> <4: 154 of 171 | PP3+PM1 alone >=6 (LP): uncapped 17, capped 0, conditional 0
+AlphaMissense AUC P/LP vs B/LB [pm1like, n=13,771]: published points 0.911; conditional points 0.911 (identical ranking; scale only)
+AlphaMissense AUC P/LP vs B/LB [other, n=147,674]: published points 0.833; conditional points 0.833 (identical ranking; scale only)
+REVEL AUC P/LP vs B/LB [pm1like, n=13,720]: published points 0.874; conditional points 0.874 (identical ranking; scale only)
+REVEL AUC P/LP vs B/LB [other, n=146,585]: published points 0.908; conditional points 0.908 (identical ranking; scale only)
+VEST4 AUC P/LP vs B/LB [pm1like, n=13,631]: published points 0.875; conditional points 0.875 (identical ranking; scale only)
+VEST4 AUC P/LP vs B/LB [other, n=147,135]: published points 0.907; conditional points 0.907 (identical ranking; scale only)
