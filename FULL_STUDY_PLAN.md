@@ -116,6 +116,49 @@ The same is reported with D2/E2.
 
 **Wording.** Results describe the "disease-associated de novo excess", not "pathogenic variants". RMC/CCR regions are "regional constraint", not PM1. PM1 is discussed as the clinical interpretation (§3 PM1-like strata are retained as defined).
 
+## 3c. Amendment A2 (2026-10-05): independent replication in autism de novo data
+
+**Status at the time of this amendment:**
+
+- The amendment-A1 readouts on the DD cohort had been seen. Readout 1 was 62% under D1 (not met) and 79% under D2.
+- The replication data had been downloaded and **only counted** (variant classes and phenotype labels). **No likelihood ratio, excess or annotation against the universe had been computed for them.**
+
+**Data.** Zhou et al. 2022, *Nat Genet* (doi:10.1038/s41588-022-01148-2), Supplementary Data 1 and 2, the published de novo coding variants.
+
+- Cohorts: SPARK, SSC, ASC and MSSNG.
+- Supplementary Data 3, "other NDD studies", is **not** used, since it may include DDD, GeneDx or RUMC.
+- Phenotype "Affected" (autism) is the replication set. "Unaffected" (siblings) is a **negative control**. "Uncertain" is excluded.
+- Only single-nucleotide variants are used. They are lifted hg19 → hg38 with the gate's UCSC chain, and must match a universe site, including the REF base.
+- The primary filters are those of §1: exon-edge sites excluded, Roulette FILTER ≠ low, MR > 0.
+
+**Overlap with the DD cohort.** An autism individual is treated as a duplicate of a Kaplanis 2020 proband, and **removed**, if the two share **≥ 2 identical de novo SNVs** (same chromosome, position and allele; GRCh37 coordinates in both sources). Sharing two identical de novos by chance is negligible. The number removed is reported.
+
+**Estimation.**
+
+- The same estimators, δ = 0.091, the same bins and windows, and the same units (§2, §3, §3b).
+- The scale factor *c* is fitted on the replication cohort's own synonymous de novos.
+- The bootstrap is a Poisson bootstrap over replication individuals, 1,000 replicates, seed 20261004.
+
+**Pre-specified power check.** It is declared before any result.
+
+- The replication is **adequately powered** if both of these hold:
+  - (i) the one-sided 95% lower bound of the total missense O/E is > 1;
+  - (ii) the AlphaMissense within-gene LR over the top 2% has a lower 95% bound > 1.
+- Otherwise the replication is reported as **underpowered**, and readouts (1)–(3) below are descriptive only.
+
+**Readouts on the replication cohort**, all genes:
+
+1. **Generalisation (primary).** The amendment-A1 rule, with the position control **D2** (fixed 50-residue windows) as primary.
+   - **Justification, recorded before any replication result:** in the DD cohort, D1 has a single chunk for every gene without an RMC region (about 13,500 genes), so it does not control position there. D2 controls position uniformly.
+   - "Systematic" means at least 75% of informative tools (replication marginal top-2% LR ≥ 2.406) have r(D2) < 0.5. D1 is reported as secondary.
+2. **Constraint beyond position:** r(D2) − r(E2) (median, IQR), plus the D1/E1 version.
+3. **The number of tools whose E2 one-sided lower bound (δ) reaches 2.406**, and the same for E1.
+4. **AlphaMissense nested LRs A–E**, top 2% and gate bins.
+
+**Negative control (unaffected siblings).** Total missense O/E with 95% CI; it is expected to include 1. No LR is interpreted if the excess's lower 95% bound is ≤ 0.
+
+**Unchanged.** The DD-cohort A1 verdict (D1, 62%, not met) is unchanged and is reported as pre-registered. A2 is a separate, independent test.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
@@ -243,4 +286,5 @@ RUMC is reported as internal validation.
 | 2026-10-05 | Bug fixes before the analysis they affect was run: the Badonyi & Marsh S3 labels file is read as latin-1 (it mixes encodings); the dbNSFP join keeps raw scores for 13 tools, alongside the rankscores, so thresholds can be converted to Pejaver 2022 raw-score units; Aim 4 builds features in 400k-row slices and maps de novos during the pass (memory). | Engineering; no estimate affected. |
 | 2026-10-05 | **Exploratory control added after the Aim 1 result:** `aim1x`, the within-unit LR when each gene is cut into the same number of evenly spaced pseudo-regions as its RMC regions, on Aim 1's common site set. | To tell real constraint information from the generic effect of conditioning on finer positional units. Not pre-registered and labelled exploratory. The pre-registered Aim 1 readout is unchanged. |
 | 2026-10-05 | Engineering, no estimate affected:<br>• The dbNSFP join pre-selects columns with `zcat \| cut`. Its output on chr13 is identical to the straightforward reader's.<br>• A column store (`colstore`) holds one array per column per chromosome, so a streaming pass reads only the columns it needs. Its content is identical to the pickle path (checked on chr21).<br>• Tools are batched 8 per pass for gene-unit runs and 4 otherwise.<br>• Aim 3 and the per-tool Aim 2 strata run in one set of passes (`aim3`).<br>• Aim 1's estimands are run for every tool (`aim1tools`), as §3 specifies. | The first Aim 3 attempt re-read 17 GB of tables per batch from the USB drive (more than 25 min per batch of 4 tools). It was stopped before any of its output had been read. |
+| 2026-10-05 | **Bug fix: quantile bins with tied scores.** dbNSFP rankscores of several tools carry large tied blocks; for example, SIFT = 0 is about 30% of opportunity at one rankscore. A float32/float64 grid mismatch put such blocks in the wrong fine bin and left the top bins empty, so the top-2% readout was undefined. The fix:<br>• each site goes to bin floor(1000 · F(<score)), the opportunity strictly below its score, so a tied block lands whole in one bin;<br>• the "top 2%" readout is the smallest set of top bins holding ≥ 2% of opportunity (bins 980–999 when there are no ties), and its actual share is reported (`top_share`);<br>• windows that contain no opportunity are dropped before the threshold rule.<br>Found when SIFT's first per-tool row came back empty; the runs were stopped and restarted. AlphaMissense fine-bin results were recomputed with the fix (its ties are negligible). The gate-bin readouts (`AM_gate`) are unaffected. | Implementation of the pre-registered quantile bins; the intent of §2 is unchanged. |
 | 2026-10-05 | Aim 1 implementation detail: estimands (i)–(iv) are computed on one common site set, the missense sites with both an RMC region and a CCR value, so the four LRs are directly comparable. | Clarifies §3 ("sites with no region are excluded"); decided before Aim 1 was run. |
