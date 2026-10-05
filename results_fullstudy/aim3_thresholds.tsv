@@ -1,0 +1,667 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+AlphaMissense	gene	all_genes	marginal	0.9754	0.9930000000000001						
+AlphaMissense	gene	all_genes	within_unit	0.9930000000000001							
+AlphaMissense	gene	ddg2p_monoallelic	marginal	0.9846000000000001				0.5473000000000001			
+AlphaMissense	gene	ddg2p_monoallelic	within_unit	0.9930000000000001				0.5473000000000001			
+AlphaMissense	gene	ddg2p_LoF	marginal	0.9892500000000001							
+AlphaMissense	gene	ddg2p_LoF	within_unit	0.9912500000000001							
+AlphaMissense	gene	ddg2p_nonLoF	marginal	0.9912500000000001				0.07325000000000001	0.06885		
+AlphaMissense	gene	ddg2p_nonLoF	within_unit	0.9930000000000001				0.07035	0.06885		
+AlphaMissense	gene	ddg2p_lof	marginal	0.9892500000000001							
+AlphaMissense	gene	ddg2p_lof	within_unit	0.9912500000000001							
+AlphaMissense	gene	ddg2p_dn	marginal	0.9912500000000001				0.07255			
+AlphaMissense	gene	ddg2p_dn	within_unit	0.9930000000000001				0.07110000000000001			
+AlphaMissense	gene	ddg2p_gof	marginal	0.9912500000000001				0.06885	0.062200000000000005	0.062200000000000005	0.062200000000000005
+AlphaMissense	gene	ddg2p_gof	within_unit					0.06885	0.062200000000000005	0.062200000000000005	0.062200000000000005
+AlphaMissense	gene	allgenes_LoF	marginal	0.9870500000000001							
+AlphaMissense	gene	allgenes_LoF	within_unit	0.9945							
+AlphaMissense	gene	allgenes_nonLoF	marginal	0.97875	0.9912500000000001						
+AlphaMissense	gene	allgenes_nonLoF	within_unit	0.9930000000000001							
+SIFT	gene	all_genes	marginal								
+SIFT	gene	all_genes	within_unit								
+SIFT	gene	ddg2p_monoallelic	marginal	0.7849				0.2731			
+SIFT	gene	ddg2p_monoallelic	within_unit	0.7849				0.26852000000000004			
+SIFT	gene	ddg2p_LoF	marginal	0.7849							
+SIFT	gene	ddg2p_LoF	within_unit	0.7849							
+SIFT	gene	ddg2p_nonLoF	marginal					0.022970000000000004			
+SIFT	gene	ddg2p_nonLoF	within_unit								
+SIFT	gene	ddg2p_lof	marginal	0.7849							
+SIFT	gene	ddg2p_lof	within_unit	0.7849							
+SIFT	gene	ddg2p_dn	marginal	0.7849							
+SIFT	gene	ddg2p_dn	within_unit								
+SIFT	gene	ddg2p_gof	marginal					0.060680000000000005			
+SIFT	gene	ddg2p_gof	within_unit					0.060680000000000005			
+SIFT	gene	allgenes_LoF	marginal								
+SIFT	gene	allgenes_LoF	within_unit								
+SIFT	gene	allgenes_nonLoF	marginal								
+SIFT	gene	allgenes_nonLoF	within_unit								
+SIFT4G	gene	all_genes	marginal								
+SIFT4G	gene	all_genes	within_unit								
+SIFT4G	gene	ddg2p_monoallelic	marginal	0.7940200000000001				0.19629500000000003			
+SIFT4G	gene	ddg2p_monoallelic	within_unit	0.8335100000000001				0.19629500000000003			
+SIFT4G	gene	ddg2p_LoF	marginal	0.8335100000000001				0.08991500000000001			
+SIFT4G	gene	ddg2p_LoF	within_unit	0.8335100000000001				0.08991500000000001			
+SIFT4G	gene	ddg2p_nonLoF	marginal								
+SIFT4G	gene	ddg2p_nonLoF	within_unit								
+SIFT4G	gene	ddg2p_lof	marginal	0.8335100000000001				0.08991500000000001			
+SIFT4G	gene	ddg2p_lof	within_unit	0.8335100000000001				0.08991500000000001			
+SIFT4G	gene	ddg2p_dn	marginal	0.7940200000000001							
+SIFT4G	gene	ddg2p_dn	within_unit	0.7940200000000001							
+SIFT4G	gene	ddg2p_gof	marginal								
+SIFT4G	gene	ddg2p_gof	within_unit								
+SIFT4G	gene	allgenes_LoF	marginal								
+SIFT4G	gene	allgenes_LoF	within_unit								
+SIFT4G	gene	allgenes_nonLoF	marginal								
+SIFT4G	gene	allgenes_nonLoF	within_unit								
+PolyPhen2_HDIV	gene	all_genes	marginal								
+PolyPhen2_HDIV	gene	all_genes	within_unit								
+PolyPhen2_HDIV	gene	ddg2p_monoallelic	marginal					0.15535000000000002			
+PolyPhen2_HDIV	gene	ddg2p_monoallelic	within_unit					0.15093			
+PolyPhen2_HDIV	gene	ddg2p_LoF	marginal								
+PolyPhen2_HDIV	gene	ddg2p_LoF	within_unit								
+PolyPhen2_HDIV	gene	ddg2p_nonLoF	marginal					0.14184000000000002			
+PolyPhen2_HDIV	gene	ddg2p_nonLoF	within_unit					0.14184000000000002			
+PolyPhen2_HDIV	gene	ddg2p_lof	marginal								
+PolyPhen2_HDIV	gene	ddg2p_lof	within_unit								
+PolyPhen2_HDIV	gene	ddg2p_dn	marginal								
+PolyPhen2_HDIV	gene	ddg2p_dn	within_unit								
+PolyPhen2_HDIV	gene	ddg2p_gof	marginal					0.07471000000000001			
+PolyPhen2_HDIV	gene	ddg2p_gof	within_unit					0.07471000000000001			
+PolyPhen2_HDIV	gene	allgenes_LoF	marginal								
+PolyPhen2_HDIV	gene	allgenes_LoF	within_unit								
+PolyPhen2_HDIV	gene	allgenes_nonLoF	marginal								
+PolyPhen2_HDIV	gene	allgenes_nonLoF	within_unit								
+PolyPhen2_HVAR	gene	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	gene	all_genes	within_unit								
+PolyPhen2_HVAR	gene	ddg2p_monoallelic	marginal	0.92359				0.22546000000000002	0.01387		
+PolyPhen2_HVAR	gene	ddg2p_monoallelic	within_unit	0.92359				0.22546000000000002			
+PolyPhen2_HVAR	gene	ddg2p_LoF	marginal	0.92359				0.043550000000000005			
+PolyPhen2_HVAR	gene	ddg2p_LoF	within_unit	0.92359				0.043550000000000005			
+PolyPhen2_HVAR	gene	ddg2p_nonLoF	marginal					0.01387			
+PolyPhen2_HVAR	gene	ddg2p_nonLoF	within_unit					0.01387			
+PolyPhen2_HVAR	gene	ddg2p_lof	marginal	0.92359				0.043550000000000005			
+PolyPhen2_HVAR	gene	ddg2p_lof	within_unit	0.92359				0.043550000000000005			
+PolyPhen2_HVAR	gene	ddg2p_dn	marginal								
+PolyPhen2_HVAR	gene	ddg2p_dn	within_unit	0.92359							
+PolyPhen2_HVAR	gene	ddg2p_gof	marginal					0.12992	0.01387		
+PolyPhen2_HVAR	gene	ddg2p_gof	within_unit					0.12992	0.01387		
+PolyPhen2_HVAR	gene	allgenes_LoF	marginal	0.92359							
+PolyPhen2_HVAR	gene	allgenes_LoF	within_unit								
+PolyPhen2_HVAR	gene	allgenes_nonLoF	marginal								
+PolyPhen2_HVAR	gene	allgenes_nonLoF	within_unit								
+LRT	gene	all_genes	marginal								
+LRT	gene	all_genes	within_unit								
+LRT	gene	ddg2p_monoallelic	marginal					0.286965			
+LRT	gene	ddg2p_monoallelic	within_unit					0.11692500000000002			
+LRT	gene	ddg2p_LoF	marginal								
+LRT	gene	ddg2p_LoF	within_unit								
+LRT	gene	ddg2p_nonLoF	marginal					0.11200500000000001	0.025230000000000002		
+LRT	gene	ddg2p_nonLoF	within_unit					0.029970000000000004			
+LRT	gene	ddg2p_lof	marginal								
+LRT	gene	ddg2p_lof	within_unit								
+LRT	gene	ddg2p_dn	marginal					0.025230000000000002			
+LRT	gene	ddg2p_dn	within_unit					0.025230000000000002			
+LRT	gene	ddg2p_gof	marginal					0.029970000000000004			
+LRT	gene	ddg2p_gof	within_unit								
+LRT	gene	allgenes_LoF	marginal								
+LRT	gene	allgenes_LoF	within_unit								
+LRT	gene	allgenes_nonLoF	marginal								
+LRT	gene	allgenes_nonLoF	within_unit								
+MutationTaster	gene	all_genes	marginal								
+MutationTaster	gene	all_genes	within_unit								
+MutationTaster	gene	ddg2p_monoallelic	marginal					0.46393500000000004	0.08975000000000001		
+MutationTaster	gene	ddg2p_monoallelic	within_unit					0.08975000000000001			
+MutationTaster	gene	ddg2p_LoF	marginal					0.08975000000000001			
+MutationTaster	gene	ddg2p_LoF	within_unit								
+MutationTaster	gene	ddg2p_nonLoF	marginal					0.08975000000000001	0.08975000000000001		
+MutationTaster	gene	ddg2p_nonLoF	within_unit					0.08975000000000001			
+MutationTaster	gene	ddg2p_lof	marginal					0.08975000000000001			
+MutationTaster	gene	ddg2p_lof	within_unit								
+MutationTaster	gene	ddg2p_dn	marginal					0.08975000000000001			
+MutationTaster	gene	ddg2p_dn	within_unit								
+MutationTaster	gene	ddg2p_gof	marginal					0.08975000000000001			
+MutationTaster	gene	ddg2p_gof	within_unit								
+MutationTaster	gene	allgenes_LoF	marginal					0.08975000000000001			
+MutationTaster	gene	allgenes_LoF	within_unit								
+MutationTaster	gene	allgenes_nonLoF	marginal								
+MutationTaster	gene	allgenes_nonLoF	within_unit								
+MutationAssessor	gene	all_genes	marginal	0.95174							
+MutationAssessor	gene	all_genes	within_unit	0.962505							
+MutationAssessor	gene	ddg2p_monoallelic	marginal	0.915915							
+MutationAssessor	gene	ddg2p_monoallelic	within_unit	0.9465250000000001							
+MutationAssessor	gene	ddg2p_LoF	marginal	0.8807400000000001	0.962505						
+MutationAssessor	gene	ddg2p_LoF	within_unit	0.9263450000000001							
+MutationAssessor	gene	ddg2p_nonLoF	marginal	0.9465250000000001							
+MutationAssessor	gene	ddg2p_nonLoF	within_unit	0.9465250000000001							
+MutationAssessor	gene	ddg2p_lof	marginal	0.8807400000000001	0.962505						
+MutationAssessor	gene	ddg2p_lof	within_unit	0.9263450000000001							
+MutationAssessor	gene	ddg2p_dn	marginal	0.9465250000000001							
+MutationAssessor	gene	ddg2p_dn	within_unit	0.9465250000000001							
+MutationAssessor	gene	ddg2p_gof	marginal								
+MutationAssessor	gene	ddg2p_gof	within_unit								
+MutationAssessor	gene	allgenes_LoF	marginal	0.9263450000000001							
+MutationAssessor	gene	allgenes_LoF	within_unit	0.962505							
+MutationAssessor	gene	allgenes_nonLoF	marginal								
+MutationAssessor	gene	allgenes_nonLoF	within_unit								
+FATHMM	gene	all_genes	marginal	0.96716							
+FATHMM	gene	all_genes	within_unit								
+FATHMM	gene	ddg2p_monoallelic	marginal					0.031645000000000006			
+FATHMM	gene	ddg2p_monoallelic	within_unit								
+FATHMM	gene	ddg2p_LoF	marginal	0.971605				0.042685			
+FATHMM	gene	ddg2p_LoF	within_unit								
+FATHMM	gene	ddg2p_nonLoF	marginal								
+FATHMM	gene	ddg2p_nonLoF	within_unit								
+FATHMM	gene	ddg2p_lof	marginal	0.971605				0.042685			
+FATHMM	gene	ddg2p_lof	within_unit								
+FATHMM	gene	ddg2p_dn	marginal								
+FATHMM	gene	ddg2p_dn	within_unit								
+FATHMM	gene	ddg2p_gof	marginal					0.05918	0.048255000000000006	0.042685	0.042685
+FATHMM	gene	ddg2p_gof	within_unit					0.031645000000000006			
+FATHMM	gene	allgenes_LoF	marginal	0.96716							
+FATHMM	gene	allgenes_LoF	within_unit								
+FATHMM	gene	allgenes_nonLoF	marginal								
+FATHMM	gene	allgenes_nonLoF	within_unit								
+PROVEAN	gene	all_genes	marginal	0.93659							
+PROVEAN	gene	all_genes	within_unit								
+PROVEAN	gene	ddg2p_monoallelic	marginal	0.93659				0.20145000000000002			
+PROVEAN	gene	ddg2p_monoallelic	within_unit	0.9478600000000001				0.20145000000000002			
+PROVEAN	gene	ddg2p_LoF	marginal	0.92195							
+PROVEAN	gene	ddg2p_LoF	within_unit	0.9269200000000001							
+PROVEAN	gene	ddg2p_nonLoF	marginal	0.9478600000000001							
+PROVEAN	gene	ddg2p_nonLoF	within_unit	0.9478600000000001							
+PROVEAN	gene	ddg2p_lof	marginal	0.92195							
+PROVEAN	gene	ddg2p_lof	within_unit	0.9269200000000001							
+PROVEAN	gene	ddg2p_dn	marginal	0.9478600000000001							
+PROVEAN	gene	ddg2p_dn	within_unit	0.9478600000000001							
+PROVEAN	gene	ddg2p_gof	marginal								
+PROVEAN	gene	ddg2p_gof	within_unit								
+PROVEAN	gene	allgenes_LoF	marginal	0.93659							
+PROVEAN	gene	allgenes_LoF	within_unit	0.9514550000000002							
+PROVEAN	gene	allgenes_nonLoF	marginal					0.026180000000000002			
+PROVEAN	gene	allgenes_nonLoF	within_unit								
+VEST4	gene	all_genes	marginal	0.93605							
+VEST4	gene	all_genes	within_unit	0.95608							
+VEST4	gene	ddg2p_monoallelic	marginal	0.9116200000000001				0.56576			
+VEST4	gene	ddg2p_monoallelic	within_unit	0.9255000000000001				0.49783000000000005			
+VEST4	gene	ddg2p_LoF	marginal	0.87699							
+VEST4	gene	ddg2p_LoF	within_unit	0.89131							
+VEST4	gene	ddg2p_nonLoF	marginal	0.9466800000000001				0.09772			
+VEST4	gene	ddg2p_nonLoF	within_unit	0.9513900000000001							
+VEST4	gene	ddg2p_lof	marginal	0.87699							
+VEST4	gene	ddg2p_lof	within_unit	0.89131							
+VEST4	gene	ddg2p_dn	marginal	0.9466800000000001				0.03613			
+VEST4	gene	ddg2p_dn	within_unit	0.9466800000000001				0.03613			
+VEST4	gene	ddg2p_gof	marginal	0.9618700000000001							
+VEST4	gene	ddg2p_gof	within_unit	0.9720700000000001							
+VEST4	gene	allgenes_LoF	marginal	0.9407700000000001							
+VEST4	gene	allgenes_LoF	within_unit	0.95608							
+VEST4	gene	allgenes_nonLoF	marginal	0.9513900000000001							
+VEST4	gene	allgenes_nonLoF	within_unit	0.9720700000000001							
+MetaSVM	gene	all_genes	marginal	0.9366850000000001							
+MetaSVM	gene	all_genes	within_unit								
+MetaSVM	gene	ddg2p_monoallelic	marginal	0.9640850000000001							
+MetaSVM	gene	ddg2p_monoallelic	within_unit								
+MetaSVM	gene	ddg2p_LoF	marginal	0.9457850000000001							
+MetaSVM	gene	ddg2p_LoF	within_unit	0.9640850000000001							
+MetaSVM	gene	ddg2p_nonLoF	marginal								
+MetaSVM	gene	ddg2p_nonLoF	within_unit	0.9686700000000001							
+MetaSVM	gene	ddg2p_lof	marginal	0.9457850000000001							
+MetaSVM	gene	ddg2p_lof	within_unit	0.9640850000000001							
+MetaSVM	gene	ddg2p_dn	marginal								
+MetaSVM	gene	ddg2p_dn	within_unit	0.9732050000000001							
+MetaSVM	gene	ddg2p_gof	marginal								
+MetaSVM	gene	ddg2p_gof	within_unit								
+MetaSVM	gene	allgenes_LoF	marginal	0.9321550000000001							
+MetaSVM	gene	allgenes_LoF	within_unit								
+MetaSVM	gene	allgenes_nonLoF	marginal	0.9686700000000001							
+MetaSVM	gene	allgenes_nonLoF	within_unit								
+MetaLR	gene	all_genes	marginal	0.9543100000000001							
+MetaLR	gene	all_genes	within_unit								
+MetaLR	gene	ddg2p_monoallelic	marginal	0.9727250000000001				0.29991500000000004	0.027195000000000004		
+MetaLR	gene	ddg2p_monoallelic	within_unit					0.032490000000000005			
+MetaLR	gene	ddg2p_LoF	marginal	0.9634450000000001							
+MetaLR	gene	ddg2p_LoF	within_unit	0.9727250000000001							
+MetaLR	gene	ddg2p_nonLoF	marginal					0.058730000000000004	0.027195000000000004	0.027195000000000004	0.027195000000000004
+MetaLR	gene	ddg2p_nonLoF	within_unit					0.027195000000000004	0.027195000000000004	0.027195000000000004	0.027195000000000004
+MetaLR	gene	ddg2p_lof	marginal	0.9634450000000001							
+MetaLR	gene	ddg2p_lof	within_unit	0.9727250000000001							
+MetaLR	gene	ddg2p_dn	marginal					0.027195000000000004			
+MetaLR	gene	ddg2p_dn	within_unit	0.9727250000000001							
+MetaLR	gene	ddg2p_gof	marginal					0.08476500000000001	0.027195000000000004	0.027195000000000004	
+MetaLR	gene	ddg2p_gof	within_unit					0.027195000000000004	0.027195000000000004		
+MetaLR	gene	allgenes_LoF	marginal	0.9543100000000001							
+MetaLR	gene	allgenes_LoF	within_unit								
+MetaLR	gene	allgenes_nonLoF	marginal								
+MetaLR	gene	allgenes_nonLoF	within_unit								
+M-CAP	gene	all_genes	marginal	0.935975							
+M-CAP	gene	all_genes	within_unit								
+M-CAP	gene	ddg2p_monoallelic	marginal	0.9666950000000001							
+M-CAP	gene	ddg2p_monoallelic	within_unit								
+M-CAP	gene	ddg2p_LoF	marginal	0.950995				0.04369000000000001			
+M-CAP	gene	ddg2p_LoF	within_unit					0.04369000000000001			
+M-CAP	gene	ddg2p_nonLoF	marginal								
+M-CAP	gene	ddg2p_nonLoF	within_unit								
+M-CAP	gene	ddg2p_lof	marginal	0.950995				0.04369000000000001			
+M-CAP	gene	ddg2p_lof	within_unit					0.04369000000000001			
+M-CAP	gene	ddg2p_dn	marginal								
+M-CAP	gene	ddg2p_dn	within_unit								
+M-CAP	gene	ddg2p_gof	marginal								
+M-CAP	gene	ddg2p_gof	within_unit								
+M-CAP	gene	allgenes_LoF	marginal	0.950995							
+M-CAP	gene	allgenes_LoF	within_unit								
+M-CAP	gene	allgenes_nonLoF	marginal	0.9459500000000001							
+M-CAP	gene	allgenes_nonLoF	within_unit								
+REVEL	gene	all_genes	marginal	0.92459				0.02902			
+REVEL	gene	all_genes	within_unit								
+REVEL	gene	ddg2p_monoallelic	marginal	0.9441250000000001				0.5229600000000001	0.0383		
+REVEL	gene	ddg2p_monoallelic	within_unit	0.963705				0.0383			
+REVEL	gene	ddg2p_LoF	marginal	0.9000750000000001							
+REVEL	gene	ddg2p_LoF	within_unit	0.92944							
+REVEL	gene	ddg2p_nonLoF	marginal					0.0383			
+REVEL	gene	ddg2p_nonLoF	within_unit	0.963705				0.0383			
+REVEL	gene	ddg2p_lof	marginal	0.9000750000000001							
+REVEL	gene	ddg2p_lof	within_unit	0.92944							
+REVEL	gene	ddg2p_dn	marginal	0.963705				0.0383	0.0383	0.0383	0.0383
+REVEL	gene	ddg2p_dn	within_unit	0.963705				0.11534000000000001	0.0383	0.0383	0.0383
+REVEL	gene	ddg2p_gof	marginal					0.0383			
+REVEL	gene	ddg2p_gof	within_unit					0.0383			
+REVEL	gene	allgenes_LoF	marginal	0.89032				0.02902			
+REVEL	gene	allgenes_LoF	within_unit	0.968825							
+REVEL	gene	allgenes_nonLoF	marginal	0.9393900000000002							
+REVEL	gene	allgenes_nonLoF	within_unit								
+MutPred	gene	all_genes	marginal	0.9372							
+MutPred	gene	all_genes	within_unit	0.9574550000000001							
+MutPred	gene	ddg2p_monoallelic	marginal	0.911765				0.30053			
+MutPred	gene	ddg2p_monoallelic	within_unit	0.9475300000000001				0.29085			
+MutPred	gene	ddg2p_LoF	marginal	0.8964450000000002							
+MutPred	gene	ddg2p_LoF	within_unit	0.92717							
+MutPred	gene	ddg2p_nonLoF	marginal	0.9574550000000001				0.05748			
+MutPred	gene	ddg2p_nonLoF	within_unit	0.9574550000000001				0.05748			
+MutPred	gene	ddg2p_lof	marginal	0.8964450000000002							
+MutPred	gene	ddg2p_lof	within_unit	0.92717							
+MutPred	gene	ddg2p_dn	marginal	0.9574550000000001				0.03574			
+MutPred	gene	ddg2p_dn	within_unit	0.9724950000000001				0.03574			
+MutPred	gene	ddg2p_gof	marginal	0.9574550000000001				0.052340000000000005			
+MutPred	gene	ddg2p_gof	within_unit	0.9574550000000001				0.03574			
+MutPred	gene	allgenes_LoF	marginal	0.9169							
+MutPred	gene	allgenes_LoF	within_unit	0.9523							
+MutPred	gene	allgenes_nonLoF	marginal	0.9574550000000001							
+MutPred	gene	allgenes_nonLoF	within_unit	0.9724950000000001							
+MVP	gene	all_genes	marginal	0.927635							
+MVP	gene	all_genes	within_unit								
+MVP	gene	ddg2p_monoallelic	marginal	0.95115				0.21122500000000002			
+MVP	gene	ddg2p_monoallelic	within_unit								
+MVP	gene	ddg2p_LoF	marginal	0.9370050000000001							
+MVP	gene	ddg2p_LoF	within_unit	0.96059							
+MVP	gene	ddg2p_nonLoF	marginal					0.06686			
+MVP	gene	ddg2p_nonLoF	within_unit								
+MVP	gene	ddg2p_lof	marginal	0.9370050000000001							
+MVP	gene	ddg2p_lof	within_unit	0.96059							
+MVP	gene	ddg2p_dn	marginal								
+MVP	gene	ddg2p_dn	within_unit								
+MVP	gene	ddg2p_gof	marginal					0.05500000000000001			
+MVP	gene	ddg2p_gof	within_unit								
+MVP	gene	allgenes_LoF	marginal	0.913575							
+MVP	gene	allgenes_LoF	within_unit								
+MVP	gene	allgenes_nonLoF	marginal	0.9701000000000001							
+MVP	gene	allgenes_nonLoF	within_unit								
+MPC	gene	all_genes	marginal	0.9329900000000001	0.9637000000000001						
+MPC	gene	all_genes	within_unit								
+MPC	gene	ddg2p_monoallelic	marginal	0.953295							
+MPC	gene	ddg2p_monoallelic	within_unit								
+MPC	gene	ddg2p_LoF	marginal	0.958485							
+MPC	gene	ddg2p_LoF	within_unit								
+MPC	gene	ddg2p_nonLoF	marginal	0.953295							
+MPC	gene	ddg2p_nonLoF	within_unit								
+MPC	gene	ddg2p_lof	marginal	0.958485							
+MPC	gene	ddg2p_lof	within_unit								
+MPC	gene	ddg2p_dn	marginal	0.953295							
+MPC	gene	ddg2p_dn	within_unit								
+MPC	gene	ddg2p_gof	marginal	0.9637000000000001							
+MPC	gene	ddg2p_gof	within_unit								
+MPC	gene	allgenes_LoF	marginal	0.958485							
+MPC	gene	allgenes_LoF	within_unit								
+MPC	gene	allgenes_nonLoF	marginal	0.918185	0.948215						
+MPC	gene	allgenes_nonLoF	within_unit								
+PrimateAI	gene	all_genes	marginal	0.9083350000000001							
+PrimateAI	gene	all_genes	within_unit								
+PrimateAI	gene	ddg2p_monoallelic	marginal	0.951325				0.02792			
+PrimateAI	gene	ddg2p_monoallelic	within_unit								
+PrimateAI	gene	ddg2p_LoF	marginal	0.9607150000000001							
+PrimateAI	gene	ddg2p_LoF	within_unit								
+PrimateAI	gene	ddg2p_nonLoF	marginal	0.9607150000000001							
+PrimateAI	gene	ddg2p_nonLoF	within_unit								
+PrimateAI	gene	ddg2p_lof	marginal	0.9607150000000001							
+PrimateAI	gene	ddg2p_lof	within_unit								
+PrimateAI	gene	ddg2p_dn	marginal	0.9607150000000001							
+PrimateAI	gene	ddg2p_dn	within_unit								
+PrimateAI	gene	ddg2p_gof	marginal	0.9744350000000002							
+PrimateAI	gene	ddg2p_gof	within_unit								
+PrimateAI	gene	allgenes_LoF	marginal	0.9560300000000002							
+PrimateAI	gene	allgenes_LoF	within_unit								
+PrimateAI	gene	allgenes_nonLoF	marginal	0.8889150000000001	0.9607150000000001						
+PrimateAI	gene	allgenes_nonLoF	within_unit								
+DEOGEN2	gene	all_genes	marginal	0.9454800000000001							
+DEOGEN2	gene	all_genes	within_unit								
+DEOGEN2	gene	ddg2p_monoallelic	marginal	0.9729800000000002				0.04102			
+DEOGEN2	gene	ddg2p_monoallelic	within_unit								
+DEOGEN2	gene	ddg2p_LoF	marginal	0.9729800000000002							
+DEOGEN2	gene	ddg2p_LoF	within_unit								
+DEOGEN2	gene	ddg2p_nonLoF	marginal					0.04102	0.030305000000000006		
+DEOGEN2	gene	ddg2p_nonLoF	within_unit								
+DEOGEN2	gene	ddg2p_lof	marginal	0.9729800000000002							
+DEOGEN2	gene	ddg2p_lof	within_unit								
+DEOGEN2	gene	ddg2p_dn	marginal	0.9729800000000002							
+DEOGEN2	gene	ddg2p_dn	within_unit								
+DEOGEN2	gene	ddg2p_gof	marginal					0.030305000000000006	0.030305000000000006	0.030305000000000006	0.030305000000000006
+DEOGEN2	gene	ddg2p_gof	within_unit								
+DEOGEN2	gene	allgenes_LoF	marginal	0.9130550000000002							
+DEOGEN2	gene	allgenes_LoF	within_unit								
+DEOGEN2	gene	allgenes_nonLoF	marginal	0.9547300000000001							
+DEOGEN2	gene	allgenes_nonLoF	within_unit								
+BayesDel_addAF	gene	all_genes	marginal	0.85133							
+BayesDel_addAF	gene	all_genes	within_unit								
+BayesDel_addAF	gene	ddg2p_monoallelic	marginal	0.8683350000000001				0.58408			
+BayesDel_addAF	gene	ddg2p_monoallelic	within_unit	0.9180400000000001							
+BayesDel_addAF	gene	ddg2p_LoF	marginal	0.845875							
+BayesDel_addAF	gene	ddg2p_LoF	within_unit	0.89978							
+BayesDel_addAF	gene	ddg2p_nonLoF	marginal	0.9118900000000001							
+BayesDel_addAF	gene	ddg2p_nonLoF	within_unit	0.9180400000000001							
+BayesDel_addAF	gene	ddg2p_lof	marginal	0.845875							
+BayesDel_addAF	gene	ddg2p_lof	within_unit	0.89978							
+BayesDel_addAF	gene	ddg2p_dn	marginal					0.046575000000000005			
+BayesDel_addAF	gene	ddg2p_dn	within_unit	0.9180400000000001				0.024435000000000002			
+BayesDel_addAF	gene	ddg2p_gof	marginal	0.9118900000000001							
+BayesDel_addAF	gene	ddg2p_gof	within_unit	0.9180400000000001							
+BayesDel_addAF	gene	allgenes_LoF	marginal	0.8749850000000001							
+BayesDel_addAF	gene	allgenes_LoF	within_unit								
+BayesDel_addAF	gene	allgenes_nonLoF	marginal	0.85133							
+BayesDel_addAF	gene	allgenes_nonLoF	within_unit								
+BayesDel_noAF	gene	all_genes	marginal	0.857485							
+BayesDel_noAF	gene	all_genes	within_unit								
+BayesDel_noAF	gene	ddg2p_monoallelic	marginal	0.88055				0.51132			
+BayesDel_noAF	gene	ddg2p_monoallelic	within_unit	0.9231800000000001							
+BayesDel_noAF	gene	ddg2p_LoF	marginal	0.857485				0.03191000000000001			
+BayesDel_noAF	gene	ddg2p_LoF	within_unit	0.9070150000000001							
+BayesDel_noAF	gene	ddg2p_nonLoF	marginal								
+BayesDel_noAF	gene	ddg2p_nonLoF	within_unit	0.91783							
+BayesDel_noAF	gene	ddg2p_lof	marginal	0.857485				0.03191000000000001			
+BayesDel_noAF	gene	ddg2p_lof	within_unit	0.9070150000000001							
+BayesDel_noAF	gene	ddg2p_dn	marginal								
+BayesDel_noAF	gene	ddg2p_dn	within_unit	0.91783							
+BayesDel_noAF	gene	ddg2p_gof	marginal	0.91783							
+BayesDel_noAF	gene	ddg2p_gof	within_unit	0.9231800000000001							
+BayesDel_noAF	gene	allgenes_LoF	marginal	0.8911450000000001				0.041435			
+BayesDel_noAF	gene	allgenes_LoF	within_unit								
+BayesDel_noAF	gene	allgenes_nonLoF	marginal	0.8474700000000001							
+BayesDel_noAF	gene	allgenes_nonLoF	within_unit								
+ClinPred	gene	all_genes	marginal	0.8978700000000001							
+ClinPred	gene	all_genes	within_unit	0.9639500000000001							
+ClinPred	gene	ddg2p_monoallelic	marginal	0.8807400000000001				0.42607500000000004			
+ClinPred	gene	ddg2p_monoallelic	within_unit	0.90917							
+ClinPred	gene	ddg2p_LoF	marginal	0.8693400000000001	0.9692900000000001						
+ClinPred	gene	ddg2p_LoF	within_unit	0.90917							
+ClinPred	gene	ddg2p_nonLoF	marginal	0.8807400000000001							
+ClinPred	gene	ddg2p_nonLoF	within_unit	0.9478150000000001							
+ClinPred	gene	ddg2p_lof	marginal	0.8693400000000001	0.9692900000000001						
+ClinPred	gene	ddg2p_lof	within_unit	0.90917							
+ClinPred	gene	ddg2p_dn	marginal	0.9532800000000001							
+ClinPred	gene	ddg2p_dn	within_unit	0.9532800000000001							
+ClinPred	gene	ddg2p_gof	marginal	0.9423950000000001							
+ClinPred	gene	ddg2p_gof	within_unit	0.9423950000000001							
+ClinPred	gene	allgenes_LoF	marginal	0.90917							
+ClinPred	gene	allgenes_LoF	within_unit	0.9639500000000001							
+ClinPred	gene	allgenes_nonLoF	marginal	0.8921600000000001							
+ClinPred	gene	allgenes_nonLoF	within_unit								
+LIST-S2	gene	all_genes	marginal	0.9594900000000002							
+LIST-S2	gene	all_genes	within_unit								
+LIST-S2	gene	ddg2p_monoallelic	marginal	0.9661050000000001							
+LIST-S2	gene	ddg2p_monoallelic	within_unit	0.9814200000000001							
+LIST-S2	gene	ddg2p_LoF	marginal	0.975465							
+LIST-S2	gene	ddg2p_LoF	within_unit								
+LIST-S2	gene	ddg2p_nonLoF	marginal	0.9661050000000001							
+LIST-S2	gene	ddg2p_nonLoF	within_unit	0.9814200000000001							
+LIST-S2	gene	ddg2p_lof	marginal	0.975465							
+LIST-S2	gene	ddg2p_lof	within_unit								
+LIST-S2	gene	ddg2p_dn	marginal	0.9661050000000001				0.061685000000000004	0.061685000000000004	0.061685000000000004	0.061685000000000004
+LIST-S2	gene	ddg2p_dn	within_unit	0.969195				0.061685000000000004	0.061685000000000004	0.061685000000000004	0.061685000000000004
+LIST-S2	gene	ddg2p_gof	marginal								
+LIST-S2	gene	ddg2p_gof	within_unit								
+LIST-S2	gene	allgenes_LoF	marginal	0.975465							
+LIST-S2	gene	allgenes_LoF	within_unit								
+LIST-S2	gene	allgenes_nonLoF	marginal	0.9594900000000002							
+LIST-S2	gene	allgenes_nonLoF	within_unit								
+CADD	gene	all_genes	marginal	0.8727100000000001							
+CADD	gene	all_genes	within_unit								
+CADD	gene	ddg2p_monoallelic	marginal	0.8880450000000001				0.38790500000000006			
+CADD	gene	ddg2p_monoallelic	within_unit								
+CADD	gene	ddg2p_LoF	marginal	0.8727100000000001				0.040470000000000006			
+CADD	gene	ddg2p_LoF	within_unit								
+CADD	gene	ddg2p_nonLoF	marginal	0.8988							
+CADD	gene	ddg2p_nonLoF	within_unit								
+CADD	gene	ddg2p_lof	marginal	0.8727100000000001				0.040470000000000006			
+CADD	gene	ddg2p_lof	within_unit								
+CADD	gene	ddg2p_dn	marginal	0.8988							
+CADD	gene	ddg2p_dn	within_unit	0.8988							
+CADD	gene	ddg2p_gof	marginal								
+CADD	gene	ddg2p_gof	within_unit								
+CADD	gene	allgenes_LoF	marginal								
+CADD	gene	allgenes_LoF	within_unit								
+CADD	gene	allgenes_nonLoF	marginal	0.8804550000000001							
+CADD	gene	allgenes_nonLoF	within_unit								
+DANN	gene	all_genes	marginal								
+DANN	gene	all_genes	within_unit								
+DANN	gene	ddg2p_monoallelic	marginal					0.24061000000000002			
+DANN	gene	ddg2p_monoallelic	within_unit								
+DANN	gene	ddg2p_LoF	marginal								
+DANN	gene	ddg2p_LoF	within_unit								
+DANN	gene	ddg2p_nonLoF	marginal								
+DANN	gene	ddg2p_nonLoF	within_unit								
+DANN	gene	ddg2p_lof	marginal								
+DANN	gene	ddg2p_lof	within_unit								
+DANN	gene	ddg2p_dn	marginal								
+DANN	gene	ddg2p_dn	within_unit								
+DANN	gene	ddg2p_gof	marginal								
+DANN	gene	ddg2p_gof	within_unit								
+DANN	gene	allgenes_LoF	marginal								
+DANN	gene	allgenes_LoF	within_unit								
+DANN	gene	allgenes_nonLoF	marginal								
+DANN	gene	allgenes_nonLoF	within_unit								
+fathmm-MKL	gene	all_genes	marginal								
+fathmm-MKL	gene	all_genes	within_unit								
+fathmm-MKL	gene	ddg2p_monoallelic	marginal					0.228485			
+fathmm-MKL	gene	ddg2p_monoallelic	within_unit								
+fathmm-MKL	gene	ddg2p_LoF	marginal								
+fathmm-MKL	gene	ddg2p_LoF	within_unit								
+fathmm-MKL	gene	ddg2p_nonLoF	marginal					0.07089500000000001	0.054450000000000005		
+fathmm-MKL	gene	ddg2p_nonLoF	within_unit					0.048850000000000005			
+fathmm-MKL	gene	ddg2p_lof	marginal								
+fathmm-MKL	gene	ddg2p_lof	within_unit								
+fathmm-MKL	gene	ddg2p_dn	marginal								
+fathmm-MKL	gene	ddg2p_dn	within_unit								
+fathmm-MKL	gene	ddg2p_gof	marginal					0.048850000000000005	0.048850000000000005	0.048850000000000005	0.048850000000000005
+fathmm-MKL	gene	ddg2p_gof	within_unit					0.048850000000000005	0.048850000000000005	0.048850000000000005	0.048850000000000005
+fathmm-MKL	gene	allgenes_LoF	marginal								
+fathmm-MKL	gene	allgenes_LoF	within_unit								
+fathmm-MKL	gene	allgenes_nonLoF	marginal								
+fathmm-MKL	gene	allgenes_nonLoF	within_unit								
+fathmm-XF	gene	all_genes	marginal	0.92417							
+fathmm-XF	gene	all_genes	within_unit								
+fathmm-XF	gene	ddg2p_monoallelic	marginal					0.409125			
+fathmm-XF	gene	ddg2p_monoallelic	within_unit								
+fathmm-XF	gene	ddg2p_LoF	marginal	0.96235							
+fathmm-XF	gene	ddg2p_LoF	within_unit								
+fathmm-XF	gene	ddg2p_nonLoF	marginal								
+fathmm-XF	gene	ddg2p_nonLoF	within_unit								
+fathmm-XF	gene	ddg2p_lof	marginal	0.96235							
+fathmm-XF	gene	ddg2p_lof	within_unit								
+fathmm-XF	gene	ddg2p_dn	marginal								
+fathmm-XF	gene	ddg2p_dn	within_unit								
+fathmm-XF	gene	ddg2p_gof	marginal								
+fathmm-XF	gene	ddg2p_gof	within_unit								
+fathmm-XF	gene	allgenes_LoF	marginal								
+fathmm-XF	gene	allgenes_LoF	within_unit								
+fathmm-XF	gene	allgenes_nonLoF	marginal	0.967365							
+fathmm-XF	gene	allgenes_nonLoF	within_unit								
+Eigen	gene	all_genes	marginal	0.8976500000000001							
+Eigen	gene	all_genes	within_unit								
+Eigen	gene	ddg2p_monoallelic	marginal	0.9074550000000001				0.41918000000000005	0.017535000000000002		
+Eigen	gene	ddg2p_monoallelic	within_unit	0.9332				0.017535000000000002			
+Eigen	gene	ddg2p_LoF	marginal	0.9074550000000001				0.017535000000000002			
+Eigen	gene	ddg2p_LoF	within_unit	0.9278200000000001							
+Eigen	gene	ddg2p_nonLoF	marginal								
+Eigen	gene	ddg2p_nonLoF	within_unit								
+Eigen	gene	ddg2p_lof	marginal	0.9074550000000001				0.017535000000000002			
+Eigen	gene	ddg2p_lof	within_unit	0.9278200000000001							
+Eigen	gene	ddg2p_dn	marginal								
+Eigen	gene	ddg2p_dn	within_unit								
+Eigen	gene	ddg2p_gof	marginal								
+Eigen	gene	ddg2p_gof	within_unit								
+Eigen	gene	allgenes_LoF	marginal	0.9074550000000001							
+Eigen	gene	allgenes_LoF	within_unit	0.944355							
+Eigen	gene	allgenes_nonLoF	marginal	0.8928550000000002							
+Eigen	gene	allgenes_nonLoF	within_unit								
+Eigen-PC	gene	all_genes	marginal	0.9050600000000001							
+Eigen-PC	gene	all_genes	within_unit								
+Eigen-PC	gene	ddg2p_monoallelic	marginal	0.925095				0.39268000000000003	0.019110000000000002		
+Eigen-PC	gene	ddg2p_monoallelic	within_unit	0.95608				0.019110000000000002			
+Eigen-PC	gene	ddg2p_LoF	marginal	0.94035				0.019110000000000002			
+Eigen-PC	gene	ddg2p_LoF	within_unit	0.95608							
+Eigen-PC	gene	ddg2p_nonLoF	marginal								
+Eigen-PC	gene	ddg2p_nonLoF	within_unit								
+Eigen-PC	gene	ddg2p_lof	marginal	0.94035				0.019110000000000002			
+Eigen-PC	gene	ddg2p_lof	within_unit	0.95608							
+Eigen-PC	gene	ddg2p_dn	marginal								
+Eigen-PC	gene	ddg2p_dn	within_unit								
+Eigen-PC	gene	ddg2p_gof	marginal								
+Eigen-PC	gene	ddg2p_gof	within_unit								
+Eigen-PC	gene	allgenes_LoF	marginal	0.9352250000000001							
+Eigen-PC	gene	allgenes_LoF	within_unit								
+Eigen-PC	gene	allgenes_nonLoF	marginal	0.9002000000000001							
+Eigen-PC	gene	allgenes_nonLoF	within_unit								
+GERP++	gene	all_genes	marginal								
+GERP++	gene	all_genes	within_unit								
+GERP++	gene	ddg2p_monoallelic	marginal								
+GERP++	gene	ddg2p_monoallelic	within_unit								
+GERP++	gene	ddg2p_LoF	marginal								
+GERP++	gene	ddg2p_LoF	within_unit								
+GERP++	gene	ddg2p_nonLoF	marginal								
+GERP++	gene	ddg2p_nonLoF	within_unit								
+GERP++	gene	ddg2p_lof	marginal								
+GERP++	gene	ddg2p_lof	within_unit								
+GERP++	gene	ddg2p_dn	marginal								
+GERP++	gene	ddg2p_dn	within_unit								
+GERP++	gene	ddg2p_gof	marginal								
+GERP++	gene	ddg2p_gof	within_unit								
+GERP++	gene	allgenes_LoF	marginal								
+GERP++	gene	allgenes_LoF	within_unit								
+GERP++	gene	allgenes_nonLoF	marginal								
+GERP++	gene	allgenes_nonLoF	within_unit								
+phyloP100way	gene	all_genes	marginal	0.9684250000000001							
+phyloP100way	gene	all_genes	within_unit								
+phyloP100way	gene	ddg2p_monoallelic	marginal					0.029855000000000003			
+phyloP100way	gene	ddg2p_monoallelic	within_unit								
+phyloP100way	gene	ddg2p_LoF	marginal					0.06559000000000001			
+phyloP100way	gene	ddg2p_LoF	within_unit								
+phyloP100way	gene	ddg2p_nonLoF	marginal								
+phyloP100way	gene	ddg2p_nonLoF	within_unit								
+phyloP100way	gene	ddg2p_lof	marginal					0.06559000000000001			
+phyloP100way	gene	ddg2p_lof	within_unit								
+phyloP100way	gene	ddg2p_dn	marginal								
+phyloP100way	gene	ddg2p_dn	within_unit								
+phyloP100way	gene	ddg2p_gof	marginal								
+phyloP100way	gene	ddg2p_gof	within_unit								
+phyloP100way	gene	allgenes_LoF	marginal								
+phyloP100way	gene	allgenes_LoF	within_unit								
+phyloP100way	gene	allgenes_nonLoF	marginal	0.9684250000000001							
+phyloP100way	gene	allgenes_nonLoF	within_unit								
+phyloP30way	gene	all_genes	marginal								
+phyloP30way	gene	all_genes	within_unit								
+phyloP30way	gene	ddg2p_monoallelic	marginal					0.025515000000000003			
+phyloP30way	gene	ddg2p_monoallelic	within_unit								
+phyloP30way	gene	ddg2p_LoF	marginal					0.030365000000000003	0.020840000000000004	0.020840000000000004	0.020840000000000004
+phyloP30way	gene	ddg2p_LoF	within_unit					0.020840000000000004	0.020840000000000004	0.020840000000000004	0.020840000000000004
+phyloP30way	gene	ddg2p_nonLoF	marginal								
+phyloP30way	gene	ddg2p_nonLoF	within_unit								
+phyloP30way	gene	ddg2p_lof	marginal					0.030365000000000003	0.020840000000000004	0.020840000000000004	0.020840000000000004
+phyloP30way	gene	ddg2p_lof	within_unit					0.020840000000000004	0.020840000000000004	0.020840000000000004	0.020840000000000004
+phyloP30way	gene	ddg2p_dn	marginal								
+phyloP30way	gene	ddg2p_dn	within_unit								
+phyloP30way	gene	ddg2p_gof	marginal								
+phyloP30way	gene	ddg2p_gof	within_unit								
+phyloP30way	gene	allgenes_LoF	marginal								
+phyloP30way	gene	allgenes_LoF	within_unit								
+phyloP30way	gene	allgenes_nonLoF	marginal								
+phyloP30way	gene	allgenes_nonLoF	within_unit								
+phastCons100way	gene	all_genes	marginal								
+phastCons100way	gene	all_genes	within_unit								
+phastCons100way	gene	ddg2p_monoallelic	marginal					0.06391000000000001	0.06391000000000001		
+phastCons100way	gene	ddg2p_monoallelic	within_unit								
+phastCons100way	gene	ddg2p_LoF	marginal								
+phastCons100way	gene	ddg2p_LoF	within_unit								
+phastCons100way	gene	ddg2p_nonLoF	marginal					0.06391000000000001	0.06391000000000001		
+phastCons100way	gene	ddg2p_nonLoF	within_unit					0.06391000000000001			
+phastCons100way	gene	ddg2p_lof	marginal								
+phastCons100way	gene	ddg2p_lof	within_unit								
+phastCons100way	gene	ddg2p_dn	marginal					0.06391000000000001			
+phastCons100way	gene	ddg2p_dn	within_unit								
+phastCons100way	gene	ddg2p_gof	marginal					0.06391000000000001			
+phastCons100way	gene	ddg2p_gof	within_unit					0.06391000000000001			
+phastCons100way	gene	allgenes_LoF	marginal								
+phastCons100way	gene	allgenes_LoF	within_unit								
+phastCons100way	gene	allgenes_nonLoF	marginal								
+phastCons100way	gene	allgenes_nonLoF	within_unit								
+SiPhy	gene	all_genes	marginal								
+SiPhy	gene	all_genes	within_unit								
+SiPhy	gene	ddg2p_monoallelic	marginal					0.167665			
+SiPhy	gene	ddg2p_monoallelic	within_unit								
+SiPhy	gene	ddg2p_LoF	marginal								
+SiPhy	gene	ddg2p_LoF	within_unit								
+SiPhy	gene	ddg2p_nonLoF	marginal								
+SiPhy	gene	ddg2p_nonLoF	within_unit								
+SiPhy	gene	ddg2p_lof	marginal								
+SiPhy	gene	ddg2p_lof	within_unit								
+SiPhy	gene	ddg2p_dn	marginal								
+SiPhy	gene	ddg2p_dn	within_unit								
+SiPhy	gene	ddg2p_gof	marginal								
+SiPhy	gene	ddg2p_gof	within_unit								
+SiPhy	gene	allgenes_LoF	marginal								
+SiPhy	gene	allgenes_LoF	within_unit								
+SiPhy	gene	allgenes_nonLoF	marginal								
+SiPhy	gene	allgenes_nonLoF	within_unit								
+GenoCanyon	gene	all_genes	marginal								
+GenoCanyon	gene	all_genes	within_unit								
+GenoCanyon	gene	ddg2p_monoallelic	marginal								
+GenoCanyon	gene	ddg2p_monoallelic	within_unit								
+GenoCanyon	gene	ddg2p_LoF	marginal					0.053860000000000005			
+GenoCanyon	gene	ddg2p_LoF	within_unit								
+GenoCanyon	gene	ddg2p_nonLoF	marginal					0.105375			
+GenoCanyon	gene	ddg2p_nonLoF	within_unit								
+GenoCanyon	gene	ddg2p_lof	marginal					0.053860000000000005			
+GenoCanyon	gene	ddg2p_lof	within_unit								
+GenoCanyon	gene	ddg2p_dn	marginal								
+GenoCanyon	gene	ddg2p_dn	within_unit								
+GenoCanyon	gene	ddg2p_gof	marginal					0.09932			
+GenoCanyon	gene	ddg2p_gof	within_unit								
+GenoCanyon	gene	allgenes_LoF	marginal					0.059980000000000006	0.053860000000000005	0.053860000000000005	
+GenoCanyon	gene	allgenes_LoF	within_unit								
+GenoCanyon	gene	allgenes_nonLoF	marginal								
+GenoCanyon	gene	allgenes_nonLoF	within_unit								
+fitCons	gene	all_genes	marginal								
+fitCons	gene	all_genes	within_unit								
+fitCons	gene	ddg2p_monoallelic	marginal								
+fitCons	gene	ddg2p_monoallelic	within_unit								
+fitCons	gene	ddg2p_LoF	marginal								
+fitCons	gene	ddg2p_LoF	within_unit								
+fitCons	gene	ddg2p_nonLoF	marginal								
+fitCons	gene	ddg2p_nonLoF	within_unit								
+fitCons	gene	ddg2p_lof	marginal								
+fitCons	gene	ddg2p_lof	within_unit								
+fitCons	gene	ddg2p_dn	marginal								
+fitCons	gene	ddg2p_dn	within_unit					0.09759000000000001			
+fitCons	gene	ddg2p_gof	marginal								
+fitCons	gene	ddg2p_gof	within_unit								
+fitCons	gene	allgenes_LoF	marginal								
+fitCons	gene	allgenes_LoF	within_unit								
+fitCons	gene	allgenes_nonLoF	marginal								
+fitCons	gene	allgenes_nonLoF	within_unit								

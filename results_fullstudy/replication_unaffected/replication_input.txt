@@ -1,0 +1,1 @@
+Unaffected	SNVs 6953	duplicates_removed 1	mapped 5903	missense 4246	synonymous 1657	individuals 4051

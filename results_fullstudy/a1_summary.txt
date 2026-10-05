@@ -1,0 +1,12 @@
+[all_genes] confirmatory tools: 36; informative (marginal top-group LR >= 2.406): 24
+  readout 1 - share of informative tools keeping < 50% of log-evidence after gene + position (D1): 0.62 -> not systematic (pre-specified >= 0.75)
+  readout 1 (D2 windows, same rule): 0.79
+  readout 2 - constraint beyond position, r(D1)-r(E1): median 0.073 [IQR 0.062, 0.080]
+  readout 3 - tools whose E1 one-sided lower bound (delta) reaches 2.406: 2 of 36: VEST4, MutPred
+  median remaining log-evidence share: B 0.56, C 0.38, D1 0.42, D2 0.33, E1 0.36, E2 0.32
+[ddg2p_monoallelic] confirmatory tools: 36; informative (marginal top-group LR >= 2.406): 25
+  readout 1 - share of informative tools keeping < 50% of log-evidence after gene + position (D1): 0.32 -> not systematic (pre-specified >= 0.75)
+  readout 1 (D2 windows, same rule): 0.72
+  readout 2 - constraint beyond position, r(D1)-r(E1): median 0.100 [IQR 0.090, 0.116]
+  readout 3 - tools whose E1 one-sided lower bound (delta) reaches 2.406: 3 of 36: VEST4, MutPred, ClinPred
+  median remaining log-evidence share: B 0.80, C 0.52, D1 0.60, D2 0.44, E1 0.50, E2 0.42

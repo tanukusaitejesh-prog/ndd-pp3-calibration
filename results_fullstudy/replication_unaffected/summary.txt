@@ -1,0 +1,1 @@
+[Unaffected] missense O 3897, E 3522.2, O/E 1.106 [1.045, 1.175] (one-sided lo 1.055); AM 0.99-1.00 O/E 0.97 [0.81, 1.14]
