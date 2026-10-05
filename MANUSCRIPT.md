@@ -32,7 +32,7 @@ We applied this to 55 predictors: 36 from dbNSFP 4.1a, AlphaMissense, 17 dbNSFP 
   - Replication: 0 of 36.
   - Newer predictors: 0 of 17.
 - **Within known genes:** no predictor reached Moderate. De novo-derived thresholds were stricter than ClinVar-based ones for every tool examined.
-- **ClinVar impact:** [PENDING: one sentence on ClinVar impact]
+- **ClinVar impact.** Among 1.99 million ClinVar missense variants, 30% of AlphaMissense-PP3-positive pathogenic variants lie in PM1-like regions. Applying PP3 and PM1 together at full strength would by themselves classify 14,343 VUS as Likely Pathogenic (AlphaMissense; 4,065 with REVEL). With each predictor's measured retention share, the combined PP3 + PM1 evidence falls below ClinGen's Strong cap for low-retention predictors (AlphaMissense, REVEL), but not for all VEST4 variants.
 
 **Conclusion.** Most of what current missense predictors contribute to de novo variant interpretation is information about the gene and the protein region. Applying PP3 at full strength alongside PP2 or PM1 risks double counting. Predictor evidence should be calibrated conditionally, or capped when combined with gene- and region-level criteria.
 
@@ -308,7 +308,43 @@ Of 36 predictors, 24 were informative in the DD cohort (marginal top-2% LR ≥ 2
 
 ### Clinical impact on ClinVar missense classifications
 
-[PENDING A4.1: share of PP3-positive ClinVar variants in PM1-like regions; PP3 + PM1 points under published-capped, conditional and de novo rules; VUS reaching ≥ 6 points from PP3 + PM1 alone; AUC check]
+**Variants.** 1,987,084 ClinVar missense variants (release 2026-10-04, ≥ 1 star) mapped to analysed sites:
+
+- 45,997 P/LP;
+- 1,825,639 VUS;
+- 115,448 B/LB.
+
+5.0% of them are at PM1-like sites (Figure 4).
+
+**PP3 and PM1 overlap.**
+
+- Among P/LP variants that receive PP3 from AlphaMissense under the published intervals, **30.3%** lie at PM1-like sites, six times the background rate (REVEL 24.3%, VEST4 24.4%).
+- The same holds for 13.2% of PP3-positive VUS.
+
+**Double-counting risk without the cap.** If PP3 at its published strength and PM1 at Moderate are both applied without ClinGen's cap, PP3 + PM1 alone reach Likely Pathogenic (≥ 6 points) for:
+
+| Tool | VUS | P/LP | B/LB |
+|---|---|---|---|
+| AlphaMissense | 14,343 | 7,035 | 100 |
+| REVEL | 4,065 | 3,471 | 21 |
+| VEST4 | 3,004 | 2,441 | 17 |
+
+ClinGen's cap removes this by construction (0 variants), as does the conditional rule (0).
+
+**The cap is generous for de novo evidence.** At PM1-like sites, the conditional rule (published points × the predictor's r_E2) gives mean PP3 + PM1 of:
+
+- AlphaMissense: 2.89 points for P/LP, against 3.77 under the capped published rule;
+- REVEL: 2.69 against 3.50;
+- VEST4: 3.26 against 3.52.
+
+**How far the cap is from the conditional estimate depends on retention.**
+
+- For predictors with r_E2 < 0.5, any PP3 + PM1 combination that reaches Strong under the cap falls below Strong under the conditional rule. This is arithmetic, not a separate finding: 4 × r_E2 + 2 < 4 when r_E2 < 0.5. It applies to all affected AlphaMissense variants (r_E2 = 0.28; 9,614 P/LP and 28,882 VUS) and REVEL variants (0.30; 7,701 and 16,453).
+- VEST4 (r_E2 = 0.56) keeps enough independent evidence that 33% of its capped P/LP combinations remain at Strong (2,441 of 7,485), and 16% of its VUS.
+- So the clinically useful output is the per-predictor retention share, which says how much of the cap each tool can justify.
+- Under this study's own E2 thresholds, no predictor contributes PP3 at all once position and constraint are held fixed, leaving PM1 alone (2 points).
+
+**Discrimination check (pre-specified).** Discrimination of P/LP from B/LB by PP3 points is unchanged by the conditional rule, which rescales points without reordering variants. AUC at PM1-like sites: AlphaMissense 0.911, REVEL 0.874, VEST4 0.875. So the adjustment changes how much evidence is credited, not which variants are ranked as more damaging.
 
 ### Can a model trained on the de novo signal do better?
 
@@ -338,7 +374,12 @@ After all three are held fixed, no predictor keeps calibrated Supporting-level e
 - **PP3 with PM1 or PP2.** When a variant already receives PM1 for location in a hotspot or critical domain, or PP2 for a missense-constrained gene, PP3 at full ClinVar-calibrated strength counts much of the same information again.
 - **ClinGen's cap.** ClinGen's cap of PP3 + PM1 at Strong is directionally right. For de novo variants in DD genes our data suggest the overlap is larger than the cap allows: inside PM1-like regions, AlphaMissense's remaining evidence is below Supporting (within-region LR 2.04 for RMC o/e < 0.4).
 - **What to do instead.** One option is to calibrate PP3 conditionally, within gene and region, as here. The other is to discount its points by the overlapping share when it is combined with gene- or region-level criteria.
-- [PENDING: magnitude from A4.1]
+- **Magnitude in ClinVar.** The overlap is not a corner case:
+  - 30% of AlphaMissense-PP3-positive pathogenic variants sit in PM1-like regions;
+  - without the cap, PP3 + PM1 alone would push 14,343 VUS to Likely Pathogenic.
+  - These counts describe the risk if the cap is not applied, not observed misclassifications. How often laboratories apply the cap is not known from ClinVar.
+  - Our retention estimates suggest the cap is generous for low-retention predictors: with r_E2 ≈ 0.3, the overlapping share leaves AlphaMissense or REVEL PP3 + PM1 at about 3 points, not 4. This rests on applying top-2% retention to all score intervals, which is an approximation.
+  - A rule of the form "PP3 + PM1 ≤ Moderate + Supporting" (3 points) for predictors with low retention would be closer to the data than the current cap at Strong (4 points). Applied per tool through its retention share, it would credit high-retention predictors such as VEST4 more.
 
 **Relation to previous work.**
 
@@ -403,7 +444,7 @@ Dashed lines mark the ClinGen LR cut-offs for PP3 Supporting (2.406) and Moderat
 - Panels: the DD cohort with 36 dbNSFP 4.1a tools and AlphaMissense; the autism replication; the 17 dbNSFP 5.4a tools in the DD cohort.
 - Two values above 1 in the autism panel (MutationAssessor, MutPred) are within-gene LRs exceeding the marginal LR.
 
-**Figure 4. Clinical impact on ClinVar missense variants** (`fig4_clinvar_impact.png`). [PENDING final numbers]
+**Figure 4. Clinical impact on ClinVar missense variants** (`fig4_clinvar_impact.png`).
 
 - **(Left)** Mean PP3 + PM1 points for ClinVar P/LP and VUS missense variants at PM1-like sites, under three rules:
   - published ClinGen intervals with PP3 + PM1 capped at Strong;

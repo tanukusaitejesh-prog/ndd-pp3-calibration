@@ -299,6 +299,35 @@ Pre-registered in plan §3d (commit `4d58eb2`, OpenTimestamped) before any 5.4a 
 | Autism replication | 0.57 | 0.42 | 0.42 | 0.37 | 0.36 | 0.35 |
 | DD, dbNSFP 5.4a tools | 0.54 | 0.37 | 0.42 | 0.31 | 0.36 | 0.30 |
 
+## Amendment A4.1: clinical impact on ClinVar (descriptive; plan §3e)
+
+Frozen at `fffc57c` before any ClinVar variant was matched; a chr22-only code check followed (deviation log). Release `clinvar_20261004.vcf.gz`, md5 `c665dba2…025e`. Outputs: `a4_clinvar_summary.txt`, `a4_clinvar_impact.tsv`, `a4_clinvar_matched.tsv.gz`.
+
+**Matched.** 1,987,084 missense variants (≥ 1 star) at analysed sites: P/LP 45,997, VUS 1,825,639, B/LB 115,448. 5.0% are at PM1-like sites.
+
+| | AlphaMissense | REVEL | VEST4 |
+|---|---|---|---|
+| r_E2 (DD) | 0.28 | 0.30 | 0.56 |
+| P/LP with published PP3 ≥ Supporting | 34,013 | 37,913 | 38,509 |
+| … of which PM1-like | 30.3% | 24.3% | 24.4% |
+| PM1-like P/LP: mean PP3 + PM1, published with cap | 3.77 | 3.50 | 3.52 |
+| PM1-like P/LP: mean PP3 + PM1, conditional | 2.89 | 2.69 | 3.26 |
+| PM1-like P/LP at Strong under the cap → below Strong when conditional | 9,614 / 9,614 | 7,701 / 7,701 | 5,044 / 7,485 |
+| PM1-like VUS at Strong under the cap → below Strong when conditional | 28,882 / 28,882 | 16,453 / 16,453 | 15,287 / 18,291 |
+| VUS reaching ≥ 6 points from PP3 + PM1 alone, no cap | 14,343 | 4,065 | 3,004 |
+| … with the ClinGen cap / conditional | 0 / 0 | 0 / 0 | 0 / 0 |
+| P/LP reaching ≥ 6 points from PP3 + PM1 alone, no cap | 7,035 | 3,471 | 2,441 |
+| AUC P/LP vs B/LB, PM1-like / other (published = conditional) | 0.911 / 0.833 | 0.874 / 0.908 | 0.875 / 0.907 |
+
+**Reading.**
+
+- PP3 and PM1 coincide for about a quarter to a third of PP3-positive pathogenic variants.
+- Without the cap, PP3 + PM1 alone would reach Likely Pathogenic for thousands of VUS.
+- The ClinGen cap prevents that. Under the conditional rule, the combined strength sits below Strong for AlphaMissense and REVEL. That is arithmetic once r_E2 < 0.5 (4 × r + 2 < 4), so the empirical content is the retention share itself. For VEST4 (r_E2 = 0.56), 33% of capped P/LP combinations stay at Strong.
+- The VUS counts are the risk if the cap is not applied, not observed misclassifications.
+- Under the de novo E2 thresholds, no predictor adds PP3 at all.
+- The AUC rows are a pre-specified sanity check: the conditional rule rescales points and does not change ranking.
+
 ## Related work, verified from source (2026-10-05)
 
 **Pathak, *Harnessing the human mutational spectrum to advance missense variant effect prediction*, PhD thesis, University of Edinburgh, February 2026** (ERA).
