@@ -159,6 +159,36 @@ The same is reported with D2/E2.
 
 **Unchanged.** The DD-cohort A1 verdict (D1, 62%, not met) is unchanged and is reported as pre-registered. A2 is a separate, independent test.
 
+## 3d. Amendment A3 (2026-10-05): dbNSFP 5.4a predictors (plan §5, v2)
+
+**Status at the time of this amendment.** dbNSFP 5.4a (GRCh38 BGZF, md5 `d2ad53e1a974208fea6050117be8fee1`) was downloading. **No 5.4a score had been read or analysed.**
+
+**New tools.** Each is the dbNSFP 5.4a rankscore, defined as in §5:
+
+- MetaRNN, MutPred2, gMVP, MisFit_D, MisFit_S;
+- VARITY_R, VARITY_ER, and their LOO versions;
+- ESM1b (converted rankscore), PHACTboost, MutFormer, MutScore, popEVE (converted rankscore), GPN-MSA;
+- GERP (92 mammals), phyloP 470-way, phastCons 470-way.
+
+Tools already analysed from dbNSFP 4.1a are not re-analysed. AlphaMissense keeps the gate's own file.
+
+**Held-out rule (§6).**
+
+- popEVE was developed and evaluated using developmental-disorder de novo cohorts. It is evaluated on **DDD de novos only**, with DDD's own synonymous scale factor, in both Aim 3 and the A1 levels.
+- For every other new tool, the full-cohort result is primary. A DDD-only run is a sensitivity analysis.
+
+**Analyses.** Unchanged definitions throughout:
+
+- Aim 3 table and ranking;
+- Aim 2 LoF vs non-LoF contrast;
+- the amendment-A1 nested levels A–E.
+
+**Pre-specified confirmatory readout.** This is a new set of tools, not seen before this amendment.
+
+- The A1 generalisation rule, with **D2 as the primary position control**, using the A2 justification.
+- "Systematic" means at least 75% of the informative new tools (marginal top-2% LR ≥ 2.406) have r(D2) < 0.5. D1 is secondary.
+- Also reported: the number of new tools whose E2 one-sided lower bound reaches 2.406.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
