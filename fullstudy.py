@@ -219,8 +219,9 @@ def cmd_scores54_stream(a):
         log(f"chr{c}: 5.4a A3 columns extracted at {s.notna().any(axis=1).mean():.3f} of sites ({time.time() - t0:.0f}s)")
 
     cur = None
+    only = set(gate.parse_chroms(a.chroms))      # re-extract a subset (the md5 still covers the whole stream)
     for ch in pd.read_csv(proc.stdout, sep="\t", header=0, names=want, dtype=str, na_values=["."], chunksize=500_000):
-        ch = ch[ch["#chr"].isin(AUTOSOMES)]
+        ch = ch[ch["#chr"].isin(only)]
         for c, g in ch.groupby("#chr", sort=False):
             if cur is not None and c != cur:
                 finish(cur)
@@ -250,6 +251,59 @@ def cmd_scores54_stream(a):
         open(P(od, "_v54_done"), "w").close()
     open(P(d54, "dbNSFP5.4a_grch38.gz.ok"), "w").write("verified by streaming md5 " + got + "\n")
     log(f"dbNSFP 5.4a: md5 verified ({got}); A3 columns committed for {len(done_c)} chromosomes ({time.time() - t0:.0f}s)")
+
+
+def cmd_scores54_tail(a):
+    """Engineering (deviation log): re-extract A3 columns for a few late chromosomes by streaming only the trailing pieces
+    of the (already md5-verified) download, starting at the first BGZF block boundary of piece --from-piece. Every BGZF
+    block's CRC is still checked by bgzip. Requires that the stream begins inside an earlier chromosome."""
+    import subprocess
+    d54 = P(EXT, "dbnsfp54")
+    ranges = pd.read_csv(P(d54, "ranges.tsv"), sep="\t", header=None, names=["seg", "sub", "file", "a", "b"]).sort_values("a")
+    files = list(ranges["file"])
+    first = files.index(a.from_piece)
+    magic = bytes.fromhex("1f8b08040000000000ff0600424302")
+    with open(P(d54, files[first]), "rb") as fh:
+        head = fh.read(1 << 20)
+    skip = head.find(magic)
+    if skip < 0:
+        die("no BGZF block start in the first MiB of the piece")
+    with gzip.open(P(d54, files[0]), "rt") as fh:
+        header = fh.readline().rstrip("\n").split("\t")
+    want = sorted(["#chr", "pos(1-based)", "alt"] + list(TOOLS54.values()), key=header.index)
+    idx = ",".join(str(header.index(w) + 1) for w in want)
+    rest = " ".join(f"'{P(d54, f)}'" for f in files[first + 1:])
+    cmd = f"{{ tail -c +{skip + 1} '{P(d54, files[first])}'; cat {rest}; }} | bgzip -dc -@ 4 | tail -n +2 | cut -f{idx}"
+    proc = subprocess.Popen(["bash", "-c", cmd], stdout=subprocess.PIPE)
+    only = [c for c in gate.parse_chroms(a.chroms)]
+    seen_before, buf, keys_of = set(), {c: [] for c in only}, {}
+    for ch in pd.read_csv(proc.stdout, sep="\t", header=None, names=want, dtype=str, na_values=["."], chunksize=500_000):
+        for c, g in ch.groupby("#chr", sort=False):
+            if c not in only:
+                if not any(len(v) for v in buf.values()):
+                    seen_before.add(c)
+                continue
+            if not seen_before:
+                die(f"stream started inside chr{c}; choose an earlier --from-piece")
+            if c not in keys_of:
+                keys_of[c] = np.load(P(a.fs, "col", f"chr{c}", "key.npy"))
+            alt = g["alt"].map(B2I); ok = alt.notna()
+            k = g.loc[ok, "pos(1-based)"].astype(np.int64).to_numpy() * 4 + alt[ok].astype(np.int64).to_numpy()
+            sel = np.isin(k, keys_of[c])
+            sub = g.loc[ok].loc[sel, list(TOOLS54.values())].apply(pd.to_numeric, errors="coerce").astype(np.float32)
+            sub.insert(0, "key", k[sel])
+            buf[c].append(sub)
+    proc.wait()
+    if proc.returncode != 0:
+        die(f"stream error rc {proc.returncode}")
+    for c in only:
+        od = P(a.fs, "col", f"chr{c}")
+        s = pd.concat(buf[c], ignore_index=True).drop_duplicates("key").set_index("key").reindex(keys_of[c])
+        for col in TOOLS54.values():
+            np.save(P(od, "v54_" + col + ".npy"), s[col].to_numpy(np.float32))
+        open(P(od, "_v54_done"), "w").close()
+        log(f"chr{c}: A3 columns re-extracted from the stream tail at {s.notna().any(axis=1).mean():.3f} of sites "
+            f"(stream began in chr{sorted(seen_before)})")
 
 
 def load_dnv(a):
@@ -1697,16 +1751,17 @@ def main():
     ap.add_argument("--fs", default=P(HERE, "work", "fullstudy"))
     ap.add_argument("--results", default=P(HERE, "results_fullstudy"))
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("universe", "scores", "regions", "colstore", "scores54", "scores54_stream"):
+    for name in ("universe", "scores", "regions", "colstore", "scores54", "scores54_stream", "scores54_tail"):
         s = sub.add_parser(name)
         s.add_argument("--chroms", default="1-22")
         s.add_argument("--force", action="store_true")
+        s.add_argument("--from-piece", default="part.7")
     for name in ("validate", "aim5", "aim1", "aim1x", "aim1tools", "aim3", "aim3_report", "a1_report", "aim4", "replicate", "v54"):
         sub.add_parser(name)
     s = sub.add_parser("aim2")
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
-    {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "regions": cmd_regions, "validate": cmd_validate,
+    {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
      "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54}[a.cmd](a)
 
 
