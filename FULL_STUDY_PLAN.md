@@ -189,6 +189,105 @@ Tools already analysed from dbNSFP 4.1a are not re-analysed. AlphaMissense keeps
 - "Systematic" means at least 75% of the informative new tools (marginal top-2% LR ≥ 2.406) have r(D2) < 0.5. D1 is secondary.
 - Also reported: the number of new tools whose E2 one-sided lower bound reaches 2.406.
 
+## 3e. Amendment A4 (2026-10-05): clinical impact on ClinVar, and position-unit controls
+
+**Status at the time of this amendment.**
+
+- Seen: the A1 (DD), A2 (autism) and A3 (new tools, popEVE on DDD) readouts.
+- The ClinVar file below is being **downloaded only**. No ClinVar variant has been matched, scored or counted.
+- The AlphaFold archive (A5) is being downloaded. The parser `af_structure.py` has been run only on the first ~3 MB of the archive, as a format test.
+- No InterPro domain or shifted-window unit has been built.
+
+### A4.1 Clinical impact on ClinVar missense variants
+
+**Data.**
+
+- The ClinVar GRCh38 VCF current on 2026-10-05. The file name, release date and md5 are recorded in `results_fullstudy/provenance/`.
+- Variants are SNVs whose `MC` field includes `missense_variant`, matched to a universe site (chromosome, position, REF, ALT) under the primary filters of §1.
+- Review status must be ≥ 1 star: criteria provided, multiple submitters, expert panel, or practice guideline.
+- Classes, from `CLNSIG`:
+  - **P/LP:** Pathogenic, Likely_pathogenic, Pathogenic/Likely_pathogenic.
+  - **B/LB:** Benign, Likely_benign, Benign/Likely_benign.
+  - **VUS:** Uncertain_significance.
+  - Conflicting and other values are excluded.
+
+**Tools.** These are the tools with published ClinGen-calibrated thresholds whose exact score we hold, with intervals as in Bergquist et al. 2025 *Genet Med*, Table 1, which repeats Pejaver et al. 2022 for REVEL and VEST4. Each interval is given as points: +1 Supporting, +2 Moderate, +3, +4 Strong.
+
+| Tool | +1 | +2 | +3 | +4 |
+|---|---|---|---|---|
+| AlphaMissense (primary; the gate's file) | [0.792, 0.905] | [0.906, 0.971] | [0.972, 0.989] | ≥ 0.990 |
+| REVEL (dbNSFP raw) | [0.644, 0.772] | [0.773, 0.878] | [0.879, 0.931] | ≥ 0.932 |
+| VEST4 (dbNSFP raw) | [0.764, 0.860] | [0.861, 0.908] | [0.909, 0.964] | ≥ 0.965 |
+
+**PM1-like flag.** The §3 definition is used unchanged: an RMC region with missense o/e < 0.4, or CCR ≥ 95. A PM1-like site is assumed to receive PM1 at Moderate (+2).
+
+**Points under three rules, for each tool:**
+
+1. **Published.** PP3 points from the published intervals. Where the site is PM1-like, PP3 + PM1 is capped at 4 points, following ClinGen's recommendation (Pejaver et al. 2022).
+2. **Conditional (primary).** Published PP3 points × r_E2(tool), where r_E2 is the tool's DD-cohort share of top-2% log-evidence retained at level E2. These are A1 for AlphaMissense and REVEL; VEST4 is taken from `a1_nested.tsv`, all genes. The result is added to PM1 (+2 if PM1-like) with no cap.
+   - Rationale: points are proportional to ln LR. r_E2 is the share of a tool's log-evidence that is not explained by gene, position and constraint, so this keeps the ClinVar calibration and removes only the overlapping share.
+   - **Stated limitation:** r is measured on the top 2% and is applied to every interval.
+3. **De novo thresholds.** PP3 points from this study's own within-unit thresholds at level E2, all genes (`*_thresholds.tsv`). If E2 has no threshold for a strength, that strength is not available.
+
+**Readouts.** Each is given for P/LP, VUS and B/LB separately:
+
+1. The share of variants with published PP3 ≥ Supporting that are PM1-like.
+2. For PM1-like variants, the mean PP3 + PM1 points under rules 1, 2 and 3, and the number of variants whose PP3 + PM1 points fall from ≥ 4 (rule 1) to < 4 (rule 2). Four points is Strong; on its own it reaches neither LP nor P.
+3. **The number of VUS whose PP3 + PM1 total alone is ≥ 6 points (Likely Pathogenic) without the cap.** This is the double-counting risk when a lab applies both at full strength. It is reported under rule 1 without the cap, rule 1 with the cap, and rule 2.
+4. **Discrimination check:** the AUC of PP3 points for P/LP against B/LB, under rules 1 and 2, within PM1-like sites and within other sites.
+
+These are descriptive. No pass/fail threshold is set, because the clinical consequence is a magnitude rather than a hypothesis test.
+
+### A4.2 Position-unit controls
+
+These are new unit kinds, run through the unchanged estimators, for AlphaMissense and the informative A1 tools, on the DD cohort, all genes:
+
+- **dom (curated domains, a direct PM1 proxy).** Gene × InterPro domain, from the dbNSFP 5.4a `Interpro_domain` field: the first listed domain at the site, with sites without a domain pooled as gene × "none". Level D_dom = within dom, and E_dom = dom × RMC.
+- **win50s (shifted windows).** 50-residue windows offset by 25 residues. If D2 is a real position effect, r(win50s) ≈ r(win50).
+- **rand50 (random partition control).** Within each gene, residues are assigned to ⌈L/50⌉ groups at random (seed 20261004), with no contiguity. This keeps D2's unit size but removes position. If the D2 drop is due to position, r(rand50) should be close to r(B), the gene level, not r(D2).
+
+**Readout.** The median r over informative tools at B, D2, win50s, rand50 and D_dom, with the paired difference r(rand50) − r(D2).
+
+## 3f. Amendment A5 (2026-10-05): Aim 4 v2, the null-contrast model with structure features
+
+**Status at the time of this amendment.** Aim 4 v1 has **never produced a result**: two runs ended out of memory before the model was trained. No Aim 4 output exists. v1 (§7) is unchanged and is still run and reported.
+
+**Motivation, written before any result.**
+
+- v1 was frozen before the dbNSFP 5.4a tools existed in this study.
+- None of v1's features encodes 3D protein structure.
+- v2 adds new information. It does not add model capacity for its own sake.
+
+**New features.** These are added to the v1 set.
+
+1. **The 16 A3 tools**, excluding popEVE, which was developed using DD cohorts (§6). Each takes the median when missing, plus a missingness indicator.
+2. **AlphaFold DB human proteome v6, single-fragment models only** (`af_structure.py`). For each residue:
+   - pLDDT;
+   - the 11-residue mean pLDDT;
+   - the number of Cα atoms within 10 Å, with |i − j| ≥ 3 (burial).
+3. **Mapping AlphaFold residues to analysed transcripts:**
+   - Use the UniProt Swiss-Prot entry whose Ensembl cross-reference lists the transcript, ignoring versions; otherwise the entry with the same gene symbol.
+   - Accept the mapping only if ≥ 95% of the transcript's analysed sites have a reference amino acid identical to the AlphaFold residue at the same position.
+   - Otherwise, and for proteins split into multiple fragments, the features are missing, with an indicator.
+
+**Models.** All use the same training data, LR conversion, gene split and evaluation as §7. Nothing is tuned on RUMC or DDD.
+
+- **v2-GBDT (primary):** v1's exact `HistGradientBoostingClassifier` settings, with the extended features.
+- **v2-MLP:** scikit-learn `MLPClassifier`, hidden layers (256, 128), ReLU, Adam, alpha 1e-4, early stopping on a 10% validation split, max_iter 200. Features are standardised on the training data. Five seeds (20261004 + k, k = 0…4), with probabilities averaged.
+- **v2-ENS:** the mean of the v2-GBDT and v2-MLP log-odds.
+
+**Evaluation.**
+
+- All of §7's evaluations are run on DDD de novos (DDD scale factor), on all genes and on cold-test genes.
+- In addition, each model's score is written as a column and run through the A1 nested levels A–E on DDD de novos only. This is the same machinery as popEVE in A3.
+
+**Pre-specified comparisons.** These use a paired Poisson bootstrap over DDD probands (1,000 replicates, seed 20261004).
+
+1. **Primary:** within-gene top-2% LR, v2-GBDT vs AlphaMissense, on **cold-test genes**. The model is reported as beating AlphaMissense if the 95% CI of the log ratio excludes 0.
+2. The same comparison on all genes, and v2-GBDT vs v1.
+3. r(D2) and E2 for each model, alongside the same values for AlphaMissense on DDD. This asks whether a model trained on the de novo contrast keeps more evidence beyond position.
+4. v2-MLP and v2-ENS against v2-GBDT. These are secondary and descriptive.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
