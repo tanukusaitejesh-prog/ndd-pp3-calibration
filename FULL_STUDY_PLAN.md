@@ -288,6 +288,55 @@ These are new unit kinds, run through the unchanged estimators, for AlphaMissens
 3. r(D2) and E2 for each model, alongside the same values for AlphaMissense on DDD. This asks whether a model trained on the de novo contrast keeps more evidence beyond position.
 4. v2-MLP and v2-ENS against v2-GBDT. These are secondary and descriptive.
 
+## 3g. Amendment A6 (2026-10-05): uncertainty on retention, sibling negative control, models in the autism cohort
+
+**Status at the time of this amendment.**
+
+- **Seen:** the A1, A2 and A3 readouts, and a chr22-only code check of A4.1 (deviation log).
+- **Not seen:** no Aim 4 (v1 or v2), A4.2 or genome-wide A4.1 output exists.
+- **Origin:** this amendment answers an external review of the study pitch, which raised four points: no uncertainty on retention shares, a sibling control limited to the raw level, no evaluation of the models outside the DD cohort, and unchecked external facts.
+
+### A6.1 Confidence intervals on retention shares
+
+**Why the replicates pair across runs.** `run_scores` now saves the top-2% bootstrap replicates (`*_top2reps.npz`). The Poisson bootstrap weights are a fixed function of the proband set and the seed, so replicate *b* is the same resample of probands in every run on the same cohort.
+
+**Reruns.** The runs that produced the A1 (`aim1tools`), A2 (`rep`) and A3 (`a1v54`) tables are re-run unchanged, to obtain replicates. Their point estimates must equal the committed tables; any difference is reported as a defect.
+
+**Estimates.**
+
+- For each tool and level, r_b = ln LRw_b(level) / ln LRm_b(A). Its 95% percentile interval is reported.
+- The readout-1 share (informative tools with r(D2) < 0.5) also gets a bootstrap interval, computed per replicate with the informative set fixed at the point estimate.
+- For A4.2, the paired difference r(rand50) − r(D2) gets an interval per tool and for the median over tools.
+
+### A6.2 Sibling negative control at every level
+
+**Analysis.** The A2 analysis (AlphaMissense + 36 tools, levels A–E, common site set, `rep` specification) on the unaffected siblings (Zhou et al. 2022), using the siblings' own synonymous scale factor.
+
+**Expectation.** Sibling de novos carry essentially no disease-associated excess beyond the mutation-model offset, so no predictor should show calibrated evidence.
+
+**Pre-specified pass criterion.** At most 2 of 37 predictors (5%) have a marginal top-2% LR whose one-sided lower bound (δ) reaches 2.406.
+
+**Also reported:** the number of predictors reaching 2.406 at levels B and D2.
+
+### A6.3 Aim 4 models in the autism cohort
+
+**Analysis.** The fitted Aim 4 models are applied unchanged as columns of the column store: v1 and v2-GBDT/MLP/ENS (A5). Nothing is refitted. They are evaluated in autism probands and in siblings, with the A2 specification (levels A–E, common site set).
+
+**Comparisons**, by paired Poisson bootstrap over autism individuals:
+
+1. **Primary (A6):** within-gene top-2% LR, v2-GBDT vs AlphaMissense, all genes. The model is reported as better if the 95% interval of the log ratio excludes 0 in its favour.
+2. The same comparison on the A5 cold-test genes.
+3. r(D2) and E2 for each model, against AlphaMissense.
+4. In siblings, every model's marginal top-2% lower bound (δ) should be below 2.406.
+
+### A6.4 External facts and reporting
+
+These involve no analysis. Before submission they are checked against primary sources and reported:
+
+- ClinGen's recommendation on combining PP3 with PM1, quoted from Pejaver et al. 2022;
+- the Zhou et al. 2022 trio counts, alongside our count of individuals with ≥ 1 usable de novo SNV and each filter step;
+- informative-tool denominators next to every percentage.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
@@ -419,3 +468,5 @@ RUMC is reported as internal validation.
 | 2026-10-05 | Engineering, after amendment A3, no estimate affected:<br>• **dbNSFP 5.4a acquisition.** The file was downloaded in 24 byte-range pieces. One piece (`part.1`) began with 2,226,191,936 bytes from the file's start: during a single request the server ignored the byte range. This was found by the in-stream md5 and a BGZF read error, localised by comparison with server byte ranges, re-fetched (each 64 MB chunk confirmed as HTTP 206 of the right length), and re-verified.<br>• **A3 columns are extracted by streaming the pieces** (`scores54_stream`) rather than joining a 55 GB file. They are committed only if the md5 of the streamed bytes equals the published checksum.<br>• **`cmd_v54` run order** follows importance (study lead's instruction): the A3 confirmatory test, then popEVE (DDD only), then the Aim 3 table, then the DDD-only sensitivity. Every analysis is as specified. | Engineering and data integrity. |
 | 2026-10-05 | Engineering: the laptop froze and had to be force-restarted (~19:50). chkdsk fixed only the X: bitmap (0 bad sectors). A full scan found the 18 A3 column files of chr22 empty; they were the last written before the freeze. Every other column-store file and the git repository (`git fsck`) were intact. chr22 was re-extracted from the trailing pieces of the already md5-verified download (`scores54_tail`; BGZF block CRCs checked; the stream began in chr19), with coverage identical to the first extraction (0.996). | Data integrity, no estimate affected. Analyses now run strictly one at a time. |
 | 2026-10-05 | Aim 1 implementation detail: estimands (i)–(iv) are computed on one common site set, the missense sites with both an RMC region and a CCR value, so the four LRs are directly comparable. | Clarifies §3 ("sites with no region are excluded"); decided before Aim 1 was run. |
+| 2026-10-05 | Engineering, after amendments A4/A5 were frozen (`fffc57c`), no specification changed:<br>• **Code checks.** The A4.1 ClinVar command was smoke-tested on chr22 only, to check that the code runs; the reported results come from the full run. The A5 feature builder was checked on 5,000 chr22 sites: the v1 features are an exact prefix of v2's. The domain-unit builder and the random-partition hash were checked on synthetic data. The first hash was visibly periodic along the protein; it was replaced by a splitmix64 mixer before any A4.2 run.<br>• **ClinVar release** `clinvar_20261004.vcf.gz` (md5 `c665dba2aa11f745fc38a6973af8025e`, verified against NCBI's checksum).<br>• **AlphaFold DB human proteome v6** was downloaded in 24 byte-range pieces and stream-parsed by `af_structure.py`; the archive was not kept.<br>• **Run order** (study lead's instruction: most important first, one job at a time): A3 sensitivity, then A4.1, then Aim 4 v1, then A4.2 (domain extraction, controls), then A5 (structure columns, v2 models, nested levels). | Engineering. |
+| 2026-10-05 | **Count correction, no specification changed.** The A3 tool list (§3d) names 18 columns: 17 tools plus popEVE. The A3 commit message ("16 new tools incl. popEVE") and the A5 text ("the 16 A3 tools, excluding popEVE") miscount it. The analyses follow the stated lists and rules: A3 analysed all 17 non-popEVE tools in the full cohort and popEVE on DDD only, and A5 uses all 17 non-popEVE A3 tools as features. The study therefore covers 55 predictors (36 + AlphaMissense + 17 + popEVE). | Correction of a count in the text; the rules as written are unchanged. |
