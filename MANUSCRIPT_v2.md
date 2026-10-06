@@ -349,6 +349,15 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
 - **Capped or conditional:** both rules move all 2,438 to Likely Pathogenic.
 - **Caveat:** this is a class-level estimate on the de novo scale, not a per-variant posterior.
 
+**The same overlap on the clinical scale** (estimand bridge; exploratory):
+
+- **Method:** R recomputed with LRs from ClinVar P/LP against B/LB, with DD de novo sites removed and a gene-clustered bootstrap.
+- **Result:** overlap was stronger than on the de novo scale.
+  - DDG2P monoallelic genes: R 0.32 [0.28, 0.37] for AlphaMissense Supporting × PM1-like, 0.23 [0.18, 0.28] at Strong.
+  - All genes: R 0.20 and 0.15.
+- **Bias works against the finding:** curators who apply both PP3 and PM1 enrich P/LP variants in the joint category, which pushes R towards 1.
+- **Reading:** the overlap is not specific to the de novo estimand.
+
 **Expert-panel classifications** (A12.5; ClinGen Evidence Repository, 13,293 classifications):
 
 - PP3 and PM1 were both applied in 1,018, mostly at PP3 Supporting (HNF1A, RUNX1, RYR1, HNF4A and FBN1 lead).
@@ -389,7 +398,7 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
 - CanVIG-UK permits PM1 and PP3 together because they are regarded as largely different evidence types.
 - For de novo missense variants, our data do not support that premise. The joint evidence of AlphaMissense PP3 and a PM1-like flag was about half the product of their separate LRs, in three cohorts.
 - **The overlap is consistent with the cap.** ClinGen limits PP3 + PM1 to Strong (Pejaver et al. 2022; restated as a no-double-counting rule by Stenton et al. 2024).
-  - **Relative terms**, which do not depend on the scale of the de novo LR: overlap at the Strong tier removed 6–27% of the summed log-evidence, and the cap removes 33%. The cap is therefore large enough to absorb the overlap, and may be conservative for REVEL and VEST4.
+  - **Relative terms**, which do not depend on the scale of the de novo LR: overlap at the Strong tier removed 6–27% of the summed log-evidence, and the cap removes 33%. The cap is therefore large enough to absorb the overlap at the Strong tier, and on the de novo scale it over-corrects (it removes 33%, against a measured 6–27%). On the ClinVar scale the overlap is larger (R 0.23 at Strong in DDG2P genes), so how much the cap over-corrects depends on the scale.
   - **Uncapped co-use** overstated the joint evidence in every DD cell. In the classification analysis it produced Pathogenic calls in a class that was only 84% disease-associated.
   - **What we do not claim:** that the cap's exact size is optimal. The absolute joint points (2.5–3.9 against the cap's 4) are secondary, because the de novo LR is not on ClinGen's pathogenicity scale.
   - Expert-panel specifications that fold domain location into the computational criterion, as the ENIGMA BRCA1/BRCA2 VCEP does, are also consistent with the result.

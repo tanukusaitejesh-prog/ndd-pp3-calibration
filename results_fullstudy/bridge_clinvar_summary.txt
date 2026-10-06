@@ -1,0 +1,4 @@
+ClinVar all_genes          AM PP3>=Supp   LR(PP3) 25.9 LR(PM1-like) 10.64 joint 56.2 R 0.20 [0.18, 0.23]  (P/LP 44433, B/LB 115171, genes 13598)
+ClinVar all_genes          AM PP3>=Strong LR(PP3) 68.6 LR(PM1-like) 10.64 joint 110.3 R 0.15 [0.12, 0.19]  (P/LP 44433, B/LB 115171, genes 13598)
+ClinVar ddg2p_monoallelic  AM PP3>=Supp   LR(PP3) 12.6 LR(PM1-like) 6.37 joint 26.1 R 0.32 [0.28, 0.37]  (P/LP 13092, B/LB 19673, genes 490)
+ClinVar ddg2p_monoallelic  AM PP3>=Strong LR(PP3) 37.1 LR(PM1-like) 6.37 joint 53.8 R 0.23 [0.18, 0.28]  (P/LP 13092, B/LB 19673, genes 490)
