@@ -3165,6 +3165,58 @@ def cmd_a12(a):
         open(P(base, "a12_lto_summary.txt"), "w").write("\n".join(out) + "\n")
         log("\n".join(out))
         return
+    if a.part == "gclust":                                   # task 11: R with a gene-clustered bootstrap (transcripts resampled)
+        out, rows = ["R (marginal, de novo excess) with 1,000 transcript-clustered bootstrap replicates, seed 20261007; "
+                     "synonymous scale factor held at its point estimate"], []
+        for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
+            a.cohort = kw.get("cohort")
+            d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+            cs = len(syn_p) / syn_mass
+            gz = pd.read_csv(GNOMAD_GENE, sep="\t", compression="gzip", usecols=["gene", "mis_z"])
+            pp2_tx = tinfo["gene"].reindex(np.arange(18398)).map(gz.groupby("gene")["mis_z"].max()).fillna(-np.inf).to_numpy() >= 3.09
+            combos = [(f, cut) for f in ("PM1-like", "PM1-strict", "PP2-like") for cut in (0.792, 0.972)]
+            Mm = {k: np.zeros((18398, 4)) for k in combos}
+            Om = {k: np.zeros((18398, 4)) for k in combos}
+            dkey, dchr = d_mis["key"].to_numpy(), d_mis["chrom"].astype(str).to_numpy()
+            for c, u in site_chunks(a, cols=["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct", "am"]):
+                tx = u["tx"].to_numpy(np.int64)
+                oe, ccr, am = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float), u["am"].to_numpy(float)
+                fl = {"PM1-like": (oe < 0.4) | (ccr >= 95), "PM1-strict": oe < 0.2, "PP2-like": pp2_tx[tx]}
+                sc = np.isfinite(am)
+                mr = u[PRIMARY_MODEL].to_numpy(float)
+                di = np.flatnonzero(dchr == str(c))
+                pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dkey[di]).to_numpy()
+                pos = pos[np.isfinite(pos)].astype(np.int64)
+                pos = pos[sc[pos]]
+                for (f, cut) in combos:
+                    cat = 2 * (am >= cut).astype(np.int64) + fl[f].astype(np.int64)
+                    np.add.at(Mm[(f, cut)], (tx[sc], cat[sc]), mr[sc])
+                    np.add.at(Om[(f, cut)], (tx[pos], cat[pos]), 1)
+                del u
+                gc.collect()
+            rng = np.random.default_rng(20261007)
+            live = np.flatnonzero(Mm[combos[0]].sum(1) > 0)
+            W = np.stack([np.bincount(rng.choice(live, len(live)), minlength=18398) for _ in range(1000)]).astype(float)
+
+            def Rof(O, M):
+                E = cs * M
+                X = O - E
+                Xt, Et = X.sum(-1, keepdims=True), E.sum(-1, keepdims=True)
+                lr = lambda g: (X[..., g].sum(-1) / Xt[..., 0]) / (E[..., g].sum(-1) / Et[..., 0])
+                return lr([3]) / (lr([1, 3]) * lr([2, 3]))
+            for (f, cut) in combos:
+                O, M = Om[(f, cut)], Mm[(f, cut)]
+                R0 = Rof(O.sum(0), M.sum(0))
+                Rb = Rof(W @ O, W @ M)
+                lo, hi = np.nanpercentile(Rb, [2.5, 97.5])
+                tier = "Supporting" if cut < 0.9 else "Strong"
+                rows.append({"cohort": label, "flag": f, "tier": tier, "R": R0, "R_lo95_gene": lo, "R_hi95_gene": hi})
+                out.append(f"{label:6s} AlphaMissense {tier:10s} x {f:10s}: R {R0:.2f} [gene-clustered {lo:.2f}, {hi:.2f}]")
+        a.cohort = None
+        pd.DataFrame(rows).to_csv(P(base, "a12_gclust.tsv"), sep="\t", index=False, float_format="%.4g")
+        open(P(base, "a12_gclust_summary.txt"), "w").write("\n".join(out) + "\n")
+        log("\n".join(out))
+        return
     if a.part == "burial":                                   # task 10: overlap by burial (AlphaFold C-alpha neighbours within 10 A)
         nc = np.concatenate([u["af_nca10"].to_numpy(float) for _, u in site_chunks(a, cols=["af_nca10"])])
         cut = float(np.nanmedian(nc))
@@ -4142,7 +4194,7 @@ def main():
     s.add_argument("--part", required=True, choices=["strata", "sweep", "cpg_down", "cpg_up", "noclinvar"])
     s.add_argument("--clinvar", default="/mnt/c/Users/saite/OneDrive/Desktop/Neuro/G-Test-LOCKIN/ndd_pp3_gate/ndd_pp3_gate/work_clinvar/clinvar.vcf.gz")
     s = sub.add_parser("a12")
-    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr", "plddt", "burial"])
+    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr", "plddt", "burial", "gclust"])
     s = sub.add_parser("a11sim")
     s.add_argument("--reps", type=int, default=200)
     s = sub.add_parser("clinvar")
