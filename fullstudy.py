@@ -3165,6 +3165,24 @@ def cmd_a12(a):
         open(P(base, "a12_lto_summary.txt"), "w").write("\n".join(out) + "\n")
         log("\n".join(out))
         return
+    if a.part == "burial":                                   # task 10: overlap by burial (AlphaFold C-alpha neighbours within 10 A)
+        nc = np.concatenate([u["af_nca10"].to_numpy(float) for _, u in site_chunks(a, cols=["af_nca10"])])
+        cut = float(np.nanmedian(nc))
+        del nc
+        out, allrows = [f"burial cut: median af_nca10 over analysed missense sites = {cut:.1f}"], []
+        for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
+            a.cohort = kw.get("cohort")
+            for sname, fn in ((f"buried(nca10>={cut:.0f})", lambda u: u["af_nca10"].to_numpy(float) >= cut),
+                              (f"exposed(nca10<{cut:.0f})", lambda u: u["af_nca10"].to_numpy(float) < cut)):
+                rows, txt = overlap_cohort(a, f"{label}|{sname}", fnames=["PM1-like", "PP2-like"],
+                                           lnames=["PP3>=Supporting", "PP3 >=Strong(3-4)"], site_keep=fn, extra_cols=("af_nca10",))
+                allrows += rows
+                out += [t for t in txt if "AlphaMissense" in t or "REVEL" in t or "VEST4" in t]
+        a.cohort = None
+        pd.DataFrame(allrows).to_csv(P(base, "a12_burial.tsv"), sep="\t", index=False, float_format="%.4g")
+        open(P(base, "a12_burial_summary.txt"), "w").write("\n".join(out) + "\n")
+        log("\n".join(out))
+        return
     if a.part == "plddt":                                    # task 10: overlap by AlphaFold confidence (ordered vs disordered)
         out, allrows = [], []
         for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
@@ -3870,7 +3888,7 @@ def a16_points(txt):
 def _read_subsum(path):
     import gzip
     with gzip.open(path, "rt") as fh:
-        n = next(i for i, line in enumerate(fh) if line.startswith("#VariationID"))
+        n = next(i for i, line in enumerate(fh) if line.startswith("#VariationID\t"))
     s = pd.read_csv(path, sep="\t", skiprows=n, header=0, dtype=str, quoting=3, compression="gzip", on_bad_lines="skip",
                     usecols=["#VariationID", "ClinicalSignificance", "Description", "OriginCounts", "SCV"])
     s = s.rename(columns={"#VariationID": "VariationID"})
@@ -4124,7 +4142,7 @@ def main():
     s.add_argument("--part", required=True, choices=["strata", "sweep", "cpg_down", "cpg_up", "noclinvar"])
     s.add_argument("--clinvar", default="/mnt/c/Users/saite/OneDrive/Desktop/Neuro/G-Test-LOCKIN/ndd_pp3_gate/ndd_pp3_gate/work_clinvar/clinvar.vcf.gz")
     s = sub.add_parser("a12")
-    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr", "plddt"])
+    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr", "plddt", "burial"])
     s = sub.add_parser("a11sim")
     s.add_argument("--reps", type=int, default=200)
     s = sub.add_parser("clinvar")

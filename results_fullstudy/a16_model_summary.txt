@@ -1,0 +1,20 @@
+A16 hierarchical model, DD de novo missense: 23851 de novos, 17436 transcripts, 202870 windows; Theta = 1.249; gene Gamma shape 2.471, mean 1.236
+iteration 1: window Gamma shape 2.229
+iteration 2: window Gamma shape 2.185
+iteration 3: window Gamma shape 2.175
+      stratum                am_bin       O            E  rate_mult  pi_given_stratum  pp3_points_given_stratum_ratio
+        other                 <0.34 12104.0 11544.836802   0.866762          0.982317                       -0.020321
+        other      0.34-0.792 (ref)  3623.0  3323.694930   0.882365          1.000000                        0.000000
+        other 0.792-0.906 (PP3 Sup)  1085.0   919.314772   0.943823          1.069651                        0.076691
+        other 0.906-0.972 (PP3 Mod)  1116.0   900.933074   0.980583          1.111312                        0.120211
+        other  >=0.972 (PP3 Strong)  2063.0  1124.426342   1.396755          1.582967                        0.523142
+PM1-like only                 <0.34   332.0   311.273422   0.688869          0.793469                       -0.263496
+PM1-like only      0.34-0.792 (ref)   321.0   225.000367   0.868173          1.000000                        0.000000
+PM1-like only 0.792-0.906 (PP3 Sup)   158.0    94.577503   0.976903          1.125240                        0.134397
+PM1-like only 0.906-0.972 (PP3 Mod)   291.0   121.054676   1.380998          1.590694                        0.528689
+PM1-like only  >=0.972 (PP3 Strong)  1581.0   292.297702   2.889017          3.327696                        1.369393
+   PM1-strict                 <0.34    46.0    45.611054   0.570627          0.626198                       -0.533151
+   PM1-strict      0.34-0.792 (ref)    80.0    44.169250   0.911256          1.000000                        0.000000
+   PM1-strict 0.792-0.906 (PP3 Sup)    62.0    20.956471   1.406235          1.543184                        0.494151
+   PM1-strict 0.906-0.972 (PP3 Mod)   132.0    28.964319   2.159739          2.370068                        0.982862
+   PM1-strict  >=0.972 (PP3 Strong)   857.0    92.921089   4.015645          4.406714                        1.689280
