@@ -491,3 +491,23 @@ Rebuilt exactly from the committed coarse tables, with no new estimation. Bands 
 | A3 | 10% | 14 | 1.00 | 0.56 / 0.29 / 0.27 | — |
 
 **Reading.** The median retention after gene + position is stable across thresholds, and AlphaMissense stays at about 0.3. The binary share hovers around the 75% criterion, which is consistent with the A6 intervals.
+
+## Amendment A8: Aim 4 v4, one shot (`aim4v4_summary.txt`, commit `44d150f`)
+
+Fourth model, post hoc, frozen before fitting at `d96780e`.
+
+**Training.** Gene-matched null; all DD centres: 23,041 de novo sites against 230,410 same-transcript null sites. GBDT iterations 78; π = 0.171.
+
+**Autism, top 2%** (marginal / within gene / window / window × constraint):
+
+| Predictor | Marginal | Within gene | Window | Window × constraint |
+|---|---|---|---|---|
+| AlphaMissense | 8.67 | 3.07 [2.55, 3.73] | 1.93 | 1.90 |
+| v3 | 12.56 | 3.16 | 1.87 | 1.84 |
+| v4 | 13.15 | 3.35 [2.90, 3.87] | 1.96 | 1.91 |
+
+**Comparisons:**
+
+- **A8 primary:** v4 / AlphaMissense within gene = **1.09 [0.94, 1.29]**, no significant difference.
+- v4 / v3 = 1.06 [0.96, 1.17].
+- Siblings: no model shows evidence.

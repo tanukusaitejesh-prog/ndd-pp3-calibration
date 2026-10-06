@@ -467,6 +467,15 @@ No model reached Supporting at E2 (v3 one-sided lower bound 1.77).
 - As in DD, the models had higher marginal LRs than AlphaMissense: 11.5–14.0 against 8.7.
 - In unaffected siblings, no model showed evidence.
 
+**One further attempt (amendment A8; fourth model, post hoc, one shot).** v4 kept v3's design but was trained on all three DD centres (23,041 de novo sites against 230,410 same-transcript null sites) and evaluated only in the autism cohort.
+
+- **Within gene:** v4 / AlphaMissense = 1.09 [0.94, 1.29]. The point estimate favours v4, but the difference is not significant.
+- **Against v3:** v4 / v3 = 1.06 [0.96, 1.17].
+- **Finer levels:** the predictors converged (window × constraint: v4 1.91, AlphaMissense 1.90, v3 1.84).
+- **Siblings:** no signal.
+
+More training data moved the within-gene estimate in the expected direction, but not beyond AlphaMissense. Like every predictor in the study, v4 stayed below Supporting once gene, position and constraint were fixed.
+
 ---
 
 ## Discussion
