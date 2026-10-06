@@ -1,0 +1,5 @@
+tools: 2; informative (marginal top-group LR >= 2.406): 0
+readout 1 (primary, D2): share with r(D2) < 0.5 = nan -> not systematic (>= 0.75); D1 secondary: nan
+readout 2: constraint beyond position r(D2)-r(E2) median nan [IQR nan, nan]; r(D1)-r(E1) median nan
+readout 3: tools with E2 one-sided lower bound >= 2.406: 0 of 2 (); E1: 0
+AlphaMissense A-E (top 2%): A -0.97, B -0.56, C -0.79, D1 -0.61, D2 -0.76, E1 -0.78, E2 -0.70
