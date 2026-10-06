@@ -1,0 +1,19 @@
+A14: ClinVar P/LP vs B/LB, within-gene pooled AUROC (genes with >= 3 of each), DD de novo sites removed; gene bootstrap 1000, seed 20261006
+all_genes          primary          Aim4v4_GBDT    AUC 0.845 vs AM 0.965  d -0.121 [-0.148, -0.098]  genes 1458 sites 159604
+all_genes          primary          Aim4v3_GBDT    AUC 0.881 vs AM 0.965  d -0.085 [-0.106, -0.068]  genes 1458 sites 159604
+all_genes          pair_REVEL       REVEL          AUC 0.952 vs AM 0.966  d -0.013 [-0.021, -0.006]  genes 1448 sites 158475
+all_genes          pair_VEST4       VEST4          AUC 0.951 vs AM 0.965  d -0.014 [-0.021, -0.009]  genes 1452 sites 158949
+all_genes          pair_popEVE      popEVE         AUC 0.940 vs AM 0.968  d -0.028 [-0.047, -0.012]  genes 1291 sites 125088
+all_genes          pair_ESM1b       ESM1b          AUC 0.936 vs AM 0.966  d -0.030 [-0.037, -0.024]  genes 1441 sites 158286
+all_genes          pair_MisFit_S    MisFit_S       AUC 0.940 vs AM 0.966  d -0.026 [-0.039, -0.017]  genes 1419 sites 155014
+all_genes          pair_PrimateAI   PrimateAI      AUC 0.899 vs AM 0.966  d -0.067 [-0.079, -0.057]  genes 1437 sites 156335
+all_genes          pair_CADD        CADD           AUC 0.911 vs AM 0.965  d -0.055 [-0.064, -0.046]  genes 1458 sites 159597
+ddg2p_monoallelic  primary          Aim4v4_GBDT    AUC 0.905 vs AM 0.967  d -0.062 [-0.083, -0.048]  genes 331 sites 32765 [A14 PRIMARY]
+ddg2p_monoallelic  primary          Aim4v3_GBDT    AUC 0.923 vs AM 0.967  d -0.044 [-0.062, -0.031]  genes 331 sites 32765
+ddg2p_monoallelic  pair_REVEL       REVEL          AUC 0.949 vs AM 0.967  d -0.018 [-0.033, -0.007]  genes 331 sites 32695
+ddg2p_monoallelic  pair_VEST4       VEST4          AUC 0.945 vs AM 0.967  d -0.022 [-0.032, -0.014]  genes 330 sites 32602
+ddg2p_monoallelic  pair_popEVE      popEVE         AUC 0.941 vs AM 0.965  d -0.024 [-0.043, -0.010]  genes 289 sites 23012
+ddg2p_monoallelic  pair_ESM1b       ESM1b          AUC 0.944 vs AM 0.967  d -0.023 [-0.033, -0.017]  genes 331 sites 32655
+ddg2p_monoallelic  pair_MisFit_S    MisFit_S       AUC 0.944 vs AM 0.967  d -0.023 [-0.033, -0.015]  genes 326 sites 31699
+ddg2p_monoallelic  pair_PrimateAI   PrimateAI      AUC 0.904 vs AM 0.967  d -0.063 [-0.081, -0.049]  genes 330 sites 32430
+ddg2p_monoallelic  pair_CADD        CADD           AUC 0.898 vs AM 0.967  d -0.069 [-0.082, -0.058]  genes 331 sites 32765
