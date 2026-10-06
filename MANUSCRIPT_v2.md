@@ -463,6 +463,7 @@ AlphaMissense scored 0.967 in each comparison. v5 used AlphaMissense as an input
 6. **Ancestry.** The cohorts are predominantly of European ancestry.
 7. **Transcripts.** Sites are mapped to GENCODE v32 canonical transcripts, which predate MANE. Only 74.4% of transcripts in MANE genes match MANE Select v1.5 (66.5% in DDG2P genes). Protein positions, and hence window assignments, may differ for the rest; gene-level analyses are unaffected.
 8. **Precision.** The public cohort passed the pre-specified power check but gives wide intervals, and the model comparisons cannot exclude modest differences.
+9. **Functional truth.** Multiplexed-assay truth could test overlap in only two genes. There it was smaller (pooled R 0.91 [0.82, 1.02] at Supporting) and clear in one gene (PPM1D, 0.72). How large the overlap is on functional rather than clinical scales is unresolved.
 
 **Conclusion.** Missense predictors are most informative about which genes and regions matter, and much less about which variants matter within them. When PP3 is combined with PM1-like evidence, the joint evidence is substantially less than the sum, including within known disease genes, and the overlap is consistent with ClinGen's cap. Per-predictor retention shares and the direct overlap estimates indicate which predictors justify more or less than the cap.
 

@@ -27,18 +27,24 @@ Read this first in a new chat, then continue the "Remaining" list in order. The 
 - **Independent expert truth** (eRepo, computational and position codes removed; `make_erepo_truth.py`): Strong R 0.17 [0.08, 0.61]. The cap is best calibrated: PP3 earns 1.83 points given PM1, against 2 allowed by the cap and 4 uncapped.
 - Supplementary Table 4 (`supp_table4_conditional_pp3.tsv`); MANE concordance 74.4% (limitation 7); autism count reconciliation.
 
+## Done 7 October 2026 (pushed)
+
+- Task 10 pLDDT: DD AlphaMissense R 0.53 (pLDDT>=70) / 0.39 (<70); Results paragraph added.
+- Task 1 MAVE (`make_mave_truth.py`): only PPM1D and SHOC2 informative (flag constant elsewhere); PPM1D R 0.72 [0.65, 0.78], SHOC2 0.86 [0.71, 1.04], pooled 0.91 [0.82, 1.02]. Results paragraph + limitation 9.
+- Final pass: amendments fifteen (Methods said eleven), abstract retention pair now 0.31 vs 0.51 (same sites), Supp Table 4 listed.
+
 ## Remaining, highest impact first
 
-1. **Task 10, pLDDT strata.** `fullstudy.py a12 --part plddt` was relaunched; log at `work/a12_plddt.log`, output `results_fullstudy/a12_plddt_summary.txt`.
+1. **DONE. Task 10, pLDDT strata.** `fullstudy.py a12 --part plddt` was relaunched; log at `work/a12_plddt.log`, output `results_fullstudy/a12_plddt_summary.txt`.
    - When it finishes: add one Results paragraph (R × PM1-like at pLDDT ≥ 70 vs < 70, DD and autism).
    - Then `git add -f` the outputs and commit.
-2. **Task 1, MAVE validation (ProteinGym, 7 DDG2P genes:** DLG4, PITX2, PPM1D, PTEN, RAF1, SHOC2, YAP1).
+2. **DONE. Task 1, MAVE validation (ProteinGym, 7 DDG2P genes:** DLG4, PITX2, PPM1D, PTEN, RAF1, SHOC2, YAP1).
    - Data: `https://marks.hms.harvard.edu/proteingym/ProteinGym_v1.3/DMS_ProteinGym_substitutions.zip` (43 MB). The reference list is `work_pg.csv`.
    - Map `mutant` (e.g. A12V) to column-store sites using `tx`, `prot_pos`, `ref_aa` and `alt_aa` (stored as ord codes) for each gene's tx.
    - Truth: `DMS_score_bin` (0 = loss of function). Compute R(AlphaMissense PP3 × PM1-like) and conditional PP3 points, as in `make_erepo_truth.py`.
    - Report as exploratory: few genes.
 3. **Task 7, label-free vs ClinVar gene-specific calibration** in label-poor genes. Optional; exploratory.
-4. **Final pass.** Re-read `MANUSCRIPT_v2.md` for consistency:
+4. **DONE (7 Oct). Final pass.** Re-read `MANUSCRIPT_v2.md` for consistency:
    - abstract numbers vs Results;
    - amendment count is 15;
    - figure and table list includes Supplementary Table 4.
