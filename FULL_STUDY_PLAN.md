@@ -480,6 +480,50 @@ v3 changes only the null, so that the objective is within-gene. Its result is re
 - v3 and v4 in autism;
 - v3 and v4 in the public cohort.
 
+## 3l. Amendment A11 (2026-10-06): robustness analyses requested by external review (descriptive)
+
+**Status.** Written after A1–A8 results, the A9 model comparison and the A10 design. None of the analyses below has been run.
+
+**Common specification.** Unless stated otherwise, every analysis uses:
+
+- the DD cohort, all genes (common site set as in A1);
+- AlphaMissense and the 24 predictors informative in A1;
+- unchanged estimators.
+
+**Readout:** median r over informative tools at each level, AlphaMissense's LRs, and the readout-1 share with r(D2) < 0.5. All are **descriptive**; none can change an earlier verdict.
+
+### A11.1 Mutation-rate sensitivity
+
+- CpG-transition rates are multiplied by 0.919 (the gate's observed O/E for CpG transitions) and, separately, by 1.088 (the same error in the opposite direction).
+- The change applies to every site, missense and synonymous, so the scale factor is re-derived each time.
+
+### A11.2 ClinVar exclusion
+
+Sites of ClinVar missense variants classified P/LP (any review status; release `clinvar_20261004`) are removed from both opportunity and de novos.
+
+### A11.3 Strata
+
+Each stratum is analysed separately:
+
+- **Gene constraint:** s_het high vs low.
+- **Mechanism:** DDG2P LoF vs non-LoF.
+- **RMC coverage:** genes with ≥ 2 RMC regions vs genes with one whole-gene region.
+
+### A11.4 Unit-size sweep
+
+Windows of 25, 50 and 100 residues, each with a same-size random partition. This gives a retention-versus-unit-size curve.
+
+### A11.5 Simulation of the within-unit estimator
+
+**Setup.** Synthetic de novo sets are generated on the real site universe:
+
+- **Background:** in proportion to MR.
+- **Disease-associated:** in proportion to MR × the real per-gene excess × a planted within-gene factor λ ∈ {1, 2, 4} at the top 2% of AlphaMissense. The real sizes are kept: 23,851 missense de novos with π = 0.20.
+
+**Truth.** The estimand under each scenario is computed from expected counts.
+
+**Readouts:** bias and 95% interval coverage of the within-gene and within-window top-2% LR over 200 simulated datasets per scenario.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
