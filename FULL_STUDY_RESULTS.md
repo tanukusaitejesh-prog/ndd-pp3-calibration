@@ -473,3 +473,21 @@ No model reaches Supporting at E2.
 1. Trained against a genome-wide null, the models learn gene-level information: the largest marginal LRs in the study, but less within-gene evidence than AlphaMissense.
 2. Matching the null on gene recovers within-gene evidence to AlphaMissense's level, without exceeding it.
 3. Even the best model stays below Supporting beyond gene, position and constraint. This is consistent with a limited ceiling of variant-level evidence beyond position in these data.
+
+## Exploratory: retention by score threshold (`sens_threshold_summary.txt`; not pre-registered)
+
+Rebuilt exactly from the committed coarse tables, with no new estimation. Bands are fine-bin index ranges; this is the same estimand as the top-2% readout, without its tie-robust grouping, which is why the top-2% counts differ slightly from `top2pct`.
+
+| Setting | Top | Informative | Share r(D2) < 0.5 | Median r(B) / r(D2) / r(E2) | AlphaMissense A → B → D2 → E2 |
+|---|---|---|---|---|---|
+| DD | 1% | 22 | 0.77 | 0.58 / 0.33 / 0.32 | 15.98 → 4.29 → 2.20 → 2.09 |
+| DD | 2% | 22 | 0.73 | 0.55 / 0.32 / 0.30 | 13.43 → 4.10 → 2.19 → 2.08 |
+| DD | 10% | 23 | 0.83 | 0.55 / 0.28 / 0.26 | 6.05 → 2.74 → 1.72 → 1.66 |
+| Autism | 1% | 20 | 0.75 | 0.63 / 0.42 / 0.40 | 10.40 → 3.31 → 2.07 → 2.02 |
+| Autism | 2% | 19 | 0.74 | 0.60 / 0.37 / 0.36 | 8.67 → 3.07 → 1.93 → 1.90 |
+| Autism | 10% | 12 | 1.00 | 0.50 / 0.22 / 0.20 | 3.88 → 1.88 → 1.33 → 1.31 |
+| A3 | 1% | 14 | 0.93 | 0.53 / 0.31 / 0.30 | — |
+| A3 | 2% | 14 | 0.93 | 0.54 / 0.31 / 0.30 | — |
+| A3 | 10% | 14 | 1.00 | 0.56 / 0.29 / 0.27 | — |
+
+**Reading.** The median retention after gene + position is stable across thresholds, and AlphaMissense stays at about 0.3. The binary share hovers around the 75% criterion, which is consistent with the A6 intervals.

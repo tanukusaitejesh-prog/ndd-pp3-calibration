@@ -535,7 +535,10 @@ After all three are held fixed, no predictor keeps calibrated Supporting-level e
    - Small-stratum estimates, such as some mechanism classes, remain unstable.
 5. **Ancestry.** The cohorts are predominantly of European ancestry.
 6. **Training labels.** Labels for several tools are recorded from their papers' descriptions rather than re-derived.
-7. **Top 2% only.** Retention is measured on each tool's top 2%. Applying it to all score intervals (A4.1) is an approximation.
+7. **Score threshold.** Retention is measured on each tool's top 2%.
+   - In an exploratory check rebuilt from the committed tables, median r(D2) was similar at the top 1%, 2% and 10%: DD 0.33, 0.32 and 0.28; autism 0.42, 0.37 and 0.22; newer tools 0.31, 0.31 and 0.29. AlphaMissense stayed near 0.3 throughout.
+   - The share of tools below 0.5 ranged from 0.73 to 1.00 across thresholds.
+   - Applying a top-2% retention share to all score intervals (A4.1) remains an approximation.
 
 **Conclusion.** Missense predictors are powerful at telling which genes and regions matter, and much weaker at telling which variants matter within them. Variant classification should calibrate predictor evidence conditionally on the gene- and region-level criteria it is combined with.
 
