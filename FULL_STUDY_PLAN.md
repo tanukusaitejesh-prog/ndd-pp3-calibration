@@ -507,6 +507,42 @@ Each is reported with bootstrap intervals rather than as a pass/fail against a s
 - **Predictor-level resampling:** the median retention gets an interval from resampling predictors, clustered by shared training-label class.
 - **Headroom control:** retention of AlphaMissense after adding Gaussian noise to its score (SD 0.05, 0.1, 0.2), to show how retention changes with marginal strength alone.
 
+## 3m. Amendment A12 (2026-10-06, ~13:45 IST): analyses requested by a fourth review
+
+**Status.**
+
+- Seen: the A10.1 results, including R by PP3 tier and the joint points, and A11 strata and CpG.
+- **Not run:** none of the analyses below.
+
+### A12.1 R decomposition
+For each R in A10.1, report the two sides separately:
+
+- P(PP3 | F) among the excess (disease-associated) de novos, estimated as X(PP3 ∧ F) / X(F);
+- P(PP3 | F) under the mutational null, E(PP3 ∧ F) / E(F).
+
+Their ratio is LR(PP3 | F). The decomposition shows whether R < 1 arises from the excess side, the null side or both.
+
+### A12.2 R for all predictors
+PP3-like flag = each predictor's top 2% of mutational opportunity (no published thresholds needed). R × PM1-like and × PP2-like for every predictor, in DD and autism. R is then related to whether a predictor uses population-constraint or allele-frequency inputs (training ledger and dbNSFP documentation), by rank correlation and group medians.
+
+### A12.3 Leave-top-genes-out
+The A1 nested analysis and the A10.1 primary R are repeated after excluding the 50 genes with the largest de novo missense excess in DD. Excluded sites are removed from both opportunity and de novos.
+
+### A12.4 Classification change with de novo evidence
+For DD de novo missense variants at analysed sites, points are assigned as follows:
+
+- PS2 (Strong, 4: de novo confirmed in trios);
+- PM2 (Supporting, 1; assumed for de novo variants at sites without population variation in the column store);
+- PM1-like (+2);
+- AlphaMissense PP3 at the published intervals.
+
+Classes use Tavtigian points: LP ≥ 6, P ≥ 10. They are compared under three rules: (a) uncapped, (b) PP3 + PM1 capped at 4, (c) PP3 points × the A10.1 tier-specific LR(PP3 | PM1-like) on the 2.406 scale. Readout: the number of variants changing class between rules, and the de novo-excess-based fraction pathogenic (1 − E/O) within each class under each rule. This is a calibration check: P should correspond to a high fraction.
+
+### A12.5 ClinGen Evidence Repository
+Expert-panel classifications with their applied criteria (public export) are recomputed under the same three rules. Readout: classification changes among variants where PP3 and PM1 were both applied.
+
+All A12 analyses are descriptive.
+
 ## 3l. Amendment A11 (2026-10-06): robustness analyses requested by external review (descriptive)
 
 **Status.** Written after A1–A8 results, the A9 model comparison and the A10 design. None of the analyses below has been run.
