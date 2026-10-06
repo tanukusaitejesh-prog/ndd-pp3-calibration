@@ -374,6 +374,14 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
 - **Reading:** on truth independent of computational and position evidence, the overlap replicates and the cap is the best-calibrated of the three rules.
 - **Limitations:** with the o/e-based PM1-like flag the estimates are imprecise (Supporting R 0.90, Strong 0.22, upper bounds unbounded), because few B/LB variants fall in constrained regions. Panel variants are concentrated in a few genes.
 
+**Functional truth from multiplexed assays** (exploratory; ProteinGym v1.3, DDG2P genes; `make_mave_truth.py`):
+
+- **Truth.** A variant counted as damaging if its assay score fell below the ProteinGym cutoff (`DMS_score_bin` = 0). Only single substitutions reachable by an SNV were used, mapped to the analysed transcript. Eight assays in seven genes gave 8,907 variants.
+- **Only two genes can test overlap.** A within-gene R needs the PM1-like flag to vary inside the gene. It did so only in PPM1D (73% of variants flagged) and SHOC2 (19%). In DLG4, PITX2 and PTEN nearly every assayed residue is PM1-like; in RAF1 and YAP1 none is.
+- **Result.** PPM1D: R 0.72 [0.65, 0.78] at Supporting (0.71 at Strong), close to the de novo within-gene estimate in DDG2P genes (0.69). SHOC2: 0.86 [0.71, 1.04]. Pooled over both: 0.91 [0.82, 1.02] at Supporting and 0.85 [0.74, 0.98] at Strong (position-clustered bootstrap).
+- **Reading:** on functional truth the overlap is in the same direction but smaller than on the de novo or clinical scale, and it is clear in one gene of two. One possible reason: the de novo overlap is mainly null-side (A12.1), weighted by mutation rate, whereas an assay weights all substitutions equally.
+- **Limitations:** two informative genes; most cutoffs are median splits, which define assay-relative damage rather than pathogenicity; 41% of PTEN residues are not in the analysed site set.
+
 **Expert-panel classifications** (A12.5; ClinGen Evidence Repository, 13,293 classifications):
 
 - PP3 and PM1 were both applied in 1,018, mostly at PP3 Supporting (HNF1A, RUNX1, RYR1, HNF4A and FBN1 lead).

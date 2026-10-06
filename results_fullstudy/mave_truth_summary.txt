@@ -1,0 +1,23 @@
+DLG4_HUMAN_Faure_2021: 1280 single substitutions, offset +0, positions in store 0.973, WT concordance where present 1.000, SNV-reachable & mapped 340 (damaging 91); binarisation median, assay OrganismalFitness
+PITX2_HUMAN_Tsuboyama_2023_2L7M: 938 single substitutions, offset +89, positions in store 0.962, WT concordance where present 0.979, SNV-reachable & mapped 274 (damaging 84); binarisation median, assay Stability
+PPM1D_HUMAN_Miller_2022: 7889 single substitutions, offset +0, positions in store 0.981, WT concordance where present 1.000, SNV-reachable & mapped 2386 (damaging 1121); binarisation median, assay OrganismalFitness
+PTEN_HUMAN_Matreyek_2021: 5083 single substitutions, offset +0, positions in store 0.593, WT concordance where present 1.000, SNV-reachable & mapped 957 (damaging 464); binarisation median, assay Expression
+PTEN_HUMAN_Mighell_2018: 7260 single substitutions, offset +0, positions in store 0.592, WT concordance where present 1.000, SNV-reachable & mapped 1309 (damaging 311); binarisation manual, assay Activity
+RAF1_HUMAN_Zinkus-Boltz_2019: 297 single substitutions, offset +0, positions in store 0.946, WT concordance where present 1.000, SNV-reachable & mapped 188 (damaging 77); binarisation median, assay OrganismalFitness
+SHOC2_HUMAN_Kwon_2022: 10972 single substitutions, offset +0, positions in store 0.981, WT concordance where present 1.000, SNV-reachable & mapped 3294 (damaging 1549); binarisation median, assay OrganismalFitness
+YAP1_HUMAN_Araya_2012: 362 single substitutions, offset +0, positions in store 0.978, WT concordance where present 1.000, SNV-reachable & mapped 159 (damaging 74); binarisation median, assay Binding
+informative datasets (PM1-like fraction 5-95%): PPM1D_HUMAN_Miller_2022, SHOC2_HUMAN_Kwon_2022
+POOLED (informative datasets)      AM>=Supporting n 5680 LR(PP3) 2.79 LR(F) 1.40 joint 3.57 R 0.91 [0.82, 1.02]; PP3 given F 2.55 (1.06 points) vs not F 2.19; n(PP3&F) 1284, F frac 0.42
+POOLED (informative datasets)      AM>=Strong     n 5680 LR(PP3) 4.25 LR(F) 1.40 joint 5.05 R 0.85 [0.74, 0.98]; PP3 given F 3.60 (1.46 points) vs not F 3.49; n(PP3&F) 920, F frac 0.42
+POOLED (all; between-dataset, not used) AM>=Supporting n 8907 LR(PP3) 1.99 LR(F) 1.03 joint 1.78 R 0.87 [0.84, 0.91]; PP3 given F 1.73 (0.62 points) vs not F 2.56; n(PP3&F) 3116, F frac 0.59
+POOLED (all; between-dataset, not used) AM>=Strong     n 8907 LR(PP3) 2.85 LR(F) 1.03 joint 2.47 R 0.84 [0.80, 0.89]; PP3 given F 2.40 (1.00 points) vs not F 4.31; n(PP3&F) 2176, F frac 0.59
+DLG4_HUMAN_Faure_2021              PM1-like fraction 1.00; uninformative for R
+PITX2_HUMAN_Tsuboyama_2023_2L7M    PM1-like fraction 1.00; uninformative for R
+PPM1D_HUMAN_Miller_2022            AM>=Supporting n 2386 LR(PP3) 3.97 LR(F) 1.45 joint 4.12 R 0.72 [0.65, 0.78]; PP3 given F 2.84 (1.19 points) vs not F 1.97; n(PP3&F) 954, F frac 0.73
+PPM1D_HUMAN_Miller_2022            AM>=Strong     n 2386 LR(PP3) 5.53 LR(F) 1.45 joint 5.67 R 0.71 [0.63, 0.78]; PP3 given F 3.91 (1.55 points) vs not F 2.82; n(PP3&F) 687, F frac 0.73
+PTEN_HUMAN_Matreyek_2021           PM1-like fraction 0.98; uninformative for R
+PTEN_HUMAN_Mighell_2018            PM1-like fraction 0.99; uninformative for R
+RAF1_HUMAN_Zinkus-Boltz_2019       PM1-like fraction 0.00; uninformative for R
+SHOC2_HUMAN_Kwon_2022              AM>=Supporting n 3294 LR(PP3) 2.26 LR(F) 1.28 joint 2.48 R 0.86 [0.71, 1.04]; PP3 given F 1.94 (0.75 points) vs not F 2.20; n(PP3&F) 330, F frac 0.19
+SHOC2_HUMAN_Kwon_2022              AM>=Strong     n 3294 LR(PP3) 3.56 LR(F) 1.28 joint 3.73 R 0.82 [0.61, 1.17]; PP3 given F 2.91 (1.22 points) vs not F 3.51; n(PP3&F) 233, F frac 0.19
+YAP1_HUMAN_Araya_2012              PM1-like fraction 0.00; uninformative for R

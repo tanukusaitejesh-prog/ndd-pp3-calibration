@@ -35,11 +35,13 @@ for ds in DATASETS:
     s = store(gene)
     prot = dict(zip(s.prot_pos, s.ref_aa))
     best = max(range(-2000, 2001), key=lambda o: sum(prot.get(p + o) == w for p, w in zip(d.pos, d.wt)))
-    wt_ok = np.mean([prot.get(p + best) == w for p, w in zip(d.pos, d.wt)])
+    cov = [prot.get(p + best) for p in d.pos]
+    wt_ok = np.mean([c == w for c, w in zip(cov, d.wt) if c is not None])
+    cov = np.mean([c is not None for c in cov])
     d["prot_pos"] = d["pos"] + best
     j = d.merge(s, left_on=["prot_pos", "wt", "mt"], right_on=["prot_pos", "ref_aa", "alt_aa"], how="inner")
     j = j.assign(ds=ds, gene=gene, truth=1 - j["DMS_score_bin"].astype(int))
-    out.append(f"{ds}: {len(d)} single substitutions, offset {best:+d}, WT concordance {wt_ok:.3f}, "
+    out.append(f"{ds}: {len(d)} single substitutions, offset {best:+d}, positions in store {cov:.3f}, WT concordance where present {wt_ok:.3f}, "
                f"SNV-reachable & mapped {len(j)} (damaging {int(j.truth.sum())}); binarisation "
                f"{idx.loc[ds, 'DMS_binarization_method']}, assay {idx.loc[ds, 'coarse_selection_type']}")
     rows.append(j[["ds", "gene", "prot_pos", "wt", "mt", "DMS_score", "truth", "am", "rmc_oe", "ccr_pct"]])
@@ -75,12 +77,15 @@ def report(t, lab, boot=True):
                    f"n(PP3&F) {int(((t.am >= cut) & t.F).sum())}, F frac {t.F.mean():.2f}")
 
 
-report(x, "POOLED (all datasets)")
-report(x[x.ds != "PTEN_HUMAN_Matreyek_2021"], "POOLED (PTEN activity only)")
+# F (PM1-like) must vary within a dataset for a within-gene R; datasets with F < 5% or > 95% are uninformative
+inf = [ds for ds, g in x.groupby("ds") if 0.05 <= g.F.mean() <= 0.95]
+out.append(f"informative datasets (PM1-like fraction 5-95%): {', '.join(inf)}")
+report(x[x.ds.isin(inf)], "POOLED (informative datasets)")
+report(x, "POOLED (all; between-dataset, not used)")
 for ds, g in x.groupby("ds"):
-    if g.F.any() and (~g.F).any():
-        report(g, ds, boot=False)
+    if ds in inf:
+        report(g, ds)
     else:
-        out.append(f"{ds:34s} F is {'all' if g.F.all() else 'never'} true; R undefined")
+        out.append(f"{ds:34s} PM1-like fraction {g.F.mean():.2f}; uninformative for R")
 open("results_fullstudy/mave_truth_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out))
