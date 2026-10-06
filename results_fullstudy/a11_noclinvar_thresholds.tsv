@@ -1,0 +1,301 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+AlphaMissense	gene	all_genes	marginal	0.9858500000000001							
+AlphaMissense	gene	all_genes	within_unit	0.9961000000000001							
+AlphaMissense	rmc	all_genes	marginal	0.9858500000000001							
+AlphaMissense	rmc	all_genes	within_unit								
+AlphaMissense	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+AlphaMissense	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+AlphaMissense	rmc	not_pm1like_rmc	marginal	0.9935							
+AlphaMissense	rmc	not_pm1like_rmc	within_unit								
+AlphaMissense	win50	all_genes	marginal	0.9858500000000001							
+AlphaMissense	win50	all_genes	within_unit								
+AlphaMissense	win50_rmc	all_genes	marginal	0.9858500000000001							
+AlphaMissense	win50_rmc	all_genes	within_unit								
+SIFT	gene	all_genes	marginal								
+SIFT	gene	all_genes	within_unit								
+SIFT	rmc	all_genes	marginal								
+SIFT	rmc	all_genes	within_unit								
+SIFT	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+SIFT	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+SIFT	rmc	not_pm1like_rmc	marginal								
+SIFT	rmc	not_pm1like_rmc	within_unit								
+SIFT	win50	all_genes	marginal								
+SIFT	win50	all_genes	within_unit								
+SIFT	win50_rmc	all_genes	marginal								
+SIFT	win50_rmc	all_genes	within_unit								
+PolyPhen2_HVAR	gene	all_genes	marginal								
+PolyPhen2_HVAR	gene	all_genes	within_unit								
+PolyPhen2_HVAR	rmc	all_genes	marginal								
+PolyPhen2_HVAR	rmc	all_genes	within_unit								
+PolyPhen2_HVAR	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.01387			
+PolyPhen2_HVAR	rmc	pm1like_rmc_oe_lt_0.4	within_unit					0.01387			
+PolyPhen2_HVAR	rmc	not_pm1like_rmc	marginal								
+PolyPhen2_HVAR	rmc	not_pm1like_rmc	within_unit								
+PolyPhen2_HVAR	win50	all_genes	marginal								
+PolyPhen2_HVAR	win50	all_genes	within_unit								
+PolyPhen2_HVAR	win50_rmc	all_genes	marginal								
+PolyPhen2_HVAR	win50_rmc	all_genes	within_unit								
+MutationAssessor	gene	all_genes	marginal								
+MutationAssessor	gene	all_genes	within_unit								
+MutationAssessor	rmc	all_genes	marginal								
+MutationAssessor	rmc	all_genes	within_unit								
+MutationAssessor	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MutationAssessor	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MutationAssessor	rmc	not_pm1like_rmc	marginal								
+MutationAssessor	rmc	not_pm1like_rmc	within_unit								
+MutationAssessor	win50	all_genes	marginal								
+MutationAssessor	win50	all_genes	within_unit								
+MutationAssessor	win50_rmc	all_genes	marginal								
+MutationAssessor	win50_rmc	all_genes	within_unit								
+FATHMM	gene	all_genes	marginal								
+FATHMM	gene	all_genes	within_unit								
+FATHMM	rmc	all_genes	marginal								
+FATHMM	rmc	all_genes	within_unit								
+FATHMM	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+FATHMM	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+FATHMM	rmc	not_pm1like_rmc	marginal								
+FATHMM	rmc	not_pm1like_rmc	within_unit								
+FATHMM	win50	all_genes	marginal								
+FATHMM	win50	all_genes	within_unit								
+FATHMM	win50_rmc	all_genes	marginal								
+FATHMM	win50_rmc	all_genes	within_unit								
+PROVEAN	gene	all_genes	marginal								
+PROVEAN	gene	all_genes	within_unit								
+PROVEAN	rmc	all_genes	marginal								
+PROVEAN	rmc	all_genes	within_unit								
+PROVEAN	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+PROVEAN	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+PROVEAN	rmc	not_pm1like_rmc	marginal								
+PROVEAN	rmc	not_pm1like_rmc	within_unit								
+PROVEAN	win50	all_genes	marginal								
+PROVEAN	win50	all_genes	within_unit								
+PROVEAN	win50_rmc	all_genes	marginal								
+PROVEAN	win50_rmc	all_genes	within_unit								
+VEST4	gene	all_genes	marginal								
+VEST4	gene	all_genes	within_unit								
+VEST4	rmc	all_genes	marginal								
+VEST4	rmc	all_genes	within_unit								
+VEST4	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+VEST4	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+VEST4	rmc	not_pm1like_rmc	marginal								
+VEST4	rmc	not_pm1like_rmc	within_unit								
+VEST4	win50	all_genes	marginal								
+VEST4	win50	all_genes	within_unit								
+VEST4	win50_rmc	all_genes	marginal								
+VEST4	win50_rmc	all_genes	within_unit								
+MetaSVM	gene	all_genes	marginal								
+MetaSVM	gene	all_genes	within_unit								
+MetaSVM	rmc	all_genes	marginal								
+MetaSVM	rmc	all_genes	within_unit								
+MetaSVM	rmc	pm1like_rmc_oe_lt_0.4	marginal					0.05847000000000001			
+MetaSVM	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MetaSVM	rmc	not_pm1like_rmc	marginal								
+MetaSVM	rmc	not_pm1like_rmc	within_unit								
+MetaSVM	win50	all_genes	marginal								
+MetaSVM	win50	all_genes	within_unit								
+MetaSVM	win50_rmc	all_genes	marginal								
+MetaSVM	win50_rmc	all_genes	within_unit								
+MetaLR	gene	all_genes	marginal								
+MetaLR	gene	all_genes	within_unit								
+MetaLR	rmc	all_genes	marginal								
+MetaLR	rmc	all_genes	within_unit								
+MetaLR	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MetaLR	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MetaLR	rmc	not_pm1like_rmc	marginal								
+MetaLR	rmc	not_pm1like_rmc	within_unit								
+MetaLR	win50	all_genes	marginal								
+MetaLR	win50	all_genes	within_unit								
+MetaLR	win50_rmc	all_genes	marginal								
+MetaLR	win50_rmc	all_genes	within_unit								
+M-CAP	gene	all_genes	marginal	0.95726							
+M-CAP	gene	all_genes	within_unit								
+M-CAP	rmc	all_genes	marginal	0.95726							
+M-CAP	rmc	all_genes	within_unit								
+M-CAP	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+M-CAP	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+M-CAP	rmc	not_pm1like_rmc	marginal								
+M-CAP	rmc	not_pm1like_rmc	within_unit								
+M-CAP	win50	all_genes	marginal	0.95726							
+M-CAP	win50	all_genes	within_unit								
+M-CAP	win50_rmc	all_genes	marginal	0.95726							
+M-CAP	win50_rmc	all_genes	within_unit								
+REVEL	gene	all_genes	marginal	0.9690100000000001							
+REVEL	gene	all_genes	within_unit								
+REVEL	rmc	all_genes	marginal	0.9690100000000001							
+REVEL	rmc	all_genes	within_unit								
+REVEL	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+REVEL	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+REVEL	rmc	not_pm1like_rmc	marginal								
+REVEL	rmc	not_pm1like_rmc	within_unit								
+REVEL	win50	all_genes	marginal	0.9690100000000001							
+REVEL	win50	all_genes	within_unit								
+REVEL	win50_rmc	all_genes	marginal	0.9690100000000001							
+REVEL	win50_rmc	all_genes	within_unit								
+MutPred	gene	all_genes	marginal								
+MutPred	gene	all_genes	within_unit								
+MutPred	rmc	all_genes	marginal								
+MutPred	rmc	all_genes	within_unit								
+MutPred	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MutPred	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MutPred	rmc	not_pm1like_rmc	marginal								
+MutPred	rmc	not_pm1like_rmc	within_unit								
+MutPred	win50	all_genes	marginal								
+MutPred	win50	all_genes	within_unit								
+MutPred	win50_rmc	all_genes	marginal								
+MutPred	win50_rmc	all_genes	within_unit								
+MVP	gene	all_genes	marginal								
+MVP	gene	all_genes	within_unit								
+MVP	rmc	all_genes	marginal								
+MVP	rmc	all_genes	within_unit								
+MVP	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MVP	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MVP	rmc	not_pm1like_rmc	marginal								
+MVP	rmc	not_pm1like_rmc	within_unit								
+MVP	win50	all_genes	marginal								
+MVP	win50	all_genes	within_unit								
+MVP	win50_rmc	all_genes	marginal								
+MVP	win50_rmc	all_genes	within_unit								
+MPC	gene	all_genes	marginal	0.9470250000000001							
+MPC	gene	all_genes	within_unit								
+MPC	rmc	all_genes	marginal	0.9470250000000001							
+MPC	rmc	all_genes	within_unit								
+MPC	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+MPC	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+MPC	rmc	not_pm1like_rmc	marginal								
+MPC	rmc	not_pm1like_rmc	within_unit								
+MPC	win50	all_genes	marginal	0.9470250000000001							
+MPC	win50	all_genes	within_unit								
+MPC	win50_rmc	all_genes	marginal	0.9470250000000001							
+MPC	win50_rmc	all_genes	within_unit								
+PrimateAI	gene	all_genes	marginal	0.9399350000000001							
+PrimateAI	gene	all_genes	within_unit								
+PrimateAI	rmc	all_genes	marginal	0.9399350000000001							
+PrimateAI	rmc	all_genes	within_unit								
+PrimateAI	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+PrimateAI	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+PrimateAI	rmc	not_pm1like_rmc	marginal								
+PrimateAI	rmc	not_pm1like_rmc	within_unit								
+PrimateAI	win50	all_genes	marginal	0.9399350000000001							
+PrimateAI	win50	all_genes	within_unit								
+PrimateAI	win50_rmc	all_genes	marginal	0.9399350000000001							
+PrimateAI	win50_rmc	all_genes	within_unit								
+DEOGEN2	gene	all_genes	marginal	0.9731050000000001							
+DEOGEN2	gene	all_genes	within_unit								
+DEOGEN2	rmc	all_genes	marginal	0.9731050000000001							
+DEOGEN2	rmc	all_genes	within_unit								
+DEOGEN2	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+DEOGEN2	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+DEOGEN2	rmc	not_pm1like_rmc	marginal								
+DEOGEN2	rmc	not_pm1like_rmc	within_unit								
+DEOGEN2	win50	all_genes	marginal	0.9731050000000001							
+DEOGEN2	win50	all_genes	within_unit								
+DEOGEN2	win50_rmc	all_genes	marginal	0.9731050000000001							
+DEOGEN2	win50_rmc	all_genes	within_unit								
+BayesDel_addAF	gene	all_genes	marginal	0.9246800000000001							
+BayesDel_addAF	gene	all_genes	within_unit								
+BayesDel_addAF	rmc	all_genes	marginal	0.9246800000000001							
+BayesDel_addAF	rmc	all_genes	within_unit								
+BayesDel_addAF	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+BayesDel_addAF	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+BayesDel_addAF	rmc	not_pm1like_rmc	marginal								
+BayesDel_addAF	rmc	not_pm1like_rmc	within_unit								
+BayesDel_addAF	win50	all_genes	marginal	0.9246800000000001							
+BayesDel_addAF	win50	all_genes	within_unit								
+BayesDel_addAF	win50_rmc	all_genes	marginal	0.9246800000000001							
+BayesDel_addAF	win50_rmc	all_genes	within_unit								
+BayesDel_noAF	gene	all_genes	marginal								
+BayesDel_noAF	gene	all_genes	within_unit								
+BayesDel_noAF	rmc	all_genes	marginal								
+BayesDel_noAF	rmc	all_genes	within_unit								
+BayesDel_noAF	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+BayesDel_noAF	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+BayesDel_noAF	rmc	not_pm1like_rmc	marginal								
+BayesDel_noAF	rmc	not_pm1like_rmc	within_unit								
+BayesDel_noAF	win50	all_genes	marginal								
+BayesDel_noAF	win50	all_genes	within_unit								
+BayesDel_noAF	win50_rmc	all_genes	marginal								
+BayesDel_noAF	win50_rmc	all_genes	within_unit								
+ClinPred	gene	all_genes	marginal								
+ClinPred	gene	all_genes	within_unit								
+ClinPred	rmc	all_genes	marginal								
+ClinPred	rmc	all_genes	within_unit								
+ClinPred	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+ClinPred	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+ClinPred	rmc	not_pm1like_rmc	marginal								
+ClinPred	rmc	not_pm1like_rmc	within_unit								
+ClinPred	win50	all_genes	marginal								
+ClinPred	win50	all_genes	within_unit								
+ClinPred	win50_rmc	all_genes	marginal								
+ClinPred	win50_rmc	all_genes	within_unit								
+LIST-S2	gene	all_genes	marginal	0.982205							
+LIST-S2	gene	all_genes	within_unit								
+LIST-S2	rmc	all_genes	marginal	0.982205							
+LIST-S2	rmc	all_genes	within_unit								
+LIST-S2	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+LIST-S2	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+LIST-S2	rmc	not_pm1like_rmc	marginal								
+LIST-S2	rmc	not_pm1like_rmc	within_unit								
+LIST-S2	win50	all_genes	marginal	0.982205							
+LIST-S2	win50	all_genes	within_unit								
+LIST-S2	win50_rmc	all_genes	marginal	0.982205							
+LIST-S2	win50_rmc	all_genes	within_unit								
+CADD	gene	all_genes	marginal								
+CADD	gene	all_genes	within_unit								
+CADD	rmc	all_genes	marginal								
+CADD	rmc	all_genes	within_unit								
+CADD	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+CADD	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+CADD	rmc	not_pm1like_rmc	marginal								
+CADD	rmc	not_pm1like_rmc	within_unit								
+CADD	win50	all_genes	marginal								
+CADD	win50	all_genes	within_unit								
+CADD	win50_rmc	all_genes	marginal								
+CADD	win50_rmc	all_genes	within_unit								
+fathmm-XF	gene	all_genes	marginal								
+fathmm-XF	gene	all_genes	within_unit								
+fathmm-XF	rmc	all_genes	marginal								
+fathmm-XF	rmc	all_genes	within_unit								
+fathmm-XF	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+fathmm-XF	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+fathmm-XF	rmc	not_pm1like_rmc	marginal								
+fathmm-XF	rmc	not_pm1like_rmc	within_unit								
+fathmm-XF	win50	all_genes	marginal								
+fathmm-XF	win50	all_genes	within_unit								
+fathmm-XF	win50_rmc	all_genes	marginal								
+fathmm-XF	win50_rmc	all_genes	within_unit								
+Eigen	gene	all_genes	marginal								
+Eigen	gene	all_genes	within_unit								
+Eigen	rmc	all_genes	marginal								
+Eigen	rmc	all_genes	within_unit								
+Eigen	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+Eigen	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Eigen	rmc	not_pm1like_rmc	marginal								
+Eigen	rmc	not_pm1like_rmc	within_unit								
+Eigen	win50	all_genes	marginal								
+Eigen	win50	all_genes	within_unit								
+Eigen	win50_rmc	all_genes	marginal								
+Eigen	win50_rmc	all_genes	within_unit								
+Eigen-PC	gene	all_genes	marginal	0.9578250000000001							
+Eigen-PC	gene	all_genes	within_unit								
+Eigen-PC	rmc	all_genes	marginal	0.9578250000000001							
+Eigen-PC	rmc	all_genes	within_unit								
+Eigen-PC	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+Eigen-PC	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Eigen-PC	rmc	not_pm1like_rmc	marginal								
+Eigen-PC	rmc	not_pm1like_rmc	within_unit								
+Eigen-PC	win50	all_genes	marginal	0.9578250000000001							
+Eigen-PC	win50	all_genes	within_unit								
+Eigen-PC	win50_rmc	all_genes	marginal	0.9578250000000001							
+Eigen-PC	win50_rmc	all_genes	within_unit								
+phyloP100way	gene	all_genes	marginal								
+phyloP100way	gene	all_genes	within_unit								
+phyloP100way	rmc	all_genes	marginal								
+phyloP100way	rmc	all_genes	within_unit								
+phyloP100way	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+phyloP100way	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+phyloP100way	rmc	not_pm1like_rmc	marginal								
+phyloP100way	rmc	not_pm1like_rmc	within_unit								
+phyloP100way	win50	all_genes	marginal								
+phyloP100way	win50	all_genes	within_unit								
+phyloP100way	win50_rmc	all_genes	marginal								
+phyloP100way	win50_rmc	all_genes	within_unit								

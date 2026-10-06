@@ -266,11 +266,20 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 
 **Leakage.** Retention did not differ between predictors trained on clinical labels and label-free predictors (median r(D2) 0.29 against 0.37; Mann–Whitney p = 0.48). Leakage would in any case inflate, not reduce, within-gene evidence.
 
-**Robustness** (Supplementary Note 2, ⟨pending⟩):
+**Robustness** (Supplementary Note 2; median retention after gene and window, DD, 24 informative predictors):
 
-- perturbing CpG-transition rates by ±9%;
-- excluding all ClinVar P/LP sites;
-- stratifying by gene constraint, mechanism and constraint-region coverage.
+| Analysis | Median r(D2) | AlphaMissense within-window LR |
+|---|---|---|
+| Baseline | 0.33 | 2.19 |
+| CpG-transition rates × 0.919 | 0.33 | 2.17 |
+| CpG-transition rates × 1.088 | 0.33 | 2.17 |
+| Excluding ClinVar P/LP sites | ⟨noclinvar⟩ | ⟨noclinvar⟩ |
+
+- **Mutation-rate model error does not drive the result.**
+- **It is not an artefact of constraint-region coverage.** Retention was similar in genes with ≥ 2 constraint regions (0.32) and in genes without a regional split (0.37), where the within-gene to within-window drop cannot come from constraint regions.
+- **It did not depend on gene constraint** (s_het high 0.35, low 0.36).
+
+**Where PP3 adds the most.** Within DDG2P monoallelic genes, predictors retained more evidence beyond position: median r(D2) 0.47 in LoF genes and 0.57 in non-LoF (dominant-negative and gain-of-function) genes, where fewer than a third of predictors lost most of their evidence. Part of this is mechanical: within a curated gene set the marginal LR is smaller, so less of it is gene identity. It nonetheless indicates that within established NDD genes, and particularly for non-LoF mechanisms, predictor evidence is least redundant with position.
 
 ### Q4. What does this imply for combining PP3 with PM1 and PP2?
 **Direct overlap test** (DD, AlphaMissense, PM1-like flag): R = 0.44 [0.41, 0.48], in the pre-committed "substantial overlap" tier (upper bound < 0.85). The joint LR was 15.0, against 33.9 if the two were multiplied.
@@ -281,7 +290,39 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
   - The autism cohort replicated the primary result in the same tier: R 0.56 [0.44, 0.67]; PP3 at PM1-like sites 0.59 points.
   - In the public cohort (descriptive), R was 0.67 [0.42, 0.95].
   - The overlap was tool-dependent. For REVEL × PM1-like, R was 0.57 [0.52, 0.61] in DD but 0.82 [0.65, 1.00] in autism.
-- Results for REVEL, VEST4, the strict PM1 definition and the PP2-like flag are in Table 2 (⟨pending⟩).
+- Results for REVEL, VEST4, the strict PM1 definition and the PP2-like flag are in Table 2.
+
+**Table 2. Direct overlap test** (PP3 at the ClinGen Supporting threshold; R = 1 means additive).
+
+| Predictor | Flag | Cohort | R [95% CI] | PP3 LR given flag | Points (2.406 / 2.08 scale) | PP3 LR without flag |
+|---|---|---|---|---|---|---|
+| AlphaMissense | PM1-like | DD | 0.44 [0.41, 0.48] | 1.85 | 0.70 / 0.84 | 3.67 |
+| AlphaMissense | PM1-like | autism | 0.56 [0.44, 0.67] | 1.68 | 0.59 / 0.71 | 2.50 |
+| AlphaMissense | PM1-like | public3 | 0.67 [0.42, 0.95] | 1.76 | 0.64 / 0.77 | 2.08 |
+| AlphaMissense | PM1-strict | DD | 0.37 [0.34, 0.41] | 1.57 | 0.51 / 0.61 | 4.07 |
+| AlphaMissense | PM1-strict | autism | 0.50 [0.39, 0.62] | 1.51 | 0.47 / 0.57 | 2.88 |
+| AlphaMissense | PM1-strict | public3 | 0.55 [0.33, 0.83] | 1.45 | 0.42 / 0.50 | 2.45 |
+| AlphaMissense | PP2-like | DD | 0.61 [0.56, 0.66] | 2.56 | 1.07 / 1.28 | 3.96 |
+| AlphaMissense | PP2-like | autism | 0.65 [0.52, 0.77] | 1.96 | 0.77 / 0.92 | 2.81 |
+| AlphaMissense | PP2-like | public3 | 0.78 [0.48, 1.09] | 2.03 | 0.81 / 0.96 | 2.17 |
+| REVEL | PM1-like | DD | 0.57 [0.52, 0.61] | 2.43 | 1.01 / 1.21 | 3.68 |
+| REVEL | PM1-like | autism | 0.82 [0.65, 1.00] | 2.00 | 0.79 / 0.95 | 1.75 |
+| REVEL | PM1-like | public3 | 0.78 [0.51, 1.13] | 2.25 | 0.92 / 1.11 | 2.46 |
+| REVEL | PM1-strict | DD | 0.48 [0.44, 0.52] | 2.05 | 0.82 / 0.98 | 4.15 |
+| REVEL | PM1-strict | autism | 0.73 [0.55, 0.96] | 1.78 | 0.66 / 0.79 | 2.27 |
+| REVEL | PM1-strict | public3 | 0.54 [0.28, 0.87] | 1.56 | 0.51 / 0.61 | 2.83 |
+| REVEL | PP2-like | DD | 0.73 [0.67, 0.79] | 3.10 | 1.29 / 1.55 | 3.85 |
+| REVEL | PP2-like | autism | 0.93 [0.74, 1.13] | 2.27 | 0.93 / 1.12 | 1.76 |
+| REVEL | PP2-like | public3 | 1.02 [0.67, 1.48] | 2.93 | 1.23 / 1.47 | 2.09 |
+| VEST4 | PM1-like | DD | 0.67 [0.62, 0.71] | 2.00 | 0.79 / 0.95 | 2.72 |
+| VEST4 | PM1-like | autism | 0.77 [0.62, 0.91] | 1.69 | 0.60 / 0.71 | 1.98 |
+| VEST4 | PM1-like | public3 | 0.75 [0.48, 1.02] | 1.85 | 0.70 / 0.84 | 2.35 |
+| VEST4 | PM1-strict | DD | 0.60 [0.55, 0.65] | 1.78 | 0.66 / 0.79 | 2.96 |
+| VEST4 | PM1-strict | autism | 0.79 [0.62, 0.98] | 1.75 | 0.64 / 0.76 | 2.12 |
+| VEST4 | PM1-strict | public3 | 0.63 [0.38, 0.96] | 1.57 | 0.51 / 0.61 | 2.45 |
+| VEST4 | PP2-like | DD | 0.77 [0.71, 0.83] | 2.30 | 0.95 / 1.14 | 2.86 |
+| VEST4 | PP2-like | autism | 0.80 [0.66, 0.95] | 1.77 | 0.65 / 0.78 | 2.08 |
+| VEST4 | PP2-like | public3 | 0.74 [0.48, 0.98] | 1.83 | 0.69 / 0.82 | 2.53 |
 
 **Per-predictor guidance** (Supplementary Table 1). Multiplying 4 published points by each predictor's retention gives the points a predictor can justify when combined with position-based criteria:
 
@@ -371,11 +412,11 @@ The objective rewarded gene-level information.
 ## Tables and figures
 
 - **Table 1.** Pre-specified tests and their outcomes, with denominators and intervals.
-- **Table 2.** Direct overlap test: R and implied PP3 points for AlphaMissense, REVEL and VEST4 × PM1-like, PM1-strict and PP2-like flags, in DD, autism and the public cohort. ⟨pending⟩
+- **Table 2.** Direct overlap test: R and implied PP3 points for AlphaMissense, REVEL and VEST4 × PM1-like, PM1-strict and PP2-like flags, in DD, autism and the public cohort (shown in Results, Q4).
 - **Figure 1.** Design: de novo excess, conditioning levels, retention.
 - **Figure 2.** Evidence ladder: top-2% LR by level for AlphaMissense (DD, autism), popEVE (DDD) and MetaRNN.
 - **Figure 3.** Per-predictor retention in three settings.
-- **Figure 4.** Direct overlap test (replaces the ClinVar counterfactual as the main clinical figure). ⟨pending⟩
+- **Figure 4.** Direct overlap test (`fig4_overlap.png`). R with 95% bootstrap intervals for AlphaMissense, REVEL and VEST4 PP3 combined with PM1-like, PM1-strict and PP2-like flags, in DD (primary), autism (replication) and the public cohort (descriptive). The dashed line is additivity (R = 1), which the points framework assumes.
 - **Figure 5.** Models: marginal against within-gene evidence.
 
 **Supplementary:**

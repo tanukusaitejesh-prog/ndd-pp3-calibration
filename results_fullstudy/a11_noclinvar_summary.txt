@@ -1,0 +1,1 @@
+a11_noclinvar [all_genes] informative 22; median r gene 0.632, rmc 0.383, win50 0.340, win50_rmc 0.316; share r(win50) < 0.5 = 0.73; AlphaMissense A 9.70 gene 3.70, rmc 2.47, win50 2.07, win50_rmc 1.97
