@@ -1,4 +1,4 @@
-# Missense predictors add little evidence beyond gene and protein position for de novo variants: implications for combining PP3 with PM1 and PP2
+# Computational evidence (PP3) and hotspot/domain evidence (PM1) are not additive for de novo missense variants in neurodevelopmental disorders
 
 *Draft 2, 6 October 2026. This draft is restructured in response to two external reviews; the point-by-point responses are in `REVIEW_RESPONSE.md`. Values marked ⟨pending⟩ come from analyses that are running and will be filled in from the committed outputs.*
 
@@ -8,29 +8,13 @@
 
 ## Abstract
 
-**Purpose.** ACMG/AMP classification adds computational evidence (PP3) to gene- and region-level evidence (PP2, PM1). We asked how much evidence missense predictors carry once the gene and the protein position of a variant are known, and what that implies for combining these criteria.
+**Purpose.** ACMG/AMP classification adds computational evidence (PP3) to gene- and region-level evidence (PP2, PM1) as if they were independent. We measured, without variant-level clinical labels, how much evidence missense predictors carry beyond gene and protein position, and whether PP3 and PM1/PP2 evidence is additive.
 
-**Methods.** Likelihood ratios (LRs) were estimated from the excess of de novo missense variants over a per-site mutation-rate expectation, without variant-level clinical labels. Three cohorts were used:
+**Methods.** Likelihood ratios (LRs) were estimated from the excess of de novo missense variants over a mutation-rate expectation in three cohorts: 31,058 developmental-disorder trios, 12,316 autism probands, and 4,256 public trios with other phenotypes. For 55 predictors we estimated the share of log-evidence retained after conditioning on gene and on 50-residue windows. We tested additivity directly as R, the joint LR divided by the product of the separate LRs. The plan and its amendments were pre-specified and timestamped.
 
-- 31,058 developmental-disorder (DD) trios;
-- 12,316 autism probands;
-- a public multi-phenotype set of 4,256 trios.
+**Results.** Predictors retained a median 0.56 of their log-evidence within gene and 0.33 within windows (autism 0.37; public cohort 0.28). A random partition with the same number of units retained 0.51, so the loss reflects protein position. The pre-specified primary criterion (≥ 75% of predictors losing most of their evidence) was not met under the original position control (62%) and was borderline under fixed windows (73–93%). PP3 and PM1-like evidence were not additive: for AlphaMissense, R was 0.44 [0.41–0.48], replicated in autism (0.56 [0.44–0.67]). At PM1-like sites, PP3 carried 0.6–0.7 points. Models trained on the de novo excess were equivalent to AlphaMissense within gene in two cohorts.
 
-We measured, for 55 predictors and for four models we trained on the same signal, the share of each predictor's log-evidence that remains after conditioning on gene, 50-residue protein windows and regional constraint ("retention"). We tested directly whether evidence from PP3 and PM1-like or PP2-like flags is additive. The analysis plan and its amendments were pre-specified and timestamped.
-
-**Results.**
-
-- **Gene identity and position account for most of the evidence.** Informative predictors retained a median of 0.56 of their log-evidence within gene, and 0.33 within 50-residue windows. AlphaMissense retained 0.30 [95% CI 0.28–0.32].
-- **This is position, not small-unit conditioning.**
-  - A random partition with the same number of units retained 0.51; the paired difference was 0.21 [0.19–0.23], positive for 24 of 24 predictors.
-  - Curated InterPro domains retained 0.33.
-- **Retention replicated** in the autism cohort (median 0.37), in 17 newer predictors (0.31) and in the public cohort (0.28).
-- **Robustness:** retention was stable across score thresholds (and ⟨pending: under mutation-rate perturbation⟩), and the sibling negative control was null.
-- **Supporting evidence after full adjustment:** none of the newer predictors (0/17) retained calibrated Supporting evidence after gene, position and constraint, and none in either replication cohort (0/36 each). In DD, 2/36 did under the originally pre-specified position control.
-- **Direct overlap test:** in DD, the LR of AlphaMissense PP3 and a PM1-like flag together was ⟨pending⟩ of the product of their separate LRs. Implied PP3 evidence at PM1-like sites was ⟨pending⟩ points.
-- **Models trained on the de novo excess** matched AlphaMissense within gene but did not exceed it significantly in any cohort.
-
-**Conclusion.** For de novo missense variants, most predictor evidence is information that gene- and region-level criteria already carry. PP3 should be credited conditionally when PM1 or PP2 is applied. Per-predictor retention shares provide the size of the adjustment.
+**Conclusion.** For de novo missense variants, PP3 and PM1 largely measure the same thing; PP3 should be credited conditionally when PM1 is applied.
 
 ---
 
@@ -42,7 +26,7 @@ We measured, for 55 predictors and for four models we trained on the same signal
 - location in a mutational hotspot or critical functional domain (PM1);
 - membership of a gene with a low rate of benign missense variation (PP2).
 
-**How the pieces are combined.** In the Bayesian points framework the evidence is additive in log-likelihood-ratio units, with a single prior probability for every gene. The ClinGen Sequence Variant Interpretation working group calibrated predictor thresholds to LRs using ClinVar (Pejaver et al. 2022; Bergquist et al. 2025) and, recognising that PP3 and PM1 can describe the same property, capped their combination at Strong.
+**How the pieces are combined.** In the Bayesian points framework the evidence is additive in log-likelihood-ratio units, with a single prior probability for every gene. The ClinGen Sequence Variant Interpretation working group calibrated predictor thresholds to LRs using ClinVar (Pejaver et al. 2022; Bergquist et al. 2025) and, recognising that PP3 and PM1 can describe the same property, capped their combination at Strong (Stenton et al. 2024). Other guidance differs: CanVIG-UK permits PM1 and PP3 together, regarding regional enrichment and in silico prediction as largely different evidence types (Garrett et al. 2021). Genome-wide calibration also masks heterogeneous performance across genes (Tejura et al. 2024), which has motivated gene-level calibration (Badonyi & Marsh 2025; Chen et al. 2026).
 
 **What is not known: how much the evidence overlaps.** A predictor that has learned which genes are intolerant, or which domains are hotspots, separates pathogenic from benign variants pooled across genes. Yet it may add little once the gene and the domain are known. ClinVar-based calibration cannot easily measure this:
 
@@ -267,8 +251,10 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 | DD, 36 predictors (primary; D1 position control) | 24 | 15 (62%): criterion not met | — | 2/36 (E1) |
 | DD, D2 position control | 24 | 19 (79%) | 71–88% | 0/36 (E2) |
 | Autism, 36 predictors (D2 pre-specified) | 20 | 16 (80%) | 60–95% | 0/36 |
-| DD, 17 newer predictors (D2 pre-specified) | 14 | 13 (93%) | 93–100% | 0/17 |
+| DD, 17 newer predictors (D2 pre-specified) | 14 | 13 (93%) | 93–100%\* | 0/17 |
 | Public cohort, 36 predictors (descriptive; adequately powered) | 15 | 11 (73%) | — | 0/36 (E2 and E1) |
+
+\*With 13 of 14 predictors below 0.5, the bootstrap share can only take a few values (13/14 or 14/14 in most replicates), so the percentile interval sits at the point estimate.
 
 **Reading the binary criterion honestly.**
 
@@ -276,7 +262,7 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 - Under D2 the point estimates exceed 75% in every cohort, but the intervals for DD and autism include 75%.
 - **The continuous measure is the more informative result, and it is stable.** Median retention after gene and position was 0.33 (DD), 0.37 (autism), 0.31 (newer predictors) and 0.28 (public cohort). The same four predictors (ClinPred, VEST4, MutationAssessor, MutPred) retained the most evidence in the DD, autism and public cohorts. Per-predictor retention correlated across cohorts (Spearman ρ 0.76).
 
-**Negative control.** In 4,051 unaffected siblings, no predictor showed calibrated evidence at any level (0/37).
+**Negative control.** In 4,051 unaffected siblings, no predictor showed calibrated evidence at any level (0 of 37: the 36 dbNSFP 4.1a predictors plus AlphaMissense).
 
 **Leakage.** Retention did not differ between predictors trained on clinical labels and label-free predictors (median r(D2) 0.29 against 0.37; Mann–Whitney p = 0.48). Leakage would in any case inflate, not reduce, within-gene evidence.
 
@@ -287,10 +273,14 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 - stratifying by gene constraint, mechanism and constraint-region coverage.
 
 ### Q4. What does this imply for combining PP3 with PM1 and PP2?
-**Direct overlap test** (DD, AlphaMissense, PM1-like flag): R = ⟨pending⟩ [⟨pending⟩].
+**Direct overlap test** (DD, AlphaMissense, PM1-like flag): R = 0.44 [0.41, 0.48], in the pre-committed "substantial overlap" tier (upper bound < 0.85). The joint LR was 15.0, against 33.9 if the two were multiplied.
 
-- Applying PP3 at a PM1-like site corresponds to ⟨pending⟩ points of evidence, against 1–4 points from the published intervals.
-- The autism cohort ⟨pending: replicated / did not replicate⟩.
+- **At PM1-like sites,** AlphaMissense PP3 corresponds to LR 1.85: 0.70 points on the ClinGen scale (2.406 per point) or 0.84 on the Tavtigian scale (2.08 per point), against 1–4 points from the published intervals. Away from PM1-like sites it keeps LR 3.66.
+- **Dose-response:** overlap was stronger for the strict PM1 definition (o/e < 0.2; R 0.37 [0.34, 0.41]) and weaker for PP2-like genes (0.61 [0.56, 0.66]).
+- **Replication:**
+  - The autism cohort replicated the primary result in the same tier: R 0.56 [0.44, 0.67]; PP3 at PM1-like sites 0.59 points.
+  - In the public cohort (descriptive), R was 0.67 [0.42, 0.95].
+  - The overlap was tool-dependent. For REVEL × PM1-like, R was 0.57 [0.52, 0.61] in DD but 0.82 [0.65, 1.00] in autism.
 - Results for REVEL, VEST4, the strict PM1 definition and the PP2-like flag are in Table 2 (⟨pending⟩).
 
 **Per-predictor guidance** (Supplementary Table 1). Multiplying 4 published points by each predictor's retention gives the points a predictor can justify when combined with position-based criteria:
@@ -306,7 +296,9 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 - 30% of PP3-positive (AlphaMissense) P/LP variants lie at PM1-like sites.
 - This enrichment is expected, partly because classifications use PP3 and PM1 themselves, so it is not used as evidence of overlap.
 - If PP3 and PM1 were combined without ClinGen's cap, PP3 + PM1 alone would reach Likely Pathogenic for 14,343 VUS (AlphaMissense). The cap prevents this.
-- Sensitivity to PM1 strength, to the strict PM1 definition and to restriction to DDG2P monoallelic genes is in Supplementary Table 3 (⟨pending⟩).
+- **The overlap is concentrated in NDD genes.** In DDG2P monoallelic genes, 37.3% of AlphaMissense PP3-positive VUS lie at PM1-like sites, against 13.2% across all genes. Without the cap, PP3 + PM1 at Moderate alone would reach Likely Pathogenic for 7,101 VUS in these genes (13,245 with PM1 at Strong).
+- **Stricter PM1 definition** (o/e < 0.2, Chao et al.'s Moderate level): the corresponding numbers are 9.7% and 2,148.
+- **The cap and the conditional rule** both prevent PP3 + PM1 alone from reaching Likely Pathogenic in every setting (Supplementary Table 3).
 
 ### Q5. Can a model trained on the de novo excess do better?
 **Genome-wide null (v1, v2).** Models trained against a genome-wide mutational null had the largest marginal LRs in the study (v2: 27.3), but less within-gene evidence than AlphaMissense:
@@ -328,7 +320,8 @@ The objective rewarded gene-level information.
 | v4 (all DD centres; evaluated outside DD only) | Autism | 1.09 [0.94, 1.29] |
 | v4 | Public cohort | 1.30 [0.98, 1.91] |
 
-- Equivalence within [0.80, 1.25] was ⟨pending⟩.
+- **Equivalence** (two one-sided tests, 90% CI within [0.80, 1.25]) was shown for v3 in DD (0.93 [0.89, 0.99]) and in autism (1.03 [0.91, 1.17]), and for v4 in autism (1.09 [0.96, 1.25]).
+- **In the public cohort,** v4's 90% interval lay above 1 (1.30 [1.03, 1.80]). As the fifth, post hoc model comparison, this is exploratory.
 - The point estimates in the two independent cohorts favour the models, but no comparison was significant. These are the fourth and fifth model comparisons, two of them post hoc.
 - **Conclusion for Q5:** a label-free model trained with a within-gene objective is at least comparable to AlphaMissense. Whether it is better requires a pre-registered test in a large independent NDD cohort.
 
@@ -345,7 +338,11 @@ The objective rewarded gene-level information.
 1. **Credit PP3 conditionally** when PM1 or PP2 is applied. The direct overlap test and the per-predictor retention shares give the size of the adjustment.
 2. **Use gene-specific priors or calibrations** and condition predictor evidence on them. Chen et al. (2026) take this route with ClinVar.
 
-ClinGen's cap of PP3 + PM1 at Strong is directionally consistent with our results. Our estimates suggest that for most predictors the combination justifies less than the cap allows, and for a few predictors (VEST4, MutPred) about as much. Expert-panel specifications that fold domain location into the computational criterion, as the ENIGMA BRCA1/BRCA2 VCEP does, are also consistent with the result.
+**Additivity of PP3 and PM1.** The direct test bears on a disagreement in current guidance.
+
+- CanVIG-UK permits PM1 and PP3 together because they are regarded as largely different evidence types.
+- For de novo missense variants, our data do not support that premise. The joint evidence of AlphaMissense PP3 and a PM1-like flag was about half the product of their separate LRs, in three cohorts.
+- ClinGen's cap of PP3 + PM1 at Strong (Stenton et al. 2024) is directionally consistent with our results. Our estimates suggest that for most predictors the combination justifies less than the cap allows, and for a few predictors (VEST4, MutPred) about as much. Expert-panel specifications that fold domain location into the computational criterion, as the ENIGMA BRCA1/BRCA2 VCEP does, are also consistent with the result.
 
 **Relation to previous work.**
 
@@ -406,7 +403,12 @@ ClinGen's cap of PP3 + PM1 at Strong is directionally consistent with our result
 - Orenbuch R, et al. popEVE. *Nat Genet* 2025.
 - Pathak. PhD thesis, University of Edinburgh, 2026 (Edinburgh Research Archive).
 - Pejaver V, et al. *Am J Hum Genet* 2022.
-- Richards S, et al. *Genet Med* 2015; Tavtigian SV, et al. *Hum Mutat* 2020.
+- Richards S, et al. *Genet Med* 2015; Tavtigian SV, et al. *Genet Med* 2018 (Bayesian framework); Tavtigian SV, et al. *Hum Mutat* 2020 (points).
+- Stenton SL, et al. Assessment of the evidence yield for the calibrated PP3/BP4 computational recommendations. *Genet Med* 2024 (states the PP3 + PM1 cap at Strong).
+- Garrett A, et al. Combining evidence for and against pathogenicity for variants in cancer susceptibility genes: CanVIG-UK consensus recommendations. *J Med Genet* 2021;58:297.
+- Tejura M, et al. Calibration of variant effect predictors on genome-wide data masks heterogeneous performance across genes. *Am J Hum Genet* 2024.
+- Badonyi M, Marsh JA. acmgscaler: standardized gene-level variant effect score calibration within the ACMG/AMP framework. 2025 (PMC12496131).
+- Grimm DG, et al. The evaluation of tools used to predict the impact of missense variants is hindered by two types of circularity. *Hum Mutat* 2015.
 - Seplyarskiy V, et al. Roulette. *Nat Genet* 2023.
 - Turner TN, et al. denovo-db. *Nucleic Acids Res* 2017.
 - Zhou X, et al. *Nat Genet* 2022. doi:10.1038/s41588-022-01148-2.
