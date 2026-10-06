@@ -1,0 +1,9 @@
+conditional PP3 points at PM1-like sites by tier: {1: 0.0, 2: 0.0, 3: 1.1031224730884062, 4: 1.1031224730884062}
+uncapped    Pathogenic       :   2438 de novos, expected background    385.2, fraction pathogenic 0.842
+uncapped    Likely pathogenic:   5686 de novos, expected background   3836.3, fraction pathogenic 0.325
+capped      Pathogenic       :      0 de novos, expected background      0.0, fraction pathogenic nan
+capped      Likely pathogenic:   8124 de novos, expected background   4221.5, fraction pathogenic 0.480
+conditional Pathogenic       :      0 de novos, expected background      0.0, fraction pathogenic nan
+conditional Likely pathogenic:   8124 de novos, expected background   4221.5, fraction pathogenic 0.480
+de novos changing class uncapped->capped: 2,438
+de novos changing class uncapped->conditional: 2,438

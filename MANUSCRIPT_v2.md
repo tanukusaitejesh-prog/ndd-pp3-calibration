@@ -324,6 +324,13 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 | VEST4 | PP2-like | autism | 0.80 [0.66, 0.95] | 1.77 | 0.65 / 0.78 | 2.08 |
 | VEST4 | PP2-like | public3 | 0.74 [0.48, 0.98] | 1.83 | 0.69 / 0.82 | 2.53 |
 
+**Overlap within disease genes** (A13). Where PP3 is used clinically, within known disease genes, the overlap persisted:
+
+- **Within DDG2P monoallelic genes, comparing variants within the same gene:** R for AlphaMissense × PM1-like was 0.69 [0.68, 0.70] in DD and 0.74 [0.68, 0.80] in autism.
+- **Across DDG2P genes:** R was 0.53 in DD and 0.59 in autism.
+- **Within gene across all genes:** R was 0.75 [0.71, 0.78] in DD but 0.96 [0.84, 1.08] in autism.
+- **Reading:** part of the overlap is between genes, but a substantial within-gene component remains in disease genes.
+
 **Per-predictor guidance** (Supplementary Table 1). Multiplying 4 published points by each predictor's retention gives the points a predictor can justify when combined with position-based criteria:
 
 | Predictor | Points |
