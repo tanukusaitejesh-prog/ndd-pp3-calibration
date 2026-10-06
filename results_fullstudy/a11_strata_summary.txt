@@ -1,0 +1,6 @@
+a11_strata [shet_high] informative 23; median r gene 0.621, rmc 0.408, win50 0.349, win50_rmc 0.333; share r(win50) < 0.5 = 0.78; AlphaMissense A 7.08 gene 4.09, rmc 2.69, win50 2.26, win50_rmc 2.15
+a11_strata [shet_low] informative 24; median r gene 0.608, rmc 0.396, win50 0.364, win50_rmc 0.343; share r(win50) < 0.5 = 0.79; AlphaMissense A 12.16 gene 4.06, rmc 2.56, win50 2.17, win50_rmc 2.08
+a11_strata [ddg2p_LoF] informative 23; median r gene 0.786, rmc 0.550, win50 0.466, win50_rmc 0.428; share r(win50) < 0.5 = 0.70; AlphaMissense A 9.02 gene 5.63, rmc 2.69, win50 2.49, win50_rmc 2.25
+a11_strata [ddg2p_nonLoF] informative 14; median r gene 0.984, rmc 0.618, win50 0.566, win50_rmc 0.544; share r(win50) < 0.5 = 0.29; AlphaMissense A 9.24 gene 5.00, rmc 3.04, win50 2.49, win50_rmc 2.35
+a11_strata [rmc_multi] informative 24; median r gene 0.614, rmc 0.373, win50 0.323, win50_rmc 0.305; share r(win50) < 0.5 = 0.83; AlphaMissense A 9.58 gene 4.39, rmc 2.58, win50 2.25, win50_rmc 2.13
+a11_strata [rmc_single] informative 19; median r gene 0.447, rmc 0.447, win50 0.367, win50_rmc 0.367; share r(win50) < 0.5 = 0.89; AlphaMissense A 11.32 gene 2.54, rmc 2.54, win50 1.73, win50_rmc 1.73

@@ -969,3 +969,333 @@ ClinPred	win50	shet_low	marginal	0.955675
 ClinPred	win50	shet_low	within_unit								
 ClinPred	win50	ddg2p_LoF	marginal	0.88083							
 ClinPred	win50	ddg2p_LoF	within_unit								
+ClinPred	win50	ddg2p_nonLoF	marginal	0.88083				0.10872000000000001			
+ClinPred	win50	ddg2p_nonLoF	within_unit								
+ClinPred	win50	rmc_multi	marginal	0.90266							
+ClinPred	win50	rmc_multi	within_unit								
+ClinPred	win50	rmc_single	marginal								
+ClinPred	win50	rmc_single	within_unit								
+ClinPred	win50_rmc	shet_high	marginal	0.89175							
+ClinPred	win50_rmc	shet_high	within_unit								
+ClinPred	win50_rmc	shet_low	marginal	0.955675							
+ClinPred	win50_rmc	shet_low	within_unit								
+ClinPred	win50_rmc	ddg2p_LoF	marginal	0.88083							
+ClinPred	win50_rmc	ddg2p_LoF	within_unit								
+ClinPred	win50_rmc	ddg2p_nonLoF	marginal	0.88083				0.10872000000000001			
+ClinPred	win50_rmc	ddg2p_nonLoF	within_unit								
+ClinPred	win50_rmc	rmc_multi	marginal	0.90266							
+ClinPred	win50_rmc	rmc_multi	within_unit								
+ClinPred	win50_rmc	rmc_single	marginal								
+ClinPred	win50_rmc	rmc_single	within_unit								
+LIST-S2	gene	shet_high	marginal	0.9682050000000001							
+LIST-S2	gene	shet_high	within_unit								
+LIST-S2	gene	shet_low	marginal	0.9739900000000001							
+LIST-S2	gene	shet_low	within_unit								
+LIST-S2	gene	ddg2p_LoF	marginal	0.9770050000000001							
+LIST-S2	gene	ddg2p_LoF	within_unit								
+LIST-S2	gene	ddg2p_nonLoF	marginal	0.9682050000000001				0.09101000000000001			
+LIST-S2	gene	ddg2p_nonLoF	within_unit	0.9825050000000001							
+LIST-S2	gene	rmc_multi	marginal	0.9682050000000001							
+LIST-S2	gene	rmc_multi	within_unit								
+LIST-S2	gene	rmc_single	marginal								
+LIST-S2	gene	rmc_single	within_unit								
+LIST-S2	rmc	shet_high	marginal	0.9682050000000001							
+LIST-S2	rmc	shet_high	within_unit								
+LIST-S2	rmc	shet_low	marginal	0.9739900000000001							
+LIST-S2	rmc	shet_low	within_unit								
+LIST-S2	rmc	ddg2p_LoF	marginal	0.9770050000000001							
+LIST-S2	rmc	ddg2p_LoF	within_unit								
+LIST-S2	rmc	ddg2p_nonLoF	marginal	0.9682050000000001				0.09101000000000001			
+LIST-S2	rmc	ddg2p_nonLoF	within_unit								
+LIST-S2	rmc	rmc_multi	marginal	0.9682050000000001							
+LIST-S2	rmc	rmc_multi	within_unit								
+LIST-S2	rmc	rmc_single	marginal								
+LIST-S2	rmc	rmc_single	within_unit								
+LIST-S2	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+LIST-S2	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+LIST-S2	rmc	not_pm1like_rmc	marginal								
+LIST-S2	rmc	not_pm1like_rmc	within_unit								
+LIST-S2	win50	shet_high	marginal	0.9682050000000001							
+LIST-S2	win50	shet_high	within_unit								
+LIST-S2	win50	shet_low	marginal	0.9739900000000001							
+LIST-S2	win50	shet_low	within_unit								
+LIST-S2	win50	ddg2p_LoF	marginal	0.9770050000000001							
+LIST-S2	win50	ddg2p_LoF	within_unit								
+LIST-S2	win50	ddg2p_nonLoF	marginal	0.9682050000000001				0.09101000000000001			
+LIST-S2	win50	ddg2p_nonLoF	within_unit								
+LIST-S2	win50	rmc_multi	marginal	0.9682050000000001							
+LIST-S2	win50	rmc_multi	within_unit								
+LIST-S2	win50	rmc_single	marginal								
+LIST-S2	win50	rmc_single	within_unit								
+LIST-S2	win50_rmc	shet_high	marginal	0.9682050000000001							
+LIST-S2	win50_rmc	shet_high	within_unit								
+LIST-S2	win50_rmc	shet_low	marginal	0.9739900000000001							
+LIST-S2	win50_rmc	shet_low	within_unit								
+LIST-S2	win50_rmc	ddg2p_LoF	marginal	0.9770050000000001							
+LIST-S2	win50_rmc	ddg2p_LoF	within_unit								
+LIST-S2	win50_rmc	ddg2p_nonLoF	marginal	0.9682050000000001				0.09101000000000001			
+LIST-S2	win50_rmc	ddg2p_nonLoF	within_unit								
+LIST-S2	win50_rmc	rmc_multi	marginal	0.9682050000000001							
+LIST-S2	win50_rmc	rmc_multi	within_unit								
+LIST-S2	win50_rmc	rmc_single	marginal								
+LIST-S2	win50_rmc	rmc_single	within_unit								
+CADD	gene	shet_high	marginal								
+CADD	gene	shet_high	within_unit								
+CADD	gene	shet_low	marginal								
+CADD	gene	shet_low	within_unit								
+CADD	gene	ddg2p_LoF	marginal	0.8795400000000001				0.03835000000000001			
+CADD	gene	ddg2p_LoF	within_unit								
+CADD	gene	ddg2p_nonLoF	marginal	0.9002800000000001							
+CADD	gene	ddg2p_nonLoF	within_unit								
+CADD	gene	rmc_multi	marginal	0.9002800000000001							
+CADD	gene	rmc_multi	within_unit								
+CADD	gene	rmc_single	marginal								
+CADD	gene	rmc_single	within_unit								
+CADD	rmc	shet_high	marginal								
+CADD	rmc	shet_high	within_unit								
+CADD	rmc	shet_low	marginal								
+CADD	rmc	shet_low	within_unit								
+CADD	rmc	ddg2p_LoF	marginal	0.8795400000000001				0.03835000000000001			
+CADD	rmc	ddg2p_LoF	within_unit								
+CADD	rmc	ddg2p_nonLoF	marginal	0.9002800000000001							
+CADD	rmc	ddg2p_nonLoF	within_unit								
+CADD	rmc	rmc_multi	marginal	0.9002800000000001							
+CADD	rmc	rmc_multi	within_unit								
+CADD	rmc	rmc_single	marginal								
+CADD	rmc	rmc_single	within_unit								
+CADD	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+CADD	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+CADD	rmc	not_pm1like_rmc	marginal								
+CADD	rmc	not_pm1like_rmc	within_unit								
+CADD	win50	shet_high	marginal								
+CADD	win50	shet_high	within_unit								
+CADD	win50	shet_low	marginal								
+CADD	win50	shet_low	within_unit								
+CADD	win50	ddg2p_LoF	marginal	0.8795400000000001				0.03835000000000001			
+CADD	win50	ddg2p_LoF	within_unit								
+CADD	win50	ddg2p_nonLoF	marginal	0.9002800000000001							
+CADD	win50	ddg2p_nonLoF	within_unit								
+CADD	win50	rmc_multi	marginal	0.9002800000000001							
+CADD	win50	rmc_multi	within_unit								
+CADD	win50	rmc_single	marginal								
+CADD	win50	rmc_single	within_unit								
+CADD	win50_rmc	shet_high	marginal								
+CADD	win50_rmc	shet_high	within_unit								
+CADD	win50_rmc	shet_low	marginal								
+CADD	win50_rmc	shet_low	within_unit								
+CADD	win50_rmc	ddg2p_LoF	marginal	0.8795400000000001				0.03835000000000001			
+CADD	win50_rmc	ddg2p_LoF	within_unit								
+CADD	win50_rmc	ddg2p_nonLoF	marginal	0.9002800000000001							
+CADD	win50_rmc	ddg2p_nonLoF	within_unit								
+CADD	win50_rmc	rmc_multi	marginal	0.9002800000000001							
+CADD	win50_rmc	rmc_multi	within_unit								
+CADD	win50_rmc	rmc_single	marginal								
+CADD	win50_rmc	rmc_single	within_unit								
+fathmm-XF	gene	shet_high	marginal								
+fathmm-XF	gene	shet_high	within_unit								
+fathmm-XF	gene	shet_low	marginal								
+fathmm-XF	gene	shet_low	within_unit								
+fathmm-XF	gene	ddg2p_LoF	marginal	0.96408							
+fathmm-XF	gene	ddg2p_LoF	within_unit								
+fathmm-XF	gene	ddg2p_nonLoF	marginal								
+fathmm-XF	gene	ddg2p_nonLoF	within_unit								
+fathmm-XF	gene	rmc_multi	marginal	0.9501350000000001							
+fathmm-XF	gene	rmc_multi	within_unit								
+fathmm-XF	gene	rmc_single	marginal								
+fathmm-XF	gene	rmc_single	within_unit								
+fathmm-XF	rmc	shet_high	marginal								
+fathmm-XF	rmc	shet_high	within_unit								
+fathmm-XF	rmc	shet_low	marginal								
+fathmm-XF	rmc	shet_low	within_unit								
+fathmm-XF	rmc	ddg2p_LoF	marginal	0.96408							
+fathmm-XF	rmc	ddg2p_LoF	within_unit								
+fathmm-XF	rmc	ddg2p_nonLoF	marginal								
+fathmm-XF	rmc	ddg2p_nonLoF	within_unit								
+fathmm-XF	rmc	rmc_multi	marginal	0.9501350000000001							
+fathmm-XF	rmc	rmc_multi	within_unit								
+fathmm-XF	rmc	rmc_single	marginal								
+fathmm-XF	rmc	rmc_single	within_unit								
+fathmm-XF	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+fathmm-XF	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+fathmm-XF	rmc	not_pm1like_rmc	marginal								
+fathmm-XF	rmc	not_pm1like_rmc	within_unit								
+fathmm-XF	win50	shet_high	marginal								
+fathmm-XF	win50	shet_high	within_unit								
+fathmm-XF	win50	shet_low	marginal								
+fathmm-XF	win50	shet_low	within_unit								
+fathmm-XF	win50	ddg2p_LoF	marginal	0.96408							
+fathmm-XF	win50	ddg2p_LoF	within_unit								
+fathmm-XF	win50	ddg2p_nonLoF	marginal								
+fathmm-XF	win50	ddg2p_nonLoF	within_unit								
+fathmm-XF	win50	rmc_multi	marginal	0.9501350000000001							
+fathmm-XF	win50	rmc_multi	within_unit								
+fathmm-XF	win50	rmc_single	marginal								
+fathmm-XF	win50	rmc_single	within_unit								
+fathmm-XF	win50_rmc	shet_high	marginal								
+fathmm-XF	win50_rmc	shet_high	within_unit								
+fathmm-XF	win50_rmc	shet_low	marginal								
+fathmm-XF	win50_rmc	shet_low	within_unit								
+fathmm-XF	win50_rmc	ddg2p_LoF	marginal	0.96408							
+fathmm-XF	win50_rmc	ddg2p_LoF	within_unit								
+fathmm-XF	win50_rmc	ddg2p_nonLoF	marginal								
+fathmm-XF	win50_rmc	ddg2p_nonLoF	within_unit								
+fathmm-XF	win50_rmc	rmc_multi	marginal	0.9501350000000001							
+fathmm-XF	win50_rmc	rmc_multi	within_unit								
+fathmm-XF	win50_rmc	rmc_single	marginal								
+fathmm-XF	win50_rmc	rmc_single	within_unit								
+Eigen	gene	shet_high	marginal	0.9114700000000001				0.019015000000000004			
+Eigen	gene	shet_high	within_unit								
+Eigen	gene	shet_low	marginal	0.941185							
+Eigen	gene	shet_low	within_unit								
+Eigen	gene	ddg2p_LoF	marginal	0.9068500000000002							
+Eigen	gene	ddg2p_LoF	within_unit	0.93086							
+Eigen	gene	ddg2p_nonLoF	marginal								
+Eigen	gene	ddg2p_nonLoF	within_unit								
+Eigen	gene	rmc_multi	marginal	0.9068500000000002							
+Eigen	gene	rmc_multi	within_unit	0.9465400000000002							
+Eigen	gene	rmc_single	marginal								
+Eigen	gene	rmc_single	within_unit								
+Eigen	rmc	shet_high	marginal	0.9114700000000001				0.019015000000000004			
+Eigen	rmc	shet_high	within_unit								
+Eigen	rmc	shet_low	marginal	0.941185							
+Eigen	rmc	shet_low	within_unit								
+Eigen	rmc	ddg2p_LoF	marginal	0.9068500000000002							
+Eigen	rmc	ddg2p_LoF	within_unit								
+Eigen	rmc	ddg2p_nonLoF	marginal								
+Eigen	rmc	ddg2p_nonLoF	within_unit								
+Eigen	rmc	rmc_multi	marginal	0.9068500000000002							
+Eigen	rmc	rmc_multi	within_unit								
+Eigen	rmc	rmc_single	marginal								
+Eigen	rmc	rmc_single	within_unit								
+Eigen	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+Eigen	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Eigen	rmc	not_pm1like_rmc	marginal								
+Eigen	rmc	not_pm1like_rmc	within_unit								
+Eigen	win50	shet_high	marginal	0.9114700000000001				0.019015000000000004			
+Eigen	win50	shet_high	within_unit								
+Eigen	win50	shet_low	marginal	0.941185							
+Eigen	win50	shet_low	within_unit								
+Eigen	win50	ddg2p_LoF	marginal	0.9068500000000002							
+Eigen	win50	ddg2p_LoF	within_unit								
+Eigen	win50	ddg2p_nonLoF	marginal								
+Eigen	win50	ddg2p_nonLoF	within_unit								
+Eigen	win50	rmc_multi	marginal	0.9068500000000002							
+Eigen	win50	rmc_multi	within_unit								
+Eigen	win50	rmc_single	marginal								
+Eigen	win50	rmc_single	within_unit								
+Eigen	win50_rmc	shet_high	marginal	0.9114700000000001				0.019015000000000004			
+Eigen	win50_rmc	shet_high	within_unit								
+Eigen	win50_rmc	shet_low	marginal	0.941185							
+Eigen	win50_rmc	shet_low	within_unit								
+Eigen	win50_rmc	ddg2p_LoF	marginal	0.9068500000000002							
+Eigen	win50_rmc	ddg2p_LoF	within_unit								
+Eigen	win50_rmc	ddg2p_nonLoF	marginal								
+Eigen	win50_rmc	ddg2p_nonLoF	within_unit								
+Eigen	win50_rmc	rmc_multi	marginal	0.9068500000000002							
+Eigen	win50_rmc	rmc_multi	within_unit								
+Eigen	win50_rmc	rmc_single	marginal								
+Eigen	win50_rmc	rmc_single	within_unit								
+Eigen-PC	gene	shet_high	marginal	0.9435200000000001							
+Eigen-PC	gene	shet_high	within_unit								
+Eigen-PC	gene	shet_low	marginal	0.9483650000000001							
+Eigen-PC	gene	shet_low	within_unit								
+Eigen-PC	gene	ddg2p_LoF	marginal	0.9435200000000001							
+Eigen-PC	gene	ddg2p_LoF	within_unit	0.95831							
+Eigen-PC	gene	ddg2p_nonLoF	marginal								
+Eigen-PC	gene	ddg2p_nonLoF	within_unit								
+Eigen-PC	gene	rmc_multi	marginal	0.9244650000000001							
+Eigen-PC	gene	rmc_multi	within_unit								
+Eigen-PC	gene	rmc_single	marginal								
+Eigen-PC	gene	rmc_single	within_unit								
+Eigen-PC	rmc	shet_high	marginal	0.9435200000000001							
+Eigen-PC	rmc	shet_high	within_unit								
+Eigen-PC	rmc	shet_low	marginal	0.9483650000000001							
+Eigen-PC	rmc	shet_low	within_unit								
+Eigen-PC	rmc	ddg2p_LoF	marginal	0.9435200000000001							
+Eigen-PC	rmc	ddg2p_LoF	within_unit								
+Eigen-PC	rmc	ddg2p_nonLoF	marginal								
+Eigen-PC	rmc	ddg2p_nonLoF	within_unit								
+Eigen-PC	rmc	rmc_multi	marginal	0.9244650000000001							
+Eigen-PC	rmc	rmc_multi	within_unit								
+Eigen-PC	rmc	rmc_single	marginal								
+Eigen-PC	rmc	rmc_single	within_unit								
+Eigen-PC	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+Eigen-PC	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+Eigen-PC	rmc	not_pm1like_rmc	marginal								
+Eigen-PC	rmc	not_pm1like_rmc	within_unit								
+Eigen-PC	win50	shet_high	marginal	0.9435200000000001							
+Eigen-PC	win50	shet_high	within_unit								
+Eigen-PC	win50	shet_low	marginal	0.9483650000000001							
+Eigen-PC	win50	shet_low	within_unit								
+Eigen-PC	win50	ddg2p_LoF	marginal	0.9435200000000001							
+Eigen-PC	win50	ddg2p_LoF	within_unit								
+Eigen-PC	win50	ddg2p_nonLoF	marginal								
+Eigen-PC	win50	ddg2p_nonLoF	within_unit								
+Eigen-PC	win50	rmc_multi	marginal	0.9244650000000001							
+Eigen-PC	win50	rmc_multi	within_unit								
+Eigen-PC	win50	rmc_single	marginal								
+Eigen-PC	win50	rmc_single	within_unit								
+Eigen-PC	win50_rmc	shet_high	marginal	0.9435200000000001							
+Eigen-PC	win50_rmc	shet_high	within_unit								
+Eigen-PC	win50_rmc	shet_low	marginal	0.9483650000000001							
+Eigen-PC	win50_rmc	shet_low	within_unit								
+Eigen-PC	win50_rmc	ddg2p_LoF	marginal	0.9435200000000001							
+Eigen-PC	win50_rmc	ddg2p_LoF	within_unit								
+Eigen-PC	win50_rmc	ddg2p_nonLoF	marginal								
+Eigen-PC	win50_rmc	ddg2p_nonLoF	within_unit								
+Eigen-PC	win50_rmc	rmc_multi	marginal	0.9244650000000001							
+Eigen-PC	win50_rmc	rmc_multi	within_unit								
+Eigen-PC	win50_rmc	rmc_single	marginal								
+Eigen-PC	win50_rmc	rmc_single	within_unit								
+phyloP100way	gene	shet_high	marginal								
+phyloP100way	gene	shet_high	within_unit								
+phyloP100way	gene	shet_low	marginal								
+phyloP100way	gene	shet_low	within_unit								
+phyloP100way	gene	ddg2p_LoF	marginal					0.05399			
+phyloP100way	gene	ddg2p_LoF	within_unit								
+phyloP100way	gene	ddg2p_nonLoF	marginal								
+phyloP100way	gene	ddg2p_nonLoF	within_unit								
+phyloP100way	gene	rmc_multi	marginal								
+phyloP100way	gene	rmc_multi	within_unit								
+phyloP100way	gene	rmc_single	marginal								
+phyloP100way	gene	rmc_single	within_unit								
+phyloP100way	rmc	shet_high	marginal								
+phyloP100way	rmc	shet_high	within_unit								
+phyloP100way	rmc	shet_low	marginal								
+phyloP100way	rmc	shet_low	within_unit								
+phyloP100way	rmc	ddg2p_LoF	marginal					0.05399			
+phyloP100way	rmc	ddg2p_LoF	within_unit								
+phyloP100way	rmc	ddg2p_nonLoF	marginal								
+phyloP100way	rmc	ddg2p_nonLoF	within_unit								
+phyloP100way	rmc	rmc_multi	marginal								
+phyloP100way	rmc	rmc_multi	within_unit								
+phyloP100way	rmc	rmc_single	marginal								
+phyloP100way	rmc	rmc_single	within_unit								
+phyloP100way	rmc	pm1like_rmc_oe_lt_0.4	marginal								
+phyloP100way	rmc	pm1like_rmc_oe_lt_0.4	within_unit								
+phyloP100way	rmc	not_pm1like_rmc	marginal								
+phyloP100way	rmc	not_pm1like_rmc	within_unit								
+phyloP100way	win50	shet_high	marginal								
+phyloP100way	win50	shet_high	within_unit								
+phyloP100way	win50	shet_low	marginal								
+phyloP100way	win50	shet_low	within_unit								
+phyloP100way	win50	ddg2p_LoF	marginal					0.05399			
+phyloP100way	win50	ddg2p_LoF	within_unit								
+phyloP100way	win50	ddg2p_nonLoF	marginal								
+phyloP100way	win50	ddg2p_nonLoF	within_unit								
+phyloP100way	win50	rmc_multi	marginal								
+phyloP100way	win50	rmc_multi	within_unit								
+phyloP100way	win50	rmc_single	marginal								
+phyloP100way	win50	rmc_single	within_unit								
+phyloP100way	win50_rmc	shet_high	marginal								
+phyloP100way	win50_rmc	shet_high	within_unit								
+phyloP100way	win50_rmc	shet_low	marginal								
+phyloP100way	win50_rmc	shet_low	within_unit								
+phyloP100way	win50_rmc	ddg2p_LoF	marginal					0.05399			
+phyloP100way	win50_rmc	ddg2p_LoF	within_unit								
+phyloP100way	win50_rmc	ddg2p_nonLoF	marginal								
+phyloP100way	win50_rmc	ddg2p_nonLoF	within_unit								
+phyloP100way	win50_rmc	rmc_multi	marginal								
+phyloP100way	win50_rmc	rmc_multi	within_unit								
+phyloP100way	win50_rmc	rmc_single	marginal								
+phyloP100way	win50_rmc	rmc_single	within_unit								
