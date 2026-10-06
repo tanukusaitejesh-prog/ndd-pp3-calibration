@@ -14,7 +14,7 @@
 
 **Results.** PP3 and PM1-like evidence were not additive. For AlphaMissense, R was 0.44 [95% CI 0.41–0.48] in DD, 0.56 [0.44–0.67] in autism and 0.67 [0.42–0.95] in the public cohort. Across REVEL and VEST4 and all flags, R ranged from 0.48 to 1.02, with overlap weakest for PP2-like flags outside DD. Part of the overlap is between genes. Comparing variants within the same gene across all genes, R was 0.75 [0.71–0.78] in DD and 0.96 [0.84–1.08] in autism, which is consistent with additivity; within DDG2P disease genes it was 0.69 [0.68–0.70] and 0.74 [0.68–0.80]. At the Strong PP3 tier, overlap removed 6–27% of the summed log-evidence, against the 33% removed by ClinGen's cap. In a classification analysis, uncapped combination with de novo evidence called 2,438 DD variants Pathogenic, a class in which only 84% were disease-associated according to the de novo excess; capping moved all of them to Likely Pathogenic. Predictors retained a median 0.33 of their log-evidence within 50-residue windows, against 0.51 under a same-size random partition. Three pre-registered models trained on the de novo excess matched AlphaMissense on autism de novos. Within DDG2P genes, they ranked ClinVar variants worse than AlphaMissense (AUROC 0.88–0.92 vs 0.97), even when AlphaMissense was an input. This is consistent with the de novo signal encoding gene and region more than within-gene variant effect.
 
-**Conclusion.** For de novo missense variants, PP3 and PM1-like evidence overlap substantially, including within known disease genes. The overlap is consistent with ClinGen's cap, which is large enough to absorb it, and not with uncapped co-use.
+**Conclusion.** For de novo missense variants, PP3 and PM1-like evidence overlap substantially, including within known disease genes. The overlap replicates on the ClinVar scale and on expert-panel truth that excludes computational and position evidence; there, ClinGen's cap was the best-calibrated rule and uncapped co-use overstated PP3 by about 2 points.
 
 ---
 
@@ -357,6 +357,15 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
   - All genes: R 0.20 and 0.15.
 - **Bias works against the finding:** curators who apply both PP3 and PM1 enrich P/LP variants in the joint category, which pushes R towards 1.
 - **Reading:** the overlap is not specific to the de novo estimand.
+
+**Independent truth: expert-panel evidence without computational or position criteria** (exploratory):
+
+- **Truth.** ClinGen expert-panel variants were reclassified from their applied criteria with PP3, BP4, PM1, PP2, BP1, BP3, PM4 and PM5 removed. P/LP means ≥ 6 remaining points, B/LB means ≤ −1. This gave 2,516 variants (1,627 P/LP, 889 B/LB) in 108 genes. The truth then depends on neither the predictor nor position.
+- **Overlap with the panel's own PM1.** R for AlphaMissense was 0.47 [0.22, 1.18] at Supporting and 0.17 [0.08, 0.61] at Strong (gene-clustered bootstrap).
+- **Points PP3 actually earns once PM1 applies:** 1.68 at Supporting and 1.83 at Strong. Without PM1, Strong-tier PP3 had LR 30.8.
+- **Which rule fits.** The cap leaves at most 2 points for Strong PP3 next to Moderate PM1, which matches the observed 1.83. Uncapped co-use assigns 4, and the conditional rule derived from de novos assigns 1.1.
+- **Reading:** on truth independent of computational and position evidence, the overlap replicates and the cap is the best-calibrated of the three rules.
+- **Limitations:** with the o/e-based PM1-like flag the estimates are imprecise (Supporting R 0.90, Strong 0.22, upper bounds unbounded), because few B/LB variants fall in constrained regions. Panel variants are concentrated in a few genes.
 
 **Expert-panel classifications** (A12.5; ClinGen Evidence Repository, 13,293 classifications):
 
