@@ -368,6 +368,30 @@ v3 changes only the null, so that the objective is within-gene. Its result is re
 3. v3 / v2-GBDT within gene.
 4. r(D2) for v3 against AlphaMissense on DDD.
 
+## 3i. Amendment A8 (2026-10-06): Aim 4 v4, the gene-matched model trained on all DD centres and tested only in autism
+
+**Status: written after every other result was seen.** This includes:
+
+- the A5, A6 and A7 model results: v3 / AlphaMissense within gene was 0.96 [0.82, 1.14] on DDD cold genes and 1.03 [0.89, 1.19] in autism;
+- the A4 and A6 results;
+- the exploratory threshold sensitivity.
+
+**This is the fourth model**, prompted by the study lead's request for one further attempt. It is **one shot**: it is fitted once, reported regardless of outcome, and no variant of it will be fitted. It is labelled post hoc. Its result cannot change any earlier verdict.
+
+**Model v4.** Identical to v3 (§3h: features, gene-matched null of 10 MR-weighted same-transcript sites per real de novo, GBDT settings, seed, LR conversion), with two changes:
+
+1. **Training de novos:** all three DD centres (GeneDx, RUMC, DDD), not GeneDx only.
+2. **Training genes:** all genes. There is no cold split, because evaluation is in a different cohort. π uses all centres' synonymous scale factor.
+
+**Evaluation**, in the autism cohort only (Zhou et al. 2022), which played no part in training, with the A2/A6.3 specification (common site set, levels A–E):
+
+1. **Primary (A8):** within-gene top-2% LR, v4 / AlphaMissense, autism probands, all genes, paired Poisson bootstrap over individuals. "Better" if the 95% interval excludes 1 in v4's favour.
+2. v4 / v3 within gene, in autism.
+3. r(D2) and E2 for v4 against AlphaMissense, in autism.
+4. Siblings: v4's marginal top-2% one-sided lower bound (δ) should be below 2.406.
+
+**Multiplicity.** v4 is the fourth model compared with AlphaMissense in this study, and the result is reported in that light. A significant primary result would be described as an exploratory finding motivating an independent, pre-registered validation, not as a confirmed improvement.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
