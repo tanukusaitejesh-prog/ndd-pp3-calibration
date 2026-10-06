@@ -1,0 +1,4 @@
+A12.2 DD     F=PM1-like  informative 40: median R 0.51 (range 0.18-0.80); share R<1 upper bound 1.00; population-informed 0.56 (n 17) vs other 0.51 (n 23), Mann-Whitney p 0.87
+A12.2 DD     F=PP2-like  informative 40: median R 0.70 (range 0.26-1.11); share R<1 upper bound 0.75; population-informed 0.75 (n 17) vs other 0.66 (n 23), Mann-Whitney p 0.477
+A12.2 autism F=PM1-like  informative 36: median R 0.68 (range 0.28-1.08); share R<1 upper bound 0.58; population-informed 0.72 (n 17) vs other 0.67 (n 19), Mann-Whitney p 0.924
+A12.2 autism F=PP2-like  informative 36: median R 0.83 (range 0.31-1.73); share R<1 upper bound 0.36; population-informed 0.87 (n 17) vs other 0.75 (n 19), Mann-Whitney p 0.447

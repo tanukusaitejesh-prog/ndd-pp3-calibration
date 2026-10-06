@@ -1,0 +1,12 @@
+A12.3: excluded 50 transcripts with the largest DD de novo missense excess (O - E): PTPN11, DYNC1H1, KCNQ2, GRIN2B, CREBBP, KIF1A, STXBP1, PPP2R5D, CHD3, CACNA1A, SMARCA4, PACS1, CDK13, SMAD4, BRAF, GRIN1, SATB2, GNAO1, SMARCA2, ITPR1, SLC6A1, ATP1A3, MAP2K1, DNMT3A, CSNK2A1, NR2F1, KCNB1, SCN1A, SPTAN1, MED13L, KMT2A, FOXG1, TRIO, PPP1CB, FGFR3, AC097634.4, TRAF7, EP300, EEF1A2, PURA, KCNT1, TBL1XR1, DNM1, SOX11, COL4A1, TCF4, LZTR1, DEAF1, GNB1, KCNQ3
+excluded de novo missense 1571 of 23851; expected 136
+DD_noTop50 AlphaMissense F=PM1-like             LR(PP3) 3.90 LR(F) 6.75 joint 12.56 -> R 0.48 [0.42, 0.53]; LR(PP3|F) 1.86 (points 0.71) vs LR(PP3|not F) 3.43; de novos PP3&F 1984
+DD_noTop50 AlphaMissense F=PM1-strict           LR(PP3) 3.90 LR(F) 13.54 joint 21.12 -> R 0.40 [0.35, 0.45]; LR(PP3|F) 1.56 (points 0.51) vs LR(PP3|not F) 3.78; de novos PP3&F 629
+DD_noTop50 AlphaMissense F=PM1-like or PP2-like LR(PP3) 3.90 LR(F) 4.47 joint 10.15 -> R 0.58 [0.52, 0.64]; LR(PP3|F) 2.27 (points 0.93) vs LR(PP3|not F) 3.47; de novos PP3&F 2567
+DD_noTop50 REVEL         F=PM1-like             LR(PP3) 3.79 LR(F) 6.42 joint 14.75 -> R 0.61 [0.54, 0.67]; LR(PP3|F) 2.30 (points 0.95) vs LR(PP3|not F) 3.40; de novos PP3&F 1225
+DD_noTop50 REVEL         F=PM1-strict           LR(PP3) 3.79 LR(F) 12.93 joint 25.10 -> R 0.51 [0.44, 0.58]; LR(PP3|F) 1.94 (points 0.76) vs LR(PP3|not F) 3.70; de novos PP3&F 390
+DD_noTop50 REVEL         F=PM1-like or PP2-like LR(PP3) 3.79 LR(F) 4.25 joint 11.67 -> R 0.72 [0.65, 0.80]; LR(PP3|F) 2.75 (points 1.15) vs LR(PP3|not F) 3.27; de novos PP3&F 1644
+DD_noTop50 VEST4         F=PM1-like             LR(PP3) 2.79 LR(F) 6.53 joint 12.59 -> R 0.69 [0.62, 0.76]; LR(PP3|F) 1.93 (points 0.75) vs LR(PP3|not F) 2.58; de novos PP3&F 1626
+DD_noTop50 VEST4         F=PM1-strict           LR(PP3) 2.79 LR(F) 13.08 joint 21.70 -> R 0.60 [0.53, 0.67]; LR(PP3|F) 1.66 (points 0.58) vs LR(PP3|not F) 2.77; de novos PP3&F 471
+DD_noTop50 VEST4         F=PM1-like or PP2-like LR(PP3) 2.79 LR(F) 4.32 joint 9.19 -> R 0.76 [0.69, 0.84]; LR(PP3|F) 2.13 (points 0.86) vs LR(PP3|not F) 2.56; de novos PP3&F 2281
+a12_lto [no_top50] informative 24; median r gene 0.602, rmc 0.395, win50 0.345, win50_rmc 0.322, rand50 0.558; share r(win50) < 0.5 = 0.71; AlphaMissense A 11.26 gene 3.88, rmc 2.60, win50 2.16, win50_rmc 2.06, rand50 3.48

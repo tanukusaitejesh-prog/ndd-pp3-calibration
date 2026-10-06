@@ -317,6 +317,14 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 
 **Where the overlap comes from** (A12.1). R < 1 arises mainly on the null side. AlphaMissense flags 51% of mutation-expected sites at PM1-like positions, against 19% overall, a 2.7-fold rise. Among excess de novos the rise is only from 79% to 94% (1.2-fold) in DD; autism shows the same pattern. Inside constrained regions the predictor calls most sites damaging whether or not they are disease-causing, so PP3 separates less there. REVEL and VEST4 show the same pattern.
 
+**Every predictor, and without the strongest genes.**
+
+- **All predictors** (A12.2; PP3 flag = each predictor's top 2% of mutational opportunity):
+  - In DD, R × PM1-like had an upper bound below 1 for all 40 informative predictors (median 0.51, range 0.18–0.80). In autism the median was 0.68.
+  - Overlap was no larger for predictors whose inputs or training labels use population constraint or allele frequency: median 0.56 vs 0.51, Mann–Whitney p = 0.87.
+  - The overlap is therefore not an artefact of constraint-based inputs.
+- **Leave-top-genes-out** (A12.3): excluding the 50 genes with the largest de novo missense excess (1,571 of 23,851 de novos) left R at 0.48 [0.42, 0.53]. Retention within windows stayed below the random partition (median 0.35 vs 0.56).
+
 **Strong tier.** R with PP3 at its Strong threshold and a PM1-like flag:
 
 | Predictor | DD | Autism | Public cohort |
@@ -340,6 +348,13 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
 - **Uncapped:** 2,438 de novo missense variants reach Pathogenic (≥ 10 points), but the de novo excess implies only 84% of variants in that class are disease-associated, below what a Pathogenic classification requires.
 - **Capped or conditional:** both rules move all 2,438 to Likely Pathogenic.
 - **Caveat:** this is a class-level estimate on the de novo scale, not a per-variant posterior.
+
+**Expert-panel classifications** (A12.5; ClinGen Evidence Repository, 13,293 classifications):
+
+- PP3 and PM1 were both applied in 1,018, mostly at PP3 Supporting (HNF1A, RUNX1, RYR1, HNF4A and FBN1 lead).
+- **The cap** changed 24 classifications (12 P→LP, 12 LP→VUS), because most panels already keep PP3 + PM1 within 4 points.
+- **The conditional rule** changed 238 (98 P→LP, 139 LP→VUS).
+- **Caveat:** this rule extrapolates de novo NDD estimates to other diseases, where panel-specific PM1 definitions apply, so it is an upper bound on impact.
 
 **Per-predictor guidance** (Supplementary Table 1). Multiplying 4 published points by each predictor's retention gives the points a predictor can justify when combined with position-based criteria:
 
