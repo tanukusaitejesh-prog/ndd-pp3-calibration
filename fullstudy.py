@@ -2935,6 +2935,73 @@ def cmd_a11sim(a):
     log("A11.5 simulation:\n" + "\n".join(out))
 
 
+# ======================================================================== amendment A13: overlap within disease genes
+def cmd_a13(a):
+    """Plan section 3n: R within DDG2P monoallelic genes (marginal), gene-stratified R (all genes) and gene-stratified R
+    within DDG2P genes, for AlphaMissense/REVEL/VEST4 PP3 (Supporting+ and Strong tier) x PM1-like / PM1-strict."""
+    base = a.results
+    rows, out = [], []
+    for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
+        a.cohort = kw.get("cohort")
+        a.results = P(base, "a13_tmp")
+        os.makedirs(a.results, exist_ok=True)
+        d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+        ntx = 18398
+        ddmask = tinfo["ddg2p"].reindex(np.arange(ntx)).fillna(False).to_numpy(bool)
+        cols = ["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct"] + [cc for cc, _ in A10_TOOLS.values()]
+        combos = [(t, f, l) for t in A10_TOOLS for f in ("PM1-like", "PM1-strict") for l in ("PP3>=Supporting", "PP3 >=Strong(3-4)")]
+        mass = {k: np.zeros(ntx * 4) for k in combos}
+        dbin = {k: np.full(len(d_mis), -1, np.int64) for k in combos}
+        dk = d_mis["key"].to_numpy(); dch = d_mis["chrom"].astype(str).to_numpy()
+        for ch, u in site_chunks(a, cols=cols):
+            tx = u["tx"].to_numpy(np.int64)
+            oe, ccr = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float)
+            fl = {"PM1-like": (oe < 0.4) | (ccr >= 95), "PM1-strict": oe < 0.2}
+            mr = u[PRIMARY_MODEL].to_numpy(float)
+            di = np.flatnonzero(dch == str(ch))
+            pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dk[di]).to_numpy()
+            okp = np.isfinite(pos)
+            di, pos = di[okp], pos[okp].astype(np.int64)
+            for t, (col, cuts) in A10_TOOLS.items():
+                s_ = u[col].to_numpy(float)
+                sc = np.isfinite(s_)
+                lv = {"PP3>=Supporting": s_ >= cuts[0], "PP3 >=Strong(3-4)": s_ >= cuts[2]}
+                for f in ("PM1-like", "PM1-strict"):
+                    for l in lv:
+                        cat = np.where(sc, 2 * lv[l].astype(np.int64) + fl[f].astype(np.int64), -1)
+                        mass[(t, f, l)] += np.bincount(tx[sc] * 4 + cat[sc], weights=mr[sc], minlength=ntx * 4)
+                        dbin[(t, f, l)][di] = cat[pos]
+            del u
+            gc.collect()
+        utx = d_mis["tx"].to_numpy(np.int64)
+        for (t, f, l) in combos:
+            M = sparse.csr_matrix(mass[(t, f, l)].reshape(ntx, 4))
+            dd = d_mis[["p"]].copy(); dd["unit"] = utx; dd["bin"] = dbin[(t, f, l)]
+            g3 = [np.array([3]), np.array([1, 3]), np.array([2, 3])]
+            res_all = eng.run(M, syn_mass, syn_p, dd)
+            res_dd = eng.run(M, syn_mass, syn_p, dd, unit_mask=ddmask)
+            for setting, res, kind in (("DDG2P, marginal", res_dd, "LRm"), ("all genes, within gene", res_all, "LRw"),
+                                       ("DDG2P, within gene", res_dd, "LRw")):
+                lr = Engine.lr(res, g3)[kind]
+                with np.errstate(all="ignore"):
+                    R = lr[:, 0] / (lr[:, 1] * lr[:, 2])
+                    given = lr[:, 0] / lr[:, 1]
+                b = R[1:][np.isfinite(R[1:])]
+                lo, hi = (np.percentile(b, [2.5, 97.5]) if len(b) > 20 else (np.nan, np.nan))
+                rows.append({"cohort": label, "tool": t, "flag": f, "pp3_level": l, "setting": setting, "R": float(R[0]),
+                             "R_lo95": float(lo), "R_hi95": float(hi), "LR_PP3": float(lr[0, 2]), "LR_F": float(lr[0, 1]),
+                             "LR_joint": float(lr[0, 0]), "LR_PP3_given_F": float(given[0])})
+                prim = " [A13 key]" if (setting == "DDG2P, within gene" and t == "AlphaMissense" and f == "PM1-like"
+                                        and l == "PP3>=Supporting") else ""
+                out.append(f"{label:6s} {t:13s} {f:10s} {l:18s} {setting:22s}: R {R[0]:.2f} [{lo:.2f}, {hi:.2f}]; "
+                           f"LR(PP3|F) {given[0]:.2f}; LR(PP3) {lr[0, 2]:.2f}{prim}")
+        a.results = base
+        pd.DataFrame(rows).to_csv(P(base, "a13_within_genes.tsv"), sep="\t", index=False, float_format="%.4g")
+        open(P(base, "a13_summary.txt"), "w").write("\n".join(out) + "\n")
+        log(f"A13 {label}:\n" + "\n".join(o for o in out if o.startswith(label)))
+    a.cohort = None
+
+
 # ======================================================================== amendment A12 (descriptive)
 def cmd_a12(a):
     """Plan section 3m. part 'decomp' (A12.1): excess-side and null-side P(PP3 | PM1-like) for AlphaMissense, REVEL, VEST4
@@ -3389,7 +3456,7 @@ def main():
         s.add_argument("--from-piece", default="part.7")
     for name in ("validate", "aim5", "aim1", "aim1x", "aim1tools", "aim3", "aim3_report", "a1_report", "aim4", "replicate", "v54"):
         sub.add_parser(name)
-    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "m4_nested", "a6", "a6_report"):
+    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "m4_nested", "a6", "a6_report"):
         sub.add_parser(name)
     s = sub.add_parser("a4ctrl")
     s.add_argument("--part", default="all", choices=["all", "nodom", "dom", "report"])
@@ -3406,7 +3473,7 @@ def main():
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
     {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
-     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
+     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
 
 
 if __name__ == "__main__":

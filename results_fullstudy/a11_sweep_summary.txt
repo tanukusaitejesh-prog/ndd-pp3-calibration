@@ -1,0 +1,1 @@
+a11_sweep [all_genes] informative 24; median r gene 0.565, win25 0.273, rand25 0.475, win50 0.334, rand50 0.520, win100 0.388, rand100 0.533; share r(win50) < 0.5 = 0.79; AlphaMissense A 13.43 gene 4.10, win25 1.92, rand25 3.32, win50 2.19, rand50 3.63, win100 2.56, rand100 3.82

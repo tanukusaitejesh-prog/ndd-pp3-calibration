@@ -139,3 +139,213 @@ M-CAP	win100	all_genes	marginal	0.931775
 M-CAP	win100	all_genes	within_unit								
 M-CAP	rand100	all_genes	marginal	0.931775							
 M-CAP	rand100	all_genes	within_unit								
+REVEL	gene	all_genes	marginal	0.932995							
+REVEL	gene	all_genes	within_unit								
+REVEL	win25	all_genes	marginal	0.932995							
+REVEL	win25	all_genes	within_unit								
+REVEL	rand25	all_genes	marginal	0.932995							
+REVEL	rand25	all_genes	within_unit								
+REVEL	win50	all_genes	marginal	0.932995							
+REVEL	win50	all_genes	within_unit								
+REVEL	rand50	all_genes	marginal	0.932995							
+REVEL	rand50	all_genes	within_unit								
+REVEL	win100	all_genes	marginal	0.932995							
+REVEL	win100	all_genes	within_unit								
+REVEL	rand100	all_genes	marginal	0.932995							
+REVEL	rand100	all_genes	within_unit								
+MutPred	gene	all_genes	marginal	0.9444750000000001							
+MutPred	gene	all_genes	within_unit	0.9639850000000001							
+MutPred	win25	all_genes	marginal	0.9444750000000001							
+MutPred	win25	all_genes	within_unit								
+MutPred	rand25	all_genes	marginal	0.9444750000000001							
+MutPred	rand25	all_genes	within_unit								
+MutPred	win50	all_genes	marginal	0.9444750000000001							
+MutPred	win50	all_genes	within_unit								
+MutPred	rand50	all_genes	marginal	0.9444750000000001							
+MutPred	rand50	all_genes	within_unit	0.9686000000000001							
+MutPred	win100	all_genes	marginal	0.9444750000000001							
+MutPred	win100	all_genes	within_unit								
+MutPred	rand100	all_genes	marginal	0.9444750000000001							
+MutPred	rand100	all_genes	within_unit	0.9686000000000001							
+MVP	gene	all_genes	marginal	0.9397250000000001							
+MVP	gene	all_genes	within_unit								
+MVP	win25	all_genes	marginal	0.9397250000000001							
+MVP	win25	all_genes	within_unit								
+MVP	rand25	all_genes	marginal	0.9397250000000001							
+MVP	rand25	all_genes	within_unit								
+MVP	win50	all_genes	marginal	0.9397250000000001							
+MVP	win50	all_genes	within_unit								
+MVP	rand50	all_genes	marginal	0.9397250000000001							
+MVP	rand50	all_genes	within_unit								
+MVP	win100	all_genes	marginal	0.9397250000000001							
+MVP	win100	all_genes	within_unit								
+MVP	rand100	all_genes	marginal	0.9397250000000001							
+MVP	rand100	all_genes	within_unit								
+MPC	gene	all_genes	marginal	0.9324450000000001	0.9630500000000001						
+MPC	gene	all_genes	within_unit								
+MPC	win25	all_genes	marginal	0.9324450000000001	0.9630500000000001						
+MPC	win25	all_genes	within_unit								
+MPC	rand25	all_genes	marginal	0.9324450000000001	0.9630500000000001						
+MPC	rand25	all_genes	within_unit								
+MPC	win50	all_genes	marginal	0.9324450000000001	0.9630500000000001						
+MPC	win50	all_genes	within_unit								
+MPC	rand50	all_genes	marginal	0.9324450000000001	0.9630500000000001						
+MPC	rand50	all_genes	within_unit								
+MPC	win100	all_genes	marginal	0.9324450000000001	0.9630500000000001						
+MPC	win100	all_genes	within_unit								
+MPC	rand100	all_genes	marginal	0.9324450000000001	0.9630500000000001						
+MPC	rand100	all_genes	within_unit								
+PrimateAI	gene	all_genes	marginal	0.91095							
+PrimateAI	gene	all_genes	within_unit								
+PrimateAI	win25	all_genes	marginal	0.91095							
+PrimateAI	win25	all_genes	within_unit								
+PrimateAI	rand25	all_genes	marginal	0.91095							
+PrimateAI	rand25	all_genes	within_unit								
+PrimateAI	win50	all_genes	marginal	0.91095							
+PrimateAI	win50	all_genes	within_unit								
+PrimateAI	rand50	all_genes	marginal	0.91095							
+PrimateAI	rand50	all_genes	within_unit								
+PrimateAI	win100	all_genes	marginal	0.91095							
+PrimateAI	win100	all_genes	within_unit								
+PrimateAI	rand100	all_genes	marginal	0.91095							
+PrimateAI	rand100	all_genes	within_unit								
+DEOGEN2	gene	all_genes	marginal	0.95281							
+DEOGEN2	gene	all_genes	within_unit								
+DEOGEN2	win25	all_genes	marginal	0.95281							
+DEOGEN2	win25	all_genes	within_unit								
+DEOGEN2	rand25	all_genes	marginal	0.95281							
+DEOGEN2	rand25	all_genes	within_unit								
+DEOGEN2	win50	all_genes	marginal	0.95281							
+DEOGEN2	win50	all_genes	within_unit								
+DEOGEN2	rand50	all_genes	marginal	0.95281							
+DEOGEN2	rand50	all_genes	within_unit								
+DEOGEN2	win100	all_genes	marginal	0.95281							
+DEOGEN2	win100	all_genes	within_unit								
+DEOGEN2	rand100	all_genes	marginal	0.95281							
+DEOGEN2	rand100	all_genes	within_unit								
+BayesDel_addAF	gene	all_genes	marginal	0.85649							
+BayesDel_addAF	gene	all_genes	within_unit								
+BayesDel_addAF	win25	all_genes	marginal	0.85649							
+BayesDel_addAF	win25	all_genes	within_unit								
+BayesDel_addAF	rand25	all_genes	marginal	0.85649							
+BayesDel_addAF	rand25	all_genes	within_unit								
+BayesDel_addAF	win50	all_genes	marginal	0.85649							
+BayesDel_addAF	win50	all_genes	within_unit								
+BayesDel_addAF	rand50	all_genes	marginal	0.85649							
+BayesDel_addAF	rand50	all_genes	within_unit								
+BayesDel_addAF	win100	all_genes	marginal	0.85649							
+BayesDel_addAF	win100	all_genes	within_unit								
+BayesDel_addAF	rand100	all_genes	marginal	0.85649							
+BayesDel_addAF	rand100	all_genes	within_unit								
+BayesDel_noAF	gene	all_genes	marginal	0.867855							
+BayesDel_noAF	gene	all_genes	within_unit								
+BayesDel_noAF	win25	all_genes	marginal	0.867855							
+BayesDel_noAF	win25	all_genes	within_unit								
+BayesDel_noAF	rand25	all_genes	marginal	0.867855							
+BayesDel_noAF	rand25	all_genes	within_unit								
+BayesDel_noAF	win50	all_genes	marginal	0.867855							
+BayesDel_noAF	win50	all_genes	within_unit								
+BayesDel_noAF	rand50	all_genes	marginal	0.867855							
+BayesDel_noAF	rand50	all_genes	within_unit								
+BayesDel_noAF	win100	all_genes	marginal	0.867855							
+BayesDel_noAF	win100	all_genes	within_unit								
+BayesDel_noAF	rand100	all_genes	marginal	0.867855							
+BayesDel_noAF	rand100	all_genes	within_unit								
+ClinPred	gene	all_genes	marginal	0.908255							
+ClinPred	gene	all_genes	within_unit	0.9709800000000001							
+ClinPred	win25	all_genes	marginal	0.908255							
+ClinPred	win25	all_genes	within_unit								
+ClinPred	rand25	all_genes	marginal	0.908255							
+ClinPred	rand25	all_genes	within_unit								
+ClinPred	win50	all_genes	marginal	0.908255							
+ClinPred	win50	all_genes	within_unit								
+ClinPred	rand50	all_genes	marginal	0.908255							
+ClinPred	rand50	all_genes	within_unit								
+ClinPred	win100	all_genes	marginal	0.908255							
+ClinPred	win100	all_genes	within_unit								
+ClinPred	rand100	all_genes	marginal	0.908255							
+ClinPred	rand100	all_genes	within_unit								
+LIST-S2	gene	all_genes	marginal	0.9651450000000001							
+LIST-S2	gene	all_genes	within_unit								
+LIST-S2	win25	all_genes	marginal	0.9651450000000001							
+LIST-S2	win25	all_genes	within_unit								
+LIST-S2	rand25	all_genes	marginal	0.9651450000000001							
+LIST-S2	rand25	all_genes	within_unit								
+LIST-S2	win50	all_genes	marginal	0.9651450000000001							
+LIST-S2	win50	all_genes	within_unit								
+LIST-S2	rand50	all_genes	marginal	0.9651450000000001							
+LIST-S2	rand50	all_genes	within_unit								
+LIST-S2	win100	all_genes	marginal	0.9651450000000001							
+LIST-S2	win100	all_genes	within_unit								
+LIST-S2	rand100	all_genes	marginal	0.9651450000000001							
+LIST-S2	rand100	all_genes	within_unit								
+CADD	gene	all_genes	marginal	0.8969500000000001							
+CADD	gene	all_genes	within_unit								
+CADD	win25	all_genes	marginal	0.8969500000000001							
+CADD	win25	all_genes	within_unit								
+CADD	rand25	all_genes	marginal	0.8969500000000001							
+CADD	rand25	all_genes	within_unit								
+CADD	win50	all_genes	marginal	0.8969500000000001							
+CADD	win50	all_genes	within_unit								
+CADD	rand50	all_genes	marginal	0.8969500000000001							
+CADD	rand50	all_genes	within_unit								
+CADD	win100	all_genes	marginal	0.8969500000000001							
+CADD	win100	all_genes	within_unit								
+CADD	rand100	all_genes	marginal	0.8969500000000001							
+CADD	rand100	all_genes	within_unit								
+fathmm-XF	gene	all_genes	marginal	0.9455600000000001							
+fathmm-XF	gene	all_genes	within_unit								
+fathmm-XF	win25	all_genes	marginal	0.9455600000000001							
+fathmm-XF	win25	all_genes	within_unit								
+fathmm-XF	rand25	all_genes	marginal	0.9455600000000001							
+fathmm-XF	rand25	all_genes	within_unit								
+fathmm-XF	win50	all_genes	marginal	0.9455600000000001							
+fathmm-XF	win50	all_genes	within_unit								
+fathmm-XF	rand50	all_genes	marginal	0.9455600000000001							
+fathmm-XF	rand50	all_genes	within_unit								
+fathmm-XF	win100	all_genes	marginal	0.9455600000000001							
+fathmm-XF	win100	all_genes	within_unit								
+fathmm-XF	rand100	all_genes	marginal	0.9455600000000001							
+fathmm-XF	rand100	all_genes	within_unit								
+Eigen	gene	all_genes	marginal	0.9068500000000002							
+Eigen	gene	all_genes	within_unit								
+Eigen	win25	all_genes	marginal	0.9068500000000002							
+Eigen	win25	all_genes	within_unit								
+Eigen	rand25	all_genes	marginal	0.9068500000000002							
+Eigen	rand25	all_genes	within_unit								
+Eigen	win50	all_genes	marginal	0.9068500000000002							
+Eigen	win50	all_genes	within_unit								
+Eigen	rand50	all_genes	marginal	0.9068500000000002							
+Eigen	rand50	all_genes	within_unit								
+Eigen	win100	all_genes	marginal	0.9068500000000002							
+Eigen	win100	all_genes	within_unit								
+Eigen	rand100	all_genes	marginal	0.9068500000000002							
+Eigen	rand100	all_genes	within_unit								
+Eigen-PC	gene	all_genes	marginal	0.9197200000000001							
+Eigen-PC	gene	all_genes	within_unit								
+Eigen-PC	win25	all_genes	marginal	0.9197200000000001							
+Eigen-PC	win25	all_genes	within_unit								
+Eigen-PC	rand25	all_genes	marginal	0.9197200000000001							
+Eigen-PC	rand25	all_genes	within_unit								
+Eigen-PC	win50	all_genes	marginal	0.9197200000000001							
+Eigen-PC	win50	all_genes	within_unit								
+Eigen-PC	rand50	all_genes	marginal	0.9197200000000001							
+Eigen-PC	rand50	all_genes	within_unit								
+Eigen-PC	win100	all_genes	marginal	0.9197200000000001							
+Eigen-PC	win100	all_genes	within_unit								
+Eigen-PC	rand100	all_genes	marginal	0.9197200000000001							
+Eigen-PC	rand100	all_genes	within_unit								
+phyloP100way	gene	all_genes	marginal	0.980045							
+phyloP100way	gene	all_genes	within_unit								
+phyloP100way	win25	all_genes	marginal	0.980045							
+phyloP100way	win25	all_genes	within_unit								
+phyloP100way	rand25	all_genes	marginal	0.980045							
+phyloP100way	rand25	all_genes	within_unit								
+phyloP100way	win50	all_genes	marginal	0.980045							
+phyloP100way	win50	all_genes	within_unit								
+phyloP100way	rand50	all_genes	marginal	0.980045							
+phyloP100way	rand50	all_genes	within_unit								
+phyloP100way	win100	all_genes	marginal	0.980045							
+phyloP100way	win100	all_genes	within_unit								
+phyloP100way	rand100	all_genes	marginal	0.980045							
+phyloP100way	rand100	all_genes	within_unit								
