@@ -1,0 +1,6 @@
+A12.5: ClinGen Evidence Repository (11080 classifications); PP3 and PM1 both applied: 908
+uncapped -> capped: 24 change class; LP->VUS 12, P->LP 12
+uncapped -> conditional: 204 change class; LP->VUS 117, P->LP 86, VUS->LB 1
+published assertion counts: Likely Pathogenic 303, Pathogenic 303, Uncertain Significance 299, Likely Benign 3
+PP3 strength among these: 1 pt 740, 2 pt 166, 4 pt 2
+top genes: HNF1A 171, RUNX1 137, RYR1 123, HNF4A 61, FBN1 55, LDLR 35, GCK 33, MYH7 30

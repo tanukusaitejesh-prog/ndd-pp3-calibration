@@ -1,0 +1,909 @@
+gene	assertion	pp3	pm1	uncapped	capped	conditional
+KCNQ4	Likely Pathogenic	1	2	LP	LP	VUS
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	LP
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+MYH7	Likely Pathogenic	1	2	LP	LP	LP
+MYH7	Pathogenic	1	2	P	P	P
+RAF1	Pathogenic	1	2	P	P	P
+RAF1	Pathogenic	1	2	P	P	P
+PTPN11	Pathogenic	1	2	P	P	P
+MAP2K1	Pathogenic	1	2	P	P	P
+HRAS	Likely Pathogenic	1	2	LP	LP	LP
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+KRAS	Pathogenic	1	2	P	P	P
+KRAS	Pathogenic	1	2	P	P	P
+KRAS	Pathogenic	1	2	P	P	P
+HRAS	Pathogenic	1	2	P	P	P
+LRRC56	Pathogenic	1	2	P	P	P
+LRRC56	Pathogenic	1	2	P	P	P
+SOS1	Pathogenic	1	2	P	P	P
+SOS1	Pathogenic	1	2	P	P	P
+SOS1	Pathogenic	1	2	P	P	LP
+SOS1	Pathogenic	1	2	P	P	P
+SOS1	Pathogenic	1	2	P	P	P
+RAF1	Pathogenic	1	2	P	P	P
+MAP2K2	Likely Pathogenic	1	2	LP	LP	LP
+MAP2K2	Pathogenic	1	2	P	P	P
+MAP2K2	Pathogenic	1	2	P	P	P
+MAP2K2	Pathogenic	1	2	P	P	LP
+MAP2K1	Likely Pathogenic	1	2	P	P	LP
+MAP2K1	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+PTEN	Likely Pathogenic	1	2	LP	LP	LP
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Likely Pathogenic	1	2	LP	LP	LP
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Likely Pathogenic	1	2	LP	LP	LP
+MAP2K2	Pathogenic	1	2	P	P	LP
+PTPN11	Pathogenic	1	2	P	P	P
+PTPN11	Pathogenic	1	2	P	P	P
+RUNX1	Pathogenic	1	4	P	P	P
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Pathogenic	1	4	P	P	P
+RUNX1	Likely Pathogenic	1	1	LP	LP	LP
+RUNX1	Pathogenic	1	4	P	P	P
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Pathogenic	1	4	P	P	P
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	1	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	1	LP	LP	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	1	LP	LP	LP
+PTPN11	Pathogenic	1	2	P	P	P
+RUNX1	Likely Pathogenic	1	2	LP	LP	LP
+RUNX1	Pathogenic	1	4	P	P	P
+RUNX1	Likely Pathogenic	1	2	LP	LP	LP
+RUNX1	Likely Pathogenic	1	1	LP	LP	VUS
+TP53	Pathogenic	2	2	P	P	P
+TP53	Pathogenic	2	2	P	P	P
+TP53	Pathogenic	2	2	P	P	P
+TP53	Pathogenic	2	2	P	P	P
+TP53	Pathogenic	2	2	P	P	P
+TP53	Pathogenic	2	1	P	P	LP
+TP53	Pathogenic	2	1	P	P	LP
+TP53	Pathogenic	1	1	P	P	P
+TP53	Pathogenic	1	2	P	P	P
+TP53	Pathogenic	1	2	P	P	P
+TP53	Pathogenic	2	1	P	P	P
+PTPN11	Pathogenic	1	2	P	P	P
+PTPN11	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Pathogenic	1	2	P	P	P
+BRAF	Likely Pathogenic	1	2	LP	LP	LP
+MAP2K1	Pathogenic	1	2	P	P	P
+SOS1	Uncertain Significance	1	2	VUS	VUS	VUS
+SOS1	Likely Pathogenic	1	2	LP	LP	LP
+TP53	Pathogenic	1	2	P	P	P
+PAH	Uncertain Significance	1	2	VUS	VUS	VUS
+SOS1	Likely Pathogenic	1	4	LP	LP	LP
+SOS1	Likely Pathogenic	1	4	LP	LP	LP
+SOS1	Pathogenic	1	4	P	P	P
+SOS1	Pathogenic	1	4	P	P	P
+SOS1	Pathogenic	1	4	P	P	P
+TP53	Uncertain Significance	1	1	VUS	VUS	VUS
+TP53	Uncertain Significance	2	2	VUS	VUS	VUS
+TP53	Likely Pathogenic	2	2	LP	LP	LP
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Pathogenic	1	4	P	LP	LP
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Pathogenic	2	2	P	P	LP
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	LP
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Pathogenic	2	2	P	P	LP
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Pathogenic	2	2	P	P	LP
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Pathogenic	2	1	P	P	P
+RYR1	Uncertain Significance	2	1	LP	LP	LP
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	LP
+RYR1	Pathogenic	2	2	P	P	LP
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Pathogenic	2	1	P	P	P
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Pathogenic	2	2	P	P	LP
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+FOXG1	Pathogenic	1	2	LP	LP	LP
+PDHA1	Pathogenic	1	2	P	P	LP
+MECP2	Likely Pathogenic	1	2	LP	LP	LP
+TCF4	Pathogenic	1	2	P	P	P
+TCF4	Likely Pathogenic	1	2	LP	LP	LP
+MECP2	Likely Pathogenic	1	2	LP	LP	LP
+MECP2	Pathogenic	1	2	P	P	P
+CDKL5	Pathogenic	1	2	P	P	P
+TCF4	Pathogenic	1	2	P	P	P
+TCF4	Pathogenic	1	2	P	P	P
+TCF4	Pathogenic	1	2	P	P	P
+CDKL5	Pathogenic	1	2	P	P	P
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	VUS
+MYH7	Uncertain Significance	1	2	VUS	VUS	VUS
+TP53	Likely Pathogenic	2	2	LP	LP	LP
+TP53	Pathogenic	2	2	P	P	P
+TP53	Uncertain Significance	2	2	LB	LB	LB
+LDLR	Pathogenic	1	2	P	P	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Pathogenic	2	1	P	P	LP
+RYR1	Pathogenic	2	2	P	P	LP
+RYR1	Likely Pathogenic	2	1	LP	LP	LP
+RYR1	Likely Pathogenic	2	1	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	LP
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	LP
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	LP
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+TP53	Likely Benign	1	1	LB	LB	LB
+MYH7	Likely Pathogenic	1	2	LP	LP	LP
+MYH7	Likely Pathogenic	1	2	LP	LP	LP
+MYH7	Uncertain Significance	1	2	LP	LP	VUS
+MYH7	Uncertain Significance	1	2	VUS	VUS	VUS
+MYH7	Likely Pathogenic	1	2	LP	LP	LP
+MYH7	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	1	P	P	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Pathogenic	1	1	P	P	LP
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	2	LP	LP	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+GAA	Pathogenic	1	2	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	LP
+RYR1	Likely Pathogenic	2	1	LP	LP	VUS
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Pathogenic	2	1	P	P	P
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	P	P	LP
+MECP2	Uncertain Significance	1	2	VUS	VUS	LB
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+LDLR	Pathogenic	1	2	P	P	P
+RYR1	Likely Pathogenic	2	2	LP	LP	LP
+RYR1	Likely Pathogenic	2	1	LP	LP	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	2	VUS	VUS	VUS
+RYR1	Pathogenic	2	2	P	P	LP
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Pathogenic	2	1	P	P	LP
+RYR1	Likely Pathogenic	2	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Pathogenic	1	1	P	P	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Pathogenic	2	1	P	P	P
+RYR1	Pathogenic	2	1	P	P	LP
+RYR1	Pathogenic	2	2	P	P	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+LDLR	Likely Pathogenic	1	2	P	P	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Pathogenic	1	2	P	P	LP
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	2	P	P	LP
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Likely Pathogenic	1	2	LP	LP	VUS
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	P	P	P
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Pathogenic	1	2	P	P	LP
+HNF1A	Likely Pathogenic	1	2	LP	LP	VUS
+HNF1A	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Pathogenic	1	2	P	P	P
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Pathogenic	1	1	P	P	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+LDLR	Pathogenic	1	2	P	P	P
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Pathogenic	1	2	P	P	P
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+MECP2	Pathogenic	1	2	P	P	LP
+MECP2	Pathogenic	1	2	P	P	P
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+FOXG1	Likely Pathogenic	1	2	LP	LP	VUS
+FOXG1	Likely Pathogenic	1	2	LP	LP	LP
+TCF4	Likely Pathogenic	1	2	LP	LP	LP
+MECP2	Pathogenic	1	2	P	P	P
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+LDLR	Pathogenic	1	2	P	P	P
+LDLR	Pathogenic	1	2	P	P	P
+LDLR	Pathogenic	1	2	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	2	P	P	P
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+DICER1	Pathogenic	1	2	P	P	P
+DICER1	Pathogenic	1	1	P	P	P
+DICER1	Likely Pathogenic	1	1	LP	LP	VUS
+DICER1	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+DICER1	Uncertain Significance	1	1	VUS	VUS	VUS
+RYR1	Pathogenic	2	1	P	P	LP
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Pathogenic	2	1	P	P	LP
+RYR1	Likely Pathogenic	2	1	LP	LP	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	LP
+RYR1	Pathogenic	2	1	P	P	P
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Pathogenic	2	2	P	P	LP
+RYR1	Pathogenic	2	2	P	P	P
+RYR1	Likely Pathogenic	2	2	P	P	LP
+MYH7	Likely Pathogenic	1	2	LP	LP	LP
+MYH7	Uncertain Significance	1	2	VUS	VUS	VUS
+MYH7	Uncertain Significance	1	2	VUS	VUS	VUS
+MYH7	Uncertain Significance	1	2	VUS	VUS	VUS
+MYH7	Uncertain Significance	1	2	VUS	VUS	VUS
+MYH7	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+ACADVL	Pathogenic	1	2	P	P	LP
+ACADVL	Pathogenic	1	2	P	P	LP
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Likely Pathogenic	2	1	LP	LP	VUS
+RYR1	Pathogenic	2	1	P	P	P
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+GAA	Pathogenic	1	2	P	P	P
+GAA	Pathogenic	1	2	P	P	P
+DICER1	Uncertain Significance	1	2	VUS	VUS	VUS
+DICER1	Likely Pathogenic	1	1	LP	LP	VUS
+DICER1	Uncertain Significance	1	1	VUS	VUS	VUS
+FBN1	Pathogenic	1	2	P	P	P
+MECP2	Likely Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	P	P	P
+ACADVL	Pathogenic	1	2	P	P	P
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Pathogenic	1	2	P	P	P
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+HNF4A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF4A	Likely Pathogenic	1	2	P	P	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+RYR1	Uncertain Significance	2	1	VUS	VUS	VUS
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	VUS
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+DICER1	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Likely Pathogenic	1	1	LP	LP	LP
+HNF4A	Likely Pathogenic	1	1	P	P	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Likely Pathogenic	1	2	P	P	LP
+FOXG1	Uncertain Significance	1	2	VUS	VUS	VUS
+FOXG1	Likely Pathogenic	1	2	LP	LP	VUS
+FOXG1	Likely Pathogenic	1	2	LP	LP	VUS
+CDKL5	Likely Pathogenic	1	2	LP	LP	VUS
+FOXG1	Likely Pathogenic	1	2	LP	LP	LP
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Likely Pathogenic	1	1	LP	LP	LP
+GCK	Likely Pathogenic	1	2	LP	LP	LP
+GCK	Likely Pathogenic	1	2	LP	LP	LP
+GCK	Pathogenic	1	2	P	P	P
+HNF4A	Pathogenic	1	1	P	P	P
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF4A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Pathogenic	1	2	P	P	P
+SERPINC1	Pathogenic	1	2	P	P	P
+SERPINC1	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Likely Pathogenic	1	2	LP	LP	VUS
+GAA	Pathogenic	1	2	P	P	P
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+GCK	Likely Pathogenic	1	2	P	P	LP
+GCK	Pathogenic	1	2	P	P	P
+GCK	Likely Pathogenic	1	2	LP	LP	VUS
+GCK	Pathogenic	1	2	P	P	P
+RUNX1	Likely Pathogenic	1	1	LP	LP	LP
+RUNX1	Pathogenic	1	4	P	LP	LP
+RUNX1	Pathogenic	1	4	P	LP	LP
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Pathogenic	1	4	P	LP	LP
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+HNF1A	Pathogenic	1	1	P	P	P
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+FBN1	Uncertain Significance	1	2	LB	LB	LB
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+FBN1	Pathogenic	1	4	P	P	P
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Pathogenic	1	4	P	P	P
+FBN1	Pathogenic	1	2	P	P	P
+DICER1	Pathogenic	1	2	P	P	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	VUS
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Pathogenic	1	4	P	P	P
+FBN1	Likely Pathogenic	1	2	P	P	LP
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+TCF4	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Pathogenic	1	4	P	LP	LP
+FBN1	Uncertain Significance	1	2	VUS	VUS	VUS
+FBN1	Pathogenic	1	4	P	LP	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+FBN1	Pathogenic	1	4	P	LP	LP
+FBN1	Pathogenic	1	2	P	P	LP
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+FBN1	Pathogenic	1	4	P	P	P
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Pathogenic	1	4	P	P	P
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+DICER1	Pathogenic	1	2	P	P	LP
+HNF4A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+RPE65	Likely Pathogenic	2	2	LP	LP	VUS
+RPE65	Pathogenic	2	2	P	P	LP
+RPE65	Pathogenic	2	2	P	P	LP
+SERPINC1	Pathogenic	1	2	P	P	P
+FBN1	Likely Pathogenic	1	2	LP	LP	VUS
+FBN1	Pathogenic	1	4	P	LP	LP
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Pathogenic	1	4	P	P	P
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+HNF4A	Uncertain Significance	1	2	VUS	VUS	VUS
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	LP
+GCK	Pathogenic	1	2	P	P	P
+PTEN	Likely Pathogenic	1	2	LP	LP	LP
+ACVRL1	Pathogenic	1	2	P	P	P
+GCK	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF4A	Pathogenic	1	1	P	P	LP
+HNF4A	Pathogenic	1	2	P	P	P
+HNF4A	Pathogenic	1	2	P	P	P
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Pathogenic	1	2	P	P	P
+HNF4A	Likely Pathogenic	1	2	LP	LP	VUS
+HNF4A	Likely Pathogenic	1	2	LP	LP	VUS
+HNF4A	Pathogenic	1	2	P	P	LP
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Likely Pathogenic	1	1	LP	LP	LP
+HNF4A	Pathogenic	1	1	P	P	P
+HNF4A	Pathogenic	1	2	P	P	P
+HNF4A	Pathogenic	1	1	P	P	P
+GCK	Pathogenic	1	2	P	P	LP
+GCK	Pathogenic	1	2	P	P	P
+RPE65	Pathogenic	2	2	P	P	LP
+RPE65	Pathogenic	2	2	P	P	P
+RPE65	Pathogenic	2	2	P	P	LP
+RPE65	Pathogenic	2	2	P	P	LP
+ACADVL	Uncertain Significance	1	2	VUS	VUS	VUS
+GCK	Pathogenic	1	2	P	P	LP
+GCK	Pathogenic	1	2	P	P	LP
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	LP
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+BMPR2	Pathogenic	1	4	P	LP	LP
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+BMPR2	Pathogenic	1	4	P	P	P
+BMPR2	Uncertain Significance	1	2	LB	LB	LB
+BMPR2	Pathogenic	1	4	P	P	P
+DICER1	Uncertain Significance	1	1	VUS	VUS	VUS
+GAA	Pathogenic	1	2	P	P	P
+SCN1A	Pathogenic	2	2	P	P	LP
+SCN2A	Pathogenic	2	2	P	P	P
+SERPINC1	Likely Pathogenic	1	2	LP	LP	LP
+HNF4A	Likely Pathogenic	1	1	P	P	LP
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Pathogenic	1	1	P	P	P
+HNF1A	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Likely Pathogenic	1	2	LP	LP	VUS
+HNF1A	Pathogenic	1	2	P	P	LP
+HNF1A	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+VHL	Likely Pathogenic	1	2	LP	LP	LP
+VHL	Pathogenic	1	2	P	P	P
+VHL	Uncertain Significance	1	2	VUS	VUS	VUS
+VHL	Uncertain Significance	1	2	LB	LB	LB
+VHL	Pathogenic	1	2	P	P	P
+VHL	Uncertain Significance	1	2	VUS	VUS	VUS
+VHL	Uncertain Significance	1	2	VUS	VUS	VUS
+VHL	Pathogenic	1	2	P	P	P
+F9	Pathogenic	1	4	P	P	P
+F9	Pathogenic	1	2	P	P	LP
+F8	Pathogenic	1	2	LP	LP	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+VHL	Pathogenic	1	2	P	P	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RPE65	Pathogenic	2	2	P	P	LP
+RPE65	Pathogenic	2	2	P	P	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Pathogenic	1	1	P	P	P
+FOXN1	Likely Pathogenic	1	2	LP	LP	VUS
+FOXN1	Pathogenic	2	2	LP	LP	LP
+FOXN1	Likely Pathogenic	2	2	LP	LP	VUS
+FOXN1	Likely Pathogenic	2	2	LP	LP	VUS
+FOXN1	Pathogenic	1	2	P	P	LP
+HNF4A	Likely Pathogenic	1	1	LP	LP	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Likely Pathogenic	1	1	LP	LP	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+FBN1	Pathogenic	1	4	P	P	P
+FBN1	Pathogenic	1	2	P	P	P
+FBN1	Pathogenic	1	2	P	P	P
+FBN1	Pathogenic	1	4	P	P	P
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+FBN1	Pathogenic	1	4	P	LP	LP
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+FBN1	Uncertain Significance	1	2	VUS	VUS	VUS
+FBN1	Pathogenic	1	4	P	LP	LP
+FBN1	Pathogenic	1	4	P	LP	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	VUS
+FBN1	Pathogenic	1	4	P	P	P
+FBN1	Likely Pathogenic	1	2	P	P	LP
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+FBN1	Likely Pathogenic	1	4	LP	LP	LP
+TP53	Likely Pathogenic	2	2	LP	LP	LP
+TP53	Pathogenic	1	2	P	P	P
+TP53	Pathogenic	2	2	P	P	P
+TP53	Pathogenic	1	1	P	P	P
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+BMPR2	Uncertain Significance	1	2	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	1	LP	LP	LP
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF4A	Pathogenic	1	1	P	P	P
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Benign	1	1	LB	LB	LB
+ENG	Likely Pathogenic	1	2	LP	LP	LP
+BMPR2	Pathogenic	1	4	P	P	P
+BMPR2	Likely Pathogenic	1	2	LP	LP	VUS
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+LDLR	Uncertain Significance	1	2	VUS	VUS	VUS
+LDLR	Uncertain Significance	1	2	VUS	VUS	VUS
+RRAS2	Pathogenic	1	2	P	P	P
+RRAS2	Likely Pathogenic	1	2	LP	LP	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+MRAS	Likely Pathogenic	1	2	P	P	P
+MRAS	Likely Pathogenic	1	2	P	P	P
+MRAS	Likely Pathogenic	1	2	P	P	P
+FOXN1	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RIT1	Uncertain Significance	1	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	1	2	LP	LP	VUS
+LDLR	Uncertain Significance	1	2	VUS	VUS	VUS
+LDLR	Likely Pathogenic	1	2	LP	LP	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	1	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+NRAS	Pathogenic	1	2	P	P	P
+FBN1	Likely Pathogenic	1	2	P	P	LP
+FBN1	Likely Pathogenic	1	2	P	P	LP
+FBN1	Likely Pathogenic	1	2	LP	LP	LP
+FBN1	Pathogenic	1	2	P	P	P
+FBN1	Pathogenic	1	2	P	P	P
+F9	Likely Pathogenic	1	2	LP	LP	LP
+SCN1A	Pathogenic	2	2	P	P	P
+BMPR2	Likely Pathogenic	1	2	LP	LP	VUS
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+BMPR2	Pathogenic	1	2	P	P	LP
+BMPR2	Uncertain Significance	1	2	VUS	VUS	VUS
+IDUA	Likely Pathogenic	1	2	LP	LP	LP
+IDUA	Pathogenic	2	2	LP	LP	VUS
+IDUA	Likely Pathogenic	2	2	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF4A	Pathogenic	1	1	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+SERPINC1	Uncertain Significance	1	2	VUS	VUS	VUS
+SERPINC1	Likely Pathogenic	1	2	LP	LP	LP
+SERPINC1	Pathogenic	1	2	P	P	P
+MECP2	Pathogenic	1	2	LP	LP	LP
+HNF4A	Likely Pathogenic	1	2	LP	LP	LP
+BMPR2	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+BMPR2	Likely Pathogenic	1	2	LP	LP	VUS
+BMPR2	Likely Pathogenic	1	2	LP	LP	VUS
+BMPR2	Uncertain Significance	1	2	VUS	VUS	VUS
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+F9	Likely Pathogenic	1	2	LP	LP	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+BMPR2	Uncertain Significance	1	2	VUS	VUS	VUS
+BMPR2	Pathogenic	1	1	P	P	P
+DICER1	Pathogenic	1	2	P	P	LP
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF4A	Likely Pathogenic	1	1	LP	LP	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	VUS
+GUCY2D	Uncertain Significance	1	1	VUS	VUS	VUS
+GUCY2D	Likely Pathogenic	2	2	LP	LP	VUS
+GUCY2D	Likely Pathogenic	2	2	LP	LP	LP
+GUCY2D	Likely Pathogenic	2	1	LP	LP	VUS
+GUCY2D	Likely Pathogenic	2	1	LP	LP	VUS
+LDLR	Pathogenic	1	2	P	P	P
+GP1BB	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	2	LP	LP	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Likely Pathogenic	1	1	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	P	P	P
+LDLR	Likely Pathogenic	1	2	LP	LP	VUS
+MRAS	Likely Pathogenic	1	2	LP	LP	LP
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+FOXG1	Likely Pathogenic	1	2	LP	LP	LP
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+FOXG1	Likely Pathogenic	1	2	LP	LP	LP
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+IDUA	Pathogenic	1	2	P	P	LP
+IDUA	Pathogenic	2	2	P	P	LP
+ACADVL	Pathogenic	4	1	P	P	P
+ACADVL	Pathogenic	4	2	P	P	P
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+SCN2A	Likely Pathogenic	2	2	LP	LP	LP
+FOXN1	Likely Pathogenic	2	2	LP	LP	VUS
+BMPR2	Likely Pathogenic	1	2	LP	LP	LP
+BMPR2	Likely Pathogenic	1	2	LP	LP	LP
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+BMPR2	Likely Pathogenic	1	4	LP	LP	LP
+RUNX1	Likely Pathogenic	1	4	LP	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+GAA	Likely Pathogenic	1	2	LP	LP	LP
+RS1	Pathogenic	2	2	P	P	P
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+DICER1	Uncertain Significance	1	2	VUS	VUS	VUS
+DICER1	Uncertain Significance	1	2	VUS	VUS	VUS
+PTEN	Pathogenic	1	2	P	P	P
+IDUA	Likely Pathogenic	2	2	P	P	LP
+RPE65	Pathogenic	2	2	P	P	LP
+RPE65	Likely Pathogenic	2	2	LP	LP	VUS
+RPE65	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+TCF4	Likely Pathogenic	1	2	LP	LP	LP
+KCNQ1	Uncertain Significance	1	2	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+FOXN1	Likely Pathogenic	1	2	LP	LP	LP
+TP53	Likely Pathogenic	1	1	LP	LP	LP
+TP53	Likely Pathogenic	1	1	LP	LP	LP
+TP53	Pathogenic	1	2	P	P	P
+TP53	Pathogenic	1	2	P	P	P
+TP53	Pathogenic	1	1	P	P	P
+TP53	Pathogenic	2	1	P	P	LP
+HNF4A	Likely Benign	1	1	LB	LB	LB
+FOXN1	Likely Pathogenic	2	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	LP
+LDLR	Likely Pathogenic	1	2	LP	LP	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+LDLR	Uncertain Significance	1	2	VUS	VUS	VUS
+RYR1	Likely Pathogenic	1	2	LP	LP	VUS
