@@ -61,6 +61,7 @@ The amendment timeline, the deviation log and the commit identifiers are in Supp
 **Autism cohort.** De novo SNVs in 12,316 autism probands, with 4,051 unaffected siblings as a negative control (Zhou et al. 2022; Supplementary Data 1–2).
 
 - The supplementary tables list only individuals who carry a coding de novo: 13,103 affected, of whom 12,501 carry an SNV.
+- After restriction to autosomes, removal of duplicates, liftover and site matching, 12,316 carry at least one analysable SNV. Individuals without a de novo do not change the estimates, because the scale factor comes from synonymous counts.
 - Individuals sharing ≥ 2 identical de novo SNVs with a DD proband were removed (n = 64).
 
 **Public multi-phenotype cohort.** 4,256 trios assembled from public sources:
@@ -374,6 +375,8 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
 - **The conditional rule** changed 238 (98 P→LP, 139 LP→VUS).
 - **Caveat:** this rule extrapolates de novo NDD estimates to other diseases, where panel-specific PM1 definitions apply, so it is an upper bound on impact.
 
+**Conditional PP3 points** (Supplementary Table 4). Points PP3 earns by predictor, tier and cohort, with and without a PM1-like or PP2-like flag. In DD, with a PM1-like flag, AlphaMissense earns 0 points at Supporting and Moderate and 1.1 at Strong; REVEL earns 0.5, 0.9 and 1.6. This table is the practical output for curators who apply PM1.
+
 **Per-predictor guidance** (Supplementary Table 1). Multiplying 4 published points by each predictor's retention gives the points a predictor can justify when combined with position-based criteria:
 
 | Predictor | Points |
@@ -444,7 +447,8 @@ AlphaMissense scored 0.967 in each comparison. v5 used AlphaMissense as an input
 4. **Penetrance and phenotype.** The de novo excess reflects variants of high penetrance for severe early-onset phenotypes. Retention measured here may not transfer to lower-penetrance or inherited variants.
 5. **Transfer to ClinVar** (the conditional points) is an extrapolation beyond dominant de novo NDD variants.
 6. **Ancestry.** The cohorts are predominantly of European ancestry.
-7. **Precision.** The public cohort passed the pre-specified power check but gives wide intervals, and the model comparisons cannot exclude modest differences.
+7. **Transcripts.** Sites are mapped to GENCODE v32 canonical transcripts, which predate MANE. Only 74.4% of transcripts in MANE genes match MANE Select v1.5 (66.5% in DDG2P genes). Protein positions, and hence window assignments, may differ for the rest; gene-level analyses are unaffected.
+8. **Precision.** The public cohort passed the pre-specified power check but gives wide intervals, and the model comparisons cannot exclude modest differences.
 
 **Conclusion.** Missense predictors are most informative about which genes and regions matter, and much less about which variants matter within them. When PP3 is combined with PM1-like evidence, the joint evidence is substantially less than the sum, including within known disease genes, and the overlap is consistent with ClinGen's cap. Per-predictor retention shares and the direct overlap estimates indicate which predictors justify more or less than the cap.
 
