@@ -392,6 +392,42 @@ v3 changes only the null, so that the objective is within-gene. Its result is re
 
 **Multiplicity.** v4 is the fourth model compared with AlphaMissense in this study, and the result is reported in that light. A significant primary result would be described as an exploratory finding motivating an independent, pre-registered validation, not as a confirmed improvement.
 
+## 3j. Amendment A9 (2026-10-06): a third, public, multi-phenotype cohort
+
+**Status.** Written after all A1–A8 results were seen. The cohort has been assembled (variant lists only). **No analysis has been run on it:** no matching to the universe, no counts by class, no LR.
+
+**Data** (`public3_dnv_snv_grch37.tsv`, md5 `f82386b55c643e74abae50caeb9c3fea`, built by `assemble_public3.py`):
+
+| Source | Phenotype | Trios |
+|---|---|---|
+| Jin et al. 2017 *Nat Genet*, Table S9 (Springer static file, md5 `e54667ef…`) | Congenital heart disease | 2,645 |
+| denovo-db v1.6.1 (non-SSC; md5 `97f8eb9c…`): Fromer 2014, Gulsuner 2013, McCarthy 2014 | Schizophrenia | 785 |
+| denovo-db: Willsey 2017 | Tourette syndrome | 511 |
+| denovo-db: Epi4K 2013 | Epileptic encephalopathy | 264 |
+| denovo-db: Rauch 2012 | Intellectual disability | 51 |
+| **Total** | | **4,256** |
+
+**Exclusions** (decided from study metadata, before any analysis):
+
+- Studies overlapping Kaplanis 2020 or Zhou 2022: DDD 2017, Sifrim 2016, de Ligt 2012, Lelieveld 2016, and every autism study.
+- Homsy 2015 and Lifton, which are subsets of Jin 2017.
+- Studies reporting < 0.15 synonymous de novos per proband, which indicates incomplete calls: Helbig 2016, McMichael 2015, Yu 2015, Halvardson 2016, Lemay 2015, Veeramah 2013.
+
+**Processing.** As A2:
+
+- GRCh37 → GRCh38 with the gate's chain; REF confirmed; primary filters.
+- Duplicates are removed: any individual sharing ≥ 2 identical de novo SNVs with a Kaplanis proband **or a Zhou individual**.
+- The scale factor comes from this cohort's own synonymous de novos.
+- Poisson bootstrap over individuals, seed 20261004.
+
+**Power check (pre-specified, as A2).** Adequately powered if the total missense O/E one-sided lower bound is > 1 **and** the AlphaMissense within-gene top-2% LR lower bound is > 1. Otherwise every readout is descriptive. Low power is expected, because most of these phenotypes have weak de novo missense excess.
+
+**Readouts:**
+
+1. **Main finding:** the A2 readouts (D2 primary) for AlphaMissense and the 36 dbNSFP 4.1a tools, with median r(B), r(D2) and r(E2).
+2. **Models:** v3 and v4 against AlphaMissense, within gene, top 2%, paired bootstrap. The models were trained only on Kaplanis DD centres, so this cohort is independent of their training. Descriptive whatever the power, because this is the fifth model comparison.
+3. **Descriptive:** the same within Jin 2017 probands flagged NDD = Yes.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
