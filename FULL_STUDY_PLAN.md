@@ -543,6 +543,23 @@ Expert-panel classifications with their applied criteria (public export) are rec
 
 All A12 analyses are descriptive.
 
+## 3n. Amendment A13 (2026-10-06, ~14:15 IST): overlap within disease genes (fifth review)
+
+**Status.** Written after A10.1, A11 (strata, CpG, ClinVar exclusion) and the fifth review. None of the analyses below has been run.
+
+**Analysis.** For AlphaMissense, REVEL and VEST4 PP3 (published Supporting threshold and the Strong tier) × the PM1-like and PM1-strict flags, in DD (primary) and autism:
+
+1. **R within DDG2P monoallelic genes:** marginal LRs computed on sites in those genes only.
+2. **Gene-stratified R, all genes:** within-gene LRs (unit = gene), R_w = LRw(PP3 ∧ F) / [LRw(PP3) · LRw(F)].
+3. **Gene-stratified R within DDG2P monoallelic genes.**
+
+PP2-like is constant within a gene, so it is not tested within gene.
+
+**Pre-committed reading:**
+
+- If gene-stratified R in DDG2P genes has an upper bound < 1, the overlap holds within disease genes.
+- If its interval includes 1, the overlap is mainly between genes. The paper is then reframed accordingly ("overlap is mostly between-gene").
+
 ## 3l. Amendment A11 (2026-10-06): robustness analyses requested by external review (descriptive)
 
 **Status.** Written after A1–A8 results, the A9 model comparison and the A10 design. None of the analyses below has been run.
