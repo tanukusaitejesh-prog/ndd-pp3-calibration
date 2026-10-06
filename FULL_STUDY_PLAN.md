@@ -480,6 +480,33 @@ v3 changes only the null, so that the objective is within-gene. Its result is re
 - v3 and v4 in autism;
 - v3 and v4 in the public cohort.
 
+### A10 addendum (2026-10-06, 11:12 IST): interpretation of R fixed before it exists
+
+**Status.** Written after a third external review. **The A10.1 overlap run had not started** (`a10_overlap*` absent; the orchestrator log has no `start overlap`).
+
+**Pre-committed reading of the primary R** (DD, AlphaMissense, PM1-like):
+
+| 95% CI of R | Reading | Framing |
+|---|---|---|
+| Upper bound < 0.85 | **Substantial overlap** | Practice paper: PP3 should be credited conditionally when PM1 is applied; implied points reported. |
+| Excludes 1, upper bound ≥ 0.85 | **Modest overlap** | Retention overstates the overlap with the coarse criteria labs apply; both reported. |
+| Includes 1 | **No detectable overlap with the coarse flag** | The overlap shown by retention concerns fine-scale position, not the PM1-like flag. Reframed accordingly. |
+
+The same reading applies to the autism replication. PP2-like and PM1-strict are read the same way, as secondary.
+
+**Points on two scales.** All points (retention-derived, implied PP3 points, conditional ClinVar points) are reported:
+
+1. on the Pejaver et al. 2022 scale, 2.406 per point (ClinGen prior 0.0441);
+2. on the Tavtigian et al. 2018 scale, 2.08 per point (prior 0.10).
+
+Each is reported with bootstrap intervals rather than as a pass/fail against a single cut-off.
+
+**Exploratory additions** (labelled as such):
+
+- **Cross-cohort selection:** informative predictors selected in one cohort, retention measured in the other (DD ↔ autism), so selection and measurement do not use the same data.
+- **Predictor-level resampling:** the median retention gets an interval from resampling predictors, clustered by shared training-label class.
+- **Headroom control:** retention of AlphaMissense after adding Gaussian noise to its score (SD 0.05, 0.1, 0.2), to show how retention changes with marginal strength alone.
+
 ## 3l. Amendment A11 (2026-10-06): robustness analyses requested by external review (descriptive)
 
 **Status.** Written after A1–A8 results, the A9 model comparison and the A10 design. None of the analyses below has been run.
