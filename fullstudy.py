@@ -151,6 +151,8 @@ def score_col(s):
         return M4V3[s]
     if s in M4V4:
         return M4V4[s]
+    if s in M4V5:
+        return M4V5[s]
     return ("v54_" + TOOLS54[s]) if s in TOOLS54 else TOOLS[s]            # section 6: developed/evaluated on DD de novo cohorts -> DDD de novos only
 DB54 = P(EXT, "dbnsfp54", "dbNSFP5.4a_grch38.gz")
 
@@ -2541,6 +2543,129 @@ def cmd_aim4v4(a):
     log("Aim 4 v4:\n" + "\n".join(txt))
 
 
+
+M4V5 = {"Aim4v5_GBDT": "m4_v5_gbdt"}                     # amendment A15: label-free inputs only
+V5_KEEP = {"SIFT", "SIFT4G", "LRT", "MutationAssessor", "PROVEAN", "PrimateAI", "LIST-S2", "CADD", "DANN", "Eigen", "Eigen-PC",
+           "GERP++", "phyloP100way", "phyloP30way", "phastCons100way", "SiPhy", "GenoCanyon", "fitCons", "ESM1b", "MisFit_D",
+           "MisFit_S", "GPN-MSA", "GERP_92m", "phyloP470way", "phastCons470way", "AlphaMissense", "rmc_oe", "ccr_pct",
+           "af_plddt", "af_nca10", "af_plddtw"}
+
+
+def aim4_features_v5(u, med):
+    X, names = aim4_features_v2(u, med)
+    keep = [k for k, n in enumerate(names)
+            if n.startswith(("ref_", "alt_")) or (n[:-8] if n.endswith("_missing") else n) in V5_KEEP]
+    return X[:, keep], [names[k] for k in keep]
+
+
+def cmd_aim4v5(a):
+    """Amendment A15: v4 with label-free inputs only (V5_KEEP); same null, data, settings and autism evaluation."""
+    from sklearn.ensemble import HistGradientBoostingClassifier
+    os.makedirs(a.results, exist_ok=True)
+    d, eng, syn_mass, syn_p_all, d_mis, tinfo = setup(a)
+    syn_d = dnv_filter(d[d["status"] == "synonymous"])
+    rng = np.random.default_rng(SEED)
+    cols = list(dict.fromkeys(AIM4_COLS + [score_col(t) for t in AIM4V2_TOOLS] + AF_COLS))
+    real_parts, null_parts, med_parts = [], [], []
+    tot = 0.0
+    for c in AUTOSOMES:
+        od = P(a.fs, "col", f"chr{c}")
+        mm = {n: np.load(P(od, n.replace("/", "_") + ".npy"), mmap_mode="r") for n in cols}
+        key, tx, mr = np.asarray(mm["key"]), np.asarray(mm["tx"]).astype(np.int64), np.asarray(mm[PRIMARY_MODEL], float)
+        tot += float(mr.sum())
+        ridx = np.flatnonzero(np.isin(key, d_mis.loc[d_mis["chrom"] == c, "key"].to_numpy()))
+        smp = pd.Series(np.arange(len(key))).sample(n=min(len(key), 20000), random_state=SEED).to_numpy()
+        med_parts.append(pd.DataFrame({n: np.asarray(v)[smp] for n, v in mm.items()}))
+        if len(ridx):
+            order = np.argsort(tx, kind="stable")
+            starts = np.searchsorted(tx[order], np.arange(tx.max() + 2))
+            nidx = []
+            for t, n_t in zip(*np.unique(tx[ridx], return_counts=True)):
+                members = order[starts[t]:starts[t + 1]]
+                w = mr[members]
+                nidx.append(members[rng.choice(len(members), size=10 * n_t, replace=True, p=w / w.sum())])
+            nidx = np.concatenate(nidx)
+            real_parts.append(pd.DataFrame({n: np.asarray(v)[ridx] for n, v in mm.items()}))
+            null_parts.append(pd.DataFrame({n: np.asarray(v)[nidx] for n, v in mm.items()}))
+        del mm, key, tx, mr
+        gc.collect()
+    real_df, null_df = pd.concat(real_parts, ignore_index=True), pd.concat(null_parts, ignore_index=True)
+    medsrc = pd.concat(med_parts, ignore_index=True)
+    med = {"AlphaMissense": float(np.nanmedian(medsrc["am"])), "rmc_oe": float(np.nanmedian(medsrc["rmc_oe"])),
+           "ccr_pct": float(np.nanmedian(medsrc["ccr_pct"]))}
+    for t, cc in TOOLS.items():
+        med[t] = float(np.nanmedian(medsrc[cc]))
+    for t in AIM4V2_TOOLS:
+        med[t] = float(np.nanmedian(medsrc[score_col(t)]))
+    for k in AF_COLS:
+        med[k] = float(np.nanmedian(medsrc[k]))
+    Xr, names = aim4_features_v5(real_df, med)
+    Xn, _ = aim4_features_v5(null_df, med)
+    n_real_, n_null_ = len(Xr), len(Xn)
+    X = np.vstack([Xr, Xn]); y = np.r_[np.ones(n_real_), np.zeros(n_null_)]
+    del real_df, null_df, medsrc, Xr, Xn, real_parts, null_parts, med_parts
+    gc.collect()
+    m4 = HistGradientBoostingClassifier(max_iter=300, learning_rate=0.05, max_leaf_nodes=31, l2_regularization=1.0,
+                                        early_stopping=True, validation_fraction=0.1, random_state=SEED).fit(X, y)
+    del X, y
+    gc.collect()
+    pi = 1 - (len(syn_d) / syn_mass) * tot / n_real_
+    ratio = n_null_ / n_real_
+    log(f"Aim 4 v5 (gene-matched, all DD centres): {n_real_:,} de novo sites vs {n_null_:,} same-transcript null sites; "
+        f"{len(names)} features; GBDT iterations {m4.n_iter_}; pi = {pi:.3f}")
+    for c in AUTOSOMES:
+        od = P(a.fs, "col", f"chr{c}")
+        mm = {n: np.load(P(od, n.replace("/", "_") + ".npy"), mmap_mode="r") for n in cols}
+        n_c = len(mm["key"])
+        parts = []
+        for s0 in range(0, n_c, 100_000):
+            Xs, _ = aim4_features_v5(pd.DataFrame({n: np.asarray(x[s0:s0 + 100_000]) for n, x in mm.items()}), med)
+            p = np.clip(m4.predict_proba(Xs)[:, 1], 1e-7, 1 - 1e-7)
+            parts.append(np.maximum(0.0, (p / (1 - p) * ratio - (1 - pi)) / pi).astype(np.float32))
+        v = np.concatenate(parts)
+        np.save(P(od, M4V5["Aim4v5_GBDT"] + ".npy"), (np.log1p(np.minimum(v, M4_LRMAX)) / np.log1p(M4_LRMAX)).astype(np.float32))
+        log(f"chr{c}: Aim 4 v5 predictions written")
+        del mm, parts
+        gc.collect()
+    open(P(a.fs, "col", "_m4v5_done"), "w").close()
+    with open(P(a.results, "aim4v5_model.json"), "w") as f:
+        json.dump({"n_real": int(n_real_), "n_null": int(n_null_), "pi_all_dd_v5": float(pi), "gbdt_iter": int(m4.n_iter_),
+                   "features": names, "medians": med}, f, indent=1)
+    # evaluation: autism probands and siblings only (A2 / A6.3 specification)
+    base = a.results
+    pos_setup(a)
+    for pheno, sub, tag in (("Affected", "replication_affected", "m4v5rep"), ("Unaffected", "replication_unaffected", "m4v5sib")):
+        a.results, a.cohort = P(base, sub), pheno
+        os.makedirs(a.results, exist_ok=True)
+        run_scores(a, ["AlphaMissense", "Aim4v4_GBDT", "Aim4v5_GBDT"], A1_KINDS, ["all_genes"], tag, restrict="aim1_common")
+        if os.path.exists(P(a.results, f"{tag}_top2pct.tsv")):
+            rep_report(a, float("nan"), tag=tag, out_name=f"{tag}_summary.txt")
+    a.results, a.cohort = base, None
+    txt = []
+    for tag, sub in (("m4v5rep", "replication_affected"), ("m4v5sib", "replication_unaffected")):
+        if not (os.path.exists(P(base, sub, f"{tag}_top2reps.npz")) and os.path.exists(P(base, sub, f"{tag}_top2pct.tsv"))):
+            txt.append(f"{tag}: no top-2% table (no de novos in the top group)")
+            continue
+        z = dict(np.load(P(base, sub, f"{tag}_top2reps.npz")))
+        for m_name, ref in (("Aim4v5_GBDT", "AlphaMissense"), ("Aim4v5_GBDT", "Aim4v4_GBDT"), ("Aim4v4_GBDT", "AlphaMissense")):
+            x, y_ = z.get(f"{m_name}|gene|all_genes|LRw"), z.get(f"{ref}|gene|all_genes|LRw")
+            if x is None or y_ is None:
+                continue
+            with np.errstate(all="ignore"):
+                dl = np.log(x) - np.log(y_)
+            b = dl[1:][np.isfinite(dl[1:])]
+            lo, hi = np.exp(np.percentile(b, [2.5, 97.5])) if len(b) > 20 else (np.nan, np.nan)
+            verdict = "v5 better" if lo > 1 else ("reference better" if hi < 1 else "no significant difference")
+            prim = " [A15.2]" if (tag == "m4v5rep" and m_name == "Aim4v5_GBDT" and ref == "AlphaMissense") else ""
+            txt.append(f"{tag}: within-gene top-2% LR {m_name} / {ref} = {np.exp(dl[0]):.2f} [{lo:.2f}, {hi:.2f}] -> {verdict}{prim}")
+        t = pd.read_csv(P(base, sub, f"{tag}_top2pct.tsv"), sep="\t")
+        for r in t[t["unit"].isin(["gene", "win50", "win50_rmc"])].itertuples():
+            txt.append(f"{tag} {r.score} {r.unit}: marginal {r.LRm_top2:.2f} (lower bound {r.lo_sys:.2f}); within {r.LRw_top2:.2f} "
+                       f"[{r.lo95_w:.2f}, {r.hi95_w:.2f}] (lower bound {r.lo_sys_w:.2f})")
+    open(P(base, "aim4v5_summary.txt"), "w").write("\n".join(txt) + "\n")
+    log("Aim 4 v5:\n" + "\n".join(txt))
+
+
 PUBLIC3 = P(EXT, "public3", "public3_dnv_snv_grch37.tsv")
 P3_STUDIES = ["Jin2017", "Fromer2014", "Gulsuner2013", "McCarthy2014", "Willsey2017", "epi4k2013", "Rauch2012"]
 
@@ -3442,6 +3567,96 @@ def cmd_a4ctrl(a):
     log("A4.2 position controls:\n" + "\n".join(txt))
 
 
+A14_SCORES = {"Aim4v5_GBDT": "m4_v5_gbdt", "Aim4v4_GBDT": "m4_v4_gbdt", "Aim4v3_GBDT": "m4_v3_gbdt", "AlphaMissense": "am",
+              "REVEL": "REVEL_rankscore", "VEST4": "VEST4_rankscore", "popEVE": "v54_popEVE_converted_rankscore",
+              "ESM1b": "v54_ESM1b_converted_rankscore", "MisFit_S": "v54_MisFit_S_rankscore",
+              "PrimateAI": "PrimateAI_rankscore", "CADD": "CADD_raw_rankscore"}
+
+
+def _a14_gene_auc(gid, y, s):
+    """Per gene: AUROC (average ranks, ties 0.5) and number of P/LP x B/LB pairs; genes need >= 3 of each class."""
+    from scipy.stats import rankdata
+    out = {}
+    df = pd.DataFrame({"g": gid, "y": y, "s": s})
+    for g, sub in df.groupby("g", sort=False):
+        n1 = int(sub["y"].sum()); n0 = len(sub) - n1
+        if n1 < 3 or n0 < 3:
+            continue
+        r = rankdata(sub["s"].to_numpy())
+        out[g] = ((r[sub["y"].to_numpy() == 1].sum() - n1 * (n1 + 1) / 2) / (n1 * n0), n1 * n0)
+    return out
+
+
+def cmd_a14(a):
+    """Amendment A14: ClinVar P/LP vs B/LB, within-gene AUROC of the de novo-trained models vs AlphaMissense and others."""
+    m = pd.read_csv(P(a.results, "a4_clinvar_matched.tsv.gz"), sep="\t", dtype={"chrom": str}, usecols=["key", "cls", "chrom"])
+    m = m[m["cls"].isin(["P/LP", "B/LB"])]
+    meta = pd.read_csv(P(a.work, "dnv_grch38.tsv"), sep="\t", dtype={"chrom": str}, usecols=["chrom", "pos38", "alt38"])
+    meta = meta[meta["alt38"].isin(list(gate.B2I))]
+    dkey = set(zip(meta["chrom"].str.replace("chr", ""), meta["pos38"].astype(np.int64) * 4 + meta["alt38"].map(gate.B2I)))
+    tinfo = load_tinfo(a)
+    v5 = os.path.exists(P(a.fs, "col", "_m4v5_done"))
+    stem = "a15" if v5 else "a14"
+    rows = []
+    for c in gate.AUTOSOMES:
+        mc = m[m["chrom"].str.replace("chr", "") == c]
+        if mc.empty:
+            continue
+        od = P(a.fs, "col", f"chr{c}")
+        keys = np.load(P(od, "key.npy"))
+        ix = pd.Index(keys).get_indexer(mc["key"].to_numpy(np.int64))
+        ok = ix >= 0
+        mc, ix = mc[ok], ix[ok]
+        drop = np.array([(c, int(k)) in dkey for k in mc["key"]], dtype=bool)
+        mc, ix = mc[~drop], ix[~drop]
+        d = {"key": mc["key"].to_numpy(), "y": (mc["cls"] == "P/LP").to_numpy(np.int8),
+             "tx": np.load(P(od, "tx.npy"), mmap_mode="r")[ix]}
+        for name, col in A14_SCORES.items():
+            f = P(od, col + ".npy")
+            d[name] = np.asarray(np.load(f, mmap_mode="r")[ix], dtype=np.float64) if os.path.exists(f) else np.full(len(ix), np.nan)
+        rows.append(pd.DataFrame(d))
+        log(f"A14 chr{c}: {len(ix)} ClinVar sites kept, {int(drop.sum())} DD de novo sites removed")
+    df = pd.concat(rows, ignore_index=True)
+    df = df[df["tx"] >= 0]
+    df["gene"] = tinfo["gene"].reindex(df["tx"].to_numpy()).to_numpy()
+    df["ddg2p"] = tinfo["ddg2p"].reindex(df["tx"].to_numpy()).fillna(False).to_numpy(bool)
+    rng = np.random.default_rng(20261006)
+    out, lines = [], []
+    for stratum, smask in (("all_genes", np.ones(len(df), bool)), ("ddg2p_monoallelic", df["ddg2p"].to_numpy())):
+        prim = (["Aim4v5_GBDT"] if v5 else []) + ["Aim4v4_GBDT", "Aim4v3_GBDT", "AlphaMissense"]
+        sets = [("primary", prim)] + \
+               [(f"pair_{t}", [t, "AlphaMissense"]) for t in A14_SCORES if t not in prim and t != "Aim4v5_GBDT"]
+        for setname, tools in sets:
+            sub = df[smask & df[tools].notna().all(axis=1).to_numpy()]
+            aucs = {t: _a14_gene_auc(sub["gene"].to_numpy(), sub["y"].to_numpy(), sub[t].to_numpy()) for t in tools}
+            genes = sorted(set.intersection(*[set(v) for v in aucs.values()]))
+            if len(genes) < 5:
+                continue
+            A = {t: np.array([aucs[t][g][0] for g in genes]) for t in tools}
+            W = np.array([aucs[tools[0]][g][1] for g in genes], dtype=float)
+            C = rng.multinomial(len(genes), np.full(len(genes), 1 / len(genes)), size=1000).astype(float)
+            pooled = {t: (A[t] * W).sum() / W.sum() for t in tools}
+            boot = {t: (C * (A[t] * W)).sum(1) / (C * W).sum(1) for t in tools}
+            for t in tools:
+                lo, hi = np.percentile(boot[t], [2.5, 97.5])
+                dl = dh = dp = np.nan
+                if t != "AlphaMissense":
+                    dd_ = boot[t] - boot["AlphaMissense"]; dp = pooled[t] - pooled["AlphaMissense"]
+                    dl, dh = np.percentile(dd_, [2.5, 97.5])
+                out.append(dict(stratum=stratum, set=setname, tool=t, n_genes=len(genes), n_sites=len(sub),
+                                n_plp=int(sub["y"].sum()), auc_pooled=pooled[t], lo95=lo, hi95=hi,
+                                auc_gene_mean=A[t].mean(), d_vs_AM=dp, d_lo95=dl, d_hi95=dh))
+                if t != "AlphaMissense":
+                    tag = " [PRIMARY]" if (stratum == "ddg2p_monoallelic" and setname == "primary" and t == ("Aim4v5_GBDT" if v5 else "Aim4v4_GBDT")) else ""
+                    lines.append(f"{stratum:18s} {setname:16s} {t:14s} AUC {pooled[t]:.3f} vs AM {pooled['AlphaMissense']:.3f}  "
+                                 f"d {dp:+.3f} [{dl:+.3f}, {dh:+.3f}]  genes {len(genes)} sites {len(sub)}{tag}")
+    pd.DataFrame(out).to_csv(P(a.results, f"{stem}_clinvar_withingene.tsv"), sep="\t", index=False, float_format="%.4f")
+    with open(P(a.results, f"{stem}_summary.txt"), "w") as f:
+        f.write("A14: ClinVar P/LP vs B/LB, within-gene pooled AUROC (genes with >= 3 of each), DD de novo sites removed; "
+                "gene bootstrap 1000, seed 20261006\n" + "\n".join(lines) + "\n")
+    log("\n".join(lines))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--data", default=P(HERE, "data"))
@@ -3456,7 +3671,7 @@ def main():
         s.add_argument("--from-piece", default="part.7")
     for name in ("validate", "aim5", "aim1", "aim1x", "aim1tools", "aim3", "aim3_report", "a1_report", "aim4", "replicate", "v54"):
         sub.add_parser(name)
-    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "m4_nested", "a6", "a6_report"):
+    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report"):
         sub.add_parser(name)
     s = sub.add_parser("a4ctrl")
     s.add_argument("--part", default="all", choices=["all", "nodom", "dom", "report"])
@@ -3473,7 +3688,7 @@ def main():
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
     {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
-     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
+     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
 
 
 if __name__ == "__main__":

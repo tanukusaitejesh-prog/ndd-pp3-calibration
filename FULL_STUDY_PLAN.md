@@ -755,6 +755,25 @@ RUMC is reported as internal validation.
 
 **Known bias, stated now.** The v4 inputs include predictors trained on ClinVar (REVEL, ClinPred, MetaRNN, VARITY and others). A v4 advantage on ClinVar is therefore not clean evidence. A v4 deficit is informative, and so is a v5 trained only on label-free inputs, which is planned next and specified separately before training.
 
+## 3p. Amendment A15 (2026-10-06, evening IST): v5, a de novo-trained model with label-free inputs only
+
+**Status.** Written before the A14 result was seen and before v5 was trained.
+
+**Model.** Identical to v4 (gene-matched null, all three DD centres, the same GBDT settings and seed) except for the inputs. Only inputs that were built without variant-level clinical labels are kept:
+
+- **Unsupervised, conservation and population predictors:** SIFT, SIFT4G, LRT, MutationAssessor, PROVEAN, PrimateAI, LIST-S2, CADD, DANN, Eigen, Eigen-PC, GERP++, phyloP100way, phyloP30way, phastCons100way, SiPhy, GenoCanyon, fitCons, ESM1b, MisFit_D, MisFit_S, GPN-MSA, GERP_92m, phyloP470way, phastCons470way, AlphaMissense.
+- **Other inputs:** RMC o/e, CCR, AlphaFold structural features and amino acids.
+
+**Excluded:** every predictor trained or tuned on ClinVar, HGMD, UniProt disease or other curated variant labels (PolyPhen2, MutationTaster, FATHMM, fathmm-MKL/XF, VEST4, MetaSVM, MetaLR, M-CAP, REVEL, MutPred, MutPred2, MVP, MPC, DEOGEN2, BayesDel, ClinPred, MetaRNN, gMVP, VARITY, PHACTboost, MutFormer, MutScore), and popEVE, which was developed on DD de novos.
+
+**Evaluation**, all reported regardless of outcome:
+
+1. **ClinVar within gene (primary):** the A14 specification, with v5 added to the primary set. The **primary contrast** is v5 − AlphaMissense pooled within-gene AUROC in DDG2P monoallelic genes. Reading as in A14 (equivalence margin ± 0.02).
+2. **Autism de novos:** within-gene top-2% LR ratio v5 / AlphaMissense, paired bootstrap. This is the A8 specification.
+3. **Secondary:** v5 vs v4 on both.
+
+**Caveat, stated now.** v5 stacks AlphaMissense with other inputs, so any gain is incremental over AlphaMissense, not a new representation.
+
 ## Deviation log
 
 | Date | Change | Reason |

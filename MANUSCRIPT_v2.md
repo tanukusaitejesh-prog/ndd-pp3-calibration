@@ -315,6 +315,8 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 - **Within gene across all genes:** R was 0.75 [0.71, 0.78] in DD but 0.96 [0.84, 1.08] in autism.
 - **Reading:** part of the overlap is between genes. Across all genes in autism, the within-gene overlap cannot be distinguished from additivity. Within DDG2P disease genes, where PP3 is applied clinically, a substantial within-gene component remains in both cohorts.
 
+**Where the overlap comes from** (A12.1). R < 1 arises mainly on the null side. AlphaMissense flags 51% of mutation-expected sites at PM1-like positions, against 19% overall, a 2.7-fold rise. Among excess de novos the rise is only from 79% to 94% (1.2-fold) in DD; autism shows the same pattern. Inside constrained regions the predictor calls most sites damaging whether or not they are disease-causing, so PP3 separates less there. REVEL and VEST4 show the same pattern.
+
 **Strong tier.** R with PP3 at its Strong threshold and a PM1-like flag:
 
 | Predictor | DD | Autism | Public cohort |
