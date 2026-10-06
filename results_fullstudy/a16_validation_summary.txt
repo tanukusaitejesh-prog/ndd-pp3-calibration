@@ -1,0 +1,30 @@
+V1: VUS(2023-01) -> P/LP/B/LB(2026-10) germline SCVs with parsable codes 2321; with independent truth 1734; variants with agreed truth 1695
+V1 at analysed missense sites, all genes: P 87, B 887, genes 546
+V1 at analysed missense sites, DDG2P monoallelic: P 17, B 108, genes 83
+Primary stratum (pre-registered rule): all genes; feasible: True
+T (ClinVar 2023-01, unanimous P/LP or B/LB, all genes): P 29623, B 46155
+recalibration on T, uncapped                    : alpha -1.543, beta 1.324; V1 mean log-loss 0.3641
+recalibration on T, cap                         : alpha -1.557, beta 1.368; V1 mean log-loss 0.3648
+recalibration on T, conditional                 : alpha -1.573, beta 1.566; V1 mean log-loss 0.3675
+recalibration on T, hierarchical                : alpha -0.209, beta 0.272; V1 mean log-loss 0.5119
+recalibration on T, hierarchical PP3-side only  : alpha -0.235, beta 0.261; V1 mean log-loss 0.5124
+PRIMARY: delta log-loss hierarchical - cap = +0.1471 [+0.1060, +0.1896] -> refuted
+S1: delta log-loss hierarchical - uncapped = +0.1478 [+0.1068, +0.1901] -> refuted
+S1: delta log-loss hierarchical - conditional = +0.1444 [+0.1014, +0.1871] -> refuted
+S1b: delta log-loss hierarchical PP3-side only - cap = +0.1476 [+0.1070, +0.1893] -> refuted
+S2/S3 AM>=Supporting x PM1-like  : R 0.47 [0.22, 1093806.42]; n(PP3&F) P 13 B 3; joint LR 44.18; overstatement observed -1.31 pts, predicted from de novo R 0.93 pts
+S2/S3 AM>=Supporting x PM1-strict: R 112485.37 [0.08, 424042.01]; n(PP3&F) P 5 B 0; joint LR 57471264.37; overstatement observed -17.35 pts, predicted from de novo R 1.12 pts
+S2/S3 AM>=Supporting x PP2-like  : R 0.69 [0.38, 1.78]; n(PP3&F) P 13 B 11; joint LR 12.05; overstatement observed -0.83 pts, predicted from de novo R 0.56 pts
+S2/S3 AM>=Strong     x PM1-like  : R 0.42 [0.11, 803137.15]; n(PP3&F) P 11 B 1; joint LR 112.15; overstatement observed 0.62 pts, predicted from de novo R 1.26 pts
+S2/S3 AM>=Strong     x PM1-strict: R 32168.39 [0.01, 130504.38]; n(PP3&F) P 4 B 0; joint LR 45977011.49; overstatement observed -14.10 pts, predicted from de novo R 1.56 pts
+S2/S3 AM>=Strong     x PP2-like  : R 0.83 [0.26, 2289702.50]; n(PP3&F) P 8 B 2; joint LR 40.78; overstatement observed 0.78 pts, predicted from de novo R 0.75 pts
+S3: Spearman(observed, predicted overstatement) over 6 cells = -0.43
+S4 within-gene AUROC uncapped                    : 0.825 (83 pairs)
+S4 within-gene AUROC cap                         : 0.825 (83 pairs)
+S4 within-gene AUROC conditional                 : 0.825 (83 pairs)
+S4 within-gene AUROC hierarchical                : 0.843 (83 pairs)
+S4 within-gene AUROC hierarchical PP3-side only  : 0.735 (83 pairs)
+S6 eRepo (not confirmatory, n 2516): delta log-loss hierarchical - cap = +0.1403 [+0.0468, +0.2320]
+S6 eRepo (not confirmatory, n 2516): delta log-loss hierarchical - uncapped = +0.1383 [+0.0456, +0.2293]
+S6 eRepo (not confirmatory, n 2516): delta log-loss hierarchical - conditional = +0.1442 [+0.0518, +0.2357]
+S5 label-rich DDG2P genes 142: Spearman 0.01; mean |difference| 2.39 points
