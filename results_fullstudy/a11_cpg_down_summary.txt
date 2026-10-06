@@ -1,0 +1,1 @@
+a11_cpg_down [all_genes] informative 24; median r gene 0.565, rmc 0.374, win50 0.326, win50_rmc 0.311; share r(win50) < 0.5 = 0.79; AlphaMissense A 13.39 gene 4.06, rmc 2.55, win50 2.17, win50_rmc 2.07
