@@ -1,0 +1,9 @@
+lambda 1 gene  : truth 1.000; mean estimate 0.990 (median 0.988); relative bias -0.010; 95% coverage 0.99 over 100 replicates
+lambda 1 rand50: truth 1.000; mean estimate 0.993 (median 0.993); relative bias -0.007; 95% coverage 0.99 over 100 replicates
+lambda 1 win50 : truth 1.000; mean estimate 0.994 (median 0.984); relative bias -0.006; 95% coverage 0.97 over 100 replicates
+lambda 2 gene  : truth 1.817; mean estimate 1.810 (median 1.793); relative bias -0.004; 95% coverage 0.94 over 100 replicates
+lambda 2 rand50: truth 1.778; mean estimate 1.774 (median 1.774); relative bias -0.002; 95% coverage 0.93 over 100 replicates
+lambda 2 win50 : truth 1.650; mean estimate 1.648 (median 1.646); relative bias -0.001; 95% coverage 0.86 over 100 replicates
+lambda 4 gene  : truth 3.106; mean estimate 3.118 (median 3.120); relative bias +0.004; 95% coverage 0.94 over 100 replicates
+lambda 4 rand50: truth 2.942; mean estimate 2.950 (median 2.950); relative bias +0.003; 95% coverage 0.91 over 100 replicates
+lambda 4 win50 : truth 2.475; mean estimate 2.488 (median 2.483); relative bias +0.005; 95% coverage 0.94 over 100 replicates
