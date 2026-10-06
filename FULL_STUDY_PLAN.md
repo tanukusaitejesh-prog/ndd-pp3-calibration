@@ -723,6 +723,38 @@ RUMC is reported as internal validation.
 - Per-gene LRs are therefore never reported alone. Gene classes (s_het, DDG2P, mechanism) are the reporting unit.
 - A hierarchical model is a v2 amendment.
 
+## 3o. Amendment A14 (2026-10-06, evening IST): external validation of the de novo-trained models on ClinVar, within gene
+
+**Status.** Written after all A1–A13 results. Nothing below has been run. The aim is to start the model paper.
+
+**Sites:**
+
+- ClinVar missense P/LP vs B/LB from the A4 matched table (VUS excluded).
+- Every site that is a DD de novo in any centre is removed, because v4 trained on all DD centres.
+- Each site takes its transcript from the column store.
+
+**Scores:**
+
+- v4 (primary model) and v3;
+- AlphaMissense (primary comparator; not trained on ClinVar);
+- REVEL, VEST4, popEVE, ESM1b, MisFit_S, PrimateAI and CADD.
+
+**Metric:**
+
+- Within-gene AUROC: pair concordance pooled over genes with ≥ 3 P/LP and ≥ 3 B/LB, ties counted 0.5. The mean of per-gene AUROCs is secondary.
+- The primary set is the sites scored by v4, v3 and AlphaMissense. Every other predictor is compared with AlphaMissense on the sites where both are present.
+- Gene-level bootstrap, 1,000 replicates, seed 20261006. Paired differences against AlphaMissense.
+
+**Strata:** all genes and DDG2P monoallelic genes. The **primary contrast** is v4 − AlphaMissense in DDG2P monoallelic genes.
+
+**Pre-committed reading:**
+
+- Lower bound > 0: v4 better.
+- Interval inside ±0.02: comparable.
+- Upper bound < 0: worse.
+
+**Known bias, stated now.** The v4 inputs include predictors trained on ClinVar (REVEL, ClinPred, MetaRNN, VARITY and others). A v4 advantage on ClinVar is therefore not clean evidence. A v4 deficit is informative, and so is a v5 trained only on label-free inputs, which is planned next and specified separately before training.
+
 ## Deviation log
 
 | Date | Change | Reason |
