@@ -27,6 +27,24 @@ Read this first in a new chat, then continue the "Remaining" list in order. The 
 - **Independent expert truth** (eRepo, computational and position codes removed; `make_erepo_truth.py`): Strong R 0.17 [0.08, 0.61]. The cap is best calibrated: PP3 earns 1.83 points given PM1, against 2 allowed by the cap and 4 uncapped.
 - Supplementary Table 4 (`supp_table4_conditional_pp3.tsv`); MANE concordance 74.4% (limitation 7); autism count reconciliation.
 
+## Overnight 7 October 2026 (00:15–02:30 IST): review-7 plan executed (pushed, last commit 86c4f93)
+
+- **Current manuscript: `MANUSCRIPT_v4.md` (draft 4, ~5,000 words incl. tables) + `SUPPLEMENT_v4.md`.** Draft 3 (`MANUSCRIPT_v2.md`) is kept for history.
+- **A16 (pre-registered, `prereg_fullstudy/A16_HIERARCHICAL_PREREG.md`, commit 34bac58):** label-free gene → window → AlphaMissense × region model fitted on DD (`fullstudy.py hier`). Validated on temporal ClinVar V1 (VUS 2023-01 → P/LP/B/LB 2026-10, same SCV, truth from the submitter's codes minus PP3/BP4/PM1/PP2/BP1/BP3/PM4/PM5; `fullstudy.py a16val`).
+  - V1: 87 P, 887 B, 546 genes. The DDG2P stratum was too small, so the primary analysis used all genes.
+  - **H1 refuted:** hierarchical − cap Δ log-loss +0.147 [+0.106, +0.190]. Also worse on eRepo. Label-free vs ClinVar gene-specific calibration: Spearman 0.01 (142 genes).
+  - Reported as a pre-registered negative; the paper stays a measurement paper (the cap is the best rule).
+- **Not on OSF before the analysis** (you were asleep). Logged in the deviation log and Supplementary Note 1. If you deposit on OSF now, it is a later copy; don't claim it predates the analysis.
+- **Other additions:**
+  - burial strata (DD R 0.55 buried / 0.36 exposed);
+  - gene-clustered bootstrap (DD 0.44 [0.41, 0.47]);
+  - MaveDB coverage (64 genes, mostly domain fragments);
+  - review-7 response table in `REVIEW_RESPONSE.md`.
+- **WSL note:** background `nohup` launches die when the wsl call exits. Run long jobs as tracked foreground `wsl` calls instead. The instance hung once on X: I/O; `wsl --terminate ndd-gate` fixed it and git fsck was clean.
+- **Still yours:**
+  - verify the Chao 2024 claim marked "[to verify]" in the Discussion;
+  - names and affiliations; preprint; Zenodo; journal formatting.
+
 ## Done 7 October 2026 (pushed)
 
 - Task 10 pLDDT: DD AlphaMissense R 0.53 (pLDDT>=70) / 0.39 (<70); Results paragraph added.
