@@ -1,0 +1,17 @@
+A10.2 all genes         PM1 oe<0.4|CCR>=95  +1: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 0, capped 0, conditional 0; PP3-positive at PM1 sites 13.2%
+A10.2 all genes         PM1 oe<0.4|CCR>=95  +2: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 14,343, capped 0, conditional 0; PP3-positive at PM1 sites 13.2%
+A10.2 all genes         PM1 oe<0.4|CCR>=95  +4: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 28,882, capped 0, conditional 0; PP3-positive at PM1 sites 13.2%
+A10.2 all genes         PM1 oe<0.2          +1: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 0, capped 0, conditional 0; PP3-positive at PM1 sites 3.0%
+A10.2 all genes         PM1 oe<0.2          +2: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 3,808, capped 0, conditional 0; PP3-positive at PM1 sites 3.0%
+A10.2 all genes         PM1 oe<0.2          +4: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 6,803, capped 0, conditional 0; PP3-positive at PM1 sites 3.0%
+A10.2 DDG2P monoallelic PM1 oe<0.4|CCR>=95  +1: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 0, capped 0, conditional 0; PP3-positive at PM1 sites 37.3%
+A10.2 DDG2P monoallelic PM1 oe<0.4|CCR>=95  +2: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 7,101, capped 0, conditional 0; PP3-positive at PM1 sites 37.3%
+A10.2 DDG2P monoallelic PM1 oe<0.4|CCR>=95  +4: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 13,245, capped 0, conditional 0; PP3-positive at PM1 sites 37.3%
+A10.2 DDG2P monoallelic PM1 oe<0.2          +1: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 0, capped 0, conditional 0; PP3-positive at PM1 sites 9.7%
+A10.2 DDG2P monoallelic PM1 oe<0.2          +2: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 2,148, capped 0, conditional 0; PP3-positive at PM1 sites 9.7%
+A10.2 DDG2P monoallelic PM1 oe<0.2          +4: AlphaMissense VUS reaching >=6 from PP3+PM1: uncapped 3,565, capped 0, conditional 0; PP3-positive at PM1 sites 9.7%
+A10.3 DDD (all genes; cold-gene replicates were not saved): Aim4v3_GBDT / AlphaMissense within-gene top-2% = 0.93, 90% CI [0.89, 0.99] -> EQUIVALENT within [0.80, 1.25]
+A10.3 autism: Aim4v3_GBDT / AlphaMissense within-gene top-2% = 1.03, 90% CI [0.91, 1.17] -> EQUIVALENT within [0.80, 1.25]
+A10.3 autism: Aim4v4_GBDT / AlphaMissense within-gene top-2% = 1.09, 90% CI [0.96, 1.25] -> EQUIVALENT within [0.80, 1.25]
+A10.3 public3: Aim4v3_GBDT / AlphaMissense within-gene top-2% = 1.24, 90% CI [0.95, 1.78] -> equivalence not shown
+A10.3 public3: Aim4v4_GBDT / AlphaMissense within-gene top-2% = 1.30, 90% CI [1.03, 1.80] -> equivalence not shown
