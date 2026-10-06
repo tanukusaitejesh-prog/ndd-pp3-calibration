@@ -1,0 +1,5 @@
+Affected	SNVs 4279	duplicates_removed 8	mapped 3725	missense 2716	synonymous 1009	individuals 2669
+Affected	SNVs 4279	duplicates_removed 8	mapped 3725	missense 2716	synonymous 1009	individuals 2669
+Affected	SNVs 4279	duplicates_removed 8	mapped 3725	missense 2716	synonymous 1009	individuals 2669
+Affected	SNVs 585	duplicates_removed 3	mapped 496	missense 380	synonymous 116	individuals 362
+Affected	SNVs 585	duplicates_removed 3	mapped 496	missense 380	synonymous 116	individuals 362

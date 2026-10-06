@@ -902,9 +902,15 @@ def pos_setup(a):
     nwin_s = (L + WIN // 2 + WIN - 1) // WIN                 # amendment A4.2: windows shifted by 25 residues
     _POS["nwin_s"] = nwin_s
     _POS["off_ws"] = np.concatenate([[0], np.cumsum(nwin_s)])
+    for size in SWEEP:                                       # amendment A11.4: unit-size sweep
+        nw = (L + size - 1) // size
+        _POS[f"nwin{size}"] = nw
+        _POS[f"off_w{size}"] = np.concatenate([[0], np.cumsum(nw)])
 
 
-POS_OFF = {"win50": "off_w", "pseudo_rmc": "off_e1", "win50_rmc": "off_e2", "win50s": "off_ws", "rand50": "off_w"}
+SWEEP = (25, 100)
+POS_OFF = {"win50": "off_w", "pseudo_rmc": "off_e1", "win50_rmc": "off_e2", "win50s": "off_ws", "rand50": "off_w",
+           "win25": "off_w25", "rand25": "off_w25", "win100": "off_w100", "rand100": "off_w100"}
 _DOM = {}
 
 
@@ -915,16 +921,17 @@ def dom_setup(a):
         _DOM.update({k: z[k] for k in z.files})
 
 
-def _rand50(u):
-    """Amendment A4.2 random-partition control: each residue to one of ceil(L/50) groups of its gene by a fixed hash."""
+def _rand50(u, nkey="nwin", okey="off_w"):
+    """Amendment A4.2 random-partition control: each residue to one of ceil(L/size) groups of its gene by a fixed hash
+    (size 50 by default; A11.4 uses the same hash with 25- and 100-residue group counts)."""
     tx = u["tx"].to_numpy(np.int64)
     z = tx.astype(np.uint64) * np.uint64(1_000_003) + u["prot_pos"].to_numpy(np.int64).astype(np.uint64) + np.uint64(SEED)
     with np.errstate(over="ignore"):                         # splitmix64 finaliser (wrapping arithmetic intended)
         z = (z ^ (z >> np.uint64(30))) * np.uint64(0xBF58476D1CE4E5B9)
         z = (z ^ (z >> np.uint64(27))) * np.uint64(0x94D049BB133111EB)
         z = z ^ (z >> np.uint64(31))
-    g = (z % _POS["nwin"][tx].astype(np.uint64)).astype(np.int64)
-    return _POS["off_w"][tx] + g
+    g = (z % _POS[nkey][tx].astype(np.uint64)).astype(np.int64)
+    return _POS[okey][tx] + g
 
 
 def _local_rmc(u):
@@ -942,6 +949,14 @@ def unit_of(u, kind):
         return _POS["off_ws"][tx] + w
     if kind == "rand50":
         return _rand50(u)
+    if kind in ("win25", "win100"):
+        size = int(kind[3:])
+        tx = u["tx"].to_numpy(np.int64)
+        w = np.minimum((u["prot_pos"].to_numpy(np.int64) - 1) // size, _POS[f"nwin{size}"][tx] - 1)
+        return _POS[f"off_w{size}"][tx] + w
+    if kind in ("rand25", "rand100"):
+        size = int(kind[4:])
+        return _rand50(u, f"nwin{size}", f"off_w{size}")
     if kind == "dom":
         return u["dom_unit"].to_numpy(np.int64)
     if kind == "dom_rmc":
@@ -1031,7 +1046,8 @@ class Collect:
             c += ["am_bin"] if s_ == "AM_gate" else (["am"] if s_ == "AlphaMissense" else [score_col(s_)])
         if any(k in ("rmc", "ccr") for k in self.kinds) or self.restrict:
             c += ["rmc_unit", "ccr_pct"]
-        if any(k in ("pseudo", "win50", "pseudo_rmc", "win50_rmc", "win50s", "rand50") for k in self.kinds):
+        if any(k in ("pseudo", "win50", "pseudo_rmc", "win50_rmc", "win50s", "rand50", "win25", "rand25", "win100",
+                     "rand100") for k in self.kinds):
             c += ["prot_pos"]
         if any(k in ("pseudo_rmc", "win50_rmc") for k in self.kinds):
             c += ["rmc_unit"]
@@ -1186,8 +1202,9 @@ def load_dnv_replication(a, pheno):
     """Zhou 2022 de novo SNVs (Supplementary Data 1+2) for one phenotype, de-duplicated against Kaplanis 2020,
     lifted to GRCh38 with the gate's chain, REF-checked against Roulette records, annotated from the universe."""
     from pyliftover import LiftOver
-    z = pd.read_csv(REP_FILE, sep="\t", dtype=str)
-    z = z[(z["Pheno"] == pheno) & z["Cohort"].isin(REP_COHORTS) & (z["Ref"].str.len() == 1) & (z["Alt"].str.len() == 1)]
+    z = pd.read_csv(getattr(a, "rep_file", None) or REP_FILE, sep="\t", dtype=str)
+    cohorts = getattr(a, "rep_cohorts", None) or REP_COHORTS
+    z = z[(z["Pheno"] == pheno) & z["Cohort"].isin(cohorts) & (z["Ref"].str.len() == 1) & (z["Alt"].str.len() == 1)]
     z = z[z["Chrom"].isin(AUTOSOMES)].copy()
     n0 = len(z)
     # duplicates: an individual sharing >= 2 identical de novo SNVs with one Kaplanis proband (GRCh37 in both)
@@ -1197,6 +1214,12 @@ def load_dnv_replication(a, pheno):
     shared = z[["IID", "v"]].merge(k[["id", "v"]], on="v")
     pair = shared.groupby(["IID", "id"]).size()
     dup = set(pair[pair >= 2].index.get_level_values(0))
+    if getattr(a, "dedup_zhou", False):          # amendment A9: also against Zhou 2022 individuals (GRCh37 in both)
+        zz = pd.read_csv(REP_FILE, sep="\t", dtype=str, usecols=["IID", "Chrom", "Position", "Ref", "Alt"])
+        zz["v"] = zz["Chrom"] + ":" + zz["Position"] + ":" + zz["Ref"] + ":" + zz["Alt"]
+        sh2 = z[["IID", "v"]].merge(zz[["IID", "v"]].rename(columns={"IID": "zid"}), on="v")
+        p2 = sh2.groupby(["IID", "zid"]).size()
+        dup |= set(p2[p2 >= 2].index.get_level_values(0))
     z = z[~z["IID"].isin(dup)]
     lo = LiftOver(P(a.data, gate.CHAIN_FILE))
     p38, ok = [], []
@@ -1273,6 +1296,9 @@ def gene_masks(tinfo, nu, utx):
     for lab in ("lof", "dn", "gof"):
         m[f"ddg2p_{lab}"] = dd & per_tx((t["mech12"] == lab).to_numpy())
     m["a5_cold_genes"] = per_tx(t["gene"].fillna("").map(gene_split).to_numpy(bool))   # A5/A6: Aim 4 cold-test genes
+    if "n" in _PSEUDO:                                       # A11.3: genes with >= 2 RMC regions vs one whole-gene region
+        m["rmc_multi"] = per_tx(_PSEUDO["n"][:nt] >= 2)
+        m["rmc_single"] = per_tx(_PSEUDO["n"][:nt] < 2)
     return m
 
 
@@ -2515,6 +2541,420 @@ def cmd_aim4v4(a):
     log("Aim 4 v4:\n" + "\n".join(txt))
 
 
+PUBLIC3 = P(EXT, "public3", "public3_dnv_snv_grch37.tsv")
+P3_STUDIES = ["Jin2017", "Fromer2014", "Gulsuner2013", "McCarthy2014", "Willsey2017", "epi4k2013", "Rauch2012"]
+
+
+def _paired(z, m_name, ref, st="all_genes"):
+    x, y_ = z.get(f"{m_name}|gene|{st}|LRw"), z.get(f"{ref}|gene|{st}|LRw")
+    if x is None or y_ is None:
+        return None
+    with np.errstate(all="ignore"):
+        dl = np.log(x) - np.log(y_)
+    b = dl[1:][np.isfinite(dl[1:])]
+    lo, hi = np.exp(np.percentile(b, [2.5, 97.5])) if len(b) > 20 else (np.nan, np.nan)
+    return float(np.exp(dl[0])), float(lo), float(hi)
+
+
+def cmd_public3(a):
+    """Plan section 3j (A9): third, public, multi-phenotype cohort. Models first (descriptive), then the A2 readouts for
+    AlphaMissense + 36 tools (power-checked), then the Jin 2017 NDD-flagged subset (descriptive)."""
+    base = a.results
+    src = pd.read_csv(PUBLIC3, sep="\t", dtype=str)
+    fmt = pd.DataFrame({"Cohort": src["study"], "IID": src["sample"], "Pheno": "Affected", "Chrom": src["chrom"],
+                        "Position": src["pos37"], "Ref": src["ref"], "Alt": src["alt"]})
+    ndd = (src["study"] == "Jin2017") & (src["ndd_flag"].str.strip().str.lower() == "yes")
+    fmt_ndd = fmt[ndd].assign(Cohort="Jin2017_NDD")
+    fp = P(EXT, "public3", "public3_loader_format.tsv")
+    pd.concat([fmt, fmt_ndd], ignore_index=True).to_csv(fp, sep="\t", index=False)
+    a.rep_file, a.dedup_zhou, a.cohort = fp, True, "Affected"
+    a.results = P(base, "public3")
+    os.makedirs(a.results, exist_ok=True)
+    pos_setup(a)
+    out = []
+    for subset, cohorts, tag in (("all", P3_STUDIES, "p3"), ("Jin2017 NDD=Yes", ["Jin2017_NDD"], "p3ndd")):
+        a.rep_cohorts = cohorts
+        d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+        col = Collect(a, ["AM_gate"], ["gene"], d_mis, near="exclude")
+        col.mass_pass({"gene": n_units("gene", a)})
+        M, dm = col.result("AM_gate", "gene")
+        res = eng.run(M, syn_mass, syn_p, dm)
+        oe = summ((res["O"].sum(1) / res["E"].sum(1))[:, None])
+        out.append(f"[{subset}] missense O {res['O'][0].sum():.0f}, E {res['E'][0].sum():.1f}, O/E {oe['est'][0]:.3f} "
+                   f"[{oe['lo95'][0]:.3f}, {oe['hi95'][0]:.3f}] (one-sided lo {oe['lo90'][0]:.3f})")
+        log(out[-1])
+        # models (descriptive): AlphaMissense, v3, v4
+        run_scores(a, ["AlphaMissense", "Aim4v3_GBDT", "Aim4v4_GBDT"], A1_KINDS, ["all_genes"], tag + "m",
+                   restrict="aim1_common")
+        rp = P(a.results, f"{tag}m_top2reps.npz")
+        if os.path.exists(rp):
+            z = dict(np.load(rp))
+            for m_name, ref in (("Aim4v4_GBDT", "AlphaMissense"), ("Aim4v3_GBDT", "AlphaMissense"),
+                                ("Aim4v4_GBDT", "Aim4v3_GBDT")):
+                r = _paired(z, m_name, ref)
+                if r:
+                    out.append(f"[{subset}] within-gene top-2% LR {m_name} / {ref} = {r[0]:.2f} [{r[1]:.2f}, {r[2]:.2f}]")
+            t = pd.read_csv(P(a.results, f"{tag}m_top2pct.tsv"), sep="\t")
+            for r in t[t["unit"].isin(["gene", "win50", "win50_rmc"])].itertuples():
+                out.append(f"[{subset}] {r.score} {r.unit}: marginal {r.LRm_top2:.2f}; within {r.LRw_top2:.2f} "
+                           f"[{r.lo95_w:.2f}, {r.hi95_w:.2f}]")
+        open(P(a.results, "p3_summary_models.txt"), "w").write("\n".join(out) + "\n")
+        log("A9 models:\n" + "\n".join(out))
+        if tag == "p3":
+            # main-finding readouts (A2 specification, D2 primary) for AlphaMissense + 36 tools
+            run_scores(a, ["AlphaMissense"] + list(TOOLS), A1_KINDS, ["all_genes"], "p3", restrict="aim1_common")
+            rep_report(a, float(oe["lo90"][0]), tag="p3", out_name="p3_summary.txt")
+    a.results, a.cohort, a.rep_file, a.rep_cohorts, a.dedup_zhou = base, None, None, None, False
+
+
+# ======================================================================== amendment A10.1: joint-LR overlap test
+GNOMAD_GENE = P(EXT, "gnomad_constraint", "gnomad.v2.1.1.lof_metrics.by_gene.txt.bgz")
+A10_TOOLS = {"AlphaMissense": ("am", [0.792, 0.906, 0.972, 0.990]),
+             "REVEL": ("raw_REVEL_score", [0.644, 0.773, 0.879, 0.932]),
+             "VEST4": ("raw_VEST4_score", [0.764, 0.861, 0.909, 0.965])}
+
+
+def overlap_cohort(a, label):
+    """R(T, F) = LR(PP3 | F) / LR(PP3) from marginal de novo LRs of the four PP3 x F categories (plan section 3k).
+    Streams chromosomes: only the opportunity per category and the category of each de novo site are kept."""
+    d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+    gz = pd.read_csv(GNOMAD_GENE, sep="\t", compression="gzip", usecols=["gene", "mis_z"])
+    misz = gz.groupby("gene")["mis_z"].max()
+    pp2_tx = tinfo["gene"].reindex(np.arange(18398)).map(misz).fillna(-np.inf).to_numpy() >= 3.09
+    cols = ["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct"] + [c for c, _ in A10_TOOLS.values()]
+    fnames = ["PM1-like", "PM1-strict", "PP2-like", "PM1-like or PP2-like"]
+    lnames = ["PP3>=Supporting", "PP3 Supporting only", "PP3 Moderate only", "PP3 >=Strong(3-4)"]
+    combos = [(t, f, l) for t in A10_TOOLS for f in fnames for l in lnames]
+    mass = {k: np.zeros(4) for k in combos}
+    dbin = {k: np.full(len(d_mis), -1, np.int64) for k in combos}
+    dkey = d_mis["key"].to_numpy()
+    dchr = d_mis["chrom"].astype(str).to_numpy()
+    for c, u in site_chunks(a, cols=cols):
+        tx = u["tx"].to_numpy(np.int64)
+        oe, ccr = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float)
+        fl = {"PM1-like": (oe < 0.4) | (ccr >= 95), "PM1-strict": oe < 0.2, "PP2-like": pp2_tx[tx]}
+        fl["PM1-like or PP2-like"] = fl["PM1-like"] | fl["PP2-like"]
+        mr = u[PRIMARY_MODEL].to_numpy(float)
+        di = np.flatnonzero(dchr == str(c))
+        pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dkey[di]).to_numpy()
+        okp = np.isfinite(pos)
+        di, pos = di[okp], pos[okp].astype(np.int64)
+        for tool, (col, cuts) in A10_TOOLS.items():
+            s = u[col].to_numpy(float)
+            sc = np.isfinite(s)
+            lv = {"PP3>=Supporting": s >= cuts[0], "PP3 Supporting only": (s >= cuts[0]) & (s < cuts[1]),
+                  "PP3 Moderate only": (s >= cuts[1]) & (s < cuts[2]), "PP3 >=Strong(3-4)": s >= cuts[2]}
+            for f in fnames:
+                for l in lnames:
+                    cat = np.where(sc, 2 * lv[l].astype(np.int64) + fl[f].astype(np.int64), -1)
+                    mass[(tool, f, l)] += np.bincount(cat[sc], weights=mr[sc], minlength=4)
+                    dbin[(tool, f, l)][di] = cat[pos]
+        del u
+        gc.collect()
+    rows, txt = [], []
+    for (tool, fname, lname) in combos:
+        dd = d_mis[["p"]].copy()
+        dd["unit"] = 0
+        dd["bin"] = dbin[(tool, fname, lname)]
+        res = eng.run(sparse.csr_matrix(mass[(tool, fname, lname)].reshape(1, 4)), syn_mass, syn_p, dd)
+        lr = Engine.lr(res, [np.array([3]), np.array([1, 3]), np.array([2, 3])])
+        with np.errstate(all="ignore"):
+            joint, lrF, lrP = (lr["LRm"][:, i] for i in range(3))
+            R = joint / (lrF * lrP)
+            pp3_given_F = joint / lrF
+            Xn = res["O"] - res["E"]
+            pp3_given_notF = (Xn[:, 2] / (Xn[:, 0] + Xn[:, 2])) / (res["E"][:, 2] / (res["E"][:, 0] + res["E"][:, 2]))
+        b = R[1:][np.isfinite(R[1:])]
+        lo, hi = (np.percentile(b, [2.5, 97.5]) if len(b) > 20 else (np.nan, np.nan))
+        pts = np.log(pp3_given_F[0]) / np.log(PP3[0][1]) if pp3_given_F[0] > 0 else np.nan
+        rows.append({"cohort": label, "tool": tool, "flag": fname, "pp3_level": lname,
+                     "n_dnv_PP3_and_F": float(res["O"][0, 3]), "LR_PP3": float(lrP[0]), "LR_F": float(lrF[0]),
+                     "LR_joint": float(joint[0]), "LR_PP3_given_F": float(pp3_given_F[0]),
+                     "LR_PP3_given_notF": float(pp3_given_notF[0]), "R": float(R[0]), "R_lo95": float(lo),
+                     "R_hi95": float(hi), "PP3_points_given_F": float(pts)})
+        if lname == "PP3>=Supporting":
+            prim = " [A10 PRIMARY]" if (label == "DD" and tool == "AlphaMissense" and fname == "PM1-like") else ""
+            txt.append(f"{label:7s} {tool:13s} F={fname:20s} LR(PP3) {lrP[0]:.2f} LR(F) {lrF[0]:.2f} joint {joint[0]:.2f} "
+                       f"-> R {R[0]:.2f} [{lo:.2f}, {hi:.2f}]; LR(PP3|F) {pp3_given_F[0]:.2f} (points {pts:.2f}) vs "
+                       f"LR(PP3|not F) {pp3_given_notF[0]:.2f}; de novos PP3&F {res['O'][0, 3]:.0f}{prim}")
+    return rows, txt
+
+
+def cmd_a10_post(a):
+    """Plan section 3k: A10.2 ClinVar sensitivity (PM1 +1/+2/+4; o/e < 0.4 or < 0.2; all genes / DDG2P monoallelic) and
+    A10.3 model equivalence (two one-sided tests, margin [0.80, 1.25], 90% interval) from saved paired replicates."""
+    base = a.results
+    out = []
+    m = pd.read_csv(P(base, "a4_clinvar_matched.tsv.gz"), sep="\t", dtype={"chrom": str})
+    s = pd.read_csv(P(base, "supp_data1_clinvar_pp3_pm1_points.tsv.gz"), sep="\t", dtype={"chrom": str})
+    x = s.merge(m[["clinvar_id", "chrom", "tx", "rmc_oe", "ccr_pct"]], on=["clinvar_id", "chrom"], how="left")
+    tinfo = load_tinfo(a)
+    dd = tinfo["ddg2p"].fillna(False).astype(bool)
+    x["ddg2p"] = x["tx"].map(dd).fillna(False).astype(bool)
+    nest = pd.read_csv(P(base, "a1_nested.tsv"), sep="\t")
+    r_e2 = nest[nest["stratum"] == "all_genes"].set_index("score")["r_E2"]
+    pm1_defs = {"oe<0.4|CCR>=95": (x["rmc_oe"] < 0.4) | (x["ccr_pct"] >= 95), "oe<0.2": x["rmc_oe"] < 0.2}
+    rows = []
+    for gset, gm in (("all genes", np.ones(len(x), bool)), ("DDG2P monoallelic", x["ddg2p"].to_numpy())):
+        for dname, pmask in pm1_defs.items():
+            for pm1_pts in (1, 2, 4):
+                for t in ("AlphaMissense", "REVEL", "VEST4"):
+                    pub = x[f"{t}_PP3_published"].to_numpy(float)
+                    pm = pmask.fillna(False).to_numpy(bool)
+                    pm1 = np.where(pm, float(pm1_pts), 0.0)
+                    unc = pub + pm1
+                    cap = np.where(pm, np.minimum(unc, 4.0), unc)
+                    cond = pub * float(r_e2[t]) + pm1
+                    for cls in ("P/LP", "VUS"):
+                        k = gm & (x["clinvar_class"] == cls).to_numpy() & np.isfinite(pub)
+                        kp = k & pm
+                        pp3 = k & (pub >= 1)
+                        rows.append({"genes": gset, "pm1_def": dname, "pm1_points": pm1_pts, "tool": t, "cls": cls,
+                                     "n": int(k.sum()), "share_pp3_at_pm1": float((pp3 & pm).sum() / max(pp3.sum(), 1)),
+                                     "ge6_uncapped": int((k & (unc >= 6)).sum()), "ge6_capped": int((k & (cap >= 6)).sum()),
+                                     "ge6_conditional": int((k & (cond >= 6)).sum()),
+                                     "pm1_mean_capped": float(cap[kp].mean()) if kp.any() else np.nan,
+                                     "pm1_mean_conditional": float(cond[kp].mean()) if kp.any() else np.nan})
+    cs = pd.DataFrame(rows)
+    cs.to_csv(P(base, "a10_clinvar_sensitivity.tsv"), sep="\t", index=False, float_format="%.4g")
+    for r in cs[(cs.tool == "AlphaMissense") & (cs.cls == "VUS")].itertuples():
+        out.append(f"A10.2 {r.genes:17s} PM1 {r.pm1_def:15s} +{r.pm1_points}: AlphaMissense VUS reaching >=6 from PP3+PM1: "
+                   f"uncapped {r.ge6_uncapped:,d}, capped {r.ge6_capped:,d}, conditional {r.ge6_conditional:,d}; "
+                   f"PP3-positive at PM1 sites {r.share_pp3_at_pm1:.1%}")
+    # A10.3 equivalence
+    sets = [("DDD (all genes; cold-gene replicates were not saved)", "m4v3nested_ddd_top2reps.npz", "", ["Aim4v3_GBDT"]),
+            ("autism", "m4v4rep_top2reps.npz", "replication_affected", ["Aim4v3_GBDT", "Aim4v4_GBDT"]),
+            ("public3", "p3m_top2reps.npz", "public3", ["Aim4v3_GBDT", "Aim4v4_GBDT"])]
+    for name, f, sub, models in sets:
+        pth = P(base, sub, f)
+        if not os.path.exists(pth):
+            out.append(f"A10.3 {name}: replicates not found ({f})")
+            continue
+        z = dict(np.load(pth))
+        for mdl in models:
+            xx, yy = z.get(f"{mdl}|gene|all_genes|LRw"), z.get(f"AlphaMissense|gene|all_genes|LRw")
+            if xx is None or yy is None:
+                continue
+            with np.errstate(all="ignore"):
+                dl = np.log(xx) - np.log(yy)
+            b = dl[1:][np.isfinite(dl[1:])]
+            lo, hi = np.exp(np.percentile(b, [5, 95]))
+            eq = (lo > 0.80) and (hi < 1.25)
+            out.append(f"A10.3 {name}: {mdl} / AlphaMissense within-gene top-2% = {np.exp(dl[0]):.2f}, 90% CI [{lo:.2f}, "
+                       f"{hi:.2f}] -> {'EQUIVALENT within [0.80, 1.25]' if eq else 'equivalence not shown'}")
+    open(P(base, "a10_post_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("A10.2/A10.3:\n" + "\n".join(out))
+
+
+# ======================================================================== amendment A11: robustness (descriptive)
+def _a11_tools(a):
+    n = pd.read_csv(P(a.results, "a1_nested.tsv"), sep="\t")
+    n = n[n["stratum"] == "all_genes"]
+    return [s for s in n.loc[n["A"] >= PP3[0][1], "score"] if s != "AlphaMissense"]
+
+
+def _a11_summary(a, tag, strata, kinds):
+    t = pd.read_csv(P(a.results, f"{tag}_top2pct.tsv"), sep="\t")
+    out = []
+    for st in strata:
+        g = t[t["stratum"] == st]
+        rows = []
+        for s, gs in g.groupby("score", sort=False):
+            gs = gs.set_index("unit")
+            if "gene" not in gs.index:
+                continue
+            A = float(gs.loc["gene", "LRm_top2"])
+            r = {"score": s, "A": A}
+            for k in kinds:
+                v = float(gs.loc[k, "LRw_top2"]) if k in gs.index else np.nan
+                r[k] = v
+                r["r_" + k] = np.log(v) / np.log(A) if (A > 1 and v > 0) else np.nan
+            rows.append(r)
+        df = pd.DataFrame(rows)
+        inf = df[(df["score"] != "AlphaMissense") & (df["A"] >= PP3[0][1])]
+        am = df[df["score"] == "AlphaMissense"]
+        share = (inf["r_win50"] < 0.5).mean() if "r_win50" in inf else np.nan
+        out.append(f"{tag} [{st}] informative {len(inf)}; median r " +
+                   ", ".join(f"{k} {inf['r_' + k].median():.3f}" for k in kinds) +
+                   (f"; share r(win50) < 0.5 = {share:.2f}" if "win50" in kinds else "") +
+                   ("; AlphaMissense A {:.2f} ".format(float(am["A"].iloc[0])) +
+                    ", ".join(f"{k} {float(am[k].iloc[0]):.2f}" for k in kinds) if len(am) else ""))
+    return out
+
+
+def _mr_scaled_site_chunks(orig, factor):
+    """A11.1: CpG-transition (mutclass 0) rates multiplied by `factor` at every site, missense and synonymous."""
+    def sc(a_, chroms=AUTOSOMES, near="exclude", cls=1, extra=(), cols=None):
+        cc = None if cols is None else list(dict.fromkeys(list(cols) + ["mutclass"]))
+        for c, u in orig(a_, chroms=chroms, near=near, cls=cls, extra=extra, cols=cc):
+            u = u.copy()
+            u[PRIMARY_MODEL] = np.where(u["mutclass"].to_numpy() == 0, u[PRIMARY_MODEL].to_numpy() * factor,
+                                        u[PRIMARY_MODEL].to_numpy())
+            yield c, u
+    return sc
+
+
+def _clinvar_excluded_site_chunks(orig, keys_by_chrom):
+    """A11.2: sites of ClinVar P/LP missense variants removed from opportunity (and hence from de novo mapping)."""
+    def sc(a_, chroms=AUTOSOMES, near="exclude", cls=1, extra=(), cols=None):
+        for c, u in orig(a_, chroms=chroms, near=near, cls=cls, extra=extra, cols=cols):
+            ks = keys_by_chrom.get(str(c))
+            if cls == 1 and ks is not None and "key" in u:
+                u = u[~u["key"].isin(ks)]
+            yield c, u
+    return sc
+
+
+def cmd_a11(a):
+    """Plan section 3l, run in parts (--part): strata, sweep, cpg_down, cpg_up, noclinvar."""
+    global site_chunks
+    tools = ["AlphaMissense"] + _a11_tools(a)
+    pos_setup(a)
+    out = []
+    if a.part == "strata":
+        strata = ["shet_high", "shet_low", "ddg2p_LoF", "ddg2p_nonLoF", "rmc_multi", "rmc_single"]
+        kinds = ["gene", "rmc", "win50", "win50_rmc"]
+        run_scores(a, tools, kinds, strata, "a11_strata", restrict="aim1_common")
+        out = _a11_summary(a, "a11_strata", strata, kinds)
+    elif a.part == "sweep":
+        kinds = ["gene", "win25", "rand25", "win50", "rand50", "win100", "rand100"]
+        run_scores(a, tools, kinds, ["all_genes"], "a11_sweep", restrict="aim1_common")
+        out = _a11_summary(a, "a11_sweep", ["all_genes"], kinds)
+    elif a.part in ("cpg_down", "cpg_up", "noclinvar"):
+        orig = site_chunks
+        try:
+            if a.part == "noclinvar":
+                full = []                                    # A11.2: P/LP of any review status
+                with gzip.open(a.clinvar, "rt") as fh:
+                    for ln in fh:
+                        if ln.startswith("#"):
+                            continue
+                        f = ln.split("\t", 8)
+                        if f[0] not in AUTOSOMES or len(f[3]) != 1 or len(f[4]) != 1 or f[4] not in B2I:
+                            continue
+                        info = dict(kv.split("=", 1) for kv in f[7].split(";") if "=" in kv)
+                        if "missense_variant" in info.get("MC", "") and A4_CLASS.get(info.get("CLNSIG", "")) == "P/LP":
+                            full.append((f[0], int(f[1]) * 4 + B2I[f[4]]))
+                kb = pd.DataFrame(full, columns=["chrom", "key"]).groupby("chrom")["key"].apply(lambda s: set(s.tolist()))
+                site_chunks = _clinvar_excluded_site_chunks(orig, {k: np.array(sorted(v)) for k, v in kb.items()})
+                log(f"A11.2: {len(full):,} ClinVar P/LP missense sites (any review status) excluded")
+            else:
+                site_chunks = _mr_scaled_site_chunks(orig, 0.919 if a.part == "cpg_down" else 1.088)
+            kinds = ["gene", "rmc", "win50", "win50_rmc"]
+            tag = f"a11_{a.part}"
+            run_scores(a, tools, kinds, ["all_genes"], tag, restrict="aim1_common")
+            out = _a11_summary(a, tag, ["all_genes"], kinds)
+        finally:
+            site_chunks = orig
+    open(P(a.results, f"a11_{a.part}_summary.txt"), "w").write("\n".join(out) + "\n")
+    log(f"A11 {a.part}:\n" + "\n".join(out))
+
+
+def cmd_a11sim(a):
+    """Plan section 3l, A11.5: planted within-gene signal at the top 2% of AlphaMissense (lambda in 1, 2, 4), real gene
+    excess and real sizes; truth = the estimator applied to expected counts; bias and 95% coverage over replicates."""
+    rng = np.random.default_rng(SEED)
+    d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+    pos_setup(a)
+    cols = ["tx", PRIMARY_MODEL, "am", "prot_pos"]
+    parts = {k: [] for k in cols}
+    for c, u in site_chunks(a, cols=cols):
+        for k in cols:
+            parts[k].append(u[k].to_numpy())
+    tx = np.concatenate(parts["tx"]).astype(np.int64)
+    mr = np.concatenate(parts[PRIMARY_MODEL]).astype(np.float64)
+    am = np.concatenate(parts["am"]).astype(np.float32)
+    pp = np.concatenate(parts["prot_pos"]).astype(np.int64)
+    del parts
+    gc.collect()
+    ok = np.isfinite(am)
+    tx, mr, am, pp = tx[ok], mr[ok], am[ok], pp[ok]
+    o = np.argsort(-am, kind="stable")
+    top = np.zeros(len(am), bool)
+    top[o[:np.searchsorted(np.cumsum(mr[o]) / mr.sum(), 0.02) + 1]] = True     # top 2% of opportunity
+    units = {"gene": tx, "win50": unit_of(pd.DataFrame({"tx": tx, "prot_pos": pp}), "win50"),
+             "rand50": unit_of(pd.DataFrame({"tx": tx, "prot_pos": pp}), "rand50")}
+    nb = 2
+    mass = {k: sparse.csr_matrix((mr, (u_, top.astype(np.int64))), shape=(int(u_.max()) + 1, nb)) for k, u_ in units.items()}
+    c = len(syn_p) / syn_mass
+    n_mis = len(d_mis)
+    E_tx = np.bincount(tx, weights=mr * c, minlength=tx.max() + 1)
+    O_tx = np.bincount(d_mis["tx"].to_numpy(np.int64), minlength=tx.max() + 1)[:len(E_tx)]
+    g = np.maximum(O_tx - E_tx, 0.0)                         # real per-gene excess
+    g[np.bincount(tx, minlength=len(g)) == 0] = 0.0          # genes without scored sites cannot receive planted de novos
+    n_path = int(round(n_mis - c * mr.sum()))
+    order = np.argsort(tx, kind="stable")
+    starts = np.searchsorted(tx[order], np.arange(tx.max() + 2))
+    n_prob = eng.boot.n
+    rows = []
+    for lam in (1.0, 2.0, 4.0):
+        w = mr * np.where(top, lam, 1.0)
+        cw = np.cumsum(w[order])
+        cw0 = np.r_[0.0, cw]
+        # expected pathogenic count per site: P_t * w_i / sum_{j in t} w_j with P_t = n_path * g_t / sum g
+        W_t = np.bincount(tx, weights=w, minlength=tx.max() + 1)
+        P_t = n_path * g / g.sum()
+        exp_path = P_t[tx] * w / np.maximum(W_t[tx], 1e-300)
+        truth = {}
+        for k, u_ in units.items():
+            Xub = sparse.csr_matrix((exp_path, (u_, top.astype(np.int64))), shape=mass[k].shape).toarray()
+            Eub = mass[k].toarray() * c
+            Xu, Eu = Xub.sum(1), Eub.sum(1)
+            with np.errstate(all="ignore"):
+                den = np.nansum(np.where(Eu > 0, Xu * Eub[:, 1] / Eu, 0.0))
+            truth[k] = Xub[:, 1].sum() / den
+        cbg = np.cumsum(mr)
+        for rep in range(int(a.reps)):
+            n_p = rng.poisson(n_path)
+            n_b = rng.poisson(n_mis - n_path)
+            bg = np.searchsorted(cbg, rng.random(n_b) * cbg[-1])
+            gt = rng.choice(len(g), size=n_p, p=g / g.sum())
+            lo_, hi_ = cw0[starts[gt]], cw0[starts[gt + 1]]
+            pi = order[np.minimum(np.searchsorted(cw, lo_ + rng.random(n_p) * (hi_ - lo_)), len(order) - 1)]
+            sites = np.r_[bg, pi]
+            dn = pd.DataFrame({"p": rng.integers(0, n_prob, len(sites)), "bin": top[sites].astype(np.int64)})
+            sp = rng.integers(0, n_prob, rng.poisson(c * syn_mass))
+            for k, u_ in units.items():
+                dk = dn.assign(unit=u_[sites])
+                res = eng.run(mass[k], syn_mass, sp, dk)
+                lr = Engine.lr(res, [np.array([1])])["LRw"][:, 0]
+                est = float(lr[0])
+                lo, hi = np.percentile(lr[1:][np.isfinite(lr[1:])], [2.5, 97.5])
+                rows.append({"lambda": lam, "unit": k, "rep": rep, "truth": truth[k], "est": est, "lo95": lo, "hi95": hi,
+                             "covered": bool(lo <= truth[k] <= hi)})
+            if rep % 20 == 0:
+                log(f"A11.5 lambda {lam}: replicate {rep}")
+        pd.DataFrame(rows).to_csv(P(a.results, "a11_simulation.tsv"), sep="\t", index=False, float_format="%.4g")
+    sim = pd.DataFrame(rows)
+    out = []
+    for (lam, k), gg in sim.groupby(["lambda", "unit"]):
+        out.append(f"lambda {lam:.0f} {k:6s}: truth {gg['truth'].iloc[0]:.3f}; mean estimate {gg['est'].mean():.3f} "
+                   f"(median {gg['est'].median():.3f}); relative bias {gg['est'].mean() / gg['truth'].iloc[0] - 1:+.3f}; "
+                   f"95% coverage {gg['covered'].mean():.2f} over {len(gg)} replicates")
+    open(P(a.results, "a11_simulation_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("A11.5 simulation:\n" + "\n".join(out))
+
+
+def cmd_overlap(a):
+    base = a.results
+    allrows, alltxt = [], []
+    for label, setup_kw in (("DD", {}), ("autism", {"cohort": "Affected"}),
+                            ("public3", {"cohort": "Affected", "rep_file": P(EXT, "public3", "public3_loader_format.tsv"),
+                                         "rep_cohorts": P3_STUDIES, "dedup_zhou": True})):
+        a.cohort, a.rep_file, a.rep_cohorts, a.dedup_zhou = (setup_kw.get("cohort"), setup_kw.get("rep_file"),
+                                                             setup_kw.get("rep_cohorts"), setup_kw.get("dedup_zhou", False))
+        a.results = P(base, "a10_tmp")
+        os.makedirs(a.results, exist_ok=True)
+        rows, txt = overlap_cohort(a, label)
+        allrows += rows
+        alltxt += txt
+        a.results = base
+        pd.DataFrame(allrows).to_csv(P(base, "a10_overlap.tsv"), sep="\t", index=False, float_format="%.4g")
+        open(P(base, "a10_overlap_summary.txt"), "w").write("\n".join(alltxt) + "\n")
+        log("A10.1 overlap:\n" + "\n".join(txt))
+    a.cohort, a.rep_file, a.rep_cohorts, a.dedup_zhou = None, None, None, False
+
+
 def cmd_m4_nested(a):
     """Plan section 3f: each Aim 4 model's LR through the A1 nested levels A-E on DDD de novos only."""
     a.centre_only = "DDD"
@@ -2858,17 +3298,22 @@ def main():
         s.add_argument("--from-piece", default="part.7")
     for name in ("validate", "aim5", "aim1", "aim1x", "aim1tools", "aim3", "aim3_report", "a1_report", "aim4", "replicate", "v54"):
         sub.add_parser(name)
-    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "m4_nested", "a6", "a6_report"):
+    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "m4_nested", "a6", "a6_report"):
         sub.add_parser(name)
     s = sub.add_parser("a4ctrl")
     s.add_argument("--part", default="all", choices=["all", "nodom", "dom", "report"])
+    s = sub.add_parser("a11")
+    s.add_argument("--part", required=True, choices=["strata", "sweep", "cpg_down", "cpg_up", "noclinvar"])
+    s.add_argument("--clinvar", default="/mnt/c/Users/saite/OneDrive/Desktop/Neuro/G-Test-LOCKIN/ndd_pp3_gate/ndd_pp3_gate/work_clinvar/clinvar.vcf.gz")
+    s = sub.add_parser("a11sim")
+    s.add_argument("--reps", type=int, default=200)
     s = sub.add_parser("clinvar")
     s.add_argument("--clinvar", default="/mnt/c/Users/saite/OneDrive/Desktop/Neuro/G-Test-LOCKIN/ndd_pp3_gate/ndd_pp3_gate/work_clinvar/clinvar.vcf.gz")
     s = sub.add_parser("aim2")
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
     {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
-     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
+     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
 
 
 if __name__ == "__main__":

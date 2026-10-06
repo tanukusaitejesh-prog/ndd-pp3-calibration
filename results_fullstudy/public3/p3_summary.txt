@@ -1,0 +1,6 @@
+POWER CHECK: total missense O/E one-sided lower bound 1.088 (> 1 needed); AlphaMissense top-2% within-gene LR lower 95% bound 1.68 (> 1 needed) -> ADEQUATELY POWERED
+tools: 36; informative (replication marginal top-group LR >= 2.406): 15
+readout 1 (primary, D2): share with r(D2) < 0.5 = 0.73 -> not systematic (>= 0.75); D1 secondary: 0.67
+readout 2: constraint beyond position r(D2)-r(E2) median -0.019 [IQR -0.024, 0.000]; r(D1)-r(E1) median 0.039
+readout 3: tools with E2 one-sided lower bound >= 2.406: 0 of 36 (); E1: 0
+AlphaMissense A-E (top 2%): A 5.51, B 2.79, C 2.19, D1 2.22, D2 1.83, E1 2.05, E2 1.89
