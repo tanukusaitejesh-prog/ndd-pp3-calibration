@@ -348,6 +348,58 @@ Frozen at `fffc57c` before any ClinVar variant was matched; a chr22-only code ch
 
 **Reading.** Conditioning on many small units removes little evidence: 0.56 → 0.51. Real windows remove much more: 0.56 → 0.31, for every tool. The within-gene loss is positional and does not depend on where window boundaries fall. Paired bootstrap intervals for r(rand50) − r(D2) follow in A6.
 
+## A4.2 part 2: InterPro domain control (`a4ctrl_dom_*`, commit `0d2e864`)
+
+InterPro domains come from the dbNSFP 5.4a stream (md5 re-verified): 19,165 domain names, 86,561 gene × domain units and 99,651 domain × RMC units.
+
+| Unit | Median r over 24 tools |
+|---|---|
+| dom | 0.333 |
+| dom_rmc | 0.303 |
+| win50 | 0.312 |
+
+- r(dom) − r(win50): median 0.026.
+- AlphaMissense: gene 4.29 → dom 2.38 → dom_rmc 2.16.
+- Curated domains, the PM1 proxy, capture as much of the within-gene evidence as fixed windows.
+
+## Amendment A6 (`a6_summary.txt`, `a6_retention_ci.tsv`, commit `c76aff4`)
+
+**A6.1 reruns.** The point estimates of `aim1tools`, `rep` and `a1v54` are **identical** to the committed tables.
+
+**Readout-1 share, r(D2) < 0.5, with 95% CI:**
+
+| Setting | Share [95% CI] | Informative tools |
+|---|---|---|
+| DD | 0.79 [0.71, 0.88] | 24 |
+| Autism | 0.80 [0.60, 0.95] | 20 |
+| A3 | 0.93 [0.93, 1.00] | 14 |
+
+For DD and autism the interval includes the 75% criterion.
+
+**AlphaMissense retention, with 95% CI:**
+
+| Setting | r(B) | r(D2) | r(E2) |
+|---|---|---|---|
+| DD | 0.54 [0.53, 0.56] | 0.30 [0.28, 0.32] | 0.28 [0.27, 0.30] |
+| Autism | 0.52 [0.46, 0.58] | 0.31 [0.24, 0.36] | 0.30 [0.23, 0.36] |
+
+**A4.2:** median r(rand50) − r(D2) = 0.210 [0.190, 0.227].
+
+**A6.2 sibling negative control: PASS.** 0 of 37 predictors reach a marginal top-2% lower bound ≥ 2.406, and 0 do at level B or D2.
+
+**A6.3 models in autism** (within-gene top-2% LR / AlphaMissense):
+
+| Model | All genes | Cold genes |
+|---|---|---|
+| v2-GBDT (primary) | **0.81 [0.68, 0.95]**, AlphaMissense better | 0.93 [0.66, 1.40] |
+| v1 | 0.76 [0.64, 0.91] | — |
+| v2-MLP | 0.66 [0.56, 0.79] | — |
+| v2-ENS | 0.74 [0.63, 0.88] | — |
+| v3 | 1.03 [0.89, 1.19] | 1.10 [0.83, 1.63] |
+
+- Marginal LRs in autism: AlphaMissense 8.67; models 11.5–14.0.
+- Siblings: no model shows evidence; the ratios are undefined because there is no excess.
+
 ## Related work, verified from source (2026-10-05)
 
 **Pathak, *Harnessing the human mutational spectrum to advance missense variant effect prediction*, PhD thesis, University of Edinburgh, February 2026** (ERA).

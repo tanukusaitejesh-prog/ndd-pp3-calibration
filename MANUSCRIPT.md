@@ -1,6 +1,6 @@
 # How much evidence do missense predictors add beyond gene and protein position? A pre-registered, label-free calibration using de novo mutations in 43,000 trios
 
-*Draft 1, 5 October 2026. Target: Genetics in Medicine (structured abstract) or AJHG. Items marked **[PENDING]** are produced by analyses that are frozen in the pre-registration and currently running; every other number comes from committed outputs in `results_fullstudy/`.*
+*Draft 1, 5 October 2026. Target: Genetics in Medicine (structured abstract) or AJHG. All analyses are complete; every number comes from committed outputs in `results_fullstudy/` (final analysis commit `0d2e864`).*
 
 **Authors:** [names, affiliations]
 
@@ -26,7 +26,7 @@ We applied this to 55 predictors: 36 from dbNSFP 4.1a, AlphaMissense, 17 dbNSFP 
 - **Position:** 0.33 after conditioning on gene and 50-residue window. A random partition of each gene into the same number of non-contiguous groups left 0.51, and real windows removed more evidence than the random partition for all 24 predictors, so the loss reflects protein position rather than conditioning on small units.
 - **Constraint:** 0.32 after adding regional constraint.
 - **Specific predictors:** AlphaMissense's top-2% LR fell from 13.4 to 2.08, and popEVE's from 17.9 to 1.69.
-- **Pre-registered tests.** The primary pre-registered test, in the DD cohort, did not meet its criterion under the originally specified position control: 15 of 24 informative predictors (62%) lost most of their evidence to gene and position, against a pre-specified 75%. Under fixed 50-residue windows the share was 19/24 (79%). With fixed windows made primary before the data were analysed, the criterion was met in the autism replication (16/20, 80%) and among the 17 newer predictors in the DD cohort (13/14, 93%).
+- **Pre-registered tests.** The primary pre-registered test, in the DD cohort, did not meet its criterion under the originally specified position control: 15 of 24 informative predictors (62%) lost most of their evidence to gene and position, against a pre-specified 75%. Under fixed 50-residue windows the share was 19/24 (79%). With fixed windows made primary before the data were analysed, the criterion was met in the autism replication (16/20, 80%; bootstrap 95% CI 60–95%) and among the 17 newer predictors in the DD cohort (13/14, 93%). A random partition of the same unit size and curated InterPro domains served as controls, and unaffected siblings as a negative control at every level.
 - **Supporting evidence after full adjustment:**
   - DD cohort: 2 of 36 predictors kept calibrated Supporting-level evidence under the originally specified level (VEST4, MutPred; E1), and 0 of 36 under fixed windows (E2).
   - Replication: 0 of 36.
@@ -255,7 +255,30 @@ Of 36 predictors, 24 were informative in the DD cohort (marginal top-2% LR ≥ 2
 - **Not a boundary artefact:** shifting window boundaries by half a window changed nothing (median difference −0.016).
 - **Conclusion:** most of the loss from gene to window is due to where variants fall in the protein, not to the conditioning itself.
 
-[PENDING: InterPro domain units, run last]
+**Curated domains carry the same information** (A4.2, second part). Conditioning on gene × InterPro domain, the unit closest to how PM1 is applied, removed as much evidence as 50-residue windows:
+
+| Unit | Median r over 24 tools |
+|---|---|
+| InterPro domain | 0.333 |
+| Domain × constraint | 0.303 |
+| 50-residue windows | 0.312 |
+
+- The paired difference r(dom) − r(D2) was 0.026.
+- AlphaMissense: within gene 4.29, within domain 2.38, domain × constraint 2.16.
+- Domains came from dbNSFP 5.4a: 19,165 domain names and 86,561 gene × domain units.
+
+**Uncertainty (amendment A6).** Paired bootstrap intervals:
+
+- r(rand50) − r(D2), median over tools: 0.210 [0.190, 0.227].
+- AlphaMissense r(D2): 0.30 [0.28, 0.32] in DD and 0.31 [0.24, 0.36] in autism.
+- The share of informative predictors with r(D2) < 0.5:
+  - DD: 0.79 [0.71, 0.88];
+  - autism: 0.80 [0.60, 0.95];
+  - newer predictors: 0.93 [0.93, 1.00].
+- For DD and autism, the point estimates exceed the pre-specified 75% but the intervals include it. The generalisation claim therefore rests on the consistency of the three settings rather than on any one alone.
+- Re-running the A1, A2 and A3 analyses to save replicates reproduced every committed point estimate exactly.
+
+**Negative control at every level** (A6.2). In unaffected siblings, 0 of 37 predictors had a marginal top-2% LR whose one-sided lower bound reached Supporting, and none did within gene or within window. This passes the pre-specified criterion (≤ 2).
 
 ### Pre-registered generalisation tests
 
@@ -432,7 +455,17 @@ No model reached Supporting at E2 (v3 one-sided lower bound 1.77).
 1. **The training objective matters more than model class or features.** The same features and learner gave 34–51% more within-gene evidence when the null was matched on gene.
 2. **There is a ceiling.** A label-free combination of 53 predictor scores and AlphaFold structure, trained on the de novo excess with a within-gene objective, matches but does not exceed AlphaMissense within gene. Like every predictor in the study, it falls below Supporting once gene, position and constraint are held fixed. The limited variant-level evidence beyond position is therefore not a shortcoming of any single tool. It appears to be a property of what current inputs can resolve in these data.
 
-[PENDING A6.3: all models in the autism cohort]
+**Independent cohort (A6.3).** Applied unchanged to the autism cohort, the models reproduced the DD pattern. Within-gene top-2% LR relative to AlphaMissense:
+
+| Model | Ratio [95% CI] | Verdict |
+|---|---|---|
+| v2-GBDT (pre-specified A6 primary) | 0.81 [0.68, 0.95] | AlphaMissense better |
+| v1 | 0.76 [0.64, 0.91] | AlphaMissense better |
+| v2-MLP | 0.66 [0.56, 0.79] | AlphaMissense better |
+| v3 (gene-matched) | 1.03 [0.89, 1.19] | No difference |
+
+- As in DD, the models had higher marginal LRs than AlphaMissense: 11.5–14.0 against 8.7.
+- In unaffected siblings, no model showed evidence.
 
 ---
 
