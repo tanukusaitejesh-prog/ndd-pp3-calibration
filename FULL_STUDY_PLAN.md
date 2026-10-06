@@ -428,6 +428,58 @@ v3 changes only the null, so that the objective is within-gene. Its result is re
 2. **Models:** v3 and v4 against AlphaMissense, within gene, top 2%, paired bootstrap. The models were trained only on Kaplanis DD centres, so this cohort is independent of their training. Descriptive whatever the power, because this is the fifth model comparison.
 3. **Descriptive:** the same within Jin 2017 probands flagged NDD = Yes.
 
+## 3k. Amendment A10 (2026-10-06): direct test of PP3 + PM1/PP2 overlap; ClinVar sensitivity; model equivalence
+
+**Status.**
+
+- Written after all A1–A8 results and the A9 model comparison were seen. The A9 tool readouts were still running.
+- This amendment answers a second external review.
+- **No analysis below has been run.** gnomAD v2.1.1 gene constraint (`gnomad.v2.1.1.lof_metrics.by_gene.txt.bgz`, md5 `967fb59dc509d9ee351b9d35efacf52a`) has been downloaded only.
+
+### A10.1 Joint-LR overlap test (primary)
+
+**Flags at each analysed site** (primary filters, all sites, no common-set restriction):
+
+| Flag | Definition |
+|---|---|
+| **PP3** | The published ClinGen Supporting threshold for AlphaMissense (≥ 0.792), REVEL (≥ 0.644) or VEST4 (≥ 0.764); §3e table |
+| **PM1-like** | The §3 definition (RMC o/e < 0.4 or CCR ≥ 95) |
+| **PM1-strict** | RMC o/e < 0.2. This is the level Chao et al. tie to Moderate. |
+| **PP2-like** | The transcript's gene symbol has gnomAD v2.1.1 missense Z ≥ 3.09; unmatched genes are not flagged |
+
+**Estimand.** For each tool T and flag F, the marginal de novo LRs (as §2) of four site categories (PP3 yes/no × F yes/no). From these:
+
+- R(T, F) = LR(PP3 ∧ F) / [LR(PP3) · LR(F)] = LR(PP3 | F) / LR(PP3).
+- R < 1 means applying PP3 and F together **overstates** the joint evidence.
+- Also reported: LR(PP3 | F), LR(PP3 | not F), and the PP3 points implied when F is applied, ln LR(PP3 | F) / ln 2.406.
+
+**Uncertainty.** A paired Poisson bootstrap over individuals (1,000 replicates, seed 20261004); the replicates share proband weights across categories.
+
+**Primary (confirmatory):** DD cohort, T = AlphaMissense, F = PM1-like. "Overlap" if the 95% CI of R lies below 1.
+
+**Replication:** the same in the autism cohort (A2 data). It replicates if the 95% CI lies below 1. The public cohort (A9) is descriptive.
+
+**Secondary:** REVEL and VEST4; F = PM1-strict, PP2-like, and (PM1-like ∨ PP2-like); per PP3 strength level using the published intervals.
+
+### A10.2 ClinVar impact sensitivity (descriptive; A4.1 rules otherwise unchanged)
+
+- PM1 assigned at +1, +2 and +4.
+- PM1-like at o/e < 0.4 (as A4.1) and o/e < 0.2.
+- Restricted to DDG2P monoallelic genes, as well as all genes.
+- The AUC check is dropped: by construction it cannot change under a rescaling.
+
+### A10.3 Model equivalence (descriptive)
+
+**Test.** Two one-sided tests on the within-gene top-2% LR ratio model / AlphaMissense, from the saved paired replicates.
+
+**Pre-specified margin:** [0.80, 1.25]. "Equivalent" if the 90% interval lies inside the margin.
+
+**Comparisons:**
+
+- v3 on DDD cold genes;
+- v3 and v4 in autism;
+- v3 and v4 in the public cohort.
+
 ## 4. Aim 2: mechanism-specific calibration
 
 **Mechanism labels.** All are external and never inferred from these de novos. They are taken in this precedence:
