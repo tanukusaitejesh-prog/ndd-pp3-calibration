@@ -1,0 +1,37 @@
+stratum	set	tool	n_genes	n_sites	n_plp	auc_pooled	lo95	hi95	auc_gene_mean	d_vs_AM	d_lo95	d_hi95
+all_genes	primary	Aim4v5_GBDT	1458	159604	44433	0.7549	0.7094	0.7929	0.6459	-0.2106	-0.2544	-0.1738
+all_genes	primary	Aim4v4_GBDT	1458	159604	44433	0.8450	0.8135	0.8697	0.7248	-0.1205	-0.1481	-0.0981
+all_genes	primary	Aim4v3_GBDT	1458	159604	44433	0.8808	0.8567	0.9000	0.8299	-0.0847	-0.1057	-0.0680
+all_genes	primary	AlphaMissense	1458	159604	44433	0.9655	0.9606	0.9697	0.9564			
+all_genes	pair_REVEL	REVEL	1448	158475	44207	0.9522	0.9423	0.9606	0.9484	-0.0135	-0.0214	-0.0065
+all_genes	pair_REVEL	AlphaMissense	1448	158475	44207	0.9657	0.9606	0.9698	0.9566			
+all_genes	pair_VEST4	VEST4	1452	158949	44193	0.9512	0.9423	0.9580	0.9461	-0.0143	-0.0205	-0.0091
+all_genes	pair_VEST4	AlphaMissense	1452	158949	44193	0.9655	0.9604	0.9698	0.9564			
+all_genes	pair_popEVE	popEVE	1291	125088	37450	0.9399	0.9216	0.9563	0.9427	-0.0282	-0.0468	-0.0122
+all_genes	pair_popEVE	AlphaMissense	1291	125088	37450	0.9681	0.9636	0.9720	0.9585			
+all_genes	pair_ESM1b	ESM1b	1441	158286	44027	0.9357	0.9256	0.9443	0.9133	-0.0298	-0.0368	-0.0241
+all_genes	pair_ESM1b	AlphaMissense	1441	158286	44027	0.9655	0.9605	0.9698	0.9563			
+all_genes	pair_MisFit_S	MisFit_S	1419	155014	43322	0.9399	0.9249	0.9515	0.9219	-0.0260	-0.0388	-0.0173
+all_genes	pair_MisFit_S	AlphaMissense	1419	155014	43322	0.9659	0.9608	0.9699	0.9561			
+all_genes	pair_PrimateAI	PrimateAI	1437	156335	43800	0.8985	0.8839	0.9110	0.8735	-0.0670	-0.0785	-0.0567
+all_genes	pair_PrimateAI	AlphaMissense	1437	156335	43800	0.9655	0.9606	0.9698	0.9562			
+all_genes	pair_CADD	CADD	1458	159597	44433	0.9108	0.9006	0.9198	0.9179	-0.0547	-0.0641	-0.0465
+all_genes	pair_CADD	AlphaMissense	1458	159597	44433	0.9655	0.9609	0.9697	0.9564			
+ddg2p_monoallelic	primary	Aim4v5_GBDT	331	32765	13092	0.8791	0.8458	0.9033	0.8148	-0.0879	-0.1178	-0.0674
+ddg2p_monoallelic	primary	Aim4v4_GBDT	331	32765	13092	0.9053	0.8775	0.9230	0.8075	-0.0617	-0.0826	-0.0477
+ddg2p_monoallelic	primary	Aim4v3_GBDT	331	32765	13092	0.9234	0.8996	0.9402	0.8682	-0.0436	-0.0617	-0.0311
+ddg2p_monoallelic	primary	AlphaMissense	331	32765	13092	0.9670	0.9592	0.9729	0.9511			
+ddg2p_monoallelic	pair_REVEL	REVEL	331	32695	13055	0.9489	0.9305	0.9626	0.9275	-0.0181	-0.0331	-0.0073
+ddg2p_monoallelic	pair_REVEL	AlphaMissense	331	32695	13055	0.9669	0.9592	0.9729	0.9510			
+ddg2p_monoallelic	pair_VEST4	VEST4	330	32602	12967	0.9454	0.9310	0.9561	0.9198	-0.0215	-0.0317	-0.0139
+ddg2p_monoallelic	pair_VEST4	AlphaMissense	330	32602	12967	0.9669	0.9591	0.9732	0.9509			
+ddg2p_monoallelic	pair_popEVE	popEVE	289	23012	9895	0.9411	0.9198	0.9583	0.9297	-0.0242	-0.0426	-0.0101
+ddg2p_monoallelic	pair_popEVE	AlphaMissense	289	23012	9895	0.9653	0.9571	0.9720	0.9526			
+ddg2p_monoallelic	pair_ESM1b	ESM1b	331	32655	13053	0.9436	0.9292	0.9548	0.9076	-0.0233	-0.0326	-0.0166
+ddg2p_monoallelic	pair_ESM1b	AlphaMissense	331	32655	13053	0.9669	0.9589	0.9732	0.9511			
+ddg2p_monoallelic	pair_MisFit_S	MisFit_S	326	31699	12910	0.9443	0.9294	0.9569	0.9158	-0.0228	-0.0332	-0.0149
+ddg2p_monoallelic	pair_MisFit_S	AlphaMissense	326	31699	12910	0.9671	0.9594	0.9731	0.9505			
+ddg2p_monoallelic	pair_PrimateAI	PrimateAI	330	32430	12933	0.9036	0.8797	0.9200	0.8466	-0.0632	-0.0808	-0.0492
+ddg2p_monoallelic	pair_PrimateAI	AlphaMissense	330	32430	12933	0.9669	0.9591	0.9736	0.9507			
+ddg2p_monoallelic	pair_CADD	CADD	331	32765	13092	0.8983	0.8846	0.9107	0.8897	-0.0686	-0.0816	-0.0580
+ddg2p_monoallelic	pair_CADD	AlphaMissense	331	32765	13092	0.9670	0.9596	0.9738	0.9511			
