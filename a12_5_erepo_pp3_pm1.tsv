@@ -907,3 +907,113 @@ LDLR	Likely Pathogenic	1	2	LP	LP	VUS
 HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
 LDLR	Uncertain Significance	1	2	VUS	VUS	VUS
 RYR1	Likely Pathogenic	1	2	LP	LP	VUS
+SCN8A	Likely Pathogenic	2	2	LP	LP	LP
+SCN8A	Likely Pathogenic	2	2	LP	LP	VUS
+PTPN11	Pathogenic	1	2	P	P	P
+HNF4A	Pathogenic	1	2	P	P	P
+HNF4A	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	2	VUS	VUS	VUS
+SCN8A	Likely Pathogenic	2	2	LP	LP	LP
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+LDLR	Uncertain Significance	1	2	VUS	VUS	VUS
+TNNI3	Pathogenic	1	2	P	P	P
+TNNT2	Likely Pathogenic	1	1	LP	LP	LP
+MYBPC3	Likely Pathogenic	1	2	LP	LP	VUS
+CYP1B1	Uncertain Significance	2	2	VUS	VUS	VUS
+CYP1B1	Uncertain Significance	1	2	VUS	VUS	VUS
+CYP1B1	Uncertain Significance	1	2	VUS	VUS	VUS
+CYP1B1	Pathogenic	2	2	P	P	LP
+CYP1B1	Likely Pathogenic	2	1	LP	LP	LP
+CYP1B1	Pathogenic	1	2	P	P	LP
+CYP1B1	Likely Pathogenic	4	2	LP	LP	VUS
+CYP1B1	Pathogenic	2	2	P	P	LP
+HNF1A	Likely Pathogenic	1	2	LP	LP	VUS
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+CTLA4	Pathogenic	1	2	P	P	LP
+TP53	Likely Pathogenic	2	1	LP	LP	VUS
+TP53	Pathogenic	2	1	P	P	LP
+TP53	Pathogenic	2	2	P	P	P
+TP53	Pathogenic	2	2	P	P	LP
+TP53	Pathogenic	2	2	P	P	LP
+TP53	Pathogenic	2	1	P	P	P
+SCN8A	Likely Pathogenic	2	2	LP	LP	VUS
+SERPINC1	Uncertain Significance	1	2	VUS	VUS	VUS
+MECP2	Likely Benign	1	2	B	B	B
+IDUA	Likely Pathogenic	2	2	LP	LP	VUS
+ACADVL	Likely Pathogenic	1	2	LP	LP	LP
+SERPINC1	Likely Pathogenic	1	2	LP	LP	VUS
+DICER1	Likely Pathogenic	1	2	LP	LP	LP
+GCK	Pathogenic	1	2	P	P	P
+GCK	Likely Pathogenic	1	2	LP	LP	LP
+GCK	Likely Pathogenic	1	2	LP	LP	LP
+GCK	Likely Pathogenic	1	2	LP	LP	LP
+GCK	Likely Pathogenic	1	2	LP	LP	LP
+GCK	Likely Pathogenic	1	2	LP	LP	LP
+SCN1A	Pathogenic	2	2	P	P	LP
+GP1BA	Likely Pathogenic	1	2	LP	LP	LP
+TP53	Pathogenic	2	2	P	P	LP
+SERPINC1	Pathogenic	1	2	LP	LP	LP
+SCN3A	Pathogenic	2	2	P	P	P
+HBB	Pathogenic	1	2	LP	LP	LP
+HBB	Pathogenic	1	2	P	P	P
+PAH	Likely Pathogenic	2	2	LP	LP	VUS
+ABCD1	Pathogenic	1	2	P	P	P
+TP53	Likely Pathogenic	2	1	LP	LP	LP
+TP53	Pathogenic	1	2	P	P	LP
+TP53	Pathogenic	2	1	P	P	LP
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF4A	Uncertain Significance	1	1	VUS	VUS	VUS
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+GCK	Pathogenic	1	2	P	P	P
+BMPR2	Likely Pathogenic	1	2	LP	LP	LP
+ACADVL	Likely Pathogenic	1	2	LP	LP	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+RUNX1	Uncertain Significance	1	1	VUS	VUS	VUS
+OTC	Pathogenic	4	2	P	P	P
+MYH7	Pathogenic	1	2	P	P	P
+RYR1	Likely Pathogenic	2	2	LP	LP	VUS
+GALT	Uncertain Significance	1	2	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Uncertain Significance	1	1	VUS	VUS	VUS
+HNF1A	Likely Benign	1	1	LB	LB	LB
+HNF1A	Likely Pathogenic	1	2	LP	LP	LP
+HNF1A	Uncertain Significance	1	2	VUS	VUS	VUS
+FOXG1	Likely Pathogenic	1	2	LP	LP	LP
+PTEN	Likely Pathogenic	1	2	LP	LP	LP
+SCN1A	Likely Benign	2	2	LB	LB	LB
+SCN1A	Likely Pathogenic	2	2	LP	LP	LP
+SCN1A	Likely Pathogenic	2	2	LP	LP	VUS
+SCN1A	Likely Pathogenic	2	2	LP	LP	VUS
+SCN1A	Likely Pathogenic	2	2	LP	LP	VUS
+SCN1A	Likely Pathogenic	2	2	LP	LP	VUS
+SCN2A	Uncertain Significance	2	2	VUS	VUS	VUS
+SCN2A	Likely Pathogenic	2	2	LP	LP	VUS
+SCN2A	Likely Pathogenic	2	2	LP	LP	LP
+SCN2A	Pathogenic	2	2	P	P	P
+SCN3A	Likely Benign	2	2	LB	LB	LB
+SCN8A	Likely Pathogenic	2	2	LP	LP	VUS
+GCK	Likely Pathogenic	1	2	P	P	LP
+GALT	Uncertain Significance	1	2	VUS	VUS	VUS
+ACVRL1	Pathogenic	1	2	P	P	P
+PAX6	Likely Pathogenic	2	2	LP	LP	VUS
+PAX6	Likely Pathogenic	2	2	LP	LP	LP
+PAX6	Uncertain Significance	2	2	VUS	VUS	VUS
+PAX6	Uncertain Significance	2	2	VUS	VUS	VUS
+HNF4A	Likely Pathogenic	1	2	LP	LP	LP
+PAX6	Uncertain Significance	1	2	VUS	VUS	VUS
+PAX6	Likely Pathogenic	2	2	LP	LP	VUS
+PAX6	Likely Pathogenic	2	2	LP	LP	VUS
+PAX6	Likely Pathogenic	2	2	LP	LP	LP
+PAX6	Pathogenic	2	2	LP	LP	LP
+PAX6	Pathogenic	2	2	LP	LP	LP
+PAX6	Uncertain Significance	2	2	VUS	VUS	VUS
+PAX6	Uncertain Significance	1	2	VUS	VUS	VUS
+PAX6	Likely Pathogenic	2	2	LP	LP	VUS
+PAX6	Likely Benign	1	2	LB	LB	LB
+PAX6	Uncertain Significance	1	2	VUS	VUS	VUS
+IDUA	Likely Pathogenic	1	2	LP	LP	VUS
