@@ -2935,6 +2935,97 @@ def cmd_a11sim(a):
     log("A11.5 simulation:\n" + "\n".join(out))
 
 
+# ======================================================================== amendment A12 (descriptive)
+def cmd_a12(a):
+    """Plan section 3m. part 'decomp' (A12.1): excess-side and null-side P(PP3 | PM1-like) for AlphaMissense, REVEL, VEST4
+    in DD and autism. part 'classify' (A12.4): PS2 + PM2 + PM1-like + AlphaMissense PP3 under uncapped / capped /
+    conditional rules for DD de novo missense; class counts and de novo-excess fraction pathogenic per class."""
+    base = a.results
+    if a.part == "decomp":
+        rows = []
+        for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
+            a.cohort = kw.get("cohort")
+            a.results = P(base, "a12_tmp")
+            os.makedirs(a.results, exist_ok=True)
+            d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+            c = len(syn_p) / syn_mass
+            cols = ["key", PRIMARY_MODEL, "rmc_oe", "ccr_pct"] + [cc for cc, _ in A10_TOOLS.values()]
+            E = {t: np.zeros(4) for t in A10_TOOLS}
+            O = {t: np.zeros(4) for t in A10_TOOLS}
+            dk = d_mis["key"].to_numpy(); dch = d_mis["chrom"].astype(str).to_numpy()
+            for ch, u in site_chunks(a, cols=cols):
+                pm = ((u["rmc_oe"].to_numpy(float) < 0.4) | (u["ccr_pct"].to_numpy(float) >= 95)).astype(np.int64)
+                mr = u[PRIMARY_MODEL].to_numpy(float)
+                di = np.flatnonzero(dch == str(ch))
+                pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dk[di]).to_numpy()
+                pos = pos[np.isfinite(pos)].astype(np.int64)
+                for t, (col, cuts) in A10_TOOLS.items():
+                    s_ = u[col].to_numpy(float)
+                    sc = np.isfinite(s_)
+                    cat = np.where(sc, 2 * (s_ >= cuts[0]).astype(np.int64) + pm, -1)
+                    E[t] += np.bincount(cat[sc], weights=mr[sc] * c, minlength=4)
+                    cd = cat[pos]
+                    O[t] += np.bincount(cd[cd >= 0], minlength=4)
+            for t in A10_TOOLS:
+                X = O[t] - E[t]
+                rows.append({"cohort": label, "tool": t, "O": O[t].tolist(), "E": np.round(E[t], 1).tolist(),
+                             "P_PP3_given_F_excess": X[3] / (X[1] + X[3]), "P_PP3_given_F_null": E[t][3] / (E[t][1] + E[t][3]),
+                             "P_PP3_excess_all": (X[2] + X[3]) / X.sum(), "P_PP3_null_all": (E[t][2] + E[t][3]) / E[t].sum()})
+            a.results = base
+        df = pd.DataFrame(rows)
+        df.to_csv(P(base, "a12_decomp.tsv"), sep="\t", index=False, float_format="%.4g")
+        out = [f"{r.cohort:6s} {r.tool:13s} P(PP3|PM1-like): excess {r.P_PP3_given_F_excess:.3f} vs null {r.P_PP3_given_F_null:.3f} "
+               f"(ratio = LR(PP3|F) {r.P_PP3_given_F_excess / r.P_PP3_given_F_null:.2f}); overall P(PP3): excess "
+               f"{r.P_PP3_excess_all:.3f} vs null {r.P_PP3_null_all:.3f} (LR {r.P_PP3_excess_all / r.P_PP3_null_all:.2f})"
+               for r in df.itertuples()]
+    else:
+        d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+        c = len(syn_p) / syn_mass
+        ov = pd.read_csv(P(base, "a10_overlap.tsv"), sep="\t")
+        ov = ov[(ov.cohort == "DD") & (ov.tool == "AlphaMissense") & (ov.flag == "PM1-like")].set_index("pp3_level")
+        lr_tier = {1: ov.loc["PP3 Supporting only", "LR_PP3_given_F"], 2: ov.loc["PP3 Moderate only", "LR_PP3_given_F"],
+                   3: ov.loc["PP3 >=Strong(3-4)", "LR_PP3_given_F"], 4: ov.loc["PP3 >=Strong(3-4)", "LR_PP3_given_F"]}
+        cond_pts = {k: max(0.0, float(np.log(v) / np.log(PP3[0][1]))) for k, v in lr_tier.items()}
+        cp_lookup = np.array([0.0] + [cond_pts[k] for k in (1, 2, 3, 4)])
+        cuts = A10_TOOLS["AlphaMissense"][1]
+        rules = ("uncapped", "capped", "conditional")
+        E = {r: np.zeros(3) for r in rules}
+        O = {r: np.zeros(3) for r in rules}
+        dk = d_mis["key"].to_numpy(); dch = d_mis["chrom"].astype(str).to_numpy()
+        n_change = {"uncapped->capped": 0.0, "uncapped->conditional": 0.0}
+        for ch, u in site_chunks(a, cols=["key", PRIMARY_MODEL, "rmc_oe", "ccr_pct", "am"]):
+            s_ = u["am"].to_numpy(float)
+            sc = np.isfinite(s_)
+            pp3 = np.select([s_ >= cuts[3], s_ >= cuts[2], s_ >= cuts[1], s_ >= cuts[0]], [4, 3, 2, 1], 0)
+            pm = (u["rmc_oe"].to_numpy(float) < 0.4) | (u["ccr_pct"].to_numpy(float) >= 95)
+            base_pts = 5.0                                                    # PS2 (4) + PM2 (1)
+            pts = {"uncapped": base_pts + pp3 + 2 * pm,
+                   "capped": base_pts + np.where(pm, np.minimum(pp3 + 2, 4), pp3),
+                   "conditional": base_pts + 2 * pm + np.where(pm, cp_lookup[pp3], pp3)}
+            mr = u[PRIMARY_MODEL].to_numpy(float)
+            di = np.flatnonzero(dch == str(ch))
+            pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dk[di]).to_numpy()
+            pos = pos[np.isfinite(pos)].astype(np.int64)
+            pos = pos[sc[pos]]
+            for r in rules:
+                cls = np.select([pts[r] >= 10, pts[r] >= 6], [2, 1], 0)            # 2 = P, 1 = LP, 0 = VUS
+                E[r] += np.bincount(cls[sc], weights=mr[sc] * c, minlength=3)
+                O[r] += np.bincount(cls[pos], minlength=3)
+                if r != "uncapped":
+                    cu = np.select([pts["uncapped"] >= 10, pts["uncapped"] >= 6], [2, 1], 0)
+                    n_change[f"uncapped->{r}"] += float((cls[pos] != cu[pos]).sum())
+        out = [f"conditional PP3 points at PM1-like sites by tier: {cond_pts}"]
+        for r in rules:
+            for k, nm in ((2, "Pathogenic"), (1, "Likely pathogenic")):
+                frac = 1 - E[r][k] / O[r][k] if O[r][k] > 0 else np.nan
+                out.append(f"{r:11s} {nm:17s}: {O[r][k]:6.0f} de novos, expected background {E[r][k]:8.1f}, "
+                           f"fraction pathogenic {frac:.3f}")
+        out += [f"de novos changing class {k}: {int(v):,}" for k, v in n_change.items()]
+    open(P(base, f"a12_{a.part}_summary.txt"), "w").write("\n".join(out) + "\n")
+    log(f"A12 {a.part}:\n" + "\n".join(out))
+    a.cohort = None
+
+
 def cmd_overlap(a):
     base = a.results
     allrows, alltxt = [], []
@@ -3305,6 +3396,8 @@ def main():
     s = sub.add_parser("a11")
     s.add_argument("--part", required=True, choices=["strata", "sweep", "cpg_down", "cpg_up", "noclinvar"])
     s.add_argument("--clinvar", default="/mnt/c/Users/saite/OneDrive/Desktop/Neuro/G-Test-LOCKIN/ndd_pp3_gate/ndd_pp3_gate/work_clinvar/clinvar.vcf.gz")
+    s = sub.add_parser("a12")
+    s.add_argument("--part", required=True, choices=["decomp", "classify"])
     s = sub.add_parser("a11sim")
     s.add_argument("--reps", type=int, default=200)
     s = sub.add_parser("clinvar")
@@ -3313,7 +3406,7 @@ def main():
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
     {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
-     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
+     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
 
 
 if __name__ == "__main__":

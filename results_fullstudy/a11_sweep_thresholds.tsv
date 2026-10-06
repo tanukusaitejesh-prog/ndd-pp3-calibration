@@ -1,0 +1,141 @@
+score	unit	stratum	kind	PP3_Supporting	PP3_Moderate	PP3_Strong	PP3_VeryStrong	BP4_Supporting	BP4_Moderate	BP4_Strong	BP4_VeryStrong
+AlphaMissense	gene	all_genes	marginal	0.9780500000000001	0.9950500000000001						
+AlphaMissense	gene	all_genes	within_unit	0.9937							
+AlphaMissense	win25	all_genes	marginal	0.9780500000000001	0.9950500000000001						
+AlphaMissense	win25	all_genes	within_unit								
+AlphaMissense	rand25	all_genes	marginal	0.9780500000000001	0.9950500000000001						
+AlphaMissense	rand25	all_genes	within_unit	0.9961500000000001							
+AlphaMissense	win50	all_genes	marginal	0.9780500000000001	0.9950500000000001						
+AlphaMissense	win50	all_genes	within_unit								
+AlphaMissense	rand50	all_genes	marginal	0.9780500000000001	0.9950500000000001						
+AlphaMissense	rand50	all_genes	within_unit	0.9950500000000001							
+AlphaMissense	win100	all_genes	marginal	0.9780500000000001	0.9950500000000001						
+AlphaMissense	win100	all_genes	within_unit								
+AlphaMissense	rand100	all_genes	marginal	0.9780500000000001	0.9950500000000001						
+AlphaMissense	rand100	all_genes	within_unit	0.9950500000000001							
+SIFT	gene	all_genes	marginal								
+SIFT	gene	all_genes	within_unit								
+SIFT	win25	all_genes	marginal								
+SIFT	win25	all_genes	within_unit								
+SIFT	rand25	all_genes	marginal								
+SIFT	rand25	all_genes	within_unit								
+SIFT	win50	all_genes	marginal								
+SIFT	win50	all_genes	within_unit								
+SIFT	rand50	all_genes	marginal								
+SIFT	rand50	all_genes	within_unit								
+SIFT	win100	all_genes	marginal								
+SIFT	win100	all_genes	within_unit								
+SIFT	rand100	all_genes	marginal								
+SIFT	rand100	all_genes	within_unit								
+PolyPhen2_HVAR	gene	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	gene	all_genes	within_unit								
+PolyPhen2_HVAR	win25	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	win25	all_genes	within_unit								
+PolyPhen2_HVAR	rand25	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	rand25	all_genes	within_unit								
+PolyPhen2_HVAR	win50	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	win50	all_genes	within_unit								
+PolyPhen2_HVAR	rand50	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	rand50	all_genes	within_unit								
+PolyPhen2_HVAR	win100	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	win100	all_genes	within_unit								
+PolyPhen2_HVAR	rand100	all_genes	marginal	0.92359							
+PolyPhen2_HVAR	rand100	all_genes	within_unit								
+MutationAssessor	gene	all_genes	marginal	0.9531000000000001							
+MutationAssessor	gene	all_genes	within_unit	0.9685800000000001							
+MutationAssessor	win25	all_genes	marginal	0.9531000000000001							
+MutationAssessor	win25	all_genes	within_unit								
+MutationAssessor	rand25	all_genes	marginal	0.9531000000000001							
+MutationAssessor	rand25	all_genes	within_unit								
+MutationAssessor	win50	all_genes	marginal	0.9531000000000001							
+MutationAssessor	win50	all_genes	within_unit								
+MutationAssessor	rand50	all_genes	marginal	0.9531000000000001							
+MutationAssessor	rand50	all_genes	within_unit								
+MutationAssessor	win100	all_genes	marginal	0.9531000000000001							
+MutationAssessor	win100	all_genes	within_unit								
+MutationAssessor	rand100	all_genes	marginal	0.9531000000000001							
+MutationAssessor	rand100	all_genes	within_unit								
+FATHMM	gene	all_genes	marginal	0.9677150000000001							
+FATHMM	gene	all_genes	within_unit								
+FATHMM	win25	all_genes	marginal	0.9677150000000001							
+FATHMM	win25	all_genes	within_unit								
+FATHMM	rand25	all_genes	marginal	0.9677150000000001							
+FATHMM	rand25	all_genes	within_unit								
+FATHMM	win50	all_genes	marginal	0.9677150000000001							
+FATHMM	win50	all_genes	within_unit								
+FATHMM	rand50	all_genes	marginal	0.9677150000000001							
+FATHMM	rand50	all_genes	within_unit								
+FATHMM	win100	all_genes	marginal	0.9677150000000001							
+FATHMM	win100	all_genes	within_unit								
+FATHMM	rand100	all_genes	marginal	0.9677150000000001							
+FATHMM	rand100	all_genes	within_unit								
+PROVEAN	gene	all_genes	marginal	0.9417050000000001							
+PROVEAN	gene	all_genes	within_unit								
+PROVEAN	win25	all_genes	marginal	0.9417050000000001							
+PROVEAN	win25	all_genes	within_unit								
+PROVEAN	rand25	all_genes	marginal	0.9417050000000001							
+PROVEAN	rand25	all_genes	within_unit								
+PROVEAN	win50	all_genes	marginal	0.9417050000000001							
+PROVEAN	win50	all_genes	within_unit								
+PROVEAN	rand50	all_genes	marginal	0.9417050000000001							
+PROVEAN	rand50	all_genes	within_unit								
+PROVEAN	win100	all_genes	marginal	0.9417050000000001							
+PROVEAN	win100	all_genes	within_unit								
+PROVEAN	rand100	all_genes	marginal	0.9417050000000001							
+PROVEAN	rand100	all_genes	within_unit								
+VEST4	gene	all_genes	marginal	0.94432							
+VEST4	gene	all_genes	within_unit	0.9641600000000001							
+VEST4	win25	all_genes	marginal	0.94432							
+VEST4	win25	all_genes	within_unit								
+VEST4	rand25	all_genes	marginal	0.94432							
+VEST4	rand25	all_genes	within_unit	0.9731700000000001							
+VEST4	win50	all_genes	marginal	0.94432							
+VEST4	win50	all_genes	within_unit								
+VEST4	rand50	all_genes	marginal	0.94432							
+VEST4	rand50	all_genes	within_unit	0.9687100000000001							
+VEST4	win100	all_genes	marginal	0.94432							
+VEST4	win100	all_genes	within_unit								
+VEST4	rand100	all_genes	marginal	0.94432							
+VEST4	rand100	all_genes	within_unit	0.9687100000000001							
+MetaSVM	gene	all_genes	marginal	0.94831							
+MetaSVM	gene	all_genes	within_unit								
+MetaSVM	win25	all_genes	marginal	0.94831							
+MetaSVM	win25	all_genes	within_unit								
+MetaSVM	rand25	all_genes	marginal	0.94831							
+MetaSVM	rand25	all_genes	within_unit								
+MetaSVM	win50	all_genes	marginal	0.94831							
+MetaSVM	win50	all_genes	within_unit								
+MetaSVM	rand50	all_genes	marginal	0.94831							
+MetaSVM	rand50	all_genes	within_unit								
+MetaSVM	win100	all_genes	marginal	0.94831							
+MetaSVM	win100	all_genes	within_unit								
+MetaSVM	rand100	all_genes	marginal	0.94831							
+MetaSVM	rand100	all_genes	within_unit								
+MetaLR	gene	all_genes	marginal	0.9650650000000001							
+MetaLR	gene	all_genes	within_unit								
+MetaLR	win25	all_genes	marginal	0.9650650000000001							
+MetaLR	win25	all_genes	within_unit								
+MetaLR	rand25	all_genes	marginal	0.9650650000000001							
+MetaLR	rand25	all_genes	within_unit								
+MetaLR	win50	all_genes	marginal	0.9650650000000001							
+MetaLR	win50	all_genes	within_unit								
+MetaLR	rand50	all_genes	marginal	0.9650650000000001							
+MetaLR	rand50	all_genes	within_unit								
+MetaLR	win100	all_genes	marginal	0.9650650000000001							
+MetaLR	win100	all_genes	within_unit								
+MetaLR	rand100	all_genes	marginal	0.9650650000000001							
+MetaLR	rand100	all_genes	within_unit								
+M-CAP	gene	all_genes	marginal	0.931775							
+M-CAP	gene	all_genes	within_unit								
+M-CAP	win25	all_genes	marginal	0.931775							
+M-CAP	win25	all_genes	within_unit								
+M-CAP	rand25	all_genes	marginal	0.931775							
+M-CAP	rand25	all_genes	within_unit								
+M-CAP	win50	all_genes	marginal	0.931775							
+M-CAP	win50	all_genes	within_unit								
+M-CAP	rand50	all_genes	marginal	0.931775							
+M-CAP	rand50	all_genes	within_unit								
+M-CAP	win100	all_genes	marginal	0.931775							
+M-CAP	win100	all_genes	within_unit								
+M-CAP	rand100	all_genes	marginal	0.931775							
+M-CAP	rand100	all_genes	within_unit								

@@ -60,3 +60,18 @@ Two informal reviews of the study pitch and draft 1. For each point: what we did
 | Null control / CIs | Random partition, shifted windows, InterPro domains; paired bootstrap CIs on retention |
 | ClinGen cap wording | The primary source caps PP3 + PM1 at Strong (Pejaver et al. 2022) |
 | Zhou trio count | Explained: the supplementary tables list only individuals with a coding de novo (13,103 affected); 12,316 after filters |
+
+## Review 4 (draft 2)
+
+| # | Point | Response |
+|---|---|---|
+| 1 | The impact analysis is null; the 14,343 counterfactual is a straw man | Agreed. The headline is now the **joint evidence**: Strong-tier PP3 + PM1-like gives 2.5–3.9 points against the cap's 4 and the uncapped 6, so the data support the cap and contradict uncapped co-use (CanVIG). Added a classification-change analysis with PS2 + PM2 (A12.4), where P vs LP can actually change. The ClinGen Evidence Repository recomputation is pre-registered (A12.5). |
+| 2 | Headline rests on one cell | The abstract now reports every primary-tool R, including the public cohort (0.67 [0.42–0.95]) and the weaker REVEL/VEST4 cells (0.57–0.82). Table 2 shows all cells. |
+| 3 | Overlap may be by construction; R from the null side | R decomposition into excess-side and null-side P(PP3 \| F) (A12.1). R for all predictors related to constraint and frequency inputs (A12.2, pre-registered). |
+| 4 | Two adjustments; R by tier | **R by PP3 tier is reported.** Strong tier: R 0.33 [0.30–0.36] DD, 0.44 autism, 0.48 public. The joint-points estimate is now the practical adjustment; retention is descriptive. |
+| 5 | Cliff edge on the Supporting claim | All points are reported on both scales (2.406 and 2.08), with intervals (A10 addendum) |
+| 6 | Open credibility gaps | Leave-top-genes-out (A12.3) and cross-cohort selection, predictor resampling and headroom (A10 addendum) are pre-registered. The degenerate 13/14 interval is explained in a footnote. External validation: autism plus the public cohort. |
+| 7 | Sloppiness | Fixed: public-cohort power wording ("passed the check; wide intervals"); reference header; 0.51 vs 0.56 (both all sites); v3 0.96 (cold genes, 95%) vs 0.93 (all genes, 90%) labelled; the Table 2 placeholder removed |
+| — | Chao et al.'s ACMG calibration of constraint; Pejaver as the origin of the cap | Both added |
+| — | Kayaalp et al. 2026 | **Not verified** in several searches; not cited until the DOI is confirmed |
+| — | Move Q5 to the supplement | Done (Supplementary Note 4) |
