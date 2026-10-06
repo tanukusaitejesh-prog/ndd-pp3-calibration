@@ -39,7 +39,7 @@ Two informal reviews of the study pitch and draft 1. For each point: what we did
 
 | Gap | Response |
 |---|---|
-| **External validation (1.5, "none")** | Autism cohort (12,316, independent) and a public multi-phenotype cohort (4,256 trios, five phenotypes; A9). The pre-registered independent test of a model awaits a large NDD cohort (SPARK). |
+| **External validation (1.5, "none")** | Autism cohort (12,316, independent) and a public multi-phenotype cohort (4,256 trios, five phenotypes; A9). The model is not claimed superior; a test in a further independent NDD cohort is left to future work. |
 | **Practical impact ("overlap exists but not what to do")** | Direct overlap test with implied PP3 points given PM1/PP2 (A10.1), plus per-predictor points (Supplementary Table 1) |
 | **Validity: gene discovery reuses the same data** | Stated (Limitation 2). The all-genes analyses do not depend on DDG2P. |
 | **Pre-registration integrity** | Stated plainly. The autism D2 primary was declared after the DD result, before the autism analysis. |
