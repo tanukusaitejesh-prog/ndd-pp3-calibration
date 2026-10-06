@@ -326,6 +326,12 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
   - The overlap is therefore not an artefact of constraint-based inputs.
 - **Leave-top-genes-out** (A12.3): excluding the 50 genes with the largest de novo missense excess (1,571 of 23,851 de novos) left R at 0.48 [0.42, 0.53]. Retention within windows stayed below the random partition (median 0.35 vs 0.56).
 
+**Ordered and disordered regions** (exploratory; AlphaFold pLDDT ≥ 70 vs < 70, PP3 at Supporting):
+
+- **The overlap is not confined to structured domains.** In DD, R for AlphaMissense × PM1-like was 0.53 [0.50, 0.57] at pLDDT ≥ 70 and 0.39 [0.28, 0.51] at pLDDT < 70. REVEL gave 0.68 and 0.51; VEST4 0.78 and 0.75.
+- **Autism:** 0.54 [0.43, 0.64] in ordered regions; in disordered regions 0.71 [0.38, 1.41] (74 de novos with PP3 and the flag), too few to separate from additivity.
+- **Reading:** in disordered regions PP3 is rarer but carries a larger LR (AlphaMissense 9.0 against 3.1 in DD), but at PM1-like sites its LR halves (3.47, 1.42 points, against 6.86, 2.19 points, without the flag).
+
 **Strong tier.** R with PP3 at its Strong threshold and a PM1-like flag:
 
 | Predictor | DD | Autism | Public cohort |
