@@ -1,6 +1,6 @@
 # Computational evidence (PP3) and hotspot/domain evidence (PM1) are not additive for de novo missense variants in neurodevelopmental disorders
 
-*Draft 2, 6 October 2026. This draft is restructured in response to two external reviews; the point-by-point responses are in `REVIEW_RESPONSE.md`. Values marked ⟨pending⟩ come from analyses that are running and will be filled in from the committed outputs.*
+*Draft 2, 6 October 2026. This draft is restructured in response to two external reviews; the point-by-point responses are in `REVIEW_RESPONSE.md`. All values come from committed outputs.*
 
 **Authors:** [names, affiliations]
 
@@ -241,7 +241,7 @@ popEVE ended at 1.69 after window and constraint.
 
 So the within-gene loss reflects where variants fall in the protein, and the information lost is of the kind PM1 encodes.
 
-**Estimator behaviour** under a planted within-gene signal is in Supplementary Note 3 (⟨pending⟩). Across unit sizes, real windows always retained far less than random partitions with the same number of units: median r 0.27 against 0.48 at 25 residues, 0.33 against 0.52 at 50, and 0.39 against 0.53 at 100 (common site set). Retention therefore falls with finer positional resolution, while random partitioning of any size costs little.
+**Estimator behaviour** (Supplementary Note 3; 100 simulated datasets per scenario at the real sample size): the within-unit estimator recovered planted within-gene signals with relative bias ≤ 1% at λ = 1, 2 and 4, for gene, window and random units. 95% coverage ranged from 0.86 to 0.99. A purely variant-level planted signal (λ = 4: true within-gene LR 3.11) still fell to 2.48 within windows, because AlphaMissense's top scores cluster in protein regions. That is a retention of about 0.80 relative to within-gene. The observed within-window loss in real data is much larger. Across unit sizes, real windows always retained far less than random partitions with the same number of units: median r 0.27 against 0.48 at 25 residues, 0.33 against 0.52 at 50, and 0.39 against 0.53 at 100 (common site set). Retention therefore falls with finer positional resolution, while random partitioning of any size costs little.
 
 ### Q3. Does the result replicate?
 **Pre-specified tests:**
@@ -330,6 +330,12 @@ So the within-gene loss reflects where variants fall in the protein, and the inf
 - **Across DDG2P genes:** R was 0.53 in DD and 0.59 in autism.
 - **Within gene across all genes:** R was 0.75 [0.71, 0.78] in DD but 0.96 [0.84, 1.08] in autism.
 - **Reading:** part of the overlap is between genes, but a substantial within-gene component remains in disease genes.
+
+**Classification change with de novo evidence** (A12.4, DD; PS2 + PM2 + PM1-like + AlphaMissense PP3, Tavtigian points):
+
+- **Uncapped:** 2,438 de novo missense variants reach Pathogenic (≥ 10 points), but the de novo excess implies only 84% of variants in that class are disease-associated, below what a Pathogenic classification requires.
+- **Capped or conditional:** both rules move all 2,438 to Likely Pathogenic.
+- **Caveat:** this is a class-level estimate on the de novo scale, not a per-variant posterior.
 
 **Per-predictor guidance** (Supplementary Table 1). Multiplying 4 published points by each predictor's retention gives the points a predictor can justify when combined with position-based criteria:
 
