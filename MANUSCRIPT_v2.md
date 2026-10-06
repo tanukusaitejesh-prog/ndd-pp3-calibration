@@ -12,7 +12,7 @@
 
 **Methods.** Likelihood ratios (LRs) were estimated from the excess of de novo missense variants over a mutation-rate expectation in three cohorts: 31,058 developmental-disorder (DD) trios, 12,316 autism probands and 4,256 public trios with other phenotypes. Additivity was measured as R, the joint LR of PP3 and a PM1-like or PP2-like flag divided by the product of their separate LRs (R = 1: additive). R was decomposed into between-gene and within-gene components, and we measured how much predictor evidence survives conditioning on gene and protein position. A planted-signal simulation validated the estimator.
 
-**Results.** PP3 and PM1-like evidence were not additive. For AlphaMissense, R was 0.44 [95% CI 0.41–0.48] in DD, 0.56 [0.44–0.67] in autism and 0.67 [0.42–0.95] in the public cohort. Across REVEL and VEST4 and all flags, R ranged from 0.48 to 1.02, with overlap weakest for PP2-like flags outside DD. Part of the overlap is between genes. Comparing variants within the same gene across all genes, R was 0.75 [0.71–0.78] in DD and 0.96 [0.84–1.08] in autism, which is consistent with additivity; within DDG2P disease genes it was 0.69 [0.68–0.70] and 0.74 [0.68–0.80]. At the Strong PP3 tier, overlap removed 6–27% of the summed log-evidence, against the 33% removed by ClinGen's cap. In a classification analysis, uncapped combination with de novo evidence called 2,438 DD variants Pathogenic, a class in which only 84% were disease-associated according to the de novo excess; capping moved all of them to Likely Pathogenic. Predictors retained a median 0.33 of their log-evidence within 50-residue windows, against 0.51 under a same-size random partition.
+**Results.** PP3 and PM1-like evidence were not additive. For AlphaMissense, R was 0.44 [95% CI 0.41–0.48] in DD, 0.56 [0.44–0.67] in autism and 0.67 [0.42–0.95] in the public cohort. Across REVEL and VEST4 and all flags, R ranged from 0.48 to 1.02, with overlap weakest for PP2-like flags outside DD. Part of the overlap is between genes. Comparing variants within the same gene across all genes, R was 0.75 [0.71–0.78] in DD and 0.96 [0.84–1.08] in autism, which is consistent with additivity; within DDG2P disease genes it was 0.69 [0.68–0.70] and 0.74 [0.68–0.80]. At the Strong PP3 tier, overlap removed 6–27% of the summed log-evidence, against the 33% removed by ClinGen's cap. In a classification analysis, uncapped combination with de novo evidence called 2,438 DD variants Pathogenic, a class in which only 84% were disease-associated according to the de novo excess; capping moved all of them to Likely Pathogenic. Predictors retained a median 0.33 of their log-evidence within 50-residue windows, against 0.51 under a same-size random partition. Three pre-registered models trained on the de novo excess matched AlphaMissense on autism de novos. Within DDG2P genes, they ranked ClinVar variants worse than AlphaMissense (AUROC 0.88–0.92 vs 0.97), even when AlphaMissense was an input. This is consistent with the de novo signal encoding gene and region more than within-gene variant effect.
 
 **Conclusion.** For de novo missense variants, PP3 and PM1-like evidence overlap substantially, including within known disease genes. The overlap is consistent with ClinGen's cap, which is large enough to absorb it, and not with uncapped co-use.
 
@@ -379,6 +379,16 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
   - **What we do not claim:** that the cap's exact size is optimal. The absolute joint points (2.5–3.9 against the cap's 4) are secondary, because the de novo LR is not on ClinGen's pathogenicity scale.
   - Expert-panel specifications that fold domain location into the computational criterion, as the ENIGMA BRCA1/BRCA2 VCEP does, are also consistent with the result.
 
+**An independent test of the interpretation.** If the de novo excess mostly encodes gene and region, a model trained on it should match existing predictors on de novos but rank variants worse within a gene. Three pre-registered models did exactly this (A8, A14, A15; Supplementary Note 4). They matched AlphaMissense on autism de novos: v4 1.09 [0.94, 1.29], v5 0.96 [0.83, 1.12]. They fell below it on ClinVar within DDG2P genes:
+
+| Model | Inputs | Pooled within-gene AUROC | Difference from AlphaMissense |
+|---|---|---|---|
+| v3 | All predictors | 0.923 | −0.044 [−0.062, −0.031] |
+| v4 | All predictors | 0.905 | −0.062 [−0.083, −0.048] |
+| v5 | Label-free inputs only, including AlphaMissense | 0.879 | −0.088 [−0.118, −0.067] |
+
+AlphaMissense scored 0.967 in each comparison. v5 used AlphaMissense as an input and still ranked worse: the de novo objective pulls the model toward gene and regional constraint, at the expense of within-gene ranking. This is the same overlap seen from the model side. It also implies that de novo data are better suited to calibrating predictors, as done here, than to training them.
+
 **Relation to previous work.**
 
 - **Prior benchmarks used de novos to rank predictors across genes:** AlphaMissense against DD de novo cases versus controls, and popEVE against DD de novos and unaffected siblings.
@@ -395,7 +405,7 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
    - The primary pre-specified DD criterion, a binary count of predictors losing most evidence, was not met (62% against 75%).
    - The fixed-window position control was adopted after that result.
    - We therefore present the continuous retention estimates and the direct overlap test as the findings, not the binary criterion.
-   - The plan has thirteen amendments, each timestamped before the analysis it governs (Supplementary Note 1). The documents were not registered independently, and the amendments followed earlier results.
+   - The plan has fifteen amendments, each timestamped before the analysis it governs (Supplementary Note 1). The documents were not registered independently, and the amendments followed earlier results.
 2. **Labels are not entirely absent.** No variant-level clinical labels are used, but strata use curated gene lists (DDG2P) and mechanism labels. Several of these genes were discovered in the same cohorts, so the DDG2P-stratum estimates are not independent of gene discovery. The all-genes analyses do not depend on them.
 3. **Mutation-rate model.** Residual error is about 9% at CpG transitions. The δ margin and the perturbation analysis address it, but finer-scale error could bias small units.
 4. **Penetrance and phenotype.** The de novo excess reflects variants of high penetrance for severe early-onset phenotypes. Retention measured here may not transfer to lower-penetrance or inherited variants.
@@ -506,6 +516,20 @@ The objective rewarded gene-level information.
 - **Equivalence** (two one-sided tests, 90% CI within [0.80, 1.25]) was shown for v3 in DD, all genes (0.93 [0.89, 0.99]; the 0.96 above is for cold genes only, with a 95% interval) and in autism (1.03 [0.91, 1.17]), and for v4 in autism (1.09 [0.96, 1.25]).
 - **In the public cohort,** v4's 90% interval lay above 1 (1.30 [1.03, 1.80]). As the fifth, post hoc model comparison, this is exploratory.
 - The point estimates in the two independent cohorts favour the models, but no comparison was significant. These are the fourth and fifth model comparisons, two of them post hoc.
-- **Conclusion:** a label-free model trained with a within-gene objective is at least comparable to AlphaMissense. Whether it is better requires a pre-registered test in a large independent NDD cohort.
+- **External validation on ClinVar** (A14, A15; DD de novo sites removed; pooled within-gene AUROC, P/LP vs B/LB, genes with ≥ 3 of each; gene bootstrap):
+
+| Stratum | Model | AUROC | AlphaMissense | Difference [95% CI] |
+|---|---|---|---|---|
+| All genes (1,458) | v3 | 0.881 | 0.965 | −0.085 [−0.106, −0.068] |
+| All genes | v4 | 0.845 | 0.965 | −0.121 [−0.148, −0.098] |
+| All genes | v5 | 0.755 | 0.965 | −0.211 [−0.254, −0.174] |
+| DDG2P (331) | v3 | 0.923 | 0.967 | −0.044 [−0.062, −0.031] |
+| DDG2P | v4 (A14 primary) | 0.905 | 0.967 | −0.062 [−0.083, −0.048] |
+| DDG2P | v5 (A15 primary) | 0.879 | 0.967 | −0.088 [−0.118, −0.067] |
+
+AlphaMissense was also the best published predictor within gene: REVEL 0.949, VEST4 0.945, ESM1b 0.944, MisFit_S 0.944, popEVE 0.941 (DDG2P). ClinVar classifications partly use computational evidence, so these AUROCs are optimistic for every predictor.
+
+- **v5** (A15): v4 restricted to inputs built without variant-level clinical labels (102 features). Autism within-gene top-2% LR ratio against AlphaMissense: 0.96 [0.83, 1.12].
+- **Conclusion:** models trained on the de novo excess are comparable to AlphaMissense on de novos and worse within gene on ClinVar. The de novo excess is a calibration target, not a training target, for within-gene variant classification.
 
 ---

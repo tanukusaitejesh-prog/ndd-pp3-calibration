@@ -91,3 +91,7 @@ Two informal reviews of the study pitch and draft 1. For each point: what we did
 | Within disease genes is the relevant question | Within-DDG2P R reported in the abstract (0.69/0.74) |
 | Prior-art check | Re-searched 6 Oct 2026; no direct additivity test of PP3 + PM1 found. Chao et al. and Pejaver et al. are cited as closest. |
 | Cut the 55-predictor sprawl | Partly done: the main text leads with three predictors and per-predictor points; the full 55 are in Supplementary Table 1 |
+
+## Draft 3 addendum: model validation (A14, A15)
+
+- External validation of the models, previously "none": ClinVar within gene, with DD de novo sites removed and pre-registered before running. v3, v4 and v5 rank below AlphaMissense. This is reported as a negative result and as independent support for the main interpretation (Discussion; Supplementary Note 4).
