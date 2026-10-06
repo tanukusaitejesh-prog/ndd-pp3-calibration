@@ -2742,7 +2742,7 @@ A10_TOOLS = {"AlphaMissense": ("am", [0.792, 0.906, 0.972, 0.990]),
              "VEST4": ("raw_VEST4_score", [0.764, 0.861, 0.909, 0.965])}
 
 
-def overlap_cohort(a, label, excl_tx=None, tools=None, fnames=None, lnames=None):
+def overlap_cohort(a, label, excl_tx=None, tools=None, fnames=None, lnames=None, site_keep=None, extra_cols=()):
     """R(T, F) = LR(PP3 | F) / LR(PP3) from marginal de novo LRs of the four PP3 x F categories (plan section 3k).
     Streams chromosomes: only the opportunity per category and the category of each de novo site are kept."""
     d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
@@ -2750,7 +2750,7 @@ def overlap_cohort(a, label, excl_tx=None, tools=None, fnames=None, lnames=None)
     misz = gz.groupby("gene")["mis_z"].max()
     pp2_tx = tinfo["gene"].reindex(np.arange(18398)).map(misz).fillna(-np.inf).to_numpy() >= 3.09
     TL = tools if tools is not None else A10_TOOLS
-    cols = list(dict.fromkeys(["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct"] + [c for c, _ in TL.values()]))
+    cols = list(dict.fromkeys(["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct"] + [c for c, _ in TL.values()] + list(extra_cols)))
     fnames = fnames or ["PM1-like", "PM1-strict", "PP2-like", "PM1-like or PP2-like"]
     lnames = lnames or ["PP3>=Supporting", "PP3 Supporting only", "PP3 Moderate only", "PP3 >=Strong(3-4)"]
     combos = [(t, f, l) for t in TL for f in fnames for l in lnames]
@@ -2761,6 +2761,8 @@ def overlap_cohort(a, label, excl_tx=None, tools=None, fnames=None, lnames=None)
     for c, u in site_chunks(a, cols=cols):
         tx = u["tx"].to_numpy(np.int64)
         keep_ = ~np.isin(tx, excl_tx) if excl_tx is not None else np.ones(len(tx), bool)
+        if site_keep is not None:
+            keep_ &= site_keep(u)
         oe, ccr = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float)
         fl = {"PM1-like": (oe < 0.4) | (ccr >= 95), "PM1-strict": oe < 0.2, "PP2-like": pp2_tx[tx]}
         fl["PM1-like or PP2-like"] = fl["PM1-like"] | fl["PP2-like"]
@@ -3160,6 +3162,21 @@ def cmd_a12(a):
         run_scores(a, tools, kinds, ["no_top50"], "a12_lto", restrict="aim1_common")
         out += _a11_summary(a, "a12_lto", ["no_top50"], kinds)
         open(P(base, "a12_lto_summary.txt"), "w").write("\n".join(out) + "\n")
+        log("\n".join(out))
+        return
+    if a.part == "plddt":                                    # task 10: overlap by AlphaFold confidence (ordered vs disordered)
+        out, allrows = [], []
+        for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
+            a.cohort = kw.get("cohort")
+            for sname, fn in (("pLDDT>=70", lambda u: u["af_plddt"].to_numpy(float) >= 70),
+                              ("pLDDT<70", lambda u: u["af_plddt"].to_numpy(float) < 70)):
+                rows, txt = overlap_cohort(a, f"{label}|{sname}", fnames=["PM1-like", "PP2-like"],
+                                           lnames=["PP3>=Supporting", "PP3 >=Strong(3-4)"], site_keep=fn, extra_cols=("af_plddt",))
+                allrows += rows
+                out += [t for t in txt if "AlphaMissense" in t or "REVEL" in t or "VEST4" in t]
+        a.cohort = None
+        pd.DataFrame(allrows).to_csv(P(base, "a12_plddt.tsv"), sep="\t", index=False, float_format="%.4g")
+        open(P(base, "a12_plddt_summary.txt"), "w").write("\n".join(out) + "\n")
         log("\n".join(out))
         return
     if a.part == "allr":                                     # A12.2: R for all predictors, top-2% flags
@@ -3749,7 +3766,7 @@ def main():
     s.add_argument("--part", required=True, choices=["strata", "sweep", "cpg_down", "cpg_up", "noclinvar"])
     s.add_argument("--clinvar", default="/mnt/c/Users/saite/OneDrive/Desktop/Neuro/G-Test-LOCKIN/ndd_pp3_gate/ndd_pp3_gate/work_clinvar/clinvar.vcf.gz")
     s = sub.add_parser("a12")
-    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr"])
+    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr", "plddt"])
     s = sub.add_parser("a11sim")
     s.add_argument("--reps", type=int, default=200)
     s = sub.add_parser("clinvar")
