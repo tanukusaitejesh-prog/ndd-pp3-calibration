@@ -13,6 +13,7 @@ import gc
 import gzip
 import json
 import os
+import re
 import sys
 import time
 
@@ -3744,6 +3745,361 @@ def cmd_a14(a):
     log("\n".join(lines))
 
 
+# ======================================================================== amendment A16 (pre-registered on OSF)
+HIER_EDGES = [0.34, 0.792, 0.906, 0.972]             # AlphaMissense bins: <0.34, ref 0.34-0.792, PP3 Sup/Mod/Strong
+HIER_REF = 1
+
+
+def hier_cells(u):
+    """Window id, region stratum (0 other, 1 PM1-like only, 2 PM1-strict) and AlphaMissense bin per site."""
+    oe, ccr = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float)
+    s = np.where(oe < 0.2, 2, np.where((oe < 0.4) | (ccr >= 95), 1, 0))
+    b = np.searchsorted(HIER_EDGES, u["am"].to_numpy(float), side="right")
+    w = u["tx"].to_numpy(np.int64) * 1000 + (u["prot_pos"].to_numpy(np.int64) - 1) // 50
+    return w, s, b
+
+
+def _nb_shape(O, mu):
+    """Maximum marginal-likelihood shape of Gamma(k, k/1) multipliers: O ~ NB(mean mu, shape k)."""
+    from scipy import optimize, special
+    O, mu = np.asarray(O, float), np.asarray(mu, float)
+    k = mu > 0
+    O, mu = O[k], mu[k]
+
+    def nll(lk):
+        r = np.exp(lk)
+        return -np.sum(special.gammaln(O + r) - special.gammaln(r) + r * np.log(r / (r + mu)) + O * np.log(mu / (r + mu)))
+    return float(np.exp(optimize.minimize_scalar(nll, bounds=(-8, 12), method="bounded").x))
+
+
+def cmd_hier(a):
+    """A16 section 3: gene -> 50-residue window -> AlphaMissense bin within region stratum, empirical Bayes,
+    fitted on DD de novo missense only. Writes the fitted model and the calibration table."""
+    d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+    cscale = len(syn_p) / syn_mass
+    dkey, dchr = d_mis["key"].to_numpy(), d_mis["chrom"].astype(str).to_numpy()
+    parts = []
+    for c, u in site_chunks(a, cols=["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct", "am", "prot_pos"]):
+        u = u[np.isfinite(u["am"].to_numpy(float))]
+        w, s, b = hier_cells(u)
+        di = np.flatnonzero(dchr == str(c))
+        pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dkey[di]).to_numpy()
+        o = np.zeros(len(u))
+        np.add.at(o, pos[np.isfinite(pos)].astype(np.int64), 1)
+        t = pd.DataFrame({"w": w, "cell": s * 5 + b, "E": u[PRIMARY_MODEL].to_numpy(float) * cscale, "O": o})
+        parts.append(t.groupby(["w", "cell"], as_index=False)[["E", "O"]].sum())
+        del u
+        gc.collect()
+    T = pd.concat(parts, ignore_index=True)
+    T["tx"] = T["w"] // 1000
+    Theta = T["O"].sum() / T["E"].sum()
+    g = T.groupby("tx")[["E", "O"]].sum()
+    from scipy import optimize, special
+
+    def nll(p):
+        r, mu = np.exp(p)
+        m = g["E"].to_numpy() * mu
+        O = g["O"].to_numpy()
+        return -np.sum(special.gammaln(O + r) - special.gammaln(r) + r * np.log(r / (r + m)) + O * np.log(m / (r + m)))
+    ga, gmu = np.exp(optimize.minimize(nll, [0.0, np.log(Theta)], method="Nelder-Mead").x)
+    theta = (g["O"] + ga) / (g["E"] + ga / gmu)
+    T["th"] = theta.reindex(T["tx"]).to_numpy()
+    T["phi"] = 1.0
+    out = [f"A16 hierarchical model, DD de novo missense: {int(T.O.sum())} de novos, {len(g)} transcripts, "
+           f"{T.w.nunique()} windows; Theta = {Theta:.3f}; gene Gamma shape {ga:.3f}, mean {gmu:.3f}"]
+    for it in range(3):
+        base = T["E"] * T["th"] * T["phi"]
+        kap = (T.groupby("cell")["O"].sum() / base.groupby(T["cell"]).sum()).reindex(range(15)).fillna(1.0)
+        T["kap"] = kap.reindex(T["cell"]).to_numpy()
+        Ew = (T["E"] * T["th"] * T["kap"]).groupby(T["w"]).sum()
+        Ow = T.groupby("w")["O"].sum()
+        cw = _nb_shape(Ow.to_numpy(), Ew.to_numpy())
+        phi = (Ow + cw) / (Ew + cw)
+        T["phi"] = phi.reindex(T["w"]).to_numpy()
+        out.append(f"iteration {it + 1}: window Gamma shape {cw:.3f}")
+    T["rho_raw"] = T["th"] * T["kap"] * T["phi"]
+    nrm = (T["E"] * T["th"]).groupby(T["tx"]).sum() / (T["E"] * T["rho_raw"]).groupby(T["tx"]).sum()
+    T["rho"] = T["rho_raw"] * nrm.reindex(T["tx"]).to_numpy()
+    T["LR"] = np.maximum(T["rho"] - 1, 0.01 * (Theta - 1)) / (Theta - 1)
+    os.makedirs(P(a.fs, "hier"), exist_ok=True)
+    T.to_pickle(P(a.fs, "hier", "cells.pkl"))
+    pd.to_pickle({"theta": theta, "phi": phi, "kap": kap, "nrm": nrm, "Theta": Theta, "ga": ga, "gmu": gmu, "cw": cw},
+                 P(a.fs, "hier", "model.pkl"))
+    rows = []
+    sn = {0: "other", 1: "PM1-like only", 2: "PM1-strict"}
+    bn = ["<0.34", "0.34-0.792 (ref)", "0.792-0.906 (PP3 Sup)", "0.906-0.972 (PP3 Mod)", ">=0.972 (PP3 Strong)"]
+    for s in range(3):
+        for b in range(5):
+            k = T["cell"] == s * 5 + b
+            rows.append({"stratum": sn[s], "am_bin": bn[b], "O": T.O[k].sum(), "E": T.E[k].sum(),
+                         "rate_mult": kap[s * 5 + b], "pi_given_stratum": kap[s * 5 + b] / kap[s * 5 + HIER_REF],
+                         "pp3_points_given_stratum_ratio": np.log(kap[s * 5 + b] / kap[s * 5 + HIER_REF]) / np.log(2.406)})
+    cal = pd.DataFrame(rows)
+    cal.to_csv(P(a.results, "a16_calibration_table.tsv"), sep="\t", index=False, float_format="%.4g")
+    out.append(cal.to_string(index=False))
+    open(P(a.results, "a16_model_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("\n".join(out))
+
+
+A16_BASE = {"PVS": 8, "PS": 4, "PM": 2, "PP": 1, "BA": -8, "BS": -4, "BP": -1}
+A16_MOD = {"verystrong": 8, "strong": 4, "moderate": 2, "supporting": 1, "standalone": 8}
+A16_EXCL = {"PP3", "BP4", "PM1", "PP2", "BP1", "BP3", "PM4", "PM5"}
+A16_CODE = re.compile(r"\b(PVS|PS|PM|PP|BA|BS|BP)([1-9])(?:[_ ]?\(?(very[ _]?strong|strong|moderate|supporting|stand[ _-]?alone)\)?)?\b",
+                      re.IGNORECASE)
+A16_NEG_AFTER = re.compile(r"^\W*(?:criteria\s+)?(?:was\s+|is\s+|were\s+)?(?:not\b|n/a|unmet|absent\b)", re.IGNORECASE)
+A16_NEG_BEFORE = re.compile(r"\b(?:not|no|without)\W+$", re.IGNORECASE)
+A16_DN_R = {("PM1-like", 0.792): 0.4414, ("PM1-like", 0.972): 0.3315, ("PM1-strict", 0.792): 0.3745,
+            ("PM1-strict", 0.972): 0.2549, ("PP2-like", 0.792): 0.6118, ("PP2-like", 0.972): 0.5187}  # DD, A10
+
+
+def a16_points(txt):
+    """Independent points from ACMG/AMP codes in free text: every code except computational/position ones."""
+    ev = {}
+    txt = txt or ""
+    for m in A16_CODE.finditer(txt):
+        if A16_NEG_AFTER.match(txt[m.end():m.end() + 25]) or A16_NEG_BEFORE.search(txt[max(0, m.start() - 12):m.start()]):
+            continue
+        fam, num, mod = m.group(1).upper(), m.group(2), m.group(3)
+        v = A16_BASE[fam]
+        if mod:
+            v = A16_MOD[re.sub(r"[ _-]", "", mod.lower())] * (1 if v > 0 else -1)
+        ev[fam + num] = v
+    return sum(v for k, v in ev.items() if k not in A16_EXCL), len(ev)
+
+
+def _read_subsum(path):
+    import gzip
+    with gzip.open(path, "rt") as fh:
+        n = next(i for i, line in enumerate(fh) if line.startswith("#VariationID"))
+    s = pd.read_csv(path, sep="\t", skiprows=n, header=0, dtype=str, quoting=3, compression="gzip", on_bad_lines="skip",
+                    usecols=["#VariationID", "ClinicalSignificance", "Description", "OriginCounts", "SCV"])
+    s = s.rename(columns={"#VariationID": "VariationID"})
+    s = s[s["OriginCounts"].fillna("").str.contains("germline", case=False)]
+    s["SCV"] = s["SCV"].str.split(".").str[0]
+    s["cls"] = s["ClinicalSignificance"].str.lower().map(
+        {"pathogenic": "P", "likely pathogenic": "P", "pathogenic/likely pathogenic": "P",
+         "benign": "B", "likely benign": "B", "benign/likely benign": "B", "uncertain significance": "VUS"})
+    return s
+
+
+def cmd_a16val(a):
+    """A16 sections 4-6: build V1 (temporal ClinVar, independent truth) and T (ClinVar 2023-01), score four rules,
+    recalibrate on T, evaluate on V1 and on eRepo truth. --count-only stops after the feasibility count."""
+    from scipy import optimize, stats
+    cvt = P(a.work, "cvt")
+    out, base = [], a.results
+    s23 = _read_subsum(P(cvt, "submission_summary_2023-01.txt.gz"))
+    s26 = _read_subsum(P(cvt, "submission_summary_2026-10.txt.gz"))
+    j = s23[s23.cls == "VUS"][["SCV", "VariationID"]].merge(
+        s26[s26.cls.isin(["P", "B"])][["SCV", "cls", "Description"]], on="SCV")
+    pts = j["Description"].map(a16_points)
+    j["pts"], j["ncodes"] = pts.str[0], pts.str[1]
+    j = j[j.ncodes > 0]
+    j["truth"] = np.where(j.pts >= 6, 1, np.where(j.pts <= -1, 0, -1))
+    n_scv = len(j)
+    j = j[j.truth >= 0]
+    agg = j.groupby("VariationID")["truth"].agg(["min", "max"])
+    v1 = agg[agg["min"] == agg["max"]]["min"].rename("truth").reset_index()
+    out.append(f"V1: VUS(2023-01) -> P/LP/B/LB(2026-10) germline SCVs with parsable codes {n_scv}; with independent truth "
+               f"{len(j)}; variants with agreed truth {len(v1)}")
+    agg23 = s23[s23.cls.isin(["P", "B", "VUS"])].groupby("VariationID")["cls"].agg(lambda x: "".join(sorted(set(x))))
+    tr = agg23[agg23.isin(["P", "B"])].map({"P": 1, "B": 0}).rename("truth").reset_index()
+    tr = tr[~tr.VariationID.isin(v1.VariationID)]
+    vs = pd.read_csv(P(cvt, "variant_summary_2026-10.txt.gz"), sep="\t", dtype=str, compression="gzip",
+                     usecols=["Type", "Assembly", "Chromosome", "VariationID", "PositionVCF", "ReferenceAlleleVCF",
+                              "AlternateAlleleVCF"])
+    vs = vs[(vs.Assembly == "GRCh38") & (vs.Type == "single nucleotide variant") & vs.Chromosome.isin(AUTOSOMES)]
+    vs = vs.drop_duplicates("VariationID").set_index("VariationID")
+    tinfo = load_tinfo(a)
+    gz = pd.read_csv(GNOMAD_GENE, sep="\t", compression="gzip", usecols=["gene", "mis_z"])
+    pp2_tx = tinfo["gene"].reindex(np.arange(18398)).map(gz.groupby("gene")["mis_z"].max()).fillna(-np.inf).to_numpy() >= 3.09
+    ddtx = tinfo["ddg2p"].reindex(np.arange(18398)).fillna(False).to_numpy(bool)
+    dnv, _ = load_dnv(a)
+    dn_keys = set(zip(dnv["chrom"].astype(str), dnv["key"].to_numpy(np.int64)))
+    M = pd.read_pickle(P(a.fs, "hier", "model.pkl"))
+
+    def sites(df):
+        df = df.join(vs, on="VariationID", how="inner")
+        df["key"] = pd.to_numeric(df["PositionVCF"], errors="coerce") * 4 + df["AlternateAlleleVCF"].map(B2I)
+        df = df[df["key"].notna()].copy()
+        df["key"] = df["key"].astype(np.int64)
+        parts = []
+        for c, g in df.groupby("Chromosome"):
+            od = P(a.fs, "col", f"chr{c}")
+            k = pd.Index(np.load(P(od, "key.npy")))
+            ix = k.get_indexer(g["key"].to_numpy(np.int64))
+            g = g[ix >= 0].copy(); ix = ix[ix >= 0]
+            for col in ("tx", "am", "rmc_oe", "ccr_pct", "prot_pos"):
+                g[col] = np.load(P(od, f"{col}.npy"), mmap_mode="r")[ix]
+            parts.append(g)
+        df = pd.concat(parts, ignore_index=True)
+        df = df[np.isfinite(df["am"].astype(float))]
+        df = df[[(str(c), int(k_)) not in dn_keys for c, k_ in zip(df["Chromosome"], df["key"])]]
+        df["tx"] = df["tx"].astype(np.int64)
+        df["gene"] = tinfo["gene"].reindex(df["tx"]).to_numpy()
+        df["ddg2p"] = ddtx[df["tx"]]
+        return df.reset_index(drop=True)
+    V, Tr = sites(v1), sites(tr)
+    for lab, z in (("all genes", V), ("DDG2P monoallelic", V[V.ddg2p])):
+        out.append(f"V1 at analysed missense sites, {lab}: P {int(z.truth.sum())}, B {int((1 - z.truth).sum())}, genes {z.gene.nunique()}")
+    nP_dd, nB_dd = int(V[V.ddg2p].truth.sum()), int((1 - V[V.ddg2p].truth).sum())
+    primary = "DDG2P monoallelic" if (nP_dd >= 100 and nB_dd >= 50) else "all genes"
+    feasible = V.truth.sum() >= 30 and (1 - V.truth).sum() >= 15
+    out.append(f"Primary stratum (pre-registered rule): {primary}; feasible: {feasible}")
+    if a.count_only or not feasible:
+        open(P(base, "a16_validation_summary.txt"), "w").write("\n".join(out) + "\n")
+        log("\n".join(out))
+        return
+    if primary.startswith("DDG2P"):
+        V, Tr = V[V.ddg2p].reset_index(drop=True), Tr[Tr.ddg2p].reset_index(drop=True)
+    out.append(f"T (ClinVar 2023-01, unanimous P/LP or B/LB, {primary}): P {int(Tr.truth.sum())}, B {int((1 - Tr.truth).sum())}")
+    s4 = pd.read_csv("supp_table4_conditional_pp3.tsv", sep="\t")
+    s4 = s4[(s4.cohort == "DD") & (s4.tool == "AlphaMissense")].set_index(["flag", "pp3_level"])["points_given_flag"]
+
+    def score(df):
+        am = df["am"].to_numpy(float)
+        oe, ccr = df["rmc_oe"].to_numpy(float), df["ccr_pct"].to_numpy(float)
+        pm1 = (oe < 0.4) | (ccr >= 95)
+        pp2 = pp2_tx[df["tx"].to_numpy(np.int64)]
+        pp3 = np.select([am >= 0.972, am >= 0.906, am >= 0.792], [4, 2, 1], 0).astype(float)
+        lvl = np.select([am >= 0.972, am >= 0.906, am >= 0.792], ["PP3 >=Strong(3-4)", "PP3 Moderate only", "PP3 Supporting only"], "")
+        cond = pp3.copy()
+        for i in np.flatnonzero(pp3 > 0):
+            f = "PM1-like" if pm1[i] else ("PP2-like" if pp2[i] else None)
+            if f:
+                cond[i] = s4.get((f, lvl[i]), pp3[i])
+        r1 = pp3 + 2 * pm1 + pp2
+        r2 = np.minimum(pp3 + 2 * pm1, 4) + pp2
+        r3 = cond + 2 * pm1 + pp2
+        w, s, b = hier_cells(df)
+        th = M["theta"].reindex(df["tx"]).to_numpy()
+        ph = M["phi"].reindex(w).fillna(1.0).to_numpy()
+        nr = M["nrm"].reindex(df["tx"]).fillna(1.0).to_numpy()
+        kap = M["kap"].to_numpy()
+        Th = M["Theta"]
+        rho = th * kap[s * 5 + b] * ph * nr
+        rho_b = th * kap[s * 5 + np.where(b == 0, HIER_REF, b)] * ph * nr
+        lr = lambda r: np.maximum(r - 1, 0.01 * (Th - 1)) / (Th - 1)
+        return pd.DataFrame({"r1": r1 * np.log(2.406), "r2": r2 * np.log(2.406), "r3": r3 * np.log(2.406),
+                             "r4": np.log(lr(rho)), "r4b": np.log(lr(rho_b)), "pm1": pm1, "pm1s": oe < 0.2, "pp2": pp2})
+    SV, ST = score(V), score(Tr)
+    yv, yt = V["truth"].to_numpy(float), Tr["truth"].to_numpy(float)
+
+    def fit(x, y):
+        def nll(p):
+            z = p[0] + p[1] * x
+            return np.sum(np.logaddexp(0, z) - y * z)
+        return optimize.minimize(nll, [0.0, 1.0], method="Nelder-Mead").x
+
+    def ll(p, x, y):
+        z = p[0] + p[1] * x
+        return np.logaddexp(0, z) - y * z                     # per-variant log-loss
+    rules = ["r1", "r2", "r3", "r4", "r4b"]
+    pars = {r: fit(ST[r].to_numpy(), yt) for r in rules}
+    L = {r: ll(pars[r], SV[r].to_numpy(), yv) for r in rules}
+    genes = V["gene"].to_numpy()
+    ug = np.unique(genes)
+    gi = pd.Series(np.arange(len(V))).groupby(genes).indices
+    rng = np.random.default_rng(20261007)
+    B = [np.concatenate([gi[g] for g in rng.choice(ug, len(ug))]) for _ in range(2000)]
+    names = {"r1": "uncapped", "r2": "cap", "r3": "conditional", "r4": "hierarchical", "r4b": "hierarchical PP3-side only"}
+    for r in rules:
+        out.append(f"recalibration on T, {names[r]:28s}: alpha {pars[r][0]:.3f}, beta {pars[r][1]:.3f}; "
+                   f"V1 mean log-loss {L[r].mean():.4f}")
+    for x_, y_, tag in (("r4", "r2", "PRIMARY"), ("r4", "r1", "S1"), ("r4", "r3", "S1"), ("r4b", "r2", "S1b")):
+        dlt = L[x_] - L[y_]
+        bs = np.array([dlt[ix].mean() for ix in B])
+        lo, hi = np.percentile(bs, [2.5, 97.5])
+        verdict = "supported" if hi < 0 else ("refuted" if lo > 0 else "inconclusive")
+        out.append(f"{tag}: delta log-loss {names[x_]} - {names[y_]} = {dlt.mean():+.4f} [{lo:+.4f}, {hi:+.4f}] -> {verdict}")
+    # S2: R on V1
+    def lrm(mk, y):
+        return mk[y == 1].mean() / max(mk[y == 0].mean(), 1e-9)
+    am = V["am"].to_numpy(float)
+    s3rows = []
+    for cut, tier in ((0.792, "Supporting"), (0.972, "Strong")):
+        for fl, fname in ((SV.pm1.to_numpy(), "PM1-like"), (SV.pm1s.to_numpy(), "PM1-strict"), (SV.pp2.to_numpy(), "PP2-like")):
+            pp = am >= cut
+
+            def Rf(ix):
+                y_ = yv[ix]
+                a_, b_, c_ = lrm(pp[ix], y_), lrm(fl[ix], y_), lrm((pp & fl)[ix], y_)
+                return c_ / (a_ * b_) if a_ * b_ > 0 else np.nan, c_
+            R0, joint = Rf(np.arange(len(V)))
+            bs = np.array([Rf(ix)[0] for ix in B])
+            lo, hi = np.nanpercentile(bs, [2.5, 97.5])
+            unc = {0.792: 1, 0.972: 4}[cut] + (2 if fname.startswith("PM1") else 1)
+            obs_over = unc - np.log(max(joint, 1e-9)) / np.log(2.406)
+            pred_over = -np.log(A16_DN_R[(fname, cut)]) / np.log(2.406)
+            s3rows.append((obs_over, pred_over))
+            out.append(f"S2/S3 AM>={tier:10s} x {fname:10s}: R {R0:.2f} [{lo:.2f}, {hi:.2f}]; n(PP3&F) P {int((pp & fl)[yv == 1].sum())} "
+                       f"B {int((pp & fl)[yv == 0].sum())}; joint LR {joint:.2f}; overstatement observed {obs_over:.2f} pts, "
+                       f"predicted from de novo R {pred_over:.2f} pts")
+    o_, p_ = np.array(s3rows).T
+    out.append(f"S3: Spearman(observed, predicted overstatement) over 6 cells = {stats.spearmanr(o_, p_)[0]:.2f}")
+    # S4: pooled within-gene AUROC
+    for r in rules:
+        num = den = 0.0
+        for g_, ix in gi.items():
+            y_, x_ = yv[ix], SV[r].to_numpy()[ix]
+            if (y_ == 1).sum() >= 3 and (y_ == 0).sum() >= 3:
+                d_ = x_[y_ == 1][:, None] - x_[y_ == 0][None, :]
+                num += (d_ > 0).sum() + 0.5 * (d_ == 0).sum(); den += d_.size
+        out.append(f"S4 within-gene AUROC {names[r]:28s}: {num / den if den else np.nan:.3f} ({int(den)} pairs)")
+    # S6: eRepo independent truth (not confirmatory)
+    er = pd.read_csv(P(base, "erepo_truth_sites.tsv"), sep="\t", dtype={"chrom": str})
+    er = er[er.truth >= 0]
+    parts = []
+    for c, g in er.groupby("chrom"):
+        od = P(a.fs, "col", f"chr{c}")
+        k = pd.Index(np.load(P(od, "key.npy")))
+        ix = k.get_indexer(g["key"].to_numpy(np.int64))
+        g = g[ix >= 0].copy(); ix = ix[ix >= 0]
+        for col in ("tx", "prot_pos"):
+            g[col] = np.load(P(od, f"{col}.npy"), mmap_mode="r")[ix]
+        parts.append(g)
+    er = pd.concat(parts, ignore_index=True)
+    er = er[np.isfinite(er.am)]
+    er["tx"] = er["tx"].astype(np.int64)
+    SE, ye = score(er), er["truth"].to_numpy(float)
+    LE = {r: ll(pars[r], SE[r].to_numpy(), ye) for r in rules}
+    ge = er["gene"].to_numpy(); ue = np.unique(ge)
+    gie = pd.Series(np.arange(len(er))).groupby(ge).indices
+    BE = [np.concatenate([gie[g] for g in rng.choice(ue, len(ue))]) for _ in range(2000)]
+    for x_, y_ in (("r4", "r2"), ("r4", "r1"), ("r4", "r3")):
+        dlt = LE[x_] - LE[y_]
+        lo, hi = np.percentile([dlt[ix].mean() for ix in BE], [2.5, 97.5])
+        out.append(f"S6 eRepo (not confirmatory, n {len(er)}): delta log-loss {names[x_]} - {names[y_]} = {dlt.mean():+.4f} [{lo:+.4f}, {hi:+.4f}]")
+    # S5: label-free vs ClinVar gene-specific calibration in label-rich DDG2P genes (2026-10 unanimous labels)
+    agg26 = s26[s26.cls.isin(["P", "B", "VUS"])].groupby("VariationID")["cls"].agg(lambda x: "".join(sorted(set(x))))
+    t26 = sites(agg26[agg26.isin(["P", "B"])].map({"P": 1, "B": 0}).rename("truth").reset_index())
+    t26 = t26[t26.ddg2p]
+    cells = pd.read_pickle(P(a.fs, "hier", "cells.pkl"))
+    cells["hi"] = (cells["cell"] % 5) >= 2
+    s5 = []
+    for g_, z in t26.groupby("gene"):
+        if z.truth.sum() < 10 or (1 - z.truth).sum() < 10:
+            continue
+        hi_ = z.am >= 0.792
+        p1 = (hi_[z.truth == 1].sum() + 0.5) / (z.truth.sum() + 1)
+        p0 = (hi_[z.truth == 0].sum() + 0.5) / ((1 - z.truth).sum() + 1)
+        cv = np.log(p1 / p0) / np.log(2.406)
+        cz = cells[cells.tx == z.tx.iloc[0]]
+        if not (cz.hi.any() and (~cz.hi).any()):
+            continue
+        mlr = lambda m: np.average(cz.LR[m], weights=cz.E[m])
+        lf = pars["r4"][1] * np.log(mlr(cz.hi) / mlr(~cz.hi)) / np.log(2.406)
+        s5.append((g_, cv, lf))
+    s5 = pd.DataFrame(s5, columns=["gene", "clinvar_points", "labelfree_points"])
+    s5.to_csv(P(base, "a16_s5_genes.tsv"), sep="\t", index=False, float_format="%.3f")
+    if len(s5) >= 5:
+        out.append(f"S5 label-rich DDG2P genes {len(s5)}: Spearman {stats.spearmanr(s5.clinvar_points, s5.labelfree_points)[0]:.2f}; "
+                   f"mean |difference| {np.abs(s5.clinvar_points - s5.labelfree_points).mean():.2f} points")
+    V.assign(**{k: SV[k].to_numpy() for k in rules}).to_csv(P(base, "a16_v1_sites.tsv"), sep="\t", index=False)
+    open(P(base, "a16_validation_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("\n".join(out))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--data", default=P(HERE, "data"))
@@ -3758,8 +4114,10 @@ def main():
         s.add_argument("--from-piece", default="part.7")
     for name in ("validate", "aim5", "aim1", "aim1x", "aim1tools", "aim3", "aim3_report", "a1_report", "aim4", "replicate", "v54"):
         sub.add_parser(name)
-    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report"):
+    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report", "hier"):
         sub.add_parser(name)
+    s = sub.add_parser("a16val")
+    s.add_argument("--count-only", action="store_true")
     s = sub.add_parser("a4ctrl")
     s.add_argument("--part", default="all", choices=["all", "nodom", "dom", "report"])
     s = sub.add_parser("a11")
@@ -3775,7 +4133,7 @@ def main():
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
     {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
-     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report}[a.cmd](a)
+     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report, "hier": cmd_hier, "a16val": cmd_a16val}[a.cmd](a)
 
 
 if __name__ == "__main__":

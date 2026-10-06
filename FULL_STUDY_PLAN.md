@@ -774,6 +774,10 @@ RUMC is reported as internal validation.
 
 **Caveat, stated now.** v5 stacks AlphaMissense with other inputs, so any gain is incremental over AlphaMissense, not a new representation.
 
+## 3q. Amendment A16 (2026-10-07, ~00:45 IST): hierarchical gene → region → PP3 model, temporal ClinVar validation
+
+The full specification is `prereg_fullstudy/A16_HIERARCHICAL_PREREG.md`, committed and pushed in `34bac58` before the model was fitted and before any validation data were analysed.
+
 ## Deviation log
 
 | Date | Change | Reason |
@@ -794,3 +798,6 @@ RUMC is reported as internal validation.
 | 2026-10-06 | Engineering, after A8 was frozen (`d96780e`): `aim4v4` was checked end to end on a scratch copy of chr22 (514 de novo sites). Its numbers are not interpretable and are not reported. The check showed that a cohort with no de novos in the top group writes no top-2% table, so the v4 report now records that case instead of failing. No specification changed. Separately, an exploratory threshold-sensitivity analysis (top 1/2/10%) was added before A8, rebuilt from committed coarse tables and labelled exploratory. | Engineering; no specification changed. |
 | 2026-10-06 | **Scheduling:** the A11.5 simulation uses 100 replicates per scenario, not the pre-specified 200, so the analysis finishes by the study lead's 16:30 IST deadline. The specification is otherwise unchanged. The Monte Carlo standard error of 95% coverage at 100 replicates is about 2.2 percentage points. | Scheduling. |
 | 2026-10-06 | **A12.4 implementation, before it ran:** PM2 (+1) is applied to every de novo variant. The column store has no population-frequency field, so "sites without population variation" could not be identified, and de novo variants in DD probands are overwhelmingly absent from population databases. The PS2 + PM2 base (5 points) is therefore common to every rule and does not affect between-rule comparisons. | Implementation detail; stated before the run. |
+| 2026-10-07 | **A16 registration.** The study lead could not deposit A16 on OSF before the validation ran (overnight). The specification was fixed by the GitHub push of `34bac58`, before the model was fitted and before any V1 data were analysed. Any later OSF deposit is a copy of that commit and is not claimed to predate the analysis. | Scheduling. The independent-registry requirement of review task 5 is therefore **not** met. |
+| 2026-10-07 | **A16 code parser, before V1 was analysed.** The `make_erepo_truth.py` parser reads code lists, but ClinVar comments are free text. V1 instead uses a free-text parser (`a16_points`) that matches the same codes and strength modifiers, and skips codes that are negated ("not met", "not applied", "no PS3"). The excluded codes and the truth thresholds are unchanged. | ClinVar comments are prose. |
+| 2026-10-07 | **A16 model implementation, before V1 was analysed.** (i) Each site's ρ is renormalised within its transcript, so that the expected count summed over the gene equals E_g · θ̂_g: the gene prior keeps its meaning after the stratum and window multipliers. (ii) Windows are numbered per transcript as ⌊(protein position − 1)/50⌋. (iii) Cell multipliers ψ_s · π_{b\|s} are estimated jointly as one saturated Poisson fixed effect per (stratum, bin), which is the MLE of the specified model. | Clarifications of section 3. |
