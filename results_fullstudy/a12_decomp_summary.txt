@@ -1,0 +1,6 @@
+DD     AlphaMissense P(PP3|PM1-like): excess 0.941 vs null 0.510 (ratio = LR(PP3|F) 1.85); overall P(PP3): excess 0.788 vs null 0.188 (LR 4.18)
+DD     REVEL         P(PP3|PM1-like): excess 0.674 vs null 0.277 (ratio = LR(PP3|F) 2.43); overall P(PP3): excess 0.570 vs null 0.134 (LR 4.27)
+DD     VEST4         P(PP3|PM1-like): excess 0.817 vs null 0.409 (ratio = LR(PP3|F) 2.00); overall P(PP3): excess 0.729 vs null 0.243 (LR 2.99)
+autism AlphaMissense P(PP3|PM1-like): excess 0.855 vs null 0.510 (ratio = LR(PP3|F) 1.68); overall P(PP3): excess 0.568 vs null 0.188 (LR 3.02)
+autism REVEL         P(PP3|PM1-like): excess 0.556 vs null 0.277 (ratio = LR(PP3|F) 2.00); overall P(PP3): excess 0.325 vs null 0.134 (LR 2.44)
+autism VEST4         P(PP3|PM1-like): excess 0.690 vs null 0.409 (ratio = LR(PP3|F) 1.69); overall P(PP3): excess 0.536 vs null 0.243 (LR 2.20)
