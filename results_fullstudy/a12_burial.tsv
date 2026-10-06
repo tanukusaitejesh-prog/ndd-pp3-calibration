@@ -1,0 +1,49 @@
+cohort	tool	flag	pp3_level	n_dnv_PP3_and_F	LR_PP3	LR_F	LR_joint	LR_PP3_given_F	LR_PP3_given_notF	R	R_lo95	R_hi95	PP3_points_given_F
+DD|buried(nca10>=9)	AlphaMissense	PM1-like	PP3>=Supporting	2247	2.88	6.72	10.73	1.597	2.545	0.5543	0.5224	0.5865	0.5329
+DD|buried(nca10>=9)	AlphaMissense	PM1-like	PP3 >=Strong(3-4)	1791	5.216	6.72	14.48	2.154	4.682	0.413	0.3852	0.4408	0.874
+DD|buried(nca10>=9)	AlphaMissense	PP2-like	PP3>=Supporting	2074	2.88	5.956	10.94	1.837	2.765	0.6377	0.6	0.6743	0.6925
+DD|buried(nca10>=9)	AlphaMissense	PP2-like	PP3 >=Strong(3-4)	1641	5.216	5.956	16.32	2.74	4.917	0.5253	0.4891	0.5615	1.148
+DD|buried(nca10>=9)	REVEL	PM1-like	PP3>=Supporting	1641	2.997	6.568	13.63	2.074	2.681	0.6921	0.6484	0.7359	0.8311
+DD|buried(nca10>=9)	REVEL	PM1-like	PP3 >=Strong(3-4)	771	5.082	6.568	21.56	3.282	3.844	0.6458	0.5925	0.697	1.354
+DD|buried(nca10>=9)	REVEL	PP2-like	PP3>=Supporting	1568	2.997	5.819	13.11	2.254	2.824	0.752	0.7062	0.7982	0.9256
+DD|buried(nca10>=9)	REVEL	PP2-like	PP3 >=Strong(3-4)	737	5.082	5.819	22.65	3.893	4.001	0.7661	0.7048	0.827	1.548
+DD|buried(nca10>=9)	VEST4	PM1-like	PP3>=Supporting	1946	2.109	6.612	10.98	1.661	1.961	0.7873	0.7446	0.8295	0.5777
+DD|buried(nca10>=9)	VEST4	PM1-like	PP3 >=Strong(3-4)	1032	2.886	6.612	16.2	2.45	2.617	0.849	0.7838	0.915	1.021
+DD|buried(nca10>=9)	VEST4	PP2-like	PP3>=Supporting	1893	2.109	5.85	9.959	1.702	2.051	0.8072	0.7646	0.8496	0.606
+DD|buried(nca10>=9)	VEST4	PP2-like	PP3 >=Strong(3-4)	1016	2.886	5.85	16.2	2.769	2.587	0.9594	0.892	1.029	1.16
+DD|exposed(nca10<9)	AlphaMissense	PM1-like	PP3>=Supporting	651	7.066	8.366	21.23	2.538	5.899	0.3591	0.2928	0.4295	1.061
+DD|exposed(nca10<9)	AlphaMissense	PM1-like	PP3 >=Strong(3-4)	504	15.77	8.366	35.86	4.286	12.23	0.2718	0.2207	0.3273	1.658
+DD|exposed(nca10<9)	AlphaMissense	PP2-like	PP3>=Supporting	556	7.066	5.375	23.27	4.33	6.417	0.6128	0.5051	0.7297	1.669
+DD|exposed(nca10<9)	AlphaMissense	PP2-like	PP3 >=Strong(3-4)	401	15.77	5.375	47.63	8.861	13.7	0.5619	0.4587	0.6754	2.485
+DD|exposed(nca10<9)	REVEL	PM1-like	PP3>=Supporting	328	7.319	7.943	27.74	3.492	5.986	0.4771	0.3833	0.5728	1.424
+DD|exposed(nca10<9)	REVEL	PM1-like	PP3 >=Strong(3-4)	138	16.71	7.943	55.72	7.015	11.94	0.4199	0.3342	0.517	2.219
+DD|exposed(nca10<9)	REVEL	PP2-like	PP3>=Supporting	289	7.319	5.079	26.26	5.171	6.622	0.7065	0.5792	0.8512	1.871
+DD|exposed(nca10<9)	REVEL	PP2-like	PP3 >=Strong(3-4)	114	16.71	5.079	65.27	12.85	13.82	0.7693	0.6004	0.9646	2.908
+DD|exposed(nca10<9)	VEST4	PM1-like	PP3>=Supporting	503	4.944	8.032	25.65	3.193	4.129	0.6459	0.5356	0.7649	1.322
+DD|exposed(nca10<9)	VEST4	PM1-like	PP3 >=Strong(3-4)	203	9.166	8.032	48.63	6.055	7.439	0.6605	0.5306	0.8003	2.051
+DD|exposed(nca10<9)	VEST4	PP2-like	PP3>=Supporting	468	4.944	5.139	19.9	3.872	4.588	0.7832	0.6534	0.934	1.542
+DD|exposed(nca10<9)	VEST4	PP2-like	PP3 >=Strong(3-4)	190	9.166	5.139	50.01	9.731	7.603	1.062	0.851	1.283	2.592
+autism|buried(nca10>=9)	AlphaMissense	PM1-like	PP3>=Supporting	540	2.589	5.109	7.532	1.474	2.472	0.5694	0.4568	0.675	0.4421
+autism|buried(nca10>=9)	AlphaMissense	PM1-like	PP3 >=Strong(3-4)	384	4.147	5.109	9.508	1.861	3.88	0.4487	0.3513	0.5488	0.7073
+autism|buried(nca10>=9)	AlphaMissense	PP2-like	PP3>=Supporting	540	2.589	5.424	8.946	1.649	2.547	0.6369	0.5116	0.7641	0.5698
+autism|buried(nca10>=9)	AlphaMissense	PP2-like	PP3 >=Strong(3-4)	370	4.147	5.424	12.15	2.239	3.9	0.5399	0.4273	0.6647	0.9181
+autism|buried(nca10>=9)	REVEL	PM1-like	PP3>=Supporting	353	1.952	4.813	8.473	1.76	1.388	0.9019	0.72	1.099	0.6442
+autism|buried(nca10>=9)	REVEL	PM1-like	PP3 >=Strong(3-4)	142	3.323	4.813	12.45	2.587	2.365	0.7786	0.5685	1.033	1.083
+autism|buried(nca10>=9)	REVEL	PP2-like	PP3>=Supporting	364	1.952	5.069	9.134	1.802	1.406	0.9231	0.735	1.128	0.6706
+autism|buried(nca10>=9)	REVEL	PP2-like	PP3 >=Strong(3-4)	148	3.323	5.069	15.05	2.968	2.168	0.8931	0.6596	1.17	1.239
+autism|buried(nca10>=9)	VEST4	PM1-like	PP3>=Supporting	464	1.965	4.939	7.538	1.526	1.941	0.7768	0.6404	0.9137	0.4815
+autism|buried(nca10>=9)	VEST4	PM1-like	PP3 >=Strong(3-4)	224	2.531	4.939	11.12	2.251	2.33	0.8891	0.6932	1.111	0.924
+autism|buried(nca10>=9)	VEST4	PP2-like	PP3>=Supporting	507	1.965	5.238	8.091	1.545	1.992	0.7862	0.6464	0.9125	0.4952
+autism|buried(nca10>=9)	VEST4	PP2-like	PP3 >=Strong(3-4)	250	2.531	5.238	13.45	2.569	2.168	1.015	0.7921	1.269	1.074
+autism|exposed(nca10<9)	AlphaMissense	PM1-like	PP3>=Supporting	175	3.766	4.566	9.948	2.179	2.775	0.5786	0.3601	0.8564	0.8871
+autism|exposed(nca10<9)	AlphaMissense	PM1-like	PP3 >=Strong(3-4)	109	6.429	4.566	14.38	3.15	3.867	0.49	0.3005	0.7572	1.307
+autism|exposed(nca10<9)	AlphaMissense	PP2-like	PP3>=Supporting	147	3.766	4.236	11.04	2.606	3.318	0.692	0.4294	1.024	1.091
+autism|exposed(nca10<9)	AlphaMissense	PP2-like	PP3 >=Strong(3-4)	80	6.429	4.236	18.66	4.406	5.079	0.6854	0.4104	1.064	1.689
+autism|exposed(nca10<9)	REVEL	PM1-like	PP3>=Supporting	72	3.415	4.083	9.685	2.372	2.781	0.6945	0.4004	1.129	0.9838
+autism|exposed(nca10<9)	REVEL	PM1-like	PP3 >=Strong(3-4)	24	6.488	4.083	17.78	4.355	4.578	0.6712	0.3435	1.249	1.676
+autism|exposed(nca10<9)	REVEL	PP2-like	PP3>=Supporting	78	3.415	3.756	12.93	3.442	2.493	1.008	0.6177	1.607	1.408
+autism|exposed(nca10<9)	REVEL	PP2-like	PP3 >=Strong(3-4)	19	6.488	3.756	20.57	5.476	5.565	0.8441	0.3893	1.602	1.937
+autism|exposed(nca10<9)	VEST4	PM1-like	PP3>=Supporting	105	2.197	4.276	8.1	1.895	1.845	0.8624	0.5278	1.441	0.7278
+autism|exposed(nca10<9)	VEST4	PM1-like	PP3 >=Strong(3-4)	32	3.772	4.276	13.24	3.096	3.257	0.8208	0.3862	1.624	1.287
+autism|exposed(nca10<9)	VEST4	PP2-like	PP3>=Supporting	113	2.197	3.951	7.232	1.83	2.047	0.8332	0.4897	1.337	0.6885
+autism|exposed(nca10<9)	VEST4	PP2-like	PP3 >=Strong(3-4)	32	3.772	3.951	15.39	3.894	3.425	1.033	0.5039	1.99	1.549

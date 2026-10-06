@@ -72,7 +72,7 @@ Expected counts E come from Roulette mutation rates (Seplyarskiy et al. 2023), s
 
 - **Marginal LR** for a set of sites *b*: LR = (X_b / ΣX) / (E_b / ΣE).
 - **Within-unit LR:** each observed de novo is compared with the opportunity profile of its own unit (gene, window or domain).
-- **Uncertainty:** a Poisson bootstrap over individuals (1,000 replicates).
+- **Uncertainty:** a Poisson bootstrap over individuals (1,000 replicates). For the headline R we also resampled transcripts (gene-clustered, 1,000 replicates), because simulated coverage of individual-level intervals dipped to 0.86.
 
 **Estimand.** This LR is the evidence a score provides for a de novo missense variant in an affected child, against mutational background. It is not ClinVar's pathogenic-versus-benign LR, so we compare it with the clinical scale only through the bridges described below.
 
@@ -103,6 +103,13 @@ Retention r(level) = ln LR(level) / ln LR(marginal), for each predictor's top 2%
 1. **ClinVar scale (estimand bridge).** R from ClinVar P/LP vs B/LB LRs, with DD de novo sites removed and a gene-clustered bootstrap.
 2. **Expert-panel truth.** ClinGen Evidence Repository variants were reclassified from their applied criteria after removing PP3, BP4, PM1, PP2, BP1, BP3, PM4 and PM5. P/LP is ≥ 6 remaining points and B/LB is ≤ −1. The truth then depends on neither the predictor nor position.
 3. **Multiplexed assays.** ProteinGym v1.3 assays in DDG2P genes, with damaging defined as `DMS_score_bin` = 0.
+
+### Clinical impact
+We applied three rules for combining PP3 with PM1 (uncapped; ClinGen cap; conditional, with PP3 points given the flag) in three settings:
+
+- **ClinVar missense VUS**, with PM1 at PM1-like sites;
+- **ClinGen Evidence Repository classifications**, using the panels' own applied criteria;
+- **DD de novo missense variants**, with PS2 + PM2 added. Here the de novo excess gives the fraction of each resulting class that is disease-associated.
 
 ### Pre-registered label-free model (A16)
 **The model** was fitted to DD de novo missense variants only, with no clinical labels.
@@ -145,7 +152,7 @@ Every rule received the same two-parameter logistic recalibration, fitted on Cli
 
 **The loss reflects position, not the act of conditioning.**
 
-- A random partition of each gene into as many groups as it has windows retained 0.51, close to gene alone (0.56). Real windows on the same sites retained 0.31.
+- A random partition of each gene into as many groups as it has windows retained 0.51, close to gene alone (0.56). Real windows on the same sites retained 0.31. This control used all analysed sites; on the common site set above, windows retained 0.33.
 - The paired difference was 0.21 [0.19, 0.23], positive for all 24 predictors.
 - InterPro domains retained 0.33, like windows.
 - A simulation recovered planted within-gene signals with relative bias ≤ 1% (Supplementary Note 3).
@@ -189,7 +196,7 @@ Retention was unchanged by ±9% CpG mutation-rate perturbation and by removing a
 | REVEL × PM1-like | 0.57 [0.52, 0.61] | 0.82 [0.65, 1.00] | 0.78 [0.51, 1.13] | 1.01 |
 | VEST4 × PM1-like | 0.67 [0.62, 0.71] | 0.77 [0.62, 0.91] | 0.75 [0.48, 1.02] | 0.79 |
 
-[GCLUST]
+**Resampling genes instead of individuals** gave similar intervals (AlphaMissense × PM1-like: DD 0.44 [0.41, 0.47], autism 0.56 [0.47, 0.66]; Strong tier 0.33 [0.31, 0.35] and 0.44 [0.36, 0.54]). The overlap is therefore not carried by a few genes.
 
 **How much of the overlap is between genes.**
 
@@ -203,8 +210,8 @@ Part of the overlap is between genes. Across all genes in autism, the within-gen
 **Where the overlap comes from.**
 
 - **The null side.** AlphaMissense calls 51% of mutation-expected sites at PM1-like positions damaging, against 19% overall. Among excess de novos the rise is only from 79% to 94%. Inside constrained regions the predictor calls most sites damaging whether or not they cause disease.
-- **Robustness.** R × PM1-like was below 1 for all 40 informative predictors in DD (median 0.51, range 0.18–0.80; autism median 0.68). Predictors using population constraint or allele frequency overlapped no more than others (p = 0.87). Excluding the 50 genes with the largest de novo excess left R at 0.48 [0.42, 0.53].
-- **Structure.** The overlap held in ordered (pLDDT ≥ 70; R 0.53 [0.50, 0.57]) and disordered regions (0.39 [0.28, 0.51]). [BURIAL]
+- **Robustness.** R × PM1-like had an upper 95% bound below 1 for all 40 informative predictors in DD (median 0.51, range 0.18–0.80; autism median 0.68). Predictors using population constraint or allele frequency overlapped no more than others (p = 0.87). Excluding the 50 genes with the largest de novo excess left R at 0.48 [0.42, 0.53].
+- **Structure.** The overlap held in ordered (pLDDT ≥ 70; R 0.53 [0.50, 0.57]) and disordered regions (0.39 [0.28, 0.51]). It also held at buried and exposed sites (AlphaFold Cα neighbours within 10 Å ≥ 9 vs < 9; R 0.55 [0.52, 0.59] and 0.36 [0.29, 0.43]), and in autism (0.57 and 0.58). PP3 is not independent of PM1-like evidence in any structural context we examined (Supplementary Note 5).
 
 **Strong tier.** With PP3 at its Strong threshold, R for AlphaMissense × PM1-like was 0.33 [0.30, 0.36] in DD. Because Strong-tier LRs are large, the joint evidence still kept most of the summed log-evidence:
 
@@ -289,7 +296,7 @@ This is the same pattern as the models trained on the de novo excess (Supplement
 - appears for all 40 informative predictors;
 - survives removal of the strongest genes.
 
-**It is larger on clinical truth.** On ClinVar and on expert-panel truth stripped of computational and position criteria, R at the Strong tier was 0.17–0.23.
+**It is larger on clinical truth.** On ClinVar and on expert-panel truth stripped of computational and position criteria, R at the Strong tier was 0.15–0.23.
 
 **The cap is the best-calibrated rule we tested.** ClinGen's cap (Pejaver et al. 2022; Stenton et al. 2024) fits the data better than the alternatives.
 
@@ -306,7 +313,7 @@ This is the same pattern as the models trained on the de novo excess (Supplement
 
 **Relation to previous work.**
 
-- Chao et al. (2024) calibrated regional missense constraint to ACMG/AMP strengths and showed that constraint plus AlphaMissense enriches case de novos more than either alone. Our results agree: the joint LR exceeds each marginal LR. What fails is the product assumption; it is not that combination adds nothing.
+- Chao et al. (2024) calibrated regional missense constraint to ACMG/AMP strengths and report that constraint and predictor scores together enrich case de novos beyond either alone [to verify against the source before submission]. Our results agree: the joint LR exceeds each marginal LR (15.0 against 4.2 and 8.1 for AlphaMissense × PM1-like in DD). What fails is the product assumption, not the value of combining the two.
 - Gene identity dominates ClinVar benchmarks (Harrizi et al. 2026), and genome-wide calibration masks gene heterogeneity (Tejura et al. 2024). This has motivated gene-level calibration (Badonyi & Marsh 2025; Chen et al. 2026). Our negative A16 result cautions that a label-free route to gene- and region-specific calibration does not yet transfer to clinical classification.
 - **What is new here:**
   - a label-free measurement of PP3 + PM1 additivity on the points scale;
@@ -324,7 +331,7 @@ This is the same pattern as the models trained on the de novo excess (Supplement
    - Expert-panel truth covers 108 genes, and its o/e-flag estimates are imprecise.
    - Assay truth tests overlap in two genes.
    - V1 has few benign variants in the joint category, and its primary stratum fell back to all genes.
-6. **Transcripts.** GENCODE v32 canonical transcripts match MANE Select v1.5 for 74.4% of genes (66.5% in DDG2P). Window assignments may differ for the rest.
+6. **Transcripts.** Of GENCODE v32 canonical transcripts in MANE genes, 74.4% match MANE Select v1.5 (66.5% in DDG2P genes). Window assignments may differ for the rest.
 7. **Ancestry.** The cohorts are predominantly of European ancestry.
 
 **Conclusion.** Computational and hotspot evidence overlap substantially for de novo missense variants, including within known disease genes. The overlap is larger on clinical truth. ClinGen's cap on PP3 + PM1 is the best-calibrated of the rules we tested, and uncapped co-use is not supported. A pre-registered label-free alternative did not improve on the cap.
@@ -341,6 +348,24 @@ This is the same pattern as the models trained on the de novo excess (Supplement
 - **Figure 2.** Evidence ladder: top-2% LR by conditioning level (`fig2_evidence_ladder.png`).
 - **Figure 3.** Per-predictor retention (`fig3_retention.png`).
 - **Figure 4.** Direct overlap test, R with 95% intervals by predictor, flag and cohort (`fig4_overlap.png`).
+
+**Supplementary (`SUPPLEMENT_v4.md`):**
+
+- **Notes:**
+  - Note 1: pre-specification and deviations;
+  - Note 2: robustness;
+  - Note 3: estimator simulation;
+  - Note 4: models trained on the de novo excess;
+  - Note 5: full overlap results;
+  - Note 6: pre-registered hierarchical model.
+- **Tables:**
+  - Table 1: per-predictor retention;
+  - Table 2: training-data ledger (`aim3_training_ledger.tsv`);
+  - Table 3: ClinVar sensitivity;
+  - Table 4: conditional PP3 points (`supp_table4_conditional_pp3.tsv`);
+  - Table 5: full direct overlap test;
+  - Table 6: hierarchical model calibration table (`results_fullstudy/a16_calibration_table.tsv`).
+- **Data 1:** per-variant ClinVar PP3 + PM1 points.
 
 ---
 

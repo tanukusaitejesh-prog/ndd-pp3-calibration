@@ -1,0 +1,13 @@
+R (marginal, de novo excess) with 1,000 transcript-clustered bootstrap replicates, seed 20261007; synonymous scale factor held at its point estimate
+DD     AlphaMissense Supporting x PM1-like  : R 0.44 [gene-clustered 0.41, 0.47]
+DD     AlphaMissense Strong     x PM1-like  : R 0.33 [gene-clustered 0.31, 0.35]
+DD     AlphaMissense Supporting x PM1-strict: R 0.37 [gene-clustered 0.35, 0.40]
+DD     AlphaMissense Strong     x PM1-strict: R 0.25 [gene-clustered 0.23, 0.28]
+DD     AlphaMissense Supporting x PP2-like  : R 0.61 [gene-clustered 0.57, 0.65]
+DD     AlphaMissense Strong     x PP2-like  : R 0.52 [gene-clustered 0.48, 0.56]
+autism AlphaMissense Supporting x PM1-like  : R 0.56 [gene-clustered 0.47, 0.66]
+autism AlphaMissense Strong     x PM1-like  : R 0.44 [gene-clustered 0.36, 0.54]
+autism AlphaMissense Supporting x PM1-strict: R 0.50 [gene-clustered 0.42, 0.61]
+autism AlphaMissense Strong     x PM1-strict: R 0.39 [gene-clustered 0.30, 0.50]
+autism AlphaMissense Supporting x PP2-like  : R 0.65 [gene-clustered 0.55, 0.76]
+autism AlphaMissense Strong     x PP2-like  : R 0.57 [gene-clustered 0.48, 0.68]

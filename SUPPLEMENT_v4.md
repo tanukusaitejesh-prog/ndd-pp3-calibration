@@ -278,9 +278,24 @@ f = 1 is additivity; ClinGen's cap corresponds to f = 0.67. In relative terms th
 - **Stricter PM1 definition** (o/e < 0.2, Chao et al.'s Moderate level): the corresponding numbers are 9.7% and 2,148.
 - **The cap and the conditional rule** both prevent PP3 + PM1 alone from reaching Likely Pathogenic in every setting (Supplementary Table 3).
 
-[BURIAL_SUPP]
+**Buried and exposed sites** (exploratory; AlphaFold Cα neighbours within 10 Å, split at the median of 9; PP3 at Supporting):
 
-[GCLUST_SUPP]
+| Predictor × flag | DD, buried | DD, exposed | Autism, buried | Autism, exposed |
+|---|---|---|---|---|
+| AlphaMissense × PM1-like | 0.55 [0.52, 0.59] | 0.36 [0.29, 0.43] | 0.57 [0.46, 0.68] | 0.58 [0.36, 0.86] |
+| AlphaMissense × PP2-like | 0.64 [0.60, 0.67] | 0.61 [0.51, 0.73] | 0.64 [0.51, 0.76] | 0.69 [0.43, 1.02] |
+| REVEL × PM1-like | 0.69 [0.65, 0.74] | 0.48 [0.38, 0.57] | 0.90 [0.72, 1.10] | 0.69 [0.40, 1.13] |
+| VEST4 × PM1-like | 0.79 [0.74, 0.83] | 0.65 [0.54, 0.76] | 0.78 [0.64, 0.91] | 0.86 [0.53, 1.44] |
+
+At exposed sites PP3 is rarer but carries a larger LR (AlphaMissense 7.07 against 2.88 at buried sites in DD); at PM1-like exposed sites it keeps 2.54 (1.06 points), against 5.90 elsewhere.
+
+**Gene-clustered intervals** (AlphaMissense; transcripts resampled 1,000 times; synonymous scale factor fixed at its point estimate):
+
+| Flag | DD Supporting | DD Strong | Autism Supporting | Autism Strong |
+|---|---|---|---|---|
+| PM1-like | 0.44 [0.41, 0.47] | 0.33 [0.31, 0.35] | 0.56 [0.47, 0.66] | 0.44 [0.36, 0.54] |
+| PM1-strict | 0.37 [0.35, 0.40] | 0.25 [0.23, 0.28] | 0.50 [0.42, 0.61] | 0.39 [0.30, 0.50] |
+| PP2-like | 0.61 [0.57, 0.65] | 0.52 [0.48, 0.56] | 0.65 [0.55, 0.76] | 0.57 [0.48, 0.68] |
 
 ---
 

@@ -95,3 +95,19 @@ Two informal reviews of the study pitch and draft 1. For each point: what we did
 ## Draft 3 addendum: model validation (A14, A15)
 
 - External validation of the models, previously "none": ClinVar within gene, with DD de novo sites removed and pre-registered before running. v3, v4 and v5 rank below AlphaMissense. This is reported as a negative result and as independent support for the main interpretation (Discussion; Supplementary Note 4).
+
+## Review 7 (the 4 → 4.5 plan): draft 4 responses
+
+| Task | Outcome | Where |
+|---|---|---|
+| 1 MAVE coverage | MaveDB covers 64 DDG2P monoallelic genes, almost all as 50–90-residue domain-stability fragments; ProteinGym full-length assays exist for 7 genes. Only PPM1D (R 0.72 [0.65, 0.78]) and SHOC2 (0.86 [0.71, 1.04]) can test within-gene overlap. Below the ~10-gene bar, so exploratory. | Table 3; Supplementary Note 5 |
+| 2 Temporal ClinVar | Done. V1: VUS in 2023-01 reclassified by the same submitter by 2026-10, with truth from the submitter's own codes minus computational and position criteria. 87 P and 887 B in 546 genes. | Methods; Table 4 |
+| 3 Held-out cohort | Not done. No de novo cohort outside DD, autism and the public set was available in time; V1 served as the locked test. | Limitation 5 |
+| 4 Hierarchical model | Built: gene → 50-residue window → AlphaMissense bin × region stratum, empirical Bayes, DD only. The calibration table is a deliverable. | Supplementary Table 6 |
+| 5 Real pre-registration | A16 was written and pushed (`34bac58`) before fitting and before V1. **Not deposited on OSF beforehand**, stated plainly. | Methods; Supplementary Note 1 |
+| 6 Validate | **H1 refuted:** the hierarchical model is worse than the cap (Δ log-loss +0.147 [+0.106, +0.190]). The rule contribution is dead, as the review anticipated, so the paper is the measurement paper with a pre-registered negative. | Results; Discussion |
+| 7 Label-free vs ClinVar gene-specific | Done (S5): no agreement across 142 label-rich DDG2P genes (Spearman 0.01). | Supplementary Note 6 |
+| 8 Estimand bridge | Done: ClinVar R 0.32/0.23 (DDG2P), 0.20/0.15 (all genes). | Table 3 |
+| 9 Real PM1 | Done with the panel-applied PM1 on expert-panel truth (R 0.17 at Strong). Chao 2024 reconciled: the joint LR exceeds each marginal LR, but not their product. | Table 3; Discussion |
+| 10 Where PP3 adds | Mechanism (LoF 0.47 vs non-LoF 0.57), pLDDT (overlap in both strata), burial (overlap at buried and exposed sites; DD R 0.55 and 0.36). The A16 calibration table shows PP3 evidence is region-dependent. | Results; Supplementary Notes 2, 5, 6 |
+| 11 Statistical cleanup | Gene-clustered bootstrap for the headline R (DD 0.44 [0.41, 0.47], autism 0.56 [0.47, 0.66]); MANE 74.4%; 12,501 → 12,316 reconciled; cap credited to Pejaver 2022; models moved to the supplement; "the cap over-corrects on the de novo scale (6–27% vs 33%)" stated plainly, with the clinical-scale counterpoint. | Methods; Results; Discussion |

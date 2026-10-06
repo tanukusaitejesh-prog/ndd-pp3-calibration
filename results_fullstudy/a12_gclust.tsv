@@ -1,0 +1,13 @@
+cohort	flag	tier	R	R_lo95_gene	R_hi95_gene
+DD	PM1-like	Supporting	0.4414	0.4148	0.4672
+DD	PM1-like	Strong	0.3315	0.3082	0.3545
+DD	PM1-strict	Supporting	0.3745	0.3505	0.3994
+DD	PM1-strict	Strong	0.2549	0.2333	0.2791
+DD	PP2-like	Supporting	0.6118	0.5724	0.6524
+DD	PP2-like	Strong	0.5187	0.4799	0.5575
+autism	PM1-like	Supporting	0.556	0.4704	0.6591
+autism	PM1-like	Strong	0.4413	0.3647	0.5387
+autism	PM1-strict	Supporting	0.5015	0.4156	0.6149
+autism	PM1-strict	Strong	0.3883	0.3019	0.4969
+autism	PP2-like	Supporting	0.6496	0.5502	0.7602
+autism	PP2-like	Strong	0.5713	0.4751	0.6823

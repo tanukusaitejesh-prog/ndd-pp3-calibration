@@ -1,0 +1,25 @@
+burial cut: median af_nca10 over analysed missense sites = 9.0
+DD|buried(nca10>=9) AlphaMissense F=PM1-like             LR(PP3) 2.88 LR(F) 6.72 joint 10.73 -> R 0.55 [0.52, 0.59]; LR(PP3|F) 1.60 (points 0.53) vs LR(PP3|not F) 2.55; de novos PP3&F 2247
+DD|buried(nca10>=9) AlphaMissense F=PP2-like             LR(PP3) 2.88 LR(F) 5.96 joint 10.94 -> R 0.64 [0.60, 0.67]; LR(PP3|F) 1.84 (points 0.69) vs LR(PP3|not F) 2.76; de novos PP3&F 2074
+DD|buried(nca10>=9) REVEL         F=PM1-like             LR(PP3) 3.00 LR(F) 6.57 joint 13.63 -> R 0.69 [0.65, 0.74]; LR(PP3|F) 2.07 (points 0.83) vs LR(PP3|not F) 2.68; de novos PP3&F 1641
+DD|buried(nca10>=9) REVEL         F=PP2-like             LR(PP3) 3.00 LR(F) 5.82 joint 13.11 -> R 0.75 [0.71, 0.80]; LR(PP3|F) 2.25 (points 0.93) vs LR(PP3|not F) 2.82; de novos PP3&F 1568
+DD|buried(nca10>=9) VEST4         F=PM1-like             LR(PP3) 2.11 LR(F) 6.61 joint 10.98 -> R 0.79 [0.74, 0.83]; LR(PP3|F) 1.66 (points 0.58) vs LR(PP3|not F) 1.96; de novos PP3&F 1946
+DD|buried(nca10>=9) VEST4         F=PP2-like             LR(PP3) 2.11 LR(F) 5.85 joint 9.96 -> R 0.81 [0.76, 0.85]; LR(PP3|F) 1.70 (points 0.61) vs LR(PP3|not F) 2.05; de novos PP3&F 1893
+DD|exposed(nca10<9) AlphaMissense F=PM1-like             LR(PP3) 7.07 LR(F) 8.37 joint 21.23 -> R 0.36 [0.29, 0.43]; LR(PP3|F) 2.54 (points 1.06) vs LR(PP3|not F) 5.90; de novos PP3&F 651
+DD|exposed(nca10<9) AlphaMissense F=PP2-like             LR(PP3) 7.07 LR(F) 5.37 joint 23.27 -> R 0.61 [0.51, 0.73]; LR(PP3|F) 4.33 (points 1.67) vs LR(PP3|not F) 6.42; de novos PP3&F 556
+DD|exposed(nca10<9) REVEL         F=PM1-like             LR(PP3) 7.32 LR(F) 7.94 joint 27.74 -> R 0.48 [0.38, 0.57]; LR(PP3|F) 3.49 (points 1.42) vs LR(PP3|not F) 5.99; de novos PP3&F 328
+DD|exposed(nca10<9) REVEL         F=PP2-like             LR(PP3) 7.32 LR(F) 5.08 joint 26.26 -> R 0.71 [0.58, 0.85]; LR(PP3|F) 5.17 (points 1.87) vs LR(PP3|not F) 6.62; de novos PP3&F 289
+DD|exposed(nca10<9) VEST4         F=PM1-like             LR(PP3) 4.94 LR(F) 8.03 joint 25.65 -> R 0.65 [0.54, 0.76]; LR(PP3|F) 3.19 (points 1.32) vs LR(PP3|not F) 4.13; de novos PP3&F 503
+DD|exposed(nca10<9) VEST4         F=PP2-like             LR(PP3) 4.94 LR(F) 5.14 joint 19.90 -> R 0.78 [0.65, 0.93]; LR(PP3|F) 3.87 (points 1.54) vs LR(PP3|not F) 4.59; de novos PP3&F 468
+autism|buried(nca10>=9) AlphaMissense F=PM1-like             LR(PP3) 2.59 LR(F) 5.11 joint 7.53 -> R 0.57 [0.46, 0.68]; LR(PP3|F) 1.47 (points 0.44) vs LR(PP3|not F) 2.47; de novos PP3&F 540
+autism|buried(nca10>=9) AlphaMissense F=PP2-like             LR(PP3) 2.59 LR(F) 5.42 joint 8.95 -> R 0.64 [0.51, 0.76]; LR(PP3|F) 1.65 (points 0.57) vs LR(PP3|not F) 2.55; de novos PP3&F 540
+autism|buried(nca10>=9) REVEL         F=PM1-like             LR(PP3) 1.95 LR(F) 4.81 joint 8.47 -> R 0.90 [0.72, 1.10]; LR(PP3|F) 1.76 (points 0.64) vs LR(PP3|not F) 1.39; de novos PP3&F 353
+autism|buried(nca10>=9) REVEL         F=PP2-like             LR(PP3) 1.95 LR(F) 5.07 joint 9.13 -> R 0.92 [0.73, 1.13]; LR(PP3|F) 1.80 (points 0.67) vs LR(PP3|not F) 1.41; de novos PP3&F 364
+autism|buried(nca10>=9) VEST4         F=PM1-like             LR(PP3) 1.96 LR(F) 4.94 joint 7.54 -> R 0.78 [0.64, 0.91]; LR(PP3|F) 1.53 (points 0.48) vs LR(PP3|not F) 1.94; de novos PP3&F 464
+autism|buried(nca10>=9) VEST4         F=PP2-like             LR(PP3) 1.96 LR(F) 5.24 joint 8.09 -> R 0.79 [0.65, 0.91]; LR(PP3|F) 1.54 (points 0.50) vs LR(PP3|not F) 1.99; de novos PP3&F 507
+autism|exposed(nca10<9) AlphaMissense F=PM1-like             LR(PP3) 3.77 LR(F) 4.57 joint 9.95 -> R 0.58 [0.36, 0.86]; LR(PP3|F) 2.18 (points 0.89) vs LR(PP3|not F) 2.77; de novos PP3&F 175
+autism|exposed(nca10<9) AlphaMissense F=PP2-like             LR(PP3) 3.77 LR(F) 4.24 joint 11.04 -> R 0.69 [0.43, 1.02]; LR(PP3|F) 2.61 (points 1.09) vs LR(PP3|not F) 3.32; de novos PP3&F 147
+autism|exposed(nca10<9) REVEL         F=PM1-like             LR(PP3) 3.42 LR(F) 4.08 joint 9.69 -> R 0.69 [0.40, 1.13]; LR(PP3|F) 2.37 (points 0.98) vs LR(PP3|not F) 2.78; de novos PP3&F 72
+autism|exposed(nca10<9) REVEL         F=PP2-like             LR(PP3) 3.42 LR(F) 3.76 joint 12.93 -> R 1.01 [0.62, 1.61]; LR(PP3|F) 3.44 (points 1.41) vs LR(PP3|not F) 2.49; de novos PP3&F 78
+autism|exposed(nca10<9) VEST4         F=PM1-like             LR(PP3) 2.20 LR(F) 4.28 joint 8.10 -> R 0.86 [0.53, 1.44]; LR(PP3|F) 1.89 (points 0.73) vs LR(PP3|not F) 1.84; de novos PP3&F 105
+autism|exposed(nca10<9) VEST4         F=PP2-like             LR(PP3) 2.20 LR(F) 3.95 joint 7.23 -> R 0.83 [0.49, 1.34]; LR(PP3|F) 1.83 (points 0.69) vs LR(PP3|not F) 2.05; de novos PP3&F 113
