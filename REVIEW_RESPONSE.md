@@ -75,3 +75,19 @@ Two informal reviews of the study pitch and draft 1. For each point: what we did
 | — | Chao et al.'s ACMG calibration of constraint; Pejaver as the origin of the cap | Both added |
 | — | Kayaalp et al. 2026 | **Not verified** in several searches; not cited until the DOI is confirmed |
 | — | Move Q5 to the supplement | Done (Supplementary Note 4) |
+
+## Reviews 5 and 6 (draft 2 scoring)
+
+| Point | Response |
+|---|---|
+| Headline mostly between-gene; autism within-gene R 0.96 not in abstract | The decomposition is now in the abstract and in Methods and Results: within gene across all genes, R is 0.75 in DD and 0.96 in autism (additive). Within DDG2P genes it is 0.69 and 0.74. |
+| Estimand conflict: "secondary" absolute comparisons used to claim "supports the cap" | The primary comparison is now relative: f, the fraction of summed log-evidence kept (Strong tier 0.73–0.94), against the cap's 0.67. Absolute points are secondary, with the scale caveat. The wording is "consistent with the cap", and the paper states that the cap's exact size is not shown to be optimal. |
+| Failed primary criterion and forking paths | The abstract no longer leads with the binary criterion. Continuous retention and R are the findings. Limitation 1 states the 13 amendments and that they followed earlier results. |
+| Simulation pending | Done (Supplementary Note 3): bias ≤ 1%, coverage 0.86–0.99 |
+| Muddled message; Q5 bolted on | New title on overlap and additivity. Q5 and its Methods moved entirely to Supplementary Note 4; Figure 5 moved to the supplement. |
+| Abstract R range for REVEL/VEST4 | Corrected to 0.48–1.02 across all flags, matching Table 2 |
+| Strong-tier headline has no Methods/Results | Added a Methods paragraph and a Results table (R, f, joint points by cohort) |
+| Clinical impact null | Added classification change (A12.4): uncapped calls 2,438 Pathogenic at 84% disease-associated; the cap moves all of them to LP |
+| Within disease genes is the relevant question | Within-DDG2P R reported in the abstract (0.69/0.74) |
+| Prior-art check | Re-searched 6 Oct 2026; no direct additivity test of PP3 + PM1 found. Chao et al. and Pejaver et al. are cited as closest. |
+| Cut the 55-predictor sprawl | Partly done: the main text leads with three predictors and per-predictor points; the full 55 are in Supplementary Table 1 |
