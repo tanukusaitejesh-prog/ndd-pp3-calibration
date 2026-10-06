@@ -241,7 +241,7 @@ popEVE ended at 1.69 after window and constraint.
 
 So the within-gene loss reflects where variants fall in the protein, and the information lost is of the kind PM1 encodes.
 
-**Estimator behaviour** under a planted within-gene signal is in Supplementary Note 3 (⟨pending⟩). Retention across 25-, 50- and 100-residue units is in Supplementary Figure 2 (⟨pending⟩).
+**Estimator behaviour** under a planted within-gene signal is in Supplementary Note 3 (⟨pending⟩). Across unit sizes, real windows always retained far less than random partitions with the same number of units: median r 0.27 against 0.48 at 25 residues, 0.33 against 0.52 at 50, and 0.39 against 0.53 at 100 (common site set). Retention therefore falls with finer positional resolution, while random partitioning of any size costs little.
 
 ### Q3. Does the result replicate?
 **Pre-specified tests:**
