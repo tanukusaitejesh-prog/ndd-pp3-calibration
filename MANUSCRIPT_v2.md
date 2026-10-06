@@ -141,8 +141,16 @@ LR_b = X_b / (Σ_u O_u · E_ub / E_u − E_b)
 | A | Nothing (marginal) |
 | B | Gene |
 | C | Gene × gnomAD regional missense constraint region |
+| D1 | Gene × evenly spaced chunks, as many as the gene's constraint regions |
 | D2 | Gene × fixed 50-residue window |
+| E1 | D1 chunk × constraint region |
 | E2 | Window × constraint region |
+
+**Two position controls.** The original plan specified D1/E1 as the position control.
+
+- **D1's limitation:** in the ~13,500 genes without a regional-constraint split, D1 has a single unit. It therefore does not control position in those genes.
+- **D2/E2:** this limitation was recorded after the DD analysis and before the autism and newer-predictor analyses, and D2/E2 (fixed windows) was pre-specified as primary for those.
+- **Both are reported throughout.**
 
 **Retention.** For each predictor, r(level) = ln LR(level) / ln LR(A), computed for the top 2% of the predictor's scores by mutational opportunity. Points in the ACMG framework are proportional to ln LR, so r is the share of a predictor's points that survives conditioning.
 
@@ -241,7 +249,7 @@ popEVE ended at 1.69 after window and constraint.
 **Threshold sensitivity.** Retention was stable across score thresholds: median r(D2) 0.33, 0.32 and 0.28 at the top 1%, 2% and 10% (exploratory).
 
 ### Q2. Is the loss due to position or to conditioning on small units?
-**Random partitions retained nearly all the within-gene evidence.** A random partition of each gene's residues into the same number of groups as the 50-residue windows retained a median 0.51, against 0.56 for gene alone. Real windows retained 0.31.
+**Random partitions retained nearly all the within-gene evidence.** This control used all analysed sites; the main analyses used the common site set, which is why its values differ slightly from Q1 (0.31 against 0.33). A random partition of each gene's residues into the same number of groups as the 50-residue windows retained a median 0.51, against 0.56 for gene alone. Real windows retained 0.31.
 
 - The paired difference was 0.21 [0.19, 0.23], positive for all 24 predictors.
 - Shifting window boundaries by 25 residues changed nothing (−0.02).
