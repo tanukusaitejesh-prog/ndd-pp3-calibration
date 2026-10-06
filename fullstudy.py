@@ -862,6 +862,7 @@ Q_COARSE = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 980, 990, 1000]   # 
 
 PSEUDO_K = 64
 _PSEUDO = {}
+_EXCL_TX = None                                              # A12.3: transcripts excluded (top-50 excess genes)
 
 
 def pseudo_setup(a):
@@ -1301,6 +1302,8 @@ def gene_masks(tinfo, nu, utx):
     if "n" in _PSEUDO:                                       # A11.3: genes with >= 2 RMC regions vs one whole-gene region
         m["rmc_multi"] = per_tx(_PSEUDO["n"][:nt] >= 2)
         m["rmc_single"] = per_tx(_PSEUDO["n"][:nt] < 2)
+    if _EXCL_TX is not None:                                 # A12.3: leave the top-50 excess genes out
+        m["no_top50"] = ok & ~np.isin(utx, _EXCL_TX)
     return m
 
 
@@ -2739,23 +2742,25 @@ A10_TOOLS = {"AlphaMissense": ("am", [0.792, 0.906, 0.972, 0.990]),
              "VEST4": ("raw_VEST4_score", [0.764, 0.861, 0.909, 0.965])}
 
 
-def overlap_cohort(a, label):
+def overlap_cohort(a, label, excl_tx=None, tools=None, fnames=None, lnames=None):
     """R(T, F) = LR(PP3 | F) / LR(PP3) from marginal de novo LRs of the four PP3 x F categories (plan section 3k).
     Streams chromosomes: only the opportunity per category and the category of each de novo site are kept."""
     d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
     gz = pd.read_csv(GNOMAD_GENE, sep="\t", compression="gzip", usecols=["gene", "mis_z"])
     misz = gz.groupby("gene")["mis_z"].max()
     pp2_tx = tinfo["gene"].reindex(np.arange(18398)).map(misz).fillna(-np.inf).to_numpy() >= 3.09
-    cols = ["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct"] + [c for c, _ in A10_TOOLS.values()]
-    fnames = ["PM1-like", "PM1-strict", "PP2-like", "PM1-like or PP2-like"]
-    lnames = ["PP3>=Supporting", "PP3 Supporting only", "PP3 Moderate only", "PP3 >=Strong(3-4)"]
-    combos = [(t, f, l) for t in A10_TOOLS for f in fnames for l in lnames]
+    TL = tools if tools is not None else A10_TOOLS
+    cols = list(dict.fromkeys(["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct"] + [c for c, _ in TL.values()]))
+    fnames = fnames or ["PM1-like", "PM1-strict", "PP2-like", "PM1-like or PP2-like"]
+    lnames = lnames or ["PP3>=Supporting", "PP3 Supporting only", "PP3 Moderate only", "PP3 >=Strong(3-4)"]
+    combos = [(t, f, l) for t in TL for f in fnames for l in lnames]
     mass = {k: np.zeros(4) for k in combos}
     dbin = {k: np.full(len(d_mis), -1, np.int64) for k in combos}
     dkey = d_mis["key"].to_numpy()
     dchr = d_mis["chrom"].astype(str).to_numpy()
     for c, u in site_chunks(a, cols=cols):
         tx = u["tx"].to_numpy(np.int64)
+        keep_ = ~np.isin(tx, excl_tx) if excl_tx is not None else np.ones(len(tx), bool)
         oe, ccr = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float)
         fl = {"PM1-like": (oe < 0.4) | (ccr >= 95), "PM1-strict": oe < 0.2, "PP2-like": pp2_tx[tx]}
         fl["PM1-like or PP2-like"] = fl["PM1-like"] | fl["PP2-like"]
@@ -2764,9 +2769,9 @@ def overlap_cohort(a, label):
         pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dkey[di]).to_numpy()
         okp = np.isfinite(pos)
         di, pos = di[okp], pos[okp].astype(np.int64)
-        for tool, (col, cuts) in A10_TOOLS.items():
+        for tool, (col, cuts) in TL.items():
             s = u[col].to_numpy(float)
-            sc = np.isfinite(s)
+            sc = np.isfinite(s) & keep_
             lv = {"PP3>=Supporting": s >= cuts[0], "PP3 Supporting only": (s >= cuts[0]) & (s < cuts[1]),
                   "PP3 Moderate only": (s >= cuts[1]) & (s < cuts[2]), "PP3 >=Strong(3-4)": s >= cuts[2]}
             for f in fnames:
@@ -3133,6 +3138,71 @@ def cmd_a12(a):
     in DD and autism. part 'classify' (A12.4): PS2 + PM2 + PM1-like + AlphaMissense PP3 under uncapped / capped /
     conditional rules for DD de novo missense; class counts and de novo-excess fraction pathogenic per class."""
     base = a.results
+    if a.part == "lto":                                      # A12.3: leave-top-genes-out (DD)
+        global _EXCL_TX
+        d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+        c = len(syn_p) / syn_mass
+        E = np.zeros(18398)
+        for ch, u in site_chunks(a, cols=["key", "tx", PRIMARY_MODEL]):
+            E += np.bincount(u["tx"].to_numpy(np.int64), weights=u[PRIMARY_MODEL].to_numpy(float) * c, minlength=18398)[:18398]
+        O = np.bincount(d_mis["tx"].to_numpy(np.int64), minlength=18398)[:18398]
+        top = np.argsort(-(O - E))[:50]
+        _EXCL_TX = top
+        genes = tinfo["gene"].reindex(top).tolist()
+        out = [f"A12.3: excluded 50 transcripts with the largest DD de novo missense excess (O - E): {', '.join(map(str, genes))}",
+               f"excluded de novo missense {int(O[top].sum())} of {int(O.sum())}; expected {E[top].sum():.0f}"]
+        rows, txt = overlap_cohort(a, "DD_noTop50", excl_tx=top)
+        pd.DataFrame(rows).to_csv(P(base, "a12_lto_overlap.tsv"), sep="\t", index=False, float_format="%.4g")
+        out += [t for t in txt if "PM1-like " in t or "PM1-strict" in t]
+        tools = ["AlphaMissense"] + _a11_tools(a)
+        pos_setup(a)
+        kinds = ["gene", "rmc", "win50", "win50_rmc", "rand50"]
+        run_scores(a, tools, kinds, ["no_top50"], "a12_lto", restrict="aim1_common")
+        out += _a11_summary(a, "a12_lto", ["no_top50"], kinds)
+        open(P(base, "a12_lto_summary.txt"), "w").write("\n".join(out) + "\n")
+        log("\n".join(out))
+        return
+    if a.part == "allr":                                     # A12.2: R for all predictors, top-2% flags
+        pop_informed = {"AlphaMissense", "PrimateAI", "MPC", "MVP", "M-CAP", "BayesDel_addAF", "ClinPred", "MetaRNN", "MetaSVM",
+                        "MetaLR", "VARITY_R", "VARITY_ER", "VARITY_R_LOO", "VARITY_ER_LOO", "MisFit_D", "MisFit_S", "popEVE"}
+        # population constraint or allele frequency among inputs or training labels (training ledger, dbNSFP readme)
+        names = ["AlphaMissense"] + list(TOOLS) + list(TOOLS54)
+        colof = {t: ("am" if t == "AlphaMissense" else score_col(t)) for t in names}
+        out, allrows = [], []
+        for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
+            a.cohort = kw.get("cohort")
+            a.results = P(base, "a12_tmp")
+            os.makedirs(a.results, exist_ok=True)
+            if label == "DD":                                # thresholds: top 2% of mutational opportunity, all sites
+                H = {t: np.zeros(10001) for t in names}
+                for ch, u in site_chunks(a, cols=["key", PRIMARY_MODEL] + [colof[t] for t in names]):
+                    mr = u[PRIMARY_MODEL].to_numpy(float)
+                    for t in names:
+                        v = u[colof[t]].to_numpy(float); f = np.isfinite(v)
+                        H[t] += np.bincount(np.clip((v[f] * 10000).astype(np.int64), 0, 10000), weights=mr[f], minlength=10001)
+                thr = {}
+                for t in names:
+                    cum = np.cumsum(H[t]) / H[t].sum()
+                    thr[t] = (np.searchsorted(cum, 0.98) + 1) / 10000.0
+                tl = {t: (colof[t], (thr[t], np.inf, np.inf)) for t in names}
+            rows, _ = overlap_cohort(a, label, tools=tl, fnames=["PM1-like", "PP2-like"], lnames=["PP3>=Supporting"])
+            allrows += rows
+            a.results = base
+        df = pd.DataFrame(allrows)
+        df["pop_informed"] = df["tool"].isin(pop_informed)
+        df["threshold_top2"] = df["tool"].map(lambda t: thr[t])
+        df.to_csv(P(base, "a12_allr.tsv"), sep="\t", index=False, float_format="%.4g")
+        from scipy.stats import mannwhitneyu
+        for (coh, fl), g in df[df["LR_PP3"] >= PP3[0][1]].groupby(["cohort", "flag"]):
+            a_, b_ = g.loc[g["pop_informed"], "R"], g.loc[~g["pop_informed"], "R"]
+            pv = mannwhitneyu(a_, b_).pvalue if len(a_) > 2 and len(b_) > 2 else np.nan
+            out.append(f"A12.2 {coh:6s} F={fl:9s} informative {len(g)}: median R {g['R'].median():.2f} "
+                       f"(range {g['R'].min():.2f}-{g['R'].max():.2f}); share R<1 upper bound {(g['R_hi95'] < 1).mean():.2f}; "
+                       f"population-informed {a_.median():.2f} (n {len(a_)}) vs other {b_.median():.2f} (n {len(b_)}), "
+                       f"Mann-Whitney p {pv:.3g}")
+        open(P(base, "a12_allr_summary.txt"), "w").write("\n".join(out) + "\n")
+        log("\n".join(out))
+        return
     if a.part == "decomp":
         rows = []
         for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
@@ -3679,7 +3749,7 @@ def main():
     s.add_argument("--part", required=True, choices=["strata", "sweep", "cpg_down", "cpg_up", "noclinvar"])
     s.add_argument("--clinvar", default="/mnt/c/Users/saite/OneDrive/Desktop/Neuro/G-Test-LOCKIN/ndd_pp3_gate/ndd_pp3_gate/work_clinvar/clinvar.vcf.gz")
     s = sub.add_parser("a12")
-    s.add_argument("--part", required=True, choices=["decomp", "classify"])
+    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr"])
     s = sub.add_parser("a11sim")
     s.add_argument("--reps", type=int, default=200)
     s = sub.add_parser("clinvar")
