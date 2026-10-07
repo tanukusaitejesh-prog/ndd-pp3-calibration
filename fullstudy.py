@@ -3165,6 +3165,93 @@ def cmd_a12(a):
         open(P(base, "a12_lto_summary.txt"), "w").write("\n".join(out) + "\n")
         log("\n".join(out))
         return
+    if a.part == "gclust2":                                  # Phase 0: gene-clustered CIs for every R in Table 2 + within-gene R
+        out, rows = ["R with 1,000 transcript-clustered bootstrap replicates, seed 20261007; synonymous scale factor fixed. "
+                     "Marginal R (Table 2 cells), within-gene R (all genes; DDG2P monoallelic), Strong-tier f"], []
+        for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"}),
+                          ("public3", {"cohort": "Affected", "rep_file": P(EXT, "public3", "public3_loader_format.tsv"),
+                                       "rep_cohorts": P3_STUDIES, "dedup_zhou": True})):
+            a.cohort, a.rep_file, a.rep_cohorts, a.dedup_zhou = (kw.get("cohort"), kw.get("rep_file"),
+                                                                 kw.get("rep_cohorts"), kw.get("dedup_zhou", False))
+            d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+            cs = len(syn_p) / syn_mass
+            gz = pd.read_csv(GNOMAD_GENE, sep="\t", compression="gzip", usecols=["gene", "mis_z"])
+            pp2_tx = tinfo["gene"].reindex(np.arange(18398)).map(gz.groupby("gene")["mis_z"].max()).fillna(-np.inf).to_numpy() >= 3.09
+            ddtx = tinfo["ddg2p"].reindex(np.arange(18398)).fillna(False).to_numpy(bool)
+            combos = [(t, f, i) for t in A10_TOOLS for f in ("PM1-like", "PM1-strict", "PP2-like") for i in (0, 2)]
+            Mm = {k: np.zeros((18398, 4)) for k in combos}
+            Om = {k: np.zeros((18398, 4)) for k in combos}
+            dkey, dchr = d_mis["key"].to_numpy(), d_mis["chrom"].astype(str).to_numpy()
+            cols = list(dict.fromkeys(["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct"] + [c for c, _ in A10_TOOLS.values()]))
+            for c, u in site_chunks(a, cols=cols):
+                tx = u["tx"].to_numpy(np.int64)
+                oe, ccr = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float)
+                fl = {"PM1-like": (oe < 0.4) | (ccr >= 95), "PM1-strict": oe < 0.2, "PP2-like": pp2_tx[tx]}
+                mr = u[PRIMARY_MODEL].to_numpy(float)
+                di = np.flatnonzero(dchr == str(c))
+                pos0 = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dkey[di]).to_numpy()
+                pos0 = pos0[np.isfinite(pos0)].astype(np.int64)
+                for t, (col, cuts) in A10_TOOLS.items():
+                    s_ = u[col].to_numpy(float)
+                    sc = np.isfinite(s_)
+                    pos = pos0[sc[pos0]]
+                    for f in ("PM1-like", "PM1-strict", "PP2-like"):
+                        for i in (0, 2):
+                            cat = 2 * (s_ >= cuts[i]).astype(np.int64) + fl[f].astype(np.int64)
+                            np.add.at(Mm[(t, f, i)], (tx[sc], cat[sc]), mr[sc])
+                            np.add.at(Om[(t, f, i)], (tx[pos], cat[pos]), 1)
+                del u
+                gc.collect()
+            rng = np.random.default_rng(20261007)
+            live = np.flatnonzero(Mm[combos[0]].sum(1) > 0)
+            W = np.stack([np.bincount(rng.choice(live, len(live)), minlength=18398) for _ in range(1000)]).astype(float)
+            Wd = W * ddtx[None, :]
+
+            def stats_(O, M):
+                """Marginal R, within-gene R and Strong-tier f from per-transcript category sums (rows = replicates)."""
+                E = cs * M
+                X = O - E
+                Xt, Et = X.sum(-1), E.sum(-1)
+                g = {"J": [3], "F": [1, 3], "P": [2, 3]}
+                m = {k: (X[..., v].sum(-1) / Xt) / (E[..., v].sum(-1) / Et) for k, v in g.items()}
+                return m["J"] / (m["F"] * m["P"]), m
+
+            def within_(O, M, Wt):
+                E = cs * M
+                Ot, Mt = O.sum(1, keepdims=True), M.sum(1, keepdims=True)
+                with np.errstate(all="ignore"):
+                    Op = np.where(Mt > 0, Ot * M / Mt, 0.0)
+                Ob, Eb, Opb = Wt @ O, Wt @ E, Wt @ Op
+                g = {"J": [3], "F": [1, 3], "P": [2, 3]}
+                with np.errstate(all="ignore"):
+                    w = {k: (Ob[..., v].sum(-1) - Eb[..., v].sum(-1)) / (Opb[..., v].sum(-1) - Eb[..., v].sum(-1)) for k, v in g.items()}
+                return w["J"] / (w["F"] * w["P"])
+            one = np.zeros((1, 18398)); one[0, live] = 1
+            oned = one * ddtx[None, :]
+            for (t, f, i) in combos:
+                O, M = Om[(t, f, i)], Mm[(t, f, i)]
+                R0, m0 = stats_(O.sum(0), M.sum(0))
+                Rb, mb = stats_(W @ O, W @ M)
+                f0 = np.log(m0["J"]) / (np.log(m0["P"]) + np.log(m0["F"]))
+                with np.errstate(all="ignore"):
+                    fb = np.log(mb["J"]) / (np.log(mb["P"]) + np.log(mb["F"]))
+                Rw0, Rwb = within_(O, M, one)[0], within_(O, M, W)
+                Rd0, Rdb = within_(O, M, oned)[0], within_(O, M, Wd)
+                ci = lambda v: np.nanpercentile(v, [2.5, 97.5])
+                tier = "Supporting" if i == 0 else "Strong"
+                r = {"cohort": label, "tool": t, "flag": f, "tier": tier, "R": R0, "R_ci": ci(Rb), "f": f0, "f_ci": ci(fb),
+                     "R_within_all": Rw0, "R_within_all_ci": ci(Rwb), "R_within_ddg2p": Rd0, "R_within_ddg2p_ci": ci(Rdb)}
+                rows.append({k: (v if not isinstance(v, np.ndarray) else f"[{v[0]:.3f}, {v[1]:.3f}]") for k, v in r.items()})
+                out.append(f"{label:7s} {t:13s} {tier:10s} x {f:10s}: R {R0:.2f} [{r['R_ci'][0]:.2f}, {r['R_ci'][1]:.2f}]; "
+                           f"f {f0:.2f} [{r['f_ci'][0]:.2f}, {r['f_ci'][1]:.2f}]; within-gene all {Rw0:.2f} "
+                           f"[{r['R_within_all_ci'][0]:.2f}, {r['R_within_all_ci'][1]:.2f}]; within DDG2P {Rd0:.2f} "
+                           f"[{r['R_within_ddg2p_ci'][0]:.2f}, {r['R_within_ddg2p_ci'][1]:.2f}]")
+            open(P(base, "a12_gclust2_summary.txt"), "w").write("\n".join(out) + "\n")
+        a.cohort, a.rep_file, a.rep_cohorts, a.dedup_zhou = None, None, None, False
+        pd.DataFrame(rows).to_csv(P(base, "a12_gclust2.tsv"), sep="\t", index=False, float_format="%.4g")
+        open(P(base, "a12_gclust2_summary.txt"), "w").write("\n".join(out) + "\n")
+        log("\n".join(out))
+        return
     if a.part == "gclust":                                   # task 11: R with a gene-clustered bootstrap (transcripts resampled)
         out, rows = ["R (marginal, de novo excess) with 1,000 transcript-clustered bootstrap replicates, seed 20261007; "
                      "synonymous scale factor held at its point estimate"], []
@@ -4194,7 +4281,7 @@ def main():
     s.add_argument("--part", required=True, choices=["strata", "sweep", "cpg_down", "cpg_up", "noclinvar"])
     s.add_argument("--clinvar", default="/mnt/c/Users/saite/OneDrive/Desktop/Neuro/G-Test-LOCKIN/ndd_pp3_gate/ndd_pp3_gate/work_clinvar/clinvar.vcf.gz")
     s = sub.add_parser("a12")
-    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr", "plddt", "burial", "gclust"])
+    s.add_argument("--part", required=True, choices=["decomp", "classify", "lto", "allr", "plddt", "burial", "gclust", "gclust2"])
     s = sub.add_parser("a11sim")
     s.add_argument("--reps", type=int, default=200)
     s = sub.add_parser("clinvar")

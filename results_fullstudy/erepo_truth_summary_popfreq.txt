@@ -1,0 +1,5 @@
+eRepo missense mapped to analysed sites: 5992; with independent truth (pts excl. BA1/BP1/BP3/BP4/BS1/BS2/PM1/PM2/PM4/PM5/PP2/PP3 >= 6 or <= -1): 1540 (P/LP 1201, B/LB 339, genes 101)
+PM1-like (o/e, CCR)    AM>=Supporting LR(PP3) 7.01 LR(F) 3.28 joint 13.17 R 0.57 [0.13, 3826057.80]; PP3 given F 4.02 (1.58 points [-0.10, 19.67]) vs not F 6.38; n(PP3&F) 143
+PM1-like (o/e, CCR)    AM>=Strong     LR(PP3) 18.49 LR(F) 3.28 joint 30.48 R 0.50 [0.03, 1234660.51]; PP3 given F 9.30 (2.54 points [-0.47, 19.46]) vs not F 16.09; n(PP3&F) 109
+PM1 applied by panel   AM>=Supporting LR(PP3) 7.01 LR(F) 4.80 joint 11.43 R 0.34 [0.17, 1.55]; PP3 given F 2.38 (0.99 points [0.36, 2.53]) vs not F 5.99; n(PP3&F) 249
+PM1 applied by panel   AM>=Strong     LR(PP3) 18.49 LR(F) 4.80 joint 10.87 R 0.12 [0.05, 357303.04]; PP3 given F 2.26 (0.93 points [0.09, 18.99]) vs not F 33.73; n(PP3&F) 158

@@ -1,7 +1,8 @@
 """Task 6: PP3 x PM1 overlap and rule calibration on ClinGen expert-panel truth that excludes computational and
 position evidence. Truth class = Tavtigian points from all Met codes EXCEPT PP3, BP4, PM1, PP2, BP1, BP3, PM4, PM5
 (PM5 and PM1 are position-based), from the eRepo export. AlphaMissense and the PM1-like flag come from the column store.
-Gene-clustered bootstrap, 1,000, seed 20261008. Run in the WSL repo: python make_erepo_truth.py <erepo.tsv>"""
+Gene-clustered bootstrap, 1,000, seed 20261008. Run in the WSL repo: python make_erepo_truth.py <erepo.tsv> [popfreq]
+"popfreq" (Phase 0 sensitivity) also removes BA1, BS1, BS2 and PM2 from the truth points; outputs get the suffix _popfreq."""
 import math, re, sys
 import numpy as np, pandas as pd
 
@@ -13,6 +14,10 @@ d = pd.read_csv(src, sep="\t", dtype=str).fillna("")
 BASE = {"PVS": 8, "PS": 4, "PM": 2, "PP": 1, "BA": -8, "BS": -4, "BP": -1}
 MOD = {"verystrong": 8, "strong": 4, "moderate": 2, "supporting": 1}
 EXCL = {"PP3", "BP4", "PM1", "PP2", "BP1", "BP3", "PM4", "PM5"}
+TAG = ""
+if len(sys.argv) > 2 and sys.argv[2] == "popfreq":
+    EXCL |= {"BA1", "BS1", "BS2", "PM2"}
+    TAG = "_popfreq"
 
 
 def codes(txt):
@@ -63,9 +68,9 @@ for c, g in x.groupby("chrom"):
     parts.append(g)
 x = pd.concat(parts, ignore_index=True)
 x["F"] = (x["rmc_oe"] < 0.4) | (x["ccr_pct"] >= 95)
-x.to_csv("results_fullstudy/erepo_truth_sites.tsv", sep="\t", index=False)
+x.to_csv(f"results_fullstudy/erepo_truth_sites{TAG}.tsv", sep="\t", index=False)
 t = x[(x["truth"] >= 0) & x["am"].notna()]
-out = [f"eRepo missense mapped to analysed sites: {len(x)}; with independent truth (pts excl. PP3/BP4/PM1/PP2/BP1/BP3/PM4/PM5 "
+out = [f"eRepo missense mapped to analysed sites: {len(x)}; with independent truth (pts excl. {'/'.join(sorted(EXCL))} "
        f">= 6 or <= -1): {len(t)} (P/LP {int(t.truth.sum())}, B/LB {int((1 - t.truth).sum())}, genes {t.gene.nunique()})"]
 rng = np.random.default_rng(20261008)
 
@@ -87,10 +92,13 @@ for flag, lab in (("F", "PM1-like (o/e, CCR)"), ("PM1_met", "PM1 applied by pane
         for _ in range(1000):
             idx = np.concatenate([gi[g] for g in rng.choice(genes, len(genes))])
             b = lrs(t.iloc[idx], cut, flag)
-            bs.append(b[2] / (b[0] * b[1]) if b[0] * b[1] > 0 else np.nan)
-        lo, hi = np.nanpercentile(bs, [2.5, 97.5])
+            bs.append((b[2] / (b[0] * b[1]) if b[0] * b[1] > 0 else np.nan,
+                       math.log(max(b[2] / b[1], 1e-9)) / math.log(2.406) if b[1] > 0 else np.nan))
+        bs = np.array(bs)
+        lo, hi = np.nanpercentile(bs[:, 0], [2.5, 97.5])
+        plo, phi = np.nanpercentile(bs[:, 1], [2.5, 97.5])
         pts_given = math.log(max(lj / lf, 1e-9)) / math.log(2.406)
         out.append(f"{lab:22s} AM>={tier:10s} LR(PP3) {lp:.2f} LR(F) {lf:.2f} joint {lj:.2f} R {R:.2f} [{lo:.2f}, {hi:.2f}]; "
-                   f"PP3 given F {lj / lf:.2f} ({pts_given:.2f} points) vs not F {lnf:.2f}; n(PP3&F) {int(((t.am >= cut) & t[flag]).sum())}")
-open("results_fullstudy/erepo_truth_summary.txt", "w").write("\n".join(out) + "\n")
+                   f"PP3 given F {lj / lf:.2f} ({pts_given:.2f} points [{plo:.2f}, {phi:.2f}]) vs not F {lnf:.2f}; n(PP3&F) {int(((t.am >= cut) & t[flag]).sum())}")
+open(f"results_fullstudy/erepo_truth_summary{TAG}.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out))
