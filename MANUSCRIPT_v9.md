@@ -1,6 +1,6 @@
 # Computational, regional and gene-level evidence are stacked but not independent: a label-free audit of missense criteria and of expert classification practice
 
-*Draft 9, 7 October 2026. Supplementary material: `SUPPLEMENT_v9.md`.*
+*Draft 9.1, 7 October 2026. Supplementary material: `SUPPLEMENT_v9.md`.*
 
 **Authors:** [names, affiliations]
 
@@ -10,9 +10,9 @@
 
 **Purpose.** ACMG/AMP classification sums computational (PP3), hotspot/domain (PM1) and gene-level (PP2) evidence as if independent. ClinGen caps PP3 + PM1 at Strong. We measured, without variant-level labels, whether these criteria are independent and how expert panels combine them.
 
-**Methods.** Likelihood ratios came from the excess of de novo missense variants over mutation-rate expectation in 31,058 developmental-disorder trios, 12,316 autism probands and 4,256 public trios. Dependence between criteria was measured on this scale and on 6,177 expert-panel missense classifications re-scored without computational or location criteria. The primary pre-specified retention criterion was not met; the expert-practice analyses were not pre-specified.
+**Methods.** Likelihood ratios came from the excess of de novo missense variants over mutation-rate expectation in 31,058 developmental-disorder trios, 12,316 autism probands and 4,256 public trios. Dependence was also measured on 6,177 expert-panel and 87,873 laboratory missense classifications re-scored without computational or location criteria. The primary pre-specified criterion was not met; the practice analyses were not pre-specified.
 
-**Results.** Most predictor evidence concerned gene and position: a median 0.32 of log-evidence survived conditioning on 50-residue windows. No pair of criteria was independent (AlphaMissense PP3 × PM1-like R 0.44 [0.41–0.47]; PM1 × PP2 R 0.31 [0.28–0.33]). With Strong PP3, the three criteria nominally sum to 7 points (5 when capped) against 4.05 points of de novo evidence. At Supporting the sum, 4, approximately matched the evidence (3.65). Expert panels applied PP3 beside PM1 almost always below Strong (783 of 787), where the cap does not act. There, Moderate PP3 added no detectable evidence (0.02 points [−1.69–0.89]), whereas Supporting PP3 was approximately calibrated (0.81 [0.24–1.68]). This held in held-out genes and in later classifications.
+**Results.** Most predictor evidence concerned gene and position: a median 0.32 of log-evidence survived conditioning on 50-residue windows. No pair of criteria was independent (e.g. PP3 × PM1-like R 0.44 [0.41–0.47]). With Strong PP3, the three criteria nominally sum to 7 points (5 when capped) against 4.05 points of de novo evidence. At Supporting the sum, 4, approximately matched the evidence (3.65). Expert panels applied PP3 beside PM1 almost always below Strong (783 of 787), where the cap does not act. There, Moderate PP3 added no detectable evidence (0.02 points [−1.69–0.89]), whereas Supporting PP3 was approximately calibrated (0.81 [0.24–1.68]). This held in held-out genes and later classifications. Laboratory submissions replicated the dependence (R 0.18 [0.14–0.25]) and the Supporting calibration.
 
 **Conclusion.** Location-type criteria overlap, and the overlap that matters in expert practice lies above Supporting PP3, below the reach of the current cap. Limiting PP3 to Supporting when PM1 applies is consistent with these data.
 
@@ -321,6 +321,16 @@ At Supporting, the nominal weights approximately match the joint evidence. With 
 
 Limiting PP3 to Supporting needs no estimated parameter.
 
+**Replication in laboratory practice.**
+- **Data.** We repeated the analysis on ClinVar 2026-10 germline submissions from diagnostic laboratories, excluding expert-panel and practice-guideline submissions. We kept submissions whose comments list ACMG/AMP codes for missense SNVs: 87,873 submissions from 472 submitters.
+- **How labs stack the criteria.** Laboratories applied PP3 beside PM1 in 4,477 submissions, almost always below Strong: Supporting 4,212, Moderate 185, Strong 80.
+- **Truth.** Points from the remaining codes, with the same exclusions and thresholds as for the panels: 39,075 submissions in 5,976 genes.
+- **Dependence.** PP3 and PM1 were dependent, R 0.18 [0.14, 0.25], close to the panels' 0.21.
+- **Supporting PP3** beside PM1 earned 0.83 points [0.53, 1.24] against 1.00 applied, matching the panels' 0.81.
+- **Moderate PP3** earned 0.75 points against 2.00 applied, but with only 3 B/LB variants in the joint cell its interval is unbounded. Strong PP3 had none.
+
+Laboratory data therefore replicate the dependence and the calibration of Supporting PP3, but cannot independently confirm the result for Moderate PP3.
+
 ### Clinical consequences
 **DD de novo classification** (PS2 + PM2 + PM1-like + AlphaMissense PP3):
 - Uncapped co-use placed 2,438 variants at Pathogenic. The de novo excess implies that 84% of that class is disease-associated.
@@ -362,7 +372,7 @@ Earlier de novo-trained classifiers behaved the same way (Supplementary Note 4).
   - The two scales agree that the overlap that matters lies above Supporting PP3.
 - **What it implies for rules.** On expert-panel truth the evidence PP3 keeps beside PM1 excludes uncapped co-use at the Strong tier. It cannot distinguish ClinGen's cap from a conditional rule. On the de novo scale the cap removes slightly more than the measured dependence. We therefore support the cap, or a conditional rule, over uncapped co-use, and do not claim the cap's size is optimal.
 - **Recommendations.**
-  - **Limit PP3 to Supporting when PM1 applies.** This is consistent with the data and needs no estimated parameter. The supporting evidence rests on 67 Moderate-PP3 classifications, so we suggest panels confirm it on their own data.
+  - **Limit PP3 to Supporting when PM1 applies.** This is consistent with the data and needs no estimated parameter. Supporting PP3 beside PM1 was calibrated in both expert-panel and laboratory practice. The evidence against Moderate PP3 rests on 67 panel classifications, which laboratory data point the same way but cannot confirm, so we suggest panels check it on their own data.
   - **Check PM1 + PP2 for shared evidence**, as ACGS advises. Our flags quantify a strong dependence, partly by construction, and expert truth was too sparse in benign variants to test panel-defined PM1 + PP2.
   - **Calibrate co-application jointly.** Panels that keep co-applying location-type criteria should calibrate the combination against independent truth, as done here.
 
@@ -374,7 +384,7 @@ Earlier de novo-trained classifiers behaved the same way (Supplementary Note 4).
 1. **Pre-specification.** The primary criterion failed because its position control did not control position in genes without a constraint split, and the replacement control was adopted afterwards. The amendments were public but not independently registered. We present continuous estimates rather than the binary criterion.
 2. **Estimand.** The de novo LR reflects high-penetrance variants in severe early-onset disorders, not pathogenicity for a specific condition. The oracle depends on an unknown enrichment k.
 3. **The PM1 and PP2 flags are proxies.** Panel-specific PM1 regions differ; expert-panel truth used the panel's own PM1.
-4. **Truth sets.** Expert-panel truth covers 108–130 genes, is ascertained through panels, and was used both to estimate PP3's credit beside PM1 and to show the effect of applying it. Gene-split cross-validation reproduced the credit and the size of the effect in held-out genes. The panels are, however, a single source. Assay truth tests dependence in two genes. Reclassified ClinVar had too few benign variants in the joint cell.
+4. **Truth sets.** Laboratory truth is self-reported in free-text comments, and its codes were parsed automatically. Expert-panel truth covers 108–130 genes, is ascertained through panels, and was used both to estimate PP3's credit beside PM1 and to show the effect of applying it. Gene-split cross-validation reproduced the credit and the size of the effect in held-out genes. The panels are, however, a single source. Assay truth tests dependence in two genes. Reclassified ClinVar had too few benign variants in the joint cell.
 5. **Predictors are correlated.** Shares and rank correlations across predictors are less certain than their nominal counts suggest; we resampled predictors where it matters.
 6. **Transcripts.** 74.4% of GENCODE v32 canonical transcripts in MANE genes match MANE Select v1.5 (66.5% in DDG2P genes). Window assignments may differ for the rest.
 7. **Ancestry.** The cohorts are predominantly of European ancestry.

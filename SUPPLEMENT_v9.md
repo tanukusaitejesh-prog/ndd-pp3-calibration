@@ -642,3 +642,28 @@ points earned by panel-applied PP3 (any strength) once panel PM1 applies: 0.60 [
 expert truth R3(PP3,PM1,PP2) 76874.580 [22388.077, 186117.164]; joint LR 16230472.71 vs product 211.13; summed points 6.10 vs joint points 18.91
 ```
 
+---
+
+## Supplementary Note 12. Replication in laboratory practice
+
+**Code.** `make_lab_stacking.py`, run on ClinVar submission_summary 2026-10 and variant_summary 2026-10.
+
+**Data.** Germline SCVs, excluding expert-panel and practice-guideline review status, whose comments list any ACMG/AMP code, for missense SNVs.
+
+**Parsing.** Codes and strengths were parsed from free text, with negations skipped.
+
+**Truth.** As for the panels (PP3, BP4, PM1, PP2, BP1, BP3, PM4 and PM5 excluded; P/LP ≥ 6, B/LB ≤ −1). Gene-clustered bootstrap, 1,000 replicates, seed 20261015.
+
+**An earlier version** restricted the data to SCVs that mention PP3 or PM1. That selects on the exposure, and it biased the marginal LRs (R 1.53); the version reported here applies no such selection.
+
+```
+Lab submissions (non-expert-panel, germline, missense SNV) listing any ACMG code: 87873; submitters 472
+PP3 applied 20760; PM1 applied 6795; both 4477; PP3 strength when both: 1 4212, 2 185, 4 80
+independent truth: 39075 (P/LP 9487, B/LB 29588, genes 5976, submitters 291)
+R(PP3, PM1) 0.18 [0.14, 0.25]
+PP3 any strength beside PM1: earns 0.85 points [0.53, 1.20]; applied 1.09; n 1775; B/LB 75
+PP3 Supporting   beside PM1: earns 0.83 points [0.53, 1.24]; applied 1.00; n 1681; B/LB 72
+PP3 Moderate     beside PM1: earns 0.75 points [-0.37, 13.82]; applied 2.00; n 65; B/LB 3
+PP3 Strong       beside PM1: earns 13.01 points [12.33, 13.54]; applied 4.00; n 29; B/LB 0
+```
+
