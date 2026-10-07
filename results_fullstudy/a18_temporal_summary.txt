@@ -1,0 +1,30 @@
+A18 temporal reclassification (pre-registered: prereg_fullstudy/A18_TEMPORAL_RECLASSIFICATION_PREREG.md, 8a57850)
+md5 clinvar_20190923.vcf.gz 60fdec5d0e1060691344cb00332b5752; clinvar_20250504.vcf.gz 631394b6de5e41313f96d15472f2e32e
+
+2019 Likely_pathogenic (>=1 star, autosomal missense SNV): 8423; in 2026 table: 5568; absent: 2855
+
+2019 Pathogenic (>=1 star, autosomal missense SNV): 5682; in 2026 table: 4277; absent: 1405
+
+== PRIMARY: 2019 LP, PP3 = REVEL >= 0.644, outcome 2026 VUS or B/LB ==
+  Both     n  1176  downgraded 0.025 [0.014, 0.038]
+  One      n  3564  downgraded 0.062 [0.045, 0.080]
+  Neither  n   807  downgraded 0.133 [0.104, 0.166]
+    PP3 only       n  3318  downgraded 0.064 [0.046, 0.082]
+    PM1-like only  n   246  downgraded 0.033 [0.013, 0.057]
+  MH OR Both vs One (gene-stratified): 0.527 [0.216, 1.070] (170 informative genes; 2000 valid bootstrap replicates; min detectable OR ~3.13)
+  Pre-specified rule -> SUPPLEMENT (null)
+
+== Secondary 2: other PP3 proxies (2019 LP) ==
+  AlphaMissense MH OR 0.366 [0.120, 0.824]; Both 0.018 (n 1284) One 0.049 (n 2948) Neither 0.145 (n 1336)
+  VEST4         MH OR 0.340 [0.125, 0.727]; Both 0.018 (n 1191) One 0.061 (n 3636) Neither 0.163 (n 705)
+
+== Secondary 3: 2019 Pathogenic cohort (REVEL) ==
+  MH OR 1.055 [0.032, 9.372]; Both 0.005 (n 957) One 0.009 (n 2893) Neither 0.045 (n 397)
+
+== Secondary 4: logistic, downgrade ~ group + 2019 stars (gene-clustered SE; ref = One) ==
+  C(grp)[T.Both]               OR 0.363 [0.210, 0.627] p 0.000283
+  C(grp)[T.Neither]            OR 2.189 [1.631, 2.940] p 1.87e-07
+
+== Secondary 5: 2019 LP variants absent from the 2026 table (n 2855), status in ClinVar 2025-05 ==
+  conflicting 1443; P/LP 1327; VUS 60; not in 2025 release 10; other 9; B/LB 3; P/LP (0 star or other) 3
+  1506 drop-outs were downgraded or conflicting in 2025. Primary MH OR if all were Both: 37.176; if all were One: 0.044
