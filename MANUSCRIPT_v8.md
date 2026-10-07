@@ -26,7 +26,7 @@ Missense variants are the largest class of variants of uncertain significance. U
 - location in a hotspot or critical domain (PM1);
 - membership of a gene with little benign missense variation (PP2).
 
-The Bayesian points framework adds these in log-likelihood-ratio units, assuming they are independent (Tavtigian et al. 2018, 2020). ClinGen calibrated predictor thresholds against ClinVar (Pejaver et al. 2022; Bergquist et al. 2025). Recognising that PP3 and PM1 can describe the same property, it capped their sum at Strong (Pejaver et al. 2022; Stenton et al. 2024). CanVIG-UK permits both at full weight (Garrett et al. 2021). Whether PM1 and PP2 are independent has received less attention.
+The Bayesian points framework adds these in log-likelihood-ratio units, assuming they are independent (Tavtigian et al. 2018, 2020). ClinGen calibrated predictor thresholds against ClinVar (Pejaver et al. 2022; Bergquist et al. 2025). Recognising that PP3 and PM1 can describe the same property, it capped their sum at Strong (Pejaver et al. 2022; Stenton et al. 2024). CanVIG-UK permits both at full weight (Garrett et al. 2021). UK guidance cautions against counting constraint in both PM1 and PP2 (ACGS 2024), and some expert panels restrict PP2 for this reason. The size of that dependence has not been measured, and several ClinGen panels still apply both.
 
 The question is how much a predictor adds once gene and position are known. A predictor that has learned which genes and domains are intolerant separates pathogenic from benign variants pooled across genes, yet may add little within them. Pooled evaluation rewards that knowledge twice:
 
@@ -265,6 +265,7 @@ At k ≈ 30 a perfect predictor retains 0.54. Real predictors (median 0.32; Alph
 
 - **The cap rarely applies.** Where PP3 accompanied PM1, it was applied at Supporting in 605 classifications, at Moderate in 178 and at Strong in 4. The ClinGen cap binds only at Strong, so it constrains almost none of this stacking.
 - **PM1 + PP2 is concentrated in seven panels:** RASopathy 62, FBN1 61, Monogenic Diabetes 22, Brain Malformations 11, PTEN 11, Pulmonary Hypertension 5 and ACADVL 2.
+- **Some classifications predate current specifications.** For example, the RASopathy panels updated theirs in 2025 (ClinGen RASopathy Expert Panels 2025). The repository records each classification as approved under the specification then in force.
 
 **Dependence of the panels' own criteria on independent truth.**
 - **The truth set.** Classifications were re-scored after removing PP3, BP4, PM1, PP2, BP1, BP3, PM4 and PM5: 2,942 missense classifications in 130 genes reached P/LP (≥ 6 points) or B/LB (≤ −1). Unlike the Table 4 analysis, this uses the panels' own PP3 rather than AlphaMissense, so no site mapping is needed.
@@ -324,7 +325,7 @@ Earlier de novo-trained classifiers behaved the same way (Supplementary Note 4).
 - **Our recommendation is modest:** when PP3 is combined with gene- or region-level criteria, within-window evidence is the relevant benchmark.
 
 **Independence of criteria.** No pair of PP3, PM1 and PP2 was independent on the de novo scale.
-- **PM1 × PP2** was the most dependent pair. Applying both counts gene-level and regional constraint largely twice, which current guidance does not cap.
+- **PM1 × PP2** was the most dependent pair. Applying both counts gene-level and regional constraint largely twice. UK guidance already cautions against this qualitatively (ACGS 2024); our data quantify it, and show that seven ClinGen panels still co-apply the two.
 - **PP3 × PM1** was dependent in three cohorts, within disease genes and on clinical truth, though with a size that varies across truth sets.
 - **Expert practice.** Panels stack these criteria, mostly at strengths the existing cap does not reach. On the panels' own classifications, PP3 beside PM1 was worth about half the points applied. When PP3, PM1 and PP2 all apply, the summed points overstate the de novo evidence by about 2.4 points, enough to move a variant across a class boundary.
 - **What it implies for rules.** On expert-panel truth the evidence PP3 keeps beside PM1 excludes uncapped co-use at the Strong tier. It cannot distinguish ClinGen's cap from a conditional rule. On the de novo scale the cap removes slightly more than the measured dependence. We therefore support the cap, or a conditional rule, over uncapped co-use, and do not claim the cap's size is optimal.
@@ -401,6 +402,7 @@ All analyses use public data: published de novo tables, ClinVar, the ClinGen Evi
 - Chao KR, et al. The landscape of regional missense mutational intolerance quantified from 125,748 exomes. bioRxiv 2024. doi:10.1101/2024.04.11.588920.
 - Chen et al. Gene- and domain-aware calibration increases the clinical utility of variant effect predictors. Research Square preprint, 2026.
 - Cheng J, et al. Accurate proteome-wide missense variant effect prediction with AlphaMissense. *Science* 2023.
+- ACGS. Best practice guidelines for variant classification in rare disease 2024. Association for Clinical Genomic Science, 2024.
 - Gao H, et al. The landscape of tolerated genetic variation in humans and primates (PrimateAI-3D). *Science* 2023.
 - Garrett A, et al. Combining evidence for and against pathogenicity for variants in cancer susceptibility genes: CanVIG-UK consensus recommendations. *J Med Genet* 2021;58:297.
 - Grimm DG, et al. The evaluation of tools used to predict the impact of missense variants is hindered by two types of circularity. *Hum Mutat* 2015.
@@ -419,4 +421,5 @@ All analyses use public data: published de novo tables, ClinVar, the ClinGen Evi
 - Tavtigian SV, et al. *Genet Med* 2018; Tavtigian SV, et al. *Hum Mutat* 2020.
 - Tejura M, et al. Calibration of variant effect predictors on genome-wide data masks heterogeneous performance across genes. *Am J Hum Genet* 2024.
 - Turner TN, et al. denovo-db. *Nucleic Acids Res* 2017.
+- ClinGen RASopathy Expert Panels. Updated ACMG/AMP specifications for variant interpretation and gene curations from the ClinGen RASopathy expert panels. *Genet Med Open* 2025.
 - Zhou X, et al. Integrating de novo and inherited variants in 42,607 autism cases identifies mutations in new moderate-risk genes. *Nat Genet* 2022.
