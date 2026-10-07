@@ -133,3 +133,47 @@ for lab, newpts in (("PP3 at most Supporting when PM1 applies", later.pts - np.w
     out.append(f"  2025-2026 classifications ({len(later)}): rule [{lab}] changes {int(ch.sum())}")
 open("results_fullstudy_backup/stacking_cv_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out[-25:]))
+
+# ---- review 15: Moderate - Supporting difference test with power; de novo criteria (PS2, PM6) excluded from truth
+DENOVO = {"PS2", "PM6"}
+
+
+def truthset2(drop):
+    ex = EXCL | drop
+    ind = ev.map(lambda e: sum(v for c, v in e.items() if c not in ex))
+    t = d[(ind >= 6) | (ind <= -1)].copy()
+    t["truth"] = (ind[t.index] >= 6).astype(int)
+    return t
+
+
+out.append("Moderate - Supporting difference in PP3 credit beside panel PM1 (gene-clustered bootstrap, 2,000):")
+for lab, drop in (("primary truth", set()), ("PS2/PM6 also excluded", DENOVO), ("PS2/PM6 and BA1/BS1/BS2/PM2 excluded", DENOVO | FREQ)):
+    t = truthset2(drop)
+    g = t.gene.unique()
+    ix = t.groupby("gene").indices
+    vals = []
+    for _ in range(2000):
+        z = t.iloc[np.concatenate([ix[x] for x in rng.choice(g, len(g))])]
+        vals.append((credit(z, 1.0), credit(z, 2.0)))
+    V = np.array(vals)
+    dlt = V[:, 1] - V[:, 0]
+    d0 = credit(t, 2.0) - credit(t, 1.0)
+    lo, hi = np.nanpercentile(dlt, [2.5, 97.5])
+    se = np.nanstd(dlt)
+    p_ = 2 * min((dlt >= 0).mean(), (dlt <= 0).mean())
+    nS = int(((t.PM1 > 0) & (t.PP3 == 1)).sum()); nM = int(((t.PM1 > 0) & (t.PP3 == 2)).sum())
+    bS = int(((t.PM1 > 0) & (t.PP3 == 1) & (t.truth == 0)).sum()); bM = int(((t.PM1 > 0) & (t.PP3 == 2) & (t.truth == 0)).sum())
+    out.append(f"  {lab:38s}: Supporting {credit(t, 1.0):.2f}, Moderate {credit(t, 2.0):.2f}; difference {d0:+.2f} [{lo:+.2f}, {hi:+.2f}], "
+               f"bootstrap p {p_:.3f}; n Supporting {nS} (B/LB {bS}), Moderate {nM} (B/LB {bM}); SE {se:.2f}; "
+               f"minimum detectable difference (80% power, two-sided 5%) {2.8 * se:.2f} points; "
+               f"overall credit {credit(t):.2f}; truth n {len(t)}")
+open("results_fullstudy_backup/stacking_cv_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-4:]))
+out.append("PP3 credit beside PM1 with PS2/PM6 excluded from truth (gene-clustered 95% CI):")
+t = truthset2(DENOVO)
+for lab, sel in (("any", None), ("Supporting", 1.0), ("Moderate", 2.0)):
+    c0, lo, hi = boot_credit(t, sel)
+    m = (t.PM1 > 0) & ((t.PP3 > 0) if sel is None else (t.PP3 == sel))
+    out.append(f"  PP3 {lab:10s}: {c0:.2f} [{lo:.2f}, {hi:.2f}]; applied {t.loc[m, 'PP3'].mean():.2f}; n {int(m.sum())}")
+open("results_fullstudy_backup/stacking_cv_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-4:]))

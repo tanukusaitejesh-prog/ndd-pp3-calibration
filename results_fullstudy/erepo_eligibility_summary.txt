@@ -1,0 +1,9 @@
+Mapped missense classifications 5990; with truth (PS2/PM6 also excluded) 2381 (P/LP 1492, B/LB 889, genes 103)
+Within panel-PM1 classifications (n 345; P/LP 309, B/LB 36):
+  PP3 applied                     : n 254 (P/LP 241, B/LB 13); LR 2.16
+  eligible, PP3 not applied       : n 70 (P/LP 63, B/LB 7); LR 1.05
+  not eligible, PP3 not applied   : n 21 (P/LP 5, B/LB 16); LR 0.04
+credit beside panel PM1, panel-applied PP3                                   : 0.88 points [0.35, 1.49]; n 254; B/LB 13
+credit beside panel PM1, score-defined PP3 (REVEL >= 0.644 or AM >= 0.792)   : 0.71 points [0.35, 1.20]; n 322; B/LB 19
+credit beside panel PM1, score-defined PP3 (REVEL >= 0.644)                  : 0.68 points [0.34, 1.19]; n 315; B/LB 19
+credit beside panel PM1, score-defined PP3 (AM >= 0.792)                     : 1.66 points [0.98, 2.58]; n 264; B/LB 7

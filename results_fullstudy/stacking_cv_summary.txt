@@ -24,3 +24,11 @@ Temporal split (approved before vs from 2025-01-01): training credit 0.70 [-0.14
   2025-2026 classifications (2507): rule [PP3 at most Supporting when PM1 applies] changes 15
   2025-2026 classifications (2507): rule [PP3 at training-period credit when PM1 applies] changes 75
   2025-2026 classifications (2507): rule [ClinGen cap] changes 16
+Moderate - Supporting difference in PP3 credit beside panel PM1 (gene-clustered bootstrap, 2,000):
+  primary truth                         : Supporting 0.81, Moderate 0.02; difference -0.79 [-2.81, +0.27], bootstrap p 0.139; n Supporting 235 (B/LB 11), Moderate 67 (B/LB 6); SE 1.55; minimum detectable difference (80% power, two-sided 5%) 4.35 points; overall credit 0.60; truth n 2942
+  PS2/PM6 also excluded                 : Supporting 0.75, Moderate 0.15; difference -0.60 [-3.03, +0.45], bootstrap p 0.240; n Supporting 191 (B/LB 11), Moderate 64 (B/LB 6); SE 1.61; minimum detectable difference (80% power, two-sided 5%) 4.52 points; overall credit 0.58; truth n 2768
+  PS2/PM6 and BA1/BS1/BS2/PM2 excluded  : Supporting 0.58, Moderate 0.29; difference -0.29 [-17.96, +15.10], bootstrap p 0.658; n Supporting 128 (B/LB 4), Moderate 50 (B/LB 2); SE 5.92; minimum detectable difference (80% power, two-sided 5%) 16.58 points; overall credit 0.50; truth n 1531
+PP3 credit beside PM1 with PS2/PM6 excluded from truth (gene-clustered 95% CI):
+  PP3 any       : 0.58 [0.08, 1.04]; applied 1.27; n 257
+  PP3 Supporting: 0.75 [0.17, 1.56]; applied 1.00; n 191
+  PP3 Moderate  : 0.15 [-2.10, 0.97]; applied 2.00; n 64
