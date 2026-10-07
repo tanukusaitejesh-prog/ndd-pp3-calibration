@@ -1,0 +1,12 @@
+Informative predictors in DD (marginal top-2% LR >= 2.406): 39 (25 dbNSFP 4.1a + AlphaMissense, 14 newer)
+Median marginal LR 6.08; within gene 2.99; within window 1.78
+Median share of log-evidence retained within window 0.32 (i.e. 0.68 is gene and position)
+Median inflation (marginal / within-window LR) 3.58; range 1.47-10.62
+Spearman(marginal LR, within-window LR) across predictors: -0.18 (p = 0.28)
+Top 5 by marginal LR: MisFit_S, MutScore, PHACTboost, MPC, AlphaMissense
+Top 5 by within-window LR: VEST4, MutPred, MetaRNN, ClinPred, AlphaMissense
+Largest drops in rank: MPC (-35), PrimateAI (-25), MutFormer (-25), PHACTboost (-23), DEOGEN2 (-22)
+Largest gains in rank: MutPred (+29), ClinPred (+28), PROVEAN (+28), MutationAssessor (+27), VEST4 (+24)
+Replication of within-window LR across predictors: autism Spearman 0.85 (n 25); public Spearman 0.49 (n 25); marginal LR DD vs autism Spearman 0.77
+Predictors whose within-window LR reaches the ClinGen Supporting LR (2.406) with a lower 95% bound above it: VEST4
+popEVE (DDD only): marginal 17.86; within gene 3.13; rmc 1.96; ccr 2.09; pseudo 2.15; win50 1.76; pseudo_rmc 1.87; win50_rmc 1.69
