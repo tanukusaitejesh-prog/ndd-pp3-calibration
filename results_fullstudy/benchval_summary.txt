@@ -1,0 +1,12 @@
+Benchmark validity across 39 informative predictors (DD within-window and marginal top-2% LR, gene-clustered bench2)
+Spearman(LR_marginal, clinvar_auc_pooled) = +0.28 [-0.08, +0.62] (n 39)
+Spearman(LR_window, clinvar_auc_pooled) = +0.44 [+0.10, +0.68] (n 39)
+Spearman(LR_marginal, clinvar_auc_within_gene) = +0.37 [+0.06, +0.63] (n 39)
+Spearman(LR_window, clinvar_auc_within_gene) = +0.55 [+0.22, +0.77] (n 39)
+Spearman(LR_marginal, clinvar_auc_within_gene_ddg2p) = +0.37 [+0.04, +0.64] (n 39)
+Spearman(LR_window, clinvar_auc_within_gene_ddg2p) = +0.56 [+0.25, +0.77] (n 39)
+Spearman(LR_marginal, assay_spearman_mean) = +0.37 [+0.04, +0.62] (n 39)
+Spearman(LR_window, assay_spearman_mean) = +0.63 [+0.39, +0.79] (n 39)
+window - marginal, for clinvar_auc_within_gene: +0.18 [-0.32, +0.63]
+window - marginal, for clinvar_auc_within_gene_ddg2p: +0.19 [-0.29, +0.62]
+window - marginal, for assay_spearman_mean: +0.26 [-0.11, +0.65]

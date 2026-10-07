@@ -1,0 +1,4 @@
+DD     PM1-like   x PP2-like: R 0.31 [0.28, 0.33]
+DD     PM1-strict x PP2-like: R 0.27 [0.24, 0.31]
+autism PM1-like   x PP2-like: R 0.36 [0.30, 0.45]
+autism PM1-strict x PP2-like: R 0.34 [0.27, 0.44]

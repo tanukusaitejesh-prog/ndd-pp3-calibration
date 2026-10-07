@@ -1,0 +1,12 @@
+all_genes a1     top  1%: informative 39; median r(window) 0.33; Spearman(marginal, window) -0.11 [-0.17, +0.17]; share r<0.5 0.87 [0.69, 0.97]; NULL marginal 0.98, window 1.01
+all_genes a1     top  2%: informative 39; median r(window) 0.32; Spearman(marginal, window) -0.17 [-0.26, +0.06]; share r<0.5 0.87 [0.69, 0.97]; NULL marginal 1.11, window 1.06
+all_genes a1     top 10%: informative 39; median r(window) 0.29; Spearman(marginal, window) -0.22 [-0.31, -0.06]; share r<0.5 0.95 [0.77, 1.00]; NULL marginal 0.84, window 0.82
+all_genes common top  1%: informative 39; median r(window) 0.34; Spearman(marginal, window) -0.02 [-0.11, +0.27]; share r<0.5 0.85 [0.67, 0.97]; NULL marginal 0.90, window 0.97
+all_genes common top  2%: informative 39; median r(window) 0.32; Spearman(marginal, window) -0.15 [-0.25, +0.11]; share r<0.5 0.90 [0.69, 0.97]; NULL marginal 1.10, window 1.07
+all_genes common top 10%: informative 39; median r(window) 0.30; Spearman(marginal, window) -0.17 [-0.27, -0.01]; share r<0.5 0.92 [0.79, 1.00]; NULL marginal 0.87, window 0.84
+ddg2p     a1     top  1%: informative 38; median r(window) 0.44; Spearman(marginal, window) +0.55 [+0.34, +0.67]; share r<0.5 0.79 [0.50, 0.92]; NULL marginal 0.94, window 0.99
+ddg2p     a1     top  2%: informative 39; median r(window) 0.43; Spearman(marginal, window) +0.68 [+0.53, +0.76]; share r<0.5 0.82 [0.62, 0.92]; NULL marginal 1.36, window 1.30
+ddg2p     a1     top 10%: informative 34; median r(window) 0.39; Spearman(marginal, window) +0.68 [+0.57, +0.76]; share r<0.5 0.91 [0.71, 1.00]; NULL marginal 1.00, window 1.00
+ddg2p     common top  1%: informative 38; median r(window) 0.43; Spearman(marginal, window) +0.56 [+0.33, +0.70]; share r<0.5 0.79 [0.47, 0.92]; NULL marginal 0.61, window 0.71
+ddg2p     common top  2%: informative 38; median r(window) 0.43; Spearman(marginal, window) +0.67 [+0.45, +0.73]; share r<0.5 0.79 [0.50, 0.92]; NULL marginal 1.31, window 1.27
+ddg2p     common top 10%: informative 34; median r(window) 0.41; Spearman(marginal, window) +0.67 [+0.58, +0.78]; share r<0.5 0.91 [0.68, 1.00]; NULL marginal 1.02, window 1.00

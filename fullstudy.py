@@ -3902,6 +3902,306 @@ def cmd_a14(a):
     log("\n".join(lines))
 
 
+# ======================================================================== review 10: benchmark rebuild (descriptive)
+def cmd_bench2(a):
+    """Gene-clustered benchmark: for each informative predictor (+ a random NULL score), marginal / within-gene /
+    within-window (50 aa) top-q LR at q = 1, 2, 10% of opportunity, on (i) the A1 site set (RMC and CCR present) and
+    (ii) a common site set where every predictor is scored. Transcript-clustered bootstrap (1,000; seed 20261009) gives
+    intervals on LRs, retention, ranks, the marginal-vs-within rank correlation and the share with r < 0.5."""
+    names = pd.read_csv("supp_table7_benchmark.tsv", sep="\t", index_col=0).index.tolist() + ["NULL"]
+    col = {n: ("am" if n == "AlphaMissense" else (None if n == "NULL" else score_col(n))) for n in names}
+    qs = [0.01, 0.02, 0.10]
+    d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+    cs = len(syn_p) / syn_mass
+    dkey, dchr = d_mis["key"].to_numpy(), d_mis["chrom"].astype(str).to_numpy()
+    NT = 18398
+    nb = 20000
+
+    def score(od, n, key):
+        if n == "NULL":
+            return ((key.astype(np.uint64) * np.uint64(2654435761)) % np.uint64(2 ** 32)).astype(np.float64) / 2 ** 32
+        return np.load(P(od, col[n] + ".npy"), mmap_mode="r").astype(np.float64)
+    # pass 1: opportunity-weighted histograms -> thresholds; common-set masks
+    H = {(n, s): np.zeros(nb) for n in names for s in ("a1", "common")}
+    masks = {}
+    for c in AUTOSOMES:
+        od = P(a.fs, "col", f"chr{c}")
+        key = np.load(P(od, "key.npy"))
+        mr = np.load(P(od, PRIMARY_MODEL + ".npy")).astype(np.float64)
+        base = (np.isfinite(np.load(P(od, "rmc_oe.npy"))) & np.isfinite(np.load(P(od, "ccr_pct.npy")))
+                & (np.load(P(od, "tx.npy")) >= 0) & (np.load(P(od, "prot_pos.npy")) > 0))
+        common = base.copy()
+        for n in names:
+            common &= np.isfinite(score(od, n, key))
+        masks[c] = (base, common)
+        for n in names:
+            sc = score(od, n, key)
+            for s, m in (("a1", base), ("common", common)):
+                k = m & np.isfinite(sc)
+                H[(n, s)] += np.bincount(np.minimum((np.clip(sc[k], 0, 1) * nb).astype(np.int64), nb - 1), weights=mr[k], minlength=nb)
+        log(f"bench2 pass 1 chr{c}: base {base.sum()}, common {common.sum()}")
+    thr = {}
+    for (n, s), h in H.items():
+        cum = np.cumsum(h[::-1])[::-1] / h.sum()                 # opportunity share at or above each bin
+        for q in qs:
+            thr[(n, s, q)] = np.flatnonzero(cum >= q).max() / nb
+    # pass 2: per-transcript sums
+    keys = [(n, s, q) for n in names for s in ("a1", "common") for q in qs]
+    S = {k: np.zeros((6, NT)) for k in keys}                      # rows: M_top, M_all, O_top, O_all, Opg_top(unused), Opw_top
+    for c in AUTOSOMES:
+        od = P(a.fs, "col", f"chr{c}")
+        key = np.load(P(od, "key.npy"))
+        tx = np.maximum(np.load(P(od, "tx.npy")).astype(np.int64), 0)
+        pp = np.load(P(od, "prot_pos.npy")).astype(np.int64)
+        mr = np.load(P(od, PRIMARY_MODEL + ".npy")).astype(np.float64)
+        w = tx * 1000 + (pp - 1) // 50
+        uw, wi = np.unique(w, return_inverse=True)
+        wtx = np.maximum(uw // 1000, 0)
+        di = np.flatnonzero(dchr == str(c))
+        pos = pd.Series(np.arange(len(key)), index=key).reindex(dkey[di]).to_numpy()
+        o = np.zeros(len(key))
+        np.add.at(o, pos[np.isfinite(pos)].astype(np.int64), 1)
+        base, common = masks[c]
+        for n in names:
+            sc = score(od, n, key)
+            for s, m in (("a1", base), ("common", common)):
+                k = m & np.isfinite(sc)
+                for q in qs:
+                    top = k & (sc >= thr[(n, s, q)])
+                    Mw_all = np.bincount(wi[k], weights=mr[k], minlength=len(uw))
+                    Mw_top = np.bincount(wi[top], weights=mr[top], minlength=len(uw))
+                    Ow_all = np.bincount(wi[k], weights=o[k], minlength=len(uw))
+                    with np.errstate(all="ignore"):
+                        opw = np.where(Mw_all > 0, Ow_all * Mw_top / Mw_all, 0.0)
+                    A = S[(n, s, q)]
+                    A[0] += np.bincount(tx[top], weights=mr[top], minlength=NT)[:NT]
+                    A[1] += np.bincount(tx[k], weights=mr[k], minlength=NT)[:NT]
+                    A[2] += np.bincount(tx[top], weights=o[top], minlength=NT)[:NT]
+                    A[3] += np.bincount(tx[k], weights=o[k], minlength=NT)[:NT]
+                    A[5] += np.bincount(wtx, weights=opw, minlength=NT)[:NT]
+        log(f"bench2 pass 2 chr{c} done")
+    rng = np.random.default_rng(20261009)
+    live = np.flatnonzero(S[keys[0]][1] > 0)
+    W = np.vstack([np.ones(NT)[None, :], np.stack([np.bincount(rng.choice(live, len(live)), minlength=NT) for _ in range(1000)])]).astype(float)
+    ddtx = tinfo["ddg2p"].reindex(np.arange(NT)).fillna(False).to_numpy(bool)
+
+    def lrs(A, Wt):
+        Mt, Ma, Ot, Oa, _, Opw = (Wt @ A[i] for i in range(6))
+        with np.errstate(all="ignore"):
+            Opg = Wt @ np.where(A[1] > 0, A[3] * A[0] / A[1], 0.0)
+            Et, Ea = cs * Mt, cs * Ma
+            m = ((Ot - Et) / (Oa - Ea)) / (Mt / Ma)
+            g = (Ot - Et) / (Opg - Et)
+            wn = (Ot - Et) / (Opw - Et)
+        return m, g, wn
+    rows, R = [], {}
+    for stratum, mask in (("all_genes", np.ones(NT, bool)), ("ddg2p", ddtx)):
+        Wt = W * mask[None, :]
+        for k in keys:
+            m, g, wn = lrs(S[k], Wt)
+            with np.errstate(all="ignore"):
+                rg, rw = np.log(g) / np.log(m), np.log(wn) / np.log(m)
+            R[(stratum,) + k] = (m, wn, rw)
+            ci = lambda v: np.nanpercentile(v[1:], [2.5, 97.5])
+            rows.append(dict(stratum=stratum, predictor=k[0], site_set=k[1], q=k[2], LR_marginal=m[0], LR_marginal_lo=ci(m)[0],
+                             LR_marginal_hi=ci(m)[1], LR_gene=g[0], LR_window=wn[0], LR_window_lo=ci(wn)[0], LR_window_hi=ci(wn)[1],
+                             r_gene=rg[0], r_window=rw[0], r_window_lo=ci(rw)[0], r_window_hi=ci(rw)[1]))
+    T = pd.DataFrame(rows)
+    out = []
+    for stratum in ("all_genes", "ddg2p"):
+        for s in ("a1", "common"):
+            for q in qs:
+                sub = T[(T.stratum == stratum) & (T.site_set == s) & (T.q == q)].set_index("predictor")
+                real = [n for n in names if n != "NULL" and sub.loc[n, "LR_marginal"] >= 2.406]
+                M = np.stack([R[(stratum, n, s, q)][0] for n in real], 1)
+                Wn = np.stack([R[(stratum, n, s, q)][1] for n in real], 1)
+                rw = np.stack([R[(stratum, n, s, q)][2] for n in real], 1)
+                rk = (-Wn).argsort(1).argsort(1) + 1
+                for j, n in enumerate(real):
+                    T.loc[(T.stratum == stratum) & (T.site_set == s) & (T.q == q) & (T.predictor == n),
+                          ["rank_window", "rank_window_lo", "rank_window_hi"]] = [rk[0, j], *np.percentile(rk[1:, j], [2.5, 97.5])]
+                from scipy import stats as st_
+                rho = np.array([st_.spearmanr(M[b], Wn[b])[0] for b in range(len(M))])
+                pr = rng.integers(0, len(real), (1000, len(real)))     # predictor-level resampling on top of gene resampling
+                share = np.array([(rw[1 + b][pr[b]] < 0.5).mean() for b in range(1000)])
+                nl = sub.loc["NULL"]
+                out.append(f"{stratum:9s} {s:6s} top {int(q * 100):2d}%: informative {len(real)}; median r(window) "
+                           f"{np.median(rw[0]):.2f}; Spearman(marginal, window) {rho[0]:+.2f} [{np.nanpercentile(rho[1:], 2.5):+.2f}, "
+                           f"{np.nanpercentile(rho[1:], 97.5):+.2f}]; share r<0.5 {(rw[0] < 0.5).mean():.2f} "
+                           f"[{np.percentile(share, 2.5):.2f}, {np.percentile(share, 97.5):.2f}]; NULL marginal {nl.LR_marginal:.2f}, "
+                           f"window {nl.LR_window:.2f}")
+    T.to_csv(P(a.results, "bench2.tsv"), sep="\t", index=False, float_format="%.4g")
+    open(P(a.results, "bench2_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("\n".join(out))
+
+
+def cmd_pm1pp2(a):
+    """Independence audit, third pair: R(PM1-like or PM1-strict, PP2-like) on the de novo excess, DD and autism,
+    marginal (PP2 is gene-level, so no within-gene R); transcript-clustered bootstrap 1,000, seed 20261011."""
+    out = []
+    for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
+        a.cohort = kw.get("cohort")
+        d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+        cs = len(syn_p) / syn_mass
+        gz = pd.read_csv(GNOMAD_GENE, sep="\t", compression="gzip", usecols=["gene", "mis_z"])
+        pp2_tx = tinfo["gene"].reindex(np.arange(18398)).map(gz.groupby("gene")["mis_z"].max()).fillna(-np.inf).to_numpy() >= 3.09
+        Mm = {f: np.zeros((18398, 4)) for f in ("PM1-like", "PM1-strict")}
+        Om = {f: np.zeros((18398, 4)) for f in ("PM1-like", "PM1-strict")}
+        dkey, dchr = d_mis["key"].to_numpy(), d_mis["chrom"].astype(str).to_numpy()
+        for c, u in site_chunks(a, cols=["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct"]):
+            tx = u["tx"].to_numpy(np.int64)
+            oe, ccr = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float)
+            mr = u[PRIMARY_MODEL].to_numpy(float)
+            di = np.flatnonzero(dchr == str(c))
+            pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dkey[di]).to_numpy()
+            pos = pos[np.isfinite(pos)].astype(np.int64)
+            for f, fl in (("PM1-like", (oe < 0.4) | (ccr >= 95)), ("PM1-strict", oe < 0.2)):
+                cat = 2 * fl.astype(np.int64) + pp2_tx[tx].astype(np.int64)
+                np.add.at(Mm[f], (tx, cat), mr)
+                np.add.at(Om[f], (tx[pos], cat[pos]), 1)
+            del u
+            gc.collect()
+        rng = np.random.default_rng(20261011)
+        live = np.flatnonzero(Mm["PM1-like"].sum(1) > 0)
+        W = np.stack([np.bincount(rng.choice(live, len(live)), minlength=18398) for _ in range(1000)]).astype(float)
+        for f in ("PM1-like", "PM1-strict"):
+            def R_(O, M):
+                E = cs * M
+                X = O - E
+                lr = lambda g: (X[..., g].sum(-1) / X.sum(-1)) / (E[..., g].sum(-1) / E.sum(-1))
+                return lr([3]) / (lr([2, 3]) * lr([1, 3]))
+            r0 = R_(Om[f].sum(0), Mm[f].sum(0))
+            rb = R_(W @ Om[f], W @ Mm[f])
+            lo, hi = np.nanpercentile(rb, [2.5, 97.5])
+            out.append(f"{label:6s} {f:10s} x PP2-like: R {r0:.2f} [{lo:.2f}, {hi:.2f}]")
+    a.cohort = None
+    open(P(a.results, "pm1pp2_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("\n".join(out))
+
+
+def cmd_oracle(a):
+    """Oracle ceiling for retention (review 10). Model: a site is pathogenic or not; pathogenic sites have de novo rate
+    k x mutation rate, others 1x. Window excess X_w = E_w (rho_w - 1)+ comes from the fitted A16 rate model (shrunk), so
+    pathogenic mass in w is X_w / (k - 1). A perfect predictor's top bin = the pathogenic sites (optionally padded at random
+    to q = 2% of opportunity). Under the excess estimators used throughout:
+      marginal LR = (X_b / sum X) / (E_b / sum E); within-unit LR = X_b / sum_u X_u * E_ub / E_u.
+    Reported for k = 10 ... 1000, at the oracle's natural threshold and at q = 2%."""
+    cells = pd.read_pickle(P(a.fs, "hier", "cells.pkl"))
+    w = cells.assign(R=cells.E * cells.rho).groupby("w")[["E", "R"]].sum()
+    w["tx"] = w.index // 1000
+    w["X"] = np.maximum(w.R - w.E, 0)                             # the oracle world: excess only where rate > background
+    Et, Xt = w.E.sum(), w.X.sum()
+    out = [f"Oracle ceiling (world defined at 50-residue-window resolution from the fitted A16 rates): windows {len(w)}; "
+           f"total excess / opportunity {Xt / Et:.3f}"]
+    for k in (10, 30, 100, 300, 1000):
+        for lab, q in (("natural", None), ("q=2%", 0.02)):
+            path = w.X / (k - 1)
+            Eb = path if q is None else path + max(q * Et - path.sum(), 0) * w.E / Et
+            Xb = Xt
+            marg = (Xb / Xt) / (Eb.sum() / Et)
+            win = Xb / (w.X * Eb / w.E).sum()
+            gg = pd.DataFrame({"X": w.X, "E": w.E, "Eb": Eb, "tx": w.tx}).groupby("tx").sum()
+            gen = Xb / (gg.X * gg.Eb / gg.E).sum()
+            out.append(f"k {k:5d} {lab:8s}: pathogenic share {path.sum() / Et:.4f}; marginal LR {marg:.1f}; within gene {gen:.1f}; "
+                       f"within window {win:.1f}; retention gene {np.log(gen) / np.log(marg):.2f}, window {np.log(win) / np.log(marg):.2f}")
+    open(P(a.results, "oracle_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("\n".join(out))
+
+
+def cmd_benchval(a):
+    """Construct validity of the benchmark: across predictors, does within-window de novo LR track within-gene clinical
+    (ClinVar P/LP vs B/LB, DD de novo sites removed) and functional (ProteinGym) performance better than marginal LR?
+    Convergent/discriminant design: marginal LR vs pooled (across-gene) ClinVar AUROC; within-window LR vs within-gene
+    AUROC and assay Spearman. Predictor-level bootstrap (2,000; seed 20261010)."""
+    from scipy import stats as st_
+    b2 = pd.read_csv(P(a.results, "bench2.tsv"), sep="\t")
+    b2 = b2[(b2.stratum == "all_genes") & (b2.site_set == "a1") & (b2.q == 0.02) & (b2.predictor != "NULL")].set_index("predictor")
+    names = [n for n in b2.index if b2.loc[n, "LR_marginal"] >= 2.406]
+    col = {n: ("am" if n == "AlphaMissense" else score_col(n)) for n in names}
+    tinfo = load_tinfo(a)
+    cv = pd.read_csv(P(a.results, "a4_clinvar_matched.tsv.gz"), sep="\t", dtype={"chrom": str}, usecols=["key", "cls", "chrom"])
+    cv = cv[cv["cls"].isin(["P/LP", "B/LB"])]
+    cv["chrom"] = cv["chrom"].str.replace("chr", "")
+    meta = pd.read_csv(P(a.work, "dnv_grch38.tsv"), sep="\t", dtype={"chrom": str}, usecols=["chrom", "pos38", "alt38"])
+    meta = meta[meta["alt38"].isin(list(gate.B2I))]
+    dk = set(zip(meta["chrom"].str.replace("chr", ""), meta["pos38"].astype(np.int64) * 4 + meta["alt38"].map(gate.B2I)))
+    mv = pd.read_csv(P(a.results, "mave_truth_sites.tsv"), sep="\t")
+    gene_tx = {g: t for t, g in tinfo["gene"].reindex(np.arange(18398)).dropna().items()}
+    mv["tx"] = mv["gene"].map(gene_tx)
+    mv = mv[mv["tx"].notna()].copy()
+    mv["tx"] = mv["tx"].astype(np.int64)
+    mv["mt_code"] = mv["mt"].map(ord)
+    rows_c, rows_m = [], []
+    for c in AUTOSOMES:
+        od = P(a.fs, "col", f"chr{c}")
+        key = np.load(P(od, "key.npy"))
+        tx = np.load(P(od, "tx.npy"), mmap_mode="r")
+        ck = cv[cv.chrom == c]
+        ix = pd.Index(key).get_indexer(ck["key"].to_numpy(np.int64))
+        ok = ix >= 0
+        ck, ix = ck[ok], ix[ok]
+        keep = np.array([(c, int(k)) not in dk for k in ck["key"]], bool)
+        ck, ix = ck[keep], ix[keep]
+        df = pd.DataFrame({"y": (ck["cls"] == "P/LP").to_numpy(int), "tx": np.asarray(tx[ix], np.int64)})
+        mvc = mv[mv["tx"].isin(np.unique(np.asarray(tx)))]
+        if len(mvc):
+            pp, aa = np.load(P(od, "prot_pos.npy"), mmap_mode="r"), np.load(P(od, "alt_aa.npy"), mmap_mode="r")
+            cand = np.flatnonzero(np.isin(np.asarray(tx), mvc["tx"].unique()))
+            sk = pd.DataFrame({"tx": np.asarray(tx)[cand].astype(np.int64), "prot_pos": np.asarray(pp)[cand].astype(np.int64),
+                               "mt_code": np.asarray(aa)[cand].astype(np.int64), "i": cand})
+            mm = mvc.merge(sk, on=["tx", "prot_pos", "mt_code"])
+        for n in names:
+            s = np.load(P(od, col[n] + ".npy"), mmap_mode="r")
+            df[n] = np.asarray(s[ix], np.float64)
+            if len(mvc):
+                mm[n] = np.asarray(s[mm["i"].to_numpy()], np.float64)
+        rows_c.append(df)
+        if len(mvc):
+            rows_m.append(mm)
+    C = pd.concat(rows_c, ignore_index=True)
+    C = C[C.tx >= 0]
+    C["gene"] = tinfo["gene"].reindex(C["tx"]).to_numpy()
+    C["ddg2p"] = tinfo["ddg2p"].reindex(C["tx"]).fillna(False).to_numpy(bool)
+    Mv = pd.concat(rows_m, ignore_index=True).groupby(["ds", "tx", "prot_pos", "mt_code"], as_index=False).mean(numeric_only=True)
+    res = []
+    from sklearn.metrics import roc_auc_score
+    for n in names:
+        z = C[np.isfinite(C[n])]
+        pooled = roc_auc_score(z.y, z[n])
+        r = {}
+        for lab, zz in (("all", z), ("ddg2p", z[z.ddg2p])):
+            au = _a14_gene_auc(zz["gene"].to_numpy(), zz["y"].to_numpy(), zz[n].to_numpy())
+            A_, W_ = np.array([v[0] for v in au.values()]), np.array([v[1] for v in au.values()], float)
+            r[lab] = (A_ * W_).sum() / W_.sum()
+        rs = [st_.spearmanr(g[n], -g["DMS_score"], nan_policy="omit")[0] for _, g in Mv.groupby("ds") if g[n].notna().sum() > 20]
+        res.append(dict(predictor=n, LR_marginal=b2.loc[n, "LR_marginal"], LR_window=b2.loc[n, "LR_window"],
+                        r_window=b2.loc[n, "r_window"], clinvar_auc_pooled=pooled, clinvar_auc_within_gene=r["all"],
+                        clinvar_auc_within_gene_ddg2p=r["ddg2p"], assay_spearman_mean=np.nanmean(rs) if rs else np.nan,
+                        assay_n=len(rs), clinical_training_labels=None))
+    V = pd.DataFrame(res).set_index("predictor")
+    rng = np.random.default_rng(20261010)
+    out = [f"Benchmark validity across {len(V)} informative predictors (DD within-window and marginal top-2% LR, gene-clustered bench2)"]
+    pairs = [("LR_marginal", "clinvar_auc_pooled"), ("LR_window", "clinvar_auc_pooled"),
+             ("LR_marginal", "clinvar_auc_within_gene"), ("LR_window", "clinvar_auc_within_gene"),
+             ("LR_marginal", "clinvar_auc_within_gene_ddg2p"), ("LR_window", "clinvar_auc_within_gene_ddg2p"),
+             ("LR_marginal", "assay_spearman_mean"), ("LR_window", "assay_spearman_mean")]
+    B = rng.integers(0, len(V), (2000, len(V)))
+    rho = {}
+    for x, y in pairs:
+        v = V[[x, y]].dropna()
+        idx = np.arange(len(v))
+        bs = np.array([st_.spearmanr(v[x].to_numpy()[i], v[y].to_numpy()[i])[0] for i in B[:, :len(v)] % len(v)])
+        rho[(x, y)] = (st_.spearmanr(v[x], v[y])[0], bs)
+        out.append(f"Spearman({x}, {y}) = {rho[(x, y)][0]:+.2f} [{np.nanpercentile(bs, 2.5):+.2f}, {np.nanpercentile(bs, 97.5):+.2f}] (n {len(v)})")
+    for y in ("clinvar_auc_within_gene", "clinvar_auc_within_gene_ddg2p", "assay_spearman_mean"):
+        dlt = rho[("LR_window", y)][1] - rho[("LR_marginal", y)][1]
+        out.append(f"window - marginal, for {y}: {rho[('LR_window', y)][0] - rho[('LR_marginal', y)][0]:+.2f} "
+                   f"[{np.nanpercentile(dlt, 2.5):+.2f}, {np.nanpercentile(dlt, 97.5):+.2f}]")
+    V.to_csv(P(a.results, "benchval.tsv"), sep="\t", float_format="%.4f")
+    open(P(a.results, "benchval_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("\n".join(out))
+
+
 # ======================================================================== A17 task 13: within-unit conditional-likelihood model
 T13_FEATS = ["am", "af_plddt", "af_nca10", "raw_phyloP100way_vertebrate", "ref_aa", "alt_aa"]
 
@@ -4419,7 +4719,7 @@ def main():
         s.add_argument("--from-piece", default="part.7")
     for name in ("validate", "aim5", "aim1", "aim1x", "aim1tools", "aim3", "aim3_report", "a1_report", "aim4", "replicate", "v54"):
         sub.add_parser(name)
-    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report", "hier", "t13"):
+    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report", "hier", "t13", "bench2", "benchval", "oracle", "pm1pp2"):
         sub.add_parser(name)
     s = sub.add_parser("a16val")
     s.add_argument("--count-only", action="store_true")
@@ -4438,7 +4738,7 @@ def main():
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
     {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
-     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report, "hier": cmd_hier, "a16val": cmd_a16val, "t13": cmd_t13}[a.cmd](a)
+     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report, "hier": cmd_hier, "a16val": cmd_a16val, "t13": cmd_t13, "bench2": cmd_bench2, "benchval": cmd_benchval, "oracle": cmd_oracle, "pm1pp2": cmd_pm1pp2}[a.cmd](a)
 
 
 if __name__ == "__main__":

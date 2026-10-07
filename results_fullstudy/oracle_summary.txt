@@ -1,0 +1,11 @@
+Oracle ceiling (world defined at 50-residue-window resolution from the fitted A16 rates): windows 202870; total excess / opportunity 0.317
+k    10 natural : pathogenic share 0.0352; marginal LR 28.4; within gene 5.7; within window 2.8; retention gene 0.52, window 0.30
+k    10 q=2%    : pathogenic share 0.0352; marginal LR 28.4; within gene 5.7; within window 2.8; retention gene 0.52, window 0.30
+k    30 natural : pathogenic share 0.0109; marginal LR 91.5; within gene 18.2; within window 8.9; retention gene 0.64, window 0.48
+k    30 q=2%    : pathogenic share 0.0109; marginal LR 50.0; within gene 15.6; within window 8.2; retention gene 0.70, window 0.54
+k   100 natural : pathogenic share 0.0032; marginal LR 312.3; within gene 62.2; within window 30.4; retention gene 0.72, window 0.59
+k   100 q=2%    : pathogenic share 0.0032; marginal LR 50.0; within gene 30.4; within window 20.1; retention gene 0.87, window 0.77
+k   300 natural : pathogenic share 0.0011; marginal LR 943.3; within gene 187.9; within window 91.8; retention gene 0.76, window 0.66
+k   300 q=2%    : pathogenic share 0.0011; marginal LR 50.0; within gene 41.2; within window 33.5; retention gene 0.95, window 0.90
+k  1000 natural : pathogenic share 0.0003; marginal LR 3151.8; within gene 627.8; within window 306.6; retention gene 0.80, window 0.71
+k  1000 q=2%    : pathogenic share 0.0003; marginal LR 50.0; within gene 47.0; within window 43.6; retention gene 0.98, window 0.96
