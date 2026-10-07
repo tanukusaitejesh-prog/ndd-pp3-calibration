@@ -34,7 +34,7 @@ with gzip.open(path, "rt") as fh:
     n = next(i for i, line in enumerate(fh) if line.startswith("#VariationID\t"))
 s = pd.read_csv(path, sep="\t", skiprows=n, header=0, dtype=str, quoting=3, compression="gzip", on_bad_lines="skip",
                 usecols=["#VariationID", "ClinicalSignificance", "Description", "OriginCounts", "ReviewStatus", "Submitter",
-                         "SubmittedGeneSymbol"]).rename(columns={"#VariationID": "VariationID"})
+                         "SubmittedGeneSymbol", "DateLastEvaluated"]).rename(columns={"#VariationID": "VariationID"})
 s = s[s.OriginCounts.fillna("").str.contains("germline", case=False)]
 s = s[~s.ReviewStatus.fillna("").str.contains("expert panel|practice guideline", case=False)]
 s = s[s.Description.fillna("").str.contains(r"\b(?:PVS|PS|PM|PP|BA|BS|BP)[1-9]\b", regex=True)]   # any ACMG code: no selection on PP3/PM1
@@ -171,3 +171,54 @@ for lab_, f in EST:
     out.append(f"  {lab_:36s}: {v0:.2f} [{g_[0]:.2f}, {g_[1]:.2f}]")
 open("results_fullstudy/lab_stacking_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out[-11:]))
+
+
+# ---- review 19: replication in independent halves of the laboratory data; equivalence test for Supporting PP3
+T["year"] = pd.to_datetime(s.loc[T.index, "DateLastEvaluated"], errors="coerce").dt.year
+
+
+def est_all(z):
+    gi_ = z.groupby("gene").indices; gg = z.gene.unique()
+    res = {}
+    for lab_, f in (("PP2 credit beside PM1", credit_pp2), ("R(PM1, PP2)", lambda q: R2(q, "PM1", "PP2")),
+                    ("PP3 Supporting credit beside PM1", lambda q: credit(q, 1)), ("R(PP3, PM1)", R)):
+        v0 = f(z)
+        bs = [f(z.iloc[np.concatenate([gi_[g] for g in rng.choice(gg, len(gg))])]) for _ in range(500)]
+        res[lab_] = (v0, *np.nanpercentile(bs, [2.5, 97.5]))
+    m = (z.PM1 > 0) & (z.PP2 > 0)
+    return res, int(m.sum()), int((m & (z.truth == 0)).sum())
+
+
+out.append("Replication in independent halves of the laboratory data:")
+med = T.year.median()
+halves = [("evaluated <= %d" % med, T[T.year <= med]), ("evaluated > %d" % med, T[T.year > med])]
+subs = T.Submitter.unique()
+rs = np.random.default_rng(20261019)
+A_ = set(rs.choice(subs, len(subs) // 2, replace=False))
+halves += [("submitter half A", T[T.Submitter.isin(A_)]), ("submitter half B", T[~T.Submitter.isin(A_)])]
+for lab_, z in halves:
+    res, nj, bj = est_all(z)
+    out.append(f"  {lab_:22s} (n {len(z)}; PM1+PP2 joint {nj}, B/LB {bj}): " +
+               "; ".join(f"{k} {v[0]:.2f} [{v[1]:.2f}, {v[2]:.2f}]" for k, v in res.items()))
+# random submitter splits: share of splits in which the held-out PP2 credit upper bound < 1
+up = []
+for _ in range(100):
+    A2 = set(rs.choice(subs, len(subs) // 2, replace=False))
+    zB = T[~T.Submitter.isin(A2)]
+    gi_ = zB.groupby("gene").indices; gg = zB.gene.unique()
+    bs = [credit_pp2(zB.iloc[np.concatenate([gi_[g] for g in rng.choice(gg, len(gg))])]) for _ in range(200)]
+    up.append((credit_pp2(zB), np.nanpercentile(bs, 97.5)))
+up = np.array(up)
+out.append(f"100 random submitter splits, held-out half: PP2 credit median {np.median(up[:, 0]):.2f}; upper 95% bound < 1 in {(up[:, 1] < 1).mean():.0%} of splits")
+# equivalence (TOST) for Supporting PP3 credit within +/-0.5 points of 1: 90% CI inside [0.5, 1.5]
+gi_ = T.groupby("gene").indices; gg = T.gene.unique()
+bs = np.array([credit(T.iloc[np.concatenate([gi_[g] for g in rng.choice(gg, len(gg))])], 1) for _ in range(2000)])
+lo90, hi90 = np.nanpercentile(bs, [5, 95])
+su = T.Submitter.unique(); si = T.groupby("Submitter").indices
+bs2 = np.array([credit(T.iloc[np.concatenate([si[c] for c in rng.choice(su, len(su))])], 1) for _ in range(2000)])
+lo90s, hi90s = np.nanpercentile(bs2, [5, 95])
+out.append(f"Equivalence of laboratory Supporting PP3 credit to 1 point (margin +/-0.5; 90% CI): gene-clustered [{lo90:.2f}, {hi90:.2f}] -> "
+           f"{'equivalent' if lo90 > 0.5 and hi90 < 1.5 else 'not shown'}; submitter-clustered [{lo90s:.2f}, {hi90s:.2f}] -> "
+           f"{'equivalent' if lo90s > 0.5 and hi90s < 1.5 else 'not shown'}")
+open("results_fullstudy/lab_stacking_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-8:]))

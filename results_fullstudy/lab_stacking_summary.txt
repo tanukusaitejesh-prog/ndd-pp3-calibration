@@ -25,3 +25,10 @@ Truth also excluding PS1, PP5, BP6, PS2, PM6: n 37572 (P/LP 8045, B/LB 29527)
   PP3 credit beside PM1, Supporting   : 0.82 [0.52, 1.20]
   R(PM1, PP2)                         : 0.30 [0.21, 0.48]
   PP2 credit beside PM1               : -0.41 [-0.89, 0.24]
+Replication in independent halves of the laboratory data:
+  evaluated <= 2025      (n 30257; PM1+PP2 joint 473, B/LB 38): PP2 credit beside PM1 0.07 [-0.56, 1.18]; R(PM1, PP2) 0.32 [0.20, 0.70]; PP3 Supporting credit beside PM1 0.94 [0.58, 1.43]; R(PP3, PM1) 0.20 [0.15, 0.30]
+  evaluated > 2025       (n 8590; PM1+PP2 joint 79, B/LB 18): PP2 credit beside PM1 -1.23 [-1.93, -0.57]; R(PM1, PP2) 0.17 [0.11, 0.28]; PP3 Supporting credit beside PM1 0.26 [-0.17, 0.78]; R(PP3, PM1) 0.12 [0.08, 0.18]
+  submitter half A       (n 27449; PM1+PP2 joint 323, B/LB 22): PP2 credit beside PM1 -0.77 [-1.26, -0.10]; R(PM1, PP2) 0.19 [0.13, 0.33]; PP3 Supporting credit beside PM1 0.24 [-0.09, 0.70]; R(PP3, PM1) 0.09 [0.07, 0.13]
+  submitter half B       (n 11566; PM1+PP2 joint 242, B/LB 35): PP2 credit beside PM1 0.14 [-0.52, 1.12]; R(PM1, PP2) 0.31 [0.19, 0.63]; PP3 Supporting credit beside PM1 1.21 [0.72, 1.86]; R(PP3, PM1) 0.33 [0.23, 0.56]
+100 random submitter splits, held-out half: PP2 credit median -0.22; upper 95% bound < 1 in 62% of splits
+Equivalence of laboratory Supporting PP3 credit to 1 point (margin +/-0.5; 90% CI): gene-clustered [0.58, 1.17] -> equivalent; submitter-clustered [0.10, 1.47] -> not shown
