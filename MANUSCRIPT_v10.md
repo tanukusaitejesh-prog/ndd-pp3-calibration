@@ -1,6 +1,6 @@
 # Computational and location evidence are not independent in missense variant classification, and current practice over-credits their combination
 
-*Draft 10, 7 October 2026. Supplementary material: `SUPPLEMENT_v10.md`.*
+*Draft 10.1, 7 October 2026. Supplementary material: `SUPPLEMENT_v10.md`.*
 
 **Authors:** [names, affiliations]
 
@@ -15,7 +15,7 @@
 **Results.**
 - PP3 and PM1 were not independent. Their joint evidence was 0.44 [0.41–0.47] of the product of their separate likelihood ratios in developmental disorders, 0.69 within disease genes, and 0.18–0.21 on panel and laboratory truth. On functional assays the dependence was weak (0.94).
 - Panels and laboratories applied PP3 beside PM1 almost always below Strong (99% and 98%), where the cap does not act.
-- There, PP3 earned 0.60 points [0.14–1.05] against 1.24 applied. This held in held-out genes, in later classifications and with PP3 defined by score rather than curator choice. Moderate PP3 earned less than its 2 points (upper bound 0.89).
+- There, PP3 earned 0.60 points [0.14–1.05] against 1.24 applied. This held in held-out genes, in later classifications and with PP3 defined by score rather than curator choice. PP3 above Supporting earned less than its nominal points in panel-applied, score-defined and de novo analyses.
 
 **Conclusion.** Computational and location evidence overlap, and practice over-credits PP3 beside PM1 at strengths the cap does not reach. Limiting PP3 to Supporting when PM1 applies is consistent with these data.
 
@@ -166,7 +166,7 @@ The de novo scale is not the clinical scale, so this compares direction and size
 - Others showed none: SRC and MAPK1 about 1.00.
 - One showed the reverse: HMGCR 1.40.
 
-Including DDG2P genes, the pooled R was 0.89 [0.83, 0.95] across 16 assays. Assays for BRCA1, TP53 and PTEN could not test the question, because nearly all their residues fall at PM1-like sites. Assay truth measures molecular damage rather than disease, and the dependence measured here is largest where truth reflects disease.
+Including DDG2P genes, the pooled R was 0.89 [0.83, 0.95] across 16 assays. Assays for BRCA1, TP53 and PTEN could not test the question, because nearly all their residues fall at PM1-like sites. Within the assayed regions, the PM1-like flag barely predicted molecular damage: median LR 1.10 outside DDG2P genes (IQR 1.04–1.42), against about 5–8 on clinical and de novo truth. Two criteria cannot overlap on information that one of them does not carry, so R near 1 on assays is expected. The dependence matters where PM1 is informative, which is in clinical classification.
 
 ### How panels and laboratories stack the criteria
 **Table 3. Co-application of PP3, PM1 and PP2.**
@@ -204,7 +204,23 @@ ClinGen's cap acts only when Strong PP3 meets Moderate PM1, so it constrains alm
 - **Supporting PP3:** 0.83 [0.53, 1.24].
 - **Moderate PP3** earned 0.75 against 2.00, but with 3 B/LB variants its interval was unbounded.
 
-**Reading.** Supporting PP3 beside PM1 is close to its nominal weight in both panels and laboratories. The excess credit comes from PP3 applied above Supporting, which the cap does not reach.
+**Above Supporting: three independent lines of evidence.** The Moderate result from panel-applied PP3 rests on 67 classifications. Two analyses that do not depend on curators' choice of strength point the same way (Table 3b):
+- **PP3 defined by the predictor's score band.**
+- **The de novo scale.**
+
+**Table 3b. Points PP3 earns beside PM1 when its strength exceeds Supporting** (nominal: Moderate 2, Strong 4).
+
+| Source | PP3 defined by | Moderate | Strong |
+|---|---|---|---|
+| Expert panels | Panel-applied strength | 0.02 [−1.69, 0.89] (n 67) | — (n 4) |
+| Expert panels | REVEL score band | 0.58 [0.08, 1.46] (n 137) | 1.84 [0.81, unbounded] (n 133) |
+| Expert panels | AlphaMissense score band | 1.44 [0.34, unbounded] (n 63) | 1.75 [0.76, 3.74] (n 164) |
+| De novo excess, DD / autism | AlphaMissense band | 0 / 0 | 1.10 / 0.90 |
+| De novo excess, DD / autism | REVEL band | 0.85 / 0.68 | 1.58 / 1.25 |
+
+Every estimate lies below its nominal weight. Where the interval is bounded, the upper limit lies below it too: REVEL Moderate below 2, AlphaMissense Strong below 4. The de novo values come from Supplementary Table 4 and are on the de novo scale.
+
+**Reading.** Supporting PP3 beside PM1 is close to its nominal weight in both panels and laboratories. The excess credit comes from PP3 applied above Supporting, which the cap reaches only at Strong.
 
 ### Consequences for classification
 **Table 4. Expert-panel missense classifications that change class under alternative rules** (6,177 classifications).
@@ -238,11 +254,14 @@ It is strongest between PM1 and PP2, and between PP3 and PM1. The reason is that
 - **At Supporting, the double counting is small.** PP3 earned close to its nominal point in both panels and laboratories.
 - **Above Supporting it is not.** On expert-panel truth, Moderate PP3 beside PM1 earned at most 0.89 points (upper 95% bound) against the two points given, and at Strong the nominal sum exceeds the de novo evidence by several points.
 - **A rule that fits.** Limiting PP3 to Supporting when PM1 applies removes the credit the data cannot support. It needs no estimated parameter, and it would change 43 of 6,177 expert classifications.
-- **Its limits.** The evidence against Moderate PP3 rests on 67 panel classifications, and we could not show that Moderate earns less than Supporting. We therefore present the rule as consistent with the data, for panels to check against their own classifications, rather than as an established standard.
+- **Its limits.**
+  - **What converges.** That PP3 above Supporting is over-credited beside PM1 is supported by panel-applied, score-defined and de novo analyses.
+  - **What does not.** With panel-applied PP3 we could not show that Moderate earns less than Supporting (p = 0.14), and several score-band estimates are imprecise.
+  - **How we present it.** The rule is consistent with the data, for panels to check against their own classifications, rather than an established standard.
 
 **PM1 and PP2.** The data quantify what UK guidance already advises against: their dependence is the strongest of the three pairs. Seven ClinGen panels co-apply them. Our flags share constraint by construction, and expert truth had too few benign variants to test panel-defined PM1 + PP2. Panels that co-apply them should check that each rests on independent evidence, as ACGS recommends.
 
-**Functional truth.** Dependence was weak on assays. That fits the explanation above: PM1 and predictors share information about where disease-causing variation falls, more than about molecular damage as such. It also cautions against generalising the size of the dependence beyond clinical classification.
+**Functional truth.** Dependence was weak on assays, because within assayed regions the PM1-like flag carried almost no information about molecular damage (LR 1.10). PM1 and predictors share information about where disease-causing variation falls. The size of the dependence should not be generalised beyond clinical classification.
 
 **Relation to previous work.**
 - **Calibration.** Predictor calibration for PP3 (Pejaver et al. 2022; Bergquist et al. 2025) and region calibration for PM1 (Chao et al. 2024) treat each criterion alone. Gene- and domain-aware calibration (Tejura et al. 2024; Badonyi & Marsh 2025; Chen et al. 2026) recognises heterogeneity but not dependence between criteria.
@@ -269,6 +288,7 @@ It is strongest between PM1 and PP2, and between PP3 and PM1. The reason is that
   - Table 1: dependence on the de novo scale;
   - Table 2: dependence across truth sets;
   - Table 3: co-application in practice;
+  - Table 3b: PP3 credit above Supporting from three independent analyses;
   - Table 4: classification changes.
 
 **Supplementary:**

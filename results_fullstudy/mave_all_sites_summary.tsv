@@ -1,83 +1,83 @@
-ds	gene	ddg2p	n	damaging	F_frac	assay	R_sup	lo_sup	hi_sup	se_sup	R_str	lo_str	hi_str	se_str
-A4_HUMAN_Seuma_2022	APP	False	237	55	0	Stability								
-ADRB2_HUMAN_Jones_2020	ADRB2	False	2309	1087	0.04374	Activity								
-AICDA_HUMAN_Gajula_2014_3cycles	AICDA	False	67	55	0	Activity								
-AMFR_HUMAN_Tsuboyama_2023_4G3O	AMFR	False	225	49	0	Stability								
-B2L11_HUMAN_Dutta_2010_binding-Mcl-1	BCL2L11	False	55	23	0	Binding								
-BRCA1_HUMAN_Findlay_2018	BRCA1	False	1695	421	0.03422	OrganismalFitness								
-BRCA2_HUMAN_Erwood_2022_HEK293T	BRCA2	False	257	21	0	OrganismalFitness								
-CAR11_HUMAN_Meitlis_2020_gof	CARD11	False	784	683	1	OrganismalFitness								
-CAR11_HUMAN_Meitlis_2020_lof	CARD11	False	792	406	1	OrganismalFitness								
-CASP3_HUMAN_Roychowdhury_2020	CASP3	False	1371	675	0	Activity								
-CASP7_HUMAN_Roychowdhury_2020	CASP7	False	1406	657	0	Activity								
-CBPA2_HUMAN_Tsuboyama_2023_1O6X	CPA2	False	403	93	0	Stability								
-CBX4_HUMAN_Tsuboyama_2023_2K28	CBX4	False	220	38	1	Stability								
-CCR5_HUMAN_Gill_2023	CCR5	False	1908	660	0	Binding								
-CD19_HUMAN_Klesmith_2019_FMC_singles	CD19	False	1357	1038	0	Binding								
-CP2C9_HUMAN_Amorosi_2021_abundance	CYP2C9	False	1925	866	0	Expression								
-CP2C9_HUMAN_Amorosi_2021_activity	CYP2C9	False	1816	808	0	Binding								
-DLG4_HUMAN_Faure_2021	DLG4	True	340	91	1	OrganismalFitness								
-DNJA1_HUMAN_Tsuboyama_2023_2LO1	DNAJA1	False	367	46	0	Stability								
-EPHB2_HUMAN_Tsuboyama_2023_1F0M	EPHB2	False	376	78	0.2128	Stability	0.4008	0.2393	0.6223	0.2364	0.3272	0.1606	0.6136	0.9457
-ERBB2_HUMAN_Elazar_2016	ERBB2	False	109	46	0	Expression								
-FKBP3_HUMAN_Tsuboyama_2023_2KFV	FKBP3	False	367	173	0	Stability								
-GLPA_HUMAN_Elazar_2016	GYPA	False	79	33	0	Expression								
-GRB2_HUMAN_Faure_2021	GRB2	False	316	87	1	OrganismalFitness								
-HECD1_HUMAN_Tsuboyama_2023_3DKM	HECTD1	False	347	180	0	Stability								
-HEM3_HUMAN_Loggerenberg_2023	HMBS	False	1719	615	0.03898	Activity								
-HMDH_HUMAN_Jiang_2019	HMGCR	False	4994	2066	0.4596	OrganismalFitness	1.399	1.162	1.664	0.09104	1.563	1.184	2.168	0.1562
-HXK4_HUMAN_Gersing_2022_activity	GCK	False	2413	1131	0.1289	OrganismalFitness	0.8377	0.5873	1.503	0.2385	0.7558	0.3979	1.896	0.4015
-HXK4_HUMAN_Gersing_2023_abundance	GCK	False	2388	628	0.1302	Expression	0.7894	0.5867	1.064	0.1421	0.9542	0.6021	1.659	0.2509
-ILF3_HUMAN_Tsuboyama_2023_2L33	ILF3	False	399	79	0.5739	Stability	0.9232	0.8237	1.026	0.05612	0.8635	0.7388	1.014	0.08592
-KCNH2_HUMAN_Kozek_2020	KCNH2	False	62	25	1	Activity								
-LYAM1_HUMAN_Elazar_2016	SELL	False	87	25	0	Expression								
-MET_HUMAN_Estevam_2023	MET	False	1600	493	0.5806	Activity	0.8323	0.7563	0.9247	0.05178	0.8452	0.7329	0.9918	0.07598
-MK01_HUMAN_Brenan_2016	MAPK1	False	2070	1406	0.8058	OrganismalFitness	0.9728	0.9279	1.016	0.0228	0.9926	0.9368	1.061	0.03231
-MSH2_HUMAN_Jia_2020	MSH2	False	5014	523	0	OrganismalFitness								
-MTHR_HUMAN_Weile_2021	MTHFR	False	3755	1542	0	OrganismalFitness								
-NKX31_HUMAN_Tsuboyama_2023_2L9R	NKX3-1	False	331	135	0	Stability								
-NPC1_HUMAN_Erwood_2022_HEK293T	NPC1	False	535	323	0	Activity								
-NPC1_HUMAN_Erwood_2022_RPE1	NPC1	False	63	30	0	Activity								
-NUD15_HUMAN_Suiter_2020	NUDT15	False	847	235	0	Expression								
-OPSD_HUMAN_Wan_2019	RHO	False	159	78	0	Expression								
-OTU7A_HUMAN_Tsuboyama_2023_2L2D	OTUD7A	False	65	21	0	Stability								
-P53_HUMAN_Giacomelli_2018_Null_Etoposide	TP53	False	2020	425	0	OrganismalFitness								
-P53_HUMAN_Giacomelli_2018_Null_Nutlin	TP53	False	2020	967	0	OrganismalFitness								
-P53_HUMAN_Giacomelli_2018_WT_Nutlin	TP53	False	2020	328	0	OrganismalFitness								
-P53_HUMAN_Kotler_2018	TP53	False	933	366	0	OrganismalFitness								
-PAI1_HUMAN_Huttinger_2021	SERPINE1	False	1996	1148	0	Activity								
-PIN1_HUMAN_Tsuboyama_2023_1I6C	PIN1	False	204	85	0.02451	Stability								
-PITX2_HUMAN_Tsuboyama_2023_2L7M	PITX2	True	274	84	1	Stability								
-PKN1_HUMAN_Tsuboyama_2023_1URF	PKN1	False	376	102	0	Stability								
-PPARG_HUMAN_Majithia_2016	PPARG	False	2943	526	0.1233	Activity	0.6484	0.5186	0.8057	0.1113	0.6915	0.4931	1.093	0.2037
-PPM1D_HUMAN_Miller_2022	PPM1D	True	2386	1121	0.7326	OrganismalFitness	0.7167	0.648	0.7857	0.04791	0.7074	0.649	0.7796	0.04853
-PRKN_HUMAN_Clausen_2023	PRKN	False	2455	855	0	Expression								
-PTEN_HUMAN_Matreyek_2021	PTEN	True	957	464	0.9833	Expression								
-PTEN_HUMAN_Mighell_2018	PTEN	True	1309	311	0.9939	Activity								
-RAF1_HUMAN_Zinkus-Boltz_2019	RAF1	True	188	77	0	OrganismalFitness								
-RASH_HUMAN_Bandaru_2017	HRAS	True	939	232	0.4452	Activity	0.7425	0.6587	0.8206	0.05772	0.6854	0.5794	0.8044	0.08603
-RBP1_HUMAN_Tsuboyama_2023_2KWH	RALBP1	False	278	117	0.2338	Stability	0.6025	0.3842	0.8897	0.2191	0.7058	0.3795	1.256	0.7797
-RD23A_HUMAN_Tsuboyama_2023_1IFY	RAD23A	False	236	113	0	Stability								
-S22A1_HUMAN_Yee_2023_abundance	SLC22A1	False	2742	891	0	Expression								
-S22A1_HUMAN_Yee_2023_activity	SLC22A1	False	2792	624	0	Activity								
-SC6A4_HUMAN_Young_2021	SLC6A4	False	3438	1379	0	Activity								
-SERC_HUMAN_Xie_2023	PSAT1	False	1836	917	0.04139	OrganismalFitness								
-SHOC2_HUMAN_Kwon_2022	SHOC2	True	3294	1549	0.1882	OrganismalFitness	0.8578	0.7109	1.022	0.09949	0.8172	0.6009	1.147	0.1642
-SOX30_HUMAN_Tsuboyama_2023_7JJK	SOX30	False	322	158	0	Stability								
-SRBS1_HUMAN_Tsuboyama_2023_2O2W	SORBS1	False	334	111	0	Stability								
-SRC_HUMAN_Ahler_2019	SRC	False	1038	329	0.8921	Activity	0.9974	0.9572	1.037	0.01942	1.008	0.9476	1.073	0.03138
-SRC_HUMAN_Chakraborty_2023_binding-DAS_25uM	SRC	False	1107	523	0.8898	Activity	1.002	0.9555	1.058	0.02547	1.017	0.9366	1.119	0.0434
-SRC_HUMAN_Nguyen_2022	SRC	False	1036	497	0.8929	OrganismalFitness	1.019	0.9832	1.066	0.02101	1.02	0.9699	1.101	0.0324
-SUMO1_HUMAN_Weile_2017	SUMO1	False	517	146	1	OrganismalFitness								
-SYUA_HUMAN_Newberry_2020	SNCA	False	678	149	0	OrganismalFitness								
-TADBP_HUMAN_Bolognesi_2019	TARDBP	False	502	241	0	OrganismalFitness								
-TNKS2_HUMAN_Tsuboyama_2023_5JRT	TNKS2	False	318	112	0	Stability								
-TPK1_HUMAN_Weile_2017	TPK1	False	1155	434	0	OrganismalFitness								
-TPMT_HUMAN_Matreyek_2018	TPMT	False	1018	166	0	Expression								
-TPOR_HUMAN_Bridgford_2020	MPL	False	156	103	0	OrganismalFitness								
-UBC9_HUMAN_Weile_2017	UBE2I	False	829	339	1	OrganismalFitness								
-UBE4B_HUMAN_Tsuboyama_2023_3L1X	UBE4B	False	334	155	0	Stability								
-UBR5_HUMAN_Tsuboyama_2023_1I2T	UBR5	False	325	110	0.6954	Stability	0.9483	0.88	1.026	0.0386	0.9129	0.7533	1.113	0.09655
-VKOR1_HUMAN_Chiasson_2020_abundance	VKORC1	False	849	371	0	Expression								
-VKOR1_HUMAN_Chiasson_2020_activity	VKORC1	False	250	83	0	Activity								
-YAP1_HUMAN_Araya_2012	YAP1	True	159	74	0	Binding								
+ds	gene	ddg2p	n	damaging	F_frac	assay	LR_F	LR_PP3	R_sup	lo_sup	hi_sup	se_sup	R_str	lo_str	hi_str	se_str
+A4_HUMAN_Seuma_2022	APP	False	237	55	0	Stability	0	5.051								
+ADRB2_HUMAN_Jones_2020	ADRB2	False	2309	1087	0.04374	Activity	3.243	4.756								
+AICDA_HUMAN_Gajula_2014_3cycles	AICDA	False	67	55	0	Activity	0	3.273e+08								
+AMFR_HUMAN_Tsuboyama_2023_4G3O	AMFR	False	225	49	0	Stability	0	2.618								
+B2L11_HUMAN_Dutta_2010_binding-Mcl-1	BCL2L11	False	55	23	0	Binding	0	2.14								
+BRCA1_HUMAN_Findlay_2018	BRCA1	False	1695	421	0.03422	OrganismalFitness	2.293	7.157								
+BRCA2_HUMAN_Erwood_2022_HEK293T	BRCA2	False	257	21	0	OrganismalFitness	0	19.67								
+CAR11_HUMAN_Meitlis_2020_gof	CARD11	False	784	683	1	OrganismalFitness	1	0.8684								
+CAR11_HUMAN_Meitlis_2020_lof	CARD11	False	792	406	1	OrganismalFitness	1	2.443								
+CASP3_HUMAN_Roychowdhury_2020	CASP3	False	1371	675	0	Activity	0	5.263								
+CASP7_HUMAN_Roychowdhury_2020	CASP7	False	1406	657	0	Activity	0	6.623								
+CBPA2_HUMAN_Tsuboyama_2023_1O6X	CPA2	False	403	93	0	Stability	0	3								
+CBX4_HUMAN_Tsuboyama_2023_2K28	CBX4	False	220	38	1	Stability	1	1.174								
+CCR5_HUMAN_Gill_2023	CCR5	False	1908	660	0	Binding	0	1.868								
+CD19_HUMAN_Klesmith_2019_FMC_singles	CD19	False	1357	1038	0	Binding	0	3.688								
+CP2C9_HUMAN_Amorosi_2021_abundance	CYP2C9	False	1925	866	0	Expression	0	13.8								
+CP2C9_HUMAN_Amorosi_2021_activity	CYP2C9	False	1816	808	0	Binding	0	15.07								
+DLG4_HUMAN_Faure_2021	DLG4	True	340	91	1	OrganismalFitness	1	1.526								
+DNJA1_HUMAN_Tsuboyama_2023_2LO1	DNAJA1	False	367	46	0	Stability	0	1.706								
+EPHB2_HUMAN_Tsuboyama_2023_1F0M	EPHB2	False	376	78	0.2128	Stability	1.274	4.99	0.4008	0.2393	0.6223	0.2364	0.3272	0.1606	0.6136	0.9457
+ERBB2_HUMAN_Elazar_2016	ERBB2	False	109	46	0	Expression	0	15.07								
+FKBP3_HUMAN_Tsuboyama_2023_2KFV	FKBP3	False	367	173	0	Stability	0	2.488								
+GLPA_HUMAN_Elazar_2016	GYPA	False	79	33	0	Expression	0	6.97								
+GRB2_HUMAN_Faure_2021	GRB2	False	316	87	1	OrganismalFitness	1	2.564								
+HECD1_HUMAN_Tsuboyama_2023_3DKM	HECTD1	False	347	180	0	Stability	0	2.194								
+HEM3_HUMAN_Loggerenberg_2023	HMBS	False	1719	615	0.03898	Activity	1.069	2.89								
+HMDH_HUMAN_Jiang_2019	HMGCR	False	4994	2066	0.4596	OrganismalFitness	3.138	2.153	1.399	1.162	1.664	0.09104	1.563	1.184	2.168	0.1562
+HXK4_HUMAN_Gersing_2022_activity	GCK	False	2413	1131	0.1289	OrganismalFitness	1.642	3.784	0.8377	0.5873	1.503	0.2385	0.7558	0.3979	1.896	0.4015
+HXK4_HUMAN_Gersing_2023_abundance	GCK	False	2388	628	0.1302	Expression	0.7262	2.617	0.7894	0.5867	1.064	0.1421	0.9542	0.6021	1.659	0.2509
+ILF3_HUMAN_Tsuboyama_2023_2L33	ILF3	False	399	79	0.5739	Stability	1.103	1.271	0.9232	0.8237	1.026	0.05612	0.8635	0.7388	1.014	0.08592
+KCNH2_HUMAN_Kozek_2020	KCNH2	False	62	25	1	Activity	1	1.156								
+LYAM1_HUMAN_Elazar_2016	SELL	False	87	25	0	Expression	0	2.48								
+MET_HUMAN_Estevam_2023	MET	False	1600	493	0.5806	Activity	1.421	2.471	0.8323	0.7563	0.9247	0.05178	0.8452	0.7329	0.9918	0.07598
+MK01_HUMAN_Brenan_2016	MAPK1	False	2070	1406	0.8058	OrganismalFitness	1.037	1.274	0.9728	0.9279	1.016	0.0228	0.9926	0.9368	1.061	0.03231
+MSH2_HUMAN_Jia_2020	MSH2	False	5014	523	0	OrganismalFitness	0	3.777								
+MTHR_HUMAN_Weile_2021	MTHFR	False	3755	1542	0	OrganismalFitness	0	1.965								
+NKX31_HUMAN_Tsuboyama_2023_2L9R	NKX3-1	False	331	135	0	Stability	0	1.876								
+NPC1_HUMAN_Erwood_2022_HEK293T	NPC1	False	535	323	0	Activity	0	82.7								
+NPC1_HUMAN_Erwood_2022_RPE1	NPC1	False	63	30	0	Activity	0	2.333e+08								
+NUD15_HUMAN_Suiter_2020	NUDT15	False	847	235	0	Expression	0	7.873								
+OPSD_HUMAN_Wan_2019	RHO	False	159	78	0	Expression	0	2.077								
+OTU7A_HUMAN_Tsuboyama_2023_2L2D	OTUD7A	False	65	21	0	Stability	0	2.226								
+P53_HUMAN_Giacomelli_2018_Null_Etoposide	TP53	False	2020	425	0	OrganismalFitness	0	4.66								
+P53_HUMAN_Giacomelli_2018_Null_Nutlin	TP53	False	2020	967	0	OrganismalFitness	0	3.414								
+P53_HUMAN_Giacomelli_2018_WT_Nutlin	TP53	False	2020	328	0	OrganismalFitness	0	4.555								
+P53_HUMAN_Kotler_2018	TP53	False	933	366	0	OrganismalFitness	0	3.202								
+PAI1_HUMAN_Huttinger_2021	SERPINE1	False	1996	1148	0	Activity	0	15.72								
+PIN1_HUMAN_Tsuboyama_2023_1I6C	PIN1	False	204	85	0.02451	Stability	0	4.733								
+PITX2_HUMAN_Tsuboyama_2023_2L7M	PITX2	True	274	84	1	Stability	1	1.131								
+PKN1_HUMAN_Tsuboyama_2023_1URF	PKN1	False	376	102	0	Stability	0	2.061								
+PPARG_HUMAN_Majithia_2016	PPARG	False	2943	526	0.1233	Activity	2.241	3.002	0.6484	0.5186	0.8057	0.1113	0.6915	0.4931	1.093	0.2037
+PPM1D_HUMAN_Miller_2022	PPM1D	True	2386	1121	0.7326	OrganismalFitness	1.45	3.967	0.7167	0.648	0.7857	0.04791	0.7074	0.649	0.7796	0.04853
+PRKN_HUMAN_Clausen_2023	PRKN	False	2455	855	0	Expression	0	8.562								
+PTEN_HUMAN_Matreyek_2021	PTEN	True	957	464	0.9833	Expression	0.9905	1.585								
+PTEN_HUMAN_Mighell_2018	PTEN	True	1309	311	0.9939	Activity	0.9911	1.857								
+RAF1_HUMAN_Zinkus-Boltz_2019	RAF1	True	188	77	0	OrganismalFitness	0	1.959								
+RASH_HUMAN_Bandaru_2017	HRAS	True	939	232	0.4452	Activity	1.535	1.673	0.7425	0.6587	0.8206	0.05772	0.6854	0.5794	0.8044	0.08603
+RBP1_HUMAN_Tsuboyama_2023_2KWH	RALBP1	False	278	117	0.2338	Stability	1.255	1.551	0.6025	0.3842	0.8897	0.2191	0.7058	0.3795	1.256	0.7797
+RD23A_HUMAN_Tsuboyama_2023_1IFY	RAD23A	False	236	113	0	Stability	0	2.255								
+S22A1_HUMAN_Yee_2023_abundance	SLC22A1	False	2742	891	0	Expression	0	10.79								
+S22A1_HUMAN_Yee_2023_activity	SLC22A1	False	2792	624	0	Activity	0	13.6								
+SC6A4_HUMAN_Young_2021	SLC6A4	False	3438	1379	0	Activity	0	3.015								
+SERC_HUMAN_Xie_2023	PSAT1	False	1836	917	0.04139	OrganismalFitness	0.4625	6.135								
+SHOC2_HUMAN_Kwon_2022	SHOC2	True	3294	1549	0.1882	OrganismalFitness	1.282	2.258	0.8578	0.7109	1.022	0.09949	0.8172	0.6009	1.147	0.1642
+SOX30_HUMAN_Tsuboyama_2023_7JJK	SOX30	False	322	158	0	Stability	0	1.356								
+SRBS1_HUMAN_Tsuboyama_2023_2O2W	SORBS1	False	334	111	0	Stability	0	2.009								
+SRC_HUMAN_Ahler_2019	SRC	False	1038	329	0.8921	Activity	1.013	1.655	0.9974	0.9572	1.037	0.01942	1.008	0.9476	1.073	0.03138
+SRC_HUMAN_Chakraborty_2023_binding-DAS_25uM	SRC	False	1107	523	0.8898	Activity	1.036	1.664	1.002	0.9555	1.058	0.02547	1.017	0.9366	1.119	0.0434
+SRC_HUMAN_Nguyen_2022	SRC	False	1036	497	0.8929	OrganismalFitness	1.001	1.634	1.019	0.9832	1.066	0.02101	1.02	0.9699	1.101	0.0324
+SUMO1_HUMAN_Weile_2017	SUMO1	False	517	146	1	OrganismalFitness	1	2.619								
+SYUA_HUMAN_Newberry_2020	SNCA	False	678	149	0	OrganismalFitness	0	5.941								
+TADBP_HUMAN_Bolognesi_2019	TARDBP	False	502	241	0	OrganismalFitness	0	0.722								
+TNKS2_HUMAN_Tsuboyama_2023_5JRT	TNKS2	False	318	112	0	Stability	0	3.104								
+TPK1_HUMAN_Weile_2017	TPK1	False	1155	434	0	OrganismalFitness	0	2.073								
+TPMT_HUMAN_Matreyek_2018	TPMT	False	1018	166	0	Expression	0	6.056								
+TPOR_HUMAN_Bridgford_2020	MPL	False	156	103	0	OrganismalFitness	0	2.573								
+UBC9_HUMAN_Weile_2017	UBE2I	False	829	339	1	OrganismalFitness	1	2.87								
+UBE4B_HUMAN_Tsuboyama_2023_3L1X	UBE4B	False	334	155	0	Stability	0	2.536								
+UBR5_HUMAN_Tsuboyama_2023_1I2T	UBR5	False	325	110	0.6954	Stability	1.05	1.368	0.9483	0.88	1.026	0.0386	0.9129	0.7533	1.113	0.09655
+VKOR1_HUMAN_Chiasson_2020_abundance	VKORC1	False	849	371	0	Expression	0	4.588								
+VKOR1_HUMAN_Chiasson_2020_activity	VKORC1	False	250	83	0	Activity	0	3.773								
+YAP1_HUMAN_Araya_2012	YAP1	True	159	74	0	Binding	0	1.904								

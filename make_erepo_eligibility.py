@@ -95,3 +95,23 @@ for lab, flag in (("panel-applied PP3", lambda z: (z.PP3 > 0).to_numpy()),
     out.append(f"credit beside panel PM1, {lab:52s}: {c0:.2f} points [{lo:.2f}, {hi:.2f}]; n {int(m_.sum())}; B/LB {int((m_ & (t.truth == 0).to_numpy()).sum())}")
 open("results_fullstudy/erepo_eligibility_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out))
+
+# ---- review 16: score-defined PP3 strength bands beside panel PM1 (no curator choice)
+BANDS = {"AlphaMissense": ("am", [(0.792, 0.906, "Supporting", 1), (0.906, 0.972, "Moderate", 2), (0.972, 9, "Strong", 4)]),
+         "REVEL": ("revel", [(0.644, 0.773, "Supporting", 1), (0.773, 0.932, "Moderate", 2), (0.932, 9, "Strong", 4)])}
+out.append("Score-defined PP3 bands beside panel PM1 (credit = points earned by the band, relative to all other PM1 classifications):")
+for tool, (col, bands) in BANDS.items():
+    res = {}
+    for lo_, hi_, nm, pts in bands:
+        flag = lambda z, lo_=lo_, hi_=hi_: ((z[col] >= lo_) & (z[col] < hi_)).to_numpy()
+        c0 = credit(t, flag)
+        bs = np.array([credit(t.iloc[np.concatenate([gi[g] for g in rng.choice(genes, len(genes))])], flag) for _ in range(1000)])
+        lo, hi = np.nanpercentile(bs, [2.5, 97.5])
+        res[nm] = bs
+        m_ = flag(t) & (t.PM1 > 0).to_numpy()
+        out.append(f"  {tool:13s} {nm:10s} band (nominal {pts}): earns {c0:.2f} points [{lo:.2f}, {hi:.2f}]; n {int(m_.sum())}; "
+                   f"B/LB {int((m_ & (t.truth == 0).to_numpy()).sum())}")
+    dl = res["Moderate"] - res["Supporting"]
+    out.append(f"  {tool:13s} Moderate - Supporting band: {np.nanmedian(dl):+.2f} [{np.nanpercentile(dl, 2.5):+.2f}, {np.nanpercentile(dl, 97.5):+.2f}]")
+open("results_fullstudy/erepo_eligibility_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-9:]))

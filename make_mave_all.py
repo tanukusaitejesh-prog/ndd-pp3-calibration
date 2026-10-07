@@ -83,7 +83,8 @@ for r in idx.itertuples():
     j["F"] = (j.rmc_oe < 0.4) | (j.ccr_pct >= 95)
     fF = j.F.mean()
     rec = dict(ds=r.DMS_id, gene=gene, ddg2p=gene.upper() in ddg2p, n=len(j), damaging=int(j.truth.sum()), F_frac=fF,
-               assay=r.coarse_selection_type)
+               assay=r.coarse_selection_type, LR_F=lr(j.F.to_numpy(), j.truth.to_numpy()),
+               LR_PP3=lr((j.am >= 0.792).to_numpy(), j.truth.to_numpy()))
     if 0.05 <= fF <= 0.95 and j.truth.sum() >= 10 and (1 - j.truth).sum() >= 10:
         pos = j.prot_pos.to_numpy(); up = np.unique(pos); gi = pd.Series(np.arange(len(j))).groupby(pos).indices
         for cut, tier in ((0.792, "sup"), (0.972, "str")):
@@ -123,8 +124,12 @@ for lab, z in (("outside DDG2P (primary)", inf[~inf.ddg2p]), ("all genes", inf))
         if p:
             out.append(f"{lab:24s} AlphaMissense {nm:10s} x PM1-like: assays {p[0]}; fixed {p[1]:.2f} [{p[2]:.2f}, {p[3]:.2f}]; "
                        f"random {p[4]:.2f} [{p[5]:.2f}, {p[6]:.2f}]; share of assays with R < 1 {p[7]:.2f}; tau2 {p[8]:.3f}")
+for lab, z in (("outside DDG2P", inf[~inf.ddg2p]), ("all informative", inf)):
+    out.append(f"{lab}: median LR(PM1-like) {z.LR_F.median():.2f} (IQR {z.LR_F.quantile(.25):.2f}-{z.LR_F.quantile(.75):.2f}); "
+               f"median LR(PP3 Supporting) {z.LR_PP3.median():.2f}; Spearman(log LR_F, log R_sup) "
+               f"{pd.Series(np.log(z.LR_F)).corr(pd.Series(np.log(z.R_sup.to_numpy())), method='spearman'):.2f}")
 for rr in inf.sort_values("gene").itertuples():
-    out.append(f"  {rr.ds:45s} {'DDG2P' if rr.ddg2p else 'other':5s} n {rr.n:5d} F {rr.F_frac:.2f} R_sup {rr.R_sup:.2f} "
+    out.append(f"  {rr.ds:45s} {'DDG2P' if rr.ddg2p else 'other':5s} n {rr.n:5d} F {rr.F_frac:.2f} LR_F {rr.LR_F:.2f} R_sup {rr.R_sup:.2f} "
                f"[{rr.lo_sup:.2f}, {rr.hi_sup:.2f}] R_str {rr.R_str:.2f}")
 open("results_fullstudy/mave_all_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out))

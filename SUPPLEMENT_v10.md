@@ -673,16 +673,13 @@ PP3 Strong       beside PM1: earns 13.01 points [12.33, 13.54]; applied 4.00; n 
 
 **Code.** `make_mave_all.py`.
 
-**Data.** All human ProteinGym v1.3 single-substitution assays. UniProt identifiers were mapped to gene symbols through the UniProt REST API (`work_pg_uniprot_genes.tsv`), and assay sequences were aligned to the analysed transcripts.
+**Data.** All human ProteinGym v1.3 single-substitution assays. UniProt identifiers were mapped to gene symbols through the UniProt REST API, and assay sequences were aligned to the analysed transcripts.
 
 **Measures.**
-- Truth: `DMS_score_bin` = 0 (damaging).
-- PP3: AlphaMissense at Supporting or Strong.
-- PM1-like: as in the main text.
-- Within each assay, R with a position-clustered bootstrap (500 replicates). An assay is informative if 5–95% of its variants fall at PM1-like sites and it has ≥ 10 damaging and ≥ 10 non-damaging variants.
-- Pooling: inverse-variance (fixed) and DerSimonian–Laird (random) effects on log R.
-
-**Output:**
+- Truth: `DMS_score_bin` = 0.
+- Within-assay R with a position-clustered bootstrap.
+- Pooling: fixed and DerSimonian–Laird random effects.
+- Per-assay LR of the PM1-like flag and of PP3, to show how informative each flag is within the assayed region.
 
 ```
 Human ProteinGym single-substitution assays mapped: 82 (70 genes); informative (PM1-like 5-95%, >= 10 damaging and >= 10 not): 16 assays, 13 genes; outside DDG2P: 13 assays, 10 genes
@@ -690,31 +687,39 @@ outside DDG2P (primary)  AlphaMissense Supporting x PM1-like: assays 13; fixed 0
 outside DDG2P (primary)  AlphaMissense Strong     x PM1-like: assays 13; fixed 0.99 [0.96, 1.03]; random 0.98 [0.92, 1.03]; share of assays with R < 1 0.69; tau2 0.003
 all genes                AlphaMissense Supporting x PM1-like: assays 16; fixed 0.96 [0.94, 0.98]; random 0.89 [0.83, 0.95]; share of assays with R < 1 0.81; tau2 0.013
 all genes                AlphaMissense Strong     x PM1-like: assays 16; fixed 0.95 [0.92, 0.98]; random 0.90 [0.83, 0.99]; share of assays with R < 1 0.75; tau2 0.018
-  EPHB2_HUMAN_Tsuboyama_2023_1F0M               other n   376 F 0.21 R_sup 0.40 [0.24, 0.62] R_str 0.33
-  HXK4_HUMAN_Gersing_2022_activity              other n  2413 F 0.13 R_sup 0.84 [0.59, 1.50] R_str 0.76
-  HXK4_HUMAN_Gersing_2023_abundance             other n  2388 F 0.13 R_sup 0.79 [0.59, 1.06] R_str 0.95
-  HMDH_HUMAN_Jiang_2019                         other n  4994 F 0.46 R_sup 1.40 [1.16, 1.66] R_str 1.56
-  RASH_HUMAN_Bandaru_2017                       DDG2P n   939 F 0.45 R_sup 0.74 [0.66, 0.82] R_str 0.69
-  ILF3_HUMAN_Tsuboyama_2023_2L33                other n   399 F 0.57 R_sup 0.92 [0.82, 1.03] R_str 0.86
-  MK01_HUMAN_Brenan_2016                        other n  2070 F 0.81 R_sup 0.97 [0.93, 1.02] R_str 0.99
-  MET_HUMAN_Estevam_2023                        other n  1600 F 0.58 R_sup 0.83 [0.76, 0.92] R_str 0.85
-  PPARG_HUMAN_Majithia_2016                     other n  2943 F 0.12 R_sup 0.65 [0.52, 0.81] R_str 0.69
-  PPM1D_HUMAN_Miller_2022                       DDG2P n  2386 F 0.73 R_sup 0.72 [0.65, 0.79] R_str 0.71
-  RBP1_HUMAN_Tsuboyama_2023_2KWH                other n   278 F 0.23 R_sup 0.60 [0.38, 0.89] R_str 0.71
-  SHOC2_HUMAN_Kwon_2022                         DDG2P n  3294 F 0.19 R_sup 0.86 [0.71, 1.02] R_str 0.82
-  SRC_HUMAN_Ahler_2019                          other n  1038 F 0.89 R_sup 1.00 [0.96, 1.04] R_str 1.01
-  SRC_HUMAN_Chakraborty_2023_binding-DAS_25uM   other n  1107 F 0.89 R_sup 1.00 [0.96, 1.06] R_str 1.02
-  SRC_HUMAN_Nguyen_2022                         other n  1036 F 0.89 R_sup 1.02 [0.98, 1.07] R_str 1.02
-  UBR5_HUMAN_Tsuboyama_2023_1I2T                other n   325 F 0.70 R_sup 0.95 [0.88, 1.03] R_str 0.91
+outside DDG2P: median LR(PM1-like) 1.10 (IQR 1.04-1.42); median LR(PP3 Supporting) 1.66; Spearman(log LR_F, log R_sup) nan
+all informative: median LR(PM1-like) 1.26 (IQR 1.04-1.47); median LR(PP3 Supporting) 1.91; Spearman(log LR_F, log R_sup) nan
+  EPHB2_HUMAN_Tsuboyama_2023_1F0M               other n   376 F 0.21 LR_F 1.27 R_sup 0.40 [0.24, 0.62] R_str 0.33
+  HXK4_HUMAN_Gersing_2022_activity              other n  2413 F 0.13 LR_F 1.64 R_sup 0.84 [0.59, 1.50] R_str 0.76
+  HXK4_HUMAN_Gersing_2023_abundance             other n  2388 F 0.13 LR_F 0.73 R_sup 0.79 [0.59, 1.06] R_str 0.95
+  HMDH_HUMAN_Jiang_2019                         other n  4994 F 0.46 LR_F 3.14 R_sup 1.40 [1.16, 1.66] R_str 1.56
+  RASH_HUMAN_Bandaru_2017                       DDG2P n   939 F 0.45 LR_F 1.53 R_sup 0.74 [0.66, 0.82] R_str 0.69
+  ILF3_HUMAN_Tsuboyama_2023_2L33                other n   399 F 0.57 LR_F 1.10 R_sup 0.92 [0.82, 1.03] R_str 0.86
+  MK01_HUMAN_Brenan_2016                        other n  2070 F 0.81 LR_F 1.04 R_sup 0.97 [0.93, 1.02] R_str 0.99
+  MET_HUMAN_Estevam_2023                        other n  1600 F 0.58 LR_F 1.42 R_sup 0.83 [0.76, 0.92] R_str 0.85
+  PPARG_HUMAN_Majithia_2016                     other n  2943 F 0.12 LR_F 2.24 R_sup 0.65 [0.52, 0.81] R_str 0.69
+  PPM1D_HUMAN_Miller_2022                       DDG2P n  2386 F 0.73 LR_F 1.45 R_sup 0.72 [0.65, 0.79] R_str 0.71
+  RBP1_HUMAN_Tsuboyama_2023_2KWH                other n   278 F 0.23 LR_F 1.25 R_sup 0.60 [0.38, 0.89] R_str 0.71
+  SHOC2_HUMAN_Kwon_2022                         DDG2P n  3294 F 0.19 LR_F 1.28 R_sup 0.86 [0.71, 1.02] R_str 0.82
+  SRC_HUMAN_Ahler_2019                          other n  1038 F 0.89 LR_F 1.01 R_sup 1.00 [0.96, 1.04] R_str 1.01
+  SRC_HUMAN_Chakraborty_2023_binding-DAS_25uM   other n  1107 F 0.89 LR_F 1.04 R_sup 1.00 [0.96, 1.06] R_str 1.02
+  SRC_HUMAN_Nguyen_2022                         other n  1036 F 0.89 LR_F 1.00 R_sup 1.02 [0.98, 1.07] R_str 1.02
+  UBR5_HUMAN_Tsuboyama_2023_1I2T                other n   325 F 0.70 LR_F 1.05 R_sup 0.95 [0.88, 1.03] R_str 0.91
 ```
 
 ---
 
-## Supplementary Note 14. Selection into PP3, the Moderate–Supporting test and power
+## Supplementary Note 14. Selection into PP3, score bands, the Moderate–Supporting test and power
 
-**Selection into PP3** (`make_erepo_eligibility.py`).
-- Panel classifications were mapped to analysed sites. Truth excludes PP3, BP4, PM1, PP2, BP1, BP3, PM4, PM5, PS2 and PM6.
-- PP3 eligibility is defined by score: REVEL ≥ 0.644 or AlphaMissense ≥ 0.792.
+**Code.** `make_erepo_eligibility.py`.
+
+**Truth.** Excludes PP3, BP4, PM1, PP2, BP1, BP3, PM4, PM5, PS2 and PM6.
+
+**Two ways of defining PP3 beside panel PM1:**
+- **eligibility:** REVEL ≥ 0.644 or AlphaMissense ≥ 0.792;
+- **score bands** (Pejaver et al. 2022; Bergquist et al. 2025):
+  - REVEL Supporting [0.644, 0.773), Moderate [0.773, 0.932), Strong ≥ 0.932;
+  - AlphaMissense Supporting [0.792, 0.906), Moderate [0.906, 0.972), Strong ≥ 0.972.
 
 ```
 Mapped missense classifications 5990; with truth (PS2/PM6 also excluded) 2381 (P/LP 1492, B/LB 889, genes 103)
@@ -726,8 +731,16 @@ credit beside panel PM1, panel-applied PP3                                   : 0
 credit beside panel PM1, score-defined PP3 (REVEL >= 0.644 or AM >= 0.792)   : 0.71 points [0.35, 1.20]; n 322; B/LB 19
 credit beside panel PM1, score-defined PP3 (REVEL >= 0.644)                  : 0.68 points [0.34, 1.19]; n 315; B/LB 19
 credit beside panel PM1, score-defined PP3 (AM >= 0.792)                     : 1.66 points [0.98, 2.58]; n 264; B/LB 7
+Score-defined PP3 bands beside panel PM1 (credit = points earned by the band, relative to all other PM1 classifications):
+  AlphaMissense Supporting band (nominal 1): earns 1.63 points [0.09, 17.92]; n 37; B/LB 1
+  AlphaMissense Moderate   band (nominal 2): earns 1.44 points [0.34, 18.35]; n 63; B/LB 2
+  AlphaMissense Strong     band (nominal 4): earns 1.75 points [0.76, 3.74]; n 164; B/LB 4
+  AlphaMissense Moderate - Supporting band: -0.28 [-17.00, +17.29]
+  REVEL         Supporting band (nominal 1): earns -0.52 points [-1.46, 1.17]; n 45; B/LB 7
+  REVEL         Moderate   band (nominal 2): earns 0.58 points [0.08, 1.46]; n 137; B/LB 9
+  REVEL         Strong     band (nominal 4): earns 1.84 points [0.81, 18.74]; n 133; B/LB 3
+  REVEL         Moderate - Supporting band: +1.12 [-0.49, +2.41]
 ```
-
 **Credit by strength, the Moderate − Supporting difference, power, threshold and frequency sensitivity, gene-split cross-validation and the temporal split** (`make_stacking_cv.py`):
 
 ```

@@ -3,19 +3,21 @@ outside DDG2P (primary)  AlphaMissense Supporting x PM1-like: assays 13; fixed 0
 outside DDG2P (primary)  AlphaMissense Strong     x PM1-like: assays 13; fixed 0.99 [0.96, 1.03]; random 0.98 [0.92, 1.03]; share of assays with R < 1 0.69; tau2 0.003
 all genes                AlphaMissense Supporting x PM1-like: assays 16; fixed 0.96 [0.94, 0.98]; random 0.89 [0.83, 0.95]; share of assays with R < 1 0.81; tau2 0.013
 all genes                AlphaMissense Strong     x PM1-like: assays 16; fixed 0.95 [0.92, 0.98]; random 0.90 [0.83, 0.99]; share of assays with R < 1 0.75; tau2 0.018
-  EPHB2_HUMAN_Tsuboyama_2023_1F0M               other n   376 F 0.21 R_sup 0.40 [0.24, 0.62] R_str 0.33
-  HXK4_HUMAN_Gersing_2022_activity              other n  2413 F 0.13 R_sup 0.84 [0.59, 1.50] R_str 0.76
-  HXK4_HUMAN_Gersing_2023_abundance             other n  2388 F 0.13 R_sup 0.79 [0.59, 1.06] R_str 0.95
-  HMDH_HUMAN_Jiang_2019                         other n  4994 F 0.46 R_sup 1.40 [1.16, 1.66] R_str 1.56
-  RASH_HUMAN_Bandaru_2017                       DDG2P n   939 F 0.45 R_sup 0.74 [0.66, 0.82] R_str 0.69
-  ILF3_HUMAN_Tsuboyama_2023_2L33                other n   399 F 0.57 R_sup 0.92 [0.82, 1.03] R_str 0.86
-  MK01_HUMAN_Brenan_2016                        other n  2070 F 0.81 R_sup 0.97 [0.93, 1.02] R_str 0.99
-  MET_HUMAN_Estevam_2023                        other n  1600 F 0.58 R_sup 0.83 [0.76, 0.92] R_str 0.85
-  PPARG_HUMAN_Majithia_2016                     other n  2943 F 0.12 R_sup 0.65 [0.52, 0.81] R_str 0.69
-  PPM1D_HUMAN_Miller_2022                       DDG2P n  2386 F 0.73 R_sup 0.72 [0.65, 0.79] R_str 0.71
-  RBP1_HUMAN_Tsuboyama_2023_2KWH                other n   278 F 0.23 R_sup 0.60 [0.38, 0.89] R_str 0.71
-  SHOC2_HUMAN_Kwon_2022                         DDG2P n  3294 F 0.19 R_sup 0.86 [0.71, 1.02] R_str 0.82
-  SRC_HUMAN_Ahler_2019                          other n  1038 F 0.89 R_sup 1.00 [0.96, 1.04] R_str 1.01
-  SRC_HUMAN_Chakraborty_2023_binding-DAS_25uM   other n  1107 F 0.89 R_sup 1.00 [0.96, 1.06] R_str 1.02
-  SRC_HUMAN_Nguyen_2022                         other n  1036 F 0.89 R_sup 1.02 [0.98, 1.07] R_str 1.02
-  UBR5_HUMAN_Tsuboyama_2023_1I2T                other n   325 F 0.70 R_sup 0.95 [0.88, 1.03] R_str 0.91
+outside DDG2P: median LR(PM1-like) 1.10 (IQR 1.04-1.42); median LR(PP3 Supporting) 1.66; Spearman(log LR_F, log R_sup) nan
+all informative: median LR(PM1-like) 1.26 (IQR 1.04-1.47); median LR(PP3 Supporting) 1.91; Spearman(log LR_F, log R_sup) nan
+  EPHB2_HUMAN_Tsuboyama_2023_1F0M               other n   376 F 0.21 LR_F 1.27 R_sup 0.40 [0.24, 0.62] R_str 0.33
+  HXK4_HUMAN_Gersing_2022_activity              other n  2413 F 0.13 LR_F 1.64 R_sup 0.84 [0.59, 1.50] R_str 0.76
+  HXK4_HUMAN_Gersing_2023_abundance             other n  2388 F 0.13 LR_F 0.73 R_sup 0.79 [0.59, 1.06] R_str 0.95
+  HMDH_HUMAN_Jiang_2019                         other n  4994 F 0.46 LR_F 3.14 R_sup 1.40 [1.16, 1.66] R_str 1.56
+  RASH_HUMAN_Bandaru_2017                       DDG2P n   939 F 0.45 LR_F 1.53 R_sup 0.74 [0.66, 0.82] R_str 0.69
+  ILF3_HUMAN_Tsuboyama_2023_2L33                other n   399 F 0.57 LR_F 1.10 R_sup 0.92 [0.82, 1.03] R_str 0.86
+  MK01_HUMAN_Brenan_2016                        other n  2070 F 0.81 LR_F 1.04 R_sup 0.97 [0.93, 1.02] R_str 0.99
+  MET_HUMAN_Estevam_2023                        other n  1600 F 0.58 LR_F 1.42 R_sup 0.83 [0.76, 0.92] R_str 0.85
+  PPARG_HUMAN_Majithia_2016                     other n  2943 F 0.12 LR_F 2.24 R_sup 0.65 [0.52, 0.81] R_str 0.69
+  PPM1D_HUMAN_Miller_2022                       DDG2P n  2386 F 0.73 LR_F 1.45 R_sup 0.72 [0.65, 0.79] R_str 0.71
+  RBP1_HUMAN_Tsuboyama_2023_2KWH                other n   278 F 0.23 LR_F 1.25 R_sup 0.60 [0.38, 0.89] R_str 0.71
+  SHOC2_HUMAN_Kwon_2022                         DDG2P n  3294 F 0.19 LR_F 1.28 R_sup 0.86 [0.71, 1.02] R_str 0.82
+  SRC_HUMAN_Ahler_2019                          other n  1038 F 0.89 LR_F 1.01 R_sup 1.00 [0.96, 1.04] R_str 1.01
+  SRC_HUMAN_Chakraborty_2023_binding-DAS_25uM   other n  1107 F 0.89 LR_F 1.04 R_sup 1.00 [0.96, 1.06] R_str 1.02
+  SRC_HUMAN_Nguyen_2022                         other n  1036 F 0.89 LR_F 1.00 R_sup 1.02 [0.98, 1.07] R_str 1.02
+  UBR5_HUMAN_Tsuboyama_2023_1I2T                other n   325 F 0.70 LR_F 1.05 R_sup 0.95 [0.88, 1.03] R_str 0.91
