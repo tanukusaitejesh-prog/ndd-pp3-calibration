@@ -6,3 +6,12 @@ PP3 any strength beside PM1: earns 0.85 points [0.53, 1.20]; applied 1.09; n 177
 PP3 Supporting   beside PM1: earns 0.83 points [0.53, 1.24]; applied 1.00; n 1681; B/LB 72
 PP3 Moderate     beside PM1: earns 0.75 points [-0.37, 13.82]; applied 2.00; n 65; B/LB 3
 PP3 Strong       beside PM1: earns 13.01 points [12.33, 13.54]; applied 4.00; n 29; B/LB 0
+Re-scoring 87873 laboratory submissions (PM1+PP2 co-applied in 1511; all three in 1059):
+  ClinGen cap (PP3+PM1 <= 4)                   : changed 40 (P->LP 30, LP->VUS 10)
+  PP3+PM1+PP2 <= 4                             : changed 64 (P->LP 40, LP->VUS 22)
+  PP2 not added when PM1 applies               : changed 357 (P->LP 125, LP->VUS 227)
+  PP3 limited to Supporting when PM1 applies   : changed 91 (P->LP 40, LP->VUS 51)
+laboratory truth R(PM1, PP2): 0.28 [0.19, 0.44]
+laboratory truth R(PP3, PP2): 0.42 [0.35, 0.51]
+laboratory truth PP2 credit beside PM1 (points): -0.20 [-0.66, 0.42]
+  PM1+PP2 joint cell on truth: n 571, B/LB 57; PP2 applied beside PM1 mean 1.00

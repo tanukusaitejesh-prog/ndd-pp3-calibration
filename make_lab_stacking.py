@@ -91,3 +91,55 @@ for lab, sel in (("any strength", None), ("Supporting", 1), ("Moderate", 2), ("S
                f"n {int(m.sum())}; B/LB {int((m & (T.truth == 0)).sum())}")
 open("results_fullstudy/lab_stacking_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out))
+
+# ---- review 17: re-score laboratory submissions under the alternative rules (Table 4)
+s["PP2"] = ev.map(lambda e: e.get("PP2", 0))
+s["pts"] = ev.map(lambda e: sum(e.values())).astype(float)
+
+
+def cls(p):
+    return np.select([p >= 10, p >= 6, p >= 0, p >= -6], ["P", "LP", "VUS", "LB"], "B")
+
+
+loc = s.PP3 + s.PM1 + s.PP2
+rules = {"ClinGen cap (PP3+PM1 <= 4)": s.pts - (s.PP3 + s.PM1) + np.minimum(s.PP3 + s.PM1, 4),
+         "PP3+PM1+PP2 <= 4": s.pts - loc + np.minimum(loc, 4),
+         "PP2 not added when PM1 applies": s.pts - np.where((s.PM1 > 0) & (s.PP2 > 0), s.PP2, 0),
+         "PP3 limited to Supporting when PM1 applies": s.pts - np.where((s.PM1 > 0) & (s.PP3 > 1), s.PP3 - 1, 0)}
+base = cls(s.pts.to_numpy())
+out.append(f"Re-scoring {len(s)} laboratory submissions (PM1+PP2 co-applied in {int(((s.PM1 > 0) & (s.PP2 > 0)).sum())}; all three in "
+           f"{int(((s.PM1 > 0) & (s.PP2 > 0) & (s.PP3 > 0)).sum())}):")
+for k, v in rules.items():
+    c = cls(v.to_numpy())
+    ch = c != base
+    pl = int(((base == "P") & (c == "LP")).sum()); lv = int(((base == "LP") & (c == "VUS")).sum())
+    out.append(f"  {k:45s}: changed {int(ch.sum())} (P->LP {pl}, LP->VUS {lv})")
+open("results_fullstudy/lab_stacking_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-6:]))
+
+# ---- review 17: PM1 x PP2 on laboratory truth, and PP2 credit beside PM1
+T["PP2"] = s.loc[T.index, "PP2"]
+gi = T.groupby("gene").indices
+genes = T.gene.unique()
+
+
+def R2(z, a_, b_):
+    y, A, B = z.truth.to_numpy(), (z[a_] > 0).to_numpy(), (z[b_] > 0).to_numpy()
+    return lr(A & B, y) / (lr(A, y) * lr(B, y))
+
+
+def credit_pp2(z):
+    y, A, B = z.truth.to_numpy(), (z.PP2 > 0).to_numpy(), (z.PM1 > 0).to_numpy()
+    return math.log(max(lr(A & B, y) / max(lr(B, y), 1e-9), 1e-9)) / math.log(2.406)
+
+
+for lab_, f in (("R(PM1, PP2)", lambda z: R2(z, "PM1", "PP2")), ("R(PP3, PP2)", lambda z: R2(z, "PP3", "PP2")),
+                ("PP2 credit beside PM1 (points)", credit_pp2)):
+    v0 = f(T)
+    bs = [f(T.iloc[np.concatenate([gi[g] for g in rng.choice(genes, len(genes))])]) for _ in range(1000)]
+    lo, hi = np.nanpercentile(bs, [2.5, 97.5])
+    out.append(f"laboratory truth {lab_}: {v0:.2f} [{lo:.2f}, {hi:.2f}]")
+m = (T.PM1 > 0) & (T.PP2 > 0)
+out.append(f"  PM1+PP2 joint cell on truth: n {int(m.sum())}, B/LB {int((m & (T.truth == 0)).sum())}; PP2 applied beside PM1 mean {T.loc[m, 'PP2'].mean():.2f}")
+open("results_fullstudy/lab_stacking_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-4:]))
