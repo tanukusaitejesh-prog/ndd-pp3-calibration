@@ -24,7 +24,12 @@ Missense variants are the largest class of variants of uncertain significance. A
 
 In the Bayesian points framework these criteria add in log-likelihood-ratio units, with one prior for every gene (Tavtigian et al. 2018, 2020). ClinGen calibrated predictor thresholds against ClinVar (Pejaver et al. 2022; Bergquist et al. 2025). Recognising that PP3 and PM1 can describe the same property, Pejaver et al. capped their sum at Strong, a rule Stenton et al. (2024) restated as no double counting. CanVIG-UK instead permits both at full weight, regarding regional enrichment and in silico prediction as largely different evidence (Garrett et al. 2021).
 
-How much the two overlap has not been measured. A predictor that has learned which genes and domains are intolerant separates pathogenic from benign variants pooled across genes, yet may add little once the gene and domain are known. ClinVar is a poor place to measure this:
+Predictor evaluations share a blind spot. A predictor that has learned which genes and domains are intolerant separates pathogenic from benign variants pooled across genes, yet may add little once the gene and domain are known. This matters twice:
+
+- **Comparing predictors.** Pooled evaluations reward gene and region knowledge.
+- **Classification.** ACMG/AMP credits gene and region separately through PP2 and PM1, so how much PP3 overlaps them has not been measured.
+
+ClinVar is a poor place to measure this:
 
 - its labels are concentrated in a few genes;
 - several predictors were trained on those labels;
@@ -217,6 +222,13 @@ Retention was unchanged by ±9% CpG mutation-rate perturbation and by removing a
 
 The predictors that look strongest in pooled de novo evaluations are largely those that encode gene and regional constraint. That is the information that also underlies PM1.
 
+**De novo data cannot teach within-window effect** (pre-registered in A17, task 13; Supplementary Note 7).
+
+- **The model.** A Poisson gradient-boosted model was fitted with an offset that fixes each window's rate, so it could learn only within-window variation. Its inputs were AlphaMissense, AlphaFold confidence and burial, phyloP conservation and the amino-acid change; it was trained on DD with genes held out.
+- **Within windows it added nothing to AlphaMissense.** The held-out log-likelihood gain was +0.0008 [−0.0006, +0.0023] nats per de novo, against +0.025 for AlphaMissense over mutation rate alone.
+- **It was worse on clinical and functional truth.** Within-gene ClinVar AUROC in DDG2P genes was 0.894 against 0.967. Assay correlation was lower in 7 of 8 assays.
+- **Reading.** The within-window signal in de novo data is small enough to rank existing predictors but too small to train a better one.
+
 ### PP3 and PM1-like evidence are not additive
 **Direct overlap test.** For AlphaMissense PP3 with a PM1-like flag in DD, R was 0.44 [0.41, 0.47] (Table 3, Figure 4):
 
@@ -356,8 +368,8 @@ A predictor that scores a hotspot highly is not wrong; it restates what location
 **The pre-registered alternative failed.** We expected a label-free prior that conditions PP3 on gene and region to beat the cap, and pre-registered that test. It did not.
 
 - **What it captures.** The model shows that PP3 evidence is region-dependent: at the Strong tier the within-window rate ratio is two to three times larger in constrained regions than outside them.
-- **Why it doesn't transfer.** It inherits the de novo estimand: high-penetrance, dominant, NDD-specific. Outside constrained regions de novo data give AlphaMissense little within-window signal (1.6-fold at Strong). ClinVar truth across all genes still rewards that signal, and the model discounts it.
-- **The same pattern as before.** Three de novo-trained classifiers (Supplementary Note 4) behaved the same way.
+- **Why it fails.** It inherits the de novo estimand: high-penetrance, dominant, NDD-specific. Outside constrained regions de novo data give AlphaMissense little within-window signal (1.6-fold at Strong). ClinVar truth still rewards that signal, and the model discounts it. The failure is not only one of transfer: even in NDD genes, its gene-specific PP3 evidence did not track ClinVar's (Spearman 0.01).
+- **The same pattern as before.** Three de novo-trained classifiers (Supplementary Note 4) and a pre-registered within-window model (task 13) behaved the same way: de novo data rank predictors but cannot train a better one.
 - **The lesson** is about using the data, not about the overlap. De novo data are well suited to measuring how criteria interact, and poorly suited to supplying the calibrated evidence itself outside the disorders that generated them.
 
 **Relation to previous work.**
@@ -410,7 +422,8 @@ A predictor that scores a hotspot highly is not wrong; it restates what location
   - Note 3: estimator simulation;
   - Note 4: models trained on the de novo excess;
   - Note 5: full overlap results;
-  - Note 6: pre-registered hierarchical model.
+  - Note 6: pre-registered hierarchical model;
+  - Note 7: pre-registered within-window model (task 13).
 - **Tables:**
   - Table 1: per-predictor retention;
   - Table 2: training-data ledger (`aim3_training_ledger.tsv`);

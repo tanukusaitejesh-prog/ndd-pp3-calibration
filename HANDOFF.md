@@ -27,6 +27,20 @@ Read this first in a new chat, then continue the "Remaining" list in order. The 
 - **Independent expert truth** (eRepo, computational and position codes removed; `make_erepo_truth.py`): Strong R 0.17 [0.08, 0.61]. The cap is best calibrated: PP3 earns 1.83 points given PM1, against 2 allowed by the cap and 4 uncapped.
 - Supplementary Table 4 (`supp_table4_conditional_pp3.tsv`); MANE concordance 74.4% (limitation 7); autism count reconciliation.
 
+## 7 October 2026, morning: drafts 5 and 6 (pushed)
+
+- **Current manuscript: `MANUSCRIPT_v6.md` + `SUPPLEMENT_v6.md`.** The paper is reframed: de novo benchmarks overstate predictor skill.
+  - 39-predictor gene- and position-adjusted benchmark (`make_benchmark.py`, `supp_table7_benchmark.tsv`): marginal and within-window rankings unrelated (ρ −0.18); autism replication 0.85; inflation 3.6-fold.
+  - PP3 + PM1 double counting is the clinical consequence.
+- **Draft 5 (review 8, Phase 0):**
+  - gene-clustered CIs for every R and f (`a12 --part gclust2`);
+  - expert-truth PP3 points given PM1: 1.83 [0.84, 3.54], excluding 4;
+  - population-frequency sensitivity analysis;
+  - wording fixes.
+- **A17 pre-registration** (`prereg_fullstudy/A17_PHASE2-5_PREREG.md`) is written. Task 13, the within-window model, was run: **all three tests failed** (supplement Note 7).
+- **Still open:** the A17 tasks T5–T12 and T14 (needs an OSF deposit first); verify the Chao 2024 claim; author actions.
+- **The X: drive disconnected once.** `wsl --shutdown` after re-plugging fixed it, and git fsck was clean.
+
 ## Overnight 7 October 2026 (00:15–02:30 IST): review-7 plan executed (pushed, last commit 86c4f93)
 
 - **Current manuscript: `MANUSCRIPT_v4.md` (draft 4, ~5,000 words incl. tables) + `SUPPLEMENT_v4.md`.** Draft 3 (`MANUSCRIPT_v2.md`) is kept for history.

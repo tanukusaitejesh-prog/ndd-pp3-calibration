@@ -3902,6 +3902,154 @@ def cmd_a14(a):
     log("\n".join(lines))
 
 
+# ======================================================================== A17 task 13: within-unit conditional-likelihood model
+T13_FEATS = ["am", "af_plddt", "af_nca10", "raw_phyloP100way_vertebrate", "ref_aa", "alt_aa"]
+
+
+def cmd_t13(a):
+    """A17 T13 (spec committed in 8b500f8 before this ran): Poisson GBDT with offset log(E * window rate), so only
+    within-window variation is learned; DD only; 5-fold gene-held-out CV; <= 50 trees, depth <= 3.
+    Tests (all three needed for the main text): (1) held-out within-window conditional log-likelihood beats an
+    AlphaMissense-only model of the same form (gene-bootstrap 95% CI of the difference excludes 0); (2) pooled within-gene
+    ClinVar AUROC in DDG2P genes beats AlphaMissense; (3) within-gene assay Spearman beats AlphaMissense."""
+    from sklearn.ensemble import HistGradientBoostingRegressor
+    d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+    cs = len(syn_p) / syn_mass
+    dkey, dchr = d_mis["key"].to_numpy(), d_mis["chrom"].astype(str).to_numpy()
+    cv = pd.read_csv(P(a.results, "a4_clinvar_matched.tsv.gz"), sep="\t", dtype={"chrom": str}, usecols=["key", "cls", "chrom"])
+    cv = cv[cv["cls"].isin(["P/LP", "B/LB"])]
+    cv["chrom"] = cv["chrom"].str.replace("chr", "")
+    mv = pd.read_csv(P(a.results, "mave_truth_sites.tsv"), sep="\t")
+    txg = tinfo["gene"].reindex(np.arange(18398))
+    gene_tx = {g: t for t, g in txg.dropna().items()}
+    mv["tx"] = mv["gene"].map(gene_tx)
+    mv = mv[mv["tx"].notna()].copy()
+    mv["tx"] = mv["tx"].astype(np.int64)
+    mvk = set(zip(mv["tx"].astype(int), mv["prot_pos"].astype(int), mv["mt"].map(ord)))
+    mv_tx = mv["tx"].unique()
+    dn_all = set(zip(dchr, dkey))
+    train, ext = [], []
+    for c, u in site_chunks(a, cols=["key", "tx", PRIMARY_MODEL, "prot_pos"] + T13_FEATS):
+        u = u[np.isfinite(u["am"].to_numpy(float))].reset_index(drop=True)
+        di = np.flatnonzero(dchr == str(c))
+        pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dkey[di]).to_numpy()
+        o = np.zeros(len(u))
+        np.add.at(o, pos[np.isfinite(pos)].astype(np.int64), 1)
+        w = u["tx"].to_numpy(np.int64) * 1000 + (u["prot_pos"].to_numpy(np.int64) - 1) // 50
+        f = pd.DataFrame({"w": w, "tx": u["tx"].to_numpy(np.int64), "E": u[PRIMARY_MODEL].to_numpy(float) * cs, "O": o})
+        for k in T13_FEATS:
+            f[k] = u[k].to_numpy(np.float32)
+        ow = f.groupby("w")["O"].transform("sum")
+        train.append(f[ow > 0])
+        ck = cv[cv["chrom"] == str(c)]
+        mk = pd.Series(range(len(u)), index=u["key"].to_numpy())
+        ix = mk.reindex(ck["key"].to_numpy()).to_numpy()
+        ok = np.isfinite(ix)
+        e1 = f.iloc[ix[ok].astype(np.int64)].copy()
+        e1["kind"], e1["y"], e1["key"] = "clinvar", (ck["cls"].to_numpy()[ok] == "P/LP").astype(int), ck["key"].to_numpy()[ok]
+        e1 = e1[[(str(c), int(k)) not in dn_all for k in e1["key"]]]
+        sel = np.zeros(len(f), bool)
+        cand = np.flatnonzero(np.isin(f["tx"].to_numpy(), mv_tx))
+        pp_, aa_ = u["prot_pos"].to_numpy(), u["alt_aa"].to_numpy()
+        sel[cand] = [(int(f["tx"].iat[i]), int(pp_[i]), int(aa_[i])) in mvk for i in cand]
+        e2 = f[sel].copy()
+        e2["kind"], e2["y"], e2["prot_pos"], e2["mt"] = "mave", -1, u["prot_pos"].to_numpy()[sel], u["alt_aa"].to_numpy()[sel]
+        ext += [e1, e2]
+        del u
+        gc.collect()
+    T = pd.concat(train, ignore_index=True)
+    X = pd.concat(ext, ignore_index=True)
+    log(f"T13: {len(T)} sites in {T.w.nunique()} windows with >= 1 DD de novo ({int(T.O.sum())} de novos); "
+        f"external: {int((X.kind == 'clinvar').sum())} ClinVar, {int((X.kind == 'mave').sum())} assay sites")
+    cat = [T13_FEATS.index("ref_aa"), T13_FEATS.index("alt_aa")]
+
+    def fit(df, feats):
+        Ew = df.groupby("w")["E"].transform("sum")
+        Ow = df.groupby("w")["O"].transform("sum")
+        off = (df["E"] * Ow / Ew).to_numpy()
+        m = None
+        for _ in range(2):                                    # refit once with renormalised window offsets
+            cf = [i for i, k in enumerate(feats) if k in ("ref_aa", "alt_aa")]
+            mono = [1 if k == "am" else 0 for k in feats]
+            m = HistGradientBoostingRegressor(loss="poisson", max_iter=50, max_depth=3, learning_rate=0.1,
+                                              categorical_features=cf or None, monotonic_cst=mono, random_state=20261008)
+            m.fit(df[feats], df["O"].to_numpy() / off, sample_weight=off)
+            r = df["E"].to_numpy() * m.predict(df[feats])
+            off = (df["E"] * Ow / pd.Series(r, index=df.index).groupby(df["w"]).transform("sum")).to_numpy()
+        return m
+
+    def cll(df, m, feats):
+        """Within-window conditional log-likelihood per de novo site, summed per gene."""
+        r = df["E"].to_numpy() * (m.predict(df[feats]) if m is not None else 1.0)
+        p = r / pd.Series(r, index=df.index).groupby(df["w"]).transform("sum").to_numpy()
+        ll = df["O"].to_numpy() * np.log(np.maximum(p, 1e-300))
+        return pd.Series(ll, index=df.index).groupby(df["tx"]).sum()
+    genes = T["tx"].unique()
+    rng = np.random.default_rng(20261008)
+    fold = pd.Series(rng.integers(0, 5, len(genes)), index=genes)
+    T["fold"] = fold.reindex(T["tx"]).to_numpy()
+    LL = {"null": [], "am": [], "full": []}
+    for k in range(5):
+        tr, te = T[T.fold != k], T[T.fold == k]
+        m_am, m_full = fit(tr, ["am"]), fit(tr, T13_FEATS)
+        LL["null"].append(cll(te, None, ["am"]))
+        LL["am"].append(cll(te, m_am, ["am"]))
+        LL["full"].append(cll(te, m_full, T13_FEATS))
+        log(f"T13 fold {k}: held-out within-window LL per de novo  null {LL['null'][-1].sum() / te.O.sum():.4f}  "
+            f"AM {LL['am'][-1].sum() / te.O.sum():.4f}  full {LL['full'][-1].sum() / te.O.sum():.4f}")
+    G = pd.DataFrame({k: pd.concat(v) for k, v in LL.items()})
+    n = T.groupby("tx")["O"].sum().reindex(G.index)
+    out = [f"T13 within-unit model (DD; {len(T)} sites, {T.w.nunique()} windows, {int(T.O.sum())} de novos; 5-fold gene-held-out)"]
+    B = rng.integers(0, len(G), (2000, len(G)))
+    for a_, b_ in (("am", "null"), ("full", "null"), ("full", "am")):
+        dl = (G[a_] - G[b_]).to_numpy()
+        est = dl.sum() / n.sum()
+        bs = dl[B].sum(1) / n.to_numpy()[B].sum(1)
+        lo, hi = np.percentile(bs, [2.5, 97.5])
+        out.append(f"held-out within-window log-likelihood per de novo, {a_} - {b_}: {est:+.4f} [{lo:+.4f}, {hi:+.4f}]")
+    test1 = None
+    dl = (G["full"] - G["am"]).to_numpy()
+    lo = np.percentile(dl[B].sum(1) / n.to_numpy()[B].sum(1), 2.5)
+    test1 = lo > 0
+    m_full, m_am = fit(T, T13_FEATS), fit(T, ["am"])
+    X["s_full"] = np.log(m_full.predict(X[T13_FEATS]))
+    X["s_am"] = X["am"]
+    c_ = X[X.kind == "clinvar"].copy()
+    c_["gene"] = txg.reindex(c_["tx"]).to_numpy()
+    c_ = c_[tinfo["ddg2p"].reindex(c_["tx"]).fillna(False).to_numpy(bool)]
+    A = {t: _a14_gene_auc(c_["gene"].to_numpy(), c_["y"].to_numpy(), c_[t].to_numpy()) for t in ("s_full", "s_am")}
+    gs = sorted(set(A["s_full"]) & set(A["s_am"]))
+    Wt = np.array([A["s_am"][g][1] for g in gs], float)
+    Af, Aa = (np.array([A[t][g][0] for g in gs]) for t in ("s_full", "s_am"))
+    C = rng.multinomial(len(gs), np.full(len(gs), 1 / len(gs)), size=2000).astype(float)
+    d0 = ((Af - Aa) * Wt).sum() / Wt.sum()
+    db = (C * ((Af - Aa) * Wt)).sum(1) / (C * Wt).sum(1)
+    lo2, hi2 = np.percentile(db, [2.5, 97.5])
+    test2 = lo2 > 0
+    out.append(f"ClinVar within-gene AUROC, DDG2P ({len(gs)} genes): model {(Af * Wt).sum() / Wt.sum():.3f} vs AlphaMissense "
+               f"{(Aa * Wt).sum() / Wt.sum():.3f}; difference {d0:+.3f} [{lo2:+.3f}, {hi2:+.3f}]")
+    mm = X[X.kind == "mave"].groupby(["tx", "prot_pos", "mt"])[["s_full", "s_am"]].mean().reset_index()
+    mv["mt_code"] = mv["mt"].map(ord)
+    mm = mm.merge(mv, left_on=["tx", "prot_pos", "mt"], right_on=["tx", "prot_pos", "mt_code"], how="inner")
+    rs = []
+    for ds, g in mm.groupby("ds"):
+        rf, ra = stats_spearman(g["s_full"], -g["DMS_score"]), stats_spearman(g["s_am"], -g["DMS_score"])
+        rs.append((ds, len(g), rf, ra))
+        out.append(f"assay {ds}: n {len(g)}; Spearman with damage: model {rf:.3f}, AlphaMissense {ra:.3f}")
+    rs = pd.DataFrame(rs, columns=["ds", "n", "model", "am"])
+    test3 = (rs["model"] > rs["am"]).mean() > 0.5 and rs["model"].mean() > rs["am"].mean()
+    out.append(f"assays: model better in {(rs['model'] > rs['am']).sum()} of {len(rs)}; mean Spearman {rs['model'].mean():.3f} vs {rs['am'].mean():.3f}")
+    out.append(f"KILL RULE (A17 T13): test1 {'pass' if test1 else 'fail'}, test2 {'pass' if test2 else 'fail'}, "
+               f"test3 {'pass' if test3 else 'fail'} -> {'MAIN TEXT' if (test1 and test2 and test3) else 'SUPPLEMENT (negative)'}")
+    open(P(a.results, "t13_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("\n".join(out))
+
+
+def stats_spearman(x, y):
+    from scipy import stats
+    return float(stats.spearmanr(x, y, nan_policy="omit")[0])
+
+
 # ======================================================================== amendment A16 (pre-registered on OSF)
 HIER_EDGES = [0.34, 0.792, 0.906, 0.972]             # AlphaMissense bins: <0.34, ref 0.34-0.792, PP3 Sup/Mod/Strong
 HIER_REF = 1
@@ -4271,7 +4419,7 @@ def main():
         s.add_argument("--from-piece", default="part.7")
     for name in ("validate", "aim5", "aim1", "aim1x", "aim1tools", "aim3", "aim3_report", "a1_report", "aim4", "replicate", "v54"):
         sub.add_parser(name)
-    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report", "hier"):
+    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report", "hier", "t13"):
         sub.add_parser(name)
     s = sub.add_parser("a16val")
     s.add_argument("--count-only", action="store_true")
@@ -4290,7 +4438,7 @@ def main():
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
     {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
-     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report, "hier": cmd_hier, "a16val": cmd_a16val}[a.cmd](a)
+     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report, "hier": cmd_hier, "a16val": cmd_a16val, "t13": cmd_t13}[a.cmd](a)
 
 
 if __name__ == "__main__":

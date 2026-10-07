@@ -1,0 +1,15 @@
+T13 within-unit model (DD; 6335481 sites, 20595 windows, 23851 de novos; 5-fold gene-held-out)
+held-out within-window log-likelihood per de novo, am - null: +0.0249 [+0.0203, +0.0300]
+held-out within-window log-likelihood per de novo, full - null: +0.0257 [+0.0208, +0.0311]
+held-out within-window log-likelihood per de novo, full - am: +0.0008 [-0.0006, +0.0023]
+ClinVar within-gene AUROC, DDG2P (331 genes): model 0.894 vs AlphaMissense 0.967; difference -0.073 [-0.100, -0.055]
+assay DLG4_HUMAN_Faure_2021: n 340; Spearman with damage: model 0.393, AlphaMissense 0.472
+assay PITX2_HUMAN_Tsuboyama_2023_2L7M: n 274; Spearman with damage: model 0.386, AlphaMissense 0.480
+assay PPM1D_HUMAN_Miller_2022: n 2386; Spearman with damage: model 0.436, AlphaMissense 0.621
+assay PTEN_HUMAN_Matreyek_2021: n 957; Spearman with damage: model 0.238, AlphaMissense 0.347
+assay PTEN_HUMAN_Mighell_2018: n 1309; Spearman with damage: model 0.495, AlphaMissense 0.556
+assay RAF1_HUMAN_Zinkus-Boltz_2019: n 188; Spearman with damage: model 0.345, AlphaMissense 0.451
+assay SHOC2_HUMAN_Kwon_2022: n 3294; Spearman with damage: model 0.406, AlphaMissense 0.470
+assay YAP1_HUMAN_Araya_2012: n 159; Spearman with damage: model 0.635, AlphaMissense 0.624
+assays: model better in 1 of 8; mean Spearman 0.417 vs 0.502
+KILL RULE (A17 T13): test1 fail, test2 fail, test3 fail -> SUPPLEMENT (negative)

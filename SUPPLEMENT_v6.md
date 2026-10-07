@@ -430,3 +430,28 @@ The file is `supp_table7_benchmark.tsv` (built by `make_benchmark.py` from commi
 - Largest gains: MutPred +29, ClinPred +28, PROVEAN +28, MutationAssessor +27, VEST4 +24.
 - Replication of within-window LR across predictors: autism Spearman 0.85 (n 25); public 0.49 (n 25). Marginal LR, DD against autism: 0.77.
 - popEVE (DDD only): marginal 17.86; within gene 3.13; within 50-residue window 1.76.
+
+---
+
+## Supplementary Note 7. Pre-registered within-window model (A17, task 13)
+
+**Specification.** A17 task 13, committed in `8b500f8` before the run. **Code:** `fullstudy.py t13`. **Output:** `results_fullstudy/t13_summary.txt`.
+
+**Model.**
+- Poisson histogram gradient boosting: 50 iterations, depth 3, monotone in AlphaMissense.
+- Offset log(E · window rate), re-normalised once, so that only within-window variation is learned.
+- Inputs: AlphaMissense, pLDDT, Cα neighbours within 10 Å, phyloP100way, reference and alternate amino acid.
+- Data: 6,335,481 sites in the 20,595 windows with ≥ 1 DD de novo (23,851 de novos), with five-fold cross-validation and genes held out.
+- Comparator: the same model with AlphaMissense as its only input.
+
+**Results.**
+
+| Test (kill rule: all three must pass) | Result | Verdict |
+|---|---|---|
+| Held-out within-window log-likelihood per de novo: AlphaMissense-only − mutation rate only | +0.0249 [+0.0203, +0.0300] | (reference) |
+| Full model − AlphaMissense-only | +0.0008 [−0.0006, +0.0023] | fail |
+| ClinVar within-gene AUROC, DDG2P (331 genes), model − AlphaMissense | 0.894 vs 0.967; −0.073 [−0.100, −0.055] | fail |
+| Assays: Spearman with damage, model vs AlphaMissense | better in 1 of 8; mean 0.417 vs 0.502 | fail |
+
+As pre-specified, the result is reported in the supplement as a negative result.
+
