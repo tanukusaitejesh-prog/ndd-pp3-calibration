@@ -87,3 +87,49 @@ out.append(f"Held-out classifications changed when PP3 is credited at the traini
            f"classifications: median {(R.changed_B / R.n_B).median() * len(d):.0f}")
 open("results_fullstudy_backup/stacking_cv_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out))
+
+# ---- review 13: sensitivity of the panel-applied credit, and a temporal out-of-sample test
+d["date"] = pd.to_datetime(d["Approval Date"], errors="coerce")
+FREQ = {"BA1", "BS1", "BS2", "PM2"}
+
+
+def truthset(hi=6, lo=-1, drop_freq=False):
+    ex = EXCL | FREQ if drop_freq else EXCL
+    ind = ev.map(lambda e: sum(v for c, v in e.items() if c not in ex))
+    t = d[(ind >= hi) | (ind <= lo)].copy()
+    t["truth"] = (ind[t.index] >= hi).astype(int)
+    return t
+
+
+def boot_credit(t, sel=None, nb=1000):
+    g = t.gene.unique()
+    ix = t.groupby("gene").indices
+    bs = [credit(t.iloc[np.concatenate([ix[x] for x in rng.choice(g, len(g))])], sel) for _ in range(nb)]
+    return credit(t, sel), *np.nanpercentile(bs, [2.5, 97.5])
+
+
+out.append("Sensitivity of PP3 credit beside panel PM1 (points [95% CI]; n joint; B/LB in joint):")
+for lab, kw in (("truth >=6 / <=-1 (primary)", {}), ("truth >=4 / <=-1", {"hi": 4}), ("truth >=8 / <=-1", {"hi": 8}),
+                ("truth >=6 / <=-3", {"lo": -3}), ("frequency codes also removed", {"drop_freq": True})):
+    t = truthset(**kw)
+    for sl, sel in (("any", None), ("Supporting", 1.0), ("Moderate", 2.0)):
+        c0, lo, hi = boot_credit(t, sel)
+        m = (t.PM1 > 0) & ((t.PP3 > 0) if sel is None else (t.PP3 == sel))
+        out.append(f"  {lab:30s} PP3 {sl:10s}: {c0:.2f} [{lo:.2f}, {hi:.2f}]; n {int(m.sum())}; B/LB {int((m & (t.truth == 0)).sum())}")
+cut = pd.Timestamp("2025-01-01")
+tr, te = T[d.loc[T.index, "date"] < cut], T[d.loc[T.index, "date"] >= cut]
+ctr = boot_credit(tr)
+cte = boot_credit(te)
+mte = (te.PM1 > 0) & (te.PP3 > 0)
+out.append(f"Temporal split (approved before vs from 2025-01-01): training credit {ctr[0]:.2f} [{ctr[1]:.2f}, {ctr[2]:.2f}] "
+           f"(n truth {len(tr)}); held-out credit {cte[0]:.2f} [{cte[1]:.2f}, {cte[2]:.2f}] (n truth {len(te)}; joint {int(mte.sum())}, "
+           f"B/LB {int((mte & (te.truth == 0)).sum())}); held-out applied {te.loc[mte, 'PP3'].mean():.2f}")
+later = d[d.date >= cut]
+base = cls(later.pts.to_numpy())
+for lab, newpts in (("PP3 at most Supporting when PM1 applies", later.pts - np.where((later.PM1 > 0) & (later.PP3 > 1), later.PP3 - 1, 0)),
+                    ("PP3 at training-period credit when PM1 applies", later.pts - np.where((later.PM1 > 0) & (later.PP3 > 0), np.maximum(later.PP3 - max(ctr[0], 0), 0), 0)),
+                    ("ClinGen cap", later.pts - (later.PP3 + later.PM1) + np.minimum(later.PP3 + later.PM1, 4))):
+    ch = cls(newpts.to_numpy()) != base
+    out.append(f"  2025-2026 classifications ({len(later)}): rule [{lab}] changes {int(ch.sum())}")
+open("results_fullstudy_backup/stacking_cv_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-25:]))
