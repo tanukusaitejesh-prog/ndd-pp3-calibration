@@ -51,6 +51,7 @@ rules = {
     "ClinGen cap only (PP3+PM1 <= 4)": d.pts - (d.PP3 + d.PM1) + np.minimum(d.PP3 + d.PM1, 4),
     "PM1+PP2 <= PM1 (PP2 dropped when PM1 applies)": d.pts - np.where((d.PM1 > 0) & (d.PP2 > 0), d.PP2, 0),
     "location cap: PP3+PM1+PP2 <= 4": d.pts - loc + np.minimum(loc, 4),
+    "PP3 limited to Supporting (1 point) when PM1 applies": d.pts - np.where((d.PM1 > 0) & (d.PP3 > 1), d.PP3 - 1, 0),
     "PP3 credited at measured 0.6 points when PM1 applies": d.pts - np.where((d.PM1 > 0) & (d.PP3 > 0), d.PP3 - 0.6, 0),
     "PP3 credited at 1.10 (upper 95% bound) when PM1 applies": d.pts - np.where((d.PM1 > 0) & (d.PP3 > 0), np.maximum(d.PP3 - 1.10, 0), 0),
     "PP3 credited at 0.11 (lower 95% bound) when PM1 applies": d.pts - np.where((d.PM1 > 0) & (d.PP3 > 0), d.PP3 - 0.11, 0),

@@ -1,0 +1,6 @@
+Missense classifications 6177; independent truth 2942 (P/LP 1721, B/LB 1221, genes 130)
+PP3 any strength           beside panel PM1: earns 0.60 points [0.14, 1.05]; applied 1.24; n 304 (B/LB 17)
+PP3 Supporting (1 point)   beside panel PM1: earns 0.81 points [0.24, 1.68]; applied 1.00; n 235 (B/LB 11)
+PP3 Moderate (2 points)    beside panel PM1: earns 0.02 points [-1.69, 0.89]; applied 2.00; n 67 (B/LB 6)
+Gene-split CV (200 splits): training-half credit median 0.61 (IQR 0.43-0.72); held-out credit median 0.59 (IQR 0.48-0.73); held-out credit below points applied in 98% of splits
+Held-out classifications changed when PP3 is credited at the training-half estimate: median 89 of 3103 (2.5-97.5%: 13-140); scaled to all classifications: median 182

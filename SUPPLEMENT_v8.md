@@ -577,6 +577,7 @@ rule [as applied]: classifications changed 0 (none)
 rule [ClinGen cap only (PP3+PM1 <= 4)]: classifications changed 24 (LP->VUS 12; P->LP 12)
 rule [PM1+PP2 <= PM1 (PP2 dropped when PM1 applies)]: classifications changed 39 (LP->VUS 11; P->LP 28)
 rule [location cap: PP3+PM1+PP2 <= 4]: classifications changed 35 (LP->VUS 18; P->LP 17)
+rule [PP3 limited to Supporting (1 point) when PM1 applies]: classifications changed 43 (LP->VUS 21; P->LP 22)
 rule [PP3 credited at measured 0.6 points when PM1 applies]: classifications changed 187 (LP->VUS 102; P->LP 84; VUS->LB 1)
 rule [PP3 credited at 1.10 (upper 95% bound) when PM1 applies]: classifications changed 43 (LP->VUS 21; P->LP 22)
 rule [PP3 credited at 0.11 (lower 95% bound) when PM1 applies]: classifications changed 187 (LP->VUS 102; P->LP 84; VUS->LB 1)
@@ -586,6 +587,17 @@ expert truth R(PP3,PM1) 0.21 [0.12, 0.31]; LR PP3 8.24, PM1 7.08, joint 11.98; n
 expert truth R(PP3,PP2) 1.18 [0.46, 2258935.42]; LR PP3 8.24, PP2 8.77, joint 85.14; n joint 242 (B/LB in joint 2)
 points earned by panel-applied PP3 (any strength) once panel PM1 applies: 0.60 [0.11, 1.10]; mean PP3 points applied in that cell 1.24
 expert truth R3(PP3,PM1,PP2) 79548.409 [19242.524, 177977.275]; joint LR 40674026.73 vs product 511.31; summed points 7.10 vs joint points 19.96
+```
+
+**Strength-specific credit and gene-split cross-validation** (`make_stacking_cv.py`; 200 random 50/50 gene splits; seed 20261014):
+
+```
+Missense classifications 6177; independent truth 2942 (P/LP 1721, B/LB 1221, genes 130)
+PP3 any strength           beside panel PM1: earns 0.60 points [0.14, 1.05]; applied 1.24; n 304 (B/LB 17)
+PP3 Supporting (1 point)   beside panel PM1: earns 0.81 points [0.24, 1.68]; applied 1.00; n 235 (B/LB 11)
+PP3 Moderate (2 points)    beside panel PM1: earns 0.02 points [-1.69, 0.89]; applied 2.00; n 67 (B/LB 6)
+Gene-split CV (200 splits): training-half credit median 0.61 (IQR 0.43-0.72); held-out credit median 0.59 (IQR 0.48-0.73); held-out credit below points applied in 98% of splits
+Held-out classifications changed when PP3 is credited at the training-half estimate: median 89 of 3103 (2.5-97.5%: 13-140); scaled to all classifications: median 182
 ```
 
 **All variant types** (for reference):
