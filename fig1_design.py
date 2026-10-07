@@ -1,68 +1,70 @@
-"""Figure 1: study design schematic (nested conditioning on gene, constraint region and protein window)."""
+"""Figure 1: study design (draft 14): label-free dependence, independent truth, audit of practice."""
 import os
 
 import matplotlib
-import numpy as np
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.patches import FancyBboxPatch, Rectangle  # noqa: E402
+from matplotlib.patches import FancyBboxPatch  # noqa: E402
 
 S = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#7c5cc4"]
-INK, MUTED, GRID = "#0b0b0b", "#52514e", "#e6e5e0"
+INK, MUTED = "#0b0b0b", "#52514e"
 plt.rcParams.update({"font.size": 9})
-fig = plt.figure(figsize=(12.5, 5.2))
-
-# ---- panel a: the estimator
-ax = fig.add_axes([0.02, 0.06, 0.40, 0.88])
-ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
-ax.text(0, 9.6, "a", fontsize=13, fontweight="bold")
+fig = plt.figure(figsize=(13, 5.6))
+ax = fig.add_axes([0, 0, 1, 1])
+ax.set_xlim(0, 39); ax.set_ylim(0, 17); ax.axis("off")
 
 
-def box(x, y, w, h, txt, col, fs=8.5):
-    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.08,rounding_size=0.15", fc="white", ec=col, lw=1.4))
-    ax.text(x + w / 2, y + h / 2, txt, ha="center", va="center", fontsize=fs, color=INK)
+def box(x, y, w, h, title, body, col):
+    ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.1,rounding_size=0.3", fc="white", ec=col, lw=1.5))
+    ax.text(x + w / 2, y + h - 0.45, title, ha="center", va="top", fontsize=9.5, fontweight="bold", color=INK)
+    ax.text(x + w / 2, y + h - 1.35, body, ha="center", va="top", fontsize=8.2, color=INK, linespacing=1.35)
 
 
-box(0.3, 7.3, 4.2, 1.7, "Observed de novo missense\n31,058 DD trios\n(replication: 12,316 autism)", S[0])
-box(5.4, 7.3, 4.3, 1.7, "Expected under mutation alone\nRoulette per-site rate × c\nc from synonymous de novos", MUTED)
-box(2.2, 4.4, 5.6, 1.9, "Excess X = O − E in each score group\nLR = share of excess / share of expected\n(no clinical labels)", S[1])
-box(0.3, 1.0, 4.4, 2.3, "Marginal (A)\nall sites compared\nacross the genome", S[3])
-box(5.3, 1.0, 4.4, 2.3, "Within unit (B–E)\neach de novo compared only\nwith sites in the same\ngene / region / window", S[2])
-for (x0, y0, x1, y1) in [(2.4, 7.3, 4.3, 6.35), (7.5, 7.3, 5.7, 6.35), (4.0, 4.4, 2.6, 3.35), (6.0, 4.4, 7.4, 3.35)]:
-    ax.annotate("", xy=(x1, y1), xytext=(x0, y0), arrowprops=dict(arrowstyle="->", color=MUTED, lw=1.2))
-ax.text(5, 0.25, "retention share r = ln LR(level) / ln LR(A)", ha="center", fontsize=9, color=INK, style="italic")
+def arrow(x0, y0, x1, y1):
+    ax.annotate("", xy=(x1, y1), xytext=(x0, y0), arrowprops=dict(arrowstyle="->", color=MUTED, lw=1.3))
 
-# ---- panel b: nested units on one protein
-ax = fig.add_axes([0.46, 0.06, 0.53, 0.88])
-L = 400
-ax.set_xlim(-95, L + 10); ax.set_ylim(-0.6, 6.2); ax.axis("off")
-ax.text(-95, 5.95, "b", fontsize=13, fontweight="bold")
-rows = [("A  raw", None), ("B  gene", [(0, L)]), ("C  constraint region", [(0, 140), (140, 260), (260, L)]),
-        ("D2  50-residue window", [(i, min(i + 50, L)) for i in range(0, L, 50)]),
-        ("E2  window × region", sorted(set([(i, min(i + 50, L)) for i in range(0, L, 50)] +
-                                           [(140, 150), (250, 260)])))]
-cols = {1: S[0], 2: S[1], 3: S[2], 4: S[4]}
-rng = np.random.default_rng(3)
-for k, (lab, units) in enumerate(rows):
-    y = 5 - k * 1.15
-    ax.text(-8, y + 0.2, lab, ha="right", va="center", fontsize=9, color=INK)
-    if units is None:
-        ax.add_patch(Rectangle((0, y), L, 0.4, fc=GRID, ec="none"))
-        ax.text(L / 2, y + 0.2, "all genes pooled", ha="center", va="center", fontsize=8, color=MUTED)
-        continue
-    cuts = sorted(set([u for ab in units for u in ab]))
-    if k == 4:
-        cuts = sorted(set(list(range(0, L + 1, 50)) + [140, 260]))
-    for j in range(len(cuts) - 1):
-        a_, b_ = cuts[j], cuts[j + 1]
-        shade = 0.25 + 0.5 * ((j % 2) == 0)
-        ax.add_patch(Rectangle((a_, y), b_ - a_, 0.4, fc=cols[k], alpha=shade, ec="white", lw=1))
-    if k == 2:
-        ax.text(200, y + 0.62, "RMC o/e 0.25 (PM1-like)", ha="center", fontsize=7, color=MUTED)
-# de novo markers
-for xv in rng.integers(150, 250, 4).tolist() + [40, 330]:
-    ax.plot([xv, xv], [-0.35, 5.45], color=S[1], lw=0.6, alpha=0.35, zorder=0)
-ax.text(L / 2, -0.55, "protein position (residues); orange lines = observed de novos", ha="center", fontsize=8, color=MUTED)
+
+cols = [(0.6, "a", "Label-free dependence", S[0]), (13.6, "b", "Independent truth", S[1]),
+        (26.6, "c", "Audit of practice", S[2])]
+for x, letter, head, col in cols:
+    ax.text(x, 16.3, letter, fontsize=14, fontweight="bold", color=INK)
+    ax.text(x + 0.9, 16.3, head, fontsize=11, fontweight="bold", color=col)
+
+# a
+box(0.6, 11.0, 11.8, 4.6, "De novo missense, three cohorts",
+    "DD 31,058 trios · autism 12,316 probands\npublic 4,256 trios (deduplicated)\n"
+    "expected E: Roulette rates scaled\nby synonymous de novos", S[0])
+box(0.6, 5.6, 11.8, 4.4, "Likelihood ratio without labels",
+    "LR(b) = (X_b / ΣX) / (E_b / ΣE),  X = O − E\nflags: PP3 (ClinGen thresholds),\n"
+    "PM1-like (regional o/e, CCR), PP2-like (Z)", S[0])
+box(0.6, 0.4, 11.8, 4.2, "Dependence",
+    "R = LR(A∧B) / [LR(A)·LR(B)]\nmarginal, within DDG2P genes, within genes\n"
+    "PP3 points alone vs beside PM1", S[0])
+arrow(6.5, 11.0, 6.5, 10.05); arrow(6.5, 5.6, 6.5, 4.65)
+
+# b
+box(13.6, 11.0, 11.8, 4.6, "Truth not built from these criteria",
+    "6,177 expert-panel + 87,873 laboratory\nmissense classifications re-scored without\n"
+    "PP3 BP4 PM1 PP2 BP1 BP3 PM4 PM5 PS2 PM6", S[1])
+box(13.6, 5.6, 11.8, 4.4, "Other truth",
+    "ClinVar P/LP vs B/LB (partly circular)\nProteinGym functional assays\n"
+    "(82 assays, 70 genes)", S[1])
+box(13.6, 0.4, 11.8, 4.2, "Dependence on truth",
+    "LR(C) = P(C | P/LP) / P(C | B/LB)\nR for PP3×PM1, PM1×PP2, PP3×PP2\n"
+    "gene- and submitter-clustered; replication halves", S[1])
+arrow(19.5, 11.0, 19.5, 10.05); arrow(19.5, 5.6, 19.5, 4.65)
+
+# c
+box(26.6, 11.0, 11.8, 4.6, "How criteria are combined",
+    "co-application of PP3, PM1, PP2\nand PP3 strength beside PM1\n(panels: structured codes; labs: parsed text)", S[2])
+box(26.6, 5.6, 11.8, 4.4, "Credit once PM1 applies",
+    "points = ln[LR(C∧PM1) / LR(PM1)] / ln 2.406\nearned vs applied, by strength\n"
+    "equivalence ±0.5 points", S[2])
+box(26.6, 0.4, 11.8, 4.2, "Consequences",
+    "re-score under four rules\n(ClinGen limit; triple limit;\nno PP2 beside PM1; PP3 ≤ Supporting)", S[2])
+arrow(32.5, 11.0, 32.5, 10.05); arrow(32.5, 5.6, 32.5, 4.65)
+arrow(25.5, 13.3, 26.5, 13.3)
+
 fig.savefig(os.path.join(os.path.dirname(os.path.abspath(__file__)), "fig1_design.png"), dpi=200)
 print("written fig1_design.png")
