@@ -4079,6 +4079,60 @@ def cmd_pm1pp2(a):
     log("\n".join(out))
 
 
+def cmd_triple(a):
+    """Stacking of PP3 (AlphaMissense Supporting/Strong), PM1 (like/strict) and PP2-like on the de novo excess:
+    R3 = LR(all three) / [LR(PP3) LR(PM1) LR(PP2)], joint points vs summed points; DD and autism;
+    transcript-clustered bootstrap 1,000, seed 20261013."""
+    out = []
+    for label, kw in (("DD", {}), ("autism", {"cohort": "Affected"})):
+        a.cohort = kw.get("cohort")
+        d, eng, syn_mass, syn_p, d_mis, tinfo = setup(a)
+        cs = len(syn_p) / syn_mass
+        gz = pd.read_csv(GNOMAD_GENE, sep="\t", compression="gzip", usecols=["gene", "mis_z"])
+        pp2_tx = tinfo["gene"].reindex(np.arange(18398)).map(gz.groupby("gene")["mis_z"].max()).fillna(-np.inf).to_numpy() >= 3.09
+        combos = [(f, cut) for f in ("PM1-like", "PM1-strict") for cut in (0.792, 0.972)]
+        Mm = {k: np.zeros((18398, 8)) for k in combos}
+        Om = {k: np.zeros((18398, 8)) for k in combos}
+        dkey, dchr = d_mis["key"].to_numpy(), d_mis["chrom"].astype(str).to_numpy()
+        for c, u in site_chunks(a, cols=["key", "tx", PRIMARY_MODEL, "rmc_oe", "ccr_pct", "am"]):
+            u = u[np.isfinite(u["am"].to_numpy(float))]
+            tx = u["tx"].to_numpy(np.int64)
+            oe, ccr, am = u["rmc_oe"].to_numpy(float), u["ccr_pct"].to_numpy(float), u["am"].to_numpy(float)
+            mr = u[PRIMARY_MODEL].to_numpy(float)
+            di = np.flatnonzero(dchr == str(c))
+            pos = pd.Series(np.arange(len(u)), index=u["key"].to_numpy()).reindex(dkey[di]).to_numpy()
+            pos = pos[np.isfinite(pos)].astype(np.int64)
+            for (f, cut) in combos:
+                fl = ((oe < 0.4) | (ccr >= 95)) if f == "PM1-like" else (oe < 0.2)
+                cat = 4 * (am >= cut).astype(np.int64) + 2 * fl.astype(np.int64) + pp2_tx[tx].astype(np.int64)
+                np.add.at(Mm[(f, cut)], (tx, cat), mr)
+                np.add.at(Om[(f, cut)], (tx[pos], cat[pos]), 1)
+            del u
+            gc.collect()
+        rng = np.random.default_rng(20261013)
+        live = np.flatnonzero(Mm[combos[0]].sum(1) > 0)
+        W = np.stack([np.bincount(rng.choice(live, len(live)), minlength=18398) for _ in range(1000)]).astype(float)
+
+        def st(O, M):
+            E = cs * M
+            X = O - E
+            lr = lambda g: (X[..., g].sum(-1) / X.sum(-1)) / (E[..., g].sum(-1) / E.sum(-1))
+            p3, p1, p2, j = lr([4, 5, 6, 7]), lr([2, 3, 6, 7]), lr([1, 3, 5, 7]), lr([7])
+            return j / (p3 * p1 * p2), j, p3 * p1 * p2
+        for (f, cut) in combos:
+            r0, j0, s0 = st(Om[(f, cut)].sum(0), Mm[(f, cut)].sum(0))
+            rb, jb, _ = st(W @ Om[(f, cut)], W @ Mm[(f, cut)])
+            lo, hi = np.nanpercentile(rb, [2.5, 97.5])
+            plo, phi = np.nanpercentile(np.log(jb) / np.log(2.406), [2.5, 97.5])
+            tier = "Supporting" if cut < 0.9 else "Strong"
+            out.append(f"{label:6s} AlphaMissense {tier:10s} x {f:10s} x PP2-like: R3 {r0:.2f} [{lo:.2f}, {hi:.2f}]; joint LR {j0:.1f} "
+                       f"({np.log(j0) / np.log(2.406):.2f} points [{plo:.2f}, {phi:.2f}]) vs product {s0:.1f} "
+                       f"({np.log(s0) / np.log(2.406):.2f} points); n de novos in joint cell {int(Om[(f, cut)][:, 7].sum())}")
+    a.cohort = None
+    open(P(a.results, "triple_summary.txt"), "w").write("\n".join(out) + "\n")
+    log("\n".join(out))
+
+
 def cmd_oracle(a):
     """Oracle ceiling for retention (review 10). Model: a site is pathogenic or not; pathogenic sites have de novo rate
     k x mutation rate, others 1x. Window excess X_w = E_w (rho_w - 1)+ comes from the fitted A16 rate model (shrunk), so
@@ -4719,7 +4773,7 @@ def main():
         s.add_argument("--from-piece", default="part.7")
     for name in ("validate", "aim5", "aim1", "aim1x", "aim1tools", "aim3", "aim3_report", "a1_report", "aim4", "replicate", "v54"):
         sub.add_parser(name)
-    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report", "hier", "t13", "bench2", "benchval", "oracle", "pm1pp2"):
+    for name in ("dom54_stream", "af_cols", "aim4v2", "aim4v3", "aim4v4", "public3", "overlap", "a10_post", "a13", "a14", "aim4v5", "m4_nested", "a6", "a6_report", "hier", "t13", "bench2", "benchval", "oracle", "pm1pp2", "triple"):
         sub.add_parser(name)
     s = sub.add_parser("a16val")
     s.add_argument("--count-only", action="store_true")
@@ -4738,7 +4792,7 @@ def main():
     s.add_argument("--tools", action="store_true", help="also every Aim 3 tool (needs 'scores')")
     a = ap.parse_args()
     {"universe": cmd_universe, "scores": cmd_scores, "colstore": cmd_colstore, "scores54": cmd_scores54, "scores54_stream": cmd_scores54_stream, "scores54_tail": cmd_scores54_tail, "regions": cmd_regions, "validate": cmd_validate,
-     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report, "hier": cmd_hier, "a16val": cmd_a16val, "t13": cmd_t13, "bench2": cmd_bench2, "benchval": cmd_benchval, "oracle": cmd_oracle, "pm1pp2": cmd_pm1pp2}[a.cmd](a)
+     "aim5": cmd_aim5, "aim1": cmd_aim1, "aim2": cmd_aim2, "aim3": cmd_aim3, "aim4": cmd_aim4, "aim1x": cmd_aim1x, "aim1tools": cmd_aim1tools, "aim3_report": cmd_aim3_report, "a1_report": cmd_a1_report, "replicate": cmd_replicate, "v54": cmd_v54, "clinvar": cmd_clinvar, "dom54_stream": cmd_dom54_stream, "a4ctrl": cmd_a4ctrl, "af_cols": cmd_af_cols, "aim4v2": cmd_aim4v2, "m4_nested": cmd_m4_nested, "aim4v3": cmd_aim4v3, "aim4v4": cmd_aim4v4, "public3": cmd_public3, "overlap": cmd_overlap, "a10_post": cmd_a10_post, "a11": cmd_a11, "a11sim": cmd_a11sim, "a12": cmd_a12, "a13": cmd_a13, "a14": cmd_a14, "aim4v5": cmd_aim4v5, "a6": cmd_a6, "a6_report": cmd_a6_report, "hier": cmd_hier, "a16val": cmd_a16val, "t13": cmd_t13, "bench2": cmd_bench2, "benchval": cmd_benchval, "oracle": cmd_oracle, "pm1pp2": cmd_pm1pp2, "triple": cmd_triple}[a.cmd](a)
 
 
 if __name__ == "__main__":

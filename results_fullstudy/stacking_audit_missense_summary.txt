@@ -1,0 +1,17 @@
+Classifications 6177 (retracted removed); panels 46
+applied: PP3 2990, PM1 1092, PP2 592; PP3+PM1 787, PM1+PP2 174, PP3+PP2 449, all three 138
+PM1+PP2 by panel: RASopathy VCEP 62; FBN1 VCEP 61; Monogenic Diabetes VCEP 22; Brain Malformations VCEP 11; PTEN VCEP 11; Pulmonary Hypertension VCEP 5; ACADVL VCEP 2
+PM1+PP2 classifications with points from PP3+PM1+PP2 > 4: 35 of 174
+rule [as applied]: classifications changed 0 (none)
+rule [ClinGen cap only (PP3+PM1 <= 4)]: classifications changed 24 (LP->VUS 12; P->LP 12)
+rule [PM1+PP2 <= PM1 (PP2 dropped when PM1 applies)]: classifications changed 39 (LP->VUS 11; P->LP 28)
+rule [location cap: PP3+PM1+PP2 <= 4]: classifications changed 35 (LP->VUS 18; P->LP 17)
+rule [PP3 credited at measured 0.6 points when PM1 applies]: classifications changed 187 (LP->VUS 102; P->LP 84; VUS->LB 1)
+rule [PP3 credited at 1.10 (upper 95% bound) when PM1 applies]: classifications changed 43 (LP->VUS 21; P->LP 22)
+rule [PP3 credited at 0.11 (lower 95% bound) when PM1 applies]: classifications changed 187 (LP->VUS 102; P->LP 84; VUS->LB 1)
+independent expert truth: 2942 classifications (P/LP 1721, B/LB 1221, genes 130)
+expert truth R(PM1,PP2) 1.07 [0.23, 1391124.13]; LR PM1 7.08, PP2 8.77, joint 66.69; n joint 95 (B/LB in joint 1)
+expert truth R(PP3,PM1) 0.21 [0.12, 0.31]; LR PP3 8.24, PM1 7.08, joint 11.98; n joint 304 (B/LB in joint 17)
+expert truth R(PP3,PP2) 1.18 [0.46, 2258935.42]; LR PP3 8.24, PP2 8.77, joint 85.14; n joint 242 (B/LB in joint 2)
+points earned by panel-applied PP3 (any strength) once panel PM1 applies: 0.60 [0.11, 1.10]; mean PP3 points applied in that cell 1.24
+expert truth R3(PP3,PM1,PP2) 79548.409 [19242.524, 177977.275]; joint LR 40674026.73 vs product 511.31; summed points 7.10 vs joint points 19.96

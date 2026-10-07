@@ -1,0 +1,8 @@
+DD     AlphaMissense Supporting x PM1-like   x PP2-like: R3 0.13 [0.11, 0.14]; joint LR 24.6 (3.65 points [3.50, 3.79]) vs product 196.7 (6.02 points); n de novos in joint cell 2144
+DD     AlphaMissense Strong     x PM1-like   x PP2-like: R3 0.09 [0.08, 0.11]; joint LR 35.1 (4.05 points [3.89, 4.20]) vs product 373.7 (6.75 points); n de novos in joint cell 1747
+DD     AlphaMissense Supporting x PM1-strict x PP2-like: R3 0.10 [0.08, 0.12]; joint LR 38.7 (4.16 points [3.89, 4.40]) vs product 394.7 (6.81 points); n de novos in joint cell 817
+DD     AlphaMissense Strong     x PM1-strict x PP2-like: R3 0.07 [0.06, 0.08]; joint LR 49.8 (4.45 points [4.17, 4.70]) vs product 749.9 (7.54 points); n de novos in joint cell 671
+autism AlphaMissense Supporting x PM1-like   x PP2-like: R3 0.18 [0.13, 0.24]; joint LR 13.4 (2.96 points [2.67, 3.22]) vs product 75.5 (4.92 points); n de novos in joint cell 445
+autism AlphaMissense Strong     x PM1-like   x PP2-like: R3 0.14 [0.10, 0.20]; joint LR 17.6 (3.27 points [2.96, 3.53]) vs product 124.5 (5.49 points); n de novos in joint cell 318
+autism AlphaMissense Supporting x PM1-strict x PP2-like: R3 0.16 [0.11, 0.23]; joint LR 19.5 (3.38 points [2.98, 3.76]) vs product 122.6 (5.48 points); n de novos in joint cell 146
+autism AlphaMissense Strong     x PM1-strict x PP2-like: R3 0.12 [0.08, 0.17]; joint LR 24.0 (3.62 points [3.19, 4.01]) vs product 202.2 (6.05 points); n de novos in joint cell 111
