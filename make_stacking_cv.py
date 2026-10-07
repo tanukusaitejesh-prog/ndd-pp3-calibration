@@ -177,3 +177,13 @@ for lab, sel in (("any", None), ("Supporting", 1.0), ("Moderate", 2.0)):
     out.append(f"  PP3 {lab:10s}: {c0:.2f} [{lo:.2f}, {hi:.2f}]; applied {t.loc[m, 'PP3'].mean():.2f}; n {int(m.sum())}")
 open("results_fullstudy_backup/stacking_cv_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out[-4:]))
+
+# ---- review 18: panel truth also excluding PS1, PP5, BP6 (with PS2, PM6)
+t = truthset2(DENOVO | {"PS1", "PP5", "BP6"})
+out.append(f"Panel truth also excluding PS1, PP5, BP6, PS2, PM6: n {len(t)}")
+for lab_, sel in (("any", None), ("Supporting", 1.0), ("Moderate", 2.0)):
+    c0, lo, hi = boot_credit(t, sel)
+    m = (t.PM1 > 0) & ((t.PP3 > 0) if sel is None else (t.PP3 == sel))
+    out.append(f"  PP3 {lab_:10s} beside PM1: {c0:.2f} [{lo:.2f}, {hi:.2f}]; n {int(m.sum())}; B/LB {int((m & (t.truth == 0)).sum())}")
+open("results_fullstudy_backup/stacking_cv_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-4:]))

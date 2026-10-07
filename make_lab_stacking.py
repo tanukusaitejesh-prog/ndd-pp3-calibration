@@ -12,14 +12,14 @@ BASE = {"PVS": 8, "PS": 4, "PM": 2, "PP": 1, "BA": -8, "BS": -4, "BP": -1}
 MOD = {"verystrong": 8, "strong": 4, "moderate": 2, "supporting": 1, "standalone": 8}
 EXCL = {"PP3", "BP4", "PM1", "PP2", "BP1", "BP3", "PM4", "PM5"}
 CODE = re.compile(r"\b(PVS|PS|PM|PP|BA|BS|BP)([1-9])(?:[_ ]?\(?(very[ _]?strong|strong|moderate|supporting|stand[ _-]?alone)\)?)?\b", re.I)
-NEG_A = re.compile(r"^\W*(?:criteria\s+)?(?:was\s+|is\s+|were\s+)?(?:not\b|n/a|unmet|absent\b)", re.I)
-NEG_B = re.compile(r"\b(?:not|no|without)\W+$", re.I)
+NEG_A = re.compile(r"^(?:/[A-Z]{2,3}\d)?\W*(?:criteria\s+|criterion\s+)?(?:was\s+|is\s+|were\s+|are\s+)?(?:not\b|n/a|unmet|absent\b)", re.I)
+NEG_B = re.compile(r"(?:\b(?:not|no|without|neither|nor)\b|does\s+not\s+meet|do\s+not\s+meet|not\s+meet|insufficient\s+for|below\s+the\s+threshold\s+for)[^.;]{0,40}$", re.I)
 
 
 def parse(txt):
     ev = {}
     for m in CODE.finditer(txt or ""):
-        if NEG_A.match(txt[m.end():m.end() + 25]) or NEG_B.search(txt[max(0, m.start() - 12):m.start()]):
+        if NEG_A.match(txt[m.end():m.end() + 25]) or NEG_B.search(txt[max(0, m.start() - 60):m.start()]):
             continue
         fam, num, mod = m.group(1).upper(), m.group(2), m.group(3)
         v = BASE[fam]
@@ -143,3 +143,31 @@ m = (T.PM1 > 0) & (T.PP2 > 0)
 out.append(f"  PM1+PP2 joint cell on truth: n {int(m.sum())}, B/LB {int((m & (T.truth == 0)).sum())}; PP2 applied beside PM1 mean {T.loc[m, 'PP2'].mean():.2f}")
 open("results_fullstudy/lab_stacking_summary.txt", "w").write("\n".join(out) + "\n")
 print("\n".join(out[-4:]))
+
+# ---- review 18: submitter-clustered bootstrap; truth with PS1, PP5, BP6 (and PS2, PM6) also excluded
+def boot_cl(df, f, key, nb=1000):
+    cl = df[key].to_numpy(); u = np.unique(cl); ix = pd.Series(np.arange(len(df))).groupby(cl).indices
+    v = [f(df.iloc[np.concatenate([ix[c] for c in rng.choice(u, len(u))])]) for _ in range(nb)]
+    return np.nanpercentile(v, [2.5, 97.5])
+
+
+def credit_pp3(z, sel=None):
+    return credit(z, sel)
+
+
+EST = (("R(PP3, PM1)", R), ("PP3 credit beside PM1, Supporting", lambda z: credit(z, 1)),
+       ("R(PM1, PP2)", lambda z: R2(z, "PM1", "PP2")), ("PP2 credit beside PM1", credit_pp2))
+out.append("Submitter-clustered vs gene-clustered intervals (laboratory truth):")
+for lab_, f in EST:
+    v0 = f(T); g_ = boot_cl(T, f, "gene"); s_ = boot_cl(T, f, "Submitter")
+    out.append(f"  {lab_:36s}: {v0:.2f}; gene-clustered [{g_[0]:.2f}, {g_[1]:.2f}]; submitter-clustered [{s_[0]:.2f}, {s_[1]:.2f}]")
+EX2 = EXCL | {"PS1", "PP5", "BP6", "PS2", "PM6"}
+ind2 = ev.map(lambda e: sum(v for c, v in e.items() if c not in EX2))
+T2 = s[(ind2 >= 6) | (ind2 <= -1)].copy()
+T2["truth"] = (ind2[T2.index] >= 6).astype(int)
+out.append(f"Truth also excluding PS1, PP5, BP6, PS2, PM6: n {len(T2)} (P/LP {T2.truth.sum()}, B/LB {(1 - T2.truth).sum()})")
+for lab_, f in EST:
+    v0 = f(T2); g_ = boot_cl(T2, f, "gene")
+    out.append(f"  {lab_:36s}: {v0:.2f} [{g_[0]:.2f}, {g_[1]:.2f}]")
+open("results_fullstudy/lab_stacking_summary.txt", "w").write("\n".join(out) + "\n")
+print("\n".join(out[-11:]))

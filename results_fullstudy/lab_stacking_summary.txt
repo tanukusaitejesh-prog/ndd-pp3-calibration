@@ -1,17 +1,27 @@
 Lab submissions (non-expert-panel, germline, missense SNV) listing any ACMG code: 87873; submitters 472
-PP3 applied 20760; PM1 applied 6795; both 4477; PP3 strength when both: 1 4212, 2 185, 4 80
-independent truth: 39075 (P/LP 9487, B/LB 29588, genes 5976, submitters 291)
+PP3 applied 20723; PM1 applied 6779; both 4471; PP3 strength when both: 1 4207, 2 184, 4 80
+independent truth: 39015 (P/LP 9455, B/LB 29560, genes 5976, submitters 287)
 R(PP3, PM1) 0.18 [0.14, 0.25]
-PP3 any strength beside PM1: earns 0.85 points [0.53, 1.20]; applied 1.09; n 1775; B/LB 75
-PP3 Supporting   beside PM1: earns 0.83 points [0.53, 1.24]; applied 1.00; n 1681; B/LB 72
-PP3 Moderate     beside PM1: earns 0.75 points [-0.37, 13.82]; applied 2.00; n 65; B/LB 3
-PP3 Strong       beside PM1: earns 13.01 points [12.33, 13.54]; applied 4.00; n 29; B/LB 0
-Re-scoring 87873 laboratory submissions (PM1+PP2 co-applied in 1511; all three in 1059):
+PP3 any strength beside PM1: earns 0.85 points [0.54, 1.22]; applied 1.09; n 1768; B/LB 74
+PP3 Supporting   beside PM1: earns 0.84 points [0.52, 1.26]; applied 1.00; n 1674; B/LB 71
+PP3 Moderate     beside PM1: earns 0.74 points [-0.37, 13.82]; applied 2.00; n 65; B/LB 3
+PP3 Strong       beside PM1: earns 13.00 points [12.33, 13.52]; applied 4.00; n 29; B/LB 0
+Re-scoring 87873 laboratory submissions (PM1+PP2 co-applied in 1481; all three in 1035):
   ClinGen cap (PP3+PM1 <= 4)                   : changed 40 (P->LP 30, LP->VUS 10)
-  PP3+PM1+PP2 <= 4                             : changed 64 (P->LP 40, LP->VUS 22)
-  PP2 not added when PM1 applies               : changed 357 (P->LP 125, LP->VUS 227)
-  PP3 limited to Supporting when PM1 applies   : changed 91 (P->LP 40, LP->VUS 51)
-laboratory truth R(PM1, PP2): 0.28 [0.19, 0.44]
+  PP3+PM1+PP2 <= 4                             : changed 63 (P->LP 39, LP->VUS 22)
+  PP2 not added when PM1 applies               : changed 352 (P->LP 124, LP->VUS 223)
+  PP3 limited to Supporting when PM1 applies   : changed 90 (P->LP 39, LP->VUS 51)
+laboratory truth R(PM1, PP2): 0.27 [0.19, 0.44]
 laboratory truth R(PP3, PP2): 0.42 [0.35, 0.51]
-laboratory truth PP2 credit beside PM1 (points): -0.20 [-0.66, 0.42]
-  PM1+PP2 joint cell on truth: n 571, B/LB 57; PP2 applied beside PM1 mean 1.00
+laboratory truth PP2 credit beside PM1 (points): -0.22 [-0.67, 0.40]
+  PM1+PP2 joint cell on truth: n 565, B/LB 57; PP2 applied beside PM1 mean 1.00
+Submitter-clustered vs gene-clustered intervals (laboratory truth):
+  R(PP3, PM1)                         : 0.18; gene-clustered [0.14, 0.24]; submitter-clustered [0.08, 0.43]
+  PP3 credit beside PM1, Supporting   : 0.84; gene-clustered [0.52, 1.24]; submitter-clustered [0.06, 1.61]
+  R(PM1, PP2)                         : 0.27; gene-clustered [0.19, 0.46]; submitter-clustered [0.14, 0.54]
+  PP2 credit beside PM1               : -0.22; gene-clustered [-0.67, 0.42]; submitter-clustered [-1.23, 0.79]
+Truth also excluding PS1, PP5, BP6, PS2, PM6: n 37572 (P/LP 8045, B/LB 29527)
+  R(PP3, PM1)                         : 0.18 [0.14, 0.24]
+  PP3 credit beside PM1, Supporting   : 0.82 [0.52, 1.20]
+  R(PM1, PP2)                         : 0.30 [0.21, 0.48]
+  PP2 credit beside PM1               : -0.41 [-0.89, 0.24]

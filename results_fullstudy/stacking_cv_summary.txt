@@ -32,3 +32,7 @@ PP3 credit beside PM1 with PS2/PM6 excluded from truth (gene-clustered 95% CI):
   PP3 any       : 0.58 [0.08, 1.04]; applied 1.27; n 257
   PP3 Supporting: 0.75 [0.17, 1.56]; applied 1.00; n 191
   PP3 Moderate  : 0.15 [-2.10, 0.97]; applied 2.00; n 64
+Panel truth also excluding PS1, PP5, BP6, PS2, PM6: n 2748
+  PP3 any        beside PM1: 0.57 [0.08, 1.04]; n 251; B/LB 17
+  PP3 Supporting beside PM1: 0.73 [0.21, 1.60]; n 185; B/LB 11
+  PP3 Moderate   beside PM1: 0.17 [-2.06, 1.03]; n 64; B/LB 6

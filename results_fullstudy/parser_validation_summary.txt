@@ -1,0 +1,5 @@
+Classifications 13286; summaries mentioning >= 1 code 13091
+All codes (summaries that mention codes): precision 0.922, recall 0.981 (TP 40452, FP 3445 of which 3036 are listed as 'not met', FN 795)
+PP3: precision 0.946, recall 0.994, strength agreement 0.994 (TP 4321, FP 247, FN 27)
+PM1: precision 0.983, recall 0.992, strength agreement 0.994 (TP 1426, FP 24, FN 11)
+PP2: precision 0.976, recall 0.991, strength agreement 0.999 (TP 747, FP 18, FN 7)
