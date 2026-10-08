@@ -1,0 +1,16 @@
+A19 H2, vintage 2026-10: laboratory truth SCVs 39015 (P/LP 9455, B/LB 29560); PM1-applied 2812
+H2 mixed model (PM1-applied, n 2812, B/LB 238): PP2_on credit +0.35 points [95% CrI -0.12, +0.81] (pre-registered: present vs absent)
+H2 decision: PP2 credit below 1 point if CrI upper bound < 1 -> CONFIRMED
+H2 mixed model (PM1-applied, n 2812, B/LB 238): PP3_on credit +2.34 points [95% CrI +2.01, +2.67] (pre-registered: present vs absent)
+  random-effect SDs (log-odds): submitter 2.15, gene 1.34
+ACMG-convention credit (points [gene-clustered 95% CI]; n with code; B/LB with code):
+  PP2 beside PM1    : -0.23 [-0.67, +0.37]; n 565; B/LB 57
+  PP2 without PM1   : +1.12 [+0.90, +1.31]; n 2220; B/LB 1365
+  PP3 beside PM1    : +0.85 [+0.54, +1.23]; n 1768; B/LB 74
+  PP3 without PM1   : +2.82 [+2.72, +2.92]; n 5456; B/LB 1440
+H2b PM1 rationale classes (PM1-applied SCVs with truth): other 2325, hotspot/domain 470, constraint 17
+  PP2 credit beside hotspot/domain  PM1: -1.24 [-1.95, -0.55]; n PP2 92; B/LB 14 (descriptive: < 20 B/LB)
+  PP2 credit beside other           PM1: -0.02 [-0.57, +0.79]; n PP2 467; B/LB 42
+  mixed-model interaction PP2 x constraint-based PM1: +0.58 points [-1.97, +3.14]
+H2c PP2 - PP3 credit beside PM1: -1.08 [submitter-clustered -1.69, -0.36] (descriptive)
+H2 one-sided posterior tail P(credit >= 1) ~ 0.003 (normal approximation of the VB posterior); Holm alpha for 2 primary tests: 0.025 -> passes
