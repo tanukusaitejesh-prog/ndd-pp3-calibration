@@ -1,0 +1,7 @@
+(1) Within-submitter credit once PM1 applies (laboratory truth; 39015 submissions with truth, 2812 with PM1)
+  PP2             : pooled (between + within) -0.22; within-submitter (MH) 0.37 [-0.36, 0.95] (90% -0.31, 0.89); informative submitters 35, their PM1 submissions 2043 (C applied 432; B/LB with C 44); applied 1.00
+  PP3 Supporting  : pooled (between + within) 0.84; within-submitter (MH) 0.93 [-0.03, 1.62] (90% 0.03, 1.53); informative submitters 35, their PM1 submissions 2043 (C applied 1089; B/LB with C 57); applied 1.00
+  PP3 any strength: pooled (between + within) 0.85; within-submitter (MH) 1.00 [0.05, 1.68] (90% 0.11, 1.60); informative submitters 35, their PM1 submissions 2043 (C applied 1153; B/LB with C 60); applied 1.09
+(2) Held-out test, ClinVar 2023-01 laboratory missense submissions with ACMG codes: 8510; Likely Pathogenic 1748; rule-affected (LP only through PP2 beside PM1) 42; controls (LP at the same points, 6, without PP2 beside PM1) 485
+  O1 (same SCV no longer P/LP in 2026 (submitter's own reclassification)): affected 2/41 (4.9%) vs controls 2/476 (0.4%); conditional ML OR 12.02 [0.85, 169.92] (exact); Fisher two-sided p 0.0333; submitter-stratified MH OR 11.83; submitters with affected 22
+  O2 (other submitters in 2026 classify VUS/LB/B by majority): affected 9/35 (25.7%) vs controls 49/446 (11.0%); conditional ML OR 2.80 [1.09, 6.61] (exact); Fisher two-sided p 0.0256; submitter-stratified MH OR 4.29; submitters with affected 20
