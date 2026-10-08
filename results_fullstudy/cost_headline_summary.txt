@@ -1,0 +1,38 @@
+Class-level calibration of PS2 + PM2 + PM1-like + AlphaMissense PP3 in DD (de novo excess):
+  uncapped    Pathogenic        n  2438: observed 0.84 [0.84, 0.85] vs nominal >= 0.99 -> shortfall 15 percentage points; implied 5.4 points vs >= 10 (4.6 points overstated)
+  uncapped    Likely pathogenic n  5686: observed 0.33 [0.31, 0.34] vs nominal >= 0.90 -> shortfall 57 percentage points; implied 2.7 points vs >= 6 (3.3 points overstated)
+  capped      Likely pathogenic n  8124: observed 0.48 [0.47, 0.49] vs nominal >= 0.90 -> shortfall 42 percentage points; implied 3.4 points vs >= 6 (2.6 points overstated)
+  conditional Likely pathogenic n  8124: observed 0.48 [0.47, 0.49] vs nominal >= 0.90 -> shortfall 42 percentage points; implied 3.4 points vs >= 6 (2.6 points overstated)
+Points lost to dependence (-ln R / ln 2.406), AlphaMissense:
+  DD     PP3 PP3>=Supporting      x PM1-like : R 0.44 -> 0.93 points over-counted
+  DD     PP3 PP3 Supporting only  x PM1-like : R 0.43 -> 0.97 points over-counted
+  DD     PP3 PP3 Moderate only    x PM1-like : R 0.48 -> 0.83 points over-counted
+  DD     PP3 PP3 >=Strong(3-4)    x PM1-like : R 0.33 -> 1.26 points over-counted
+  DD     PP3 PP3>=Supporting      x PP2-like : R 0.61 -> 0.56 points over-counted
+  DD     PP3 PP3 Supporting only  x PP2-like : R 0.56 -> 0.66 points over-counted
+  DD     PP3 PP3 Moderate only    x PP2-like : R 0.60 -> 0.59 points over-counted
+  DD     PP3 PP3 >=Strong(3-4)    x PP2-like : R 0.52 -> 0.75 points over-counted
+  autism PP3 PP3>=Supporting      x PM1-like : R 0.56 -> 0.67 points over-counted
+  autism PP3 PP3 Supporting only  x PM1-like : R 0.82 -> 0.23 points over-counted
+  autism PP3 PP3 Moderate only    x PM1-like : R 0.44 -> 0.93 points over-counted
+  autism PP3 PP3 >=Strong(3-4)    x PM1-like : R 0.44 -> 0.93 points over-counted
+  autism PP3 PP3>=Supporting      x PP2-like : R 0.65 -> 0.49 points over-counted
+  autism PP3 PP3 Supporting only  x PP2-like : R 0.55 -> 0.69 points over-counted
+  autism PP3 PP3 Moderate only    x PP2-like : R 0.65 -> 0.49 points over-counted
+  autism PP3 PP3 >=Strong(3-4)    x PP2-like : R 0.57 -> 0.64 points over-counted
+  public3 PP3 PP3>=Supporting      x PM1-like : R 0.67 -> 0.45 points over-counted
+  public3 PP3 PP3 Supporting only  x PM1-like : R 1.47 -> -0.44 points over-counted
+  public3 PP3 PP3 Moderate only    x PM1-like : R 0.62 -> 0.55 points over-counted
+  public3 PP3 PP3 >=Strong(3-4)    x PM1-like : R 0.48 -> 0.83 points over-counted
+  public3 PP3 PP3>=Supporting      x PP2-like : R 0.78 -> 0.29 points over-counted
+  public3 PP3 PP3 Supporting only  x PP2-like : R 0.56 -> 0.66 points over-counted
+  public3 PP3 PP3 Moderate only    x PP2-like : R 0.65 -> 0.49 points over-counted
+  public3 PP3 PP3 >=Strong(3-4)    x PP2-like : R 0.69 -> 0.42 points over-counted
+  DD     PP3 Supporting x PM1-like x PP2-like: R3 0.13 -> 2.32 points [2.24, 2.51] over-counted
+  DD     PP3 Strong     x PM1-like x PP2-like: R3 0.09 -> 2.74 points [2.51, 2.88] over-counted
+  DD     PP3 Supporting x PM1-strict x PP2-like: R3 0.10 -> 2.62 points [2.41, 2.88] over-counted
+  DD     PP3 Strong     x PM1-strict x PP2-like: R3 0.07 -> 3.03 points [2.88, 3.20] over-counted
+  autism PP3 Supporting x PM1-like x PP2-like: R3 0.18 -> 1.95 points [1.63, 2.32] over-counted
+  autism PP3 Strong     x PM1-like x PP2-like: R3 0.14 -> 2.24 points [1.83, 2.62] over-counted
+  autism PP3 Supporting x PM1-strict x PP2-like: R3 0.16 -> 2.09 points [1.67, 2.51] over-counted
+  autism PP3 Strong     x PM1-strict x PP2-like: R3 0.12 -> 2.41 points [2.02, 2.88] over-counted
