@@ -1,0 +1,54 @@
+AlphaMissense: cells train (DD) 6, test (autism, public) 5; learned kappa constant 0.40; per band nominal 1: -16.99, nominal 2: -0.18, nominal 4: 0.41
+  rule                    train MSE   test MSE   test MSE - cap [95% CI]
+  R0 uncapped                 1.670      0.901   +0.801 [+0.509, +1.088]
+  R1 ClinGen cap              0.234      0.100   +0.000 [+0.000, +0.000]
+  R2 PP3 <= Supporting        0.222      0.166   +0.067 [-0.085, +0.219]
+  R3 one level lower          0.143      0.038   -0.062 [-0.109, -0.016]
+  R6 no PP3 credit            0.776      0.614   +0.514 [+0.211, +0.820]
+  R4 learned constant         0.099      0.040   -0.060 [-0.141, +0.025]
+  R5 learned per band         0.017      0.521   +0.422 [+0.049, +0.899]  <- selected on DD
+  H5a (primary): R5 learned per band vs cap on test cohorts -> does not beat the cap (upper bound +0.899)
+    test cell autism  PM1-like   PP3 Supporting only  n  104: error cap -0.23 pts, R5 learned per band +3.15 pts
+    test cell autism  PM1-like   PP3 Moderate only    n  131: error cap -0.93 pts, R5 learned per band +0.02 pts
+    test cell autism  PM1-like   PP3 >=Strong(3-4)    n  519: error cap -0.02 pts, R5 learned per band +0.15 pts
+    test cell autism  PM1-strict PP3 >=Strong(3-4)    n  157: error cap -0.16 pts, R5 learned per band +0.00 pts
+    test cell public3 PM1-like   PP3 >=Strong(3-4)    n  107: error cap +0.06 pts, R5 learned per band +0.22 pts
+REVEL: cells train (DD) 6, test (autism, public) 4; learned kappa constant 0.59; per band nominal 1: 0.31, nominal 2: 0.52, nominal 4: 0.66
+  rule                    train MSE   test MSE   test MSE - cap [95% CI]
+  R0 uncapped                 0.614      0.106   -0.020 [-0.253, +0.225]
+  R1 ClinGen cap              0.391      0.126   +0.000 [+0.000, +0.000]
+  R2 PP3 <= Supporting        0.565      0.400   +0.274 [+0.124, +0.424]
+  R3 one level lower          0.103      0.141   +0.015 [-0.113, +0.147]
+  R6 no PP3 credit            1.263      0.990   +0.864 [+0.550, +1.176]
+  R4 learned constant         0.054      0.046   -0.079 [-0.175, +0.019]
+  R5 learned per band         0.014      0.035   -0.090 [-0.220, +0.045]  <- selected on DD
+  H5a (secondary): R5 learned per band vs cap on test cohorts -> does not beat the cap (upper bound +0.045)
+    test cell autism  PM1-like   PP3 Supporting only  n  148: error cap -0.15 pts, R5 learned per band +0.23 pts
+    test cell autism  PM1-like   PP3 Moderate only    n  132: error cap -0.28 pts, R5 learned per band +0.18 pts
+    test cell autism  PM1-like   PP3 >=Strong(3-4)    n  173: error cap +0.45 pts, R5 learned per band +0.20 pts
+    test cell autism  PM1-strict PP3 >=Strong(3-4)    n   54: error cap +0.36 pts, R5 learned per band +0.11 pts
+H5b PP2 beside PM1-like (error = ln R + (1 - kappa_PP2) ln LR(PP2), points):
+  test autism: add PP2 (kappa 1)            error -1.16 points (SE 0.12)
+  test autism: no PP2 beside PM1 (kappa 0)  error +0.62 points (SE 0.12)
+  test autism: learned in DD (kappa 0.33)   error +0.02 points (SE 0.12)
+H5c triple PP3 x PM1 x PP2 (descriptive; error in points, test = autism):
+  autism Supporting x PM1-like  : cap + add PP2              error -1.97 points
+  autism Supporting x PM1-like  : cap + no PP2               error -0.19 points
+  autism Supporting x PM1-like  : Supporting limit + no PP2  error -0.19 points
+  autism Supporting x PM1-like  : one level lower + no PP2   error +1.07 points
+  autism Supporting x PM1-like  : uncapped                   error -1.97 points
+  autism Strong     x PM1-like  : cap + add PP2              error -1.31 points
+  autism Strong     x PM1-like  : cap + no PP2               error +0.47 points
+  autism Strong     x PM1-like  : Supporting limit + no PP2  error +0.93 points
+  autism Strong     x PM1-like  : one level lower + no PP2   error +0.47 points
+  autism Strong     x PM1-like  : uncapped                   error -2.23 points
+  autism Supporting x PM1-strict: cap + add PP2              error -2.09 points
+  autism Supporting x PM1-strict: cap + no PP2               error -0.31 points
+  autism Supporting x PM1-strict: Supporting limit + no PP2  error -0.31 points
+  autism Supporting x PM1-strict: one level lower + no PP2   error +0.95 points
+  autism Supporting x PM1-strict: uncapped                   error -2.09 points
+  autism Strong     x PM1-strict: cap + add PP2              error -1.51 points
+  autism Strong     x PM1-strict: cap + no PP2               error +0.27 points
+  autism Strong     x PM1-strict: Supporting limit + no PP2  error +0.73 points
+  autism Strong     x PM1-strict: one level lower + no PP2   error +0.27 points
+  autism Strong     x PM1-strict: uncapped                   error -2.43 points
