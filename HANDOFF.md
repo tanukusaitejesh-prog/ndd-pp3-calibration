@@ -1,3 +1,29 @@
+# Handoff update: draft 14 (8 October 2026, cloud session)
+
+**Current manuscript: `MANUSCRIPT_v14.md` + `SUPPLEMENT_v14.md`** (branch `claude/a18-temporal-reclassification`).
+Built from the review-20 roadmap. Pre-registration `prereg_fullstudy/A19_V14_PREREG.md` was committed (ceb1a11) before
+H1–H4 were run; deviation log `A19_DEVIATIONS.md`. Reproduce with `bash reproduce_v14.sh` (public ClinVar only);
+`REPRODUCE.md` maps every number to a script.
+
+Results: H1 no rule beats the cap (cap retained); H2 PP2 credit beside PM1 0.35 [−0.12, 0.81] (confirmed < 1; PP2 alone
+1.12); H3 gene-calibrated PP3 still dependent (R 0.41); H4 R < 1 in every era, BUT negative controls PP1/PP4 show
+R ≈ 0.03–0.04 on laboratory truth -> classification-derived truth does not measure dependence; laboratory/panel R and
+credit are now presented as descriptions of practice. Cost: uncapped Pathogenic 2,438 DD de novos at 84% vs ≥ 99%;
+PP3 × PM1 × PP2 over-counts 2.3 points (DD).
+
+**Not doable in the cloud (needs the WSL column store on X:):**
+1. Share kept within genes on the de novo scale, and candidate rules on the de novo scale.
+2. Functional-assay redo with gene as unit and VCEP-specification PM1 regions (PTEN numbering, BRCA1 domains).
+3. Negative-control criteria on the de novo scale are not available (no de novo analogue of PP1/PP4); consider gene-level
+   features unrelated to constraint as controls.
+
+**Author actions:** two annotators fill `results_fullstudy/parser_annotation_sheet_v14.tsv` (then compute kappa);
+OSF deposit of A19 (state that it postdates the git commit); obtain SVC v4 draft/pilot materials and verify the
+"[verify against the v4 specification]" sentences; names, affiliations, funding, competing interests, contributions;
+make the repository public + Zenodo DOI; journal formatting (Genetics in Medicine first target).
+
+---
+
 # Handoff: NDD PP3 study (6 October 2026, evening IST)
 
 Read this first in a new chat, then continue the "Remaining" list in order. The user wants one-line replies, minimal tokens, full autonomy, and a commit and push after every step.
