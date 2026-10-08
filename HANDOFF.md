@@ -1,6 +1,6 @@
-# Handoff update: draft 18 (8 October 2026, cloud session)
+# Handoff update: draft 19 (8 October 2026, cloud session)
 
-**Current manuscript: `MANUSCRIPT_v18.md` + `SUPPLEMENT_v18.md`** (A20 de novo rule tests added; pre-registration A20_DENOVO_RULES_PREREG.md) (branch `claude/a18-temporal-reclassification`, with main's drafts 14-16 merged in).
+**Current manuscript: `MANUSCRIPT_v19.md` + `SUPPLEMENT_v19.md`** (A21 MaveDB assays added) (A20 de novo rule tests added; pre-registration A20_DENOVO_RULES_PREREG.md) (branch `claude/a18-temporal-reclassification`, with main's drafts 14-16 merged in).
 Built on draft 16 from the review-22 roadmap. A cloud draft mistakenly built on v13 is in `archive/`. Pre-registration `prereg_fullstudy/A19_V14_PREREG.md` was committed (ceb1a11) before
 H1–H4 were run; deviation log `A19_DEVIATIONS.md`. Reproduce with `bash reproduce_v14.sh` (public ClinVar only);
 `REPRODUCE.md` maps every number to a script.

@@ -17,3 +17,4 @@ python make_vintage_replication.py
 python make_validity_v14.py
 python make_cost_headline.py
 python make_denovo_rules.py
+python make_mave_mavedb.py   # downloads MaveDB score sets, UniProt sequences; needs work/am/AlphaMissense_aa_substitutions.tsv.gz and work/erepo/curated_pm1_residues.tsv
