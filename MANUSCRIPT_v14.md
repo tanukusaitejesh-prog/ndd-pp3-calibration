@@ -180,8 +180,8 @@ thresholds. (Both estimates share the truth construction of section 5; their rat
 
 ### 7. How laboratories combine the criteria, and whether the analysis reflects their practice
 Laboratories applied PP3 beside PM1 in 4,471 submissions, 98% at Supporting or Moderate, where the cap does not act;
-PM1 was Moderate in 90%; the cap binds in 211 (Table 3). Laboratories reported the uncapped class in 32 of the 38
-submissions whose class the cap would change, so the re-scoring baseline reflects reported practice. Eighteen templated
+PM1 was Moderate in 90%; the cap binds in 211 (Table 3). Of the 40 submissions whose class the cap would change, 38 apply both PP3 and PM1 (in two, a single criterion exceeds 4
+points); laboratories reported the uncapped class in 32 of those 38, so the re-scoring baseline reflects reported practice. Eighteen templated
 submitters (1,681 submissions) did not drive any estimate (without them, R 0.11, PP2 credit beside PM1 −0.80).
 
 **Table 3. Practice and the classifications each rule would change** (laboratories; 87,873 submissions).
