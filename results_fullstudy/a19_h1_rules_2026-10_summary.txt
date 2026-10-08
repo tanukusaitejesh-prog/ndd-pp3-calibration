@@ -1,0 +1,23 @@
+A19 H1, vintage 2026-10: PM1-applied SCVs with laboratory truth 2812 (P/LP 2574, B/LB 238; PP3 applied 1768; genes 701; submitters 150)
+Held-out mean log-loss (gene-grouped 5-fold CV x 20):
+  R0 uncapped            0.2763
+  R1 ClinGen cap         0.2769
+  R2 PP3 <= Supporting   0.2770
+  R3 discount            0.2732
+  R4 learned credit      0.2732
+  R5 no PP3 credit       0.3147
+Difference vs R1 ClinGen cap (submitter-clustered bootstrap, 2,000):
+  R0 uncapped            -0.0006 [-0.0015, -0.0002]
+  R2 PP3 <= Supporting   +0.0002 [-0.0009, +0.0012]
+  R3 discount            -0.0037 [-0.0092, +0.0061]
+  R4 learned credit      -0.0037 [-0.0101, +0.0105]
+  R5 no PP3 credit       +0.0378 [+0.0239, +0.0499]
+H1a decision (pre-specified): R4 better than the cap if upper bound < 0 -> NOT confirmed (cap retained)
+Full-data learned credit (points) for PP3 beside PM1: nominal 1: 1.63, nominal 2: 1.37, nominal 4: 2.73
+Full-data discount factor k = 1.52
+  classifications changed vs reported points under R0 uncapped           : 0 of 4471 (P->LP 0, LP->VUS 0)
+  classifications changed vs reported points under R1 ClinGen cap        : 38 of 4471 (P->LP 28, LP->VUS 10)
+  classifications changed vs reported points under R2 PP3 <= Supporting  : 90 of 4471 (P->LP 39, LP->VUS 51)
+  classifications changed vs reported points under R3 discount           : 44 of 4471 (P->LP 0, LP->VUS 0)
+  classifications changed vs reported points under R4 learned credit     : 75 of 4471 (P->LP 30, LP->VUS 45)
+  classifications changed vs reported points under R5 no PP3 credit      : 1047 of 4471 (P->LP 375, LP->VUS 663)
