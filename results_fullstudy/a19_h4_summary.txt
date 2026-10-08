@@ -1,0 +1,18 @@
+A19 H4: pooled unique SCVs 88202 (by first vintage: 2020-01 1979, 2022-01 3053, 2024-01 27248, 2026-10 55922); with truth 38911
+  era <=2019    n   1275: R(PP3,PM1) 0.27 [0.14, 0.86] (B/LB in joint 3); PP2 credit beside PM1 -0.47 [-1.83, +1.36] (B/LB 2)
+  era 2020-2022 n   6402: R(PP3,PM1) 0.10 [0.07, 0.18] (B/LB in joint 10); PP2 credit beside PM1 +0.82 [-0.39, +2.45] (B/LB 1)
+  era 2023-2024 n  16438: R(PP3,PM1) 0.24 [0.16, 0.40] (B/LB in joint 17); PP2 credit beside PM1 +0.45 [-0.20, +1.44] (B/LB 12)
+  era 2025-2026 n  14628: R(PP3,PM1) 0.17 [0.13, 0.26] (B/LB in joint 43); PP2 credit beside PM1 -0.58 [-1.06, +0.14] (B/LB 42)
+Replication rule (pre-specified): R upper bound < 1 in every era with >= 20 B/LB -> REPLICATED (1 eligible eras); PP2 credit < 1 in every eligible era -> REPLICATED (1 eligible eras)
+Negative control (truth also excluding PP1, PP4; n 38007): credit beside PM1 vs without PM1 (gene-clustered 95% CI)
+  PP1: beside PM1 +1.34 [+0.27, +3.84] (n 573); without PM1 +5.40 [+4.96, +5.95]
+  PP4: beside PM1 +0.76 [-0.22, +2.94] (n 413); without PM1 +5.00 [+4.53, +5.57]
+  PP2: beside PM1 -0.22 [-0.69, +0.37] (n 531); without PM1 +1.06 [+0.86, +1.26]
+  PP3: beside PM1 +0.84 [+0.54, +1.24] (n 1604); without PM1 +2.80 [+2.71, +2.90]
+Specificity: R(code, PM1) with the negative-control truth (gene-clustered 95% CI)
+  R(PP1, PM1) 0.04 [0.02, 0.22]
+  R(PP4, PM1) 0.03 [0.02, 0.12]
+  R(PP2, PM1) 0.29 [0.20, 0.47]
+  R(PP3, PM1) 0.18 [0.14, 0.25]
+  ratio R(PP3,PM1)/R(PP1,PM1) 5.01 [0.82, 7.23] (< 1 = PP3 dependence beyond the control)
+  ratio R(PP3,PM1)/R(PP4,PM1) 5.59 [1.59, 8.33] (< 1 = PP3 dependence beyond the control)
