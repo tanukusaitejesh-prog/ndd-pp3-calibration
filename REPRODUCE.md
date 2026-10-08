@@ -1,4 +1,4 @@
-# Reproducing draft 17 (pre-registered laboratory analyses and cost)
+# Reproducing draft 18 (pre-registered laboratory analyses and cost)
 
 Environment: `environment.yml` / `environment.lock.yml`. De novo analyses need the column store built by `run_all.sh`
 (Roulette, AlphaMissense, dbNSFP; large). The draft-14 laboratory analyses need only public ClinVar files.
@@ -13,7 +13,7 @@ Downloads ClinVar submission_summary (2020-01, 2022-01, 2024-01, 2026-10) and va
 
 ## Number / table / figure → script → output
 
-| Item in MANUSCRIPT_v17 | Script | Output (results_fullstudy/) |
+| Item in MANUSCRIPT_v18 | Script | Output (results_fullstudy/) |
 |---|---|---|
 | Table 1 rows 1–5 (R, de novo) | `fullstudy.py a10` / `a12 --part gclust2` / `a13` | `a10_overlap.tsv`, `a12_gclust2_summary.txt`, `a13_summary.txt`, `pm1pp2_summary.txt` |
 | Table 1 row 6 (R3) | `fullstudy.py` (triple stacking) | `triple_summary.txt` |
@@ -28,3 +28,4 @@ Downloads ClinVar submission_summary (2020-01, 2022-01, 2024-01, 2026-10) and va
 | Parser annotation sheet | `make_validity_v14.py` | `parser_annotation_sheet_v14.tsv` |
 
 dbNSFP licence: dbNSFP scores are used under its academic licence and are not redistributed; scripts re-derive them.
+| Rules on de novo truth (A20) | `make_denovo_rules.py` | `a20_denovo_rules_summary.txt` |

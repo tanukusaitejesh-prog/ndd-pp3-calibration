@@ -16,3 +16,4 @@ python make_genecal_pp3.py
 python make_vintage_replication.py
 python make_validity_v14.py
 python make_cost_headline.py
+python make_denovo_rules.py
