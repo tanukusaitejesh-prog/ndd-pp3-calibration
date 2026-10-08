@@ -106,6 +106,12 @@ for r in idx.itertuples():
     rec = dict(ds=r.DMS_id, gene=gene, n=len(j), nF=int(j.F.sum()), damaging=int(y.sum()), F_frac=j.F.mean(),
                Fp_frac=j.Fp.mean(), LR_F=lr(j.F.to_numpy(), y), LR_Fp=lr(j.Fp.to_numpy(), y),
                LR_PP3=lr((j.am >= 0.792).to_numpy(), y))
+    jf, jn = j[j.F], j[~j.F]
+    for nm, zz in (("F", jf), ("notF", jn)):     # PP3 evidence at and away from curated PM1 residues
+        yz = zz.truth.to_numpy()
+        rec[f"LR_PP3_{nm}"] = lr((zz.am >= 0.792).to_numpy(), yz) if 0 < yz.sum() < len(yz) else np.nan
+        rec[f"pp3_{nm}"] = (zz.am >= 0.792).mean()
+        rec[f"dam_{nm}"] = yz.mean()
     if j.F.sum() >= 10 and y.sum() >= 10 and (1 - y).sum() >= 10:
         pos = j.prot_pos.to_numpy(); up = np.unique(pos); gi = pd.Series(np.arange(len(j))).groupby(pos).indices
         for cut, tier in ((0.792, "sup"), (0.972, "str")):
@@ -144,6 +150,13 @@ for tier, nm in (("sup", "Supporting"), ("str", "Strong")):
 if len(inf):
     out.append(f"Informative assays: median LR(curated PM1) {inf.LR_F.median():.2f}; median LR(PM1-like proxy) {inf.LR_Fp.median():.2f}; "
                f"median LR(PP3 Supporting) {inf.LR_PP3.median():.2f}")
+if len(inf):
+    sh = np.log(inf.LR_PP3_F) / np.log(inf.LR_PP3)
+    out.append(f"PP3 (AlphaMissense Supporting) evidence at curated PM1 residues vs alone: median LR {inf.LR_PP3_F.median():.2f} vs "
+               f"{inf.LR_PP3.median():.2f}; median share of log-evidence kept {np.nanmedian(sh):.2f}; per assay " +
+               ", ".join(f"{d.split('_HUMAN_')[0]}:{v:.2f}" for d, v in zip(inf.ds, sh)))
+    out.append(f"At curated residues: PP3-positive share median {inf.pp3_F.median():.2f} vs {inf.pp3_notF.median():.2f} elsewhere; "
+               f"damaging share median {inf.dam_F.median():.2f} vs {inf.dam_notF.median():.2f}")
 for rr in A.sort_values("gene").itertuples():
     out.append(f"  {rr.ds:45s} n {rr.n:5d} curated F {rr.nF:4d} ({rr.F_frac:.2f}) proxy F {rr.Fp_frac:.2f} LR_F {rr.LR_F:.2f} "
                f"LR_proxy {rr.LR_Fp:.2f}" + (f" R_sup {rr.R_sup:.2f} [{rr.lo_sup:.2f}, {rr.hi_sup:.2f}] R_str {rr.R_str:.2f}"
