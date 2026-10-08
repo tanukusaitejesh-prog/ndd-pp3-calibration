@@ -1,0 +1,7 @@
+A19 H3: published AlphaMissense Supporting threshold 0.792; gene-specific thresholds for 341 genes (median 0.132, IQR 0.099-0.192); laboratory truth SCVs with AlphaMissense 20835 (in calibrated genes 5913)
+  R(AlphaMissense PP3 published      , PM1) 0.31 [0.18, 0.88]; LR(PP3) 14.97
+  R(AlphaMissense PP3 gene-calibrated, PM1) 0.41 [0.30, 0.61]; LR(PP3) 6.10
+  ratio gene-calibrated / published R 1.33 [0.65, 1.96]
+  calibrated genes only: R(published      , PM1) 0.15 [0.10, 0.41]
+  calibrated genes only: R(gene-calibrated, PM1) 0.51 [0.44, 0.63]
+Interpretation (pre-specified): interval including 1 -> 'calibrate, don't cap'; R stays < 1 -> dependence not an artefact of global thresholds
