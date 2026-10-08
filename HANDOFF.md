@@ -1,7 +1,7 @@
-# Handoff update: draft 14 (8 October 2026, cloud session)
+# Handoff update: draft 17 (8 October 2026, cloud session)
 
-**Current manuscript: `MANUSCRIPT_v14.md` + `SUPPLEMENT_v14.md`** (branch `claude/a18-temporal-reclassification`).
-Built from the review-20 roadmap. Pre-registration `prereg_fullstudy/A19_V14_PREREG.md` was committed (ceb1a11) before
+**Current manuscript: `MANUSCRIPT_v17.md` + `SUPPLEMENT_v17.md`** (branch `claude/a18-temporal-reclassification`, with main's drafts 14-16 merged in).
+Built on draft 16 from the review-22 roadmap. A cloud draft mistakenly built on v13 is in `archive/`. Pre-registration `prereg_fullstudy/A19_V14_PREREG.md` was committed (ceb1a11) before
 H1–H4 were run; deviation log `A19_DEVIATIONS.md`. Reproduce with `bash reproduce_v14.sh` (public ClinVar only);
 `REPRODUCE.md` maps every number to a script.
 
