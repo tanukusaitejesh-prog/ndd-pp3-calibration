@@ -1,0 +1,21 @@
+Curated PM1: 1439 Evidence Repository classifications with PM1 met; 841 distinct missense residues in 67 genes
+  TP53 curated PM1 residues: [61, 110, 111, 127, 132, 135, 144, 152, 158, 163, 164, 173, 175, 178, 179, 181, 190, 194, 197, 214, 220, 237, 245, 248, 254, 267, 272, 273, 280, 282, 283, 290, 337, 342]
+  PTEN curated PM1 residues: [93, 123, 124, 125, 127, 130, 167]
+  BRCA1 curated PM1 residues: []
+  GCK: 14 curated PM1 residues; reference concordance 1.00
+  TP53: 34 curated PM1 residues; reference concordance 0.97
+  PTEN: 7 curated PM1 residues; reference concordance 0.86
+  RAF1: 8 curated PM1 residues; reference concordance 0.88
+  HRAS: 4 curated PM1 residues; reference concordance 1.00
+  KRAS: 3 curated PM1 residues; reference concordance 1.00
+Assays in genes with curated PM1: 7 (3 genes); informative: 7 assays, 3 genes
+AlphaMissense Supporting x curated PM1: assays 7 (3 genes); random effects 0.49 [0.40, 0.60]; share of assays with R < 1 1.00
+AlphaMissense Strong     x curated PM1: assays 7 (3 genes); random effects 0.43 [0.36, 0.51]; share of assays with R < 1 1.00
+Informative assays: median LR(curated PM1) 3.16; median LR(PM1-like proxy) 0.00; median LR(PP3 Supporting) 3.41
+  HXK4_HUMAN_Gersing_2022_activity              n  2413 curated F   72 (0.03) proxy F 0.13 LR_F 4.31 LR_proxy 1.64 R_sup 0.40 [0.27, 1.06] R_str 0.51
+  HXK4_HUMAN_Gersing_2023_abundance             n  2388 curated F   72 (0.03) proxy F 0.13 LR_F 1.00 LR_proxy 0.73 R_sup 0.38 [0.30, 0.46] R_str 0.36
+  RASH_HUMAN_Bandaru_2017                       n   939 curated F   23 (0.02) proxy F 0.45 LR_F 0.85 LR_proxy 1.53 R_sup 0.60 [0.53, 0.67] R_str 0.46
+  P53_HUMAN_Giacomelli_2018_Null_Etoposide      n  2020 curated F  199 (0.10) proxy F 0.00 LR_F 3.87 LR_proxy 0.00 R_sup 0.43 [0.32, 0.64] R_str 0.39
+  P53_HUMAN_Giacomelli_2018_Null_Nutlin         n  2020 curated F  199 (0.10) proxy F 0.00 LR_F 3.16 LR_proxy 0.00 R_sup 0.52 [0.35, 0.92] R_str 0.51
+  P53_HUMAN_Giacomelli_2018_WT_Nutlin           n  2020 curated F  199 (0.10) proxy F 0.00 LR_F 4.71 LR_proxy 0.00 R_sup 0.40 [0.29, 0.59] R_str 0.33
+  P53_HUMAN_Kotler_2018                         n   933 curated F  175 (0.19) proxy F 0.00 LR_F 2.32 LR_proxy 0.00 R_sup 0.64 [0.47, 0.98] R_str 0.65

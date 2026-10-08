@@ -46,10 +46,10 @@ arrow(6.5, 11.0, 6.5, 10.05); arrow(6.5, 5.6, 6.5, 4.65)
 # b
 box(13.6, 11.0, 11.8, 4.6, "Truth not built from these criteria",
     "6,177 expert-panel + 87,873 laboratory\nmissense classifications re-scored without\n"
-    "PP3 BP4 PM1 PP2 BP1 BP3 PM4 PM5 PS2 PM6", S[1])
+    "PP3 BP4 PM1 PP2 BP1 BP3 PM4 PM5\n(sensitivity: also PS2 PM6 PS1 PP5 BP6)", S[1])
 box(13.6, 5.6, 11.8, 4.4, "Other truth",
-    "ClinVar P/LP vs B/LB (partly circular)\nProteinGym functional assays\n"
-    "(82 assays, 70 genes)", S[1])
+    "ClinVar P/LP vs B/LB (partly circular)\nProteinGym functional assays with\n"
+    "PM1-like proxy or panel-curated PM1", S[1])
 box(13.6, 0.4, 11.8, 4.2, "Dependence on truth",
     "LR(C) = P(C | P/LP) / P(C | B/LB)\nR for PP3×PM1, PM1×PP2, PP3×PP2\n"
     "gene- and submitter-clustered; replication halves", S[1])
@@ -60,9 +60,9 @@ box(26.6, 11.0, 11.8, 4.6, "How criteria are combined",
     "co-application of PP3, PM1, PP2\nand PP3 strength beside PM1\n(panels: structured codes; labs: parsed text)", S[2])
 box(26.6, 5.6, 11.8, 4.4, "Credit once PM1 applies",
     "points = ln[LR(C∧PM1) / LR(PM1)] / ln 2.406\nearned vs applied, by strength\n"
-    "equivalence ±0.5 points", S[2])
+    "pooled and within laboratory", S[2])
 box(26.6, 0.4, 11.8, 4.2, "Consequences",
-    "re-score under four rules\n(ClinGen limit; triple limit;\nno PP2 beside PM1; PP3 ≤ Supporting)", S[2])
+    "re-score under four rules\nheld-out test of no PP2 beside PM1:\n2023 calls vs 2026 reclassification", S[2])
 arrow(32.5, 11.0, 32.5, 10.05); arrow(32.5, 5.6, 32.5, 4.65)
 arrow(25.5, 13.3, 26.5, 13.3)
 
