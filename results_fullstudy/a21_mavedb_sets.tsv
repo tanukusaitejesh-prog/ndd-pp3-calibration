@@ -1,0 +1,82 @@
+gene	urn	uniprot	offset	ref_match	curated_ref_match	status	n	n_F	damaging
+BRAF	urn:mavedb:00000091-a-1	H7C560	476	1.0	1.0	too few nonsense/synonymous			
+F9	urn:mavedb:00001200-d-1	P00740	0	1.0	1.0	informative	8528.0	95.0	3204.0
+F9	urn:mavedb:00001200-b-1	P00740	0	1.0	1.0	informative	8528.0	95.0	2515.0
+F9	urn:mavedb:00001200-c-1	P00740	0	1.0	1.0	informative	8528.0	95.0	2671.0
+F9	urn:mavedb:00001200-e-1	P00740	0	1.0	1.0	informative	8528.0	95.0	3026.0
+F9	urn:mavedb:00001200-a-1	P00740	0	1.0	1.0	informative	8528.0	95.0	2268.0
+F9	urn:mavedb:00001200-0-1	P00740	0	1.0	1.0	too few nonsense/synonymous			
+GCK	urn:mavedb:00000096-b-1	P35557	0	1.0	1.0	informative	8396.0	247.0	2017.0
+GCK	urn:mavedb:00000096-a-1	P35557	0	1.0	1.0	informative	8570.0	253.0	4014.0
+KCNQ1	urn:mavedb:00000094-a-15	P51787	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-8	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-7	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-13	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-6	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-1	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-9	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-12	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-4	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-11	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-2	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-10	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-5	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KCNQ4	urn:mavedb:00000094-a-3	P56696	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-20	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-9	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-25	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-21	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-23	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-11	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-18	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-3	P01116	0	0.9115281501340483	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-10	P01116	0	0.7210460772104608	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-13	P01116	0	0.75	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-14	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-15	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-16	P01116	0	0.7254901960784313	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-28	P01116	0	0.7061556329849012	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-5	P01116	0	0.9091518605430774	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-1	P01116	0	0.895870736086176	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-17	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-27	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-6	P01116	0	0.8912450772493183	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-2	P01116	0	0.8995098039215687	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-4	P01116	0	0.9059052563270603	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-22	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-19	P01116	0	0.7594108019639935	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-24	P01116	0	0.6855345911949685	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-7	P01116	0	0.8908195771792644	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-26	P01116	0	1.0	1.0	too few nonsense/synonymous			
+KRAS	urn:mavedb:00000115-a-8	P01116	0	0.6981132075471698	1.0	mapping failed			
+KRAS	urn:mavedb:00000115-a-12	P01116	0	1.0	1.0	too few nonsense/synonymous			
+LDLR	urn:mavedb:00001269-a-1	P01130	0	1.0	1.0	informative	15507.0	617.0	2971.0
+LDLR	urn:mavedb:00001269-b-1	P01130	0	1.0	1.0	informative	15011.0	608.0	2193.0
+MAP2K1	urn:mavedb:00001206-a-1	Q02750	0	1.0	1.0	too few nonsense/synonymous			
+MAP2K1	urn:mavedb:00001204-a-4	Q02750	0	1.0	1.0	too few nonsense/synonymous			
+MAP2K1	urn:mavedb:00001204-a-3	Q02750	0	1.0	1.0	too few nonsense/synonymous			
+MAP2K1	urn:mavedb:00001204-a-6	Q02750	0	1.0	1.0	too few nonsense/synonymous			
+MAP2K1	urn:mavedb:00001206-a-2	Q02750	0	1.0	1.0	too few nonsense/synonymous			
+MAP2K1	urn:mavedb:00001204-a-2	Q02750	0	1.0	1.0	too few nonsense/synonymous			
+OTC	urn:mavedb:00000112-a-1	P00480	0	1.0	1.0	too few nonsense/synonymous			
+PAX6	urn:mavedb:00000665-c-1	P26367	0	1.0	0.4	mapping failed			
+PAX6	urn:mavedb:00000665-d-1	P26367	0	1.0	0.4	mapping failed			
+PAX6	urn:mavedb:00000665-a-1	P26367	0	1.0	0.4	mapping failed			
+PAX6	urn:mavedb:00000665-b-1	P26367	0	1.0	0.4	mapping failed			
+PTEN	urn:mavedb:00000102-0-1	P60484	0	1.0	1.0	too few nonsense/synonymous			
+PTEN	urn:mavedb:00000013-a-1	P60484	0	1.0	1.0	informative	4112.0	73.0	1146.0
+PTEN	urn:mavedb:00000101-a-1	P60484	0	1.0	1.0	too few nonsense/synonymous			
+PTEN	urn:mavedb:00001244-b-1	P60484	0	1.0	1.0	too few nonsense/synonymous			
+PTEN	urn:mavedb:00001244-a-1	P60484	0	1.0	1.0	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-c-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-f-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-d-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-b-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-g-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-a-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-e-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-h-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001234-0-1	P04637	0	1.0	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001236-0-1	P04637	0	0.9974596722977264	0.9705882352941176	too few nonsense/synonymous			
+TP53	urn:mavedb:00001235-a-1	P04637	0	0.9974596722977264	0.9705882352941176	informative	7427.0	646.0	2578.0
+TP53	urn:mavedb:00000068-0-1	P04637	0	0.9974505281048925	0.9705882352941176	informative	7448.0	646.0	2274.0

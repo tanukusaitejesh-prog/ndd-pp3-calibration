@@ -1,0 +1,102 @@
+gene	urn	n	title	targets	nres
+ABCD1	urn:mavedb:00001237-a-1	430	VarChAMP_Imaging_Localization_May_2025	F9;BRCA1;KRAS;FLCN;CTCF;G6PD;BCL10;MSH2;BRAF;SDHD;BRIP1;FH;SHOC2;FANCC;NF2;RAD51D;RHO;FARS2;PTPN11;ZC4H2;RET;BAP1;SOS2;RAF1;ABCD1;RPS19;LMNA;CCM2	1
+ABCD1	urn:mavedb:00001237-a-2	430	VarChAMP_Imaging_Morphological_Change_May_2025	G6PD;FARS2;CTCF;ABCD1;F9;FANCC;RAF1;BRAF;FH;PTPN11;SDHD;NF2;CCM2;KRAS;BRIP1;ZC4H2;RAD51D;LMNA;RPS19;MSH2;RHO;BCL10;SOS2;SHOC2;BRCA1;RET;BAP1;FLCN	1
+BRAF	urn:mavedb:00000091-a-1	73	BRAF resistance to vemurafenib	BRAF	16
+BRAF	urn:mavedb:00001237-a-2	430	VarChAMP_Imaging_Morphological_Change_May_2025	G6PD;FARS2;CTCF;ABCD1;F9;FANCC;RAF1;BRAF;FH;PTPN11;SDHD;NF2;CCM2;KRAS;BRIP1;ZC4H2;RAD51D;LMNA;RPS19;MSH2;RHO;BCL10;SOS2;SHOC2;BRCA1;RET;BAP1;FLCN	16
+BRAF	urn:mavedb:00001237-a-1	430	VarChAMP_Imaging_Localization_May_2025	F9;BRCA1;KRAS;FLCN;CTCF;G6PD;BCL10;MSH2;BRAF;SDHD;BRIP1;FH;SHOC2;FANCC;NF2;RAD51D;RHO;FARS2;PTPN11;ZC4H2;RET;BAP1;SOS2;RAF1;ABCD1;RPS19;LMNA;CCM2	16
+F9	urn:mavedb:00001200-d-1	9682	F9 MultiSTEP F9 Gla domain scores	F9	5
+F9	urn:mavedb:00001200-b-1	9682	F9 MultiStEP heavy chain scores	F9	5
+F9	urn:mavedb:00001200-c-1	9682	F9 MultiSTEP light chain scores	F9	5
+F9	urn:mavedb:00001200-e-1	9682	F9 MultiSTEP pan-Gla domain scores	F9	5
+F9	urn:mavedb:00001200-a-1	9682	F9 MultiStEP strep II tag scores	F9	5
+F9	urn:mavedb:00001200-0-1	9007	F9 predictor scores	F9	5
+F9	urn:mavedb:00001237-a-1	430	VarChAMP_Imaging_Localization_May_2025	F9;BRCA1;KRAS;FLCN;CTCF;G6PD;BCL10;MSH2;BRAF;SDHD;BRIP1;FH;SHOC2;FANCC;NF2;RAD51D;RHO;FARS2;PTPN11;ZC4H2;RET;BAP1;SOS2;RAF1;ABCD1;RPS19;LMNA;CCM2	5
+F9	urn:mavedb:00001237-a-2	430	VarChAMP_Imaging_Morphological_Change_May_2025	G6PD;FARS2;CTCF;ABCD1;F9;FANCC;RAF1;BRAF;FH;PTPN11;SDHD;NF2;CCM2;KRAS;BRIP1;ZC4H2;RAD51D;LMNA;RPS19;MSH2;RHO;BCL10;SOS2;SHOC2;BRCA1;RET;BAP1;FLCN	5
+GCK	urn:mavedb:00000096-b-1	9201	GCK variant abundance measured by DHFR-PCA	GCK	14
+GCK	urn:mavedb:00000096-a-1	9362	GCK activity measured by complementation	GCK	14
+GCK	urn:mavedb:00001247-a-1	8387	GCK Y2H	GCK	14
+KCNQ1	urn:mavedb:00000094-a-15	62	Normalized currents of 62 KCNQ1 missense SNVs in the homozygous state.	KCNQ1	1
+KCNQ4	urn:mavedb:00000094-a-8	43	Normalized currents of co-expressing 43  current-enhanced variants  with WT	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-7	153	V1/2 of co-expressing 153 variants (normal currents and large rightward shifts i	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-13	29	Currents of 29 synonymous variants expressed alone	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-6	153	Normalized currents of co-expressing 153 variants (normal currents and large rig	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-1	1	try_dataset_KCNQ4	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-9	43	V1/2 of co-expressing 43  current-enhanced variants with WT	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-12	29	V1/2 properties of 29 synonymous variants expressed alone	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-4	915	Normalized currents of co-expressing 915  current-reduced variants with WT	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-11	76	V1/2 of co-expressing 76  variants (normal currents and large leftward shifts in	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-2	4085	Normalized currents of 4,085 KCNQ4 missense SNVs in the homozygous state.	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-10	76	Normalized currents of co-expressing 76  variants (normal currents and large lef	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-5	915	V1/2 of co-expressing 915  current-reduced variants with WT	KCNQ4	2
+KCNQ4	urn:mavedb:00000094-a-3	3319	V1/2 of 3,319 KCNQ4 missense SNVs in the homozygous state	KCNQ4	2
+KRAS	urn:mavedb:00000115-a-20	5606	binding fitness from KRAS-RALGDSRDB bindingPCA of KRAS block2	KRAS	3
+KRAS	urn:mavedb:00000115-a-9	8657	binding fitness from KRAS-DARPin K55 bindingPCA of KRAS block2	KRAS	3
+KRAS	urn:mavedb:00000115-a-25	7459	binding fitness from KRAS-RAF1RDB bindingPCA of KRAS block2	KRAS	3
+KRAS	urn:mavedb:00000115-a-21	13676	binding fitness from KRAS-RALGDSRDB bindingPCA of KRAS block1	KRAS	3
+KRAS	urn:mavedb:00000115-a-23	13845	abundance fitness from abundancePCA of KRAS block1	KRAS	3
+KRAS	urn:mavedb:00000115-a-11	8666	binding fitness from KRAS-DARPin K27 bindingPCA of KRAS block2	KRAS	3
+KRAS	urn:mavedb:00000115-a-18	11096	binding fitness from KRAS-PIK3CGRDB bindingPCA of KRAS block1	KRAS	3
+KRAS	urn:mavedb:00000115-a-3	3553	binding free energy changes of KRAS-SOS1 interaction	KRAS	3
+KRAS	urn:mavedb:00000115-a-10	4515	binding fitness from KRAS-DARPin K27 bindingPCA of KRAS block3	KRAS	3
+KRAS	urn:mavedb:00000115-a-13	3361	binding fitness from KRAS-SOS1 bindingPCA of KRAS block3	KRAS	3
+KRAS	urn:mavedb:00000115-a-14	5949	binding fitness from KRAS-SOS1 bindingPCA of KRAS block2	KRAS	3
+KRAS	urn:mavedb:00000115-a-15	12637	binding fitness from KRAS-SOS1 bindingPCA of KRAS block1	KRAS	3
+KRAS	urn:mavedb:00000115-a-16	3833	binding fitness from KRAS-PIK3CGRDB bindingPCA of KRAS block3	KRAS	3
+KRAS	urn:mavedb:00000115-a-28	4695	abundance fitness from abundancePCA of KRAS block3	KRAS	3
+KRAS	urn:mavedb:00000115-a-5	3553	binding free energy changes of KRAS-RALGDSRBD interaction	KRAS	3
+KRAS	urn:mavedb:00000115-a-1	3553	binding free energy changes of KRAS-DARPin K55 interaction	KRAS	3
+KRAS	urn:mavedb:00000115-a-17	6893	binding fitness from KRAS-PIK3CGRDB bindingPCA of KRAS block2	KRAS	3
+KRAS	urn:mavedb:00000115-a-27	8912	abundance fitness from abundancePCA of KRAS block2	KRAS	3
+KRAS	urn:mavedb:00000115-a-6	3553	binding free energy changes of KRAS-RAF1RBD interaction	KRAS	3
+KRAS	urn:mavedb:00000115-a-2	3553	binding free energy changes of KRAS-DARPin K27 interaction	KRAS	3
+KRAS	urn:mavedb:00000115-a-4	3553	binding free energy changes of KRAS-PIK3CGRBD interaction	KRAS	3
+KRAS	urn:mavedb:00000115-a-22	14044	binding fitness from KRAS-RAF1RDB bindingPCA of KRAS block1	KRAS	3
+KRAS	urn:mavedb:00000115-a-19	3351	binding fitness from KRAS-RALGDSRDB bindingPCA of KRAS block3	KRAS	3
+KRAS	urn:mavedb:00000115-a-24	5163	binding fitness from KRAS-RAF1RDB bindingPCA of KRAS block3	KRAS	3
+KRAS	urn:mavedb:00000115-a-7	3553	folding free energy changes of KRAS in abundancePCA	KRAS	3
+KRAS	urn:mavedb:00000115-a-26	12607	binding fitness from KRAS-DARPin K55 bindingPCA of KRAS block1	KRAS	3
+KRAS	urn:mavedb:00000115-a-8	4970	binding fitness from KRAS-DARPin K55 bindingPCA of KRAS block3	KRAS	3
+KRAS	urn:mavedb:00000115-a-12	14859	binding fitness from KRAS-DARPin K27 bindingPCA of KRAS block1	KRAS	3
+KRAS	urn:mavedb:00001237-a-1	430	VarChAMP_Imaging_Localization_May_2025	F9;BRCA1;KRAS;FLCN;CTCF;G6PD;BCL10;MSH2;BRAF;SDHD;BRIP1;FH;SHOC2;FANCC;NF2;RAD51D;RHO;FARS2;PTPN11;ZC4H2;RET;BAP1;SOS2;RAF1;ABCD1;RPS19;LMNA;CCM2	3
+KRAS	urn:mavedb:00001237-a-2	430	VarChAMP_Imaging_Morphological_Change_May_2025	G6PD;FARS2;CTCF;ABCD1;F9;FANCC;RAF1;BRAF;FH;PTPN11;SDHD;NF2;CCM2;KRAS;BRIP1;ZC4H2;RAD51D;LMNA;RPS19;MSH2;RHO;BCL10;SOS2;SHOC2;BRCA1;RET;BAP1;FLCN	3
+LDLR	urn:mavedb:00001269-a-1	17390	LDLR missense variant effects on LDL uptake.	LDLR	33
+LDLR	urn:mavedb:00001269-b-1	16796	LDLR missense variant effects on LDLR cell-surface abundance.	LDLR	33
+LDLR	urn:mavedb:00001269-c-1	7586	LDLR missense variant effects on LDL uptake with VLDL.	LDLR	33
+MAP2K1	urn:mavedb:00001206-a-1	10	MAP2K1 trametinib HT-29 cells	MAP2K1	4
+MAP2K1	urn:mavedb:00001204-a-4	142	Dabrafenib and Cetuximab HT-29 cells, base editing z-scores (predicted consequen	MAP2K1	4
+MAP2K1	urn:mavedb:00001204-a-3	10	MAP2K1 trametinib HT-29 cells	MAP2K1	4
+MAP2K1	urn:mavedb:00001204-a-6	142	Trametinib HT-29 cells, base editing z-scores (predicted consequence)	MAP2K1	4
+MAP2K1	urn:mavedb:00001206-a-2	10	MAP2K1 trametinib HT-29 cells	MAP2K1	4
+MAP2K1	urn:mavedb:00001204-a-2	4	MAP2K1 dabrafenib and cetuximab HT-29 cells	MAP2K1	4
+OTC	urn:mavedb:00000112-a-1	1570	SNV-accessible missense variant scores for OTC	OTC	1
+PAX6	urn:mavedb:00000665-c-1	7819	pax6_le9_no_geneticin	PAX6	5
+PAX6	urn:mavedb:00000665-d-1	7370	pax6_blx_no_geneticin	PAX6	5
+PAX6	urn:mavedb:00000665-a-1	7764	pax6_le9_geneticin	PAX6	5
+PAX6	urn:mavedb:00000665-b-1	7391	pax6_blx_geneticin	PAX6	5
+PTEN	urn:mavedb:00000102-0-1	5477	PTEN VAMP-seq Combined	PTEN	7
+PTEN	urn:mavedb:00000054-a-1	8681	PTEN lipid phosphatase scores	PTEN	7
+PTEN	urn:mavedb:00000013-a-1	4409	PTEN VAMP-seq	PTEN	7
+PTEN	urn:mavedb:00000101-a-1	4514	PTEN VAMP-seq Fill-in	PTEN	7
+PTEN	urn:mavedb:00001244-b-1	1228	PTEN VIS-seq in hiPSCs	PTEN	7
+PTEN	urn:mavedb:00001244-a-1	1228	PTEN Variant Imaging in Neurons	PTEN	7
+PTPN11	urn:mavedb:00001237-a-1	430	VarChAMP_Imaging_Localization_May_2025	F9;BRCA1;KRAS;FLCN;CTCF;G6PD;BCL10;MSH2;BRAF;SDHD;BRIP1;FH;SHOC2;FANCC;NF2;RAD51D;RHO;FARS2;PTPN11;ZC4H2;RET;BAP1;SOS2;RAF1;ABCD1;RPS19;LMNA;CCM2	9
+PTPN11	urn:mavedb:00001237-a-2	430	VarChAMP_Imaging_Morphological_Change_May_2025	G6PD;FARS2;CTCF;ABCD1;F9;FANCC;RAF1;BRAF;FH;PTPN11;SDHD;NF2;CCM2;KRAS;BRIP1;ZC4H2;RAD51D;LMNA;RPS19;MSH2;RHO;BCL10;SOS2;SHOC2;BRCA1;RET;BAP1;FLCN	9
+RAF1	urn:mavedb:00001237-a-1	430	VarChAMP_Imaging_Localization_May_2025	F9;BRCA1;KRAS;FLCN;CTCF;G6PD;BCL10;MSH2;BRAF;SDHD;BRIP1;FH;SHOC2;FANCC;NF2;RAD51D;RHO;FARS2;PTPN11;ZC4H2;RET;BAP1;SOS2;RAF1;ABCD1;RPS19;LMNA;CCM2	8
+RAF1	urn:mavedb:00001237-a-2	430	VarChAMP_Imaging_Morphological_Change_May_2025	G6PD;FARS2;CTCF;ABCD1;F9;FANCC;RAF1;BRAF;FH;PTPN11;SDHD;NF2;CCM2;KRAS;BRIP1;ZC4H2;RAD51D;LMNA;RPS19;MSH2;RHO;BCL10;SOS2;SHOC2;BRCA1;RET;BAP1;FLCN	8
+TP53	urn:mavedb:00001234-c-1	2314	Scores from arrayed yeast-based assay of TP53 BAX promoter	TP53	34
+TP53	urn:mavedb:00001234-f-1	2314	Scores from arrayed yeast-based assay of TP53 GADD45 promoter	TP53	34
+TP53	urn:mavedb:00001234-d-1	2314	Arrayed yeast-based assay of TP53 h1433snWT promoter	TP53	34
+TP53	urn:mavedb:00001234-b-1	2314	Scores from arrayed yeast-based assay of TP53 MDM2 promoter	TP53	34
+TP53	urn:mavedb:00001234-g-1	2314	Scores from arrayed yeast-based assay of TP53 Noxa promoter	TP53	34
+TP53	urn:mavedb:00001234-a-1	2314	Scores from arrayed yeast-based assay of TP53 p21WAF1 promoter	TP53	34
+TP53	urn:mavedb:00001234-e-1	2314	Scores from arrayed yeast-based assay of TP53 p53AIP1 promoter	TP53	34
+TP53	urn:mavedb:00001234-h-1	2314	Scores from arrayed yeast-based assay of TP53 p53R2 promoter	TP53	34
+TP53	urn:mavedb:00001234-0-1	2314	Median TP53 transcriptional activity scores	TP53	34
+TP53	urn:mavedb:00001236-0-1	7893	Combined score from naive Bayes classifier for TP53	TP53	34
+TP53	urn:mavedb:00001213-a-1	8052	Deep mutational scan of human TP53 in HCT116 colorectal cancer cells covering Ex	TP53	34
+TP53	urn:mavedb:00001277-a-1	8058	Scores from deep mutational scan of the p53 DBD	TP53	34
+TP53	urn:mavedb:00001235-a-1	7893	Scores from Nutlin-3a treatment of TP53 variant-expressing K562 reporter cells	TP53	34
+TP53	urn:mavedb:00000068-0-1	8258	Combined score using three assays of TP53 activity that assess loss of function 	TP53	34
+TP53	urn:mavedb:00001245-a-1	465	TP53 ABE8e tiling screen with activity based selection (Etoposide arm)	TP53;TP53	34
+TP53	urn:mavedb:00001245-a-2	518	TP53 TadCBEd base editing tiling screen with activity based selection (Etoposide	TP53;TP53	34
+VHL	urn:mavedb:00000675-a-1	2268	Complete VHL SGE data	VHL	9
