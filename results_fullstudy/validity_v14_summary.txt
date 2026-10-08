@@ -1,0 +1,14 @@
+1. PM1 strength when applied (points: n): 1: 556, 2: 6077, 4: 146
+   PP3 + PM1 sum when both applied: 2: 282, 3: 3823, 4: 155, 5: 138, 6: 69, 8: 4; cap binds (sum > 4) in 211 of 4471
+2. Reported class equals points-based class (uncapped) in 88.2% of SCVs listing codes
+   SCVs where the cap changes the points-based class: 38; reported class:
+     uncapped LP  -> capped VUS: reported LP    n 6
+     uncapped LP  -> capped VUS: reported VUS   n 4
+     uncapped P   -> capped LP : reported LP    n 2
+     uncapped P   -> capped LP : reported P     n 26
+   reported = capped class in 6 of 38; reported = uncapped class in 32
+     submitter reporting the capped class >= 3 times: Mayo Clinic Laboratories, Mayo Clinic (4 of 20)
+3. Templated submitters flagged (ratio >= 0.3, >= 20 PP3&PM1 SCVs): 18 covering 1681 of 4471 PP3&PM1 SCVs: 3billion (29.0, 0.86); Centre de Génétique Humaine, Institut de Pathologie Et de Génétique (81.0, 0.95); Centre for Population Genomics, CPG (87.0, 0.98); Clinical Biochemistry Laboratory, Health Services Laboratory (55.0, 0.35); Dept. Genetics and Cancer, Menzies Institute for Medical Research, University of Tasmania (77.0, 0.97); Institute for Genomic Medicine (IGM) Clinical Laboratory, Nationwide Children's Hospital (67.0, 0.64); Institute of Rare Diseases, West China Hospital, Sichuan University (28.0, 0.61); Laboratorio de Genetica e Diagnostico Molecular, Hospital Israelita Albert Einstein (67.0, 0.54); Laboratory of Medical Genetics, National & Kapodistrian University of Athens (85.0, 0.45); Lildballe Lab, Aarhus University Hospital (46.0, 0.30); MVZ Medizinische Genetik Mainz (62.0, 0.40); Mayo Clinic Laboratories, Mayo Clinic (582.0, 0.30); Molecular Pathology Research Laboratory, SA Pathology (23.0, 0.43); NEI Ophthalmic Genomics Laboratory, National Institutes of Health (50.0, 0.30); Precision Medicine Center, Zhengzhou University (44.0, 0.82); Rare Kidney Stone Consortium and the Mayo Clinic Hyperoxaluria Center, Mayo Clinic (93.0, 0.48); Serv. Biochemistry and Molecular genetics, Hospital Clinic de Barcelona, Hospital Clínic de Barcelona (21.0, 0.86); Variantyx, Inc. (184.0, 0.47)
+   all submitters               : n 39015; R(PP3,PM1) 0.18 [0.14, 0.24]; PP3 credit beside PM1 +0.85 [+0.53, +1.23]; PP2 credit beside PM1 -0.23 [-0.70, +0.43]
+   templated submitters removed : n 28938; R(PP3,PM1) 0.11 [0.09, 0.15]; PP3 credit beside PM1 +0.28 [+0.02, +0.66]; PP2 credit beside PM1 -0.80 [-1.24, -0.13]
+4. Parser annotation sheet: 400 comments from 248 submitters -> results_fullstudy/parser_annotation_sheet_v14.tsv (annotators fill annotator1_codes / annotator2_codes as JSON code->points, blind to parser_codes)
