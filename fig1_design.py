@@ -1,4 +1,4 @@
-"""Figure 1: study design (draft 14): label-free dependence, independent truth, audit of practice."""
+"""Figure 1: study design (draft 20): label-free dependence, independent truth, audit of practice."""
 import os
 
 import matplotlib
@@ -25,8 +25,8 @@ def arrow(x0, y0, x1, y1):
     ax.annotate("", xy=(x1, y1), xytext=(x0, y0), arrowprops=dict(arrowstyle="->", color=MUTED, lw=1.3))
 
 
-cols = [(0.6, "a", "Label-free dependence", S[0]), (13.6, "b", "Independent truth", S[1]),
-        (26.6, "c", "Audit of practice", S[2])]
+cols = [(0.6, "a", "Label-free dependence", S[0]), (13.6, "b", "Functional truth", S[1]),
+        (26.6, "c", "Rules and practice", S[2])]
 for x, letter, head, col in cols:
     ax.text(x, 16.3, letter, fontsize=14, fontweight="bold", color=INK)
     ax.text(x + 0.9, 16.3, head, fontsize=11, fontweight="bold", color=col)
@@ -38,33 +38,32 @@ box(0.6, 11.0, 11.8, 4.6, "De novo missense, three cohorts",
 box(0.6, 5.6, 11.8, 4.4, "Likelihood ratio without labels",
     "LR(b) = (X_b / ΣX) / (E_b / ΣE),  X = O − E\nflags: PP3 (ClinGen thresholds),\n"
     "PM1-like (regional o/e, CCR), PP2-like (Z)", S[0])
-box(0.6, 0.4, 11.8, 4.2, "Dependence",
-    "R = LR(A∧B) / [LR(A)·LR(B)]\nmarginal, within DDG2P genes, within genes\n"
-    "PP3 points alone vs beside PM1", S[0])
+box(0.6, 0.4, 11.8, 4.2, "Dependence and cost",
+    "R = LR(A∧B) / [LR(A)·LR(B)], within genes\nPP3 evidence alone vs beside PM1\n"
+    "points over-counted; class calibration", S[0])
 arrow(6.5, 11.0, 6.5, 10.05); arrow(6.5, 5.6, 6.5, 4.65)
 
 # b
-box(13.6, 11.0, 11.8, 4.6, "Truth not built from these criteria",
-    "6,177 expert-panel + 87,873 laboratory\nmissense classifications re-scored without\n"
-    "PP3 BP4 PM1 PP2 BP1 BP3 PM4 PM5\n(sensitivity: also PS2 PM6 PS1 PP5 BP6)", S[1])
-box(13.6, 5.6, 11.8, 4.4, "Other truth",
-    "ClinVar P/LP vs B/LB (partly circular)\nProteinGym functional assays with\n"
-    "PM1-like proxy or panel-curated PM1", S[1])
-box(13.6, 0.4, 11.8, 4.2, "Dependence on truth",
-    "LR(C) = P(C | P/LP) / P(C | B/LB)\nR for PP3×PM1, PM1×PP2, PP3×PP2\n"
-    "gene- and submitter-clustered; replication halves", S[1])
+box(13.6, 11.0, 11.8, 4.6, "Curated PM1",
+    "residues where ClinGen expert panels\napplied PM1 (Evidence Repository):\n"
+    "841 residues, 67 genes", S[1])
+box(13.6, 5.6, 11.8, 4.4, "Assays measure damage directly",
+    "ProteinGym (7 assays, 3 genes)\nMaveDB, pre-registered A21\n(12 score sets, 5 genes)", S[1])
+box(13.6, 0.4, 11.8, 4.2, "Dependence on functional truth",
+    "R for AlphaMissense PP3 × curated PM1\nnegative control: random residues\n"
+    "comparison: constraint proxy", S[1])
 arrow(19.5, 11.0, 19.5, 10.05); arrow(19.5, 5.6, 19.5, 4.65)
 
 # c
-box(26.6, 11.0, 11.8, 4.6, "How criteria are combined",
-    "co-application of PP3, PM1, PP2\nand PP3 strength beside PM1\n(panels: structured codes; labs: parsed text)", S[2])
-box(26.6, 5.6, 11.8, 4.4, "Credit once PM1 applies",
-    "points = ln[LR(C∧PM1) / LR(PM1)] / ln 2.406\nearned vs applied, by strength\n"
-    "pooled and within laboratory", S[2])
-box(26.6, 0.4, 11.8, 4.2, "Consequences",
-    "re-score under four rules\nheld-out test of no PP2 beside PM1:\n2023 calls vs 2026 reclassification", S[2])
+box(26.6, 11.0, 11.8, 4.6, "Rules on independent truth (A20)",
+    "cap, one level lower, learned, no PP2 ...\ntrained in DD, tested in autism\nand the public cohort", S[2])
+box(26.6, 5.6, 11.8, 4.4, "Practice",
+    "6,177 panel + 87,873 laboratory\nclassifications: co-application,\ntrend by year, re-scoring under rules", S[2])
+box(26.6, 0.4, 11.8, 4.2, "Pre-registered tests on ClinVar",
+    "A19: rules, PP2 credit, per-gene PP3,\neras, negative controls (PP1, PP4)\n"
+    "A18: 2019 calls vs 2026 reclassification", S[2])
 arrow(32.5, 11.0, 32.5, 10.05); arrow(32.5, 5.6, 32.5, 4.65)
-arrow(25.5, 13.3, 26.5, 13.3)
+arrow(12.5, 2.5, 13.5, 2.5); arrow(25.5, 2.5, 26.5, 2.5)
 
 fig.savefig(os.path.join(os.path.dirname(os.path.abspath(__file__)), "fig1_design.png"), dpi=200)
 print("written fig1_design.png")

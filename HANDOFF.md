@@ -1,3 +1,23 @@
+# Handoff update: draft 20 (8 October 2026, local session)
+
+**Current manuscript: `MANUSCRIPT_v20.md` + `SUPPLEMENT_v20.md`** (branch `claude/a18-temporal-reclassification`). Draft 20 is an editorial rewrite of draft 19; it adds no new analyses. Changes:
+
+- **One storyline.** Dependence is measured on de novo and functional truth; its cost is estimated; rules are tested on independent de novo truth; practice is audited. Classification-derived results are explicitly descriptive (negative controls).
+- **Abstract** is 249 words with about 8 numbers.
+- **Contradictions fixed:**
+  - "98–99% below Strong where the cap does not act": the cap actually binds in 211/4,471 = 4.7%.
+  - "18 templated submitters did not drive any estimate": false; without them PP3 credit is 0.28 and PP2 −0.80. Now reported.
+  - Moderate-PP3 rule both "test prospectively" and "most support", with the wrong count (90). Now "test, don't adopt"; it applies to 264 classifications.
+  - Gene counts (six vs three).
+  - The Discussion counted clinical truth as measurement.
+  - Note 9 was cited for the 7,101 VUS; it is Note 7.
+  - Table S0 now sits in Note 1, and its Note reference is fixed.
+- **A18 pre-registered null** is now one paragraph in the main text and a new Supplementary Note 14 (Table S18). Draft 19 omitted it.
+- **Figure 1** redrawn: (a) label-free, (b) functional truth, (c) rules and practice.
+- **Tables renumbered 1–6.**
+
+---
+
 # Handoff update: draft 19 (8 October 2026, cloud session)
 
 **Current manuscript: `MANUSCRIPT_v19.md` + `SUPPLEMENT_v19.md`** (A21 MaveDB assays added) (A20 de novo rule tests added; pre-registration A20_DENOVO_RULES_PREREG.md) (branch `claude/a18-temporal-reclassification`, with main's drafts 14-16 merged in).
