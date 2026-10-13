@@ -272,7 +272,8 @@ def ablations_and_controls(args, pred, info, t, var, y, rep, B):
         en = ensemble(pred, sc)
         d = t.ID.map(en.f).to_numpy(float)
         r = metric_row(sc, d, t, B, rs)
-        r["collapsed"] = bool(abs(r["rho"]) < CONTROL_RHO and r["auroc_lo"] <= CONTROL_AUC <= r["auroc_hi"])
+        rho = 0.0 if not np.isfinite(r["rho"]) else r["rho"]  # an exactly constant score has undefined rho: collapsed
+        r["collapsed"] = bool(abs(rho) < CONTROL_RHO and r["auroc_lo"] <= CONTROL_AUC <= r["auroc_hi"])
         rows.append(r)
     ct = pd.DataFrame(rows)
     if len(ct):

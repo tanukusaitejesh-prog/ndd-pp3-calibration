@@ -306,6 +306,10 @@ class SelectionModel(nn.Module):
         self.layers = nn.ModuleList([GraphLayer(d, heads, dropout) for _ in range(layers if use_graph else 0)])
         self.var_head = nn.Sequential(nn.Linear(d + d_var, d), nn.GELU(), nn.Dropout(dropout), nn.Linear(d, d // 2), nn.GELU(),
                                       nn.Linear(d // 2, 1))
+        # zero-initialised output: f starts constant (absorbed by alpha_g), so any variation in f is learned from the
+        # counts, and a fit to uninformative counts (negative controls) stays near-constant instead of echoing features
+        nn.init.zeros_(self.var_head[-1].weight)
+        nn.init.zeros_(self.var_head[-1].bias)
         self.gate = nn.Linear(d_gene, 1) if use_gate else None
         self.beta = nn.Parameter(torch.zeros(1))     # site-rate covariate (mutation side, not part of f)
         self.log_r = nn.Parameter(torch.tensor(1.0))  # NB size (log); large r -> Poisson
