@@ -27,6 +27,7 @@ SEED = S.SEED
 SNV_ID = re.compile(r"^chr[0-9XY]+-\d+-[ACGT]-[ACGT]$")
 AIM2_BASELINES = ("CADD v1.7", "ViennaRNA U4/U6 ddG_bind", "Evo 2 7B (G1)")
 CONTROL_RHO, CONTROL_AUC = 0.10, 0.5
+F_RESOLUTION = 3  # decimals
 
 
 def log(*a):
@@ -55,6 +56,9 @@ def ensemble(pred, scenario):
     g = p.groupby("ID", sort=False)
     out = g.agg(label=("label", "first"), f=("f", "mean"), f_min=("f", "min"), f_max=("f", "max"),
                 gamma=("gamma", "mean"), n_seeds=("seed", "nunique"))
+    # score resolution 0.001 log units (A2): differences below it are optimiser noise, and a control that learned
+    # nothing must read as tied (AUROC 0.5), not be ranked on sixth-decimal noise
+    out["f"] = out.f.round(F_RESOLUTION)
     if "d" in p.columns and p.d.notna().any():
         out["d"] = g.d.mean()
     return out

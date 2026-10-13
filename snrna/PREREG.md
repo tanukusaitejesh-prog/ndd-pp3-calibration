@@ -441,6 +441,7 @@ Adopting A1 means a dated deviation-log entry stating that no G2 data had been s
 
 - **Ablations.** Twelve strict-set ablations: no partner molecules; no intramolecular pairs; neither; no covariation features; no Evo 2 embeddings; no Evo 2 Δ; no Evo 2; no gate; no site-rate covariate; Poisson likelihood; no attention; MLP only. Each reports Aim 2 metrics and the held-out NB log-likelihood gain on the U4-family genes over the mutation-only null.
 - **Controls.** Shuffled counts within gene; a random graph (pair and intermolecular edges rewired within gene, seed 7); pseudogenes only (the strict set's unnamed loci). The frozen criterion applies: |ρ| < 0.1 and an AUROC interval containing 0.5.
+- **Score resolution.** Ensemble f is rounded to 0.001 before any metric, so a fit that learned nothing reads as tied (AUROC 0.5; undefined ρ counts as 0) instead of being ranked on optimiser noise.
 - **Expectation, stated now.** The random-graph control keeps conservation and Evo 2 inputs, so it may not collapse. Its result is reported as is, and the contribution of structure is read from the ablations.
 
 *A2.8 G3 (section 8.3).*
