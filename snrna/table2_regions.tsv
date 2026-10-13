@@ -1,0 +1,14 @@
+# Guidance Table 2 (medRxiv doi 10.64898/2026.08.03.26359558, read via Europe PMC PPR1290973 full text, 13 Oct 2026):
+# regions in snRNA genes within which pathogenic variants are clustered. One row per contiguous span.
+gene	inheritance	region	start	end	note
+RNU2-2	recessive	5' region	1	67	blind hotspot (sealed gene)
+RNU4-2	dominant	T-loop	62	70	inclusive of insertions at n.61_62
+RNU4-2	dominant	Stem III	75	78	
+RNU4-2	recessive	Stem II	3	16	
+RNU4-2	recessive	k-turn	27	35	
+RNU4-2	recessive	k-turn	41	46	
+RNU4-2	recessive	Sm binding site	118	126	
+RNU5B-1	dominant	5' stem loop I	37	44	blind hotspot (sealed gene)
+RNU4ATAC	recessive	Stem II	3	19	
+RNU4ATAC	recessive	5' stem-loop	26	57	
+RNU4ATAC	recessive	Sm binding site	116	124	

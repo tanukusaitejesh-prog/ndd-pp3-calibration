@@ -12,6 +12,7 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 | `evo2_score.py` | Evo 2 scoring for gate G1 (needs a GPU) |
 | `g2_power.py` | Simulated power and false-positive rate of the G2 tests (no real data) |
 | `tests/` | 13 known-answer self-tests: `python -m pytest -q tests` (about 2.5 min) |
+| `table2_regions.tsv` | Guidance Table 2 regions, verified from the full text |
 | `results/` | All outputs, committed |
 
 ## Status (13 October 2026)
@@ -70,6 +71,6 @@ python snrna.py g1                                                   # applies t
 2. **Upgrade the timestamps.** After a few hours, run `ots upgrade prereg_manifest.txt.ots code_manifest.txt.ots` and commit the result, so the proofs are Bitcoin-anchored and verifiable offline.
 3. **Run Evo 2.** On a GPU, as above, to decide G1.
 4. **Decide on amendment A1** (`PREREG.md` section 15) before G2 is run. The frozen hotspot test has about 57% power even for a 50-fold depleted 8-nt hotspot.
-5. **Read guidance Table 2 directly.** medRxiv rate-limited the table here. Confirm the blind hotspot coordinates (RNU2-2 n.1–67, RNU5B-1 n.37–44), per `PREREG.md` section 13 item 7.
+5. **Note the RNU2-2 region type.** Guidance Table 2 was verified from the Europe PMC full text (`table2_regions.tsv`); both blind hotspots match `PLAN.md`. But the RNU2-2 region is a recessive region, so its population depletion may be modest. This weighs on decision 4.
 6. **Tally and seal the blind labels.** Tally patient variants, and have someone other than the analyst compile `sealed/blind_labels.tsv` for RNU2-2 and RNU5B-1. Seal it with `python snrna.py seal sealed/blind_labels.tsv`, then record both SHA-256 values in a dated amendment before any selection model is trained. RNUdb now serves RNU2-2 variants at `/api/genes/RNU2-2/variants`; the analyst must not open it.
 7. **Send the outreach note.** It is in `PLAN.md`, and should go with the G1 result.
