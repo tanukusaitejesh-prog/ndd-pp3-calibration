@@ -59,15 +59,17 @@ if [[ -n "$(git status --porcelain --untracked-files=no 2>/dev/null)" ]]; then
   echo "WARNING: tracked files differ from the commit:"; git status --short --untracked-files=no
 fi
 
-# the frozen code must match the A2 manifest (full run)
-if [[ -f amendment_A2_manifest.txt ]]; then
+# the frozen code must match the latest A2 manifest (full run); A2b = logging-only patch of A2
+MANIFEST=amendment_A2_manifest.txt
+[[ -f amendment_A2b_manifest.txt ]] && MANIFEST=amendment_A2b_manifest.txt
+if [[ -f $MANIFEST ]]; then
   # code and inputs only (.md files may gain later log entries, e.g. the sealing hashes)
-  if grep -E '^[0-9a-f]{64}  ' amendment_A2_manifest.txt | grep -v '\.md$' | sha256sum --quiet -c -; then
-    echo "code and inputs match amendment_A2_manifest.txt"
+  if grep -E '^[0-9a-f]{64}  ' "$MANIFEST" | grep -v '\.md$' | sha256sum --quiet -c -; then
+    echo "code and inputs match $MANIFEST"
   elif [[ $MODE == full ]]; then
-    echo "code or inputs differ from amendment_A2_manifest.txt: git pull / git checkout the frozen commit"; exit 1
+    echo "code or inputs differ from $MANIFEST: git pull / git checkout the frozen commit"; exit 1
   else
-    echo "WARNING: code differs from the A2 manifest (allowed for a dry run)"
+    echo "WARNING: code differs from $MANIFEST (allowed for a dry run)"
   fi
 elif [[ $MODE == full ]]; then
   echo "amendment_A2_manifest.txt missing: git pull first"; exit 1

@@ -387,6 +387,8 @@ def train_one(data, train_genes, val_genes, cfg, seed, device="cpu", log=None):
                 vll, _ = gene_loglik(model, data, f, gamma, vm, cfg.get("poisson", False), cfg.get("site_cov", True))
                 v = float(vll.mean()) if len(vll) else float(-loss)
             hist.append((ep, float(-loss.detach()), v))
+            if log is not None and ep % (10 * cfg.get("eval_every", 5)) == 0:
+                log(f"      epoch {ep}: train ll {float(-loss.detach()):.5f}, val ll {v:.5f} (best {max(best, v):.5f})")
             if not math.isfinite(v):
                 break  # diverged: keep the best finite state (or the initial one)
             if v > best + 1e-5:
