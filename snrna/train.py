@@ -86,7 +86,7 @@ def fit_and_predict(data, train_labels, cfg, seed, device, genes, sge=None, need
     f, gamma, Z = M.predict(model, data)
     out = pd.DataFrame({"ID": data.var.ID, "label": data.var.label, "f": f, "gamma": gamma[data.v_gene.cpu().numpy()]})
     info.update({"seconds": round(time.time() - t0, 1), "n_fit_genes": len(fit), "n_val_genes": len(val),
-                 "fit_genes": fit, "val_genes": val, "beta": float(model.beta), "log_r": float(model.log_r)})
+                 "fit_genes": fit, "val_genes": val, "beta": float(model.beta.detach()), "log_r": float(model.log_r.detach())})
     info.pop("history", None)
     if need_function and sge is not None:
         Zfull = np.hstack([Z, data.v_feat.cpu().numpy()])
