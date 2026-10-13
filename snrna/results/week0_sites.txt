@@ -1,0 +1,1 @@
+sites: 17385 SNVs in 55 genes; REF conflicts 0 (0.000%); Roulette coverage 98.2% (FILTER low 5.4%); CADD coverage 100.0%

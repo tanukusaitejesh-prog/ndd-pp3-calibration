@@ -1,0 +1,15 @@
+Week-0 SGE QC (PREREG s3 known-fact checks)
+  variants in SGE ST1                       539  expected        539  OK
+  depleted (< -0.302)                       151  expected        151  OK
+  in-transcript (n.1-145)                   521  expected        521  OK
+  ReNU SNVs                                  12  expected         12  OK
+  population SNVs (UKBB/AllofUs)            346  expected        346  OK
+  library start chr12                 120291753  expected  120291753  OK
+  library end chr12                   120291903  expected  120291903  OK
+  REF mismatches vs GRCh38                    0  expected          0  OK
+  strong (< -0.9): 72; SNVs 453; in-transcript SNVs 435, indels 86
+  replicate Pearson r (in-transcript): 0.859, 0.865, 0.835 (paper: 0.83-0.86)
+  CADD column vs CADD v1.7 file, SNVs: n=453, max |diff| 0.000, share within 0.01: 100.0%
+  in-transcript variants found in gnomAD v4.1 genomes: PASS 204, non-PASS 5
+  in-transcript non-ReNU SNVs with gnomAD PASS AC >= 1 (primary G1 control set): 200
+  ReNU SNVs present in gnomAD PASS: 2

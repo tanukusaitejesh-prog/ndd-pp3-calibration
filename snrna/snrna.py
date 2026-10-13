@@ -226,6 +226,9 @@ def gnomad_records(chrom, start, end):
 
 
 def roulette_records(chrom, start, end):
+    if chrom in ("chrX", "chrY"):  # Roulette provides autosomes only; such sites are excluded from G2 (PREREG s7.1)
+        return pd.DataFrame(columns=["chrom", "pos", "ref", "alt", "roulette_filter", "MR", "AR", "PN"])
+
     def get():
         import pysam
         n = chrom.replace("chr", "")
