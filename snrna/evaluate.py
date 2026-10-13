@@ -544,9 +544,13 @@ def main():
     rep.add(f"Selection model evaluation; runs {os.path.relpath(args.runs, HERE)}; Evo 2 embeddings "
             f"{'yes' if data_info['has_evo2_emb'] else 'NO'}, deltas {'yes' if data_info['has_evo2_delta'] else 'NO'}; "
             f"device {data_info['device']}; scenarios {pred.scenario.nunique()}, fits {len(info)}", "")
+    log("evaluating: Aim 2")
     aim2(args, pred, t, rep, args.boot, sge.reset_index(drop=True))
+    log("evaluating: ablations and controls")
     ablations_and_controls(args, pred, info, t, var, y, rep, args.boot)
+    log("evaluating: G3")
     _, g3_verdict = g3(args, pred, var, rep, args.boot)
+    log("evaluating: exploratory endpoints")
     exploratory(args, pred, var, rep, args.boot)
     sp = write_scores(args, pred, var)
     ens = []

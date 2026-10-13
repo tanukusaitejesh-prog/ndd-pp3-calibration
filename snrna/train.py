@@ -82,7 +82,7 @@ def fit_and_predict(data, train_labels, cfg, seed, device, genes, sge=None, need
     fit = [x for x in train_labels if cmap[x] in fit_cl]
     val = [x for x in train_labels if cmap[x] in val_cl]
     t0 = time.time()
-    model, info = M.train_one(data, fit, val, cfg, seed, device)
+    model, info = M.train_one(data, fit, val, cfg, seed, device, log=log)
     f, gamma, Z = M.predict(model, data)
     out = pd.DataFrame({"ID": data.var.ID, "label": data.var.label, "f": f, "gamma": gamma[data.v_gene.cpu().numpy()]})
     info.update({"seconds": round(time.time() - t0, 1), "n_fit_genes": len(fit), "n_val_genes": len(val),
@@ -129,7 +129,8 @@ def stage_hp(args, data, genes, device):
         for k, vf in enumerate(folds):
             fit = [x for x in train if cmap[x] not in vf]
             val = [x for x in train if cmap[x] in vf]
-            _, info = M.train_one(data, fit, val, cfg, SEEDS[0], device)
+            log(f"hp {gi + 1}/{len(grid)} {hp}: fold {k + 1}/3")
+            _, info = M.train_one(data, fit, val, cfg, SEEDS[0], device, log=log)
             vals.append(info["best_val_ll"])
         rows.append({**hp, "mean_val_ll": float(np.mean(vals)), "fold_val_ll": vals})
         log(f"hp {gi + 1}/{len(grid)} {hp}: mean held-out log-lik {np.mean(vals):.5f}")
@@ -147,6 +148,10 @@ QUICK = {"epochs": 25, "patience": 3, "eval_every": 5, "d": 16, "layers": 1}
 def run_scenarios(args, data_cache, genes, sge, device, cfg, scenarios):
     g, sealed, u4, rnu42 = gene_sets(genes)
     seeds = SEEDS[:1] if args.quick else SEEDS
+    todo = [(n, s) for n in scenarios for s in seeds
+            if not os.path.exists(os.path.join(args.out, "preds", f"{n}__seed{s}.tsv.gz"))]
+    done_n, t_stage = 0, time.time()
+    log(f"stage: {len(scenarios)} scenarios x {len(seeds)} seeds; {len(todo)} fits to run")
     for name, (data_kw, cfg_kw, train_labels, pred_labels, need_fn) in scenarios.items():
         data = data_cache(**data_kw)
         for seed in seeds:
@@ -154,13 +159,17 @@ def run_scenarios(args, data_cache, genes, sge, device, cfg, scenarios):
             if os.path.exists(path):
                 continue
             c = {**cfg, **cfg_kw}
+            log(f"fit {done_n + 1}/{len(todo)}: {name} seed {seed}")
             out, info = fit_and_predict(data, train_labels, c, seed, device, genes, sge, need_fn)
             out = out[out.label.isin(pred_labels)]
             out.insert(0, "scenario", name)
             out.insert(1, "seed", seed)
             save(out, path, {**info, "scenario": name, "seed": seed, "cfg": c, "n_train_genes": len(train_labels)},
                  path.replace(".tsv.gz", ".json"))
-            log(f"{name} seed {seed}: best epoch {info['best_epoch']}, val ll {info['best_val_ll']:.5f}, {info['seconds']} s")
+            done_n += 1
+            per = (time.time() - t_stage) / done_n
+            log(f"{name} seed {seed}: best epoch {info['best_epoch']}, val ll {info['best_val_ll']:.5f}, {info['seconds']} s; "
+                f"{done_n}/{len(todo)} fits done, ~{per * (len(todo) - done_n) / 60:.0f} min left in this stage")
 
 
 def guard_real_counts(args):

@@ -78,13 +78,14 @@ class Scorer:
             e = emb[LAYER][0].float().cpu().numpy()
         return ll, e
 
-    def ll_batch(self, seqs):
+    def ll_batch(self, seqs, label=""):
         """Summed log-likelihoods for equal-length sequences. Every forward pass has the same shape (the last chunk is
         padded with copies) and the whole list is scored at one batch size: on OOM the batch is halved and the list
         restarted, so reference and alternative scores of a gene always come from identically shaped passes."""
         t = self.torch
         while True:
             out, i, b = [], 0, self.batch
+            t_start = time.time()
             try:
                 while i < len(seqs):
                     chunk = seqs[i:i + b]
@@ -97,6 +98,10 @@ class Scorer:
                             logits = logits[0]
                         out.extend(self._ll(logits, ids).tolist()[:len(chunk)])
                     i += len(chunk)
+                    if label and (i // b) % max(1, len(seqs) // (b * 10)) == 0:
+                        el = time.time() - t_start
+                        print(f"    {label}: {i}/{len(seqs)} sequences, {i / max(el, 1e-9):.1f}/s, "
+                              f"~{(len(seqs) - i) / max(i / max(el, 1e-9), 1e-9) / 60:.1f} min left for this pass", flush=True)
                 return out
             except t.cuda.OutOfMemoryError:
                 if b == 1:
@@ -167,6 +172,7 @@ def main():
             if os.path.exists(embp) and not len(vg):
                 continue
             if not os.path.exists(embp):
+                print(f"  {g.label}: embeddings (2 passes)", flush=True)
                 _, emb_f = sc.ll_and_emb(seq)
                 _, emb_r = sc.ll_and_emb(revcomp(seq))
                 idx = np.array([transcript_window_index(g, n, W) for n in range(1, g.length + 1)])
@@ -181,8 +187,9 @@ def main():
                 assert seq[off] == r.ref, (r.ID, seq[off])
                 alts.append(seq[:off] + r.alt + seq[off + 1:])
             # reference scored in the same batched pass shape as its alternatives (first element of each list)
-            lf = sc.ll_batch([seq] + alts)
-            lr = sc.ll_batch([revcomp(seq)] + [revcomp(s) for s in alts])
+            print(f"  {g.label}: scoring {len(vg)} variants ({len(vg) + 1} sequences per strand)", flush=True)
+            lf = sc.ll_batch([seq] + alts, f"{g.label} forward")
+            lr = sc.ll_batch([revcomp(seq)] + [revcomp(s) for s in alts], f"{g.label} reverse")
             ll_f, ll_r = lf[0], lr[0]
             for r, a, b in zip(vg.itertuples(), lf[1:], lr[1:]):
                 fout.write(f"{r.ID}\t{ll_f:.6f}\t{a:.6f}\t{ll_r:.6f}\t{b:.6f}\n")
