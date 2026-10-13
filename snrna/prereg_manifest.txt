@@ -1,0 +1,5 @@
+snRNA-VEP v2 pre-registration manifest (frozen 2026-10-13, before any endpoint was computed)
+UTC: 2026-10-13T11:51:51Z
+parent commit: 89dc195bbafe96c7f5db8dc6ba273f2686197660
+7cd5c4c13f0687fecd6d482ce6d5fba487f802db82d6a87c6462b9563d8a918c  PREREG.md
+3058d0807d12ca4b64f6a4b3a8fff53a307c8017681d2b43920c4c3997cd293a  PLAN.md

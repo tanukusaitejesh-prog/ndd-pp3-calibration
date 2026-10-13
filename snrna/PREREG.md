@@ -1,0 +1,351 @@
+# snRNA-VEP v2: pre-registration (week 0)
+
+**Status.** Frozen on 13 October 2026, before any endpoint below was computed. The plan behind it is `PLAN.md`; this document turns that plan into exact, executable definitions. Where `PLAN.md` was ambiguous or internally inconsistent, the resolution is stated here and listed in section 13, so it can be checked before the analysis it affects is run.
+
+**Timestamp.** The SHA-256 of this file and of the analysis code at freeze time are listed in `prereg_manifest.txt`, which is stamped with OpenTimestamps (`prereg_manifest.txt.ots`, Bitcoin-anchored) and committed to the repository. An OSF deposit of the same files is an author action still to do; if it happens after any analysis, the OSF record is a later copy and must not be described as predating the analysis.
+
+**After freezing:**
+
+- Only bug fixes, and the clarifications that section 13 explicitly allows, may change anything below.
+- Each change gets a dated entry in the deviation log (section 14), saying whether any result had been seen when it was made.
+- A threshold, split, label rule or test changed after its data were seen is reported as post hoc.
+
+## 0. What had been seen before freezing
+
+Honesty about prior exposure matters more than its absence. Before this document was written:
+
+- **SGE table.** Supplementary Table 1 of the SGE paper was opened. Counts and categories were tabulated: 539 variants, 151 below −0.302, 72 below −0.9, 521 in-transcript, 18 ReNU-syndrome variants (12 SNVs), 353 population-observed (346 SNVs). The positions of the ReNU variants were listed; they define the critical region and are published. The paper itself (read in full by the plan's author) reports the CADD, ΔΔG and SGE AUCs. **No score was correlated with any label by this project.**
+- **Crick repository** (commit `b404bf5`). Region boundaries and the published AUC code were read.
+- **Access tests.** gnomAD v4.1 at RNU4-2 (3 records printed, from an access test), CADD v1.7 at one position, Roulette at two sites, gnomAD coverage at a few RNU4-2 bases.
+- **Gene sets.** The GENCODE v49 gene list (111 spliceosomal genes reproduced exactly) and gene lengths.
+- **RNUdb.** Only the gene list (RNU2-2, RNU4-2) and empty RNU4-2 region tracks. No variant endpoint was called for any gene.
+- **Never accessed.** No RNU2-2 or RNU5B-1 patient-variant data has been downloaded, opened or tallied by this project. The two blind hotspot coordinates are known, because they are in `PLAN.md`, quoted from Table 2 of the guidance.
+
+## 1. Data, pinned
+
+| Input | Version / location | Use |
+|---|---|---|
+| RNU4-2 SGE | Nature 654:429–436 (2026), doi 10.1038/s41586-026-10334-9, Supplementary Table 1 (`41586_2026_10334_MOESM2_ESM.xlsx`, sheet `ST1_20251212_RNU4_2_merged_gf`); MD5 recorded by `snrna.py fetch` | L1 labels; paper's CADD and ΔΔG columns |
+| SGE code | github.com/FrancisCrickInstitute/RNU4-2_Saturation_Genome_Editing, commit `b404bf5e98e11e0ed03aa186344b6c191591f05c` | Region map, published AUC definitions |
+| gnomAD v4.1 genomes | `gs://gcp-public-data--gnomad/release/4.1/vcf/genomes/gnomad.genomes.v4.1.sites.chr*.vcf.bgz`, read by remote tabix | Allele counts |
+| gnomAD genome coverage | gnomAD GraphQL API, `coverage(dataset: gnomad_r4).genome`, per-base median | Gene QC |
+| Roulette | `N_rate_v5.2_TFBS_correction_all.vcf.bgz` (genetics.bwh.harvard.edu/downloads/Vova/Roulette), remote tabix with `.csi` | Mutation rates (`MR`) |
+| CADD | v1.7 GRCh38 `whole_genome_SNVs.tsv.gz` (krishna.gs.washington.edu/download/CADD/v1.7/GRCh38), remote tabix | Baseline |
+| GENCODE | v49 comprehensive annotation GTF | Gene set and coordinates |
+| Reference | GRCh38 bases from the UCSC hg38 sequence API, cross-checked against the REF column of gnomAD, Roulette and CADD | REF confirmation |
+| GIAB | Genome stratifications v3.3, `GRCh38_alllowmapandsegdupregions.bed.gz` | Paralog QC |
+| ViennaRNA | 2.7.0, as in the SGE paper | Baseline |
+| Evo 2 | `evo2_7b` checkpoint, `evo2` package version recorded at run time | G1 |
+| Rfam | Release current at first download, recorded; family CMs for U1, U2, U4, U4atac, U5, U6, U6atac, U11, U12 | Consensus structure |
+
+Restricted data (UK Biobank, All of Us, Genomics England, EGA RNA-seq) are not used. The aggregate UK Biobank and All of Us allele counts published in the CC BY 4.0 SGE table are used only to reproduce the paper's own AUCs (section 6.4). They do not enter any label set or model.
+
+## 2. Gene universe and QC
+
+1. **Spliceosomal genes.** GENCODE v49 genes with `gene_type "snRNA"`, on chr1–22, X or Y, whose `gene_name` matches `^(RNU1-\d+|RNVU1-\w+|RNU2-\d+|RNU4-\d+|RNU4ATAC|RNU5[A-F]-\d+|RNU6-\d+|RNU6ATAC|RNU11|RNU12|U1|U2|U4|U6|U4atac|U6atac|U11|U12)$` and does not end in `P`. This gives 111 genes, matching the guidance's count.
+2. **Coverage.** gnomAD genome per-base median depth over every transcript base. Keep a gene if the median of those per-base medians is ≥ 20 and their minimum is ≥ 10. The guidance reports 87 genes. A different count is reported, not tuned.
+3. **Paralog QC.** Exclude a gene if either holds:
+   - more than 50% of its bases overlap the GIAB low-mappability-and-segmental-duplication union;
+   - it is mostly low-VAF: summed over its PASS variants, more than 50% of heterozygous genotypes fall in allele-balance bins below 0.25 (gnomAD `ab_hist_alt_bin_freq`).
+
+   RNU4-2/RNU4-1 is flagged as a high-risk pair but not excluded on that ground alone.
+4. **Analysis set.** The genes passing 2 and 3. Every exclusion is listed with its reason.
+
+## 3. Variants and coordinates
+
+- **Key.** Every variant is keyed by `chrom-pos-ref-alt` in GRCh38. Transcript numbers are derived from GENCODE v49 exon coordinates and strand, and used only for display and for region definitions.
+- **Universe.** All possible SNVs at every transcript base of every analysis-set gene: 3 per base.
+- **Indels.** Used only in the SGE comparisons, where the SGE table supplies them.
+- **REF confirmation.** Every published variant is converted to GRCh38 and its REF confirmed against the reference. A mismatch is listed and the variant dropped. A mismatch rate above 1% in any source stops the pipeline (QC failure, not a result).
+- **Known-fact checks.** These must reproduce before any endpoint is computed (QC, not hypotheses):
+  - 539 SGE variants;
+  - 151 with score < −0.302;
+  - 521 in-transcript;
+  - 12 ReNU SNVs and 346 population SNVs;
+  - the SGE library span chr12:120291753–120291903.
+
+## 4. Label sets
+
+| Set | Exact definition | Use |
+|---|---|---|
+| L1 SGE | `function_score_mean` (haploid) from SGE ST1; **depleted** = score < −0.302; **strong** = score < −0.9; `function_score_dip` (diploid) for sensitivity only. In-transcript = `nucleotide` 1–145 (521 variants: 435 SNVs, 86 indels) | Evaluation only |
+| L2 Patient P/LP | Distinct variants (not individuals) reported as pathogenic or likely pathogenic by the reporting study, or by ClinVar with ≥ 1 review star, as of the tally date. Tagged by gene, Table 2 region and inheritance (dominant, recessive, both, unknown). RNU2-2 and RNU5B-1 entries go only into the sealed file (section 5) | Evaluation, calibration |
+| L3 Benign-like | gnomAD v4.1 genomes, FILTER PASS, AC ≥ 9 (≈ AF 5.5e-5 × AN ≈ 152,000, scaling the SGE paper's rule). Sensitivity at AC ≥ 5, ≥ 20, ≥ 50. A variant in both L2 and L3 is removed from L3 and listed | Calibration |
+| L4 Unlabeled | Every other possible SNV. Never called benign | Selection training |
+
+Presence in gnomAD alone never makes a variant benign.
+
+### RNU4-2 regions
+
+Transcript positions follow NR_003137.3 n.1–145, using the Crick code's `assign_region`:
+
+| Region | Positions |
+|---|---|
+| Stem II | 3–16 |
+| k-turn | 27–35 and 41–46 |
+| Stem I | 56–62 |
+| T-loop | 63–70 |
+| Stem III | 75–79 |
+| 3′ stem loop | 85–117 |
+| Sm site | 118–126 |
+| Terminal stem loop | 127–144 |
+| Other | all remaining positions |
+
+The **critical region** C is n.62–70 plus n.75–78, the span of the ReNU SNVs.
+
+### Blind hotspots
+
+| Gene | Hotspot (as quoted in `PLAN.md` from guidance Table 2) |
+|---|---|
+| RNU2-2 | n.1–67 |
+| RNU5B-1 | n.37–44 |
+
+Section 13 allows one pre-specified correction if Table 2 itself gives different coordinates.
+
+## 5. Splits and the sealed labels
+
+- **Sealed genes.** RNU2-2 and RNU5B-1. Their L2 variants are compiled into `sealed/blind_labels.tsv` and encrypted with `snrna.py seal`, which uses AES-256 with a passphrase held by someone other than the analyst where possible. The SHA-256 of the plaintext and of the ciphertext is recorded in a dated amendment **before any selection model is trained**.
+  - The pipeline refuses to read the file without `--unseal`, which logs the date, user and reason.
+  - The file is unsealed once, for the final evaluation (section 9).
+- **Other splits:**
+  - leave-one-gene-out over the analysis set;
+  - leave-family-out, U4 + U4atac: RNU4-1, RNU4-2, RNU4ATAC and the unnamed U4 loci held out together;
+  - leave-region-out within RNU4-2, using the regions in section 4.
+- **Training exclusions.** The two sealed genes are excluded from every training run until the final run. Hyperparameters are chosen only on gene-held-out folds of the unlabeled (L4 plus counts) data.
+
+## 6. Gate G1 (week 1): is a foundation model already enough?
+
+### 6.1 Evo 2 score
+
+- **Model and window.** `evo2_7b`. For each SGE variant, take the GRCh38 window of 8,192 nt centred on the variant's first reference base, chr12:c−4096 to c+4095. The alternative window is the same span with the variant applied, so indels change its length.
+- **Score.** LL is the sum of per-token log-likelihoods. Δ = LL(alt) − LL(ref), computed on the forward strand and on the reverse complement of both windows, then averaged.
+- **Damage score.** d = −Δ.
+- **Sensitivity.** The length-normalised mean log-likelihood.
+
+### 6.2 Damage scores of the comparators (higher = more damaging)
+
+| Predictor | Damage score d |
+|---|---|
+| CADD | v1.7 PHRED. Primary: the SGE table's `CADD_score` column. QC check: it must agree with the CADD v1.7 file to ±0.01 for SNVs |
+| ViennaRNA U4/U6 ΔΔG | The SGE table's `ddG_bind` column, primary. Our 2.7.0 recomputation with the Crick parameters is a QC check |
+| Allele-count floor | −log10(gnomAD v4.1 AC + 1), with AC = 0 if absent or non-PASS |
+| Position-only floor | Minus the leave-one-position-out prediction of `function_score_mean` from an OLS model on two features: a one-hot of the nine RNU4-2 regions, and log(1 + distance in nt to the nearest critical-region position). All variants at a position are held out together |
+| EVEE | Looked up for the ClinVar-overlapping subset only; reported, never used in a gate |
+
+### 6.3 Metrics
+
+On the 521 in-transcript variants:
+
+- **ρ.** Spearman correlation between −d and `function_score_mean`. Positive means concordant.
+- **AUROC.** d for depleted versus not depleted.
+- **Uncertainty.** 95% intervals from 2,000 bootstrap replicates, seed 20261013:
+  - for AUROC, resampling within each class;
+  - for ρ, resampling variants;
+  - a position-cluster bootstrap (resampling positions with all their variants) is reported as a sensitivity analysis.
+- **Also reported:**
+  - SNV-only versions (435 variants);
+  - per-region ρ;
+  - diploid-score versions;
+  - the replicate noise ceiling (pairwise Pearson r of `function_score_r1..r3`).
+
+### 6.4 ReNU-versus-population AUROC
+
+- **Primary (as `PLAN.md` Appendix A specifies).** The 12 ReNU SNVs against in-transcript SGE SNVs that are not ReNU and are present in gnomAD v4.1 genomes (FILTER PASS, AC ≥ 1). The AC floor is undefined here, because controls are selected on AC, and is not reported.
+- **Reproduction check.** The 12 ReNU SNVs against the paper's 346 population SNVs (`category == "UKBB/AllofUs"`, `Type == "SNV"`), using the paper's code definitions. The published values are CADD 0.65, ΔΔG 0.72 and SGE 0.93; failing to reproduce them to ±0.01 is a pipeline error.
+
+### 6.5 Decision
+
+| Outcome | Rule | Consequence |
+|---|---|---|
+| **G1 FIRES** | Evo 2 ρ ≥ 0.60 **and** AUROC (depleted vs not) ≥ 0.85, point estimates, primary definitions | Drop the new-model framing; the paper becomes calibration plus failure analysis |
+| **G1 PASSES** | Otherwise | Continue |
+| Position floor flag | If the position-only floor's ρ is within 0.05 of the best non-floor predictor's ρ, the deep-model framing inside RNU4-2 ends (`PLAN.md`), whatever G1 says | Reported |
+| **Pending** | If Evo 2 cannot be run, G1 stays pending | Everything else in section 6 is still reported |
+
+## 7. Gate G2 (by week 4): is there a selection signal?
+
+### 7.1 Observed
+
+For each possible SNV v in an analysis-set gene, O_v = 1 if gnomAD v4.1 genomes has v with FILTER PASS, AC ≥ 1 and AF < 0.001; otherwise O_v = 0.
+
+Excluded from both O and E:
+
+- sites whose gnomAD record for that allele is non-PASS (sensitivity: count them as O_v = 0);
+- sites with AF ≥ 0.001;
+- sites whose Roulette FILTER is `low`, or which have no Roulette record.
+
+### 7.2 Expected
+
+p_v = 1 − exp(−κ_g · m_v · c_{k(v)}), where:
+
+- m_v is Roulette `MR`;
+- κ_g is a per-gene scale fitted by maximum likelihood (Bernoulli) on all included sites of gene g; it absorbs the Pol III rate, coverage and sample size;
+- c_k is an element-class correction with two classes, paired and unpaired positions in the Rfam consensus structure (from cmalign of the gene to its family CM).
+
+Two candidate mutation models:
+
+- **M0:** c ≡ 1.
+- **M1:** c_k fitted on unpaired positions outside every Table 2 region, in training genes only.
+
+**Model choice.** Leave-one-gene-out Bernoulli log-loss over analysis-set genes, excluding the U4 family (RNU4-1, RNU4-2, RNU4ATAC and the unnamed U4 loci) and the two sealed genes. M1 is chosen only if it lowers the mean held-out log-loss by ≥ 0.002 nats per site; otherwise M0.
+
+The chosen model is frozen, by a dated log entry with the model and its fitted c, before any U4-family or sealed-gene O/E is computed.
+
+The site-rate covariate (number of other alleles seen at the same position) is **not** used for G2, because a position under strong selection also lacks other alleles, so the covariate would absorb the signal G2 tests. It is used only in the selection model of section 8, and as an ablation there.
+
+**Mutation-model QC** (reported, not gating):
+
+- observed against expected by gene and by trinucleotide context;
+- a log-linear trend of O/E against position outside Table 2 regions;
+- a trend p < 0.001 is flagged in the report.
+
+### 7.3 Windows and statistics
+
+- **O/E.** For a set of sites S, O/E_S = Σ_S O_v / Σ_S p_v.
+- **Windows.** Every run of 5 consecutive transcript positions, step 1.
+- **Window depletion.** D_w = P(X ≤ O_w), where X follows the Poisson-binomial distribution with the window's p_v. Smaller D_w means more depleted.
+- **Top decile.** The 10% of windows with the smallest D_w.
+- **Median.** m_g is the median window O/E of gene g.
+
+### 7.4 Tests
+
+**(a) RNU4-2 critical region C.**
+
+- Primary: one-sided exact test, P(X ≤ O_C) with X ~ Poisson-binomial(min(1, m_g · p_v)) over the sites of C.
+- **Recovered** if O/E_C < m_g and P < 0.01.
+- Also reported, not gating: the circular-shift permutation p, which shifts C's position mask by every non-zero offset modulo the transcript length.
+
+**(b) Each blind hotspot H.** **Recovered** if both hold:
+
+1. at least one window lying wholly inside H is in the gene's top decile;
+2. the circular-shift permutation p < 0.01, where:
+   - the statistic S_H is the mean, over windows wholly inside H, of the window's depletion percentile (rank of D_w divided by the number of windows);
+   - p = (1 + #{s ≠ 0 : S_{H+s} ≤ S_H}) / (1 + (L − 1)), for L transcript positions.
+
+RNU2-2 (191 nt) and RNU5B-1 (117 nt) both allow p < 0.01.
+
+### 7.5 Decision
+
+| Outcome | Rule | Consequence |
+|---|---|---|
+| **G2 PASS** | (a) recovered and both hotspots recovered | Continue with selection supervision; Aim 1 met |
+| **G2 PARTIAL** | (a) recovered and exactly one hotspot recovered | Continue; Aim 1 reported as partly met; the novelty rating is not raised |
+| **G2 KILL** | (a) not recovered, or neither hotspot recovered | Drop selection supervision; the paper becomes calibration-only |
+
+**Sensitivity analyses** (reported, not gating):
+
+- counting non-PASS records as O_v = 0;
+- AF cut-off 0.01;
+- M0 if M1 was chosen, and the reverse;
+- a negative-binomial allele-count version, with element O/E from Σ AC.
+
+## 8. Selection model and Aims 2–3 (weeks 5–8)
+
+### 8.1 Training
+
+**Count model.** A_v ~ NegBin(λ_v, φ), with λ_v = μ_v T e^{−f(v)} and μ_v = m_v κ_g c_k, over L4 and observed sites of training genes. f(v) ≥ 0 is predicted by the encoder of `PLAN.md` Methods 3.
+
+**Inputs:**
+
+- sequence ±100 nt;
+- Rfam profile and covariation;
+- the base-pairing graph, including U4/U6 and U4atac/U6atac intermolecular pairs;
+- element class;
+- the site-rate covariate, computed excluding v itself.
+
+**What training never sees.** SGE, L2 and L3 labels are never used in training, model selection or early stopping. Early stopping and hyperparameters use gene-held-out NB log-likelihood only.
+
+**Uncertainty.** Five seeds; the score is the ensemble mean of f, and the interval is the range across seeds.
+
+### 8.2 Aim 2: SGE concordance
+
+**Strict model.** Trained with the whole U4 family removed. The loose version removes RNU4-2 only and is reported as secondary.
+
+**Met if either holds:**
+
+- ρ (section 6.3) ≥ the best of CADD, ΔΔG and Evo 2 by at least 0.10;
+- AUROC for ReNU against population (section 6.4 primary) ≥ 0.85.
+
+**If Evo 2 is pending,** the comparison uses CADD and ΔΔG and says so.
+
+### 8.3 Aim 3 and gate G3 (week 6)
+
+**Held-out sets.** Each gene is scored by a model trained without it. The week-6 set is RNU4ATAC (leave-one-gene-out and leave-family-out), plus RNU6ATAC, RNU12 and the named RNU6 paralogs (pooled as one unit, since their sequences are identical), each only if it has ≥ 10 distinct L2 SNVs. The sealed genes are not in the week-6 set (section 13, item 3).
+
+**Metric.** Per-gene AUROC of L2 SNVs against L3 SNVs. The summary is the mean over genes weighted by the number of L2 SNVs, for the model and for CADD. ΔAUROC is model minus CADD.
+
+**Uncertainty.** 2,000 bootstrap replicates resampling distinct variants within gene × class.
+
+| Outcome | Rule | Consequence |
+|---|---|---|
+| **G3 PASS** | Weighted ΔAUROC ≥ 0.15 and the 95% interval excludes 0 | Full framework paper |
+| **G3 FAIL** | Otherwise | Pivot to calibration-only or stop |
+| **G3 NOT EVALUABLE** | Fewer than 10 L2 SNVs across all week-6 genes | G3 is decided at the final evaluation instead, and this is said |
+
+**Leave-family-out.** Trained without the U4 family. RNU4ATAC ClinVar P/LP (≥ 1 star) against ClinVar B/LB, AUROC with an interval. Reported, not gating.
+
+## 9. Final evaluation (single unsealing)
+
+After the model, mutation model and calibration code are frozen by a dated log entry:
+
+1. unseal `sealed/blind_labels.tsv` once;
+2. score RNU2-2 and RNU5B-1 with models trained without them;
+3. report each gene's AUROC (L2 against L3) and ΔAUROC against CADD, and add both genes to the Aim 3 summary as a second, blind estimate.
+
+Nothing is refitted afterwards. Any later change is post hoc.
+
+## 10. Aim 4: calibration (weeks 9–11)
+
+- **Scores.** CADD, ΔΔG (U4/U6 and U4atac/U6atac only), Evo 2 if available, and the new model (cross-fitted).
+- **Labels.** L2 positives, L3 negatives, as distinct SNVs. A positive is flagged if its source classification used CADD or conservation; results are shown with and without flagged positives.
+- **Local LR.** For each evaluation point s on the score grid (every observed score), the local window is the nearest 20% of all labelled variants by score rank, with a minimum of 10 positives and 10 negatives. Local LR(s) = (n_P/N_P) / (n_B/N_B), with a 0.5 pseudocount per class count.
+- **Bootstrap.** 1,000 replicates resampling distinct variants within class (seed 20261013).
+- **Evidence thresholds.** At prior P, O_VSt(P) = (9(1−P)/P)^{4/3}. This gives 350 at P = 0.10 and ≈ 1,124 at P = 0.0441, matching Tavtigian 2018 and Pejaver 2022 to rounding. Strength k ∈ {Supporting, Moderate, Strong} needs LR ≥ O_VSt^{1/8, 1/4, 1/2}.
+  - **Primary prior:** P = 0.10, the Tavtigian 2018 default.
+  - **Sensitivity:** P ∈ {0.01, 0.0441, 0.2, 0.5}.
+- **PP3 threshold at strength k.** The smallest grid score s* such that the 5th bootstrap percentile of local LR is ≥ the threshold for k at every grid point ≥ s*. **BP4** mirrors this: the 95th percentile must be ≤ the reciprocal at every grid point ≤ s*.
+- **Aim 4 met** if the new model has a Supporting PP3 or BP4 threshold in at least one gene, or pooled across genes (pooled is stated as such). Otherwise the score is reported as "not yet usable".
+- **Splits and drift.**
+  - Dominant and recessive regions are calibrated separately where each has ≥ 10 positives.
+  - Ancestry drift: L3 is redefined per gnomAD genetic ancestry group (AC ≥ 9 scaled to that group's AN), and thresholds and LRs are reported per group. Drift is reported, not corrected.
+
+## 11. Secondary endpoints
+
+**Mechanism probe.** Logistic regression on frozen encoder embeddings, three classes (dominant hotspot, recessive region, neutral), fitted on RNU4-2 and RNU4ATAC Table 2 regions only. Evaluated as:
+
+- AUROC for dominant against recessive class on held-out positions;
+- AUROC for SGE strong (< −0.9) against moderate (−0.9 to −0.302) depletion.
+
+A research aid only; never calibrated.
+
+**Other secondary endpoints:**
+
+- agreement between the selection map (window O/E) and the SGE depletion map in RNU4-2: Spearman between window O/E and the window's mean SGE score;
+- negative controls, each of which must give |ρ| < 0.1 and an AUROC interval containing 0.5:
+  - shuffled training counts within gene;
+  - a random base-pairing graph;
+  - a model trained on pseudogenes only;
+- pseudo-prospective: scores frozen in a dated Zenodo release, then evaluated on L2 variants first published after that date.
+
+## 12. Analysis hygiene
+
+- Seeds are fixed (20261013 unless stated).
+- Every number in the paper is regenerated by `snrna.py` from pinned inputs.
+- Each command writes a `run_info.json` with input checksums, versions and the git commit.
+- Results files carry the command that made them.
+
+## 13. Resolutions of `PLAN.md` ambiguities (check before the affected analysis runs)
+
+1. **G2 decision when only some targets are recovered.** `PLAN.md` says G2 fails if "the known RNU4-2 depletion and two blind hotspots are not recovered". Here: PASS needs all three; PARTIAL (continue) needs RNU4-2 plus one hotspot; KILL is anything less (section 7.5).
+2. **The critical-region p-value.** `PLAN.md` asks for "p < 0.01" without naming the test. Here the primary is an exact Poisson-binomial test against the gene-median-scaled expectation. A circular-shift permutation with 145 positions can reach p < 0.01 only if C is the single most depleted placement, so it is reported but not gating.
+3. **Sealed genes at G3.** `PLAN.md` lists RNU2-2 and RNU5B-1 among G3's held-out genes, but also says their labels open only once, at the final evaluation. Here G3 uses non-sealed genes only; the sealed genes are evaluated once, at the end (section 9).
+4. **Site-rate covariate in G2.** It is excluded from G2 for the circularity reason given in section 7.2.
+5. **"ClinGen default prior".** Taken as P = 0.10 (Tavtigian 2018); Pejaver's 0.0441 is a sensitivity value.
+6. **Population controls in week 1.** The gnomAD-based control set is primary, as `PLAN.md` Appendix A says. The paper's 346-SNV set is used only to reproduce published numbers.
+7. **Blind hotspot coordinates.** If guidance Table 2 (read directly) gives coordinates different from `PLAN.md`'s, Table 2 wins. This is recorded as a dated clarification before G2 is run. It is the only coordinate change allowed.
+
+## 14. Deviation log
+
+| Date | Change | Data seen when made? | Effect |
+|---|---|---|---|
+| | (none yet) | | |
