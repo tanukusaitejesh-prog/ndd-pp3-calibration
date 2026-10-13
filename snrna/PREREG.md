@@ -348,4 +348,18 @@ A research aid only; never calibrated.
 
 | Date | Change | Data seen when made? | Effect |
 |---|---|---|---|
-| | (none yet) | | |
+| 2026-10-13 | **Bug fix (code to match frozen text).** The G1 position-floor flag was coded as floor ρ ≥ best ρ − 0.05; section 6.5 says "within 0.05". Corrected to \|floor ρ − best ρ\| ≤ 0.05; when the floor exceeds every predictor by more than 0.05, the report now adds a note. The frozen rule is unchanged | Yes: found on reading the first G1 output (floor ρ 0.570, best baseline 0.269) | The flag reads "not within 0.05" instead of firing. The case "floor far above every baseline" is not covered by the frozen rule and is left for the authors to judge |
+| 2026-10-13 | **Bug fix.** Roulette has autosomes only; the reader now returns no rates for chrX/chrY instead of failing. Section 7.1 already excludes sites without a Roulette record | No endpoint data seen (week-0 site table) | One chrX U6 locus (309 SNVs) has no rates and drops out of G2 |
+
+## 15. Proposed amendments (not adopted; the authors decide before the affected analysis runs)
+
+**A1, the G2 blind-hotspot test (section 7.4b).** Proposed 13 October 2026, before any G2 statistic was computed on real data, on the basis of simulation only (`g2_power.py`, `results/g2_power_simulation.txt`).
+
+- **The problem.** The frozen rule (top-decile window plus circular-shift p < 0.01) has low power, because with 117 or 191 placements, p < 0.01 needs the hotspot to be the single best placement. With a correct mutation model, a hotspot depleted 50-fold is recovered in 57% of simulations (8 nt in 117), and a 67-nt region depleted 2-fold in 12% (191 nt).
+- **The exact test alone is not the fix.** The exact Poisson-binomial test of section 7.4a has far more power (97% and 70%), but trusts the mutation model. Under a deliberately misspecified, spatially autocorrelated rate error, its false-positive rate rises to 2–4%.
+- **Proposed hybrid.** A hotspot is recovered if (i) the exact test of section 7.4a gives p < 0.01, (ii) at least one window lying wholly inside the hotspot is in the top decile, and (iii) the circular-shift p < 0.05.
+  - False-positive rate ≤ 1.5% under both mutation models.
+  - Power: 95%/90% (8 nt, 50-fold, correct/misspecified model) and 52%/27% (67 nt, 2-fold).
+- **For consistency.** The critical-region test (section 7.4a) could add circular-shift p < 0.05; this costs little power (100% → 100% at 20-fold depletion, 66% → 65% at 3-fold).
+
+Adopting A1 means a dated deviation-log entry stating that no G2 data had been seen.

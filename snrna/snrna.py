@@ -754,9 +754,13 @@ def g1_decision(m, evo2_name="Evo 2 7B zero-shot"):
     lines = []
     floor = m[m.predictor == "Position-only floor (LOPO)"].spearman.iloc[0]
     best = m[~m.predictor.str.contains("floor")].sort_values("spearman", ascending=False).iloc[0]
-    flag = floor >= best.spearman - 0.05
+    flag = abs(floor - best.spearman) <= 0.05  # PREREG s6.5: "within 0.05"
     lines.append(f"Position-only floor rho {floor:.3f} vs best non-floor predictor ({best.predictor}) {best.spearman:.3f}: "
                  + ("WITHIN 0.05 -> deep-model framing inside RNU4-2 ends (PLAN.md)" if flag else "not within 0.05"))
+    if floor > best.spearman + 0.05:
+        lines.append(f"  Note: the floor EXCEEDS every non-floor predictor by {floor - best.spearman:.3f}. The frozen rule does not "
+                     "cover this case; the floor is fitted on SGE scores (leave-one-position-out) and uses the critical region, "
+                     "so it is a supervised reference, not a label-free competitor.")
     if evo2_name in set(m.predictor):
         e = m[m.predictor == evo2_name].iloc[0]
         fires = e.spearman >= 0.60 and e.auroc_depleted >= 0.85
