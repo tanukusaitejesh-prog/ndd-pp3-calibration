@@ -173,3 +173,24 @@ def test_seal_roundtrip(tmp_path):
     assert f.read_text() == plain
     log = (tmp_path / "SEALED_MANIFEST.jsonl").read_text().strip().splitlines()
     assert len(log) == 2 and "UNSEALED" in log[1]
+
+
+# ---------------------------------------------------------------- Evo 2 scoring loop (fake scorer, no GPU)
+
+def test_evo2_run_scores_four_strands_and_resumes(tmp_path):
+    import evo2_score
+    inp = tmp_path / "in.tsv.gz"
+    pd.DataFrame({"ID": ["v1", "v2", "v3"], "ref_seq": ["ACGTAC", "GGGTTT", "AAAACC"],
+                  "alt_seq": ["ACTTAC", "GGGGTTT", "AAACC"]}).to_csv(inp, sep="\t", index=False)
+    calls = []
+
+    def fake(seqs):
+        calls.append(seqs)
+        return [float(len(s)) + 0.1 * s.count("G") for s in seqs]
+    out = tmp_path / "scores.tsv"
+    assert evo2_score.run(str(inp), str(out), fake, "fake", limit=2, log=lambda *a: None) == 2
+    assert evo2_score.run(str(inp), str(out), fake, "fake", log=lambda *a: None) == 1  # resumes
+    s = pd.read_csv(out, sep="\t")
+    assert list(s.ID) == ["v1", "v2", "v3"] and list(s.columns) == evo2_score.COLUMNS
+    assert calls[0] == ["ACGTAC", "ACTTAC", "GTACGT", "GTAAGT"]  # ref, alt, rc(ref), rc(alt)
+    assert s.n_alt.tolist() == [6, 7, 5]
