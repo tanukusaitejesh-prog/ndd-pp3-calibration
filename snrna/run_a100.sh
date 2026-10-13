@@ -73,7 +73,7 @@ elif [[ $MODE == full ]]; then
 fi
 
 stage "0b. fast tests (CPU)"
-python -m pytest -q -x tests/test_labels.py tests/test_evo2_features.py
+python -m pytest -q -x tests/test_labels.py tests/test_evo2_features.py tests/test_homology.py
 if [[ $MODE == dry && -z $CPU_TEST ]]; then python -m pytest -q -x tests/test_model.py; fi
 
 if [[ $MODE == full ]]; then

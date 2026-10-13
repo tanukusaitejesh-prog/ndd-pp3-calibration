@@ -458,13 +458,24 @@ Adopting A1 means a dated deviation-log entry stating that no G2 data had been s
 - **Comparator.** CADD for non-RNU4-2 genes is the v1.7 lookup.
 - **Rules.** Metric, bootstrap and decision rule are unchanged.
 
+*A2.8b The G3 gating score: inheritance-aware framework score S (upgrades U1 and U3, proposed before any model existed).*
+
+- **Why.** Selection in gnomAD only sees variants that harm heterozygotes. G2 showed this directly: dominant regions are depleted (RNU4-2 T-loop O/E 0.10), recessive ones are not (RNU4ATAC 0.83–1.09). A selection score alone cannot rank recessive disease variants, and every G3 unit except the pooled RNU6 paralogs is recessive.
+- **Definition.** For each G3 unit, by its established inheritance mode (guidance Table 1):
+  - dominant (RNU6 paralogs): S = f, the cross-fitted selection score;
+  - recessive (RNU4ATAC, RNU6ATAC, RNU12): S = F, the function score. F is the homology transfer h where the position maps to RNU4-2, else the function head d;
+  - other or mixed: the mean within-unit percentile rank of f and F.
+- **Homology transfer h** (`homology_transfer.py`, label-free). RNU4-2 and RNU4ATAC are aligned with Infernal 1.1.5 to both the U4 (RF00015) and U4atac (RF00618) covariance models, match states only. A RNU4ATAC position is mapped only where both alignments agree. That is 38 positions, RNU4ATAC n.1 and n.26–64 onto RNU4-2 n.1 and n.19–61: the 5′ stem-loop with the k-turn bound by Snu13/Prp31 in both spliceosomes, and stem I. h = −(SGE score of the same alternative base) when the reference bases match, else −(mean SGE score at the RNU4-2 position). 114 of 390 RNU4ATAC SNVs get h.
+- **Reporting.** S gates G3 with the frozen bar (weighted ΔAUROC vs CADD ≥ 0.15, interval excluding 0). The selection-only f result is reported next to it in every table.
+- **Disclosure.** This choice was made after CPU dry runs printed, on the real non-blind RNU4ATAC labels, CADD 0.755 (L2 vs L3) and the function head d at 0.768 and 0.827, with f+d at 0.746 and 0.807. Those values came from representations of models fitted to synthetic counts. h itself had never been evaluated on any label. From this amendment on, dry runs permute patient labels within each unit, so no further label-based result can be seen before the frozen run.
+
 *A2.9 Exploratory upgrades (never gating).*
 
 - **U3, function head.** Ridge regression of the RNU4-2 SGE score on [frozen node state, variant features], with λ chosen by leave-one-region-out R².
   - It is fitted only in fits that do not hold out RNU4-2, and never scores RNU4-2.
   - Reported on the G3 units alone, and as the mean percentile rank with f.
   - This uses SGE labels in a separate head, never for f, early stopping or hyperparameters.
-- **U1, inheritance.** In RNU4-2 (strict model), f separates dominant from recessive P/LP SNVs. Hypothesis: AUROC > 0.5, with a bootstrap interval.
+- **U1, inheritance (descriptive part).** In RNU4-2 (strict model), f separates dominant from recessive P/LP SNVs. Hypothesis: AUROC > 0.5, with a bootstrap interval.
 - **Preliminary calibration.** Section 10 rules, using γ_g·f pooled over the non-blind minor and U6 units. The final Aim 4 comes after the single unsealing.
 - **Additional comparators.** GPN-MSA, ReMM, MobiDeep (if released) and an RNA language model are added later as comparators. The frozen bars keep CADD.
 
