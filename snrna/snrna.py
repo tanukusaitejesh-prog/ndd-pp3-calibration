@@ -946,7 +946,9 @@ def critical_region_test(n, obs, p, region, width=5):
 
 
 def hotspot_test(n, obs, p, hotspot, width=5):
-    """PREREG s7.4(b): top-decile window inside H and circular-shift permutation p of mean depletion percentile."""
+    """PREREG s7.4(b) as amended by A1 (13 Oct 2026): recovered if the exact test of s7.4(a) gives p < 0.01, a window
+    wholly inside H is in the top decile, and the circular-shift p < 0.05. The frozen rule (top decile + circular
+    p < 0.01) is still reported as `recovered_frozen`."""
     n = np.asarray(n)
     w = window_table(n, obs, p, width)
     L = int(n.max())
@@ -965,7 +967,11 @@ def hotspot_test(n, obs, p, hotspot, width=5):
         perm.append(stat(lo, hi)[0])
     perm = np.array(perm)
     p_perm = (1 + np.sum(perm[np.isfinite(perm)] <= s_obs)) / L
-    return {"mean_pct": s_obs, "top_decile_window": top, "p_circular": p_perm, "recovered": bool(top and p_perm < 0.01)}
+    exact = critical_region_test(n, obs, p, list(range(a, b + 1)), width)
+    return {"mean_pct": s_obs, "top_decile_window": top, "p_circular": p_perm, "oe": exact["oe"],
+            "median_window_oe": exact["median_window_oe"], "p_exact": exact["p_exact"],
+            "recovered": bool(exact["recovered"] and top and p_perm < 0.05),
+            "recovered_frozen": bool(top and p_perm < 0.01)}
 
 
 # ------------------------------------------------------------------------------------------- s10 calibration core

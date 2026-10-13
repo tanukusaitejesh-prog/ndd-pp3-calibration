@@ -39,7 +39,7 @@ def rates(L, span, factor, sims, misspecified, seed0):
         c = snrna.critical_region_test(n, obs, p, region)
         h = snrna.hotspot_test(n, obs, p, span)
         hit += [c["recovered"],                                                    # exact test alone (s7.4a rule)
-                h["recovered"],                                                    # frozen s7.4b rule
+                h["recovered_frozen"],                                             # frozen s7.4b rule
                 c["recovered"] and h["top_decile_window"],                          # exact + top-decile window
                 c["recovered"] and h["top_decile_window"] and h["p_circular"] < 0.05]  # proposed hybrid
     return hit / sims
