@@ -27,7 +27,7 @@ SEED = S.SEED
 SNV_ID = re.compile(r"^chr[0-9XY]+-\d+-[ACGT]-[ACGT]$")
 AIM2_BASELINES = ("CADD v1.7", "ViennaRNA U4/U6 ddG_bind", "Evo 2 7B (G1)")
 CONTROL_RHO, CONTROL_AUC = 0.10, 0.5
-F_RESOLUTION = 3  # decimals
+F_RESOLUTION = 2  # decimals (0.01 log units)
 
 
 def log(*a):
@@ -56,7 +56,7 @@ def ensemble(pred, scenario):
     g = p.groupby("ID", sort=False)
     out = g.agg(label=("label", "first"), f=("f", "mean"), f_min=("f", "min"), f_max=("f", "max"),
                 gamma=("gamma", "mean"), n_seeds=("seed", "nunique"))
-    # score resolution 0.001 log units (A2): differences below it are optimiser noise, and a control that learned
+    # score resolution 0.01 log units (A2): differences below it are optimiser noise, and a control that learned
     # nothing must read as tied (AUROC 0.5), not be ranked on sixth-decimal noise
     out["f"] = out.f.round(F_RESOLUTION)
     if "d" in p.columns and p.d.notna().any():
@@ -284,7 +284,8 @@ def ablations_and_controls(args, pred, info, t, var, y, rep, B):
         ct.to_csv(os.path.join(args.results, "model_controls.tsv"), sep="\t", index=False, float_format="%.4f")
         rep.add("Negative controls (PREREG s11): each must give |rho| < 0.1 and an AUROC (depleted) interval containing 0.5", "")
         for r in ct.itertuples():
-            rep.add(f"  {r.predictor:28s} rho {r.rho:6.3f}  AUROC dep {r.auroc_depleted:.3f} [{r.auroc_lo:.3f},{r.auroc_hi:.3f}] "
+            rho_txt = f"{r.rho:6.3f}" if np.isfinite(r.rho) else " const"
+            rep.add(f"  {r.predictor:28s} rho {rho_txt}  AUROC dep {r.auroc_depleted:.3f} [{r.auroc_lo:.3f},{r.auroc_hi:.3f}] "
                     f"-> {'PASS (collapsed)' if r.collapsed else 'FAIL (did not collapse)'}")
         rep.add("")
     return ab, ct
