@@ -215,7 +215,7 @@ The site-rate covariate (number of other alleles seen at the same position) is *
 - **Recovered** if O/E_C < m_g and P < 0.01.
 - Also reported, not gating: the circular-shift permutation p, which shifts C's position mask by every non-zero offset modulo the transcript length.
 
-**(b) Each blind hotspot H.** **Recovered** if both hold:
+**(b) Each blind hotspot H.** *Superseded by amendment A1 (adopted 13 October 2026; see sections 14 and 15). The frozen rule below is still reported, as a secondary result.* **Recovered** if both hold:
 
 1. at least one window lying wholly inside H is in the gene's top decile;
 2. the circular-shift permutation p < 0.01, where:
@@ -352,10 +352,11 @@ A research aid only; never calibrated.
 | 2026-10-13 | **Bug fix.** Roulette has autosomes only; the reader now returns no rates for chrX/chrY instead of failing. Section 7.1 already excludes sites without a Roulette record | No endpoint data seen (week-0 site table) | One chrX U6 locus (309 SNVs) has no rates and drops out of G2 |
 | 2026-10-13 | **Clarification under section 13 item 7: no change.** Guidance Table 2 was read directly (Europe PMC full text). It confirms RNU2-2 n.1–67 (recessive, 5′ region) and RNU5B-1 n.37–44 (dominant, 5′ stem loop I), and the RNU4-2 critical region n.62–70 (inclusive of insertions at n.61_62) and n.75–78. All Table 2 spans are in `table2_regions.tsv`, which is the source for "Table 2 regions" in sections 7.2, 10 and 11 | No G2 data seen | None. Note for G2: the RNU2-2 blind region is a **recessive** region, so depletion among gnomAD heterozygotes may be modest. This is the 2-fold scenario in `g2_power_simulation.txt`, where the frozen test has 6–12% power |
 | 2026-10-13 | **Bug fix before any Evo 2 output existed.** `evo2_score.py` unpacked the Evo 2 forward output one level too shallow and read a version attribute the package does not export, so it would have crashed. It now calls Evo 2's own `score_sequences` (sum of per-token log-likelihoods, no BOS token), which is the section 6.1 definition. `g1` now applies the G1 rule only when all 521 variants are scored | No | None on the definition. A partial (smoke-test) scores file can no longer trigger a G1 decision |
+| 2026-10-13 | **Amendment A1 adopted by the authors.** The G2 blind-hotspot rule (section 7.4b) becomes: recovered if (i) the exact test of section 7.4a, applied to the hotspot's sites, gives O/E below the gene median with p < 0.01, (ii) a window wholly inside the hotspot is in the top decile, and (iii) the circular-shift p < 0.05. The frozen rule is still reported. The critical-region test (section 7.4a) is unchanged: the optional circular-shift addition was not adopted, because simulation showed no robustness gain for it | **No.** No G2 statistic had been computed on real data; the basis is simulation only (`results/g2_power_simulation.txt`). Timestamped in `amendment_A1_manifest.txt.ots` | The decision table in section 7.5 now uses the amended rule |
 
-## 15. Proposed amendments (not adopted; the authors decide before the affected analysis runs)
+## 15. Proposed amendments (the authors decide before the affected analysis runs)
 
-**A1, the G2 blind-hotspot test (section 7.4b).** Proposed 13 October 2026, before any G2 statistic was computed on real data, on the basis of simulation only (`g2_power.py`, `results/g2_power_simulation.txt`).
+**A1, the G2 blind-hotspot test (section 7.4b). ADOPTED 13 October 2026 (hotspot rule only; see the deviation log).** Proposed 13 October 2026, before any G2 statistic was computed on real data, on the basis of simulation only (`g2_power.py`, `results/g2_power_simulation.txt`).
 
 - **The problem.** The frozen rule (top-decile window plus circular-shift p < 0.01) has low power, because with 117 or 191 placements, p < 0.01 needs the hotspot to be the single best placement. With a correct mutation model, a hotspot depleted 50-fold is recovered in 57% of simulations (8 nt in 117), and a 67-nt region depleted 2-fold in 12% (191 nt).
 - **The exact test alone is not the fix.** The exact Poisson-binomial test of section 7.4a has far more power (97% and 70%), but trusts the mutation model. Under a deliberately misspecified, spatially autocorrelated rate error, its false-positive rate rises to 2–4%.

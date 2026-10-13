@@ -1,0 +1,7 @@
+snRNA-VEP v2 amendment A1 manifest: adopted 2026-10-13 before any G2 statistic was computed on real data
+UTC: 2026-10-13T13:51:31Z
+parent commit: ca4ea23f90f4fcb6be8b636cc3714790efa92019
+92da6080f3dcc9d02a8d82547f1d9b31466f94174cf26b7bad2a37b7f18f729d  PREREG.md
+59af62e2c242ea57b7a627f5fc4a5e8530323d6fb739e6b2692c40c7cef9ea91  snrna.py
+ca308a028b602558b74331174f75e2e1eb58e3bfd232e88477417aeb8b4ce012  g2_power.py
+b8702257a828d48057476b9c95168e905d99a73535b5f150949224ab5216cb65  tests/test_snrna.py

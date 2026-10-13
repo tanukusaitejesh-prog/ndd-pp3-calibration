@@ -104,7 +104,7 @@ def test_hotspot_test_null_and_power():
         p = 1 - np.exp(-snrna.fit_kappa(obs, m) * m)
         power_hits += snrna.hotspot_test(n, obs, p, hot)["recovered"]
     assert null_hits / sims <= 0.03
-    assert power_hits / sims >= 0.5
+    assert power_hits / sims >= 0.8  # amended rule A1; the frozen rule had ~0.57 here
 
 
 # ---------------------------------------------------------------- calibration
