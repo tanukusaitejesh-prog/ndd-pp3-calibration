@@ -1,0 +1,5 @@
+Rfam structure annotation (cmalign, Infernal) for 55 genes, 5795 positions; paired 27.3%
+RNU4-2 dot-bracket (intramolecular consensus pairs only; Stem I/II pair with U6 and show as unpaired):
+  ...................(((((.(((.....(((...)))..))))))))................................(((((((((((((......)))))))))).)))..............((..........))
+  1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345
+Lowest alignment bit scores: U6|ENSG00000277717 29, U6|ENSG00000283412 37, U4|ENSG00000276103 37, U2|ENSG00000283519 37, U6|ENSG00000283502 38

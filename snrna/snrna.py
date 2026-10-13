@@ -9,6 +9,9 @@ Commands (run in order; each caches its downloads under data/ and is safe to re-
   vienna       recompute U4/U6 ddG_bind for SGE variants (QC against the paper)          (s6.2)
   evo2-prep    8,192-nt ref/alt windows for evo2_score.py (run that on a GPU)            (s6.1)
   g1           gate G1 metrics, bootstrap intervals, reproduction check, decision        (s6)
+  structure    paired/unpaired positions from cmalign to Rfam family CMs (needs Infernal) (s7.2)
+  g2-fit       choose + freeze the mutation model on training genes only                  (s7.2)
+  g2-test      one-shot G2 tests with the committed frozen model                          (s7.3-7.5)
   seal/unseal  sealed blind-gene labels                                                  (s5)
 
 Remote data are read by tabix over HTTPS (pysam), so nothing genome-wide is downloaded.
@@ -974,6 +977,338 @@ def hotspot_test(n, obs, p, hotspot, width=5):
             "recovered_frozen": bool(top and p_perm < 0.01)}
 
 
+# ----------------------------------------------------------------------- s7 G2: structure, mutation model, tests
+
+RFAM = {"U1": "RF00003", "U2": "RF00004", "U4": "RF00015", "U4atac": "RF00618", "U5": "RF00020",
+        "U6": "RF00026", "U6atac": "RF00619", "U11": "RF00548", "U12": "RF00007"}
+INFERNAL_BIN = os.environ.get("INFERNAL_BIN", "")  # directory holding cmalign; empty = use PATH
+G2_MODEL_FILE = "g2_mutation_model.json"
+
+
+def snrna_family(gene):
+    """Rfam family of a GENCODE spliceosomal snRNA gene, by name (PREREG deviation log, M1 clarification)."""
+    if gene in ("RNU4ATAC", "U4atac"):
+        return "U4atac"
+    if gene in ("RNU6ATAC", "U6atac"):
+        return "U6atac"
+    for prefix, fam in (("RNVU1-", "U1"), ("RNU1-", "U1"), ("RNU2-", "U2"), ("RNU4-", "U4"), ("RNU5", "U5"),
+                        ("RNU6-", "U6"), ("RNU11", "U11"), ("RNU12", "U12")):
+        if gene.startswith(prefix):
+            return fam
+    return gene if gene in RFAM else None
+
+
+def wuss_partners(ss):
+    """Column partner index for a WUSS consensus structure (-1 = unpaired); handles <>()[]{} and Aa-style pseudoknots."""
+    close = {">": "<", ")": "(", "]": "[", "}": "{"}
+    stacks, partner = {}, [-1] * len(ss)
+    for i, ch in enumerate(ss):
+        if ch in "<([{" or (ch.isalpha() and ch.isupper()):
+            stacks.setdefault(ch, []).append(i)
+        elif ch in close or (ch.isalpha() and ch.islower()):
+            key = close.get(ch, ch.upper())
+            j = stacks[key].pop()
+            partner[i], partner[j] = j, i
+    return partner
+
+
+def transcript_seqs(sites):
+    """Transcript-orientation sequence of each gene (label -> str), from the site table's GRCh38 REF bases."""
+    out = {}
+    for label, g in sites.groupby("label", sort=False):
+        g1 = g.drop_duplicates("n").sort_values("n")
+        bases = g1.ref if g1.strand.iloc[0] == "+" else g1.ref.str.translate(COMP)
+        assert list(g1.n) == list(range(1, len(g1) + 1)), label
+        out[label] = "".join(bases)
+    return out
+
+
+def cmalign_pairs(cm, seqs, tmpdir):
+    """Align sequences to a CM; return {label: list of (n, paired, partner_n, ss_char)} and bit scores."""
+    fa, sto, sc = (os.path.join(tmpdir, x) for x in ("in.fa", "out.sto", "scores.txt"))
+    names = {f"s{i}": lab for i, lab in enumerate(seqs)}
+    with open(fa, "w") as f:
+        for k, lab in names.items():
+            f.write(f">{k}\n{seqs[lab]}\n")
+    exe = os.path.join(INFERNAL_BIN, "cmalign") if INFERNAL_BIN else "cmalign"
+    subprocess.run([exe, "--outformat", "Pfam", "--sfile", sc, "-o", sto, cm, fa], check=True, capture_output=True)
+    ss, aln = None, {}
+    for line in open(sto):
+        if line.startswith("#=GC SS_cons"):
+            ss = line.split()[-1]
+        elif line.strip() and not line.startswith(("#", "//")):
+            k, a = line.split()
+            aln[k] = a
+    partner = wuss_partners(ss)
+    bits = {}
+    for line in open(sc):
+        if line.startswith("#") or not line.strip():
+            continue
+        c = line.split()
+        bits[names[c[1]]] = float(c[6])  # column 7: bit score of the alignment
+    out = {}
+    for k, a in aln.items():
+        col2n, n = {}, 0
+        for col, ch in enumerate(a):
+            if ch.isalpha():
+                n += 1
+                col2n[col] = n
+        lab = names[k]
+        assert n == len(seqs[lab]), f"cmalign dropped residues for {lab}"
+        rows = []
+        for col, nn in col2n.items():
+            pc = partner[col]
+            paired = pc >= 0 and pc in col2n and ss[col] != "."
+            rows.append((nn, paired, col2n[pc] if paired else -1, ss[col]))
+        out[lab] = sorted(rows)
+    return out, bits
+
+
+def cmd_structure(args):
+    """Paired/unpaired label for every transcript position, from cmalign to the family's Rfam CM (PREREG s7.2)."""
+    import tempfile
+    sites = pd.read_csv(os.path.join(WORK, "sites.tsv.gz"), sep="\t")
+    seqs = transcript_seqs(sites)
+    gene_of = sites.drop_duplicates("label").set_index("label").gene.to_dict()
+    rows, qc = [], []
+    for fam, acc in RFAM.items():
+        labs = [lab for lab in seqs if snrna_family(gene_of[lab]) == fam]
+        if not labs:
+            continue
+        cm = os.path.join(DATA, "rfam", f"{acc}.cm")
+        if not os.path.exists(cm):
+            http_get(f"https://rfam.org/family/{acc}/cm", cm)
+        with tempfile.TemporaryDirectory() as td:
+            res, bits = cmalign_pairs(cm, {lab: seqs[lab] for lab in labs}, td)
+        for lab, rr in res.items():
+            for nn, paired, pn, ch in rr:
+                rows.append({"label": lab, "n": nn, "family": fam, "paired": paired, "partner_n": pn, "ss": ch})
+            qc.append({"label": lab, "family": fam, "length": len(seqs[lab]), "bits": bits.get(lab, np.nan),
+                       "frac_paired": float(np.mean([r[1] for r in rr]))})
+    st = pd.DataFrame(rows)
+    st.to_csv(os.path.join(WORK, "structure.tsv"), sep="\t", index=False)
+    q = pd.DataFrame(qc).sort_values(["family", "label"])
+    q.to_csv(os.path.join(RESULTS, "g2_structure_qc.tsv"), sep="\t", index=False, float_format="%.3f")
+    r42 = st[st.label == "RNU4-2"].sort_values("n")
+    lines = [f"Rfam structure annotation (cmalign, Infernal) for {st.label.nunique()} genes, {len(st)} positions; "
+             f"paired {st.paired.mean():.1%}",
+             "RNU4-2 dot-bracket (intramolecular consensus pairs only; Stem I/II pair with U6 and show as unpaired):",
+             "  " + "".join("(" if (p and pn > n) else ")" if p else "." for n, p, pn in zip(r42.n, r42.paired, r42.partner_n)),
+             "  " + r42.label.map(lambda _: "").str.cat() + "".join(str(n % 10) for n in r42.n),
+             f"Lowest alignment bit scores: " + ", ".join(f"{r.label} {r.bits:.0f}" for r in q.nsmallest(5, "bits").itertuples())]
+    txt = "\n".join(lines)
+    with open(os.path.join(RESULTS, "g2_structure_qc.txt"), "w") as f:
+        f.write(txt + "\n")
+    log(txt)
+    run_info("structure")
+
+
+def g2_sites(af_cut=0.001, nonpass_as_zero=False):
+    """PREREG s7.1 site table for G2: O and exclusions, joined to structure."""
+    s = pd.read_csv(os.path.join(WORK, "sites.tsv.gz"), sep="\t")
+    s = s[s.in_analysis_set].copy()
+    st = pd.read_csv(os.path.join(WORK, "structure.tsv"), sep="\t")
+    s = s.merge(st[["label", "n", "paired"]], on=["label", "n"], how="left")
+    rec = s["filter"].notna()
+    passrec = s["filter"] == "PASS"
+    af = s.AF.fillna(0.0)
+    common = passrec & (af >= af_cut)
+    nonpass = rec & ~passrec
+    no_rate = s.MR.isna() | (s.roulette_filter == "low")
+    keep = ~common & ~no_rate & (nonpass_as_zero | ~nonpass)
+    s["O"] = (passrec & (s.AC.fillna(0) >= 1) & (af < af_cut)).astype(float)
+    s["paired"] = s.paired.fillna(False).astype(bool)
+    s["ctx"] = s.PN.str[1:4] + ">" + s.alt
+    return s[keep].reset_index(drop=True)
+
+
+def gene_fit(obs, m):
+    """Fit kappa for one gene (Bernoulli ML) and return (kappa, p, log-likelihood)."""
+    k = fit_kappa(obs, m)
+    p = np.clip(1 - np.exp(-k * m), 1e-12, 1 - 1e-12)
+    return k, p, float(np.sum(obs * np.log(p) + (1 - obs) * np.log(1 - p)))
+
+
+def fit_c_paired(genes):
+    """Shared paired-position multiplier c (c_unpaired = 1), jointly with per-gene kappa (M1)."""
+    from scipy.optimize import minimize_scalar
+
+    def negll(logc):
+        c = np.exp(logc)
+        return -sum(gene_fit(o, m * np.where(pr, c, 1.0))[2] for o, m, pr in genes)
+    res = minimize_scalar(negll, bounds=(-4, 4), method="bounded", options={"xatol": 1e-4})
+    return float(np.exp(res.x))
+
+
+def model_p(g, model, c_paired):
+    """Expected P(observed) for one gene's sites under M0 or M1 (kappa refitted on the gene's own sites)."""
+    m = g.MR.to_numpy(float) * (np.where(g.paired.to_numpy(bool), c_paired, 1.0) if model == "M1" else 1.0)
+    return gene_fit(g.O.to_numpy(float), m)[1]
+
+
+def training_labels(s):
+    g = s.drop_duplicates("label")
+    return sorted(g[~g.gene.isin(U4_FAMILY_NAMES) & ~g.gene.isin(SEALED_GENES)].label)
+
+
+def cmd_g2_fit(args):
+    """Choose and freeze the G2 mutation model on training genes only (PREREG s7.2). Touches no U4-family/sealed gene."""
+    s = g2_sites()
+    train = training_labels(s)
+    s = s[s.label.isin(train)]
+    genes = {lab: (g.O.to_numpy(float), g.MR.to_numpy(float), g.paired.to_numpy(bool)) for lab, g in s.groupby("label")}
+    log(f"training genes: {len(genes)}, sites: {len(s)}, observed: {int(s.O.sum())}")
+    loss0 = loss1 = 0.0
+    fold = []
+    for h in genes:
+        o, m, pr = genes[h]
+        c_h = fit_c_paired([genes[k] for k in genes if k != h])
+        ll0 = gene_fit(o, m)[2]
+        ll1 = gene_fit(o, m * np.where(pr, c_h, 1.0))[2]
+        loss0 -= ll0
+        loss1 -= ll1
+        fold.append({"held_out": h, "n_sites": len(o), "c_paired_without": c_h, "logloss_M0": -ll0 / len(o), "logloss_M1": -ll1 / len(o)})
+    n = len(s)
+    l0, l1 = loss0 / n, loss1 / n
+    chosen = "M1" if (l0 - l1) >= 0.002 else "M0"
+    c_all = fit_c_paired(list(genes.values()))
+    pd.DataFrame(fold).to_csv(os.path.join(RESULTS, "g2_model_selection_folds.tsv"), sep="\t", index=False, float_format="%.5f")
+
+    # mutation-model QC on training genes (reported, not gating)
+    s = s.copy()
+    s["p"] = np.concatenate([model_p(g, chosen, c_all) for _, g in s.groupby("label", sort=False)])
+    by_gene = s.groupby("label").agg(n_sites=("O", "size"), O=("O", "sum"), E=("p", "sum")).reset_index()
+    by_gene["oe"] = by_gene.O / by_gene.E
+    comp = str.maketrans("ACGT", "TGCA")
+    ctx = s.ctx.where(s.ctx.str[1].isin(["C", "T"]),
+                      s.ctx.str[:3].str.translate(comp).str[::-1] + ">" + s.ctx.str[4].str.translate(comp))
+    by_ctx = s.assign(ctx=ctx).groupby("ctx").agg(n_sites=("O", "size"), O=("O", "sum"), E=("p", "sum")).reset_index()
+    by_ctx["oe"] = by_ctx.O / by_ctx.E
+    L = s.groupby("label").n.transform("max")
+    s["decile"] = np.minimum((10 * (s.n - 1) / L).astype(int), 9)
+    dec = s.groupby("decile").agg(O=("O", "sum"), E=("p", "sum")).reset_index()
+    import statsmodels.api as sm
+    glm = sm.GLM(dec.O, sm.add_constant(dec.decile.astype(float)), family=sm.families.Poisson(), offset=np.log(dec.E)).fit()
+    trend_p = float(glm.pvalues.iloc[1])
+    by_gene.to_csv(os.path.join(RESULTS, "g2_qc_by_gene.tsv"), sep="\t", index=False, float_format="%.3f")
+    by_ctx.to_csv(os.path.join(RESULTS, "g2_qc_by_context.tsv"), sep="\t", index=False, float_format="%.3f")
+    dec.assign(oe=dec.O / dec.E).to_csv(os.path.join(RESULTS, "g2_qc_by_position_decile.tsv"), sep="\t", index=False, float_format="%.3f")
+
+    frozen = {"chosen_model": chosen, "c_paired": c_all, "c_unpaired": 1.0,
+              "logo_logloss_M0": l0, "logo_logloss_M1": l1, "improvement_nats_per_site": l0 - l1, "threshold": 0.002,
+              "training_genes": train, "n_training_sites": n, "position_trend_p": trend_p,
+              "position_trend_flag": trend_p < 0.001,
+              "utc": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")}
+    with open(os.path.join(RESULTS, G2_MODEL_FILE), "w") as f:
+        json.dump(frozen, f, indent=1)
+    ctx_e5 = by_ctx[by_ctx.E >= 5]
+    lines = [f"G2 mutation model (PREREG s7.2), fitted on {len(genes)} training genes ({n} sites, {int(s.O.sum())} observed); "
+             "no U4-family or sealed gene used",
+             f"  leave-one-gene-out log-loss per site: M0 {l0:.5f}, M1 {l1:.5f}; improvement {l0 - l1:+.5f} (need >= 0.002)",
+             f"  CHOSEN: {chosen}; c_paired (all training genes) = {c_all:.3f}",
+             f"  QC by gene: O/E range {by_gene.oe.min():.2f}-{by_gene.oe.max():.2f} (median {by_gene.oe.median():.2f})",
+             f"  QC by context (classes with E >= 5): O/E range {ctx_e5.oe.min():.2f}-{ctx_e5.oe.max():.2f} over {len(ctx_e5)} classes",
+             f"  QC position trend (deciles of transcript length): p = {trend_p:.3g}" + (" FLAG (p < 0.001)" if trend_p < 0.001 else " (no flag)"),
+             "Freeze: commit results/g2_mutation_model.json before running `snrna.py g2-test`."]
+    txt = "\n".join(lines)
+    with open(os.path.join(RESULTS, "g2_model_report.txt"), "w") as f:
+        f.write(txt + "\n")
+    log(txt)
+    run_info("g2_fit", {"chosen_model": chosen})
+
+
+def gene_windows(g, p, width=5):
+    w = window_table(g.n.to_numpy(), g.O.to_numpy(float), p, width)
+    w.insert(0, "label", g.label.iloc[0])
+    return w
+
+
+def g2_tests(s, model, c_paired):
+    """Run the s7.4 tests under a given mutation model; returns dict of results and the window map."""
+    out, maps = {}, []
+    for lab, g in s.groupby("label"):
+        p = model_p(g, model, c_paired)
+        maps.append(gene_windows(g, p))
+        n, o = g.n.to_numpy(), g.O.to_numpy(float)
+        if lab == "RNU4-2":
+            out["RNU4-2 critical region"] = critical_region_test(n, o, p, CRITICAL)
+        if lab in BLIND_HOTSPOTS:
+            out[f"{lab} n.{BLIND_HOTSPOTS[lab][0]}-{BLIND_HOTSPOTS[lab][1]}"] = hotspot_test(n, o, p, BLIND_HOTSPOTS[lab])
+    return out, pd.concat(maps, ignore_index=True)
+
+
+def g2_decision(res):
+    crit = res["RNU4-2 critical region"]["recovered"]
+    hot = [v["recovered"] for k, v in res.items() if k != "RNU4-2 critical region"]
+    if crit and all(hot) and len(hot) == 2:
+        return "G2 PASS"
+    if crit and sum(hot) == 1:
+        return "G2 PARTIAL"
+    return "G2 KILL"
+
+
+def cmd_g2_test(args):
+    """One-shot G2 tests with the frozen mutation model (PREREG s7.3-7.5, amendment A1)."""
+    mf = os.path.join(RESULTS, G2_MODEL_FILE)
+    if not os.path.exists(mf):
+        sys.exit("run `snrna.py g2-fit` and commit its output first")
+    tracked = subprocess.run(["git", "-C", HERE, "ls-files", "--error-unmatch", os.path.relpath(mf, HERE)], capture_output=True)
+    dirty = subprocess.run(["git", "-C", HERE, "status", "--porcelain", "--", os.path.relpath(mf, HERE)], capture_output=True, text=True).stdout.strip()
+    if (tracked.returncode != 0 or dirty) and not args.allow_uncommitted:
+        sys.exit("the frozen mutation model is not committed: commit results/g2_mutation_model.json first (PREREG s7.2)")
+    fz = json.load(open(mf))
+    model, c = fz["chosen_model"], fz["c_paired"]
+    s = g2_sites()
+    res, wmap = g2_tests(s, model, c)
+    verdict = g2_decision(res)
+    wmap.to_csv(os.path.join(RESULTS, "g2_window_map.tsv"), sep="\t", index=False, float_format="%.4g")
+
+    # Table 2 region O/E (descriptive map, Aim 1)
+    t2 = pd.read_csv(os.path.join(HERE, "table2_regions.tsv"), sep="\t", comment="#")
+    reg = []
+    for r in t2.itertuples():
+        g = s[s.gene == r.gene]
+        if not len(g):
+            continue
+        p = model_p(g, model, c)
+        sel = g.n.between(r.start, r.end).to_numpy()
+        w = window_table(g.n.to_numpy(), g.O.to_numpy(float), p)
+        reg.append({"gene": r.gene, "region": r.region, "inheritance": r.inheritance, "span": f"n.{r.start}-{r.end}",
+                    "n_sites": int(sel.sum()), "O": int(g.O.to_numpy()[sel].sum()), "E": float(p[sel].sum()),
+                    "oe": g.O.to_numpy()[sel].sum() / p[sel].sum(), "gene_median_window_oe": float(np.nanmedian(w.oe))})
+    reg = pd.DataFrame(reg)
+    reg.to_csv(os.path.join(RESULTS, "g2_table2_regions.tsv"), sep="\t", index=False, float_format="%.3f")
+
+    # sensitivity analyses (reported, not gating)
+    other = "M0" if model == "M1" else "M1"
+    sens = {"non-PASS records counted as unobserved": g2_tests(g2_sites(nonpass_as_zero=True), model, c)[0],
+            "AF cut-off 0.01": g2_tests(g2_sites(af_cut=0.01), model, c)[0],
+            f"alternative mutation model {other}": g2_tests(s, other, c)[0]}
+
+    def line(k, v):
+        if k.startswith("RNU4-2"):
+            return (f"  {k:28s} O/E {v['oe']:.3f} vs gene median {v['median_window_oe']:.3f}; exact p {v['p_exact']:.2e}; "
+                    f"circular p {v['p_circular']:.3f} -> {'RECOVERED' if v['recovered'] else 'not recovered'}")
+        return (f"  {k:28s} O/E {v['oe']:.3f} vs gene median {v['median_window_oe']:.3f}; exact p {v['p_exact']:.2e}; "
+                f"top-decile window {'yes' if v['top_decile_window'] else 'no'}; circular p {v['p_circular']:.3f} -> "
+                f"A1 {'RECOVERED' if v['recovered'] else 'not recovered'} (frozen rule: {'recovered' if v['recovered_frozen'] else 'not recovered'})")
+    L = [f"Gate G2 (PREREG s7, amendment A1). Mutation model {model} (c_paired {c:.3f}), frozen {fz['utc']}",
+         f"Sites: {len(s)} in {s.label.nunique()} analysis-set genes ({int(s.O.sum())} observed, AF < 0.001)", ""]
+    L += [line(k, v) for k, v in res.items()]
+    L += ["", f"DECISION: {verdict}", "", "Sensitivity analyses (not gating):"]
+    for name, rr in sens.items():
+        L.append(f" {name}: {g2_decision(rr)}")
+        L += ["  " + line(k, v) for k, v in rr.items()]
+    L += ["", "Guidance Table 2 regions, O/E under the frozen model (descriptive):"]
+    L += [f"  {r.gene:9s} {r.inheritance:9s} {r.region:16s} {r.span:10s} O {r.O:3d} / E {r.E:6.1f} = {r.oe:.2f} "
+          f"(gene median window {r.gene_median_window_oe:.2f})" for r in reg.itertuples()]
+    txt = "\n".join(L)
+    with open(os.path.join(RESULTS, "g2_report.txt"), "w") as f:
+        f.write(txt + "\n")
+    log(txt)
+    run_info("g2_test", {"verdict": verdict, "model": model})
+
+
 # ------------------------------------------------------------------------------------------- s10 calibration core
 
 def o_vst(prior):
@@ -1062,8 +1397,10 @@ def cmd_unseal(args):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("fetch", "genes", "sites", "sge", "vienna", "evo2-prep"):
+    for name in ("fetch", "genes", "sites", "sge", "vienna", "evo2-prep", "structure", "g2-fit"):
         sub.add_parser(name)
+    p = sub.add_parser("g2-test")
+    p.add_argument("--allow-uncommitted", action="store_true", help="tests only: skip the frozen-model commit check")
     p = sub.add_parser("g1")
     p.add_argument("--boot", type=int, default=2000)
     p = sub.add_parser("seal")
@@ -1076,7 +1413,8 @@ def main(argv=None):
     args = ap.parse_args(argv)
     ensure_dirs()
     {"fetch": cmd_fetch, "genes": cmd_genes, "sites": cmd_sites, "sge": cmd_sge, "vienna": cmd_vienna,
-     "evo2-prep": cmd_evo2_prep, "g1": cmd_g1, "seal": cmd_seal, "unseal": cmd_unseal}[args.cmd](args)
+     "evo2-prep": cmd_evo2_prep, "g1": cmd_g1, "seal": cmd_seal, "unseal": cmd_unseal, "structure": cmd_structure,
+     "g2-fit": cmd_g2_fit, "g2-test": cmd_g2_test}[args.cmd](args)
 
 
 if __name__ == "__main__":

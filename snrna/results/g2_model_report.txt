@@ -1,0 +1,7 @@
+G2 mutation model (PREREG s7.2), fitted on 42 training genes (11573 sites, 2356 observed); no U4-family or sealed gene used
+  leave-one-gene-out log-loss per site: M0 0.33278, M1 0.33224; improvement +0.00054 (need >= 0.002)
+  CHOSEN: M0; c_paired (all training genes) = 1.221
+  QC by gene: O/E range 0.92-1.18 (median 1.01)
+  QC by context (classes with E >= 5): O/E range 0.40-1.65 over 95 classes
+  QC position trend (deciles of transcript length): p = 0.667 (no flag)
+Freeze: commit results/g2_mutation_model.json before running `snrna.py g2-test`.

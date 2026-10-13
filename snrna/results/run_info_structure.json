@@ -1,0 +1,14 @@
+{
+ "command": "snrna.py structure",
+ "utc": "2026-10-13T14:03:10+00:00",
+ "python": "3.13.16",
+ "numpy": "2.5.3",
+ "pandas": "3.0.5",
+ "git_commit": "c547b40e22f5bc4827e319e79d08c9b340a6e8ce",
+ "git_dirty": true,
+ "inputs_md5": {
+  "sge_ST1.xlsx": "3a4a0ac7052bfa1f58062ee1f27a6858",
+  "gencode.v49.annotation.gtf.gz": "0ef4a024ea2d35b1b88c12447b0b70b9",
+  "GRCh38_alllowmapandsegdupregions.bed.gz": "d3fe62db98090a6a2b473d1f88883b35"
+ }
+}
