@@ -355,6 +355,7 @@ A research aid only; never calibrated.
 | 2026-10-13 | **Amendment A1 adopted by the authors.** The G2 blind-hotspot rule (section 7.4b) becomes: recovered if (i) the exact test of section 7.4a, applied to the hotspot's sites, gives O/E below the gene median with p < 0.01, (ii) a window wholly inside the hotspot is in the top decile, and (iii) the circular-shift p < 0.05. The frozen rule is still reported. The critical-region test (section 7.4a) is unchanged: the optional circular-shift addition was not adopted, because simulation showed no robustness gain for it | **No.** No G2 statistic had been computed on real data; the basis is simulation only (`results/g2_power_simulation.txt`). Timestamped in `amendment_A1_manifest.txt.ots` | The decision table in section 7.5 now uses the amended rule |
 | 2026-10-13 | **Clarification of M1 (section 7.2): the frozen wording is not estimable.** A two-class correction (paired, unpaired) cannot be fitted "on unpaired positions" only. Read as follows. Unpaired positions are the reference class (c_unpaired ≡ 1). c_paired is fitted by maximum likelihood, jointly with the per-gene κ, on training-gene positions outside every Table 2 region. Training genes are the analysis-set genes excluding the U4 family and the sealed genes; none of them has a Table 2 region. In leave-one-gene-out, c_paired is fitted without the held-out gene, and the held-out gene's κ is fitted on its own sites (as in M0). Family assignment for cmalign is by gene name: U1 RF00003, U2 RF00004, U4 RF00015, U4atac RF00618, U5 RF00020, U6 RF00026, U6atac RF00619, U11 RF00548, U12 RF00007. Positions in insert states, or without a consensus partner, count as unpaired | **No.** No G2 statistic computed; recorded before structure annotation and model fitting | If M1 is chosen, expected counts allow for the average stem-versus-loop difference, so G2 depletion means depletion beyond the structural class. This is the more conservative test |
 | 2026-10-13 | **G2 mutation model frozen (section 7.2): M0.** Leave-one-gene-out log-loss on 42 training genes (11573 sites): M0 0.33278, M1 0.33224 nats per site. The improvement, +0.00054, is below the 0.002 bar, so M0. Fitted c_paired = 1.221 (unused). QC: per-gene O/E 0.92–1.18; per-context χ² p = 0.09 across 95 classes; position trend p = 0.67 (no flag). Structure from cmalign (Infernal 1.1.5, Rfam 15.1) | **No.** No U4-family or sealed-gene O/E had been computed. This entry and `results/g2_mutation_model.json` are committed before `g2-test` runs | G2 uses M0: p_v = 1 − exp(−κ_g m_v) |
+| 2026-10-13 | **Amendment A2 adopted: specification of the selection model and its evaluation (sections 5, 8, 11).** Full text in section 15. It fixes the architecture, inputs, likelihood, hyperparameter grid, seeds, splits (paralog clusters as the holdout unit), ablations, controls, the SNV-only reading of Aim 2, the exploratory upgrades U1 and U3, and sealing as stage 0 of the A100 run | **No model had been fitted to real counts.** Known at the time: G1 and G2 results; the non-blind L2 tally (counts by gene and inheritance); fits to synthetic planted counts (tests). The sealed genes' labels had not been fetched or seen. Code and inputs are hashed in `amendment_A2_manifest.txt` (OpenTimestamps) | Sections 8 and 11 are run as A2 specifies; `train.py` refuses real counts until the blind labels are sealed |
 
 ## 15. Proposed amendments (the authors decide before the affected analysis runs)
 
@@ -368,3 +369,107 @@ A research aid only; never calibrated.
 - **For consistency.** The critical-region test (section 7.4a) could add circular-shift p < 0.05; this costs little power (100% → 100% at 20-fold depletion, 66% → 65% at 3-fold).
 
 Adopting A1 means a dated deviation-log entry stating that no G2 data had been seen.
+
+**A2, the selection model and its evaluation (sections 5, 8, 11). ADOPTED 13 October 2026, before any model was fitted to real counts** (the authors asked for the model to be built and run as specified here). The code is the specification; `amendment_A2_manifest.txt` hashes it. Anything not changed here stays as frozen.
+
+*A2.1 Inputs (replaces the input list of section 8.1).*
+
+- **Gene universe.** The 55 analysis-set loci of `model_inputs/genes.tsv.gz`, built by `model_features.py`.
+- **Graph per gene.** Nodes are the target snRNA's nucleotides plus partner RNAs:
+  - U4: U6;
+  - U6: U4 and U2;
+  - U2: U6 and the branch-site consensus UACUAAC;
+  - U1: the 5′ splice-site consensus CAGGUAAGU;
+  - U4atac: U6atac;
+  - U6atac: U4atac and U12;
+  - U12: U6atac and UCCUUAAC;
+  - U11: AUAUCCUUU;
+  - U5: none.
+
+  Partner sequences are RNU6-1, RNU4-2, RNU2-1 and the minor-spliceosome genes. Edges are the backbone, intramolecular pairs (Rfam 15.1 consensus via cmalign) and intermolecular pairs (RNAcofold MFE dimer, ViennaRNA 2.7.0).
+- **Node features.** Base; molecule; Rfam profile (cmemit, 20,000 samples) and entropy; insert state; stack length; distance to helix end; paired flags; relative position; Sm motif; loop class.
+- **Variant features.** Alternative base; transition; CpG; consensus column and pair frequencies; intermolecular pair broken or wobble; ΔΔG of folding; ΔΔG of binding to each partner (maximum and sum); reference and alternative pairing class.
+- **Gene features.** log κ_g (from the gene's own counts; gene-level only, so it cannot reorder variants within a gene); Rfam bits per column; insert fraction; length ratio; HGNC-named flag; family.
+- **Evo 2 features** (`evo2_features.py`, evo2_7b, 8,192-nt window centred on the gene):
+  - layer `blocks.28.mlp.l3` embeddings at transcript positions, forward and reverse-complement averaged, reduced by PCA to 64 dimensions over all target positions (label-free);
+  - per-SNV Δ log-likelihood, the mean over strands, as in section 6.1. Reference and alternatives are scored in identically shaped batches.
+
+  "Sequence ±100 nt" in section 8.1 is replaced by these features plus base identity.
+- **Site-rate covariate.** It enters only the offset (β·s_v), never f.
+
+*A2.2 Likelihood (section 8.1 made concrete).*
+
+- **Model.** AC_v ~ NegBin(μ_v, r), with log μ_v = α_g + log m_v + β s_v − γ_g f(v), where m_v is the Roulette rate. α_g is profiled out per gene by the Poisson moment estimator; this replaces κ_g T, and the structural correction c_k is M0 (none), as frozen in section 14.
+- **Counts.** gnomAD v4.1 genomes FILTER-PASS AC.
+- **Sites.** Those with the G2 `include` flag and a Roulette rate. Genes with no observed site carry no within-gene information and are skipped.
+- **Selection and gate.** f(v) ≥ 0 (softplus). The gate γ_g ∈ [0, 1] is a logistic function of the gene features.
+
+*A2.3 Encoder.*
+
+- L layers, each:
+  - message passing over typed edges (GINE-style);
+  - global self-attention with learned per-head biases for edge type and shortest-path distance (capped at 16);
+  - a feed-forward block.
+- LayerNorm and dropout throughout; 4 heads.
+- The variant head is an MLP on [node state, variant features].
+
+*A2.4 Training and model selection* (no SGE, L2 or L3 label is used for f; section 8.1 holds).
+
+- **Optimisation.** Full batch; AdamW at lr 3·10⁻³; gradient clip 5; up to 600 epochs.
+- **Early stopping.** NB log-likelihood is evaluated every 5 epochs on validation clusters (15% of the fit's training clusters, drawn per seed), with patience 12 evaluations; the best state is restored.
+- **Hyperparameters.** Grid d ∈ {64, 128} × layers ∈ {2, 3} × dropout ∈ {0.1, 0.3} × weight decay ∈ {10⁻⁴, 10⁻²}. The configuration is chosen by the mean held-out NB log-likelihood in 3-fold cluster cross-validation on the strict training set (fold shuffle seed 20261013, model seed 11).
+- **Seeds.** 11, 22, 33, 44 and 55. The score is the ensemble mean of f; the range across seeds is reported. GPU scatter-adds are not bit-reproducible, so seeds differ slightly between reruns.
+
+*A2.5 Splits.*
+
+- **Holdout unit.** Paralog clusters are the unit: single linkage at ≥ 90% identity within a family, giving 46 clusters. This is stricter than leave-one-gene-out. For example, RNU5B-1 is held out with RNU5A-1 and RNU5E-1 (C06), and RNU4-2 with RNU4-1 (C04).
+- **Fits:**
+  - strict (no U4 family);
+  - loose (no RNU4-2; secondary, as frozen);
+  - one leave-cluster-out fit for each of the 14 clusters containing a named gene. These give every named gene a cross-fitted score, and the sealed genes' final scores.
+- **Sealed genes.** They are in no training set.
+
+*A2.6 Aim 2 (section 8.2): SNVs only.*
+
+- **Population.** The model scores SNVs, so Aim 2 uses the 435 SGE SNVs. The bar compares against the baselines' SNV values from G1: Evo 2 0.246, ΔΔG 0.237, CADD 0.088. Aim 2 is met if the strict model's ρ ≥ 0.346 or its ReNU AUROC (section 6.4 primary) ≥ 0.85.
+- **Also reported:**
+  - the loose fit and the C04 leave-cluster-out fit;
+  - per-region ρ;
+  - the position-only floor, as a supervised reference outside the bar.
+
+*A2.7 Ablations and controls (section 11).*
+
+- **Ablations.** Twelve strict-set ablations: no partner molecules; no intramolecular pairs; neither; no covariation features; no Evo 2 embeddings; no Evo 2 Δ; no Evo 2; no gate; no site-rate covariate; Poisson likelihood; no attention; MLP only. Each reports Aim 2 metrics and the held-out NB log-likelihood gain on the U4-family genes over the mutation-only null.
+- **Controls.** Shuffled counts within gene; a random graph (pair and intermolecular edges rewired within gene, seed 7); pseudogenes only (the strict set's unnamed loci). The frozen criterion applies: |ρ| < 0.1 and an AUROC interval containing 0.5.
+- **Expectation, stated now.** The random-graph control keeps conservation and Evo 2 inputs, so it may not collapse. Its result is reported as is, and the contribution of structure is read from the ablations.
+
+*A2.8 G3 (section 8.3).*
+
+- **Scoring.** Each unit is scored by the fit that held out its cluster.
+- **Units:**
+  - RNU4ATAC;
+  - RNU6ATAC;
+  - RNU12;
+  - the named RNU6 paralogs, pooled.
+
+  A unit is eligible with ≥ 10 distinct L2 SNVs.
+- **Labels.** L2 is `labels/L2_nonblind.tsv`, built by `labels.py nonblind` on 13 October 2026 from ClinVar P/LP with ≥ 1 star, RNUdb curated P/LP and the SGE paper's ReNU SNVs, plus any later curated additions in a dated file. L3 is gnomAD PASS AC ≥ 9 minus L2.
+- **Comparator.** CADD for non-RNU4-2 genes is the v1.7 lookup.
+- **Rules.** Metric, bootstrap and decision rule are unchanged.
+
+*A2.9 Exploratory upgrades (never gating).*
+
+- **U3, function head.** Ridge regression of the RNU4-2 SGE score on [frozen node state, variant features], with λ chosen by leave-one-region-out R².
+  - It is fitted only in fits that do not hold out RNU4-2, and never scores RNU4-2.
+  - Reported on the G3 units alone, and as the mean percentile rank with f.
+  - This uses SGE labels in a separate head, never for f, early stopping or hyperparameters.
+- **U1, inheritance.** In RNU4-2 (strict model), f separates dominant from recessive P/LP SNVs. Hypothesis: AUROC > 0.5, with a bootstrap interval.
+- **Preliminary calibration.** Section 10 rules, using γ_g·f pooled over the non-blind minor and U6 units. The final Aim 4 comes after the single unsealing.
+- **Additional comparators.** GPN-MSA, ReMM, MobiDeep (if released) and an RNA language model are added later as comparators. The frozen bars keep CADD.
+
+*A2.10 Sealing as stage 0 (section 5).*
+
+- **Command.** `labels.py seal` fetches the RNU2-2 and RNU5B-1 labels (ClinVar P/LP and B/LB with ≥ 1 star; RNUdb curated P/LP) straight into `sealed/blind_labels.tsv.enc`. Encryption is AES-256-CBC with PBKDF2 at 200,000 iterations. The passphrase is held by the authors, not the analyst.
+- **What it prints.** Only counts and SHA-256s, which are written to `sealed/SEALED_MANIFEST.jsonl` and OpenTimestamps-stamped on the machine that seals.
+- **Deviation from section 5.** The hashes are timestamped there instead of in a PREREG edit before training, because the GPU machine cannot push. They are copied into this log when the run's results are committed.
+- **Guard.** `train.py` refuses real counts until the manifest records a SEALED event.

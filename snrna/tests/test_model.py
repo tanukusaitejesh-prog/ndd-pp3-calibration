@@ -28,22 +28,8 @@ def data():
 
 
 def planted(data, seed=3):
-    """True selection from structure: breaking a base pair (intra or inter) costs 2.5, the Sm motif 1.5; genes
-    without an HGNC name are under no selection (gamma = 0). Counts ~ NegBin(mu, r = 3)."""
-    v = data.var
     nodes = pd.read_csv(os.path.join(INPUTS, "nodes.tsv.gz"), sep="\t")
-    sm = nodes[nodes.molecule == "target"].set_index(["label", "n"]).sm_motif
-    smv = np.array([sm[(lab, n)] for lab, n in zip(v.label, v.n)])
-    broken = ((v.alt_intra_mismatch == 1) | (v.alt_inter_broken == 1)).to_numpy()
-    f_true = 2.5 * broken + 1.5 * smv
-    named = data.genes.set_index("label").named.astype(bool)
-    gamma = v.label.map(named).to_numpy().astype(float)
-    rng = np.random.default_rng(seed)
-    log_m = v.log_mr.fillna(v.log_mr.median()).to_numpy()
-    mu = np.exp(np.log(30.0) + log_m - gamma * f_true)
-    r = 3.0
-    y = rng.negative_binomial(r, r / (r + mu))
-    return f_true, gamma, y
+    return M.planted_counts(data.var, nodes, data.genes, seed)
 
 
 def test_planted_selection_is_recovered_on_held_out_genes(data):

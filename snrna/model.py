@@ -43,7 +43,8 @@ class Data:
     """All genes as tensors. Feature switches implement the pre-registered ablations."""
 
     def __init__(self, inputs, evo2_dir=None, pca_dim=64, use_inter=True, use_pairs=True, use_covariation=True,
-                 use_evo2_emb=True, use_evo2_delta=True, random_graph_seed=None, shuffle_counts_seed=None):
+                 use_evo2_emb=True, use_evo2_delta=True, random_graph_seed=None, shuffle_counts_seed=None,
+                 synthetic_counts_seed=None):
         self.genes = pd.read_csv(os.path.join(inputs, "genes.tsv.gz"), sep="\t")
         nodes = pd.read_csv(os.path.join(inputs, "nodes.tsv.gz"), sep="\t")
         edges = pd.read_csv(os.path.join(inputs, "edges.tsv.gz"), sep="\t")
@@ -110,6 +111,9 @@ class Data:
         if shuffle_counts_seed is not None:
             rng = np.random.default_rng(shuffle_counts_seed)
             var["AC_pass"] = var.groupby("label").AC_pass.transform(lambda s: rng.permutation(s.to_numpy()))
+        if synthetic_counts_seed is not None:
+            # dry runs and tests: counts drawn from a planted model, so no real allele count is ever fitted
+            var["AC_pass"] = planted_counts(var, nodes, self.genes, synthetic_counts_seed)[2]
         self.var = var
         vf = ((var[var_cont] - self.var_mu) / self.var_sd).fillna(0).to_numpy()
         alt = np.zeros((len(var), 4))
@@ -178,6 +182,22 @@ class Data:
         return self
 
 
+def planted_counts(var, nodes, genes, seed):
+    """Synthetic truth: breaking a base pair (intra or inter) costs 2.5 log units, the Sm motif 1.5; genes without an
+    HGNC name are under no selection (gamma = 0). Counts ~ NegBin(mu, r = 3). Returns (f_true, gamma, counts)."""
+    sm = nodes[nodes.molecule == "target"].set_index(["label", "n"]).sm_motif
+    smv = np.array([sm[(lab, n)] for lab, n in zip(var.label, var.n)])
+    broken = ((var.alt_intra_mismatch == 1) | (var.alt_inter_broken == 1)).to_numpy()
+    f_true = 2.5 * broken + 1.5 * smv
+    named = genes.set_index("label").named.astype(bool)
+    gamma = var.label.map(named).to_numpy().astype(float)
+    rng = np.random.default_rng(seed)
+    log_m = var.log_mr.fillna(var.log_mr.median()).to_numpy()
+    mu = np.exp(np.log(30.0) + log_m - gamma * f_true)
+    r = 3.0
+    return f_true, gamma, rng.negative_binomial(r, r / (r + mu))
+
+
 def shortest_paths(n, edge_list):
     adj = [[] for _ in range(n)]
     for i, j in edge_list:
@@ -216,8 +236,18 @@ def randomise_pairs(edges, nodes, seed):
     return pd.concat(out, ignore_index=True)
 
 
+_PCA_CACHE = {}
+
+
 def load_pca_embeddings(evo2_dir, genes, k):
     """Per-gene (L, k) PCA projections of the Evo 2 layer embeddings, fitted on all target positions (label-free)."""
+    key = (os.path.abspath(evo2_dir), tuple(genes.label), k)
+    if key not in _PCA_CACHE:
+        _PCA_CACHE[key] = _pca_embeddings(evo2_dir, genes, k)
+    return _PCA_CACHE[key]
+
+
+def _pca_embeddings(evo2_dir, genes, k):
     mats = {}
     for lab in genes.label:
         p = os.path.join(evo2_dir, "emb", f"{lab.replace('|', '_')}.npy")
@@ -353,6 +383,8 @@ def train_one(data, train_genes, val_genes, cfg, seed, device="cpu", log=None):
                 vll, _ = gene_loglik(model, data, f, gamma, vm, cfg.get("poisson", False), cfg.get("site_cov", True))
                 v = float(vll.mean()) if len(vll) else float(-loss)
             hist.append((ep, float(-loss.detach()), v))
+            if not math.isfinite(v):
+                break  # diverged: keep the best finite state (or the initial one)
             if v > best + 1e-5:
                 best, best_ep, bad = v, ep, 0
                 best_state = {k: t.detach().clone() for k, t in model.state_dict().items()}
@@ -360,9 +392,10 @@ def train_one(data, train_genes, val_genes, cfg, seed, device="cpu", log=None):
                 bad += 1
                 if bad >= cfg.get("patience", 10):
                     break
-    model.load_state_dict(best_state)
+    if best_state is not None:
+        model.load_state_dict(best_state)
     model.eval()
-    return model, {"best_val_ll": best, "best_epoch": best_ep, "history": hist}
+    return model, {"best_val_ll": best, "best_epoch": best_ep, "history": hist, "diverged": best_state is None}
 
 
 def predict(model, data):
