@@ -35,6 +35,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.environ.get("SNRNA_DATA", os.path.join(HERE, "data"))
 WORK = os.environ.get("SNRNA_WORK", os.path.join(HERE, "work"))
 RESULTS = os.environ.get("SNRNA_RESULTS", os.path.join(HERE, "results"))
+EVO2_DIR = os.environ.get("SNRNA_EVO2", os.path.join(HERE, "evo2_run"))  # committed: inputs and GPU scores
 SEED = 20261013
 
 URL = {
@@ -667,9 +668,11 @@ def cmd_evo2_prep(args):
         aseq = rseq[:off] + r.alt + rseq[off + len(r.ref):]
         rows.append({"ID": r.ID, "ref_seq": rseq, "alt_seq": aseq})
     out = pd.DataFrame(rows)
-    out.to_csv(os.path.join(WORK, "evo2_inputs.tsv.gz"), sep="\t", index=False)
-    log(f"evo2 inputs: {len(out)} variants, window {EVO2_WINDOW} nt -> {os.path.join(WORK, 'evo2_inputs.tsv.gz')}")
-    log("Run on a GPU (>= 24 GB): python evo2_score.py work/evo2_inputs.tsv.gz work/evo2_scores.tsv")
+    os.makedirs(EVO2_DIR, exist_ok=True)
+    dest = os.path.join(EVO2_DIR, "evo2_inputs.tsv.gz")
+    out.to_csv(dest, sep="\t", index=False)
+    log(f"evo2 inputs: {len(out)} variants, window {EVO2_WINDOW} nt -> {dest}")
+    log("Run on a GPU (>= 24 GB): python evo2_score.py evo2_run/evo2_inputs.tsv.gz evo2_run/evo2_scores.tsv")
 
 
 # ------------------------------------------------------------------------------------------------ metrics (s6.3)
@@ -795,11 +798,17 @@ def cmd_g1(args):
     d = pd.read_csv(os.path.join(WORK, "sge.tsv"), sep="\t")
     t = d[d.in_transcript].reset_index(drop=True)
     evo2 = None
-    ep = os.path.join(WORK, "evo2_scores.tsv")
+    ep = os.path.join(EVO2_DIR, "evo2_scores.tsv")
+    evo2_note = None
     if os.path.exists(ep):
-        e = pd.read_csv(ep, sep="\t")
+        e = pd.read_csv(ep, sep="\t").drop_duplicates("ID")
         delta = ((e.ll_alt_fwd - e.ll_ref_fwd) + (e.ll_alt_rc - e.ll_ref_rc)) / 2
-        evo2 = -t.ID.map(dict(zip(e.ID, delta))).to_numpy(float)
+        d_evo2 = -t.ID.map(dict(zip(e.ID, delta))).to_numpy(float)
+        n_ok = int(np.isfinite(d_evo2).sum())
+        if n_ok == len(t):  # the gate is applied only to the complete set (PREREG s6.5)
+            evo2 = d_evo2
+        else:
+            evo2_note = f"G1 PENDING: Evo 2 scores incomplete ({n_ok}/{len(t)} variants in {ep}); finish evo2_score.py"
     scores = damage_scores(t, evo2)
     m = g1_metrics(t, scores, args.boot)
     m.to_csv(os.path.join(RESULTS, "g1_metrics.tsv"), sep="\t", index=False, float_format="%.4f")
@@ -842,6 +851,9 @@ def cmd_g1(args):
              ("SGE function score (truth reference)", 0.93)]
     repro_ok = all(abs(round(rep[k], 2) - v) <= 0.01 for k, v in repro)
     verdict, dec = g1_decision(m)
+    if evo2_note:
+        verdict = evo2_note
+        dec = [x for x in dec if not x.startswith("G1 PENDING")] + [evo2_note]
     noise = t[["function_score_r1", "function_score_r2", "function_score_r3"]].corr().values[np.triu_indices(3, 1)]
 
     L = ["Gate G1 (PREREG s6), RNU4-2 SGE, 521 in-transcript variants (435 SNVs, 86 indels)",
