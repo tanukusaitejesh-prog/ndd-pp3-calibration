@@ -1,0 +1,12 @@
+{
+ "model": "evo2_7b",
+ "evo2": "0.6.0",
+ "torch": "2.7.1+cu128",
+ "gpu": "NVIDIA A100-SXM4-40GB",
+ "reduce_method": "sum",
+ "prepend_bos": false,
+ "use_kernels": false,
+ "inputs": "evo2_inputs.tsv.gz",
+ "peak_gpu_memory_gb_smoke_test": 16.8,
+ "provenance": "Scores computed by evo2_score.py on the authors' DGX A100 on 2026-10-13. This copy was transcribed from the terminal output pasted into the chat and validated (521 IDs identical to the inputs; window lengths; identical reference log-likelihood within each position; 8 spot checks against the run log). Replace it with the original file when available."
+}

@@ -7,6 +7,7 @@ CADD v1.7 (paper column)                     0.145 [ 0.061, 0.230] [ 0.001, 0.28
 ViennaRNA U4/U6 ddG_bind (paper column)      0.269 [ 0.187, 0.350] [ 0.163, 0.377]     0.656 [0.602,0.707]      0.237    0.629
 Allele-count floor                           0.204 [ 0.122, 0.284] [ 0.100, 0.301]     0.629 [0.588,0.668]      0.152    0.616
 Position-only floor (LOPO)                   0.570 [ 0.508, 0.627] [ 0.451, 0.661]     0.867 [0.832,0.898]      0.518    0.859
+Evo 2 7B zero-shot                           0.303 [ 0.220, 0.381] [ 0.184, 0.410]     0.670 [0.619,0.720]      0.246    0.635
 
 ReNU SNVs vs population SNVs (s6.4)
   CADD v1.7 (paper column)                   primary: gnomAD v4.1 PASS AC>=1 controls     12 vs 200: AUROC 0.621 [0.529, 0.711]
@@ -16,12 +17,14 @@ ReNU SNVs vs population SNVs (s6.4)
   Allele-count floor                         reproduction: paper's 346 UKB/AoU SNVs       12 vs 346: AUROC 0.735 [0.657, 0.798]
   Position-only floor (LOPO)                 primary: gnomAD v4.1 PASS AC>=1 controls     12 vs 200: AUROC 0.922 [0.832, 0.987]
   Position-only floor (LOPO)                 reproduction: paper's 346 UKB/AoU SNVs       12 vs 346: AUROC 0.917 [0.820, 0.985]
+  Evo 2 7B zero-shot                         primary: gnomAD v4.1 PASS AC>=1 controls     12 vs 200: AUROC 0.658 [0.552, 0.749]
+  Evo 2 7B zero-shot                         reproduction: paper's 346 UKB/AoU SNVs       12 vs 346: AUROC 0.565 [0.461, 0.669]
   SGE function score (truth reference)       primary: gnomAD v4.1 PASS AC>=1 controls     12 vs 200: AUROC 0.943 [0.902, 0.977]
   SGE function score (truth reference)       reproduction: paper's 346 UKB/AoU SNVs       12 vs 346: AUROC 0.934 [0.894, 0.967]
 
 Reproduction of published AUROCs (paper's control set): CADD v1.7 0.649 (published 0.65), ViennaRNA U4/U6 ddG_bind 0.718 (published 0.72), SGE function score 0.934 (published 0.93) -> OK
 
 Decision
-  Position-only floor rho 0.570 vs best non-floor predictor (ViennaRNA U4/U6 ddG_bind (paper column)) 0.269: not within 0.05
-    Note: the floor EXCEEDS every non-floor predictor by 0.301. The frozen rule does not cover this case; the floor is fitted on SGE scores (leave-one-position-out) and uses the critical region, so it is a supervised reference, not a label-free competitor.
-  G1 PENDING: Evo 2 scores not available (run evo2_score.py on a GPU)
+  Position-only floor rho 0.570 vs best non-floor predictor (Evo 2 7B zero-shot) 0.303: not within 0.05
+    Note: the floor EXCEEDS every non-floor predictor by 0.267. The frozen rule does not cover this case; the floor is fitted on SGE scores (leave-one-position-out) and uses the critical region, so it is a supervised reference, not a label-free competitor.
+  Evo 2: rho 0.303 (need >= 0.60), AUROC 0.670 (need >= 0.85) -> G1 PASSES: continue
