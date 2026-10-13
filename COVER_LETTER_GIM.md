@@ -13,7 +13,7 @@ We measured it in two such ways, and found the following:
 
 - **Label-free.** On de novo missense excess in 47,630 trios and probands, joint PP3 and PM1 evidence was 0.44 of the product of their separate evidence, replicated in two further cohorts.
 - **Functional.** On functional assays with PM1 residues as curated by ClinGen expert panels, it was 0.59 across five genes, while random residues showed no dependence (1.00). This test was pre-registered.
-- **Cost.** Stacked, the three criteria over-count by about two points, the width of a classification step.
+- **Cost.** Stacked, the three criteria over-count by about two points, the width of a classification step. The overlap is not merely between genes: within known disease genes, where curators apply PM1, PP3 beside PM1 still over-counts 0.33–0.42 points at Supporting in every cohort (all intervals above zero).
 - **Rules.** Trained in one de novo cohort and tested in two others under pre-registration, no rule bettered ClinGen's cap for PP3. The cap without PP2 beside PM1 reproduced the joint evidence of all three criteria within half a point, whereas adding PP2 over-counted by one to two points.
 - **Practice.** Across 94,050 expert-panel and laboratory classifications, the cap bound in under 5% of PP3-with-PM1 combinations, and stronger PP3 beside PM1 has spread since calibrated strengths were introduced.
 

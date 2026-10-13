@@ -1,3 +1,13 @@
+# Handoff update: draft 22 (13 October 2026, local session)
+
+**Current submission version: `MANUSCRIPT_v22.md`, `.docx` and `.pdf`, with `SUPPLEMENT_v22.md`.** Draft 22 is draft 21 plus the within-gene decomposition of the cost (`make_within_gene_cost.py`, Supplementary Note 16, Table S23). It answers the main expected reviewer objection, that the cost is a between-gene artefact:
+- **Within DDG2P genes,** Supporting AlphaMissense PP3 beside PM1-like over-counts 0.42, 0.34 and 0.33 points in DD, autism and public. All 12 AlphaMissense × PM1 cells have intervals above 0, and 39–50% of the DD over-count survives within genes.
+- **PP2's overlap is between-gene by construction.** The points framework has one prior for all genes, so it counts too.
+
+Abstract 198 words; main text about 3,500. Word build: `build_docx_v22.py`.
+
+---
+
 # Handoff update: draft 21 (13 October 2026, local session)
 
 **Submission version: `MANUSCRIPT_v21.md` / `.docx` / `.pdf` + `SUPPLEMENT_v21.md` + `COVER_LETTER_GIM.md`.** It has the same analyses and numbers as draft 20, formatted for Genetics in Medicine:
