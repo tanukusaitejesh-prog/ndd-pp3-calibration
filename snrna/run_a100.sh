@@ -11,6 +11,13 @@ set -euo pipefail
 cd "$(dirname "$(readlink -f "$0")")"
 MODE=full
 [[ "${1:-}" == "--dry-run" ]] && MODE=dry
+# SNRNA_TEST_CPU=1: development check of this script without a GPU (mock Evo 2, CPU training; dry run only)
+CPU_TEST=${SNRNA_TEST_CPU:-}
+DEV=()
+if [[ -n $CPU_TEST ]]; then
+  [[ $MODE == dry ]] || { echo "SNRNA_TEST_CPU is for --dry-run only"; exit 1; }
+  export SNRNA_EVO2_MOCK=1; DEV=(--device cpu)
+fi
 STAMP=$(date -u +%Y%m%dT%H%M%SZ)
 mkdir -p logs
 LOG="logs/run_${MODE}_${STAMP}.log"
@@ -22,8 +29,9 @@ stage() { echo; echo "=== $(date -u +%H:%M:%S) UTC  $*"; }
 stage "0. environment ($MODE run, log $LOG)"
 rc=0
 python - <<'PY' || rc=$?
-import importlib.util, sys
-missing = [m for m in ["numpy", "pandas", "torch", "evo2"] if importlib.util.find_spec(m) is None]
+import importlib.util, os, sys
+cpu_test = bool(os.environ.get("SNRNA_TEST_CPU"))
+missing = [m for m in ["numpy", "pandas", "torch"] + ([] if cpu_test else ["evo2"]) if importlib.util.find_spec(m) is None]
 if missing:
     sys.exit("MISSING python packages: " + " ".join(missing) + " (activate the evo2 environment)")
 extra = [m for m in ["scipy", "pytest"] if importlib.util.find_spec(m) is None]
@@ -34,9 +42,9 @@ import torch
 print("torch", torch.__version__, "| CUDA", torch.cuda.is_available(), "|", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "no GPU")
 free, total = torch.cuda.mem_get_info() if torch.cuda.is_available() else (0, 0)
 print(f"GPU memory free {free / 2**30:.1f} of {total / 2**30:.1f} GB")
-if not torch.cuda.is_available():
+if not torch.cuda.is_available() and not cpu_test:
     sys.exit("no CUDA device: activate the evo2 environment on the GPU machine")
-if free < 30 * 2**30:
+if free < 30 * 2**30 and not cpu_test:
     print("WARNING: less than 30 GB free on the GPU; another process is using it (batches will shrink automatically)")
 PY
 if [[ $rc -eq 3 ]]; then
@@ -44,7 +52,7 @@ if [[ $rc -eq 3 ]]; then
 elif [[ $rc -ne 0 ]]; then
   exit $rc
 fi
-python -c "import torch; assert torch.cuda.is_available(), 'no CUDA device'"
+[[ -n $CPU_TEST ]] || python -c "import torch; assert torch.cuda.is_available(), 'no CUDA device'"
 command -v openssl >/dev/null || { echo "openssl not found"; exit 1; }
 echo "git commit: $(git rev-parse HEAD 2>/dev/null || echo unknown)"
 if [[ -n "$(git status --porcelain --untracked-files=no 2>/dev/null)" ]]; then
@@ -66,7 +74,7 @@ fi
 
 stage "0b. fast tests (CPU)"
 python -m pytest -q -x tests/test_labels.py tests/test_evo2_features.py
-[[ $MODE == dry ]] && python -m pytest -q -x tests/test_model.py
+if [[ $MODE == dry && -z $CPU_TEST ]]; then python -m pytest -q -x tests/test_model.py; fi
 
 if [[ $MODE == full ]]; then
   stage "1. seal the blind labels (PREREG s5, A2.10)"
@@ -113,8 +121,8 @@ fi
 
 stage "3. train"
 if [[ $MODE == dry ]]; then
-  python train.py --benchmark
-  python train.py --synthetic-counts 1 --quick --max-lofo 3 --evo2 evo2_run/features_dryrun
+  [[ -n $CPU_TEST ]] || python train.py --benchmark
+  python train.py --synthetic-counts 1 --quick --max-lofo 3 --evo2 evo2_run/features_dryrun ${DEV[@]+"${DEV[@]}"}
 else
   python train.py --stage all
 fi

@@ -100,7 +100,7 @@ def fit_and_predict(data, train_labels, cfg, seed, device, genes, sge=None, need
 
 def save(df, path, info, info_path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    df.to_csv(path + ".tmp", sep="\t", index=False, float_format="%.6g")
+    df.to_csv(path + ".tmp", sep="\t", index=False, float_format="%.6g", compression="gzip" if path.endswith(".gz") else None)
     os.replace(path + ".tmp", path)
     with open(info_path, "w") as f:
         json.dump(info, f, indent=1)

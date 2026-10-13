@@ -348,7 +348,10 @@ def g3(args, pred, var, rep, B):
             rep.add(f"  {r['unit']:24s} L2 {r['n_L2_snv']:3d} vs L3 {r['n_L3']:3d}: model {r['auroc_model']:.3f}, CADD "
                     f"{r['auroc_cadd']:.3f}, delta {r['delta']:+.3f} {'(eligible)' if r['eligible'] else '(< 10 L2 SNVs: not in G3)'}{extra}")
         else:
-            rep.add(f"  {r['unit']:24s} L2 {r.get('n_L2_snv', 0)} SNVs: {r.get('status', 'not evaluable')}")
+            if r.get("status") == "no predictions":
+                rep.add(f"  {r['unit']:24s} not scored (no leave-cluster-out fit for it in this run)")
+            else:
+                rep.add(f"  {r['unit']:24s} L2 {r.get('n_L2_snv', 0)} vs L3 {r.get('n_L3', 0)} SNVs: not evaluable (a class is empty)")
     if overlap:
         rep.add(f"  Removed from L3 because also in L2: {', '.join(sorted(set(overlap)))}")
     total = int(sum(r["n_L2_snv"] for r in rows if r.get("eligible")))
