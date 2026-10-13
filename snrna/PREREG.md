@@ -411,7 +411,7 @@ Adopting A1 means a dated deviation-log entry stating that no G2 data had been s
   - global self-attention with learned per-head biases for edge type and shortest-path distance (capped at 16);
   - a feed-forward block.
 - LayerNorm and dropout throughout; 4 heads.
-- The variant head is an MLP on [node state, variant features].
+- The variant head is an MLP on [node state, variant features]. Its output layer is zero-initialised, so f starts constant (absorbed by α_g) and any variation in f is learned from the counts. Without this, a CPU dry run on synthetic counts showed that a barely trained network echoes its input features (shuffled-counts control ρ −0.23), which would make the negative controls uninterpretable.
 
 *A2.4 Training and model selection* (no SGE, L2 or L3 label is used for f; section 8.1 holds).
 
