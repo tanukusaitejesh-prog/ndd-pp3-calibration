@@ -1,0 +1,6 @@
+snRNA-VEP v2 G2 mutation-model freeze manifest (before any U4-family or sealed-gene O/E)
+UTC: 2026-10-13T14:04:34Z
+parent commit: c547b40e22f5bc4827e319e79d08c9b340a6e8ce
+2bdebb98772a2ef29d278fefd673cf6626888e2572b0392546120ae450f68934  PREREG.md
+5a8efdc214f01dea18e931a5f53958489964cab92582871cacbb89acbb4ee723  snrna.py
+7f1934be04524216f5a62b189d476fa0ed4fe5ae1209d4a6ed472a07c3467c1b  results/g2_mutation_model.json
