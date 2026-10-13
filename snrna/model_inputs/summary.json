@@ -1,0 +1,27 @@
+{
+ "genes": 55,
+ "clusters": 46,
+ "nodes": 17018,
+ "edges": 19047,
+ "variants": 17385,
+ "included": 15838,
+ "observed_included": 3700,
+ "partners": {
+  "U6": 107,
+  "U4": 145,
+  "U2": 188,
+  "BPS": 7,
+  "5SS": 9,
+  "U6atac": 126,
+  "U4atac": 130,
+  "U12": 150,
+  "BPS12": 8,
+  "5SS12": 9
+ },
+ "cmemit_samples": 20000,
+ "edge_types": {
+  "backbone": 16878,
+  "inter": 1379,
+  "pair": 790
+ }
+}
