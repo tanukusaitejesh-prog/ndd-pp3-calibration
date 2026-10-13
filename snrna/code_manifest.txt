@@ -1,0 +1,8 @@
+snRNA-VEP v2 code manifest, frozen before week-0 QC and G1 were run on real data
+UTC: 2026-10-13T12:15:30Z
+commit: 398605c92b74efe3a0dc6760dc0cdd7254d15199
+7cd5c4c13f0687fecd6d482ce6d5fba487f802db82d6a87c6462b9563d8a918c  PREREG.md
+e216a3b0cc76361ad9428ebdf01fbd27eeca6adae85fe4ff0a60f1e276d1e6b1  snrna.py
+f4b691e3aaf63d6e2d493fbdc6a24c4bde02051eb97c5170f57951622d6c859c  evo2_score.py
+61667125b14548912be80ee894cd1957ebb88e78b585c595a1ca8cdec5017d28  g2_power.py
+d9d306dd10f0d7df31e6e2befc00a09346d3c51e4d94d563395cbc1f031dc5dd  tests/test_snrna.py
