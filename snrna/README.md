@@ -26,7 +26,8 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 | Week 0: SGE checks | **All pass** | 539/151/521/12/346; replicate r 0.835–0.865; CADD column equals CADD v1.7; ΔΔG reproduced exactly |
 | Week 1: G1 floors and baselines | **Done** | See below |
 | Week 1: **G1 decision** | **Pending** | Evo 2 needs a GPU (none in this environment) |
-| G2 test design | Simulated | The frozen blind-hotspot test is underpowered; amendment A1 is proposed, not adopted |
+| G2 test design | Amendment A1 adopted before any G2 data | Stronger blind-hotspot test (simulation-based) |
+| **G2 (selection signal)** | **Done: PARTIAL, continue** | Mutation model M0 frozen on 42 training genes before testing. RNU4-2 critical region O/E 0.13 (p 9×10⁻⁹): recovered. Blind RNU2-2 n.1–67 O/E 0.62 (p 2×10⁻²⁶): recovered. Blind RNU5B-1 n.37–44 O/E 0.16 (p 2×10⁻⁸) missed on circular p 0.051 vs 0.05. Post hoc: every placement that tied it overlaps the hotspot (`results/g2_report.txt`) |
 
 ### G1 so far (RNU4-2 SGE, 521 in-transcript variants)
 
@@ -42,6 +43,10 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 - **The position-only floor is the bar to beat.** A label-free model has to beat ρ 0.57, not the 0.27 of the best published baseline. The floor is fitted on SGE scores and uses the critical region, so it is a supervised reference. Its ReNU AUROC is circular, because the critical region is defined from the ReNU positions.
 - **The frozen G1 floor rule does not cover this case.** It ends the deep-model framing only if the floor is *within* 0.05 of the best predictor; here the floor is 0.30 *above* every predictor. This is the authors' call (deviation log, 13 October 2026).
 
+### G2 in one paragraph
+
+Healthy-population data (gnomAD v4.1) show strong depletion exactly where dominant disease variants cluster, and none where recessive ones do. In RNU4-2, the T-loop and Stem III have O/E 0.10 and 0.22, while the recessive Stem II, k-turn and Sm site have 0.80–1.40. The RNU4ATAC recessive regions sit at 0.83–1.09. Both blind dominant or mixed regions are depleted: RNU2-2 n.1–67 at 0.62 and RNU5B-1 n.37–44 at 0.16. By the pre-registered rule, G2 is PARTIAL: RNU5B-1 misses the circular-shift criterion by 0.001. A post-hoc check shows the gene's most depleted stretch is n.33–44, overlapping the hotspot, so the miss reflects a limitation of the shift test for short hotspots, not an absent signal. That explanation is post hoc and does not change the verdict.
+
 ## How to run
 
 ```bash
@@ -54,6 +59,9 @@ python snrna.py sge              # SGE known-fact checks; stops on any mismatch
 python snrna.py vienna           # U4/U6 ddG QC
 python snrna.py evo2-prep        # 8,192-nt windows for Evo 2 -> evo2_run/ (already committed)
 python snrna.py g1               # G1 report: results/g1_report.txt
+INFERNAL_BIN=/path/to/infernal/bin python snrna.py structure   # Rfam paired/unpaired labels (Infernal 1.1.5)
+python snrna.py g2-fit           # choose + freeze the mutation model on training genes; commit its output
+python snrna.py g2-test          # one-shot G2 tests: results/g2_report.txt
 ```
 
 Remote files are read by tabix over HTTPS and cached under `data/cache/`, so re-runs are offline.

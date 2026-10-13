@@ -1,0 +1,35 @@
+Gate G2 (PREREG s7, amendment A1). Mutation model M0 (c_paired 1.221), frozen 2026-10-13T14:04:06+00:00
+Sites: 15838 in 54 analysis-set genes (3700 observed, AF < 0.001)
+
+  RNU2-2 n.1-67                O/E 0.619 vs gene median 1.163; exact p 2.38e-26; top-decile window yes; circular p 0.031 -> A1 RECOVERED (frozen rule: not recovered)
+  RNU4-2 critical region       O/E 0.133 vs gene median 1.041; exact p 9.07e-09; circular p 0.007 -> RECOVERED
+  RNU5B-1 n.37-44              O/E 0.162 vs gene median 1.038; exact p 2.02e-08; top-decile window yes; circular p 0.051 -> A1 not recovered (frozen rule: not recovered)
+
+DECISION: G2 PARTIAL
+
+Sensitivity analyses (not gating):
+ non-PASS records counted as unobserved: G2 PARTIAL
+    RNU2-2 n.1-67                O/E 0.614 vs gene median 1.159; exact p 3.16e-26; top-decile window yes; circular p 0.031 -> A1 RECOVERED (frozen rule: not recovered)
+    RNU4-2 critical region       O/E 0.129 vs gene median 1.054; exact p 2.21e-09; circular p 0.007 -> RECOVERED
+    RNU5B-1 n.37-44              O/E 0.162 vs gene median 1.023; exact p 4.93e-08; top-decile window yes; circular p 0.051 -> A1 not recovered (frozen rule: not recovered)
+ AF cut-off 0.01: G2 PARTIAL
+    RNU2-2 n.1-67                O/E 0.613 vs gene median 1.153; exact p 1.36e-26; top-decile window yes; circular p 0.031 -> A1 RECOVERED (frozen rule: not recovered)
+    RNU4-2 critical region       O/E 0.132 vs gene median 1.039; exact p 9.33e-09; circular p 0.007 -> RECOVERED
+    RNU5B-1 n.37-44              O/E 0.161 vs gene median 1.037; exact p 1.83e-08; top-decile window yes; circular p 0.051 -> A1 not recovered (frozen rule: not recovered)
+ alternative mutation model M1: G2 PARTIAL
+    RNU2-2 n.1-67                O/E 0.623 vs gene median 1.174; exact p 3.68e-27; top-decile window yes; circular p 0.031 -> A1 RECOVERED (frozen rule: not recovered)
+    RNU4-2 critical region       O/E 0.139 vs gene median 1.052; exact p 2.72e-08; circular p 0.007 -> RECOVERED
+    RNU5B-1 n.37-44              O/E 0.171 vs gene median 1.030; exact p 2.13e-07; top-decile window yes; circular p 0.051 -> A1 not recovered (frozen rule: not recovered)
+
+Guidance Table 2 regions, O/E under the frozen model (descriptive):
+  RNU2-2    recessive 5' region        n.1-67     O  68 / E  109.9 = 0.62 (gene median window 1.16)
+  RNU4-2    dominant  T-loop           n.62-70    O   1 / E   10.5 = 0.10 (gene median window 1.04)
+  RNU4-2    dominant  Stem III         n.75-78    O   1 / E    4.6 = 0.22 (gene median window 1.04)
+  RNU4-2    recessive Stem II          n.3-16     O  23 / E   19.1 = 1.20 (gene median window 1.04)
+  RNU4-2    recessive k-turn           n.27-35    O  18 / E   12.8 = 1.40 (gene median window 1.04)
+  RNU4-2    recessive k-turn           n.41-46    O  10 / E    9.2 = 1.08 (gene median window 1.04)
+  RNU4-2    recessive Sm binding site  n.118-126  O   8 / E   10.0 = 0.80 (gene median window 1.04)
+  RNU5B-1   dominant  5' stem loop I   n.37-44    O   2 / E   12.4 = 0.16 (gene median window 1.04)
+  RNU4ATAC  recessive Stem II          n.3-19     O  33 / E   30.3 = 1.09 (gene median window 1.02)
+  RNU4ATAC  recessive 5' stem-loop     n.26-57    O  60 / E   55.2 = 1.09 (gene median window 1.02)
+  RNU4ATAC  recessive Sm binding site  n.116-124  O  11 / E   13.3 = 0.83 (gene median window 1.02)

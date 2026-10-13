@@ -1,0 +1,12 @@
+gene	region	inheritance	span	n_sites	O	E	oe	gene_median_window_oe
+RNU2-2	5' region	recessive	n.1-67	197	68	109.870	0.619	1.163
+RNU4-2	T-loop	dominant	n.62-70	27	1	10.466	0.096	1.041
+RNU4-2	Stem III	dominant	n.75-78	11	1	4.615	0.217	1.041
+RNU4-2	Stem II	recessive	n.3-16	42	23	19.124	1.203	1.041
+RNU4-2	k-turn	recessive	n.27-35	27	18	12.814	1.405	1.041
+RNU4-2	k-turn	recessive	n.41-46	18	10	9.244	1.082	1.041
+RNU4-2	Sm binding site	recessive	n.118-126	27	8	10.018	0.799	1.041
+RNU5B-1	5' stem loop I	dominant	n.37-44	24	2	12.352	0.162	1.038
+RNU4ATAC	Stem II	recessive	n.3-19	51	33	30.273	1.090	1.020
+RNU4ATAC	5' stem-loop	recessive	n.26-57	95	60	55.177	1.087	1.020
+RNU4ATAC	Sm binding site	recessive	n.116-124	27	11	13.290	0.828	1.020
