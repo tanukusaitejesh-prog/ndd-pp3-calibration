@@ -1,16 +1,16 @@
 {
  "command": "snrna.py g1",
- "utc": "2026-10-13T12:30:15+00:00",
+ "utc": "2026-10-13T14:30:26+00:00",
  "python": "3.13.16",
  "numpy": "2.5.3",
  "pandas": "3.0.5",
- "git_commit": "8e390f9421d0fd80d1b85496aac0ca902769177e",
+ "git_commit": "4a556752099ede564c0142c164a7bc9b0fea0a7b",
  "git_dirty": true,
  "inputs_md5": {
   "sge_ST1.xlsx": "3a4a0ac7052bfa1f58062ee1f27a6858",
   "gencode.v49.annotation.gtf.gz": "0ef4a024ea2d35b1b88c12447b0b70b9",
   "GRCh38_alllowmapandsegdupregions.bed.gz": "d3fe62db98090a6a2b473d1f88883b35"
  },
- "verdict": "G1 PENDING: Evo 2 scores not available (run evo2_score.py on a GPU)",
+ "verdict": "G1 PASSES: continue",
  "reproduction_ok": true
 }

@@ -6,5 +6,7 @@ ViennaRNA U4/U6 ddG_bind (paper column)	reproduction: paper's 346 UKB/AoU SNVs	1
 Allele-count floor	reproduction: paper's 346 UKB/AoU SNVs	12	346	0.7353	0.6570	0.7977
 Position-only floor (LOPO)	primary: gnomAD v4.1 PASS AC>=1 controls	12	200	0.9221	0.8321	0.9867
 Position-only floor (LOPO)	reproduction: paper's 346 UKB/AoU SNVs	12	346	0.9170	0.8201	0.9848
+Evo 2 7B zero-shot	primary: gnomAD v4.1 PASS AC>=1 controls	12	200	0.6579	0.5525	0.7492
+Evo 2 7B zero-shot	reproduction: paper's 346 UKB/AoU SNVs	12	346	0.5653	0.4612	0.6686
 SGE function score (truth reference)	primary: gnomAD v4.1 PASS AC>=1 controls	12	200	0.9433	0.9017	0.9771
 SGE function score (truth reference)	reproduction: paper's 346 UKB/AoU SNVs	12	346	0.9335	0.8935	0.9672

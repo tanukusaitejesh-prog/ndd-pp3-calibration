@@ -25,7 +25,7 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 | Week 0: sites | **Done** | 17,385 SNVs, 0 REF conflicts, Roulette rates for 98.2% |
 | Week 0: SGE checks | **All pass** | 539/151/521/12/346; replicate r 0.835–0.865; CADD column equals CADD v1.7; ΔΔG reproduced exactly |
 | Week 1: G1 floors and baselines | **Done** | See below |
-| Week 1: **G1 decision** | **Pending** | Evo 2 needs a GPU (none in this environment) |
+| Week 1: **G1 decision** | **Done: PASSES, continue** | Evo 2 7B (scored on the authors' A100): ρ 0.303 [0.22, 0.38], AUROC 0.670, against the bar of ρ ≥ 0.60 and AUROC ≥ 0.85. Best label-free tool, but far from enough; T-loop ρ 0.000 |
 | G2 test design | Amendment A1 adopted before any G2 data | Stronger blind-hotspot test (simulation-based) |
 | **G2 (selection signal)** | **Done: PARTIAL, continue** | Mutation model M0 frozen on 42 training genes before testing. RNU4-2 critical region O/E 0.13 (p 9×10⁻⁹): recovered. Blind RNU2-2 n.1–67 O/E 0.62 (p 2×10⁻²⁶): recovered. Blind RNU5B-1 n.37–44 O/E 0.16 (p 2×10⁻⁸) missed on circular p 0.051 vs 0.05. Post hoc: every placement that tied it overlaps the hotspot (`results/g2_report.txt`) |
 
@@ -37,7 +37,7 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 | ViennaRNA U4/U6 ΔΔG | 0.269 [0.187, 0.350] | 0.656 [0.602, 0.707] | 0.719 [0.564, 0.858] |
 | Allele-count floor (gnomAD) | 0.204 [0.122, 0.284] | 0.629 [0.588, 0.668] | (undefined) |
 | Position-only floor (leave-one-position-out on SGE) | 0.570 [0.508, 0.627] | 0.867 [0.832, 0.898] | 0.922 (circular, see below) |
-| Evo 2 7B | pending | pending | pending |
+| Evo 2 7B | 0.303 [0.220, 0.381] | 0.670 [0.619, 0.720] | 0.658 [0.552, 0.749] |
 
 - **Reproduction check passes.** On the paper's 346 population SNVs, CADD gives 0.649, ΔΔG 0.718 and SGE 0.934, against the published 0.65, 0.72 and 0.93.
 - **The position-only floor is the bar to beat.** A label-free model has to beat ρ 0.57, not the 0.27 of the best published baseline. The floor is fitted on SGE scores and uses the critical region, so it is a supervised reference. Its ReNU AUROC is circular, because the critical region is defined from the ReNU positions.

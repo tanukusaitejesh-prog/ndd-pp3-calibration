@@ -35,3 +35,12 @@ Position-only floor (LOPO)	Stem III	37	-0.5393
 Position-only floor (LOPO)	T-loop	56	-0.3785
 Position-only floor (LOPO)	k-turn	45	-0.7584
 Position-only floor (LOPO)	terminal stem loop	58	-0.6669
+Evo 2 7B zero-shot	3' stem loop	103	0.1997
+Evo 2 7B zero-shot	Other	126	-0.0172
+Evo 2 7B zero-shot	Sm site	27	0.3053
+Evo 2 7B zero-shot	Stem I	27	0.4860
+Evo 2 7B zero-shot	Stem II	42	0.2835
+Evo 2 7B zero-shot	Stem III	37	0.4445
+Evo 2 7B zero-shot	T-loop	56	0.0001
+Evo 2 7B zero-shot	k-turn	45	0.4404
+Evo 2 7B zero-shot	terminal stem loop	58	0.2789

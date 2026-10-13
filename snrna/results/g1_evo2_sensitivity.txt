@@ -1,0 +1,15 @@
+Evo 2 7B on RNU4-2 SGE (521 in-transcript variants); damage = -delta
+  primary: sum, mean of strands                  rho 0.303  AUROC depleted 0.670
+  sensitivity (PREREG): length-normalised mean   rho 0.300  AUROC depleted 0.669
+  exploratory: forward strand only               rho 0.196  AUROC depleted 0.589
+  exploratory: reverse complement only           rho 0.310  AUROC depleted 0.699
+Per-region rho (primary score):
+  3' stem loop         n=103 rho 0.200
+  Other                n=126 rho -0.017
+  Sm site              n= 27 rho 0.305
+  Stem I               n= 27 rho 0.486
+  Stem II              n= 42 rho 0.284
+  Stem III             n= 37 rho 0.445
+  T-loop               n= 56 rho 0.000
+  k-turn               n= 45 rho 0.440
+  terminal stem loop   n= 58 rho 0.279
