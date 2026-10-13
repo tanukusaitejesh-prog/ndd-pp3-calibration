@@ -4,14 +4,16 @@
     python train.py --stage all                 # hp -> main -> ablations -> controls (A100: a few hours)
     python train.py --stage all --quick         # tiny settings for a CPU dry run
     python train.py --stage hp|main|ablations|controls
+    python train.py --synthetic-counts 1 ...    # planted counts instead of gnomAD (dry runs; writes model_runs_synthetic/)
+    python train.py --benchmark                 # time the largest configuration and estimate the full run
 
 Scenarios (sealed genes RNU2-2 and RNU5B-1 are never in any training set):
   strict      train without the whole U4 family (RNU4-1, RNU4-2, RNU4ATAC, unnamed U4 loci)   -> Aim 2 on RNU4-2
   loose       train without RNU4-2 only                                                    -> Aim 2, secondary
-  lofo        one fit per paralog cluster, trained without that cluster                     -> cross-fitted scores
-              for every gene (G3, transfer, inheritance; the sealed genes' final scores)
+  lofo        one fit per paralog cluster containing a named gene, trained without that cluster -> cross-fitted
+              scores (G3, transfer, inheritance; the sealed genes' final scores); --lofo all adds the unnamed loci
   ablations   strict scenario with one component removed
-  controls    strict scenario with shuffled counts / a randomly rewired structure graph (must collapse)
+  controls    strict scenario with shuffled counts / a randomly rewired structure graph / pseudogenes only
 Each fit also fits the function head (ridge on frozen representations -> RNU4-2 SGE score) unless its held-out set
 contains RNU4-2; the head is used only to score genes other than RNU4-2 (major -> minor transfer).
 """
@@ -51,6 +53,7 @@ ABLATIONS = {
 CONTROLS = {
     "shuffled_counts": ({"shuffle_counts_seed": 7}, {}),
     "random_graph": ({"random_graph_seed": 7}, {}),
+    "pseudogenes_only": ({}, {}),   # training set: unnamed loci only (set in main)
 }
 
 
@@ -82,7 +85,8 @@ def fit_and_predict(data, train_labels, cfg, seed, device, genes, sge=None, need
     model, info = M.train_one(data, fit, val, cfg, seed, device)
     f, gamma, Z = M.predict(model, data)
     out = pd.DataFrame({"ID": data.var.ID, "label": data.var.label, "f": f, "gamma": gamma[data.v_gene.cpu().numpy()]})
-    info.update({"seconds": round(time.time() - t0, 1), "n_fit_genes": len(fit), "n_val_genes": len(val)})
+    info.update({"seconds": round(time.time() - t0, 1), "n_fit_genes": len(fit), "n_val_genes": len(val),
+                 "fit_genes": fit, "val_genes": val, "beta": float(model.beta), "log_r": float(model.log_r)})
     info.pop("history", None)
     if need_function and sge is not None:
         Zfull = np.hstack([Z, data.v_feat.cpu().numpy()])
@@ -159,24 +163,78 @@ def run_scenarios(args, data_cache, genes, sge, device, cfg, scenarios):
             log(f"{name} seed {seed}: best epoch {info['best_epoch']}, val ll {info['best_val_ll']:.5f}, {info['seconds']} s")
 
 
+def guard_real_counts(args):
+    """PREREG s5 and amendment A2: no model is fitted to real counts before the blind labels are sealed and A2 is
+    timestamped. Synthetic-count runs are exempt."""
+    if args.synthetic_counts is not None:
+        return
+    problems = []
+    man = os.path.join(HERE, "sealed", "SEALED_MANIFEST.jsonl")
+    if not (os.path.exists(man) and any(json.loads(x).get("event") == "SEALED" for x in open(man) if x.strip())):
+        problems.append("blind labels not sealed (run: python labels.py seal)")
+    if not os.path.exists(os.path.join(HERE, "amendment_A2_manifest.txt")):
+        problems.append("amendment A2 manifest missing (git pull the frozen code)")
+    if problems:
+        raise SystemExit("refusing to train on real counts: " + "; ".join(problems))
+
+
+def benchmark(args, data, genes):
+    """Seconds per epoch for the largest grid configuration, and a rough estimate of the whole run."""
+    g, sealed, u4, _ = gene_sets(genes)
+    train = [x for x in g.index if x not in sealed and x not in u4]
+    cfg = {**BASE_CFG, "d": max(HP_GRID["d"]), "layers": max(HP_GRID["layers"]), "dropout": 0.1, "wd": 1e-4,
+           "epochs": 20, "patience": 100, "eval_every": 5}
+    if args.device.startswith("cuda"):
+        torch.cuda.reset_peak_memory_stats()
+    t0 = time.time()
+    M.train_one(data, train[:-5], train[-5:], cfg, 0, args.device)
+    if args.device.startswith("cuda"):
+        torch.cuda.synchronize()
+    sec = (time.time() - t0) / cfg["epochs"]
+    n_lofo = len(g.cluster[g.named].unique())
+    fits = 3 * len(list(itertools.product(*HP_GRID.values()))) + len(SEEDS) * (2 + n_lofo + len(ABLATIONS) + len(CONTROLS))
+    res = {"seconds_per_epoch_largest_cfg": round(sec, 3), "fits": fits,
+           "estimate_hours_if_150_epochs_per_fit": round(fits * 150 * sec / 3600, 1),
+           "estimate_hours_if_600_epochs_per_fit (upper bound)": round(fits * 600 * sec / 3600, 1)}
+    if args.device.startswith("cuda"):
+        res["peak_gpu_gb"] = round(torch.cuda.max_memory_allocated() / 2**30, 2)
+    log("benchmark:", json.dumps(res))
+    return res
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--inputs", default=os.path.join(HERE, "model_inputs"))
     ap.add_argument("--evo2", default=os.path.join(HERE, "evo2_run", "features"))
-    ap.add_argument("--out", default=os.path.join(HERE, "model_runs"))
+    ap.add_argument("--out", default=None, help="default model_runs/ (model_runs_synthetic/ with --synthetic-counts)")
     ap.add_argument("--stage", default="all", choices=["hp", "main", "ablations", "controls", "all"])
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     ap.add_argument("--quick", action="store_true", help="tiny settings for a dry run")
     ap.add_argument("--max-lofo", type=int, default=0, help="limit the number of leave-one-cluster-out folds (dry runs)")
+    ap.add_argument("--lofo", default="named", choices=["named", "all"])
+    ap.add_argument("--synthetic-counts", type=int, default=None, metavar="SEED",
+                    help="replace gnomAD counts by planted synthetic counts (dry runs; no real count is fitted)")
+    ap.add_argument("--benchmark", action="store_true")
     args = ap.parse_args()
+    if args.benchmark and args.synthetic_counts is None:
+        args.synthetic_counts = 1  # timing only: never fit real counts for a benchmark
+    if args.out is None:
+        args.out = os.path.join(HERE, "model_runs_synthetic" if args.synthetic_counts is not None else "model_runs")
+    guard_real_counts(args)
     os.makedirs(args.out, exist_ok=True)
     genes = pd.read_csv(os.path.join(args.inputs, "genes.tsv.gz"), sep="\t")
     sge = pd.read_csv(os.path.join(args.inputs, "sge_eval.tsv.gz"), sep="\t")
+    base_kw = {} if args.synthetic_counts is None else {"synthetic_counts_seed": args.synthetic_counts}
     cache = {}
 
     def data_cache(**kw):
+        kw = {**base_kw, **kw}
         key = json.dumps(kw, sort_keys=True)
         if key not in cache:
+            for k in [k for k in cache if k != json.dumps(base_kw, sort_keys=True)]:
+                del cache[k]  # keep the full-feature data and the current variant only (GPU memory)
+            if args.device.startswith("cuda"):
+                torch.cuda.empty_cache()
             log("building data", kw or "(full features)")
             cache[key] = M.Data(args.inputs, args.evo2, **kw).to(args.device)
             d = cache[key]
@@ -185,10 +243,14 @@ def main():
         return cache[key]
 
     full = data_cache()
+    if args.benchmark:
+        benchmark(args, full, genes)
+        return
     with open(os.path.join(args.out, "data_info.json"), "w") as f:
         json.dump({"has_evo2_emb": full.has_emb, "has_evo2_delta": full.has_delta, "d_node": full.d_node, "d_var": full.d_var,
                    "node_features": full.node_cont, "variant_features": full.var_cont, "device": args.device,
-                   "torch": torch.__version__, "quick": args.quick}, f, indent=1)
+                   "torch": torch.__version__, "quick": args.quick, "synthetic_counts": args.synthetic_counts,
+                   "lofo": args.lofo}, f, indent=1)
     if not full.has_emb or not full.has_delta:
         log("WARNING: Evo 2 features missing - run evo2_features.py first for the pre-registered model")
 
@@ -201,9 +263,11 @@ def main():
 
     if args.stage in ("main", "all"):
         sc = {"strict": ({}, {}, strict_train, allg, True), "loose": ({}, {}, loose_train, allg, True)}
-        clusters = sorted(g.cluster.unique())
+        clusters = sorted(g.cluster.unique()) if args.lofo == "all" else sorted(g.cluster[g.named].unique())
         if args.max_lofo:
-            clusters = clusters[:args.max_lofo]
+            # dry runs: keep the clusters the endpoints need first
+            need = [g.cluster[g.gene == x].iloc[0] for x in ("RNU4ATAC", "RNU4-2") if (g.gene == x).any()]
+            clusters = (need + [c for c in clusters if c not in need])[:args.max_lofo]
         for c in clusters:
             held = list(g.index[g.cluster == c])
             train = [x for x in allg if x not in sealed and g.cluster[x] != c]
@@ -215,7 +279,9 @@ def main():
             sc = dict(list(sc.items())[:3])
         run_scenarios(args, data_cache, genes, sge, args.device, cfg, sc)
     if args.stage in ("controls", "all"):
-        sc = {f"ctl_{k}": (dk, ck, strict_train, allg, False) for k, (dk, ck) in CONTROLS.items()}
+        pseudo_train = [x for x in strict_train if not g.named[x]]
+        sc = {f"ctl_{k}": (dk, ck, pseudo_train if k == "pseudogenes_only" else strict_train, allg, False)
+              for k, (dk, ck) in CONTROLS.items()}
         run_scenarios(args, data_cache, genes, sge, args.device, cfg, sc)
     log("training stages done:", args.stage)
 

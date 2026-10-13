@@ -12,7 +12,13 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 | `evo2_score.py` | Evo 2 scoring for gate G1 (needs a 24 GB GPU) |
 | `evo2_run/` | Evo 2 input windows (committed) and, once run, the scores |
 | `g2_power.py` | Simulated power and false-positive rate of the G2 tests (no real data) |
-| `tests/` | 13 known-answer self-tests: `python -m pytest -q tests` (about 2.5 min) |
+| `model_features.py` | Builds `model_inputs/`: per-gene graphs (snRNA + partner RNAs), Rfam profiles, ΔΔG, paralog clusters |
+| `evo2_features.py` | Evo 2 embeddings and all-SNV Δ log-likelihoods for the model (GPU) |
+| `model.py`, `train.py` | The selection model and every pre-registered fit (amendment A2) |
+| `evaluate.py` | Aim 2, ablations, negative controls, G3, exploratory endpoints |
+| `labels.py` | Non-blind patient labels (`labels/`) and sealing of the blind genes' labels |
+| `run_a100.sh` | One command for the GPU machine: seal → Evo 2 features → train → evaluate → pack |
+| `tests/` | Known-answer self-tests: `python -m pytest -q tests` (pipeline, model on synthetic counts, mock Evo 2, sealing) |
 | `table2_regions.tsv` | Guidance Table 2 regions, verified from the full text |
 | `results/` | All outputs, committed |
 
@@ -28,6 +34,7 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 | Week 1: **G1 decision** | **Done: PASSES, continue** | Evo 2 7B (scored on the authors' A100): ρ 0.303 [0.22, 0.38], AUROC 0.670, against the bar of ρ ≥ 0.60 and AUROC ≥ 0.85. Best label-free tool, but far from enough; T-loop ρ 0.000 |
 | G2 test design | Amendment A1 adopted before any G2 data | Stronger blind-hotspot test (simulation-based) |
 | **G2 (selection signal)** | **Done: PARTIAL, continue** | Mutation model M0 frozen on 42 training genes before testing. RNU4-2 critical region O/E 0.13 (p 9×10⁻⁹): recovered. Blind RNU2-2 n.1–67 O/E 0.62 (p 2×10⁻²⁶): recovered. Blind RNU5B-1 n.37–44 O/E 0.16 (p 2×10⁻⁸) missed on circular p 0.051 vs 0.05. Post hoc: every placement that tied it overlaps the hotspot (`results/g2_report.txt`) |
+| Selection model (amendment A2) | **Code complete; tested on synthetic counts and a mock Evo 2. Awaiting the A100 run** | Patient labels for non-blind genes tallied (`labels/L2_nonblind.tsv`: 77 labelled SNVs, P/LP and B/LB, all mapped to model variants). Blind labels are sealed on the GPU machine as stage 1 |
 
 ### G1 so far (RNU4-2 SGE, 521 in-transcript variants)
 
@@ -97,6 +104,43 @@ The 521 input windows are already committed (`evo2_run/evo2_inputs.tsv.gz`), so 
    git commit -m "Evo 2 7B scores for G1" && git push
    ```
 
+## The selection model on the A100 (amendment A2)
+
+Everything runs from one script. It skips finished work, so after any interruption you re-run the same command.
+
+```bash
+cd ~/snrna-run && git pull && cd snrna
+conda activate evo2
+bash run_a100.sh --dry-run          # 20-30 min: checks everything on the GPU; fits no real count
+```
+
+Send back the last 40 lines of the dry run (or upload `snrna_dryrun_*.tar.gz`). The dry run:
+
+- runs the fast tests;
+- runs real Evo 2 on one gene and prints its speed;
+- times the largest model configuration and prints an estimate of the full run;
+- trains and evaluates on **synthetic** counts, so its numbers mean nothing.
+
+Then start the full run inside tmux, so it survives a closed browser tab:
+
+```bash
+tmux new -s snrna 'bash run_a100.sh; bash'
+# detach: Ctrl-b then d.   Re-attach later: tmux attach -t snrna
+```
+
+1. **Seal (asks once, about 1 min).** Choose a passphrase and keep it; the analyst must not know it. The script fetches the RNU2-2 and RNU5B-1 patient labels straight into `sealed/blind_labels.tsv.enc` and prints only counts and SHA-256 values. Nothing is ever shown in clear text. To run fully unattended, `export SNRNA_SEAL_PASS=...` first.
+2. **Evo 2 features (about 5–10 h).** All 17,385 SNVs on both strands, plus per-position embeddings. The script prints minutes left.
+3. **Training (about 3–8 h).** It runs, in order:
+   - the hyperparameter grid (48 fits);
+   - strict and loose fits, and the 14 leave-cluster-out fits;
+   - 12 ablations;
+   - 3 negative controls.
+
+   Each scenario uses 5 seeds. Every fit is saved as it finishes.
+4. **Evaluate and pack (about 10 min).** Upload the resulting `snrna_a100_results_*.tar.gz` (a few MB) to the chat, or paste `results/model_report.txt`.
+
+If anything stops, the log in `logs/` and the last lines on screen say where. Fix it and re-run the same command.
+
 ## Author actions
 
 1. **Deposit on OSF.** `PREREG.md`, `PLAN.md` and both manifests with their `.ots` files. The OpenTimestamps proofs already predate the analyses; the OSF copy will be later and should be described as such.
@@ -104,5 +148,5 @@ The 521 input windows are already committed (`evo2_run/evo2_inputs.tsv.gz`), so 
 3. **Run Evo 2.** On the RTX 4090, as above, to decide G1.
 4. **Decide on amendment A1** (`PREREG.md` section 15) before G2 is run. The frozen hotspot test has about 57% power even for a 50-fold depleted 8-nt hotspot.
 5. **Note the RNU2-2 region type.** Guidance Table 2 was verified from the Europe PMC full text (`table2_regions.tsv`); both blind hotspots match `PLAN.md`. But the RNU2-2 region is a recessive region, so its population depletion may be modest. This weighs on decision 4.
-6. **Tally and seal the blind labels.** Tally patient variants, and have someone other than the analyst compile `sealed/blind_labels.tsv` for RNU2-2 and RNU5B-1. Seal it with `python snrna.py seal sealed/blind_labels.tsv`, then record both SHA-256 values in a dated amendment before any selection model is trained. RNUdb now serves RNU2-2 variants at `/api/genes/RNU2-2/variants`; the analyst must not open it.
+6. **Seal the blind labels.** `run_a100.sh` does this as stage 1 (amendment A2.10), before any model sees real counts, and `train.py` refuses to start otherwise. Keep the passphrase; it is needed once, at the final evaluation. RNUdb serves RNU2-2 variants at `/api/genes/RNU2-2/variants`; the analyst must not open it. Literature-only patient variants for non-blind genes can be added later in `labels/L2_curated_additions.tsv` (same columns, dated).
 7. **Send the outreach note.** It is in `PLAN.md`, and should go with the G1 result.

@@ -117,7 +117,7 @@ def collect(genes):
                 continue
             r["inheritance"] = GENE_MODE.get(g.gene, "unknown") if r["label"] == "P/LP" else ""
             out.append(r)
-        if g.gene in ("RNU4-2", "RNU2-2"):
+        if g.gene in ("RNU4-2", "RNU2-2", "RNU5B-1"):  # RNUdb (13 Oct 2026: no entries for any other non-blind gene)
             for r in rnudb(g.gene):
                 r["label"] = "P/LP"
                 out.append(r)
