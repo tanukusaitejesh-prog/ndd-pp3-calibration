@@ -61,7 +61,8 @@ fi
 
 # the frozen code must match the A2 manifest (full run)
 if [[ -f amendment_A2_manifest.txt ]]; then
-  if grep -E '^[0-9a-f]{64}  ' amendment_A2_manifest.txt | sha256sum --quiet -c -; then
+  # code and inputs only (.md files may gain later log entries, e.g. the sealing hashes)
+  if grep -E '^[0-9a-f]{64}  ' amendment_A2_manifest.txt | grep -v '\.md$' | sha256sum --quiet -c -; then
     echo "code and inputs match amendment_A2_manifest.txt"
   elif [[ $MODE == full ]]; then
     echo "code or inputs differ from amendment_A2_manifest.txt: git pull / git checkout the frozen commit"; exit 1
