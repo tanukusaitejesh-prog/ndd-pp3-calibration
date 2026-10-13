@@ -8,8 +8,6 @@ for f in "$@"; do
   if [ -f "$SRC/$f" ]; then mkdir -p "$(dirname "$f")"; cp "$SRC/$f" "$f"; fi
   git add "$f"
 done
-git commit -q -m "$msg
-
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+git commit -q -m "$msg"
 git push -q 2>&1 | tail -1
 git log --oneline -1

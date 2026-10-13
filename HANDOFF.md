@@ -1,3 +1,30 @@
+# Handoff update: draft 21 (13 October 2026, local session)
+
+**Submission version: `MANUSCRIPT_v21.md` / `.docx` / `.pdf` + `SUPPLEMENT_v21.md` + `COVER_LETTER_GIM.md`.** It has the same analyses and numbers as draft 20, formatted for Genetics in Medicine:
+- structured abstract of 195 words (limit 200);
+- main text of about 3,300 words (limit 4,000);
+- 5 display items: Figures 1–3 and Tables 1–2. Draft 20's Tables 2, 4, 5 and 6 are now Supplementary Tables S19–S22 (Supplementary Note 15);
+- references numbered in order of first citation (33, limit 40);
+- end matter in GIM order, including an Ethics Declaration.
+
+Figures:
+- **Figure 2** is new (`fig2_dependence_v21.py`): (a) de novo R by cohort, marginal and within genes; (b) R per gene on functional assays with curated PM1, against random residues.
+- **Figure 3** (`fig3_cost_v21.py`) is replotted from `cost_headline.tsv`. The legend no longer overlaps the data, and the duplicate "conditional" row is dropped.
+
+The Word file is built with `build_docx_v21.py`; the PDF was exported from Word.
+
+`sync_commit.sh` no longer adds a co-author line, at the user's standing instruction.
+
+Still for the author:
+- names, affiliations, funding, conflicts, acknowledgments, CRediT roles;
+- confirm the Ethics Declaration against institutional policy;
+- verify the version 4 sentence;
+- double-annotate `parser_annotation_sheet_v14.tsv`;
+- make the repository public and mint a Zenodo DOI;
+- choose suggested reviewers.
+
+---
+
 # Handoff update: draft 20 (8 October 2026, local session)
 
 **Current manuscript: `MANUSCRIPT_v20.md` + `SUPPLEMENT_v20.md`** (branch `claude/a18-temporal-reclassification`). Draft 20 is an editorial rewrite of draft 19; it adds no new analyses. Changes:
