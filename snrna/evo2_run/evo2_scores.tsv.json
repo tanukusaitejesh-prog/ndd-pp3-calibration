@@ -8,5 +8,6 @@
  "use_kernels": false,
  "inputs": "evo2_inputs.tsv.gz",
  "peak_gpu_memory_gb_smoke_test": 16.8,
- "provenance": "Scores computed by evo2_score.py on the authors' DGX A100 on 2026-10-13. This copy was transcribed from the terminal output pasted into the chat and validated (521 IDs identical to the inputs; window lengths; identical reference log-likelihood within each position; 8 spot checks against the run log). Replace it with the original file when available."
+ "provenance": "Scores computed by evo2_score.py on the authors' DGX A100 on 2026-10-13. This copy was transcribed from the terminal output pasted into the chat and validated (521 IDs identical to the inputs; window lengths; identical reference log-likelihood within each position; 8 spot checks against the run log). Replace it with the original file when available.",
+ "verification": "2026-10-13: compared on the DGX with the original evo2_scores.tsv written by evo2_score.py: 521 rows each, all 521 IDs matched, maximum absolute difference 0.0 in ll_ref_fwd, ll_alt_fwd, ll_ref_rc and ll_alt_rc. The committed copy is identical to the original."
 }
