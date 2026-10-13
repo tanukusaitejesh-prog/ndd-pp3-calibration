@@ -1,0 +1,32 @@
+G2 test operating characteristics on simulated genes (fraction of simulations called 'recovered')
+selection factor 1.0 = no depletion (false-positive rate); smaller = stronger depletion (power)
+
+Correct mutation model
+scenario                                     factor  sims   exact  frozen  ex+top  hybrid
+RNU4-2 critical region (13 nt / 145)           1.00   400   0.003     n/a     n/a   0.003
+RNU4-2 critical region (13 nt / 145)           0.05   250   1.000     n/a     n/a   1.000
+RNU4-2 critical region (13 nt / 145)           0.30   250   0.656     n/a     n/a   0.648
+RNU5B-1-like hotspot (8 nt / 117)              1.00   400   0.013   0.013   0.013   0.010
+RNU5B-1-like hotspot (8 nt / 117)              0.02   250   0.968   0.572   0.968   0.948
+RNU5B-1-like hotspot (8 nt / 117)              0.20   250   0.608   0.264   0.608   0.572
+RNU5B-1-like hotspot (8 nt / 117)              0.50   250   0.132   0.116   0.132   0.120
+RNU2-2-like hotspot (67 nt / 191)              1.00   400   0.000   0.000   0.000   0.000
+RNU2-2-like hotspot (67 nt / 191)              0.50   250   0.704   0.120   0.704   0.520
+RNU2-2-like hotspot (67 nt / 191)              0.70   250   0.176   0.072   0.176   0.104
+
+MISSPECIFIED mutation model
+scenario                                     factor  sims   exact  frozen  ex+top  hybrid
+RNU4-2 critical region (13 nt / 145)           1.00   400   0.015     n/a     n/a   0.015
+RNU4-2 critical region (13 nt / 145)           0.05   250   0.984     n/a     n/a   0.976
+RNU4-2 critical region (13 nt / 145)           0.30   250   0.560     n/a     n/a   0.520
+RNU5B-1-like hotspot (8 nt / 117)              1.00   400   0.020   0.007   0.018   0.015
+RNU5B-1-like hotspot (8 nt / 117)              0.02   250   0.968   0.520   0.964   0.896
+RNU5B-1-like hotspot (8 nt / 117)              0.20   250   0.528   0.156   0.520   0.424
+RNU5B-1-like hotspot (8 nt / 117)              0.50   250   0.176   0.060   0.172   0.132
+RNU2-2-like hotspot (67 nt / 191)              1.00   400   0.040   0.000   0.040   0.015
+RNU2-2-like hotspot (67 nt / 191)              0.50   250   0.492   0.060   0.492   0.272
+RNU2-2-like hotspot (67 nt / 191)              0.70   250   0.252   0.024   0.252   0.116
+
+Columns: exact = one-sided Poisson-binomial test vs gene-median expectation, p < 0.01 (frozen s7.4a);
+frozen = top-decile window + circular-shift p < 0.01 (frozen s7.4b); ex+top = exact + top-decile window;
+hybrid = exact + top-decile window + circular-shift p < 0.05 (for the critical region: exact + circular p < 0.05).
