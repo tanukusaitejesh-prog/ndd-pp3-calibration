@@ -141,6 +141,21 @@ tmux new -s snrna 'bash run_a100.sh; bash'
 
 If anything stops, the log in `logs/` and the last lines on screen say where. Fix it and re-run the same command.
 
+## After the A100 run
+
+Upload the results tarball to the chat. The analysis then runs in this order; each step only reads earlier outputs:
+
+```bash
+python evaluate.py                     # Aim 2, ablations, controls, G3 (done on the A100 as part of run_a100.sh)
+python comparators_report.py           # GPN-MSA, phyloP, ReMM, Evo 2 on the same endpoints
+python calibrate.py                    # preliminary Aim 4 on the non-blind genes
+python release.py --stage scores       # dated Zenodo bundle of all scores: upload it, record the DOI in PREREG s14
+SNRNA_SEAL_PASS=... python final_eval.py --reason "final evaluation, PREREG s9"   # on the machine with the sealed file
+python release.py --stage final        # scores + calibrated PP3/BP4 thresholds and evidence labels
+```
+
+`final_eval.py` unseals the blind labels exactly once (logged) and refuses to run on a dry run.
+
 ## Author actions
 
 1. **Deposit on OSF.** `PREREG.md`, `PLAN.md` and both manifests with their `.ots` files. The OpenTimestamps proofs already predate the analyses; the OSF copy will be later and should be described as such.
