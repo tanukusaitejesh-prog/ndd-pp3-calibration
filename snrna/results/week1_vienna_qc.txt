@@ -1,0 +1,1 @@
+ViennaRNA 2.7.0 ddG_bind recomputation vs SGE table column: n=521, Pearson r 1.0000, max |diff| 0.000 kcal/mol, share within 0.05: 100.0%

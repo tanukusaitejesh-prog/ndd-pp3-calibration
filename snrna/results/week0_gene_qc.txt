@@ -1,0 +1,16 @@
+Spliceosomal snRNA genes (GENCODE v49): 111
+Pass gnomAD genome coverage (median >= 20, min >= 10): 87 (guidance: 87)
+Fail GIAB low-mappability/segdup > 50%: 53
+Fail mostly-low-VAF heterozygotes: 2
+Analysis set: 55
+  RNU4-2    cov median  32.0 min  32.0  GIAB   0%  low-VAF  0.5%  -> IN
+  RNU4-1    cov median  32.0 min  32.0  GIAB   0%  low-VAF  0.4%  -> IN
+  RNU4ATAC  cov median  32.5 min  32.0  GIAB   0%  low-VAF  0.3%  -> IN
+  RNU2-2    cov median  32.0 min  32.0  GIAB   6%  low-VAF  0.3%  -> IN
+  RNU5B-1   cov median  33.0 min  33.0  GIAB   0%  low-VAF  0.3%  -> IN
+  RNU6ATAC  cov median  32.0 min  32.0  GIAB  22%  low-VAF  0.6%  -> IN
+  RNU12     cov median  33.0 min  33.0  GIAB   0%  low-VAF  0.4%  -> IN
+  RNU11     cov median  31.0 min  31.0  GIAB   0%  low-VAF  0.4%  -> IN
+  RNU2-1    cov median   0.0 min   0.0  GIAB 100%  low-VAF 23.1%  -> OUT: coverage (median 0, min 0); GIAB lowmap/segdup 100%
+  RNU5A-1   cov median  32.0 min  32.0  GIAB   0%  low-VAF  0.5%  -> IN
+Analysis set by family: U6 23, U4 7, U2 5, RNVU1 4, RNU6 4, RNU4 2, RNU5E 1, RNU11 1, RNU5F 1, RNU5D 1, RNU2 1, RNU5A 1, RNU5B 1, RNU4ATAC 1, RNU12 1, RNU6ATAC 1
