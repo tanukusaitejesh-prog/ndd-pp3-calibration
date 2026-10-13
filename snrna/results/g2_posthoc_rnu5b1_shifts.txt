@@ -1,0 +1,14 @@
+POST HOC, exploratory (computed after the frozen G2 decision; does not change it)
+RNU5B-1 n.37-44: mean window depletion percentile 0.053; 5 of 116 circular placements score <= this:
+  shift   -5: n.32-39  mean percentile 0.044  OVERLAPS the hotspot
+  shift   -4: n.33-40  mean percentile 0.027  OVERLAPS the hotspot
+  shift   -3: n.34-41  mean percentile 0.033  OVERLAPS the hotspot
+  shift   -2: n.35-42  mean percentile 0.038  OVERLAPS the hotspot
+  shift   -1: n.36-43  mean percentile 0.049  OVERLAPS the hotspot
+Most depleted 5-nt windows in RNU5B-1:
+  n.33-37: O 2 / E 8.8, D 1.79e-05
+  n.35-39: O 3 / E 9.8, D 2.51e-05
+  n.36-40: O 3 / E 9.6, D 3.33e-05
+  n.37-41: O 2 / E 8.4, D 5.88e-05
+  n.40-44: O 0 / E 6.3, D 7.08e-05
+  n.34-38: O 3 / E 9.0, D 1.83e-04
