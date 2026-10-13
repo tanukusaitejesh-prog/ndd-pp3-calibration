@@ -1,0 +1,18 @@
+{
+ "cms": [
+  "RF00015",
+  "RF00618"
+ ],
+ "pairs_per_cm": {
+  "RF00015": 117,
+  "RF00618": 85
+ },
+ "agreed_positions": 38,
+ "agreed_rnu4atac_span": [
+  1,
+  64
+ ],
+ "variants_with_h": 114,
+ "variants": 390,
+ "same_ref_fraction": 0.6052631578947368
+}

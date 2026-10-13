@@ -28,6 +28,12 @@ SNV_ID = re.compile(r"^chr[0-9XY]+-\d+-[ACGT]-[ACGT]$")
 AIM2_BASELINES = ("CADD v1.7", "ViennaRNA U4/U6 ddG_bind", "Evo 2 7B (G1)")
 CONTROL_RHO, CONTROL_AUC = 0.10, 0.5
 F_RESOLUTION = 2  # decimals (0.01 log units)
+# G3 units and their established inheritance mode (guidance Table 1). The framework score S uses selection f for
+# dominant units, the function score F (homology transfer h where mapped, else the function head d) for recessive
+# units, and the mean within-unit percentile rank of f and F otherwise (A2 upgrade U1).
+G3_UNITS = {"RNU4ATAC": "recessive", "RNU6ATAC": "recessive", "RNU12": "recessive", "RNU6 paralogs (pooled)": "dominant"}
+G3_SCORE = "framework"   # gating score for G3: "framework" (S) or "selection" (f); the other is reported alongside
+SHUFFLE = None           # dry runs: patient labels are permuted within unit so no real label-based result is shown
 
 
 def log(*a):
@@ -83,6 +89,30 @@ def load_l2(labels_dir):
     if sealed.any():
         raise SystemExit("non-blind label file contains sealed-gene rows; stop and re-seal")
     return L
+
+
+def lab(y):
+    """Labels as given, or permuted within the unit in a dry run (code exercised, no real result revealed)."""
+    y = np.asarray(y, bool)
+    return SHUFFLE.permutation(y) if SHUFFLE is not None else y
+
+
+def homology_scores(inputs):
+    p = os.path.join(inputs, "homology_rnu4atac.tsv.gz")
+    if not os.path.exists(p):
+        return {}
+    h = pd.read_csv(p, sep="\t").dropna(subset=["h"])
+    return dict(zip(h.ID, h.h))
+
+
+def framework_score(sc, mode):
+    """S for one unit (see G3_UNITS). Within-unit percentile ranks are used only when f and F are combined."""
+    F = sc.h.where(sc.h.notna(), sc.d)
+    if mode == "dominant":
+        return sc.f
+    if mode == "recessive":
+        return F
+    return (sc.f.rank(pct=True) + F.rank(pct=True)) / 2
 
 
 # ----------------------------------------------------------------------------------------------- metrics
@@ -291,9 +321,10 @@ def ablations_and_controls(args, pred, info, t, var, y, rep, B):
     return ab, ct
 
 
-def unit_scores(pred, var, genes, labels, scenario_of):
+def unit_scores(pred, var, genes, labels, scenario_of, hom=None):
     """Concatenate cross-fitted scores for a set of gene labels; scenario_of(label) names the fit that held it out."""
     parts = []
+    hom = hom or {}
     for lab in labels:
         en = ensemble(pred, scenario_of(lab))
         if en is None:
@@ -302,6 +333,7 @@ def unit_scores(pred, var, genes, labels, scenario_of):
         v["f"] = v.ID.map(en.f)
         v["gamma_f"] = v.ID.map(en.f * en.gamma)
         v["d"] = v.ID.map(en.d) if "d" in en.columns else np.nan
+        v["h"] = v.ID.map(hom)
         parts.append(v)
     return pd.concat(parts, ignore_index=True) if parts else None
 
@@ -317,42 +349,53 @@ def g3(args, pred, var, rep, B):
     named = genes[genes.named]
     units = {"RNU4ATAC": ["RNU4ATAC"], "RNU6ATAC": ["RNU6ATAC"], "RNU12": ["RNU12"],
              "RNU6 paralogs (pooled)": sorted(x for x in named.gene if re.match(r"^RNU6-\d+$", x))}
+    hom = homology_scores(args.inputs)
     rows, boot_sets = [], []
     overlap = []
     for u, gl in units.items():
         labs = list(genes.label[genes.gene.isin(gl)])
-        sc = unit_scores(pred, var, genes, labs, lambda lab: f"lofo_{cl[lab]}")
+        sc = unit_scores(pred, var, genes, labs, lambda lab_: f"lofo_{cl[lab_]}", hom)
         if sc is None:
             rows.append({"unit": u, "status": "no predictions"})
             continue
+        sc["S"] = framework_score(sc, G3_UNITS[u])
         pos = sc.ID.isin(plp.ID)
         neg = sc.L3_benign_like.astype(bool) & ~pos
         overlap += list(sc.ID[pos & sc.L3_benign_like.astype(bool)])
         ok = (pos | neg) & sc.f.notna() & sc.cadd_phred.notna()
-        y = pos[ok].to_numpy()
+        y = lab(pos[ok].to_numpy())
         n_pos = int(y.sum())
-        r = {"unit": u, "genes": ",".join(gl), "n_L2_snv": n_pos, "n_L3": int((~y).sum()), "eligible": n_pos >= 10}
+        r = {"unit": u, "mode": G3_UNITS[u], "genes": ",".join(gl), "n_L2_snv": n_pos, "n_L3": int((~y).sum()),
+             "eligible": n_pos >= 10, "n_with_homology": int(sc.h[ok].notna().sum())}
         if n_pos and (~y).sum():
             fm, cd = sc.f[ok].to_numpy(float), sc.cadd_phred[ok].to_numpy(float)
-            r.update({"auroc_model": S.auroc(y, fm), "auroc_cadd": S.auroc(y, cd)})
-            r["delta"] = r["auroc_model"] - r["auroc_cadd"]
+            r.update({"auroc_selection_f": S.auroc(y, fm), "auroc_cadd": S.auroc(y, cd)})
+            if sc.S[ok].notna().all():
+                r["auroc_framework_S"] = S.auroc(y, sc.S[ok].to_numpy(float))
             if sc.d[ok].notna().all():
-                dd = sc.d[ok].to_numpy(float)
-                r["auroc_function_head_d"] = S.auroc(y, dd)
-                rk = (pd.Series(fm).rank(pct=True) + pd.Series(dd).rank(pct=True)).to_numpy() / 2
-                r["auroc_combined_f_d"] = S.auroc(y, rk)
-            if r["eligible"]:
-                boot_sets.append((y, fm, cd))
+                r["auroc_function_head_d"] = S.auroc(y, sc.d[ok].to_numpy(float))
+            gate = sc.S[ok] if G3_SCORE == "framework" else sc.f[ok]
+            if gate.notna().all():
+                r["auroc_model"] = S.auroc(y, gate.to_numpy(float))
+                r["delta"] = r["auroc_model"] - r["auroc_cadd"]
+                if r["eligible"]:
+                    boot_sets.append((y, gate.to_numpy(float), cd))
         rows.append(r)
     res = pd.DataFrame(rows)
     res.to_csv(os.path.join(args.results, "model_g3.tsv"), sep="\t", index=False, float_format="%.4f")
     rep.add("Gate G3 (PREREG s8.3): per-unit AUROC of L2 P/LP SNVs vs L3 (gnomAD PASS AC>=9) SNVs, cross-fitted scores", "")
+    rep.add(f"  Gating score: {'framework S (inheritance-aware: f for dominant, function F for recessive units)' if G3_SCORE == 'framework' else 'selection f'}"
+            + ("; LABELS SHUFFLED (dry run)" if SHUFFLE is not None else ""))
     for r in rows:
         if "auroc_model" in r:
-            extra = (f"; function head d {r['auroc_function_head_d']:.3f}, f+d {r['auroc_combined_f_d']:.3f} (exploratory)"
-                     if "auroc_function_head_d" in r else "")
-            rep.add(f"  {r['unit']:24s} L2 {r['n_L2_snv']:3d} vs L3 {r['n_L3']:3d}: model {r['auroc_model']:.3f}, CADD "
-                    f"{r['auroc_cadd']:.3f}, delta {r['delta']:+.3f} {'(eligible)' if r['eligible'] else '(< 10 L2 SNVs: not in G3)'}{extra}")
+            other = (f"selection f {r['auroc_selection_f']:.3f}" if G3_SCORE == "framework" and "auroc_selection_f" in r
+                     else f"framework S {r['auroc_framework_S']:.3f}" if "auroc_framework_S" in r else "")
+            rep.add(f"  {r['unit']:24s} ({r['mode']}) L2 {r['n_L2_snv']:3d} vs L3 {r['n_L3']:3d}: model {r['auroc_model']:.3f}, "
+                    f"CADD {r['auroc_cadd']:.3f}, delta {r['delta']:+.3f} "
+                    f"{'(eligible)' if r['eligible'] else '(< 10 L2 SNVs: not in G3)'}; also {other}; "
+                    f"{r['n_with_homology']} SNVs with homology transfer")
+        elif "auroc_cadd" in r:
+            rep.add(f"  {r['unit']:24s} L2 {r['n_L2_snv']} vs L3 {r['n_L3']}: score incomplete for this unit")
         else:
             if r.get("status") == "no predictions":
                 rep.add(f"  {r['unit']:24s} not scored (no leave-cluster-out fit for it in this run)")
@@ -384,15 +427,16 @@ def g3(args, pred, var, rep, B):
                 f"[{lo:+.3f}, {hi:+.3f}] (bootstrap {B} within unit x class)",
             f"  Bar: >= 0.15 and interval excludes 0 -> Decision: {verdict}", "")
     # leave-family-out RNU4ATAC (reported, not gating)
-    sc = unit_scores(pred, var, genes, list(genes.label[genes.gene == "RNU4ATAC"]), lambda lab: "strict")
+    sc = unit_scores(pred, var, genes, list(genes.label[genes.gene == "RNU4ATAC"]), lambda lab_: "strict")
     if sc is not None:
         y = sc.ID.isin(plp.ID)
         n = sc.ID.isin(blb.ID)
         ok = (y | n) & sc.f.notna()
         if y[ok].sum() and n[ok].sum():
-            a = S.auroc(y[ok].to_numpy(), sc.f[ok].to_numpy(float))
-            lo2, hi2 = S.boot_auroc(y[ok].to_numpy(), sc.f[ok].to_numpy(float), B)
-            ac = S.auroc(y[ok].to_numpy(), sc.cadd_phred[ok].to_numpy(float))
+            yy = lab(y[ok].to_numpy())
+            a = S.auroc(yy, sc.f[ok].to_numpy(float))
+            lo2, hi2 = S.boot_auroc(yy, sc.f[ok].to_numpy(float), B)
+            ac = S.auroc(yy, sc.cadd_phred[ok].to_numpy(float))
             rep.add(f"  Leave-family-out (strict model), RNU4ATAC ClinVar P/LP ({int(y[ok].sum())}) vs ClinVar B/LB "
                     f"({int(n[ok].sum())}): AUROC {a:.3f} [{lo2:.3f}, {hi2:.3f}]; CADD {ac:.3f} (reported, not gating)", "")
     return res, verdict
@@ -408,7 +452,7 @@ def exploratory(args, pred, var, rep, B):
         r42 = plp[(plp.gene == "RNU4-2") & plp.inheritance.isin(["dominant", "recessive"])].copy()
         r42["f"] = r42.ID.map(en.f)
         r42 = r42[r42.f.notna()]
-        y = (r42.inheritance == "dominant").to_numpy()
+        y = lab((r42.inheritance == "dominant").to_numpy())
         if y.sum() and (~y).sum():
             a = S.auroc(y, r42.f.to_numpy(float))
             lo, hi = S.boot_auroc(y, r42.f.to_numpy(float), B)
@@ -419,12 +463,12 @@ def exploratory(args, pred, var, rep, B):
     genes = pd.read_csv(os.path.join(args.inputs, "genes.tsv.gz"), sep="\t")
     cl = genes.set_index("label").cluster
     labs = list(genes.label[genes.gene.isin(["RNU4ATAC", "RNU6ATAC", "RNU12"]) | genes.gene.str.match(r"^RNU6-\d+$")])
-    sc = unit_scores(pred, var, genes, labs, lambda lab: f"lofo_{cl[lab]}")
+    sc = unit_scores(pred, var, genes, labs, lambda lab_: f"lofo_{cl[lab_]}")
     if sc is not None:
         pos = sc.ID.isin(plp.ID)
         neg = sc.L3_benign_like.astype(bool) & ~pos
         ok = (pos | neg) & sc.gamma_f.notna()
-        y, s = pos[ok].to_numpy(), sc.gamma_f[ok].to_numpy(float)
+        y, s = lab(pos[ok].to_numpy()), sc.gamma_f[ok].to_numpy(float)
         if y.sum() >= 10 and (~y).sum() >= 10:
             thr = S.pp3_threshold(s, y, 0.10, B=min(B, 1000))
             bp4 = S.pp3_threshold(-s, ~y, 0.10, B=min(B, 1000))
@@ -459,6 +503,8 @@ def write_scores(args, pred, var):
             d[m] = ids.map(en.d)
         src[m] = f"lofo_{cl[lab]}"
     out["f_crossfit"], out["f_min_seed"], out["f_max_seed"], out["gamma"], out["d_function_head"], out["crossfit_fit"] = f, lo, hi, gm, d, src
+    out["h_homology"] = out.ID.map(homology_scores(args.inputs))
+    out["F_function"] = out.h_homology.where(out.h_homology.notna(), out.d_function_head)
     path = os.path.join(args.results, "model_scores.tsv.gz")
     out.to_csv(path, sep="\t", index=False, float_format="%.5g")
     return path
@@ -483,8 +529,10 @@ def main():
     os.makedirs(args.results, exist_ok=True)
     data_info = json.load(open(os.path.join(args.runs, "data_info.json")))
     synthetic = data_info.get("synthetic_counts") is not None
-    banner = ("DRY RUN: model fitted to SYNTHETIC planted counts. Every number below is meaningless and must not be "
-              "reported." if synthetic else "")
+    global SHUFFLE
+    SHUFFLE = np.random.default_rng(SEED + 1) if synthetic else None
+    banner = ("DRY RUN: model fitted to SYNTHETIC planted counts and patient labels SHUFFLED. Every number below is "
+              "meaningless and must not be reported." if synthetic else "")
     if data_info.get("quick"):
         banner = (banner + " " if banner else "") + "QUICK settings (not the pre-registered model)."
     pred, info = load_preds(args.runs)
@@ -510,7 +558,7 @@ def main():
     rep.add(f"Cross-fitted scores for all {len(var)} SNVs: {os.path.relpath(sp, HERE)}")
     rep.write()
     run = {"utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "git_commit": git_commit(), "synthetic": synthetic,
-           "quick": bool(data_info.get("quick")), "g3": g3_verdict, "boot": args.boot,
+           "quick": bool(data_info.get("quick")), "g3": g3_verdict, "g3_score": G3_SCORE, "boot": args.boot,
            "inputs_sha256": {os.path.basename(p): hashlib.sha256(open(p, "rb").read()).hexdigest()
                              for p in sorted(glob.glob(os.path.join(args.inputs, "*.gz")))}}
     with open(os.path.join(args.results, "model_run_info.json"), "w") as f:
