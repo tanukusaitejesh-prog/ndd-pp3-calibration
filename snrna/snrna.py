@@ -156,6 +156,19 @@ def run_info(name, extra=None):
 
 # ----------------------------------------------------------------------------------------------- remote sources
 
+
+class remote_index_dir:
+    """htslib saves downloaded .tbi/.csi indexes in the working directory; keep them in data/cache/idx."""
+    def __enter__(self):
+        self.old = os.getcwd()
+        d = os.path.join(DATA, "cache", "idx")
+        os.makedirs(d, exist_ok=True)
+        os.chdir(d)
+
+    def __exit__(self, *exc):
+        os.chdir(self.old)
+
+
 def ucsc_seq(chrom, start0, end):
     """GRCh38 bases [start0, end) (0-based, half-open), upper case, cached."""
     def get():
@@ -206,8 +219,10 @@ def gnomad_records(chrom, start, end):
     def get():
         import pysam
         rows = []
-        vf = pysam.VariantFile(URL["gnomad_vcf"].format(chrom=chrom))
-        for r in vf.fetch(chrom, start - 1, end):
+        with remote_index_dir():
+            vf = pysam.VariantFile(URL["gnomad_vcf"].format(chrom=chrom))
+            recs = list(vf.fetch(chrom, start - 1, end))
+        for r in recs:
             flt = ";".join(r.filter.keys()) or "PASS"
             for i, alt in enumerate(r.alts):
                 info = r.info
@@ -233,9 +248,11 @@ def roulette_records(chrom, start, end):
         import pysam
         n = chrom.replace("chr", "")
         url = URL["roulette"].format(n=n)
-        tb = pysam.TabixFile(url, index=url + ".csi")
+        with remote_index_dir():
+            tb = pysam.TabixFile(url, index=url + ".csi")
+            lines = list(tb.fetch(n, start - 1, end))
         rows = []
-        for line in tb.fetch(n, start - 1, end):
+        for line in lines:
             c = line.split("\t")
             info = dict(kv.split("=") for kv in c[7].split(";"))
             rows.append({"chrom": chrom, "pos": int(c[1]), "ref": c[3], "alt": c[4], "roulette_filter": c[6],
@@ -247,8 +264,9 @@ def roulette_records(chrom, start, end):
 def cadd_records(chrom, start, end):
     def get():
         import pysam
-        tb = pysam.TabixFile(URL["cadd"], index=URL["cadd"] + ".tbi")
-        rows = [line.split("\t") for line in tb.fetch(chrom.replace("chr", ""), start - 1, end)]
+        with remote_index_dir():
+            tb = pysam.TabixFile(URL["cadd"], index=URL["cadd"] + ".tbi")
+            rows = [line.split("\t") for line in tb.fetch(chrom.replace("chr", ""), start - 1, end)]
         df = pd.DataFrame(rows, columns=["chrom", "pos", "ref", "alt", "cadd_raw", "cadd_phred"])
         df["chrom"] = chrom
         return df.astype({"pos": int, "cadd_raw": float, "cadd_phred": float})
