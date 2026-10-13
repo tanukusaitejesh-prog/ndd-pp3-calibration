@@ -1,0 +1,37 @@
+predictor	region	n	spearman
+CADD v1.7 (paper column)	3' stem loop	103	0.0846
+CADD v1.7 (paper column)	Other	126	0.0750
+CADD v1.7 (paper column)	Sm site	27	-0.2705
+CADD v1.7 (paper column)	Stem I	27	-0.4595
+CADD v1.7 (paper column)	Stem II	42	0.3059
+CADD v1.7 (paper column)	Stem III	37	0.4038
+CADD v1.7 (paper column)	T-loop	56	0.0973
+CADD v1.7 (paper column)	k-turn	45	-0.0653
+CADD v1.7 (paper column)	terminal stem loop	58	-0.0433
+ViennaRNA U4/U6 ddG_bind (paper column)	3' stem loop	103	0.2119
+ViennaRNA U4/U6 ddG_bind (paper column)	Other	126	0.0761
+ViennaRNA U4/U6 ddG_bind (paper column)	Sm site	27	-0.0144
+ViennaRNA U4/U6 ddG_bind (paper column)	Stem I	27	0.0934
+ViennaRNA U4/U6 ddG_bind (paper column)	Stem II	42	0.7900
+ViennaRNA U4/U6 ddG_bind (paper column)	Stem III	37	0.2868
+ViennaRNA U4/U6 ddG_bind (paper column)	T-loop	56	0.1061
+ViennaRNA U4/U6 ddG_bind (paper column)	k-turn	45	0.0512
+ViennaRNA U4/U6 ddG_bind (paper column)	terminal stem loop	58	-0.1024
+Allele-count floor	3' stem loop	103	0.0994
+Allele-count floor	Other	126	-0.0298
+Allele-count floor	Sm site	27	0.1914
+Allele-count floor	Stem I	27	0.4068
+Allele-count floor	Stem II	42	-0.0454
+Allele-count floor	Stem III	37	0.2840
+Allele-count floor	T-loop	56	-0.0209
+Allele-count floor	k-turn	45	0.4855
+Allele-count floor	terminal stem loop	58	0.0452
+Position-only floor (LOPO)	3' stem loop	103	0.0299
+Position-only floor (LOPO)	Other	126	-0.1346
+Position-only floor (LOPO)	Sm site	27	-0.8195
+Position-only floor (LOPO)	Stem I	27	-0.5748
+Position-only floor (LOPO)	Stem II	42	-0.8403
+Position-only floor (LOPO)	Stem III	37	-0.5393
+Position-only floor (LOPO)	T-loop	56	-0.3785
+Position-only floor (LOPO)	k-turn	45	-0.7584
+Position-only floor (LOPO)	terminal stem loop	58	-0.6669
