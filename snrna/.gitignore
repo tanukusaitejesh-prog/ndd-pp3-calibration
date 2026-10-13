@@ -13,3 +13,4 @@ evo2_run/features*/
 snrna_*.tar.gz
 # never commit unsealed blind labels (only the .enc file and the manifest)
 sealed/*.tsv
+release/
