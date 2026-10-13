@@ -1,0 +1,16 @@
+{
+ "n_snvs": 17385,
+ "coverage": {
+  "phylop100": 0.9894736842105263,
+  "phylop447": 1.0,
+  "remm": 1.0,
+  "gpn_msa": 1.0
+ },
+ "sources": {
+  "phyloP100way": "UCSC API",
+  "phyloP447way": "UCSC API",
+  "ReMM": "https://kircherlab.bihealth.org/download/ReMM/ReMM.v0.4.hg38.tsv.gz",
+  "GPN-MSA": "https://huggingface.co/datasets/songlab/gpn-msa-hg38-scores/resolve/main/scores.tsv.bgz"
+ },
+ "utc": "2026-10-13T18:03:04Z"
+}
