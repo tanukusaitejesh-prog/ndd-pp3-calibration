@@ -1,0 +1,106 @@
+ID	gene	source	classification	review_status	inheritance	title	label
+chr12-120291763-T-C	RNU4-2	ClinVar:VCV004822640	Likely benign	criteria provided, single submitter		NR_003137.3(RNU4-2):n.141A>G	B/LB
+chr12-120291770-A-G	RNU4-2	ClinVar:VCV003905699	Likely benign	criteria provided, single submitter		NR_003137.3(RNU4-2):n.134T>C	B/LB
+chr12-120291771-G-A	RNU4-2	ClinVar:VCV004823118	Likely benign	criteria provided, single submitter		NR_003137.3(RNU4-2):n.133C>T	B/LB
+chr12-120291782-A-C	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.122T>G	P/LP
+chr12-120291783-A-T	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.121T>A	P/LP
+chr12-120291785-T-C	RNU4-2	RNUdb	Pathogenic	RNUdb curated	recessive	n.119A>G	P/LP
+chr12-120291786-T-C	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.118A>G	P/LP
+chr12-120291789-C-T	RNU4-2	ClinVar:VCV004874406	Likely benign	criteria provided, single submitter		NR_003137.3(RNU4-2):n.115G>A	B/LB
+chr12-120291792-T-A	RNU4-2	ClinVar:VCV004874271	Likely benign	criteria provided, single submitter		NR_003137.3(RNU4-2):n.112A>T	B/LB
+chr12-120291797-A-G	RNU4-2	ClinVar:VCV004681777	Likely benign	criteria provided, single submitter		NR_003137.3(RNU4-2):n.107T>C	B/LB
+chr12-120291826-T-G	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.78A>C	P/LP
+chr12-120291826-T-TA	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.77_78insT	P/LP
+chr12-120291826-T-TC	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.77_78insG	P/LP
+chr12-120291826-T-TG	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.77_78insC	P/LP
+chr12-120291827---A	RNU4-2	ClinVar:VCV003766428	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	unknown	NR_003137.3(RNU4-2):n.77_78insT	P/LP
+chr12-120291827---C	RNU4-2	ClinVar:VCV003766427	Likely pathogenic	criteria provided, single submitter	unknown	NR_003137.3(RNU4-2):n.77_78insG	P/LP
+chr12-120291827-T-TA	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.76_77insT	P/LP
+chr12-120291828---A	RNU4-2	ClinVar:VCV003766426	Likely pathogenic	criteria provided, multiple submitters, no conflicts	unknown	NR_003137.3(RNU4-2):n.76_77insT	P/LP
+chr12-120291828-G-A	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.76C>T	P/LP
+chr12-120291829-G-C	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.75C>G	P/LP
+chr12-120291830-GAA-G	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.72_73del	P/LP
+chr12-120291831-AAAA-AA	RNU4-2	ClinVar:VCV003766422	Likely pathogenic	criteria provided, single submitter	unknown	NR_003137.3(RNU4-2):n.72_73del	P/LP
+chr12-120291834-A-G	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.70T>C	P/LP
+chr12-120291835-G-A	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.69C>T	P/LP
+chr12-120291835-G-C	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.69C>G	P/LP
+chr12-120291835-G-GT	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.68_69insA	P/LP
+chr12-120291836-T-G	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.68A>C	P/LP
+chr12-120291836-TTTT-TTTTT	RNU4-2	ClinVar:VCV004292596	Pathogenic	criteria provided, single submitter	unknown	NR_003137.3(RNU4-2):n.68dup	P/LP
+chr12-120291837-T-C	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.67A>G	P/LP
+chr12-120291838-T-C	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.66A>G	P/LP
+chr12-120291838-T-TA	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.65_66insT	P/LP
+chr12-120291839---A	RNU4-2	ClinVar:VCV003766436	Likely pathogenic	criteria provided, multiple submitters, no conflicts	unknown	NR_003137.3(RNU4-2):n.65_66insT	P/LP
+chr12-120291839-T-C	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.65A>G	P/LP
+chr12-120291839-T-TA	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.64_65insT	P/LP
+chr12-120291839-T-TC	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.64dup	P/LP
+chr12-120291840---A	RNU4-2	ClinVar:VCV003068742	Pathogenic	criteria provided, multiple submitters, no conflicts	unknown	NR_003137.3(RNU4-2):n.64_65insT	P/LP
+chr12-120291840-C-CC	RNU4-2	ClinVar:VCV003766435	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	unknown	NR_003137.3(RNU4-2):n.64dup	P/LP
+chr12-120291841-A-C	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.63T>G	P/LP
+chr12-120291841-A-G	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.63T>C	P/LP
+chr12-120291842-A-G	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	dominant	n.62T>C	P/LP
+chr12-120291843-T-C	RNU4-2	ClinVar:VCV003906077	Likely benign	criteria provided, single submitter		NR_003137.3(RNU4-2):n.61A>G	B/LB
+chr12-120291848-A-G	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.56T>C	P/LP
+chr12-120291858-C-T	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.46G>A	P/LP
+chr12-120291859-C-G	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.45G>C	P/LP
+chr12-120291872-C-T	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.32G>A	P/LP
+chr12-120291877-G-A	RNU4-2	ClinVar:VCV004822656	Likely benign	criteria provided, single submitter		NR_003137.3(RNU4-2):n.27C>T	B/LB
+chr12-120291877-G-C	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.27C>G	P/LP
+chr12-120291885-A-AT	RNU4-2	RNUdb	Pathogenic	RNUdb curated	dominant	n.18_19insA	P/LP
+chr12-120291886---T	RNU4-2	ClinVar:VCV004282506	Pathogenic	criteria provided, multiple submitters, no conflicts	unknown	NR_003137.3(RNU4-2):n.18_19insA	P/LP
+chr12-120291893-T-G	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.11A>C	P/LP
+chr12-120291896-G-C	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.8C>G	P/LP
+chr12-120291897-C-G	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.7G>C	P/LP
+chr12-120291897-C-T	RNU4-2	RNUdb	Likely pathogenic	RNUdb curated	recessive	n.7G>A	P/LP
+chr14-32203215---C	RNU6-8	ClinVar:VCV004282511	Pathogenic	criteria provided, single submitter	dominant	NR_104088.1(RNU6-8):n.55_56insG	P/LP
+chr14-32203237---A	RNU6-8	ClinVar:VCV004874262	Likely benign	criteria provided, single submitter		NR_104088.1(RNU6-8):n.33_34insT	B/LB
+chr15-67839991---C	RNU6-1	ClinVar:VCV004282508	Likely pathogenic	criteria provided, multiple submitters, no conflicts	dominant	NR_004394.2(RNU6-1):n.55_56insG	P/LP
+chr2-121530887-C-A	RNU4ATAC	ClinVar:VCV000692040	Likely pathogenic	criteria provided, single submitter	recessive	NM_001395891.1(CLASP1):c.196-562G>T	P/LP
+chr2-121530892-C-T	RNU4ATAC	ClinVar:VCV000218083	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NM_001395891.1(CLASP1):c.196-567G>A	P/LP
+chr2-121530895-G-A	RNU4ATAC	ClinVar:VCV000218082	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NM_001395891.1(CLASP1):c.196-570C>T	P/LP
+chr2-121530902-C-T	RNU4ATAC	ClinVar:VCV001133987	Likely benign	criteria provided, multiple submitters, no conflicts		NM_001395891.1(CLASP1):c.196-577G>A	B/LB
+chr2-121530909-G-A	RNU4ATAC	ClinVar:VCV000030180	Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_023343.1:n.30G>A	P/LP
+chr2-121530912-C-G	RNU4ATAC	ClinVar:VCV004699372	Likely pathogenic	criteria provided, single submitter	recessive	NR_023343.3(RNU4ATAC):n.33C>G	P/LP
+chr2-121530914-A-C	RNU4ATAC	ClinVar:VCV002674599	Likely pathogenic	criteria provided, single submitter	recessive	NM_001395891.1(CLASP1):c.196-589T>G	P/LP
+chr2-121530917-A-T	RNU4ATAC	ClinVar:VCV003771898	Likely pathogenic	criteria provided, single submitter	recessive	NR_023343.3(RNU4ATAC):n.38A>T	P/LP
+chr2-121530919-C-T	RNU4ATAC	ClinVar:VCV000599282	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NM_001395891.1(CLASP1):c.196-594G>A	P/LP
+chr2-121530920-G-A	RNU4ATAC	ClinVar:VCV001629605	Likely benign	criteria provided, multiple submitters, no conflicts		NM_001395891.1(CLASP1):c.196-595C>T	B/LB
+chr2-121530921-C-T	RNU4ATAC	ClinVar:VCV001160662	Likely benign	criteria provided, multiple submitters, no conflicts		NM_001395891.1(CLASP1):c.196-596G>A	B/LB
+chr2-121530922-A-G	RNU4ATAC	ClinVar:VCV001633266	Likely benign	criteria provided, single submitter		NC_000002.12:g.121530922A>G	B/LB
+chr2-121530924-A-C	RNU4ATAC	ClinVar:VCV001632468	Likely benign	criteria provided, single submitter		NC_000002.12:g.121530924A>C	B/LB
+chr2-121530925-G-A	RNU4ATAC	ClinVar:VCV000636959	Pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NM_001395891.1(CLASP1):c.196-600C>T	P/LP
+chr2-121530927-G-A	RNU4ATAC	ClinVar:VCV000218085	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_023343.3(RNU4ATAC):n.48G>A	P/LP
+chr2-121530928-A-G	RNU4ATAC	ClinVar:VCV004852261	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_023343.3(RNU4ATAC):n.49A>G	P/LP
+chr2-121530929-G-A	RNU4ATAC	ClinVar:VCV000030184	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_023343.3(RNU4ATAC):n.50G>A	P/LP
+chr2-121530929-G-C	RNU4ATAC	ClinVar:VCV000030182	Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NC_000002.12:g.121530929G>C	P/LP
+chr2-121530930-G-A	RNU4ATAC	ClinVar:VCV000030178	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NM_001395891.1(CLASP1):c.196-605C>T	P/LP
+chr2-121530932-C-G	RNU4ATAC	ClinVar:VCV000030183	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_023343.3(RNU4ATAC):n.53C>G	P/LP
+chr2-121530934-G-A	RNU4ATAC	ClinVar:VCV000030179	Pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_023343.3(RNU4ATAC):n.55G>A	P/LP
+chr2-121530937-C-T	RNU4ATAC	ClinVar:VCV001170904	Benign/Likely benign	criteria provided, multiple submitters, no conflicts		NC_000002.12:g.121530937C>T	B/LB
+chr2-121530966-C-T	RNU4ATAC	ClinVar:VCV001168718	Benign/Likely benign	criteria provided, multiple submitters, no conflicts		NC_000002.12:g.121530966C>T	B/LB
+chr2-121530970-T-TT	RNU4ATAC	ClinVar:VCV001103875	Likely benign	criteria provided, multiple submitters, no conflicts		NM_001395891.1(CLASP1):c.196-645dup	B/LB
+chr2-121530972-G-A	RNU4ATAC	ClinVar:VCV001601357	Benign	criteria provided, multiple submitters, no conflicts		NM_001395891.1(CLASP1):c.196-647C>T	B/LB
+chr2-121530986-TTTT-TTT	RNU4ATAC	ClinVar:VCV001535896	Benign	criteria provided, single submitter		NM_001395891.1(CLASP1):c.196-661del	B/LB
+chr2-121530988-T-A	RNU4ATAC	ClinVar:VCV001628512	Likely benign	criteria provided, single submitter		NC_000002.12:g.121530988T>A	B/LB
+chr2-121530990-G-A	RNU4ATAC	ClinVar:VCV000030181	Pathogenic	criteria provided, single submitter	recessive	NC_000002.12:g.121530990G>A	P/LP
+chr2-121530995-A-C	RNU4ATAC	ClinVar:VCV001373455	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NM_001395891.1(CLASP1):c.196-670T>G	P/LP
+chr2-121530995-A-G	RNU4ATAC	ClinVar:VCV000870579	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NM_001395891.1(CLASP1):c.196-670T>C	P/LP
+chr2-121530995-A-T	RNU4ATAC	ClinVar:VCV000812960	Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NC_000002.12:g.121530995A>T	P/LP
+chr2-121530995-AA-AAA	RNU4ATAC	ClinVar:VCV001159385	Likely benign	criteria provided, single submitter		NR_023343.3(RNU4ATAC):n.117dup	B/LB
+chr2-121530996-A-G	RNU4ATAC	ClinVar:VCV001525441	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NC_000002.12:g.121530996A>G	P/LP
+chr2-121530997-T-C	RNU4ATAC	ClinVar:VCV000218087	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_023343.3(RNU4ATAC):n.118T>C	P/LP
+chr2-121530999-T-A	RNU4ATAC	ClinVar:VCV004956681	Likely pathogenic	criteria provided, single submitter	recessive	NR_023343.3(RNU4ATAC):n.120T>A	P/LP
+chr2-121530999-T-G	RNU4ATAC	ClinVar:VCV000977779	Likely pathogenic	criteria provided, single submitter	recessive	NR_023343.3(RNU4ATAC):n.120T>G	P/LP
+chr2-121531002-GG-G	RNU4ATAC	ClinVar:VCV001224468	Likely pathogenic	criteria provided, single submitter	recessive	NM_001395891.1(CLASP1):c.196-677del	P/LP
+chr2-121531003-G-A	RNU4ATAC	ClinVar:VCV000039443	Pathogenic/Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_023343.3(RNU4ATAC):n.124G>A	P/LP
+chr2-121531003-G-T	RNU4ATAC	ClinVar:VCV002813456	Pathogenic	criteria provided, single submitter	recessive	NC_000002.12:g.121531003G>T	P/LP
+chr2-121531004-AAAAA-AAAAAA	RNU4ATAC	ClinVar:VCV001143919	Likely benign	criteria provided, multiple submitters, no conflicts		NM_001395891.1(CLASP1):c.196-679dup	B/LB
+chr22-42615296-C-T	RNU12	ClinVar:VCV003389430	Benign	criteria provided, single submitter		NR_029422.2(RNU12):n.53C>T	B/LB
+chr22-42615320-T-A	RNU12	ClinVar:VCV002443785	Pathogenic	criteria provided, single submitter	recessive	NR_029422.2(RNU12):n.77T>A	P/LP
+chr22-42615323-T-C	RNU12	ClinVar:VCV004884739	Likely pathogenic	criteria provided, single submitter	recessive	NR_029422.2(RNU12):n.80T>C	P/LP
+chr22-42615327-C-T	RNU12	ClinVar:VCV002443782	Pathogenic	criteria provided, single submitter	recessive	NR_029422.2(RNU12):n.84C>T	P/LP
+chr22-42615328-G-A	RNU12	ClinVar:VCV004884778	Likely pathogenic	criteria provided, single submitter	recessive	NR_029422.2(RNU12):n.85G>A	P/LP
+chr22-42615329-G-A	RNU12	ClinVar:VCV002443784	Likely pathogenic	criteria provided, multiple submitters, no conflicts	recessive	NR_029422.2(RNU12):n.86G>A	P/LP
+chr22-42615345-A-G	RNU12	ClinVar:VCV004534615	Likely benign	criteria provided, single submitter		NR_029422.2(RNU12):n.102A>G	B/LB
+chr22-42615375-GGG-GG	RNU12	ClinVar:VCV004857188	Pathogenic	criteria provided, single submitter	recessive	NR_029422.2(RNU12):n.134del	P/LP
+chr22-42615382-G-T	RNU12	ClinVar:VCV004526714	Likely pathogenic	criteria provided, single submitter	recessive	NR_029422.2(RNU12):n.139G>T	P/LP
