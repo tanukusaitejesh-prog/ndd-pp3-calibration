@@ -108,12 +108,12 @@ class Data:
                                 "remap": remap})
         # variants
         var = var.reset_index(drop=True)
-        if shuffle_counts_seed is not None:
-            rng = np.random.default_rng(shuffle_counts_seed)
-            var["AC_pass"] = var.groupby("label").AC_pass.transform(lambda s: rng.permutation(s.to_numpy()))
         if synthetic_counts_seed is not None:
             # dry runs and tests: counts drawn from a planted model, so no real allele count is ever fitted
             var["AC_pass"] = planted_counts(var, nodes, self.genes, synthetic_counts_seed)[2]
+        if shuffle_counts_seed is not None:  # after the synthetic draw, so the control also works in dry runs
+            rng = np.random.default_rng(shuffle_counts_seed)
+            var["AC_pass"] = var.groupby("label").AC_pass.transform(lambda s: rng.permutation(s.to_numpy()))
         self.var = var
         vf = ((var[var_cont] - self.var_mu) / self.var_sd).fillna(0).to_numpy()
         alt = np.zeros((len(var), 4))
