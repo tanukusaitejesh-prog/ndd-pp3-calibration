@@ -1,0 +1,4 @@
+# results are committed here (the repository root ignores results/ for the PP3 study)
+!results/
+__pycache__/
+.pytest_cache/
