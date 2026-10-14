@@ -10,6 +10,7 @@
   fig5_a7               A7 per-unit AUROC: Rfam alt rarity vs CADD vs phyloP447 on non-snRNA RNA genes
   fig6_gene_discovery   loci ranked by within-locus window depletion (rel_z), disease genes marked
   fig7_aim2             RNU4-2 SGE Spearman by model version against the pre-registered bar
+  fig8_a9               genome-wide rarity-only inflation of CADD, GPN-MSA, ReMM by variant class (A9)
 Colours: validated categorical slots 1-4 (light mode, print); every series also has its own line style or marker
 and a direct label, so identity never rests on colour alone.
 """
@@ -214,6 +215,35 @@ def fig_aim2(plt):
     save(fig, "fig7_aim2")
 
 
+def fig_a9(plt):
+    p = os.path.join(RES, "a9_results.tsv")
+    if not os.path.exists(p):
+        return "needs results/a9_results.tsv (a9_inflation.py eval)"
+    t = pd.read_csv(p, sep="	")
+    units = [u for u in ("intronic", "5'UTR", "3'UTR", "ncRNA exon", "pooled") if u in set(t.unit)]
+    tools = [("CADD v1.7", "cadd"), ("GPN-MSA", "v4"), ("ReMM v0.4", "phylop447")]
+    fig, ax = plt.subplots(figsize=(5.2, 0.62 * len(units) + 1.0))
+    for i, u in enumerate(units):
+        for j, (lab, k) in enumerate(tools):
+            r = t[(t.unit == u) & (t.tool == lab)]
+            if not len(r):
+                continue
+            r = r.iloc[0]
+            y = i + (j - 1) * 0.24
+            col = SERIES[k][0]
+            ax.plot([0.5, r.null_mean], [y, y], color=GRID, lw=5, solid_capstyle="butt")
+            ax.plot([r.null_mean, r.raw_auroc], [y, y], color=col, lw=5, solid_capstyle="butt", label=lab if i == 0 else None)
+            ax.plot(r.null_mean, y, "|", color=INK2, ms=9, mew=1.5)
+    ax.set_yticks(range(len(units)), [f"{u} ({int(t[t.unit == u].n_P.iloc[0])} P/LP)" for u in units])
+    ax.axvline(0.5, color=MUTED, lw=0.8, ls=(0, (2, 2)))
+    ax.set_xlim(0.45, 0.92)
+    ax.set_xlabel("AUROC vs gnomAD-common SNVs (grey = rarity-only null)")
+    ax.set_title("A9: rarity alone inflates non-coding predictors", loc="left", color=INK, fontsize=9, pad=22)
+    ax.legend(loc="lower left", fontsize=7, bbox_to_anchor=(0, 1.0), ncol=3, borderaxespad=0.2)
+    ax.grid(axis="y", visible=False)
+    save(fig, "fig8_a9")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--blind", default=os.path.join(HERE, "sealed", "blind_labels.tsv"))
@@ -223,7 +253,7 @@ def main():
     for name, fn in (("fig1_blind_roc", lambda: fig_blind_roc(plt, a.blind)), ("fig2_robustness", lambda: fig_robustness(plt)),
                      ("fig3_ablation", lambda: fig_ablation(plt)), ("fig4_calibration", lambda: fig_calibration(plt)),
                      ("fig5_a7", lambda: fig_a7(plt)), ("fig6_gene_discovery", lambda: fig_gene_discovery(plt)),
-                     ("fig7_aim2", lambda: fig_aim2(plt))):
+                     ("fig7_aim2", lambda: fig_aim2(plt)), ("fig8_a9", lambda: fig_a9(plt))):
         print(name, flush=True)
         why = fn()
         if why:
