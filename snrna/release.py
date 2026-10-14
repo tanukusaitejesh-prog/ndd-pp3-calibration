@@ -100,6 +100,24 @@ def main():
         th_out = th
         final_cols = ("- `evidence_prior_0.10` PP3/BP4 strength reached by `S` under that gene's calibrated thresholds "
                       "(empty if none or the gene could not be calibrated)\n")
+    # amendment A5: the frozen v4 score (hash-checked), and its post hoc PP3/BP4 label from v4_calibrate.py if run
+    v4p, v4m = os.path.join(HERE, "results_v4", "v4_scores.tsv.gz"), os.path.join(HERE, "results_v4", "v4_manifest.txt")
+    if os.path.exists(v4p):
+        man = {l.split()[1]: l.split()[0] for l in open(v4m) if l.strip()}
+        if man.get(os.path.relpath(v4p, HERE)) != sha256(v4p):
+            raise SystemExit("results_v4/v4_scores.tsv.gz does not match its frozen manifest")
+        out = out.merge(pd.read_csv(v4p, sep="\t")[["ID", "v4"]], on="ID", how="left")
+        final_cols += "- `v4` frozen stacked score (amendment A5; higher = more damaging; the paper's headline model)\n"
+        v4t = os.path.join(args.results, "v4_calibration_thresholds.tsv")
+        if args.stage == "final" and os.path.exists(v4t):
+            t4 = pd.read_csv(v4t, sep="\t")
+            t4 = t4[(t4.prior == 0.10) & (t4.score == "v4") & (t4.unit == "pooled (all genes)")]
+            if len(t4):
+                pooled = t4.iloc[0].to_dict()
+                out["v4_evidence_prior_0.10"] = [evidence(pd.Series({"S": s}), pooled) for s in out.v4]
+                th_out = pd.concat([th_out, t4], ignore_index=True) if th_out is not None else t4
+                final_cols += ("- `v4_evidence_prior_0.10` PP3/BP4 strength reached by `v4` under the pooled post hoc "
+                               "calibration (v4_calibrate.py)\n")
     name = f"snrna-vep-v2-{args.stage}-{date}"
     d = os.path.join(args.out, name)
     os.makedirs(d, exist_ok=True)
