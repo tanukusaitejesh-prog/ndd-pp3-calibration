@@ -46,7 +46,7 @@ case "${1:-}" in
     step spliceai_prep python a10_extend.py spliceai_prep
     if ! conda env list | grep -q "^spliceai "; then
       echo "== creating conda env spliceai (python 3.10, tensorflow-cpu, spliceai)"
-      conda create -y -q -n spliceai -c conda-forge python=3.10 && conda run -n spliceai pip install -q "tensorflow-cpu==2.15.1" spliceai
+      conda create -y -q -n spliceai -c conda-forge python=3.10 && conda run -n spliceai pip install -q "tensorflow-cpu==2.15.1" "setuptools<70" spliceai
     fi
     if [ ! -s data/hg38.fa ]; then
       echo "== downloading hg38.fa (~950 MB gz)"
