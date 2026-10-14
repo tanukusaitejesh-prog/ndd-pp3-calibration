@@ -2,6 +2,7 @@
 """v3 (exploratory, NOT the pre-registered v2): add allele counts from further public cohorts to the training counts.
 
     python v3_counts.py cohorts/ukb.tsv [cohorts/bravo.tsv ...]      # -> model_inputs_v3/
+    python v3_counts.py cohorts/ukb.csv     # all UK Biobank browser exports concatenated into one CSV (see ukb_regions.txt)
 
 Each cohort file is a TSV with columns chrom, pos, ref, alt, AC, AN (GRCh38, + strand, PASS sites only), one file per
 cohort, from cohorts that do not overlap gnomAD v4.1 genomes or each other (state overlap handling in the file name /
@@ -26,9 +27,13 @@ def main(paths):
     var["AC_gnomad"] = var.AC_pass
     summ = {"cohorts": {}}
     for p in paths:
-        c = pd.read_csv(p, sep="\t", dtype={"chrom": str})
-        c["chrom"] = "chr" + c.chrom.str.replace("chr", "", regex=False)
-        c["ID"] = c.chrom + "-" + c.pos.astype(str) + "-" + c.ref + "-" + c.alt
+        if p.endswith(".csv"):  # UK Biobank Allele Frequency Browser export ("Variant ID", "Allele Count", ...)
+            c = pd.read_csv(p).rename(columns={"Variant ID": "ID", "Allele Count": "AC", "Allele Number": "AN"})
+        else:
+            c = pd.read_csv(p, sep="\t", dtype={"chrom": str})
+            c["chrom"] = "chr" + c.chrom.str.replace("chr", "", regex=False)
+            c["ID"] = c.chrom + "-" + c.pos.astype(str) + "-" + c.ref + "-" + c.alt
+        c = c.drop_duplicates("ID")
         name = os.path.splitext(os.path.basename(p))[0]
         ac = var.ID.map(dict(zip(c.ID, c.AC))).fillna(0).astype(int)
         var[f"AC_{name}"] = ac
