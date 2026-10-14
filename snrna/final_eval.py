@@ -189,6 +189,9 @@ def main():
     subprocess.run([sys.executable, os.path.join(HERE, "calibrate.py"), "--runs", args.runs, "--inputs", args.inputs,
                     "--labels", args.labels, "--results", args.results, "--evo2", args.evo2, "--blind", plain_path(),
                     "--boot", str(args.calib_boot)], check=True)
+    if os.path.exists(os.path.join(HERE, "results_v4", "v4_manifest.txt")):  # amendment A5: frozen v4, same single unsealing
+        subprocess.run([sys.executable, os.path.join(HERE, "v4_blind_eval.py"), "--blind", plain_path(),
+                        "--results", args.results, "--boot", str(args.boot)], check=False)
     with open(os.path.join(args.results, "final_run_info.json"), "w") as f:
         json.dump({"utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "reason": args.reason, "git_commit": E.git_commit(),
                    "boot": args.boot}, f, indent=1)
