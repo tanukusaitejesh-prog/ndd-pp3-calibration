@@ -1,0 +1,350 @@
+ID	gene	source	classification	review_status
+chr1-11908174-C-A	RNU5E-1	ClinVar:VCV003770165	Uncertain significance	criteria provided, single submitter
+chr1-11908244---A	RNU5E-1	ClinVar:VCV003362396	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr1-44721823-A-T	RNU5F-1	ClinVar:VCV003770167	Uncertain significance	criteria provided, single submitter
+chr1-44721855-T-G	RNU5F-1	ClinVar:VCV003770166	Uncertain significance	criteria provided, single submitter
+chr1-44721787-G-T	RNU5F-1	ClinVar:VCV003362397	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr11-62841622-G-C	RNU2-2	ClinVar:VCV004540549	Uncertain significance	criteria provided, single submitter
+chr11-62841627-C-A	RNU2-2	ClinVar:VCV004540548	Uncertain significance	criteria provided, single submitter
+chr11-62841629-C-A	RNU2-2	ClinVar:VCV004540546	Uncertain significance	criteria provided, single submitter
+chr11-62841630-C-A	RNU2-2	ClinVar:VCV004540544	Uncertain significance	criteria provided, single submitter
+chr11-62841796-G-C	RNU2-2	ClinVar:VCV004540543	Uncertain significance	criteria provided, single submitter
+chr11-62841630-C-T	RNU2-2	ClinVar:VCV004540542	Uncertain significance	criteria provided, single submitter
+chr11-62841634-C-G	RNU2-2	ClinVar:VCV004540541	Uncertain significance	criteria provided, single submitter
+chr11-62841635-C-T	RNU2-2	ClinVar:VCV004540540	Uncertain significance	criteria provided, single submitter
+chr11-62841636-T-G	RNU2-2	ClinVar:VCV004540539	Uncertain significance	criteria provided, single submitter
+chr11-62841647-CAATAC-C	RNU2-2	ClinVar:VCV004540538	Uncertain significance	criteria provided, single submitter
+chr11-62841653-C-G	RNU2-2	ClinVar:VCV004540536	Uncertain significance	criteria provided, single submitter
+chr11-62841653-C-T	RNU2-2	ClinVar:VCV004540535	Uncertain significance	criteria provided, single submitter
+chr11-62841655-G-C	RNU2-2	ClinVar:VCV004540534	Uncertain significance	criteria provided, single submitter
+chr11-62841656-G-A	RNU2-2	ClinVar:VCV004540533	Uncertain significance	criteria provided, single submitter
+chr11-62841797-G-A	RNU2-2	ClinVar:VCV004540532	Uncertain significance	criteria provided, single submitter
+chr11-62841658-C-T	RNU2-2	ClinVar:VCV004540531	Uncertain significance	criteria provided, single submitter
+chr11-62841660-A-C	RNU2-2	ClinVar:VCV004540530	Uncertain significance	criteria provided, single submitter
+chr11-62841661-T-A	RNU2-2	ClinVar:VCV004540529	Uncertain significance	criteria provided, single submitter
+chr11-62841665-T-A	RNU2-2	ClinVar:VCV004540528	Uncertain significance	criteria provided, single submitter
+chr11-62841665-T-C	RNU2-2	ClinVar:VCV004540527	Uncertain significance	criteria provided, single submitter
+chr11-62841654-AGGTCGATGCGTG--	RNU2-2	ClinVar:VCV004540526	Uncertain significance	criteria provided, single submitter
+chr11-62841643-ACTGCAATACCAGGTCGATGCGTGGA-A	RNU2-2	ClinVar:VCV004540525	Uncertain significance	criteria provided, single submitter
+chr11-62841667-G-C	RNU2-2	ClinVar:VCV004540524	Uncertain significance	criteria provided, single submitter
+chr11-62841657-TCGATGCGTGGA-TCGATGCGTGGATCGATGCGTGGA	RNU2-2	ClinVar:VCV004540523	Uncertain significance	criteria provided, single submitter
+chr11-62841668-A-G	RNU2-2	ClinVar:VCV004540522	Uncertain significance	criteria provided, single submitter
+chr11-62841801-A-G	RNU2-2	ClinVar:VCV004540521	Uncertain significance	criteria provided, single submitter
+chr11-62841678-G-A	RNU2-2	ClinVar:VCV004540520	Uncertain significance	criteria provided, single submitter
+chr11-62841679-C-T	RNU2-2	ClinVar:VCV004540519	Uncertain significance	criteria provided, single submitter
+chr11-62841671-GGACGGAGCAAG-G	RNU2-2	ClinVar:VCV004540518	Uncertain significance	criteria provided, single submitter
+chr11-62841682-G-A	RNU2-2	ClinVar:VCV004540516	Uncertain significance	criteria provided, single submitter
+chr11-62841682-G-C	RNU2-2	ClinVar:VCV004540515	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr11-62841695-C-T	RNU2-2	ClinVar:VCV004540513	Uncertain significance	criteria provided, single submitter
+chr11-62841697-C-T	RNU2-2	ClinVar:VCV004540512	Uncertain significance	criteria provided, single submitter
+chr11-62841700-A-AA	RNU2-2	ClinVar:VCV004540511	Uncertain significance	criteria provided, single submitter
+chr11-62841701-T-A	RNU2-2	ClinVar:VCV004540509	Uncertain significance	criteria provided, single submitter
+chr11-62841701-T-C	RNU2-2	ClinVar:VCV004540508	Uncertain significance	criteria provided, single submitter
+chr11-62841694-TCTCCTATTTCC--	RNU2-2	ClinVar:VCV004540506	Uncertain significance	criteria provided, single submitter
+chr11-62841704-C-T	RNU2-2	ClinVar:VCV004540505	Uncertain significance	criteria provided, single submitter
+chr11-62841708-AA-CT	RNU2-2	ClinVar:VCV004540503	Uncertain significance	criteria provided, single submitter
+chr11-62841709-A-T	RNU2-2	ClinVar:VCV004540502	Uncertain significance	criteria provided, single submitter
+chr11-62841710-A-T	RNU2-2	ClinVar:VCV004540498	Uncertain significance	criteria provided, single submitter
+chr11-62841711-T-C	RNU2-2	ClinVar:VCV004540497	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr11-62841714-A-T	RNU2-2	ClinVar:VCV004540496	Uncertain significance	criteria provided, single submitter
+chr11-62841730-T-C	RNU2-2	ClinVar:VCV004540495	Uncertain significance	criteria provided, single submitter
+chr11-62841730-TCGGATAG-TCGGATAGTCGGATAG	RNU2-2	ClinVar:VCV004540494	Uncertain significance	criteria provided, single submitter
+chr11-62841737-G-A	RNU2-2	ClinVar:VCV004540493	Uncertain significance	criteria provided, single submitter
+chr11-62841744-T-C	RNU2-2	ClinVar:VCV004540492	Uncertain significance	criteria provided, single submitter
+chr11-62841738-AGGACGTAT-AGGACGTATAGGACGTAT	RNU2-2	ClinVar:VCV004540491	Uncertain significance	criteria provided, single submitter
+chr11-62841747---A	RNU2-2	ClinVar:VCV004540490	Uncertain significance	criteria provided, single submitter
+chr11-62841747---G	RNU2-2	ClinVar:VCV004540488	Uncertain significance	criteria provided, single submitter
+chr11-62841747-C-G	RNU2-2	ClinVar:VCV004540487	Uncertain significance	criteria provided, single submitter
+chr11-62841748-A-C	RNU2-2	ClinVar:VCV004540486	Uncertain significance	criteria provided, single submitter
+chr11-62841749-G-A	RNU2-2	ClinVar:VCV004540485	Uncertain significance	criteria provided, single submitter
+chr11-62841749-G-C	RNU2-2	ClinVar:VCV004540484	Uncertain significance	criteria provided, single submitter
+chr11-62841761-A-G	RNU2-2	ClinVar:VCV004540483	Uncertain significance	criteria provided, single submitter
+chr11-62841762-T-G	RNU2-2	ClinVar:VCV004540482	Uncertain significance	criteria provided, single submitter
+chr11-62841764-A-C	RNU2-2	ClinVar:VCV004540481	Uncertain significance	criteria provided, single submitter
+chr11-62841765-G-A	RNU2-2	ClinVar:VCV004540480	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr11-62841805-G-A	RNU2-2	ClinVar:VCV004540479	Uncertain significance	criteria provided, single submitter
+chr11-62841766-A-G	RNU2-2	ClinVar:VCV004540478	Uncertain significance	criteria provided, single submitter
+chr11-62841768-C-T	RNU2-2	ClinVar:VCV004540477	Uncertain significance	criteria provided, single submitter
+chr11-62841772-T-C	RNU2-2	ClinVar:VCV004540474	Uncertain significance	criteria provided, single submitter
+chr11-62841778-A-G	RNU2-2	ClinVar:VCV004540471	Uncertain significance	criteria provided, single submitter
+chr11-62841805-G-T	RNU2-2	ClinVar:VCV004540470	Uncertain significance	criteria provided, single submitter
+chr11-62841780-T-C	RNU2-2	ClinVar:VCV004540469	Uncertain significance	criteria provided, single submitter
+chr11-62841784-T-C	RNU2-2	ClinVar:VCV004540467	Uncertain significance	criteria provided, single submitter
+chr11-62841785-C-T	RNU2-2	ClinVar:VCV004540466	Uncertain significance	criteria provided, single submitter
+chr11-62841786-T-C	RNU2-2	ClinVar:VCV004540465	Uncertain significance	criteria provided, single submitter
+chr11-62841787-T-C	RNU2-2	ClinVar:VCV004540464	Uncertain significance	criteria provided, single submitter
+chr11-62841789-G-C	RNU2-2	ClinVar:VCV004540463	Uncertain significance	criteria provided, single submitter
+chr11-62841775-TACACTTGATCTTAGCCAA-TACACTTGATCTTAGCCAATACACTTGATCTTAGCCAA	RNU2-2	ClinVar:VCV004540460	Uncertain significance	criteria provided, single submitter
+chr11-62841706-A-G	RNU2-2	ClinVar:VCV004532801	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr11-62841779-C-T	RNU2-2	ClinVar:VCV004532800	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr11-62841760-G-C	RNU2-2	ClinVar:VCV003898509	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr12-120291816-T-G	RNU4-2	ClinVar:VCV004879801	Uncertain significance	criteria provided, single submitter
+chr12-120291886-C-T	RNU4-2	ClinVar:VCV004874278	Uncertain significance	criteria provided, single submitter
+chr12-120291855-G-A	RNU4-2	ClinVar:VCV004851313	Uncertain significance	criteria provided, single submitter
+chr12-120291764-C-T	RNU4-2	ClinVar:VCV004795829	Uncertain significance	criteria provided, single submitter
+chr12-120291775-C-G	RNU4-2	ClinVar:VCV004795828	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr12-120291776-TGT-T	RNU4-2	ClinVar:VCV004795827	Uncertain significance	criteria provided, single submitter
+chr12-120291777-G-A	RNU4-2	ClinVar:VCV004795826	Uncertain significance	criteria provided, single submitter
+chr12-120291779-C-T	RNU4-2	ClinVar:VCV004795825	Uncertain significance	criteria provided, single submitter
+chr12-120291783-A-T	RNU4-2	ClinVar:VCV004795823	Uncertain significance	criteria provided, single submitter
+chr12-120291854-C-A	RNU4-2	ClinVar:VCV004795822	Uncertain significance	criteria provided, single submitter
+chr12-120291854-C-G	RNU4-2	ClinVar:VCV004795821	Uncertain significance	criteria provided, single submitter
+chr12-120291854-C-T	RNU4-2	ClinVar:VCV004795820	Uncertain significance	criteria provided, single submitter
+chr12-120291860-T-A	RNU4-2	ClinVar:VCV004795819	Uncertain significance	criteria provided, single submitter
+chr12-120291862-G-C	RNU4-2	ClinVar:VCV004795818	Uncertain significance	criteria provided, single submitter
+chr12-120291863-G-A	RNU4-2	ClinVar:VCV004795817	Uncertain significance	criteria provided, single submitter
+chr12-120291863-G-C	RNU4-2	ClinVar:VCV004795816	Uncertain significance	criteria provided, single submitter
+chr12-120291871-T-C	RNU4-2	ClinVar:VCV004795815	Uncertain significance	criteria provided, single submitter
+chr12-120291876-G-C	RNU4-2	ClinVar:VCV004795813	Uncertain significance	criteria provided, single submitter
+chr12-120291877-G-C	RNU4-2	ClinVar:VCV004795812	Uncertain significance	criteria provided, single submitter
+chr12-120291881-C-T	RNU4-2	ClinVar:VCV004795811	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr12-120291882-G-A	RNU4-2	ClinVar:VCV004795810	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr12-120291896-G-A	RNU4-2	ClinVar:VCV004795809	Uncertain significance	criteria provided, single submitter
+chr12-120291897---T	RNU4-2	ClinVar:VCV004795808	Uncertain significance	criteria provided, single submitter
+chr12-120291897-C-G	RNU4-2	ClinVar:VCV004795807	Uncertain significance	criteria provided, single submitter
+chr12-120291898---T	RNU4-2	ClinVar:VCV004795806	Uncertain significance	criteria provided, single submitter
+chr12-120291901-G-A	RNU4-2	ClinVar:VCV004795805	Uncertain significance	criteria provided, single submitter
+chr12-120291775-C-T	RNU4-2	ClinVar:VCV004277365	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr12-120291799-T-A	RNU4-2	ClinVar:VCV003905800	Uncertain significance	criteria provided, single submitter
+chr12-120291818-G-A	RNU4-2	ClinVar:VCV003778366	Uncertain significance	criteria provided, single submitter
+chr12-120291793-G-A	RNU4-2	ClinVar:VCV003766432	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr12-120291812-G-C	RNU4-2	ClinVar:VCV003766431	Uncertain significance	criteria provided, single submitter
+chr12-120291828-GGG-GG	RNU4-2	ClinVar:VCV003766425	Uncertain significance	criteria provided, single submitter
+chr12-120291859---A	RNU4-2	ClinVar:VCV003766419	Uncertain significance	criteria provided, single submitter
+chr12-120291874-T-A	RNU4-2	ClinVar:VCV003390371	Uncertain significance	criteria provided, single submitter
+chr12-120291861---A	RNU4-2	ClinVar:VCV003390370	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr12-120291878-C-T	RNU4-2	ClinVar:VCV003342228	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr12-120293142-A-C	RNU4-1	ClinVar:VCV003362398	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr14-32203172-G-A	RNU6-8	ClinVar:VCV003770172	Uncertain significance	criteria provided, single submitter
+chr15-65296123-C-T	RNU5A-1	ClinVar:VCV003770182	Uncertain significance	criteria provided, single submitter
+chr15-65296112-G-A	RNU5A-1	ClinVar:VCV003770181	Uncertain significance	criteria provided, single submitter
+chr15-65296088-C-T	RNU5A-1	ClinVar:VCV003770162	Uncertain significance	criteria provided, single submitter
+chr15-65296088-CC-C	RNU5A-1	ClinVar:VCV003362391	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr15-65296091---A	RNU5A-1	ClinVar:VCV003362387	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr15-65304713-G-T	RNU5B-1	ClinVar:VCV003770185	Uncertain significance	criteria provided, single submitter
+chr15-65304713-G-C	RNU5B-1	ClinVar:VCV003770184	Uncertain significance	criteria provided, single submitter
+chr15-65304700-G-A	RNU5B-1	ClinVar:VCV003770183	Uncertain significance	criteria provided, single submitter
+chr15-65304716-TTTT-TTTTT	RNU5B-1	ClinVar:VCV003770164	Uncertain significance	criteria provided, single submitter
+chr15-65304714-C-T	RNU5B-1	ClinVar:VCV003770163	Uncertain significance	criteria provided, single submitter
+chr15-65304750-T-C	RNU5B-1	ClinVar:VCV003362395	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr15-65304720-A-G	RNU5B-1	ClinVar:VCV003362394	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr15-65304700-G-C	RNU5B-1	ClinVar:VCV003362392	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr15-67839990---C	RNU6-1	ClinVar:VCV004282509	Uncertain significance	criteria provided, single submitter
+chr19-1021555---C	RNU6-2	ClinVar:VCV004874270	Uncertain significance	criteria provided, single submitter
+chr19-1021593-G-A	RNU6-2	ClinVar:VCV004822687	Uncertain significance	criteria provided, single submitter
+chr19-1021578---G	RNU6-2	ClinVar:VCV004282510	Uncertain significance	criteria provided, single submitter
+chr19-1021594-A-G	RNU6-2	ClinVar:VCV003770171	Uncertain significance	criteria provided, single submitter
+chr19-1021577---G	RNU6-2	ClinVar:VCV003770170	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530999-T-C	RNU4ATAC	ClinVar:VCV004956682	Uncertain significance	criteria provided, single submitter
+chr2-121530945---A	RNU4ATAC	ClinVar:VCV004956679	Uncertain significance	criteria provided, single submitter
+chr2-121530941-T-TT	RNU4ATAC	ClinVar:VCV004956678	Uncertain significance	criteria provided, single submitter
+chr2-121530939-G-T	RNU4ATAC	ClinVar:VCV004956677	Uncertain significance	criteria provided, single submitter
+chr2-121530898-G-C	RNU4ATAC	ClinVar:VCV004956676	Uncertain significance	criteria provided, single submitter
+chr2-121530888-TTTT-TTTTT	RNU4ATAC	ClinVar:VCV004956675	Uncertain significance	criteria provided, single submitter
+chr2-121530930-GGCAGTAC--	RNU4ATAC	ClinVar:VCV004852369	Uncertain significance	criteria provided, single submitter
+chr2-121530927---C	RNU4ATAC	ClinVar:VCV004777840	Uncertain significance	criteria provided, single submitter
+chr2-121530997-T-A	RNU4ATAC	ClinVar:VCV004768311	Uncertain significance	criteria provided, single submitter
+chr2-121530989-T-A	RNU4ATAC	ClinVar:VCV004704623	Uncertain significance	criteria provided, single submitter
+chr2-121530957-C-T	RNU4ATAC	ClinVar:VCV004691640	Uncertain significance	criteria provided, single submitter
+chr2-121531001-T-C	RNU4ATAC	ClinVar:VCV004082370	Uncertain significance	criteria provided, single submitter
+chr2-121531003-G-C	RNU4ATAC	ClinVar:VCV004082369	Uncertain significance	criteria provided, single submitter
+chr2-121530897-G-C	RNU4ATAC	ClinVar:VCV004082368	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530927-G-C	RNU4ATAC	ClinVar:VCV004082367	Uncertain significance	criteria provided, single submitter
+chr2-121530912-C-A	RNU4ATAC	ClinVar:VCV004082366	Uncertain significance	criteria provided, single submitter
+chr2-121531000-T-C	RNU4ATAC	ClinVar:VCV003697034	Uncertain significance	criteria provided, single submitter
+chr2-121530970-T-G	RNU4ATAC	ClinVar:VCV003604786	Uncertain significance	criteria provided, single submitter
+chr2-121531004-A-T	RNU4ATAC	ClinVar:VCV003022545	Uncertain significance	criteria provided, single submitter
+chr2-121530955-C-G	RNU4ATAC	ClinVar:VCV003020809	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121531001-T-G	RNU4ATAC	ClinVar:VCV002979089	Uncertain significance	criteria provided, single submitter
+chr2-121530964-A-C	RNU4ATAC	ClinVar:VCV002975937	Uncertain significance	criteria provided, single submitter
+chr2-121530907-C-G	RNU4ATAC	ClinVar:VCV002795914	Uncertain significance	criteria provided, single submitter
+chr2-121530908-T-C	RNU4ATAC	ClinVar:VCV002151941	Uncertain significance	criteria provided, single submitter
+chr2-121530892-C-G	RNU4ATAC	ClinVar:VCV002151940	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530955---T	RNU4ATAC	ClinVar:VCV002121844	Uncertain significance	criteria provided, single submitter
+chr2-121530936-A-C	RNU4ATAC	ClinVar:VCV002114564	Uncertain significance	criteria provided, single submitter
+chr2-121530976-TTTTGCTTT-TT	RNU4ATAC	ClinVar:VCV002112464	Uncertain significance	criteria provided, single submitter
+chr2-121530989-T-C	RNU4ATAC	ClinVar:VCV002101431	Uncertain significance	criteria provided, single submitter
+chr2-121530942-A-T	RNU4ATAC	ClinVar:VCV002098732	Uncertain significance	criteria provided, single submitter
+chr2-121530998-T-A	RNU4ATAC	ClinVar:VCV002092560	Uncertain significance	criteria provided, single submitter
+chr2-121531006-AAATGAAA-AAATGAAATGAAA	RNU4ATAC	ClinVar:VCV002087135	Uncertain significance	criteria provided, single submitter
+chr2-121531006-A-C	RNU4ATAC	ClinVar:VCV002086571	Uncertain significance	criteria provided, single submitter
+chr2-121530988-TTGGTGC-TTGGTGCTTGGTGC	RNU4ATAC	ClinVar:VCV002024741	Uncertain significance	criteria provided, single submitter
+chr2-121531009-T--	RNU4ATAC	ClinVar:VCV002013493	Uncertain significance	criteria provided, single submitter
+chr2-121530948-T-C	RNU4ATAC	ClinVar:VCV002008408	Uncertain significance	criteria provided, single submitter
+chr2-121531009-T-C	RNU4ATAC	ClinVar:VCV001990820	Uncertain significance	criteria provided, single submitter
+chr2-121530980-G-A	RNU4ATAC	ClinVar:VCV001989614	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530912-C-T	RNU4ATAC	ClinVar:VCV001989181	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530884-A-T	RNU4ATAC	ClinVar:VCV001978446	Uncertain significance	criteria provided, single submitter
+chr2-121530961-C-A	RNU4ATAC	ClinVar:VCV001975828	Uncertain significance	criteria provided, single submitter
+chr2-121530966-C-G	RNU4ATAC	ClinVar:VCV001971292	Uncertain significance	criteria provided, single submitter
+chr2-121530988-TTGGTGCAATT-TTGGTGCAATTGGTGCAATT	RNU4ATAC	ClinVar:VCV001962629	Uncertain significance	criteria provided, single submitter
+chr2-121531002-GG-GGG	RNU4ATAC	ClinVar:VCV001961939	Uncertain significance	criteria provided, single submitter
+chr2-121530967-A-C	RNU4ATAC	ClinVar:VCV001960903	Uncertain significance	criteria provided, single submitter
+chr2-121530900-T-A	RNU4ATAC	ClinVar:VCV001954361	Uncertain significance	criteria provided, single submitter
+chr2-121530887-C-G	RNU4ATAC	ClinVar:VCV001944546	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530915-T-C	RNU4ATAC	ClinVar:VCV001943391	Uncertain significance	criteria provided, single submitter
+chr2-121530938-T-C	RNU4ATAC	ClinVar:VCV001941406	Uncertain significance	criteria provided, single submitter
+chr2-121530976---A	RNU4ATAC	ClinVar:VCV001931799	Uncertain significance	criteria provided, single submitter
+chr2-121530975-C-A	RNU4ATAC	ClinVar:VCV001930826	Uncertain significance	criteria provided, single submitter
+chr2-121530913-A-G	RNU4ATAC	ClinVar:VCV001924725	Uncertain significance	criteria provided, single submitter
+chr2-121530951-A-C	RNU4ATAC	ClinVar:VCV001922841	Uncertain significance	criteria provided, single submitter
+chr2-121530880-A-G	RNU4ATAC	ClinVar:VCV001917117	Uncertain significance	criteria provided, single submitter
+chr2-121530889-T-C	RNU4ATAC	ClinVar:VCV001916491	Uncertain significance	criteria provided, single submitter
+chr2-121530891---A	RNU4ATAC	ClinVar:VCV001915970	Uncertain significance	criteria provided, single submitter
+chr2-121530882-C-G	RNU4ATAC	ClinVar:VCV001915864	Uncertain significance	criteria provided, single submitter
+chr2-121530968-A-C	RNU4ATAC	ClinVar:VCV001915852	Uncertain significance	criteria provided, single submitter
+chr2-121530906-A-G	RNU4ATAC	ClinVar:VCV001914210	Uncertain significance	criteria provided, single submitter
+chr2-121530890-T-C	RNU4ATAC	ClinVar:VCV001913571	Uncertain significance	criteria provided, single submitter
+chr2-121530919-C-G	RNU4ATAC	ClinVar:VCV001912324	Uncertain significance	criteria provided, single submitter
+chr2-121531005-A-G	RNU4ATAC	ClinVar:VCV001912299	Uncertain significance	criteria provided, single submitter
+chr2-121530891-T-G	RNU4ATAC	ClinVar:VCV001911008	Uncertain significance	criteria provided, single submitter
+chr2-121530983-T-G	RNU4ATAC	ClinVar:VCV001907795	Uncertain significance	criteria provided, single submitter
+chr2-121530972-G-T	RNU4ATAC	ClinVar:VCV001906799	Uncertain significance	criteria provided, single submitter
+chr2-121530985-A-T	RNU4ATAC	ClinVar:VCV001900200	Uncertain significance	criteria provided, single submitter
+chr2-121530944-C-T	RNU4ATAC	ClinVar:VCV001631270	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121531008-A-C	RNU4ATAC	ClinVar:VCV001522685	Uncertain significance	criteria provided, single submitter
+chr2-121530943-A-C	RNU4ATAC	ClinVar:VCV001522572	Uncertain significance	criteria provided, single submitter
+chr2-121530906-A-AA	RNU4ATAC	ClinVar:VCV001522251	Uncertain significance	criteria provided, single submitter
+chr2-121530963-C-T	RNU4ATAC	ClinVar:VCV001520545	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530988-T-G	RNU4ATAC	ClinVar:VCV001519630	Uncertain significance	criteria provided, single submitter
+chr2-121530900-T-G	RNU4ATAC	ClinVar:VCV001518381	Uncertain significance	criteria provided, single submitter
+chr2-121530915-T-G	RNU4ATAC	ClinVar:VCV001516356	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530997-TTTTT-TTTTTT	RNU4ATAC	ClinVar:VCV001516340	Uncertain significance	criteria provided, single submitter
+chr2-121530949-G-A	RNU4ATAC	ClinVar:VCV001515972	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530975-C-G	RNU4ATAC	ClinVar:VCV001515511	Uncertain significance	criteria provided, single submitter
+chr2-121530997-TTTTT-TTTT	RNU4ATAC	ClinVar:VCV001515314	Uncertain significance	criteria provided, single submitter
+chr2-121530941-T-C	RNU4ATAC	ClinVar:VCV001512557	Uncertain significance	criteria provided, single submitter
+chr2-121530904-C-T	RNU4ATAC	ClinVar:VCV001512007	Uncertain significance	criteria provided, single submitter
+chr2-121530959-C-T	RNU4ATAC	ClinVar:VCV001511701	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121531009-T-G	RNU4ATAC	ClinVar:VCV001508423	Uncertain significance	criteria provided, single submitter
+chr2-121530881-A-C	RNU4ATAC	ClinVar:VCV001508358	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530951-A-G	RNU4ATAC	ClinVar:VCV001508332	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530898-G-A	RNU4ATAC	ClinVar:VCV001507850	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530958-A-C	RNU4ATAC	ClinVar:VCV001507350	Uncertain significance	criteria provided, single submitter
+chr2-121530890-T-G	RNU4ATAC	ClinVar:VCV001506418	Uncertain significance	criteria provided, single submitter
+chr2-121530891-T-A	RNU4ATAC	ClinVar:VCV001506268	Uncertain significance	criteria provided, single submitter
+chr2-121531008-ATGAAAACCT--	RNU4ATAC	ClinVar:VCV001506178	Uncertain significance	criteria provided, single submitter
+chr2-121530903-G-C	RNU4ATAC	ClinVar:VCV001504902	Uncertain significance	criteria provided, single submitter
+chr2-121530895-GGGG-GGGGG	RNU4ATAC	ClinVar:VCV001504010	Uncertain significance	criteria provided, single submitter
+chr2-121530946-C-T	RNU4ATAC	ClinVar:VCV001503496	Uncertain significance	criteria provided, single submitter
+chr2-121530972-G-C	RNU4ATAC	ClinVar:VCV001502690	Uncertain significance	criteria provided, single submitter
+chr2-121530981-C-T	RNU4ATAC	ClinVar:VCV001502412	Uncertain significance	criteria provided, single submitter
+chr2-121530922-A-C	RNU4ATAC	ClinVar:VCV001501793	Uncertain significance	criteria provided, single submitter
+chr2-121530885-TC-AT	RNU4ATAC	ClinVar:VCV001498575	Uncertain significance	criteria provided, single submitter
+chr2-121530901-G-C	RNU4ATAC	ClinVar:VCV001496505	Uncertain significance	criteria provided, single submitter
+chr2-121530993-G-A	RNU4ATAC	ClinVar:VCV001496496	Uncertain significance	criteria provided, single submitter
+chr2-121530966-C-A	RNU4ATAC	ClinVar:VCV001495436	Uncertain significance	criteria provided, single submitter
+chr2-121530940-C-T	RNU4ATAC	ClinVar:VCV001493472	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530952-C-G	RNU4ATAC	ClinVar:VCV001493436	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121531007-A-G	RNU4ATAC	ClinVar:VCV001493204	Uncertain significance	criteria provided, single submitter
+chr2-121530993-G-T	RNU4ATAC	ClinVar:VCV001490995	Uncertain significance	criteria provided, single submitter
+chr2-121530971-A-T	RNU4ATAC	ClinVar:VCV001488819	Uncertain significance	criteria provided, single submitter
+chr2-121530909-G-C	RNU4ATAC	ClinVar:VCV001488137	Uncertain significance	criteria provided, single submitter
+chr2-121530943-A-G	RNU4ATAC	ClinVar:VCV001485968	Uncertain significance	criteria provided, single submitter
+chr2-121531000-T-G	RNU4ATAC	ClinVar:VCV001485566	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530922-A-T	RNU4ATAC	ClinVar:VCV001485205	Uncertain significance	criteria provided, single submitter
+chr2-121530931-G-T	RNU4ATAC	ClinVar:VCV001485152	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530882-C-T	RNU4ATAC	ClinVar:VCV001483074	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530976-T-G	RNU4ATAC	ClinVar:VCV001481503	Uncertain significance	criteria provided, single submitter
+chr2-121530953-AA-A	RNU4ATAC	ClinVar:VCV001480357	Uncertain significance	criteria provided, single submitter
+chr2-121530891-T-C	RNU4ATAC	ClinVar:VCV001479614	Uncertain significance	criteria provided, single submitter
+chr2-121530911-C-G	RNU4ATAC	ClinVar:VCV001479222	Uncertain significance	criteria provided, single submitter
+chr2-121530975-C-T	RNU4ATAC	ClinVar:VCV001479115	Uncertain significance	criteria provided, single submitter
+chr2-121530945-G-A	RNU4ATAC	ClinVar:VCV001478923	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530939-G-A	RNU4ATAC	ClinVar:VCV001478329	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121531002-G-A	RNU4ATAC	ClinVar:VCV001477727	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530918-G-A	RNU4ATAC	ClinVar:VCV001476748	Uncertain significance	criteria provided, single submitter
+chr2-121530926-T-C	RNU4ATAC	ClinVar:VCV001476470	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530974-G-T	RNU4ATAC	ClinVar:VCV001475825	Uncertain significance	criteria provided, single submitter
+chr2-121530926-T-G	RNU4ATAC	ClinVar:VCV001474999	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530969-C-G	RNU4ATAC	ClinVar:VCV001473847	Uncertain significance	criteria provided, single submitter
+chr2-121530953-A-G	RNU4ATAC	ClinVar:VCV001473658	Uncertain significance	criteria provided, single submitter
+chr2-121530995-AATTTTTGGAAAA-AATTTTTGGAAAATTTTTGGAAAA	RNU4ATAC	ClinVar:VCV001472567	Uncertain significance	criteria provided, single submitter
+chr2-121530923-T-C	RNU4ATAC	ClinVar:VCV001472544	Uncertain significance	criteria provided, single submitter
+chr2-121530890-TTCTT-TT	RNU4ATAC	ClinVar:VCV001472329	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530904-C-G	RNU4ATAC	ClinVar:VCV001472138	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530962-G-A	RNU4ATAC	ClinVar:VCV001471188	Uncertain significance	criteria provided, single submitter
+chr2-121530893-T-C	RNU4ATAC	ClinVar:VCV001471153	Uncertain significance	criteria provided, single submitter
+chr2-121530883-C-T	RNU4ATAC	ClinVar:VCV001471101	Uncertain significance	criteria provided, single submitter
+chr2-121530994-C-T	RNU4ATAC	ClinVar:VCV001470847	Uncertain significance	criteria provided, single submitter
+chr2-121530907-C-T	RNU4ATAC	ClinVar:VCV001470268	Uncertain significance	criteria provided, single submitter
+chr2-121530910-T-C	RNU4ATAC	ClinVar:VCV001470235	Uncertain significance	criteria provided, single submitter
+chr2-121530895-G-C	RNU4ATAC	ClinVar:VCV001469262	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530973-A-T	RNU4ATAC	ClinVar:VCV001468054	Uncertain significance	criteria provided, single submitter
+chr2-121530894-T-C	RNU4ATAC	ClinVar:VCV001463667	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530942-A-G	RNU4ATAC	ClinVar:VCV001462885	Uncertain significance	criteria provided, single submitter
+chr2-121530950-A-G	RNU4ATAC	ClinVar:VCV001462660	Uncertain significance	criteria provided, single submitter
+chr2-121530986-T-C	RNU4ATAC	ClinVar:VCV001462516	Uncertain significance	criteria provided, single submitter
+chr2-121530954-A-T	RNU4ATAC	ClinVar:VCV001461676	Uncertain significance	criteria provided, single submitter
+chr2-121530980-G-C	RNU4ATAC	ClinVar:VCV001461415	Uncertain significance	criteria provided, single submitter
+chr2-121530956-A-C	RNU4ATAC	ClinVar:VCV001438181	Uncertain significance	criteria provided, single submitter
+chr2-121530934-G-C	RNU4ATAC	ClinVar:VCV001434218	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530962-G-T	RNU4ATAC	ClinVar:VCV001432556	Uncertain significance	criteria provided, single submitter
+chr2-121530947-C-G	RNU4ATAC	ClinVar:VCV001429271	Uncertain significance	criteria provided, single submitter
+chr2-121530924-A-G	RNU4ATAC	ClinVar:VCV001424898	Uncertain significance	criteria provided, single submitter
+chr2-121530933-A-C	RNU4ATAC	ClinVar:VCV001423203	Uncertain significance	criteria provided, single submitter
+chr2-121530901-G-A	RNU4ATAC	ClinVar:VCV001422665	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530921-C-G	RNU4ATAC	ClinVar:VCV001422517	Uncertain significance	criteria provided, single submitter
+chr2-121530969-C-T	RNU4ATAC	ClinVar:VCV001418315	Uncertain significance	criteria provided, single submitter
+chr2-121530954-A-G	RNU4ATAC	ClinVar:VCV001416194	Uncertain significance	criteria provided, single submitter
+chr2-121530974-G-A	RNU4ATAC	ClinVar:VCV001414328	Uncertain significance	criteria provided, single submitter
+chr2-121530935-T-C	RNU4ATAC	ClinVar:VCV001414035	Uncertain significance	criteria provided, single submitter
+chr2-121530961-C-T	RNU4ATAC	ClinVar:VCV001413951	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530954-A-C	RNU4ATAC	ClinVar:VCV001412960	Uncertain significance	criteria provided, single submitter
+chr2-121530949-G-T	RNU4ATAC	ClinVar:VCV001409448	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530911-C-T	RNU4ATAC	ClinVar:VCV001407996	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530985-A-G	RNU4ATAC	ClinVar:VCV001405176	Uncertain significance	criteria provided, single submitter
+chr2-121530896-G-A	RNU4ATAC	ClinVar:VCV001403727	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530991-G-A	RNU4ATAC	ClinVar:VCV001401963	Uncertain significance	criteria provided, single submitter
+chr2-121530979---C	RNU4ATAC	ClinVar:VCV001400330	Uncertain significance	criteria provided, single submitter
+chr2-121530971-A-G	RNU4ATAC	ClinVar:VCV001394628	Uncertain significance	criteria provided, single submitter
+chr2-121530935-T-A	RNU4ATAC	ClinVar:VCV001384615	Uncertain significance	criteria provided, single submitter
+chr2-121530905-T-C	RNU4ATAC	ClinVar:VCV001383498	Uncertain significance	criteria provided, single submitter
+chr2-121530894-T-G	RNU4ATAC	ClinVar:VCV001382974	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530925-G-C	RNU4ATAC	ClinVar:VCV001381605	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530968-A-G	RNU4ATAC	ClinVar:VCV001379484	Uncertain significance	criteria provided, single submitter
+chr2-121530950-A-C	RNU4ATAC	ClinVar:VCV001377763	Uncertain significance	criteria provided, single submitter
+chr2-121530896-G-C	RNU4ATAC	ClinVar:VCV001377310	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530960-C-T	RNU4ATAC	ClinVar:VCV001375704	Uncertain significance	criteria provided, single submitter
+chr2-121530952-C-T	RNU4ATAC	ClinVar:VCV001374802	Uncertain significance	criteria provided, single submitter
+chr2-121530965-T-C	RNU4ATAC	ClinVar:VCV001374197	Uncertain significance	criteria provided, single submitter
+chr2-121530964-A-G	RNU4ATAC	ClinVar:VCV001373058	Uncertain significance	criteria provided, single submitter
+chr2-121530918-G-C	RNU4ATAC	ClinVar:VCV001368259	Uncertain significance	criteria provided, single submitter
+chr2-121530886-C-T	RNU4ATAC	ClinVar:VCV001366874	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121531002-G-C	RNU4ATAC	ClinVar:VCV001365664	Uncertain significance	criteria provided, single submitter
+chr2-121530943---T	RNU4ATAC	ClinVar:VCV001365660	Uncertain significance	criteria provided, single submitter
+chr2-121530900-T-C	RNU4ATAC	ClinVar:VCV001363263	Uncertain significance	criteria provided, single submitter
+chr2-121531008-A-G	RNU4ATAC	ClinVar:VCV001355013	Uncertain significance	criteria provided, single submitter
+chr2-121530986-T-A	RNU4ATAC	ClinVar:VCV001353681	Uncertain significance	criteria provided, single submitter
+chr2-121530973-A-G	RNU4ATAC	ClinVar:VCV001351983	Uncertain significance	criteria provided, single submitter
+chr2-121530914-A-G	RNU4ATAC	ClinVar:VCV001351945	Uncertain significance	criteria provided, single submitter
+chr2-121530881-A-G	RNU4ATAC	ClinVar:VCV001350450	Uncertain significance	criteria provided, single submitter
+chr2-121530949-G-C	RNU4ATAC	ClinVar:VCV001350032	Uncertain significance	criteria provided, single submitter
+chr2-121530949---C	RNU4ATAC	ClinVar:VCV001350031	Uncertain significance	criteria provided, single submitter
+chr2-121530976-T-C	RNU4ATAC	ClinVar:VCV001348711	Uncertain significance	criteria provided, single submitter
+chr2-121530958-A-G	RNU4ATAC	ClinVar:VCV001347025	Uncertain significance	criteria provided, single submitter
+chr2-121530903-G-A	RNU4ATAC	ClinVar:VCV001062165	Uncertain significance	criteria provided, single submitter
+chr2-121530938-T-A	RNU4ATAC	ClinVar:VCV001059859	Uncertain significance	criteria provided, single submitter
+chr2-121530884-A-G	RNU4ATAC	ClinVar:VCV001045423	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530931-G-A	RNU4ATAC	ClinVar:VCV001040331	Uncertain significance	criteria provided, single submitter
+chr2-121530976-TTTT-TTTTT	RNU4ATAC	ClinVar:VCV001039702	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530978-T-C	RNU4ATAC	ClinVar:VCV001018042	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530947-C-T	RNU4ATAC	ClinVar:VCV001007736	Uncertain significance	criteria provided, multiple submitters, no conflicts
+chr2-121530908-T-G	RNU4ATAC	ClinVar:VCV000977869	Uncertain significance	criteria provided, single submitter
+chr2-121530897-G-A	RNU4ATAC	ClinVar:VCV000932368	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530884-A-C	RNU4ATAC	ClinVar:VCV000932367	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530885-T-C	RNU4ATAC	ClinVar:VCV000873520	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530932-C-T	RNU4ATAC	ClinVar:VCV000692041	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530887-C-T	RNU4ATAC	ClinVar:VCV000218086	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530916-G-A	RNU4ATAC	ClinVar:VCV000218084	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr2-121530945-G-C	RNU4ATAC	ClinVar:VCV000039442	Uncertain significance	criteria provided, single submitter
+chr22-42615384-G-T	RNU12	ClinVar:VCV004759455	Uncertain significance	criteria provided, single submitter
+chr22-42615384-G-C	RNU12	ClinVar:VCV004526713	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr22-42615246-G-C	RNU12	ClinVar:VCV004281563	Uncertain significance	criteria provided, single submitter
+chr22-42615357-C-G	RNU12	ClinVar:VCV004281249	Uncertain significance	criteria provided, single submitter
+chr22-42615332-A-G	RNU12	ClinVar:VCV003897936	Conflicting classifications of pathogenicity	criteria provided, conflicting classifications
+chr22-42615318-A-G	RNU12	ClinVar:VCV002443787	Uncertain significance	criteria provided, single submitter
+chr9-134164501-G-C	RNU6ATAC	ClinVar:VCV004683136	Uncertain significance	criteria provided, single submitter
+chr9-134164529-A-C	RNU6ATAC	ClinVar:VCV004683135	Uncertain significance	criteria provided, single submitter
+chr9-134164537-G-A	RNU6ATAC	ClinVar:VCV004683134	Uncertain significance	criteria provided, single submitter
+chr9-134164535-G-A	RNU6ATAC	ClinVar:VCV003362388	Uncertain significance	criteria provided, multiple submitters, no conflicts
