@@ -70,8 +70,8 @@ def cmd_map(a):
             gref, galt = (CL.to_dna(ref), CL.to_dna(alt)) if g.strand == "+" else \
                 (CL.to_dna(ref).translate(CL.COMP), CL.to_dna(alt).translate(CL.COMP))
             vid = f"{g.chrom}-{pos}-{gref}-{galt}"
-            given = r.get("genomic_grch38", "").replace("chr", "").replace(":", "-").strip()
-            if given and given.split("-")[:2] != [g.chrom.replace("chr", ""), str(pos)]:
+            gm = re.match(r"^(?:chr)?(\w+)[:\-](?:g\.)?(\d+)", r.get("genomic_grch38", "").strip())  # chr11:62841806 C>T, chr15:g.65304713G>C, 11-62841806
+            if gm and [gm.group(1), gm.group(2)] != [g.chrom.replace("chr", ""), str(pos)]:
                 rejected.append({**r, "reason": f"source GRCh38 {r['genomic_grch38']} disagrees with the mapping {vid}"})
                 continue
             inh = r.get("inheritance", "").strip().lower()
