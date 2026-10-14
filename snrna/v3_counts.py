@@ -45,6 +45,10 @@ def main(paths):
         if f != "variants.tsv.gz":
             shutil.copy(os.path.join(SRC, f), DST)
     var.to_csv(os.path.join(DST, "variants.tsv.gz"), sep="\t", index=False)
+    cohort_cols = [c for c in var.columns if c.startswith("AC_") and c not in ("AC_pass", "AC_gnomad")]
+    cov = var.assign(any_cohort=var[cohort_cols].sum(axis=1) > 0).groupby("label").any_cohort.mean()
+    summ["loci_with_cohort_data"] = int((cov > 0).sum())
+    summ["loci_without_cohort_data"] = sorted(cov.index[cov == 0])
     summ["observed_snvs_gnomad"] = int((var.AC_gnomad > 0).sum())
     summ["observed_snvs_combined"] = int((var.AC_pass > 0).sum())
     with open(os.path.join(DST, "v3_counts.json"), "w") as f:
