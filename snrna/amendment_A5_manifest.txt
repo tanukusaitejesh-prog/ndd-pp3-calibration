@@ -1,0 +1,12 @@
+# Amendment A5 (v4) freeze, 2026-10-14 UTC, BEFORE the single unsealing (final_eval.py not yet run).
+# DGX run of run_v4.sh (Evo 2 deltas yes; local constraint from model_inputs_v3 = gnomAD + UK Biobank).
+# Code hashes (full, verified against this commit):
+7dd43124cace749d9f35f87f9f4c4d7f8ee8ae12fa3d41a395b55688db5317a5  v4.py
+cbf83f6189a465337f6d9aeb56fc8c6363cbfbe19bb3cf953add9d7c9c01901b  v4_blind_eval.py
+# Output hashes from the DGX (as displayed; first two hex characters cut off in the screenshot, suffix of sha256):
+..da4d1c190ec3be1f732a70e534918029d13c4431679f0e1da258939c7aaae2  results_v4/v4_scores.tsv.gz
+..f5b6d759db600fa0c790d0020a6a6aa195150071c560379a3092e4fbaf1d34  results_v4/v4_model.json
+# Internal validation (leave-one-paralog-cluster-out, non-blind genes): weighted delta AUROC v4 - CADD
+# (RNU4-2, RNU4ATAC) +0.186 [+0.108, +0.267]; RNU12 0.710 vs 0.453; RNU4-2 0.932 vs 0.519; RNU4ATAC 0.794 vs 0.769;
+# RNU6ATAC 0.844 vs 0.706. final_eval.py runs v4_blind_eval.py only if results_v4/v4_scores.tsv.gz matches
+# results_v4/v4_manifest.txt on the DGX.
