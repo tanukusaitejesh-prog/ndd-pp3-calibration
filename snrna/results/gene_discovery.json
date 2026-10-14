@@ -1,0 +1,234 @@
+{
+ "inputs": "/home/user/ndd-pp3-calibration/snrna/model_inputs",
+ "window": 20,
+ "pooled_k": 4.041290377505745,
+ "n_loci": 54,
+ "disease_genes_missing": [
+  "RNU6-9"
+ ],
+ "evaluation": {
+  "all_disease": {
+   "rel_z": {
+    "n_pos": 9,
+    "n_neg": 45,
+    "auroc": 0.8592592592592593,
+    "p_perm": 0.00039998000099995
+   },
+   "rel_oe": {
+    "n_pos": 9,
+    "n_neg": 45,
+    "auroc": 0.291358024691358,
+    "p_perm": 0.9776511174441278
+   },
+   "gene_z": {
+    "n_pos": 9,
+    "n_neg": 45,
+    "auroc": 0.10864197530864197,
+    "p_perm": 0.999950002499875
+   },
+   "win_z": {
+    "n_pos": 9,
+    "n_neg": 45,
+    "auroc": 0.1308641975308642,
+    "p_perm": 0.99990000499975
+   }
+  },
+  "ndd": {
+   "rel_z": {
+    "n_pos": 5,
+    "n_neg": 45,
+    "auroc": 0.9511111111111111,
+    "p_perm": 9.99950002499875e-05
+   },
+   "rel_oe": {
+    "n_pos": 5,
+    "n_neg": 45,
+    "auroc": 0.37777777777777777,
+    "p_perm": 0.8090595470226488
+   },
+   "gene_z": {
+    "n_pos": 5,
+    "n_neg": 45,
+    "auroc": 0.08444444444444445,
+    "p_perm": 0.9998000099995
+   },
+   "win_z": {
+    "n_pos": 5,
+    "n_neg": 45,
+    "auroc": 0.12444444444444444,
+    "p_perm": 0.9986500674966252
+   }
+  },
+  "reported_2024_on": {
+   "rel_z": {
+    "n_pos": 7,
+    "n_neg": 45,
+    "auroc": 0.8539682539682539,
+    "p_perm": 0.0007999600019999
+   },
+   "rel_oe": {
+    "n_pos": 7,
+    "n_neg": 45,
+    "auroc": 0.32063492063492066,
+    "p_perm": 0.9347032648367581
+   },
+   "gene_z": {
+    "n_pos": 7,
+    "n_neg": 45,
+    "auroc": 0.11428571428571428,
+    "p_perm": 0.9996500174991251
+   },
+   "win_z": {
+    "n_pos": 7,
+    "n_neg": 45,
+    "auroc": 0.14285714285714285,
+    "p_perm": 0.9990500474976252
+   }
+  },
+  "ndd_2024_on": {
+   "rel_z": {
+    "n_pos": 3,
+    "n_neg": 45,
+    "auroc": 1.0,
+    "p_perm": 0.000199990000499975
+   },
+   "rel_oe": {
+    "n_pos": 3,
+    "n_neg": 45,
+    "auroc": 0.5037037037037037,
+    "p_perm": 0.49617519124043796
+   },
+   "gene_z": {
+    "n_pos": 3,
+    "n_neg": 45,
+    "auroc": 0.08148148148148149,
+    "p_perm": 0.9956002199890005
+   },
+   "win_z": {
+    "n_pos": 3,
+    "n_neg": 45,
+    "auroc": 0.14814814814814814,
+    "p_perm": 0.9815009249537523
+   }
+  },
+  "named_only": {
+   "all_disease": {
+    "n_pos": 9,
+    "n_neg": 11,
+    "auroc": 0.6767676767676768,
+    "p_perm": 0.10294485275736213
+   },
+   "ndd": {
+    "n_pos": 5,
+    "n_neg": 11,
+    "auroc": 0.8545454545454545,
+    "p_perm": 0.012899355032248387
+   },
+   "reported_2024_on": {
+    "n_pos": 7,
+    "n_neg": 11,
+    "auroc": 0.6883116883116883,
+    "p_perm": 0.10654467276636168
+   },
+   "ndd_2024_on": {
+    "n_pos": 3,
+    "n_neg": 11,
+    "auroc": 1.0,
+    "p_perm": 0.002599870006499675
+   }
+  }
+ },
+ "top10_candidates_not_yet_disease": [
+  {
+   "label": "RNU4-1",
+   "family": "U4",
+   "rel_oe": 0.561261444659197,
+   "rel_z": -4.332496528862879,
+   "rel_start": 60,
+   "rel_end": 79,
+   "gene_oe": 2.6257227249422663
+  },
+  {
+   "label": "RNVU1-34",
+   "family": "U1",
+   "rel_oe": 0.39055640492709653,
+   "rel_z": -3.0129251669169688,
+   "rel_start": 137,
+   "rel_end": 156,
+   "gene_oe": 1.1016546005334533
+  },
+  {
+   "label": "RNU5E-1",
+   "family": "U5",
+   "rel_oe": 0.7723012223457446,
+   "rel_z": -2.979501006419438,
+   "rel_start": 28,
+   "rel_end": 47,
+   "gene_oe": 3.4148204068473227
+  },
+  {
+   "label": "U6|ENSG00000283313",
+   "family": "U6",
+   "rel_oe": 0.0,
+   "rel_z": -2.6497716156816606,
+   "rel_start": 68,
+   "rel_end": 87,
+   "gene_oe": 0.2953631421068688
+  },
+  {
+   "label": "RNU5A-1",
+   "family": "U5",
+   "rel_oe": 0.6783680486148982,
+   "rel_z": -2.520439022195906,
+   "rel_start": 31,
+   "rel_end": 50,
+   "gene_oe": 1.8395284382647796
+  },
+  {
+   "label": "U6|ENSG00000283136",
+   "family": "U6",
+   "rel_oe": 0.0,
+   "rel_z": -2.282105645088994,
+   "rel_start": 70,
+   "rel_end": 89,
+   "gene_oe": 0.38453068922472816
+  },
+  {
+   "label": "RNU5F-1",
+   "family": "U5",
+   "rel_oe": 0.7803715161937734,
+   "rel_z": -2.198465571043736,
+   "rel_start": 28,
+   "rel_end": 47,
+   "gene_oe": 2.9234786586987402
+  },
+  {
+   "label": "RNVU1-8",
+   "family": "U1",
+   "rel_oe": 0.603131595328863,
+   "rel_z": -2.0902386672731867,
+   "rel_start": 79,
+   "rel_end": 98,
+   "gene_oe": 1.1155256738333046
+  },
+  {
+   "label": "U6|ENSG00000283337",
+   "family": "U6",
+   "rel_oe": 0.0,
+   "rel_z": -2.0105875567625446,
+   "rel_start": 83,
+   "rel_end": 102,
+   "gene_oe": 0.3602326890189846
+  },
+  {
+   "label": "RNVU1-32",
+   "family": "U1",
+   "rel_oe": 0.0,
+   "rel_z": -1.968718747722005,
+   "rel_start": 22,
+   "rel_end": 41,
+   "gene_oe": 0.2688738478858478
+  }
+ ],
+ "note": "Exploratory and post hoc: gene-level O/E was seen during G2 (results/g2_qc_by_gene.tsv). No patient variant label is used."
+}
