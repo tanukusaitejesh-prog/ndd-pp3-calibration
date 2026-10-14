@@ -1,0 +1,14 @@
+{
+ "missense_PLP_available": 59582,
+ "missense_PLP_kept": 1500,
+ "blb_noncoding_in_A9_windows": 9845,
+ "blb_noncoding_by_class": {
+  "intronic": 9222,
+  "5'UTR": 324,
+  "3'UTR": 152,
+  "ncRNA exon": 143,
+  "upstream": 4
+ },
+ "blb_missense_in_windows": 1126,
+ "utc": "2026-10-14T15:15:03Z"
+}

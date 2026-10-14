@@ -40,5 +40,22 @@ case "${1:-}" in
     step figures   python figures.py
     echo; echo "NEXT: git add results/ a9_phylop/ paper/figures && git commit -m 'Post hoc robustness and figures' && (git push || true)"
     ;;
-  *) echo "usage: bash run_next.sh part1|part2|part3|part4"; exit 1 ;;
+  part5)  # A10: missense + SpliceAI + fixes (~2-4 h: AlphaMissense download, phyloP API, SpliceAI on CPU)
+    pip install -q matplotlib 2>/dev/null
+    step a10_missense python a10_extend.py missense_fetch
+    step spliceai_prep python a10_extend.py spliceai_prep
+    if ! conda env list | grep -q "^spliceai "; then
+      echo "== creating conda env spliceai (python 3.10, tensorflow-cpu, spliceai)"
+      conda create -y -q -n spliceai -c conda-forge python=3.10 && conda run -n spliceai pip install -q "tensorflow-cpu==2.15.1" spliceai
+    fi
+    if [ ! -s data/hg38.fa ]; then
+      echo "== downloading hg38.fa (~950 MB gz)"
+      curl -sSL https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz | gunzip > data/hg38.fa
+    fi
+    step spliceai conda run -n spliceai spliceai -I a10/spliceai_in.vcf -O a10/spliceai_out.vcf -R data/hg38.fa -A grch38 -D 50
+    step spliceai_parse python a10_extend.py spliceai_parse
+    step a10_eval python a10_extend.py eval
+    echo; echo "NEXT: git add a10/ results/ && git commit -m 'A10 evaluation' && (git push || true)"
+    ;;
+  *) echo "usage: bash run_next.sh part1|part2|part3|part4|part5"; exit 1 ;;
 esac
