@@ -1,0 +1,4 @@
+snRNA-VEP v2 amendment A4 manifest (before any real-count endpoint was viewed)
+UTC: 2026-10-14T04:43:47Z
+0ad9bde606f74417bcd51a83bf59fb6a98a4a0c32f98b2a5827c7564f27ac846  PREREG.md
+c540b0556fee0648e9c6d555e0b41b145d1ff36e13ef083b6ff4b4f7f65edcd2  HANDOFF.md
