@@ -14,3 +14,5 @@ snrna_*.tar.gz
 # never commit unsealed blind labels (only the .enc file and the manifest)
 sealed/*.tsv
 release/
+model_runs_v3/
+results_v3/
