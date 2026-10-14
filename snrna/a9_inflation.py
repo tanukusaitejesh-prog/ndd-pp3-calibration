@@ -31,7 +31,6 @@ import re
 import sys
 import time
 import urllib.request
-from concurrent.futures import ProcessPoolExecutor
 
 import numpy as np
 import pandas as pd
@@ -116,49 +115,74 @@ def merged_windows(pos):
     return out
 
 
-def fetch_chrom(args):
+_BW = "unset"
+
+
+def fetch_window(args):
+    """One +-100 bp window: CADD (all SNVs), gnomAD AC/filter, GPN-MSA, ReMM, phyloP447 if readable. Cached on disk."""
     import comparators as CP
-    chrom, wins = args
-    parts = []
-    bw = None
-    try:
-        import pyBigWig
-        bw = pyBigWig.open(PHYLOP_BW)
-    except Exception:
-        bw = None
-    for k, (s, e) in enumerate(wins):
-        cadd = S.cadd_records(chrom, s, e)
-        if not len(cadd):
-            continue
-        d = cadd.assign(ID=cadd.chrom + "-" + cadd.pos.astype(str) + "-" + cadd.ref + "-" + cadd.alt)[["ID", "chrom", "pos", "ref", "alt", "cadd_phred"]]
-        gn = S.gnomad_records(chrom, s, e)
-        gn = gn.assign(ID=gn.chrom + "-" + gn.pos.astype(str) + "-" + gn.ref + "-" + gn.alt).drop_duplicates("ID").set_index("ID")
-        d["filter"] = d.ID.map(gn["filter"])
-        d["AC"] = d.ID.map(gn.AC).fillna(0).astype(int)
-        gpn = {(int(r[1]), r[2], r[3]): float(r[4]) for r in CP.tabix_rows(CP.GPN, chrom.replace("chr", ""), s, e)}
-        remm = {int(r[1]): float(r[2]) for r in CP.tabix_rows(CP.REMM, chrom, s, e)}
-        d["gpn_msa"] = [-gpn[x] if x in gpn else np.nan for x in zip(d.pos, d.ref, d.alt)]
-        d["remm"] = d.pos.map(remm)
-        if bw is not None:
-            vals = bw.values(chrom, s - 1, e)
-            d["phylop447"] = [vals[p - s] if 0 <= p - s < len(vals) else np.nan for p in d.pos]
-        else:
-            d["phylop447"] = np.nan
-        d["win"] = f"{chrom}:{s}-{e}"
-        parts.append(d)
-        if k % 50 == 0:
-            print(f"  {chrom}: window {k + 1}/{len(wins)}", flush=True)
-    return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()
+    global _BW
+    chrom, s, e = args
+    if _BW == "unset":
+        try:
+            import pyBigWig
+            _BW = pyBigWig.open(PHYLOP_BW)
+        except Exception:
+            _BW = None
+    cadd = S.cadd_records(chrom, s, e)
+    if not len(cadd):
+        return pd.DataFrame()
+    d = cadd.assign(ID=cadd.chrom + "-" + cadd.pos.astype(str) + "-" + cadd.ref + "-" + cadd.alt)[["ID", "chrom", "pos", "ref", "alt", "cadd_phred"]]
+    gn = S.gnomad_records(chrom, s, e)
+    gn = gn.assign(ID=gn.chrom + "-" + gn.pos.astype(str) + "-" + gn.ref + "-" + gn.alt).drop_duplicates("ID").set_index("ID")
+    d["filter"] = d.ID.map(gn["filter"])
+    d["AC"] = d.ID.map(gn.AC).fillna(0).astype(int)
+    gpn = {(int(r[1]), r[2], r[3]): float(r[4]) for r in CP.tabix_rows(CP.GPN, chrom.replace("chr", ""), s, e)}
+    remm = {int(r[1]): float(r[2]) for r in CP.tabix_rows(CP.REMM, chrom, s, e)}
+    d["gpn_msa"] = [-gpn[x] if x in gpn else np.nan for x in zip(d.pos, d.ref, d.alt)]
+    d["remm"] = d.pos.map(remm)
+    if _BW is not None:
+        vals = _BW.values(chrom, s - 1, e)
+        d["phylop447"] = [vals[p - s] if 0 <= p - s < len(vals) else np.nan for p in d.pos]
+    else:
+        d["phylop447"] = np.nan
+    d["win"] = f"{chrom}:{s}-{e}"
+    return d
 
 
 def cmd_fetch(a):
+    """Each window is its own task. A remote read can block inside htslib where no Python timeout reaches it, so a
+    task not done within --timeout seconds is abandoned: the pool is terminated after the round and only unfinished
+    windows are retried (finished ones are cached on disk), up to 3 rounds; anything left is skipped and reported."""
+    import multiprocessing as mp
     p = pd.read_csv(os.path.join(OUT, "positives.tsv"), sep="\t")
-    jobs = [(c, merged_windows(x.pos.tolist())) for c, x in p.groupby("chrom")]
-    log(f"{len(p)} positives in {sum(len(w) for _, w in jobs)} merged windows on {len(jobs)} chromosomes; {a.workers} workers")
-    with ProcessPoolExecutor(max_workers=a.workers) as ex:
-        parts = [d for d in ex.map(fetch_chrom, jobs) if len(d)]
+    wins =[(c, s, e) for c, x in p.groupby("chrom") for s, e in merged_windows(x.pos.tolist())]
+    log(f"{len(p)} positives in {len(wins)} merged windows; {a.workers} workers; timeout {a.timeout} s per window")
+    parts, pending = [], wins
+    for rnd in range(1, 4):
+        if not pending:
+            break
+        failed = []
+        pool = mp.get_context("fork").Pool(a.workers)
+        jobs = [(w, pool.apply_async(fetch_window, (w,))) for w in pending]
+        for k, (w, j) in enumerate(jobs, 1):
+            try:
+                d = j.get(timeout=a.timeout)
+                if len(d):
+                    parts.append(d)
+            except Exception as ex:
+                failed.append(w)
+                log(f"  round {rnd}: window {w[0]}:{w[1]}-{w[2]} not done ({type(ex).__name__}); will retry")
+            if k % 10 == 0 or k == len(jobs):
+                log(f"  round {rnd}: {k}/{len(jobs)} windows checked, {len(failed)} pending retry")
+        pool.terminate()
+        pending = failed
+    if pending:
+        log(f"SKIPPED {len(pending)} windows after 3 rounds: " + ", ".join(f"{c}:{s}-{e}" for c, s, e in pending[:20]))
     d = pd.concat(parts, ignore_index=True).drop_duplicates("ID")
     d.to_csv(os.path.join(OUT, "window_snvs.tsv.gz"), sep="\t", index=False, float_format="%.5g", compression="gzip")
+    json.dump({"windows": len(wins), "skipped": [f"{c}:{s}-{e}" for c, s, e in pending]},
+              open(os.path.join(OUT, "fetch_info.json"), "w"), indent=1)
     log(f"{len(d)} SNVs in windows; coverage " + ", ".join(f"{c} {d[c].notna().mean():.2f}" for c, _ in TOOLS))
 
 
@@ -237,6 +261,7 @@ def main():
     ap.add_argument("cmd", choices=["select", "fetch", "eval"])
     ap.add_argument("--refresh", action="store_true", help="select: re-download the ClinVar VCF")
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--timeout", type=int, default=180, help="fetch: seconds to wait for one window before retrying it")
     ap.add_argument("--boot", type=int, default=1000)
     a = ap.parse_args()
     {"select": cmd_select, "fetch": cmd_fetch, "eval": cmd_eval}[a.cmd](a)
