@@ -21,7 +21,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SEALED = ("RNU2-2", "RNU5B-1")
 HGVS_SNV = re.compile(r"^n\.(\d+)([ACGTU])>([ACGTU])$")
 COMP = str.maketrans("ACGT", "TGCA")
-POSITIVE_WORDS = ("pathogenic", "likely pathogenic", "disease-causing", "disease causing", "causal", "causative")
+POSITIVE_WORDS = ("pathogenic", "likely pathogenic", "disease-causing", "disease causing", "causal", "causative", "causing", "cause of")
+# per-variant class not available to the source/tally (cohort-level counts only) -> not a per-variant P/LP report
+NOT_PER_VARIANT = ("not accessible", "unverified", "vus", "uncertain", "benign")
 
 
 def to_dna(b):
@@ -42,7 +44,7 @@ def main(paths):
             if gene in SEALED:
                 raise SystemExit(f"{p}: contains a sealed-gene row; remove the file and re-run the tally")
             cls = r.get("classification_as_stated", "").lower()
-            if not any(w in cls for w in POSITIVE_WORDS) or "uncertain" in cls or "benign" in cls:
+            if not any(w in cls for w in POSITIVE_WORDS) or any(w in cls for w in NOT_PER_VARIANT):
                 rejected.append({**r, "reason": "not reported as P/LP or disease-causing"})
                 continue
             if gene not in named.index:
