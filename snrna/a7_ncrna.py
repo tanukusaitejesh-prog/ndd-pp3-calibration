@@ -146,8 +146,11 @@ def cmd_score(a):
     for g in GENES.itertuples():
         log(f"{g.gene} ({g.chrom}:{g.start}-{g.end} {g.strand})")
         v, tseq = gene_snvs(g)
+        log(f"  {len(v)} SNVs; Rfam profile + cmalign + ViennaRNA ...")
         v, bits, cov = family_features(g, v, tseq)
+        log("  gnomAD + Roulette ...")
         v = population(g, v)
+        log("  CADD, phyloP447, ReMM, GPN-MSA ...")
         v = comparators(g, v)
         info[g.gene] = {"length": len(tseq), "rfam": g.rfam, "cm_bits": bits, "consensus_fraction": cov}
         parts.append(v)
@@ -208,7 +211,8 @@ def fetch_labels(acmg):
     if acmg:
         import circularity_check as CC
         flags = {}
-        for r in lab.itertuples():
+        for i, r in enumerate(lab.itertuples(), 1):
+            log(f"  ACMG codes {i}/{len(lab)}: {r.ID}")
             subs = []
             for acc in {s.split(":", 1)[1] for s in lab.source[lab.ID == r.ID]}:
                 time.sleep(0.4)
@@ -265,7 +269,9 @@ def evaluate(v, lab, name, B, rng, keep=None):
 def cmd_eval(a):
     check_frozen()
     v = pd.read_csv(os.path.join(OUT, "a7_scores.tsv.gz"), sep="\t")
+    log("fetching ClinVar labels" + (" and ACMG codes (slow)" if a.acmg else ""))
     lab = fetch_labels(a.acmg)
+    log(f"{len(lab)} P/LP SNVs; evaluating {len(SCORES)} scores with {a.boot} bootstraps per unit")
     lab.to_csv(os.path.join(RES, "a7_labels.tsv"), sep="\t", index=False)
     rng = np.random.default_rng(SEED)
     sets = {"PRIMARY: ClinVar P/LP >= 1 star vs PASS AC >= 9": (lab, None),
@@ -276,6 +282,7 @@ def cmd_eval(a):
     tabs, rep = [], ["Amendment A7: zero-shot RNA-family profile on non-snRNA disease RNA genes (scores frozen before labels)", ""]
     decision = None
     for name, (L, keep) in sets.items():
+        log(f"label set: {name}")
         t, res = evaluate(v, L, name, a.boot, rng, keep)
         tabs.append(t)
         rep.append(f"== {name}")

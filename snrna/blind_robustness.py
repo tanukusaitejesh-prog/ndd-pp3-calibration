@@ -94,6 +94,7 @@ def main():
 
     rows = []
     for nname, neg in negsets.items():
+        print(f"  negatives: {nname}", flush=True)
         for sname, keep in subsets.items():
             if sname != "all positions" and nname != "L3 AC>=9 (frozen)":
                 continue
