@@ -1,16 +1,16 @@
-# RNA-family profiles predict pathogenic variants in spliceosomal snRNA genes where genome-wide scores fail: a pre-registered evaluation with two blind tests
+# Rarity inflates non-coding variant benchmarks; RNA-family profiles predict pathogenic snRNA variants beyond it: a pre-registered evaluation with two blind tests
 
-*Draft, 14 October 2026. Every number is traceable to `PREREG.md` section 14 (dated deviation log) and `results/`. Bracketed items marked **[A9]** are filled when amendment A9 finishes.*
+*Draft, 14 October 2026. Every number is traceable to `PREREG.md` section 14 (dated deviation log) and `results/`.*
 
 ## Abstract
 
 **Background.** Variants in spliceosomal small nuclear RNA (snRNA) genes cause neurodevelopmental disorders (RNU4-2, RNU2-2, RNU5B-1, RNU4ATAC, RNU12), but clinical guidance published in 2026 notes that no in silico tool has been designed or calibrated for these genes. Genome-wide scores perform at chance on RNU2-2.
 
-**Methods.** We pre-registered and timestamped an evaluation of variant-effect scores across 55 snRNA loci (17,385 possible SNVs), with patient labels for two genes sealed in an encrypted file before any model was fitted. A selection-supervised graph model (primary, v2) and a regularised stacked model (v4, frozen before unsealing) were evaluated blind. Because "benign" controls drawn from common gnomAD variants let any rarity-tracking score separate random rare variants from controls, we report each score's excess over a rarity-only null. Post hoc and pre-registered follow-up analyses tested circularity, position-only baselines, measured function (RNU4-2 saturation genome editing), a second blind label set curated from the 2025–2026 literature, generalisation to other disease RNA genes, and ClinGen PP3/BP4 calibration.
+**Methods.** We pre-registered and timestamped an evaluation of variant-effect scores across 55 snRNA loci (17,385 possible SNVs), with patient labels for two genes sealed in an encrypted file before any model was fitted. A selection-supervised graph model (primary, v2) and a regularised stacked model (v4, frozen before unsealing) were evaluated blind. Because "benign" controls drawn from common gnomAD variants let any rarity-tracking score separate random rare variants from controls, we report each score's excess over a rarity-only null. Post hoc and pre-registered follow-up analyses tested circularity, position-only baselines, measured function (RNU4-2 saturation genome editing), a second blind label set curated from the 2025–2026 literature, generalisation to other disease RNA genes, the size of the rarity effect across ClinVar's non-coding variants, and ClinGen PP3/BP4 calibration.
 
-**Results.** The pre-registered primary model failed its per-variant endpoints. The frozen v4 model separated RNU2-2 patient variants from population variants in the sealed test (AUROC 0.892 vs CADD 0.501; excess over its rarity null +0.108, p = 0.014) and replicated on 16 patient variants reported only in the literature (0.910; excess +0.133, p = 0.012; Δ vs CADD +0.298 [0.153, 0.426]). The signal beyond rarity was carried by parameter-free RNA-family (Rfam) profile features (excess +0.17, p = 0.001), not by CADD, GPN-MSA, ReMM or phyloP. On measured RNU4-2 function, Rfam features correlated at ρ = 0.39–0.46 versus 0.09 (CADD) and −0.02 (phyloP). A pre-registered test on four non-snRNA disease RNA genes was not met: genome-wide scores perform well there (CADD 0.86 on RMRP), so their failure is specific to the multicopy, hypermutable snRNA loci. Calibrated v4 thresholds reach PP3 Supporting within RNU2-2, RNU4-2 and RNU4ATAC, where CADD reaches none, and 37 ClinVar VUS reach PP3 under thresholds from their own gene. **[A9: genome-wide inflation sentence.]**
+**Results.** The pre-registered primary model failed its per-variant endpoints. The frozen v4 model separated RNU2-2 patient variants from population variants in the sealed test (AUROC 0.892 vs CADD 0.501; excess over its rarity null +0.108, p = 0.014) and replicated on 16 patient variants reported only in the literature (0.910; excess +0.133, p = 0.012; Δ vs CADD +0.298 [0.153, 0.426]). The signal beyond rarity was carried by parameter-free RNA-family (Rfam) profile features (excess +0.17, p = 0.001), not by CADD, GPN-MSA, ReMM or phyloP. On measured RNU4-2 function, Rfam features correlated at ρ = 0.39–0.46 versus 0.09 (CADD) and −0.02 (phyloP). A pre-registered test on four non-snRNA disease RNA genes was not met: genome-wide scores perform well there (CADD 0.86 on RMRP), so their failure is specific to the multicopy, hypermutable snRNA loci. Calibrated v4 thresholds reach PP3 Supporting within RNU2-2, RNU4-2 and RNU4ATAC, where CADD reaches none, and 37 ClinVar VUS reach PP3 under thresholds from their own gene. Across 1,787 ClinVar non-coding pathogenic SNVs genome-wide, the rarity-only null was 0.62–0.68 for CADD, GPN-MSA and ReMM, so 40–58% of their above-chance AUROC against common controls reflects rarity alone (pre-registered; met).
 
-**Conclusions.** RNA-family profiles provide calibrated in silico evidence for snRNA variants; benchmarks against population-common controls should report a rarity-only null.
+**Conclusions.** Benchmarks that use population-common variants as negatives overstate non-coding predictors by a score-specific rarity effect, which should be reported. Measured beyond it, RNA-family profiles provide calibrated in silico evidence for spliceosomal snRNA variants where genome-wide scores do not.
 
 ## Introduction
 
@@ -88,9 +88,23 @@ We tested the Rfam alternative-base rarity zero-shot on four other disease RNA g
 
 The frozen v4 tied CADD (Δ −0.005). Genome-wide scores work on these single-copy RNA genes, so their failure at the snRNA loci reflects those loci (multicopy, hypermutable) rather than RNA genes in general.
 
-### 8. Genome-wide rarity inflation of non-coding benchmarks **[A9]**
+### 8. Genome-wide rarity inflation of non-coding benchmarks (pre-registered, A9)
 
-**[A9 results: ClinVar non-coding P/LP SNVs (1,787: intronic 1,500, 5′UTR 148, ncRNA exon 85, 3′UTR 51) vs gnomAD-common variants within ±100 bp; raw AUROC, rarity null, inflation and corrected AUROC for CADD, GPN-MSA and ReMM; H1 decision.]**
+Is the RNU2-2 rarity effect peculiar to snRNAs? We pre-registered a genome-wide test before fetching any score (A9).
+- **Design.** 1,787 ClinVar non-coding P/LP SNVs (intronic 1,500 of 3,438, sampled; 5′UTR 148; ncRNA exon 85; 3′UTR 51) against 8,666 gnomAD PASS SNVs with AC ≥ 9 within ±100 bp. The window-matched rarity null drew, for each positive, a random non-positive, non-common SNV from its own window.
+- **Result.** Pooled, the null was 0.632 for CADD, 0.676 for GPN-MSA and 0.618 for ReMM, against raw AUROCs of 0.828, 0.805 and 0.730 (Table 2). Rarity alone therefore accounts for 40%, 58% and 51% of each tool's above-chance AUROC.
+- **By class.** The inflation was +0.10 to +0.19 in every class, and largest in ncRNA exons.
+- **Rankings.** The ranking of tools did not change (H2 not met), but the gaps did: GPN-MSA, the most rarity-sensitive score, lost most.
+
+**Table 2.** Rarity-only inflation of non-coding predictors (pooled, 1,787 P/LP vs 8,666 common SNVs).
+
+| Tool | Raw AUROC | Rarity null | Inflation | Corrected (raw − null) |
+|---|---|---|---|---|
+| CADD v1.7 | 0.828 | 0.632 | +0.132 | +0.196 |
+| GPN-MSA | 0.805 | 0.676 | +0.176 | +0.129 |
+| ReMM v0.4 | 0.730 | 0.618 | +0.118 | +0.112 |
+
+The null is not pure noise: rare variants are themselves enriched for deleterious ones, so the corrected value is a conservative lower bound on pathogenicity-specific signal. What the test shows is that AUROC against common controls mixes two quantities, selection on rarity and pathogenicity, in score-specific proportions.
 
 ### 9. Inheritance mode from local constraint
 
@@ -121,7 +135,7 @@ Three results carry the paper:
 
 The likely mechanism is that whole-genome alignments and genome-wide training sets handle multicopy, hypermutable loci poorly. Rfam covariance models are built from curated RNA families and avoid both problems.
 
-The rarity-only null matters beyond snRNAs. When negatives are common population variants, a score that tracks constraint or conservation earns a large AUROC from rarity alone. On RNU2-2 the null was 0.80 for GPN-MSA and 0.53 for CADD, so raw AUROC comparisons between such scores mislead. **[A9 sentence on genome-wide magnitude.]** We suggest that benchmarks using population controls report each score's rarity null.
+The rarity-only null matters beyond snRNAs. When negatives are common population variants, a score that tracks constraint or conservation earns a large AUROC from rarity alone. On RNU2-2 the null was 0.80 for GPN-MSA and 0.53 for CADD, so raw AUROC comparisons between such scores mislead. Genome-wide, the same null is 0.62–0.68 for CADD, GPN-MSA and ReMM across ClinVar's non-coding pathogenic variants, so this is a general property of the benchmark design rather than of snRNAs. We suggest that benchmarks using population controls report each score's rarity null.
 
 **Limitations.**
 - The blind evidence comes from one gene in two label sets (38 positives), and RNU5B-1 could not be evaluated.
@@ -140,6 +154,6 @@ The rarity-only null matters beyond snRNAs. When negatives are common population
 1. Blind RNU2-2 ROC for v4, Rfam alt rarity, phyloP447 and CADD, sealed and literature sets (`fig1_blind_roc`).
 2. Excess over the rarity-only null per score, sealed and literature sets; position-only baselines (`fig2_robustness`).
 3. RNU4-2 SGE correlation by score, with the pre-registered bar; v2/v3/v4 (`fig7_aim2`).
-4. A7 cross-family results (`fig5_a7`) and A9 inflation by tool and class **[A9]**.
+4. A7 cross-family results (`fig5_a7`) and A9 inflation by tool and class (`fig8_a9`).
 5. Calibration: pooled local LR with evidence bars (`fig4_calibration`).
 Supplementary: ablation (`fig3_ablation`), gene-level constraint (`fig6_gene_discovery`).
