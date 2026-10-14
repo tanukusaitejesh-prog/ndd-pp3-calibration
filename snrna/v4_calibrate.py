@@ -47,7 +47,8 @@ def crossfit_v4(inputs, evo2, labels_dir):
     train = v[v.label.isin(named) & (v.y | (v.L3_benign_like.astype(bool) & ~v.y))]
     X = [f + "_r" for f in V.FEATURES]
     out = pd.Series(np.nan, index=v.index)
-    for lab in sorted(named):
+    for i, lab in enumerate(sorted(named), 1):
+        print(f"  cross-fit {i}/{len(named)}: {lab} (cluster {cl[lab]} held out)", flush=True)
         tr = train[train.label.map(cl) != cl[lab]]
         m = LogisticRegression(C=V.C_REG, class_weight="balanced", max_iter=5000).fit(tr[X], tr.y)
         idx = v.index[v.label == lab]
@@ -99,6 +100,7 @@ def main():
     man = {l.split()[1]: l.split()[0] for l in open(os.path.join(a.v4, "v4_manifest.txt")) if l.strip()}
     if man.get(os.path.relpath(sp, HERE)) != hashlib.sha256(open(sp, "rb").read()).hexdigest():
         sys.exit("v4_scores.tsv.gz does not match the frozen manifest")
+    print("building v4 features and cross-fitting (non-blind genes) ...", flush=True)
     frozen = pd.read_csv(sp, sep="\t")[["ID", "gene", "v4"]]
     cf = crossfit_v4(a.inputs, a.evo2, a.labels)
     sc = cf.merge(frozen[["ID", "v4"]], on="ID", how="left")
@@ -115,7 +117,8 @@ def main():
 
     rows, curves, th_v4 = [], [], {}
     units = {"pooled (all genes)": t, **{g: x for g, x in t.groupby("gene")}}
-    for name, x in units.items():
+    for i, (name, x) in enumerate(units.items(), 1):
+        print(f"  calibrating {i}/{len(units)}: {name} ({int(x.pos.sum())} P, {int((~x.pos).sum())} B), {a.boot} bootstraps", flush=True)
         y = x.pos.to_numpy(bool)
         th_v4[name] = calib(name, x.v4_oos.to_numpy(float), y, a.boot, rows, curves, "v4")
         calib(name, x.cadd_phred.to_numpy(float), y, a.boot, rows, curves, "cadd_phred")

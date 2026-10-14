@@ -8,7 +8,9 @@ set -u
 cd "$(dirname "$0")"
 mkdir -p logs results
 B=sealed/blind_labels.tsv
-step() { local name=$1; shift; echo "== $name"; if "$@" > "logs/next_$name.log" 2>&1; then tail -n 25 "logs/next_$name.log"; else echo "!! $name FAILED (see logs/next_$name.log)"; tail -n 15 "logs/next_$name.log"; fi; }
+step() { local name=$1; shift; echo; echo "== [$(date +%H:%M:%S)] START $name"; local t0=$SECONDS
+  if "$@" 2>&1 | tee "logs/next_$name.log"; [ "${PIPESTATUS[0]}" -eq 0 ]; then echo "== [$(date +%H:%M:%S)] DONE $name ($((SECONDS-t0)) s)"
+  else echo "!! [$(date +%H:%M:%S)] FAILED $name ($((SECONDS-t0)) s) - see logs/next_$name.log"; fi; }
 
 case "${1:-}" in
   part1)

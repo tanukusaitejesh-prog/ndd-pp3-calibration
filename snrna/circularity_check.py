@@ -96,7 +96,8 @@ def fetch_evidence(plp_ids, inputs, path):
     if plp_ids is None:
         plp_ids = {i for i in cv_plp | in_rnudb if E.SNV_ID.match(i)}
     rows = []
-    for vid in sorted(plp_ids):
+    for i, vid in enumerate(sorted(plp_ids), 1):
+        print(f"  ClinVar evidence {i}/{len(plp_ids)}: {vid}", flush=True)
         subs = []
         for acc in sorted(accs.get(vid, ())):
             time.sleep(0.4)
@@ -201,6 +202,7 @@ def main():
     sc["S"] = E.framework_score(sc, FE.BLIND_MODE[GENE])
     comp = pd.read_csv(os.path.join(HERE, "comparators", "comparators.tsv.gz"), sep="\t")
     sc = sc.merge(comp[["ID", "phylop447", "remm", "gpn_msa"]], on="ID", how="left")
+    print("scoring: v2 framework, comparators, frozen v4, leave-position-out v4 ...", flush=True)
     v4 = pd.read_csv(sp, sep="\t")[["ID", "v4"]]
     sc = sc.merge(v4, on="ID", how="left").merge(v4_rescored(a.inputs, a.evo2, a.v4), on="ID", how="left")
 
