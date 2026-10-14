@@ -57,5 +57,11 @@ case "${1:-}" in
     step a10_eval python a10_extend.py eval
     echo; echo "NEXT: git add a10/ results/ && git commit -m 'A10 evaluation' && (git push || true)"
     ;;
-  *) echo "usage: bash run_next.sh part1|part2|part3|part4|part5"; exit 1 ;;
+  part6)  # A11: NCBoost published benchmark re-scored with the rarity-only null (~1-2 h)
+    pip install -q pyliftover 2>/dev/null
+    step a11_fetch python a11_ncboost.py fetch
+    step a11_eval  python a11_ncboost.py eval
+    echo; echo "NEXT: git add a11/ results/ && git commit -m 'A11 evaluation' && (git push || true)"
+    ;;
+  *) echo "usage: bash run_next.sh part1|part2|part3|part4|part5|part6"; exit 1 ;;
 esac
