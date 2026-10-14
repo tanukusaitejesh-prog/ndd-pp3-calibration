@@ -1,0 +1,656 @@
+chr	pos	ref	alt	closest_gene_name	annovar_genomic_region	OMIM_diseases	HGMD_DM_public	ClinVar	Smedley_2016
+1	21835920	C	T	ALPL	UTR5	Hypophosphatasia, adult |||| Odontohypophosphatasia |||| Hypophosphatasia, infantile |||| Hypophosphatasia, childhood	1	0	1
+1	55505180	C	A	PCSK9	UTR5	Hypercholesterolemia, familial, 3	1	0	1
+1	113498814	C	T	SLC16A1	UTR5	Erythrocyte lactate transporter defect |||| Hyperinsulinemic hypoglycemia, familial, 7 |||| Monocarboxylate transporter 1 deficiency	1	1	1
+1	209975332	G	T	IRF6	UTR5	van der Woude syndrome |||| Popliteal pterygium syndrome 1	1	0	0
+1	209975361	T	A	IRF6	UTR5	van der Woude syndrome |||| Popliteal pterygium syndrome 1	1	0	1
+1	209979367	C	T	IRF6	UTR5	van der Woude syndrome |||| Popliteal pterygium syndrome 1	1	0	0
+1	209979435	G	A	IRF6	UTR5	van der Woude syndrome |||| Popliteal pterygium syndrome 1	1	0	0
+1	216596610	C	A	USH2A	UTR5	Usher syndrome, type 2A |||| Retinitis pigmentosa 39	1	0	0
+1	228337561	A	G	GJC2	UTR5	Leukodystrophy, hypomyelinating, 2 |||| Spastic paraplegia 44, autosomal recessive |||| Lymphedema, hereditary, IC	1	1	1
+10	27389371	G	C	ANKRD26	UTR5	Thrombocytopenia 2	1	0	0
+10	27389373	G	T	ANKRD26	UTR5	Thrombocytopenia 2	1	0	0
+10	27389374	G	T	ANKRD26	UTR5	Thrombocytopenia 2	1	0	1
+10	27389374	G	C	ANKRD26	UTR5	Thrombocytopenia 2	1	0	0
+10	27389376	T	G	ANKRD26	UTR5	Thrombocytopenia 2	1	0	1
+10	27389381	A	G	ANKRD26	UTR5	Thrombocytopenia 2	1	0	0
+10	27389381	A	C	ANKRD26	UTR5	Thrombocytopenia 2	1	0	1
+10	27389382	T	C	ANKRD26	UTR5	Thrombocytopenia 2	1	0	1
+10	27389382	T	A	ANKRD26	UTR5	Thrombocytopenia 2	1	0	0
+10	27389383	C	T	ANKRD26	UTR5	Thrombocytopenia 2	1	0	1
+10	27389383	C	G	ANKRD26	UTR5	Thrombocytopenia 2	1	0	0
+10	27389383	C	A	ANKRD26	UTR5	Thrombocytopenia 2	1	0	0
+10	27389389	C	T	ANKRD26	UTR5	Thrombocytopenia 2	1	1	1
+10	89622988	A	G	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623049	C	T	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623056	C	T	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623116	A	G	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623226	T	C	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623296	G	A	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623306	G	T	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623331	T	C	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623365	G	T	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	1	1
+10	89623373	C	G	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	1
+10	89623392	C	T	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623428	G	C	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+10	89623462	G	A	PTEN	UTR5	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	1
+11	299504	G	A	IFITM5	UTR5	Osteogenesis imperfecta, type V	1	1	1
+11	2182419	T	G	INS	UTR5	Diabetes mellitus, insulin-dependent, 2 |||| Diabetes mellitus, permanent neonatal |||| Maturity-onset diabetes of the young, type 10 |||| Hyperproinsulinemia	1	0	1
+11	5248257	C	G	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248263	G	A	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248269	G	C	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248280	C	T	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248282	G	A	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248294	G	A	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248301	T	G	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248301	T	C	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248301	T	A	HBB	UTR5	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	17409692	G	A	KCNJ11	UTR5	Hyperinsulinemic hypoglycemia, familial, 2 |||| Diabetes, permanent neonatal, with or without neurologic features |||| Diabetes mellitus, transient neonatal, 3 |||| Maturity-onset diabetes of the young, type 13	1	0	0
+11	17409772	C	A	KCNJ11	UTR5	Hyperinsulinemic hypoglycemia, familial, 2 |||| Diabetes, permanent neonatal, with or without neurologic features |||| Diabetes mellitus, transient neonatal, 3 |||| Maturity-onset diabetes of the young, type 13	1	1	1
+11	47470715	G	C	RAPSN	UTR5	Fetal akinesia deformation sequence |||| Myasthenic syndrome, congenital, 11, associated with acetylcholine receptor deficiency	1	1	1
+11	47470726	T	C	RAPSN	UTR5	Fetal akinesia deformation sequence |||| Myasthenic syndrome, congenital, 11, associated with acetylcholine receptor deficiency	1	1	1
+11	57365055	C	T	SERPING1	UTR5	Angioedema, hereditary, types I and II |||| Complement component 4, partial deficiency of	1	0	1
+11	57365057	A	G	SERPING1	UTR5	Angioedema, hereditary, types I and II |||| Complement component 4, partial deficiency of	1	0	0
+11	61735061	T	A	FTH1	UTR5	?Hemochromatosis, type 5	1	1	1
+11	64577603	G	T	MEN1	UTR5	Multiple endocrine neoplasia 1	1	0	0
+11	76839534	A	G	MYO7A	UTR5	Usher syndrome, type 1B |||| Deafness, autosomal recessive 2 |||| Deafness, autosomal dominant 11	1	0	0
+11	88070895	G	T	CTSC	UTR5	Periodontitis 1, juvenile |||| Papillon-Lefevre syndrome |||| Haim-Munk syndrome	1	0	1
+11	108093770	A	G	ATM	UTR5	Ataxia-telangiectasia	1	0	0
+11	118955622	T	A	HMBS	UTR5	Porphyria, acute intermittent |||| Porphyria, acute intermittent, nonerythroid variant	1	0	0
+12	12870767	G	C	CDKN1B	UTR5	Multiple endocrine neoplasia, type IV	1	0	0
+12	121416385	C	A	HNF1A	UTR5	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416385	C	T	HNF1A	UTR5	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416448	G	C	HNF1A	UTR5	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	1
+12	121416453	G	A	HNF1A	UTR5	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416475	T	G	HNF1A	UTR5	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416510	C	G	HNF1A	UTR5	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+13	48877899	G	C	RB1	UTR5	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	0	1
+13	48877900	G	T	RB1	UTR5	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	0	1
+13	48878045	C	G	RB1	UTR5	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	0	0
+13	52585551	T	G	ATP7B	UTR5	Wilson disease	1	0	1
+13	52585596	G	T	ATP7B	UTR5	Wilson disease	1	0	1
+13	52585606	T	G	ATP7B	UTR5	Wilson disease	1	0	1
+13	60738072	C	T	DIAPH3	UTR5	Auditory neuropathy, autosomal dominant, 1	1	0	1
+13	100634295	C	T	ZIC2	UTR5	Holoprosencephaly 5	1	0	0
+13	113760117	A	G	F7	UTR5	Factor VII deficiency	1	0	0
+13	113760124	A	C	F7	UTR5	Factor VII deficiency	1	0	1
+13	113760126	A	C	F7	UTR5	Factor VII deficiency	1	0	0
+13	113760155	C	T	F7	UTR5	Factor VII deficiency	1	0	0
+14	55369403	G	A	GCH1	UTR5	Dystonia, DOPA-responsive, with or without hyperphenylalaninemia |||| Hyperphenylalaninemia, BH4-deficient, B	1	0	1
+14	76447266	C	T	TGFB3	UTR5	Arrhythmogenic right ventricular dysplasia 1 |||| Loeys-Dietz syndrome 5	1	0	1
+16	226707	G	C	HBA1	UTR5	Heinz body anemias, alpha- |||| Thalassemias, alpha- |||| Hemoglobin H disease, nondeletional	1	0	0
+16	3306599	G	C	MEFV	UTR5	Familial Mediterranean fever, AD |||| Familial Mediterranean fever, AR	1	0	0
+17	42340296	C	T	SLC4A1	UTR5	Ovalocytosis, SA type |||| Renal tubular acidosis, distal, AD |||| Cryohydrocytosis |||| Renal tubular acidosis, distal, AR |||| Spherocytosis, type 4	1	1	0
+17	66508599	G	A	PRKAR1A	UTR5	Acrodysostosis 1, with or without hormone resistance |||| Carney complex, type 1 |||| Myxoma, intracardiac |||| Pigmented nodular adrenocortical disease, primary, 1	1	0	1
+17	73761239	A	G	GALK1	UTR5	Galactokinase deficiency with cataracts	1	0	0
+17	75316275	G	C	SEPT9	UTR5	Amyotrophy, hereditary neuralgic	1	1	1
+19	11200064	A	C	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200069	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200072	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200073	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200076	C	A	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200079	C	A	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200083	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200085	C	A	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200085	C	G	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200085	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200086	C	A	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200086	C	G	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200087	T	C	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200088	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200089	C	G	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200089	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200090	C	G	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200091	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200105	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	1
+19	11200202	A	C	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200211	C	A	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	11200220	C	T	LDLR	UTR5	Hypercholesterolemia, familial	1	0	0
+19	35773328	C	T	HAMP	UTR5	Hemochromatosis, type 2B	1	0	0
+19	35773453	G	T	HAMP	UTR5	Hemochromatosis, type 2B	1	0	0
+19	35773456	G	A	HAMP	UTR5	Hemochromatosis, type 2B	1	0	1
+19	39138352	C	T	ACTN4	UTR5	Glomerulosclerosis, focal segmental, 1	1	0	1
+19	49468575	C	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+19	49468579	C	G	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468581	C	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+19	49468583	C	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+19	49468587	T	G	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+19	49468589	T	C	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468594	C	G	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468597	G	A	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468597	G	C	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468597	G	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468598	C	A	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+19	49468598	C	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468599	T	C	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468601	C	A	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468601	C	G	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468601	C	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468602	A	C	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+19	49468602	A	G	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468602	A	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+19	49468604	C	A	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468604	C	G	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468604	C	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468605	A	G	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468606	G	C	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468608	G	A	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468611	T	G	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468612	G	A	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468614	A	C	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468615	C	A	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+19	49468616	G	C	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	1	1
+19	49468621	A	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+19	49468655	C	T	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	0
+2	25387652	G	T	POMC	UTR5	Obesity, adrenal insufficiency, and red hair due to POMC deficiency	1	1	1
+2	38303243	T	G	CYP1B1	UTR5	Glaucoma 3A, primary open angle, congenital, juvenile, or adult onset |||| Anterior segment dysgenesis 6, multiple subtypes	1	0	0
+2	50574090	C	A	NRXN1	UTR5	Pitt-Hopkins-like syndrome 2	1	0	0
+2	73114549	G	A	SPR	UTR5	Dystonia, dopa-responsive, due to sepiapterin reductase deficiency	1	0	1
+2	128176001	T	C	PROC	UTR5	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	1
+2	128176005	C	T	PROC	UTR5	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	0
+2	128176036	G	A	PROC	UTR5	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	0
+2	128176047	A	C	PROC	UTR5	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	0
+2	128176058	G	A	PROC	UTR5	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	0
+2	131356867	T	C	CFC1	UTR5	Heterotaxy, visceral, 2, autosomal	1	0	0
+22	40742514	T	C	ADSL	UTR5	Adenylosuccinase deficiency	1	0	1
+3	37034932	C	G	MLH1	UTR5	Muir-Torre syndrome |||| Mismatch repair cancer syndrome |||| Colorectal cancer, hereditary nonpolyposis, type 2	1	0	1
+3	37034997	C	T	MLH1	UTR5	Muir-Torre syndrome |||| Mismatch repair cancer syndrome |||| Colorectal cancer, hereditary nonpolyposis, type 2	1	0	1
+3	37035012	C	A	MLH1	UTR5	Muir-Torre syndrome |||| Mismatch repair cancer syndrome |||| Colorectal cancer, hereditary nonpolyposis, type 2	1	0	1
+3	71834207	G	T	PROK2	UTR5	Hypogonadotropic hypogonadism 4 with or without anosmia	1	0	0
+3	93692761	G	A	PROS1	UTR5	Thrombophilia due to protein S deficiency, autosomal dominant |||| Thrombophilia due to protein S deficiency, autosomal recessive	1	0	0
+4	980871	C	G	IDUA	UTR5	Mucopolysaccharidosis Ih |||| Mucopolysaccharidosis Ih/s |||| Mucopolysaccharidosis Is	1	0	0
+4	159593534	A	G	ETFDH	UTR5	Glutaric acidemia IIC	1	0	0
+5	14871567	G	A	ANKH	UTR5	Chondrocalcinosis 2 |||| Craniometaphyseal dysplasia	1	0	1
+5	36877266	C	T	NIPBL	UTR5	Cornelia de Lange syndrome 1	1	0	0
+5	70220892	A	G	SMN1	UTR5	Spinal muscular atrophy-1 |||| Spinal muscular atrophy-3 |||| Spinal muscular atrophy-2 |||| Spinal muscular atrophy-4	1	0	0
+5	147211193	G	A	SPINK1	UTR5	Pancreatitis, hereditary |||| Tropical calcific pancreatitis	1	0	0
+6	26087649	G	A	HFE	UTR5	Hemochromatosis	1	0	0
+6	137143759	C	T	PEX7	UTR5	Rhizomelic chondrodysplasia punctata, type 1 |||| Peroxisome biogenesis disorder 9B	1	1	1
+7	117120064	C	G	CFTR	UTR5	Cystic fibrosis |||| Congenital bilateral absence of vas deferens	1	0	1
+8	19796711	G	C	LPL	UTR5	Combined hyperlipidemia, familial |||| Lipoprotein lipase deficiency	1	0	1
+8	19796725	T	C	LPL	UTR5	Combined hyperlipidemia, familial |||| Lipoprotein lipase deficiency	1	0	0
+8	42698457	G	A	THAP1	UTR5	Dystonia 6, torsion	1	0	0
+8	63998581	G	A	TTPA	UTR5	Ataxia with isolated vitamin E deficiency	1	0	0
+9	21974847	G	A	CDKN2A	UTR5	Melanoma and neural system tumor syndrome |||| Pancreatic cancer/melanoma syndrome	1	0	0
+9	21974860	C	A	CDKN2A	UTR5	Melanoma and neural system tumor syndrome |||| Pancreatic cancer/melanoma syndrome	1	1	1
+9	21974875	G	T	CDKN2A	UTR5	Melanoma and neural system tumor syndrome |||| Pancreatic cancer/melanoma syndrome	1	0	0
+9	21974882	C	A	CDKN2A	UTR5	Melanoma and neural system tumor syndrome |||| Pancreatic cancer/melanoma syndrome	1	0	0
+9	130616761	G	A	ENG	UTR5	Telangiectasia, hereditary hemorrhagic, type 1	1	0	1
+X	33229483	A	T	DMD	UTR5	Becker muscular dystrophy |||| Cardiomyopathy, dilated, 3B |||| Duchenne muscular dystrophy	1	0	0
+X	43832685	T	C	NDP	UTR5	Exudative vitreoretinopathy 2, X-linked |||| Norrie disease	1	0	0
+X	49114969	C	A	FOXP3	UTR5	Immunodysregulation, polyendocrinopathy, and enteropathy, X-linked	1	0	1
+X	55057393	G	A	ALAS2	UTR5	Anemia, sideroblastic, 1 |||| Protoporphyria, erythropoietic, X-linked	1	0	0
+X	68049525	T	C	EFNB1	UTR5	Craniofrontonasal dysplasia	1	0	1
+X	68049525	T	G	EFNB1	UTR5	Craniofrontonasal dysplasia	1	0	1
+X	100641212	T	C	BTK	UTR5	Agammaglobulinemia, X-linked 1 |||| Agammaglobulinemia and isolated hormone deficiency	1	0	1
+X	138612900	T	A	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612901	T	C	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612902	T	C	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612903	C	G	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612906	A	T	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	0
+X	138612906	A	G	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612907	A	C	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612907	A	G	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612919	A	G	F9	UTR5	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	0
+X	146993615	G	C	FMR1	UTR5	Fragile X tremor/ataxia syndrome |||| Fragile X syndrome |||| Premature ovarian failure 1	1	0	1
+X	153991099	C	G	DKC1	UTR5	Dyskeratosis congenita, X-linked	1	0	1
+X	154250832	T	C	F8	UTR5	Hemophilia A	1	0	0
+X	154250939	C	T	F8	UTR5	Hemophilia A	1	0	1
+Y	2655719	C	T	SRY	UTR5	46XY sex reversal 1 |||| 46XX sex reversal 1	1	0	1
+Y	2655774	C	G	SRY	UTR5	46XY sex reversal 1 |||| 46XX sex reversal 1	1	0	0
+1	11083408	G	A	TARDBP	UTR3	Amyotrophic lateral sclerosis 10, with or without FTD |||| Frontotemporal lobar degeneration, TARDBP-related	1	1	1
+1	100661453	T	G	DBT	UTR3	Maple syrup urine disease, type II	1	0	1
+1	156028185	C	A	LAMTOR2	UTR3	Immunodeficiency due to defect in MAPBP-interacting protein	1	0	1
+10	89725294	T	A	PTEN	UTR3	Bannayan-Riley-Ruvalcaba syndrome |||| Malignant melanoma, somatic |||| Cowden syndrome 1 |||| Lhermitte-Duclos syndrome |||| Squamous cell carcinoma, head and neck, somatic |||| VATER association with macrocephaly and ventriculomegaly |||| Macrocephaly/autism syndrome |||| Endometrial carcinoma, somatic	1	0	0
+11	2181023	T	C	INS	UTR3	Diabetes mellitus, insulin-dependent, 2 |||| Diabetes mellitus, permanent neonatal |||| Maturity-onset diabetes of the young, type 10 |||| Hyperproinsulinemia	1	1	1
+11	5246696	G	T	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246696	G	A	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246699	A	G	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246715	T	C	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5246716	T	C	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	0
+11	5246716	T	A	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246717	T	C	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5246718	A	T	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5246718	A	G	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5246718	A	C	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246720	T	G	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5246720	T	C	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246732	A	G	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246754	T	C	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246781	G	C	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5246796	T	G	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5246822	G	C	HBB	UTR3	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+12	103232809	T	C	PAH	UTR3	Phenylketonuria	1	0	0
+13	84452863	C	T	SLITRK1	UTR3	Tourette syndrome |||| ?Trichotillomania	1	1	0
+14	21162169	C	T	ANG	UTR3	Amyotrophic lateral sclerosis 9	1	0	0
+14	21162173	G	A	ANG	UTR3	Amyotrophic lateral sclerosis 9	1	0	0
+14	76425035	G	A	TGFB3	UTR3	Arrhythmogenic right ventricular dysplasia 1 |||| Loeys-Dietz syndrome 5	1	1	1
+16	223691	A	G	HBA2	UTR3	Heinz body anemia |||| Thalassemia, alpha- |||| Hemoglobin H disease, nondeletional	1	0	1
+16	223693	A	C	HBA2	UTR3	Heinz body anemia |||| Thalassemia, alpha- |||| Hemoglobin H disease, nondeletional	1	0	0
+16	223693	A	G	HBA2	UTR3	Heinz body anemia |||| Thalassemia, alpha- |||| Hemoglobin H disease, nondeletional	1	0	1
+16	338079	C	T	AXIN1	UTR3	Hepatocellular carcinoma, somatic |||| ?Caudal duplication anomaly	1	0	0
+16	31202891	C	A	FUS	UTR3	Amyotrophic lateral sclerosis 6, with or without frontotemporal dementia |||| Tremor, hereditary essential, 4	1	0	0
+16	31202949	C	A	FUS	UTR3	Amyotrophic lateral sclerosis 6, with or without frontotemporal dementia |||| Tremor, hereditary essential, 4	1	0	0
+17	58236874	G	A	CA4	UTR3	Retinitis pigmentosa 17	1	0	0
+19	11242035	G	A	LDLR	UTR3	Hypercholesterolemia, familial	1	0	0
+19	41930736	T	A	BCKDHA	UTR3	Maple syrup urine disease, type Ia	1	0	0
+2	48034014	A	C	MSH6	UTR3	Mismatch repair cancer syndrome |||| Endometrial cancer, familial |||| Colorectal cancer, hereditary nonpolyposis, type 5	1	0	0
+2	128186595	C	T	PROC	UTR3	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	0
+21	34668714	C	T	IL10RB	UTR3	Inflammatory bowel disease 25, early onset, autosomal recessive	1	0	0
+22	24176449	C	T	SMARCB1	UTR3	Rhabdoid tumors, somatic |||| Coffin-Siris syndrome 3	1	1	0
+3	10191656	C	G	VHL	UTR3	Renal cell carcinoma, somatic |||| Pheochromocytoma |||| von Hippel-Lindau syndrome |||| Erythrocytosis, familial, 2	1	0	0
+3	15687154	G	A	BTD	UTR3	Biotinidase deficiency	1	0	0
+3	138663815	G	T	FOXL2	UTR3	Blepharophimosis, epicanthus inversus, and ptosis, type 1 |||| Blepharophimosis, epicanthus inversus, and ptosis, type 2 |||| Premature ovarian failure 3	1	0	0
+7	155595586	C	A	SHH	UTR3	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	1	0	0
+9	34635578	C	A	SIGMAR1	UTR3	?Spinal muscular atrophy, distal, autosomal recessive, 2 |||| ?Amyotrophic lateral sclerosis 16, juvenile	1	0	0
+X	22266301	A	G	PHEX	UTR3	Hypophosphatemic rickets, X-linked dominant	1	0	1
+X	49106917	T	C	FOXP3	UTR3	Immunodysregulation, polyendocrinopathy, and enteropathy, X-linked	1	0	1
+X	49106919	T	C	FOXP3	UTR3	Immunodysregulation, polyendocrinopathy, and enteropathy, X-linked	1	0	1
+X	70327278	T	C	IL2RG	UTR3	Severe combined immunodeficiency, X-linked |||| Combined immunodeficiency, X-linked, moderate	1	0	0
+X	138645387	A	G	F9	UTR3	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	0
+X	138645598	A	G	F9	UTR3	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	0
+X	150573536	A	G	VMA21	UTR3	Myopathy, X-linked, with excessive autophagy	1	1	0
+1	155271258	T	C	PKLR	upstream	Adenosine triphosphate, elevated, of erythrocytes |||| Pyruvate kinase deficiency	1	0	1
+1	155271259	C	G	PKLR	upstream	Adenosine triphosphate, elevated, of erythrocytes |||| Pyruvate kinase deficiency	1	0	0
+1	155271269	C	G	PKLR	upstream	Adenosine triphosphate, elevated, of erythrocytes |||| Pyruvate kinase deficiency	1	0	1
+1	160001799	G	C	PIGM	upstream	Glycosylphosphatidylinositol deficiency	1	1	1
+1	172628081	T	C	FASLG	upstream	Autoimmune lymphoproliferative syndrome, type IB	1	0	0
+1	173886568	G	C	SERPINC1	upstream	Thrombophilia due to antithrombin III deficiency	1	0	1
+1	204165663	G	A	KISS1	upstream	?Hypogonadotropic hypogonadism 13 with or without anosmia	1	0	0
+11	2182532	G	T	INS	upstream	Diabetes mellitus, insulin-dependent, 2 |||| Diabetes mellitus, permanent neonatal |||| Maturity-onset diabetes of the young, type 10 |||| Hyperproinsulinemia	1	0	0
+11	2182532	G	C	INS	upstream	Diabetes mellitus, insulin-dependent, 2 |||| Diabetes mellitus, permanent neonatal |||| Maturity-onset diabetes of the young, type 10 |||| Hyperproinsulinemia	1	0	1
+11	2182533	G	C	INS	upstream	Diabetes mellitus, insulin-dependent, 2 |||| Diabetes mellitus, permanent neonatal |||| Maturity-onset diabetes of the young, type 10 |||| Hyperproinsulinemia	1	0	1
+11	2193085	A	T	TH	upstream	Segawa syndrome, recessive	1	0	1
+11	2193086	C	T	TH	upstream	Segawa syndrome, recessive	1	0	1
+11	2193087	G	A	TH	upstream	Segawa syndrome, recessive	1	0	1
+11	5248326	C	G	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248326	C	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248327	T	G	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248328	T	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248328	T	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248329	T	G	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248329	T	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248330	T	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248331	A	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248331	A	G	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248332	T	G	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248332	T	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248333	G	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248333	G	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248342	T	G	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248343	G	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248351	C	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248357	C	G	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248372	G	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248374	T	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248377	G	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248387	G	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248387	G	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	0
+11	5248387	G	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248388	G	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248388	G	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248388	G	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248389	G	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248389	G	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	1
+11	5248391	G	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248391	G	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	1
+11	5248393	G	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	0
+11	5248394	G	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248402	G	C	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248402	G	A	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	1	0
+11	5248403	G	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5248491	C	T	HBB	upstream	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	1	0	0
+11	5276120	C	A	HBG2	upstream	Cyanosis, transient neonatal	1	0	0
+11	5276125	G	T	HBG2	upstream	Cyanosis, transient neonatal	1	1	1
+11	5276125	G	C	HBG2	upstream	Cyanosis, transient neonatal	1	0	0
+11	5276125	G	A	HBG2	upstream	Cyanosis, transient neonatal	1	1	0
+11	5276172	C	T	HBG2	upstream	Cyanosis, transient neonatal	1	0	0
+11	5276186	A	G	HBG2	upstream	Cyanosis, transient neonatal	1	1	1
+11	5276207	G	A	HBG2	upstream	Cyanosis, transient neonatal	1	0	0
+11	5276213	G	C	HBG2	upstream	Cyanosis, transient neonatal	1	1	1
+11	17498513	G	C	ABCC8	upstream	Diabetes mellitus, noninsulin-dependent |||| Hypoglycemia of infancy, leucine-sensitive |||| Hyperinsulinemic hypoglycemia, familial, 1 |||| Diabetes mellitus, permanent neonatal |||| Diabetes mellitus, transient neonatal 2	1	0	1
+11	118955413	C	T	HMBS	upstream	Porphyria, acute intermittent |||| Porphyria, acute intermittent, nonerythroid variant	1	0	0
+11	118955474	G	A	HMBS	upstream	Porphyria, acute intermittent |||| Porphyria, acute intermittent, nonerythroid variant	1	0	0
+12	6234258	G	A	VWF	upstream	von Willebrand disease, type 1 |||| von Willibrand disease, type 3 |||| von Willebrand disease, types 2A, 2B, 2M, and 2N	1	0	0
+12	53715654	G	A	AAAS	upstream	Achalasia-addisonianism-alacrimia syndrome	1	0	0
+12	121416034	G	C	HNF1A	upstream	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416110	G	A	HNF1A	upstream	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416281	T	C	HNF1A	upstream	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416285	G	A	HNF1A	upstream	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416289	A	C	HNF1A	upstream	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	1
+12	121416314	A	G	HNF1A	upstream	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	0
+12	121416354	T	C	HNF1A	upstream	Hepatic adenoma, somatic |||| Renal cell carcinoma |||| MODY, type III |||| Diabetes mellitus, insulin-dependent, 20	1	0	1
+13	20767158	G	A	GJB2	upstream	Vohwinkel syndrome |||| Keratitis-ichthyosis-deafness syndrome |||| Keratoderma, palmoplantar, with deafness |||| Bart-Pumphrey syndrome |||| Deafness, autosomal recessive 1A |||| Deafness, autosomal dominant 3A |||| Hystrix-like ichthyosis with deafness	1	0	1
+13	48877837	G	A	RB1	upstream	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	0	0
+13	48877851	G	A	RB1	upstream	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	1	1
+13	48877851	G	T	RB1	upstream	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	0	0
+13	48877856	T	A	RB1	upstream	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	0	1
+13	48877856	T	G	RB1	upstream	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	0	1
+13	48877860	G	T	RB1	upstream	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	1	1	1
+13	52585683	T	A	ATP7B	upstream	Wilson disease	1	0	1
+13	52585915	C	T	ATP7B	upstream	Wilson disease	1	0	0
+13	113760060	C	T	F7	upstream	Factor VII deficiency	1	0	0
+13	113760062	C	G	F7	upstream	Factor VII deficiency	1	0	1
+13	113760091	G	C	F7	upstream	Factor VII deficiency	1	0	0
+13	113760094	C	T	F7	upstream	Factor VII deficiency	1	0	0
+13	113760095	T	G	F7	upstream	Factor VII deficiency	1	0	1
+13	113760096	T	C	F7	upstream	Factor VII deficiency	1	0	0
+13	113760096	T	G	F7	upstream	Factor VII deficiency	1	0	0
+13	113760097	T	G	F7	upstream	Factor VII deficiency	1	0	1
+13	113760101	C	G	F7	upstream	Factor VII deficiency	1	0	0
+13	113760101	C	T	F7	upstream	Factor VII deficiency	1	0	1
+16	3306969	G	C	MEFV	upstream	Familial Mediterranean fever, AD |||| Familial Mediterranean fever, AR	1	0	0
+16	56995796	G	A	CETP	upstream	Hyperalphalipoproteinemia	1	0	1
+17	3539712	G	T	CTNS	upstream	Cystinosis, ocular nonnephropathic |||| Cystinosis, atypical nephropathic |||| Cystinosis, nephropathic |||| Cystinosis, late-onset juvenile or adolescent nephropathic	1	0	1
+17	4806452	C	T	CHRNE	upstream	Myasthenic syndrome, congenital, 4A, slow-channel |||| Myasthenic syndrome, congenital, 4C, associated with acetylcholine receptor deficiency |||| Myasthenic syndrome, congenital, 4B, fast-channel	1	0	0
+17	4806453	C	T	CHRNE	upstream	Myasthenic syndrome, congenital, 4A, slow-channel |||| Myasthenic syndrome, congenital, 4C, associated with acetylcholine receptor deficiency |||| Myasthenic syndrome, congenital, 4B, fast-channel	1	0	1
+17	4806454	G	A	CHRNE	upstream	Myasthenic syndrome, congenital, 4A, slow-channel |||| Myasthenic syndrome, congenital, 4C, associated with acetylcholine receptor deficiency |||| Myasthenic syndrome, congenital, 4B, fast-channel	1	1	1
+18	55254103	C	G	FECH	upstream	Protoporphyria, erythropoietic, autosomal recessive	1	0	0
+19	11199958	A	G	LDLR	upstream	Hypercholesterolemia, familial	1	0	0
+19	11200019	C	T	LDLR	upstream	Hypercholesterolemia, familial	1	0	0
+19	11200037	C	T	LDLR	upstream	Hypercholesterolemia, familial	1	0	0
+19	12998078	A	G	KLF1	upstream	Blood group--Lutheran inhibitor |||| Dyserythropoietic anemia, congenital, type IV	1	0	0
+19	49468350	C	A	FTL	upstream	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	1	0	1
+2	47630106	G	C	MSH2	upstream	Colorectal cancer, hereditary nonpolyposis, type 1 |||| Muir-Torre syndrome |||| Mismatch repair cancer syndrome	1	0	1
+2	47630150	G	A	MSH2	upstream	Colorectal cancer, hereditary nonpolyposis, type 1 |||| Muir-Torre syndrome |||| Mismatch repair cancer syndrome	1	0	0
+2	128175983	A	G	PROC	upstream	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	1
+2	128175984	A	G	PROC	upstream	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	1
+2	128175988	T	A	PROC	upstream	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	1
+2	128175994	T	G	PROC	upstream	Thrombophilia due to protein C deficiency, autosomal dominant |||| Thrombophilia due to protein C deficiency, autosomal recessive	1	0	0
+20	23030443	G	T	THBD	upstream	Thrombophilia due to thrombomodulin defect	1	0	0
+20	42984253	C	G	HNF4A	upstream	MODY, type I |||| Fanconi renotubular syndrome 4, with maturity-onset diabetes of the young	1	0	0
+20	42984264	G	A	HNF4A	upstream	MODY, type I |||| Fanconi renotubular syndrome 4, with maturity-onset diabetes of the young	1	0	1
+20	42984271	T	C	HNF4A	upstream	MODY, type I |||| Fanconi renotubular syndrome 4, with maturity-onset diabetes of the young	1	0	0
+20	42984276	C	T	HNF4A	upstream	MODY, type I |||| Fanconi renotubular syndrome 4, with maturity-onset diabetes of the young	1	0	1
+20	42984299	T	C	HNF4A	upstream	MODY, type I |||| Fanconi renotubular syndrome 4, with maturity-onset diabetes of the young	1	0	1
+20	42984309	A	G	HNF4A	upstream	MODY, type I |||| Fanconi renotubular syndrome 4, with maturity-onset diabetes of the young	1	0	1
+21	27543454	G	C	APP	upstream	Alzheimer disease 1, familial |||| Cerebral amyloid angiopathy, Dutch, Italian, Iowa, Flemish, Arctic variants	1	0	0
+21	27543619	C	T	APP	upstream	Alzheimer disease 1, familial |||| Cerebral amyloid angiopathy, Dutch, Italian, Iowa, Flemish, Arctic variants	1	0	0
+22	19743578	C	T	TBX1	upstream	Tetralogy of Fallot |||| DiGeorge syndrome |||| Velocardiofacial syndrome |||| Conotruncal anomaly face syndrome	1	0	0
+22	19743735	A	C	TBX1	upstream	Tetralogy of Fallot |||| DiGeorge syndrome |||| Velocardiofacial syndrome |||| Conotruncal anomaly face syndrome	1	0	0
+3	48632779	G	A	COL7A1	upstream	Transient bullous of the newborn |||| Epidermolysis bullosa dystrophica, AD |||| Epidermolysis bullosa, pretibial |||| EBD, Bart type |||| EBD inversa |||| Epidermolysis bullosa dystrophica, AR |||| Epidermolysis bullosa pruriginosa |||| Toenail dystrophy, isolated	1	0	0
+3	48632780	G	A	COL7A1	upstream	Transient bullous of the newborn |||| Epidermolysis bullosa dystrophica, AD |||| Epidermolysis bullosa, pretibial |||| EBD, Bart type |||| EBD inversa |||| Epidermolysis bullosa dystrophica, AR |||| Epidermolysis bullosa pruriginosa |||| Toenail dystrophy, isolated	1	0	1
+3	170745041	T	G	SLC2A2	upstream	Fanconi-Bickel syndrome	1	0	0
+4	74301817	G	A	AFP	upstream	Alpha-fetoprotein deficiency	1	0	0
+4	74301881	C	A	AFP	upstream	Alpha-fetoprotein deficiency	1	0	0
+4	187186995	G	A	F11	upstream	Factor XI deficiency, autosomal dominant |||| Factor XI deficiency, autosomal recessive	1	0	0
+5	176836590	G	A	F12	upstream	Factor XII deficiency |||| Angioedema, hereditary, type III	1	0	1
+7	31003560	A	C	GHRHR	upstream	Growth hormone deficiency, isolated, type IB	1	0	1
+7	35293780	C	T	TBX20	upstream	Atrial septal defect 4	1	0	0
+7	44229109	C	G	GCK	upstream	MODY, type II |||| Diabetes mellitus, noninsulin-dependent, late onset |||| Hyperinsulinemic hypoglycemia, familial, 3 |||| Diabetes mellitus, permanent neonatal	1	0	0
+7	75931813	T	C	HSPB1	upstream	Charcot-Marie-Tooth disease, axonal, type 2F |||| Neuropathy, distal hereditary motor, type IIB	1	0	0
+7	117119654	C	T	CFTR	upstream	Cystic fibrosis |||| Congenital bilateral absence of vas deferens	1	0	0
+7	117119984	G	A	CFTR	upstream	Cystic fibrosis |||| Congenital bilateral absence of vas deferens	1	0	1
+X	37639262	A	C	CYBB	upstream	Immunodeficiency 34, mycobacteriosis, X-linked |||| Chronic granulomatous disease, X-linked	1	0	1
+X	37639264	T	C	CYBB	upstream	Immunodeficiency 34, mycobacteriosis, X-linked |||| Chronic granulomatous disease, X-linked	1	0	1
+X	37639266	C	T	CYBB	upstream	Immunodeficiency 34, mycobacteriosis, X-linked |||| Chronic granulomatous disease, X-linked	1	0	1
+X	37639267	C	T	CYBB	upstream	Immunodeficiency 34, mycobacteriosis, X-linked |||| Chronic granulomatous disease, X-linked	1	0	1
+X	38211584	A	G	OTC	upstream	Ornithine transcarbamylase deficiency	1	0	1
+X	55057617	G	C	ALAS2	upstream	Anemia, sideroblastic, 1 |||| Protoporphyria, erythropoietic, X-linked	1	0	1
+X	138612869	G	A	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612869	G	C	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612869	G	T	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612871	A	G	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612872	C	G	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612872	C	T	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612874	T	C	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	0
+X	138612874	T	G	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612875	T	A	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612875	T	C	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612876	G	C	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612889	G	A	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612889	G	C	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612890	A	G	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	138612890	A	T	F9	upstream	Thrombophilia, X-linked, due to factor IX defect |||| Hemophilia B	1	0	1
+X	153237261	A	G	HCFC1	upstream	Mental retardation, X-linked 3 (methylmalonic acidemia and homocysteinemia, cblX type )	1	1	1
+X	154251046	G	A	F8	upstream	Hemophilia A	1	0	1
+X	154251082	T	C	F8	upstream	Hemophilia A	1	0	1
+X	154251084	A	G	F8	upstream	Hemophilia A	1	0	0
+X	154251084	A	C	F8	upstream	Hemophilia A	1	0	1
+X	154251687	T	C	F8	upstream	Hemophilia A	1	0	0
+1	8021919	C	G	PARK7	intronic	Parkinson disease 7, autosomal recessive early-onset	1	0	1
+10	71075518	A	G	HK1	intronic	Hemolytic anemia due to hexokinase deficiency |||| Neuropathy, hereditary motor and sensory, Russe type |||| Retinitis pigmentosa 79	1	0	1
+10	127505271	A	T	UROS	intronic	Porphyria, congenital erythropoietic	1	0	0
+10	127505271	A	G	UROS	intronic	Porphyria, congenital erythropoietic	1	1	1
+10	127505277	C	T	UROS	intronic	Porphyria, congenital erythropoietic	1	1	0
+10	127505287	G	T	UROS	intronic	Porphyria, congenital erythropoietic	1	1	1
+10	127505287	G	C	UROS	intronic	Porphyria, congenital erythropoietic	1	0	0
+10	127505291	G	T	UROS	intronic	Porphyria, congenital erythropoietic	1	1	1
+11	2905209	C	A	CDKN1C	intronic	Beckwith-Wiedemann syndrome |||| IMAGE syndrome	1	0	0
+11	108094508	G	A	ATM	intronic	Ataxia-telangiectasia	1	0	0
+12	52308396	G	C	ACVRL1	intronic	Telangiectasia, hereditary hemorrhagic, type 2	1	0	0
+14	37130036	G	A	PAX9	intronic	Tooth agenesis, selective, 3	1	0	1
+14	73603504	G	A	PSEN1	intronic	Pick disease |||| Dementia, frontotemporal |||| Alzheimer disease, type 3 |||| Alzheimer disease, type 3, with spastic paraparesis and apraxia |||| Alzheimer disease, type 3, with spastic paraparesis and unusual plaques |||| Cardiomyopathy, dilated, 1U |||| Acne inversa, familial, 3	1	0	0
+17	7906220	T	C	GUCY2D	intronic	Leber congenital amaurosis 1 |||| Cone-rod dystrophy 6	1	0	0
+17	42078968	C	A	NAGS	intronic	N-acetylglutamate synthase deficiency	1	0	1
+17	73839908	G	A	UNC13D	intronic	Hemophagocytic lymphohistiocytosis, familial, 3	1	0	0
+21	27543203	G	T	APP	intronic	Alzheimer disease 1, familial |||| Cerebral amyloid angiopathy, Dutch, Italian, Iowa, Flemish, Arctic variants	1	0	0
+3	12421189	A	G	PPARG	intronic	Obesity, severe |||| Insulin resistance, severe, digenic |||| Lipodystrophy, familial partial, type 3 |||| Carotid intimal medial thickness 1	1	0	1
+5	147211355	C	T	SPINK1	intronic	Pancreatitis, hereditary |||| Tropical calcific pancreatitis	1	0	0
+5	147211355	C	A	SPINK1	intronic	Pancreatitis, hereditary |||| Tropical calcific pancreatitis	1	0	0
+6	118869382	A	G	PLN	intronic	Cardiomyopathy, dilated, 1P |||| Cardiomyopathy, hypertrophic, 18	1	0	1
+6	118869417	C	G	PLN	intronic	Cardiomyopathy, dilated, 1P |||| Cardiomyopathy, hypertrophic, 18	1	0	0
+8	11560787	T	C	GATA4	intronic	Tetralogy of Fallot |||| Atrial septal defect 2 |||| Ventricular septal defect 1 |||| Atrioventricular septal defect 4 |||| ?Testicular anomalies with or without congenital heart disease	1	0	1
+8	11560864	C	A	GATA4	intronic	Tetralogy of Fallot |||| Atrial septal defect 2 |||| Ventricular septal defect 1 |||| Atrioventricular septal defect 4 |||| ?Testicular anomalies with or without congenital heart disease	1	0	1
+8	11561282	C	T	GATA4	intronic	Tetralogy of Fallot |||| Atrial septal defect 2 |||| Ventricular septal defect 1 |||| Atrioventricular septal defect 4 |||| ?Testicular anomalies with or without congenital heart disease	1	0	0
+8	11561369	G	T	GATA4	intronic	Tetralogy of Fallot |||| Atrial septal defect 2 |||| Ventricular septal defect 1 |||| Atrioventricular septal defect 4 |||| ?Testicular anomalies with or without congenital heart disease	1	0	1
+12	6235094	G	A	VWF	intergenic	von Willebrand disease, type 1 |||| von Willibrand disease, type 3 |||| von Willebrand disease, types 2A, 2B, 2M, and 2N	1	0	0
+12	114704515	G	T	TBX5	intergenic	Holt-Oram syndrome	1	0	1
+14	73600361	A	G	PSEN1	intergenic	Pick disease |||| Dementia, frontotemporal |||| Alzheimer disease, type 3 |||| Alzheimer disease, type 3, with spastic paraparesis and apraxia |||| Alzheimer disease, type 3, with spastic paraparesis and unusual plaques |||| Cardiomyopathy, dilated, 1U |||| Acne inversa, familial, 3	1	0	0
+17	42470923	C	T	ITGA2B	intergenic	Bleeding disorder, platelet-type, 16, autosomal dominant |||| Glanzmann thrombasthenia	1	0	0
+4	155513028	G	A	FGA	intergenic	Amyloidosis, familial visceral |||| Afibrinogenemia, congenital |||| Dysfibrinogenemia, congenital |||| Hypodysfibrinogenemia, congenital	1	0	0
+7	156061506	C	T	SHH	intergenic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	1	0	1
+11	46761064	T	A	F2	downstream	Thrombophilia due to thrombin defect |||| Dysprothrombinemia |||| Hypoprothrombinemia	1	0	0
+11	46761066	C	T	F2	downstream	Thrombophilia due to thrombin defect |||| Dysprothrombinemia |||| Hypoprothrombinemia	1	0	0
+1	10003561	C	T	NMNAT1	UTR5	Leber congenital amaurosis 9	0	0	1
+1	91487748	G	T	ZNF644	UTR5	Myopia 21, autosomal dominant	0	0	1
+1	228337558	A	G	GJC2	UTR5	Leukodystrophy, hypomyelinating, 2 |||| Spastic paraplegia 44, autosomal recessive |||| Lymphedema, hereditary, IC	0	1	0
+19	11200124	T	C	LDLR	UTR5	Hypercholesterolemia, familial	0	0	1
+19	49468617	G	C	FTL	UTR5	Hyperferritinemia-cataract syndrome |||| Neurodegeneration with brain iron accumulation 3 |||| L-ferritin deficiency, dominant and recessive	0	0	1
+20	6103422	T	C	FERMT1	UTR5	Kindler syndrome	0	1	1
+4	89444948	C	T	PIGY	UTR5	Hyperphosphatasia with mental retardation syndrome 6	0	1	0
+5	112043223	A	G	APC	UTR5	Colorectal cancer, somatic |||| Hepatoblastoma, somatic |||| Desmoid disease, hereditary |||| Adenomatous polyposis coli |||| Brain tumor-polyposis syndrome 2 |||| Gardner syndrome |||| Gastric cancer, somatic	0	1	0
+5	112043223	A	T	APC	UTR5	Colorectal cancer, somatic |||| Hepatoblastoma, somatic |||| Desmoid disease, hereditary |||| Adenomatous polyposis coli |||| Brain tumor-polyposis syndrome 2 |||| Gardner syndrome |||| Gastric cancer, somatic	0	1	0
+5	112043224	T	C	APC	UTR5	Colorectal cancer, somatic |||| Hepatoblastoma, somatic |||| Desmoid disease, hereditary |||| Adenomatous polyposis coli |||| Brain tumor-polyposis syndrome 2 |||| Gardner syndrome |||| Gastric cancer, somatic	0	1	0
+6	88299677	T	C	RARS2	UTR5	Pontocerebellar hypoplasia, type 6	0	0	1
+12	12870694	C	T	CDKN1B	UTR5	Multiple endocrine neoplasia, type IV	0	1	0
+20	2451408	G	T	SNRPB	UTR5	Cerebrocostomandibular syndrome	0	1	1
+20	23030292	C	A	THBD	UTR5	Thrombophilia due to thrombomodulin defect	0	1	0
+8	21988118	T	C	HR	UTR5	Hypotrichosis 4 |||| Alopecia universalis |||| Atrichia with papular lesions	0	1	1
+8	21988149	G	C	HR	UTR5	Hypotrichosis 4 |||| Alopecia universalis |||| Atrichia with papular lesions	0	1	1
+8	21988215	G	A	HR	UTR5	Hypotrichosis 4 |||| Alopecia universalis |||| Atrichia with papular lesions	0	1	1
+8	21988220	A	G	HR	UTR5	Hypotrichosis 4 |||| Alopecia universalis |||| Atrichia with papular lesions	0	1	1
+1	10003560	A	T	NMNAT1	UTR5	Leber congenital amaurosis 	0	0	1
+1	171621759	G	A	MYOC	UTR5	Glaucoma 1A, primary open angl	0	0	1
+10	27389371	G	A	ANKRD26	UTR5	Thrombocytopenia 	0	0	1
+10	27389373	G	A	ANKRD26	UTR5	Thrombocytopenia 	0	0	1
+10	27389380	A	C	ANKRD26	UTR5	Thrombocytopenia 	0	0	1
+12	121416444	T	G	HNF1A	UTR5	Hepatic adenoma, somati || Renal cell carcinom || MODY, type II || Diabetes mellitus, insulin-dependent, 2	0	0	1
+19	11200104	T	C	LDLR	UTR5	Hypercholesterolemia, familia	0	0	1
+2	219524871	A	G	BCS1L	UTR5	Mitochondrial complex III deficiency, nuclear type  || Leigh syndrom || Bjornstad syndrom || GRACILE syndrom	0	0	1
+8	21988119	A	G	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+8	21988140	C	G	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+8	21988146	C	T	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+8	21988148	G	A	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+8	21988151	A	T	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+8	21988202	G	T	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+8	21988219	C	T	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+8	21988220	A	T	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+8	21988221	T	C	HR	UTR5	Hypotrichosis  || Alopecia universali || Atrichia with papular lesion	0	0	1
+9	130616643	C	T	ENG	UTR5	Telangiectasia, hereditary hemorrhagic, type 	0	0	1
+9	130616644	G	A	ENG	UTR5	Telangiectasia, hereditary hemorrhagic, type 	0	0	1
+X	123480184	C	T	SH2D1A	UTR5	Lymphoproliferative syndrome, X-linked, 	0	0	1
+16	31202807	G	A	FUS	UTR3	Amyotrophic lateral sclerosis 6, with or without frontotemporal dementia |||| Tremor, hereditary essential, 4	0	0	1
+16	31202818	G	A	FUS	UTR3	Amyotrophic lateral sclerosis 6, with or without frontotemporal dementia |||| Tremor, hereditary essential, 4	0	0	1
+16	31202867	C	T	FUS	UTR3	Amyotrophic lateral sclerosis 6, with or without frontotemporal dementia |||| Tremor, hereditary essential, 4	0	0	1
+16	31202869	G	A	FUS	UTR3	Amyotrophic lateral sclerosis 6, with or without frontotemporal dementia |||| Tremor, hereditary essential, 4	0	0	1
+17	37828497	G	A	PGAP3	UTR3	Hyperphosphatasia with mental retardation syndrome 4	0	1	0
+8	22058957	T	C	BMP1	UTR3	Osteogenesis imperfecta, type XIII	0	1	1
+X	48683304	A	T	HDAC6	UTR3	?Chondrodysplasia with platyspondyly, distinctive brachydactyly, hydrocephaly, and microphthalmia	0	1	1
+1	11082794	T	C	TARDBP	UTR3	Amyotrophic lateral sclerosis 10, with or without FTD |||| Frontotemporal lobar degeneration, TARDBP-related	0	1	0
+1	91381763	C	T	ZNF644	UTR3	Myopia 21, autosomal dominant	0	1	1
+11	46761055	G	A	F2	UTR3	Thrombophilia due to thrombin defect |||| Dysprothrombinemia |||| Hypoprothrombinemia	0	1	1
+17	4804936	C	T	CHRNE	UTR3	Myasthenic syndrome, congenital, 4A, slow-channel |||| Myasthenic syndrome, congenital, 4C, associated with acetylcholine receptor deficiency |||| Myasthenic syndrome, congenital, 4B, fast-channel	0	1	0
+1	45481173	G	T	UROD	UTR3	Porphyria cutanea tard || Porphyria, hepatoerythropoieti	0	0	1
+1	91382343	G	C	ZNF644	UTR3	Myopia 21, autosomal dominan	0	0	1
+13	100638514	T	A	ZIC2	UTR3	Holoprosencephaly 	0	0	1
+13	100638825	T	C	ZIC2	UTR3	Holoprosencephaly 	0	0	1
+13	100638890	T	A	ZIC2	UTR3	Holoprosencephaly 	0	0	1
+13	100638902	A	G	ZIC2	UTR3	Holoprosencephaly 	0	0	1
+2	69553299	G	T	GFPT1	UTR3	Myasthenia, congenital, 12, with tubular aggregate	0	0	1
+X	70331494	G	A	IL2RG	upstream	Severe combined immunodeficiency, X-linked |||| Combined immunodeficiency, X-linked, moderate	0	0	1
+X	154251045	A	G	F8	upstream	Hemophilia A	0	0	1
+X	154251048	A	T	F8	upstream	Hemophilia A	0	0	1
+13	20767159	G	A	GJB2	upstream	Vohwinkel syndrome |||| Keratitis-ichthyosis-deafness syndrome |||| Keratoderma, palmoplantar, with deafness |||| Bart-Pumphrey syndrome |||| Deafness, autosomal recessive 1A |||| Deafness, autosomal dominant 3A |||| Hystrix-like ichthyosis with deafness	0	1	0
+X	153448055	A	C	OPN1MW	upstream	Blue cone monochromacy |||| Colorblindness, deutan	0	1	0
+1	171621877	A	C	MYOC	upstream	Glaucoma 1A, primary open angl	0	0	1
+5	176836585	C	G	F12	upstream	Factor XII deficienc || Angioedema, hereditary, type II	0	0	1
+7	117119337	T	G	CFTR	upstream	Cystic fibrosi || Congenital bilateral absence of vas deferen || Sweat chloride elevation without C	0	0	1
+X	146993366	G	C	FMR1	upstream	Fragile X tremor/ataxia syndrom || Fragile X syndrom || Premature ovarian failure 	0	0	1
+X	146993405	T	C	FMR1	upstream	Fragile X tremor/ataxia syndrom || Fragile X syndrom || Premature ovarian failure 	0	0	1
+X	146993444	A	G	FMR1	upstream	Fragile X tremor/ataxia syndrom || Fragile X syndrom || Premature ovarian failure 	0	0	1
+11	31685945	C	A	PAX6	intronic	Aniridia |||| Cataract with late-onset corneal dystrophy |||| ?Coloboma, ocular |||| ?Coloboma of optic nerve |||| ?Morning glory disc anomaly |||| Foveal hypoplasia 1 |||| Keratitis |||| Optic nerve hypoplasia |||| Anterior segment dysgenesis 5, multiple subtypes	0	1	1
+20	18038552	A	C	OVOL2	intronic	Corneal dystrophy, posterior polymorphous, 1	0	1	0
+20	18038585	A	G	OVOL2	intronic	Corneal dystrophy, posterior polymorphous, 1	0	1	0
+20	18038648	A	G	OVOL2	intronic	Corneal dystrophy, posterior polymorphous, 1	0	1	0
+1	11850973	C	T	MTHFR	intronic	Homocystinuria due to MTHFR deficiency	0	1	0
+1	110151229	C	T	GNAT2	intronic	Achromatopsia 4	0	1	0
+1	156100609	T	G	LMNA	intronic	Cardiomyopathy, dilated, 1A |||| Lipodystrophy, familial partial, type 2 |||| Muscular dystrophy, limb-girdle, type 1B |||| Hutchinson-Gilford progeria |||| Emery-Dreifuss muscular dystrophy 2, AD |||| Malouf syndrome |||| Mandibuloacral dysplasia |||| Restrictive dermopathy, lethal |||| Charcot-Marie-Tooth disease, type 2B1 |||| Heart-hand syndrome, Slovenian type |||| Muscular dystrophy, congenital |||| Emery-Dreifuss muscular dystrophy 3, AR	0	1	0
+1	156107433	T	G	LMNA	intronic	Cardiomyopathy, dilated, 1A |||| Lipodystrophy, familial partial, type 2 |||| Muscular dystrophy, limb-girdle, type 1B |||| Hutchinson-Gilford progeria |||| Emery-Dreifuss muscular dystrophy 2, AD |||| Malouf syndrome |||| Mandibuloacral dysplasia |||| Restrictive dermopathy, lethal |||| Charcot-Marie-Tooth disease, type 2B1 |||| Heart-hand syndrome, Slovenian type |||| Muscular dystrophy, congenital |||| Emery-Dreifuss muscular dystrophy 3, AR	0	1	0
+1	156843392	T	A	NTRK1	intronic	Medullary thyroid carcinoma, familial |||| Insensitivity to pain, congenital, with anhidrosis	0	1	0
+1	158626459	A	C	SPTA1	intronic	Elliptocytosis-2 |||| Pyropoikilocytosis |||| Spherocytosis, type 3	0	1	0
+1	197097820	T	C	ASPM	intronic	Microcephaly 5, primary, autosomal recessive	0	1	0
+1	209806373	C	T	LAMB3	intronic	Amelogenesis imperfecta, type IA |||| Epidermolysis bullosa, junctional, non-Herlitz type |||| Epidermolysis bullosa, junctional, Herlitz type	0	1	0
+1	216592035	C	T	USH2A	intronic	Usher syndrome, type 2A |||| Retinitis pigmentosa 39	0	1	0
+1	243468435	C	T	SDCCAG8	intronic	Senior-Loken syndrome 7 |||| Bardet-Biedl syndrome 16	0	1	0
+10	50681659	T	C	ERCC6	intronic	Cockayne syndrome, type B |||| Cerebrooculofacioskeletal syndrome 1 |||| De Sanctis-Cacchione syndrome |||| UV-sensitive syndrome 1 |||| Premature ovarian failure 11	0	1	0
+10	71038447	G	C	HK1	intronic	Hemolytic anemia due to hexokinase deficiency |||| Neuropathy, hereditary motor and sensory, Russe type |||| Retinitis pigmentosa 79	0	1	0
+10	71038467	G	C	HK1	intronic	Hemolytic anemia due to hexokinase deficiency |||| Neuropathy, hereditary motor and sensory, Russe type |||| Retinitis pigmentosa 79	0	1	0
+10	79769277	C	T	POLR3A	intronic	Leukodystrophy, hypomyelinating, 7, with or without oligodontia and/or hypogonadotropic hypogonadism	0	1	0
+10	95380377	T	A	PDE6C	intronic	Cone dystrophy 4	0	1	0
+11	2181258	C	T	INS	intronic	Diabetes mellitus, insulin-dependent, 2 |||| Diabetes mellitus, permanent neonatal |||| Maturity-onset diabetes of the young, type 10 |||| Hyperproinsulinemia	0	1	0
+11	2181774	C	T	INS	intronic	Diabetes mellitus, insulin-dependent, 2 |||| Diabetes mellitus, permanent neonatal |||| Maturity-onset diabetes of the young, type 10 |||| Hyperproinsulinemia	0	1	0
+11	2187017	A	T	TH	intronic	Segawa syndrome, recessive	0	1	0
+11	5246970	A	C	HBB	intronic	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	0	1	0
+11	5247062	G	C	HBB	intronic	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	0	1	0
+11	5247153	G	A	HBB	intronic	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	0	1	0
+11	5248050	C	T	HBB	intronic	Heinz body anemias, beta- |||| Delta-beta thalassemia |||| Hereditary persistence of fetal hemoglobin |||| Thalassemia-beta, dominant inclusion-body |||| Sickle cell anemia |||| Thalassemias, beta-	0	1	0
+11	47359371	T	C	MYBPC3	intronic	Cardiomyopathy, hypertrophic, 4 |||| Cardiomyopathy, dilated, 1MM |||| Left ventricular noncompaction 10	0	1	0
+11	47368616	C	T	MYBPC3	intronic	Cardiomyopathy, hypertrophic, 4 |||| Cardiomyopathy, dilated, 1MM |||| Left ventricular noncompaction 10	0	1	0
+11	47469717	G	T	RAPSN	intronic	Fetal akinesia deformation sequence |||| Myasthenic syndrome, congenital, 11, associated with acetylcholine receptor deficiency	0	1	0
+11	112098994	A	T	PTS	intronic	Hyperphenylalaninemia, BH4-deficient, A	0	1	0
+12	88494960	T	C	CEP290	intronic	Joubert syndrome 5 |||| Senior-Loken syndrome 6 |||| Meckel syndrome 4 |||| Leber congenital amaurosis 10 |||| ?Bardet-Biedl syndrome 14	0	1	0
+12	103237568	C	T	PAH	intronic	Phenylketonuria	0	1	0
+12	103288709	A	C	PAH	intronic	Phenylketonuria	0	1	0
+13	49027117	T	G	RB1	intronic	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	0	1	0
+13	49046098	A	G	RB1	intronic	Bladder cancer, somatic |||| Retinoblastoma |||| Retinoblastoma, trilateral |||| Small cell cancer of the lung, somatic |||| Osteosarcoma, somatic	0	1	0
+16	2107460	C	T	TSC2	intronic	Lymphangioleiomyomatosis, somatic |||| ?Focal cortical dysplasia, type II, somatic |||| Tuberous sclerosis-2	0	1	0
+16	2110656	G	A	TSC2	intronic	Lymphangioleiomyomatosis, somatic |||| ?Focal cortical dysplasia, type II, somatic |||| Tuberous sclerosis-2	0	1	0
+16	16244424	G	C	ABCC6	intronic	Pseudoxanthoma elasticum, forme fruste |||| Pseudoxanthoma elasticum |||| Arterial calcification, generalized, of infancy, 2	0	1	0
+16	16256835	C	T	ABCC6	intronic	Pseudoxanthoma elasticum, forme fruste |||| Pseudoxanthoma elasticum |||| Arterial calcification, generalized, of infancy, 2	0	1	0
+16	16284246	G	T	ABCC6	intronic	Pseudoxanthoma elasticum, forme fruste |||| Pseudoxanthoma elasticum |||| Arterial calcification, generalized, of infancy, 2	0	1	0
+16	31495978	C	A	SLC5A2	intronic	Renal glucosuria	0	1	0
+16	67470059	C	T	HSD11B2	intronic	Apparent mineralocorticoid excess	0	1	0
+16	67976512	A	G	LCAT	intronic	Fish-eye disease |||| Norum disease	0	1	0
+16	75575364	A	G	TMEM231	intronic	Joubert syndrome 20 |||| Meckel syndrome 11	0	1	0
+16	89718067	C	T	CHMP1A	intronic	Pontocerebellar hypoplasia, type 8	0	1	0
+17	29530107	A	G	NF1	intronic	Neurofibromatosis, type 1 |||| Neurofibromatosis, familial spinal |||| Watson syndrome |||| Neurofibromatosis-Noonan syndrome |||| Leukemia, juvenile myelomonocytic	0	1	0
+17	29657848	A	G	NF1	intronic	Neurofibromatosis, type 1 |||| Neurofibromatosis, familial spinal |||| Watson syndrome |||| Neurofibromatosis-Noonan syndrome |||| Leukemia, juvenile myelomonocytic	0	1	0
+17	44087782	C	T	MAPT	intronic	Pick disease |||| Supranuclear palsy, progressive atypical |||| Dementia, frontotemporal, with or without parkinsonism |||| Supranuclear palsy, progressive	0	1	0
+17	48272201	C	T	COL1A1	intronic	Caffey disease |||| Ehlers-Danlos syndrome, classic |||| Ehlers-Danlos syndrome, type VIIA |||| Osteogenesis imperfecta, type I |||| Osteogenesis imperfecta, type II |||| Osteogenesis imperfecta, type IV |||| Osteogenesis imperfecta, type III	0	1	0
+17	61995349	C	T	GH1	intronic	Growth hormone deficiency, isolated, type II |||| Growth hormone deficiency, isolated, type IA |||| Kowarski syndrome |||| Growth hormone deficiency, isolated, type IB	0	1	0
+17	80851411	C	G	TBCD	intronic	Encephalopathy, progressive, early-onset, with brain atrophy and thin corpus callosum	0	1	0
+18	20581745	T	G	RBBP8	intronic	Jawad syndrome |||| Seckel syndrome 2	0	1	0
+18	77470825	C	T	CTDP1	intronic	Congenital cataracts, facial dysmorphism, and neuropathy	0	1	0
+19	39074134	A	G	RYR1	intronic	Central core disease |||| Neuromuscular disease, congenital, with uniform type 1 fiber |||| King-Denborough syndrome |||| Minicore myopathy with external ophthalmoplegia	0	1	0
+19	54633399	C	G	PRPF31	intronic	Retinitis pigmentosa 11	0	1	0
+2	47249223	T	A	TTC7A	intronic	Gastrointestinal defects and immunodeficiency syndrome	0	1	0
+2	47606078	A	G	EPCAM	intronic	Diarrhea 5, with tufting enteropathy, congenital |||| Colorectal cancer, hereditary nonpolyposis, type 8	0	1	0
+2	47635062	T	G	MSH2	intronic	Colorectal cancer, hereditary nonpolyposis, type 1 |||| Muir-Torre syndrome |||| Mismatch repair cancer syndrome	0	1	0
+2	69472345	A	G	ANTXR1	intronic	GAPO syndrome	0	1	0
+2	71817308	A	G	DYSF	intronic	Muscular dystrophy, limb-girdle, type 2B |||| Miyoshi muscular dystrophy 1 |||| Myopathy, distal, with anterior tibial onset	0	1	0
+2	71889030	G	T	DYSF	intronic	Muscular dystrophy, limb-girdle, type 2B |||| Miyoshi muscular dystrophy 1 |||| Myopathy, distal, with anterior tibial onset	0	1	0
+2	74129825	C	A	ACTG2	intronic	Visceral myopathy	0	1	0
+2	74177701	C	G	DGUOK	intronic	Mitochondrial DNA depletion syndrome 3 (hepatocerebral type) |||| Portal hypertension, noncirrhotic |||| Progressive external ophthalmoplegia with mitochondrial DNA deletions, autosomal recessive 4	0	1	0
+2	98349927	G	A	ZAP70	intronic	Immunodeficiency 48 |||| Autoimmune disease, multisystem, infantile-onset, 2	0	1	0
+2	98354447	G	A	ZAP70	intronic	Immunodeficiency 48 |||| Autoimmune disease, multisystem, infantile-onset, 2	0	1	0
+2	166908215	A	C	SCN1A	intronic	Epilepsy, generalized, with febrile seizures plus, type 2 |||| Febrile seizures, familial, 3A |||| Epileptic encephalopathy, early infantile, 6 |||| Migraine, familial hemiplegic, 3	0	1	0
+2	189872183	T	G	COL3A1	intronic	Ehlers-Danlos syndrome, type IV	0	1	0
+2	225368551	A	C	CUL3	intronic	Pseudohypoaldosteronism, type IIE	0	1	0
+2	225368565	T	C	CUL3	intronic	Pseudohypoaldosteronism, type IIE	0	1	0
+2	225368567	A	C	CUL3	intronic	Pseudohypoaldosteronism, type IIE	0	1	0
+20	2447847	G	T	SNRPB	intronic	Cerebrocostomandibular syndrome	0	1	0
+20	2447951	C	A	SNRPB	intronic	Cerebrocostomandibular syndrome	0	1	0
+20	2447951	C	G	SNRPB	intronic	Cerebrocostomandibular syndrome	0	1	0
+20	2447952	C	G	SNRPB	intronic	Cerebrocostomandibular syndrome	0	1	0
+20	6074846	C	T	FERMT1	intronic	Kindler syndrome	0	1	0
+20	31395557	G	A	DNMT3B	intronic	Immunodeficiency-centromeric instability-facial anomalies syndrome 1	0	1	0
+20	43248503	A	T	ADA	intronic	Adenosine deaminase deficiency, partial |||| Severe combined immunodeficiency due to ADA deficiency	0	1	0
+22	31011112	A	T	TCN2	intronic	Transcobalamin II deficiency	0	1	0
+3	3188088	T	C	TRNT1	intronic	Sideroblastic anemia with B-cell immunodeficiency, periodic fevers, and developmental delay |||| Retinitis pigmentosa and erythrocytic microcytosis	0	1	0
+3	14209904	T	C	XPC	intronic	Xeroderma pigmentosum, group C	0	1	0
+3	31663820	G	T	STT3B	intronic	?Congenital disorder of glycosylation, type Ix	0	1	0
+3	142184702	G	C	ATR	intronic	Seckel syndrome 1 |||| ?Cutaneous telangiectasia and cancer syndrome, familial	0	1	0
+3	148888270	G	A	HPS3	intronic	Cerebellar ataxia |||| Hemosiderosis, systemic, due to aceruloplasminemia	0	1	0
+3	180367928	T	C	CCDC39	intronic	Ciliary dyskinesia, primary, 14	0	1	0
+4	15989860	T	C	PROM1	intronic	Stargardt disease 4 |||| Macular dystrophy, retinal, 2 |||| Retinitis pigmentosa 41 |||| Cone-rod dystrophy 12	0	1	0
+4	42965170	A	T	GRXCR1	intronic	Deafness, autosomal recessive 25	0	1	0
+4	56284334	G	A	TMEM165	intronic	Congenital disorder of glycosylation, type IIk	0	1	0
+4	108945190	G	T	HADH	intronic	3-hydroxyacyl-CoA dehydrogenase deficiency |||| Hyperinsulinemic hypoglycemia, familial, 4	0	1	0
+4	155490472	C	T	FGB	intronic	Afibrinogenemia, congenital |||| Hypofibrinogenemia, congenital |||| Dysfibrinogenemia, congenital	0	1	0
+4	155530122	T	A	FGG	intronic	Afibrinogenemia, congenital |||| Hypofibrinogenemia, congenital |||| Dysfibrinogenemia, congenital |||| Hypodysfibrinogenemia	0	1	0
+5	60223572	C	G	ERCC8	intronic	Cockayne syndrome, type A |||| UV-sensitive syndrome 2	0	1	0
+5	127671284	T	C	FBN2	intronic	Contractural arachnodactyly, congenital |||| Macular degeneration, early-onset	0	1	0
+5	131714054	T	A	SLC22A5	intronic	Carnitine deficiency, systemic primary	0	1	0
+6	32006858	C	G	CYP21A2	intronic	Adrenal hyperplasia, congenital, due to 21-hydroxylase deficiency |||| Hyperandrogenism, nonclassic type, due to 21-hydroxylase deficiency	0	1	0
+6	117198947	A	G	RFX6	intronic	Mitchell-Riley syndrome	0	1	0
+6	152643033	T	C	SYNE1	intronic	Spinocerebellar ataxia, autosomal recessive 8 |||| Emery-Dreifuss muscular dystrophy 4, autosomal dominant	0	1	0
+7	94025130	A	G	COL1A2	intronic	Ehlers-Danlos syndrome, type VIIB |||| Osteogenesis imperfecta, type II |||| Osteogenesis imperfecta, type IV |||| Ehlers-Danlos syndrome, cardiac valvular form |||| Osteogenesis imperfecta, type III	0	1	0
+7	117229521	A	G	CFTR	intronic	Cystic fibrosis |||| Congenital bilateral absence of vas deferens	0	1	0
+7	117251609	A	G	CFTR	intronic	Cystic fibrosis |||| Congenital bilateral absence of vas deferens	0	1	0
+7	117280015	C	T	CFTR	intronic	Cystic fibrosis |||| Congenital bilateral absence of vas deferens	0	1	0
+7	156583831	T	C	LMBR1	intronic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	0	1	1
+7	156583949	G	C	LMBR1	intronic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	0	1	1
+7	156584166	C	T	LMBR1	intronic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	0	1	1
+7	156584168	G	A	LMBR1	intronic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	0	1	1
+7	156584174	G	A	LMBR1	intronic	Laurin-Sandrow syndrome |||| Polydactyly, preaxial type II |||| Triphalangeal thumb, type I |||| Triphalangeal thumb-polysyndactyly syndrome |||| Syndactyly, type IV |||| Hypoplastic or aplastic tibia with polydactyly |||| Acheiropody	0	1	1
+7	156584236	A	C	LMBR1	intronic	Laurin-Sandrow syndrome |||| Polydactyly, preaxial type II |||| Triphalangeal thumb, type I |||| Triphalangeal thumb-polysyndactyly syndrome |||| Syndactyly, type IV |||| Hypoplastic or aplastic tibia with polydactyly |||| Acheiropody	0	1	1
+7	156584241	A	G	LMBR1	intronic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	0	1	1
+7	156584265	T	A	LMBR1	intronic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	0	1	1
+7	156584273	C	T	LMBR1	intronic	Laurin-Sandrow syndrome |||| Polydactyly, preaxial type II |||| Triphalangeal thumb, type I |||| Triphalangeal thumb-polysyndactyly syndrome |||| Syndactyly, type IV |||| Hypoplastic or aplastic tibia with polydactyly |||| Acheiropody	0	1	1
+7	156584275	A	G	LMBR1	intronic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	0	1	1
+7	156584465	G	C	LMBR1	intronic	Holoprosencephaly 3 |||| Single median maxillary central incisor |||| Schizencephaly |||| Microphthalmia with coloboma 5	0	1	1
+8	11612745	G	T	GATA4	intronic	Tetralogy of Fallot |||| Atrial septal defect 2 |||| Ventricular septal defect 1 |||| Atrioventricular septal defect 4 |||| ?Testicular anomalies with or without congenital heart disease	0	1	0
+8	27650167	G	A	ESCO2	intronic	Roberts syndrome |||| SC phocomelia syndrome	0	1	0
+8	30966107	A	G	WRN	intronic	Werner syndrome	0	1	0
+8	41566510	C	T	ANK1	intronic	Spherocytosis, type 1	0	1	0
+8	61763034	C	A	CHD7	intronic	CHARGE syndrome |||| Hypogonadotropic hypogonadism 5 with or without anosmia	0	1	0
+8	61763039	G	A	CHD7	intronic	CHARGE syndrome |||| Hypogonadotropic hypogonadism 5 with or without anosmia	0	1	0
+8	116427335	A	C	TRPS1	intronic	Trichorhinophalangeal syndrome, type I |||| Trichorhinophalangeal syndrome, type III	0	1	0
+9	91953524	G	A	SECISBP2	intronic	Thyroid hormone metabolism, abnormal	0	1	0
+9	116153914	G	A	ALAD	intronic	Porphyria, acute hepatic	0	1	0
+9	130578354	A	G	ENG	intronic	Telangiectasia, hereditary hemorrhagic, type 1	0	1	0
+9	133355236	C	T	ASS1	intronic	Citrullinemia	0	1	0
+9	136220806	A	C	SURF1	intronic	Leigh syndrome, due to COX IV deficiency |||| Charcot-Marie-Tooth disease, type 4K	0	1	0
+9	137645685	T	A	COL5A1	intronic	Ehlers-Danlos syndrome, classic type	0	1	0
+X	13768358	A	G	OFD1	intronic	Simpson-Golabi-Behmel syndrome, type 2 |||| ?Retinitis pigmentosa 23 |||| Joubert syndrome 10 |||| Orofaciodigital syndrome I	0	1	0
+X	24744696	A	G	POLA1	intronic	Pigmentary disorder, reticulate, with systemic manifestations, X-linked	0	1	0
+X	31279418	T	C	DMD	intronic	Becker muscular dystrophy |||| Cardiomyopathy, dilated, 3B |||| Duchenne muscular dystrophy	0	1	0
+X	31279781	T	C	DMD	intronic	Becker muscular dystrophy |||| Cardiomyopathy, dilated, 3B |||| Duchenne muscular dystrophy	0	1	0
+X	33192452	C	T	DMD	intronic	Becker muscular dystrophy |||| Cardiomyopathy, dilated, 3B |||| Duchenne muscular dystrophy	0	1	0
+X	70330553	T	C	IL2RG	intronic	Severe combined immunodeficiency, X-linked |||| Combined immunodeficiency, X-linked, moderate	0	1	0
+X	100601671	T	G	TIMM8A	intronic	Mohr-Tranebjaerg syndrome	0	1	0
+X	107813924	G	A	COL4A5	intronic	Alport syndrome	0	1	0
+X	128687279	A	G	OCRL	intronic	Dent disease 2 |||| Lowe syndrome	0	1	0
+X	128696350	G	A	OCRL	intronic	Dent disease 2 |||| Lowe syndrome	0	1	0
+X	150572076	A	C	VMA21	intronic	Myopathy, X-linked, with excessive autophagy	0	1	0
+X	150572076	A	T	VMA21	intronic	Myopathy, X-linked, with excessive autophagy	0	1	0
+X	153131293	T	G	L1CAM	intronic	CRASH syndrome |||| MASA syndrome |||| Corpus callosum, partial agenesis of |||| Hydrocephalus due to aqueductal stenosis |||| Hydrocephalus with Hirschsprung disease |||| Hydrocephalus with congenital idiopathic intestinal pseudoobstruction	0	1	0
+X	153136500	G	A	L1CAM	intronic	CRASH syndrome |||| MASA syndrome |||| Corpus callosum, partial agenesis of |||| Hydrocephalus due to aqueductal stenosis |||| Hydrocephalus with Hirschsprung disease |||| Hydrocephalus with congenital idiopathic intestinal pseudoobstruction	0	1	0
+X	154219579	C	T	F8	intronic	Hemophilia A	0	1	0
+10	71038467	G	A	HK1	intronic	Hemolytic anemia due to hexokinase deficienc || Neuropathy, hereditary motor and sensory, Russe typ || Retinitis pigmentosa 7	0	0	1
+8	11561283	C	T	GATA4	intronic	Tetralogy of Fallo || Atrial septal defect  || Ventricular septal defect  || Atrioventricular septal defect  || ?Testicular anomalies with or without congenital heart diseas	0	0	1
+8	41655260	G	C	ANK1	intronic	Spherocytosis, type 	0	0	1
+X	49834101	G	A	CLCN5	intronic	Dent diseas || Hypophosphatemic ricket || Proteinuria, low molecular weight, with hypercalciuric nephrocalcinosi || Nephrolithiasis, type 	0	0	1
+X	55054635	A	G	ALAS2	intronic	Anemia, sideroblastic,  || Protoporphyria, erythropoietic, X-linke	0	0	1
+8	11422122	G	T	BLK	downstream	Maturity-onset diabetes of the young, type 11	0	1	1
