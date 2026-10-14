@@ -1,0 +1,5 @@
+# Amendment A6 (inheritance-mode prediction) freeze, 2026-10-14 UTC, BEFORE the single unsealing.
+20d47a32b417e135c70e950151d9e4e6c840c6bc6d830819e1e327ba42207270  inheritance_blind_eval.py
+a2e4cdd30067dfd75fa0919e4cd9f4c46fe4281e621a55909ceedabc92d22458  final_eval.py
+cbf83f6189a465337f6d9aeb56fc8c6363cbfbe19bb3cf953add9d7c9c01901b  v4_blind_eval.py
+# Score: local_constraint in the A5-frozen results_v4/v4_scores.tsv.gz. Non-blind AUROC dominant vs recessive 1.0 (14 vs 62).
