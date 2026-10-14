@@ -1,54 +1,58 @@
-# Handoff (14 Oct 2026, end of session): state and remaining tasks
+# Handoff (14 Oct 2026, evening): state, decisions, remaining tasks
 
-Branch `claude/snrna-vep-v2-framework-b0abng`, folder `snrna/`. Every decision and result is logged in
-`PREREG.md` s14 (deviation log, newest rows at the bottom of the table) and s15 (amendments). Read that first.
-DGX: `~/snrna-run/snrna`, conda env `evo2`. The blind labels are decrypted at `sealed/blind_labels.tsv` (single
-unsealing done; logged in `sealed/SEALED_MANIFEST.jsonl`).
+Branch `claude/snrna-vep-v2-framework-b0abng`, folder `snrna/`. **Every number is logged in `PREREG.md` s14** (dated
+deviation log, newest rows at the bottom) and every amendment's text is in s15 (A1-A11). Read those first.
+Plain-language explainer for non-experts: https://claude.ai/code/artifact/d74d8ab6-94f8-4562-9912-ee585007f77d
+Manuscript draft: `paper/MANUSCRIPT.md`. Novelty audit: `NOVELTY_AUDIT_2026-10-14.md`.
 
-## Results so far (all logged in PREREG s14)
-| Item | Result |
+## The paper in one paragraph
+Benchmarks that use population-common variants as "benign" inflate variant-effect predictors by a score-specific
+**rarity-only null** (A9 non-coding: 40-58% of above-chance AUROC for CADD, GPN-MSA, phyloP447, ReMM; A10 missense:
+AlphaMissense 0.920 raw vs 0.694 rarity-matched, inflation +0.26). Measured beyond that null, **RNA-family (Rfam)
+profiles** predict pathogenic variants in spliceosomal snRNA genes where genome-wide scores do not: two blind tests on
+RNU2-2 (sealed 22 P/LP; literature-only 16 P/LP) and RNU4-2 SGE function. A frozen model (v4) gives ClinGen-calibrated
+PP3 Supporting thresholds in RNU2-2, RNU4-2, RNU4ATAC (CADD: none). Pre-registered failures reported: v2 primary model;
+A7 (no advantage on RMRP/TERC/SNORD118/RNU7-1).
+
+## Key numbers (all in PREREG s14)
+| Result | Number |
 |---|---|
-| v2 Aim 2 (pre-registered, rho vs RNU4-2 SGE) | 0.144, FAILED (bar 0.346) |
-| v2 G3 (week-6, RNU4ATAC) | delta +0.083, FAILED (bar 0.15) |
-| **v2 blind (RNU2-2, 22 P/LP vs 127 L3)** | S 0.784, F 0.851, CADD 0.501; weighted delta +0.267 [+0.134, +0.399] |
-| **v4 (A5, frozen before unsealing) blind RNU2-2** | **0.892 [0.817, 0.951] vs CADD 0.501; delta +0.374 [+0.262, +0.481]** |
-| v4 internal LOCO (non-blind) | delta vs CADD +0.186 [+0.108, +0.267] |
-| v4 vs SGE, RNU4 cluster held out (post hoc) | rho 0.382; Rfam ref_col_freq alone 0.459 |
-| v4 ablation on blind RNU2-2 (post hoc) | drop-one 0.875-0.908; Rfam features alone 0.85-0.86 |
-| Aim 4 final calibration | PP3 Supporting in RNU2-2 (F >= 0.402), RNU4-2, RNU4ATAC (+BP4), dominant pool; no Moderate at prior 0.1 |
-| Gene discovery (exploratory) | within-gene window constraint ranks the 5 NDD genes top (AUROC 1.0, p 5e-5) |
-| A6 inheritance prediction | non-blind AUROC 0.98; blind not evaluable (no inheritance annotation) |
-| Geuvadis carriers (pre-specified) | null (H1 p 0.29) |
-| v3 (+UK Biobank) | Aim 2 rho 0.142 (no gain); RNU4ATAC f 0.646 -> 0.687 |
-| RNU5B-1 blind | only 1 P/LP: uninformative |
+| Blind RNU2-2 (sealed, 22 P vs 127 L3) | v4 0.892, null 0.783, excess +0.108 (p .014); Rfam alt rarity excess +0.175 (p .001); CADD 0.501, excess -0.03 |
+| A8 blind (16 new literature P/LP) | v4 0.910, excess +0.133 (p .012), v4-CADD +0.298 [.153,.426] - MET; broader label rules: v4>CADD holds, excess only a trend (p ~.07) |
+| RNU4-2 SGE (435 SNVs) | Rfam ref col freq rho 0.459, alt rarity 0.389, CADD 0.088, phyloP -0.024 |
+| Position-only baselines | 0.73-0.75 vs v4 0.892 (all deltas exclude 0) |
+| Circularity | no PP3/BP4 on any blind positive; leave-position-out constraint 0.893 |
+| A6 inheritance (literature annotation) | RNU2-2 AUROC 0.839, both genes 0.892 (small dominant n) |
+| v4 calibration | pooled PP3 Sup >= 0.362, BP4 Sup <= -1.35; per gene RNU2-2 >= 0.216, RNU4-2 >= 0.189, RNU4ATAC >= 0.88; 37/279 VUS PP3 (own gene) |
+| A7 (other RNA genes) | NOT MET; RMRP alt rarity 0.488 vs CADD 0.863 |
+| A9 (1,787 ClinVar non-coding P/LP) | null CADD .632, GPN-MSA .676, phyloP .647, ReMM .618; H1 MET; rank changes are ties |
+| A10 missense (1,484) | AlphaMissense raw .920 null .762 rarity-matched .694; GPN-MSA .870 -> .555; ClinVar B/LB negatives do NOT fix it; H1 MET |
+| Mechanism | hypermutability does NOT explain where CADD fails (refuted); cause open |
 
-## Remaining tasks, in order
-1. **Release:** on the DGX `python release.py --stage final 2>&1 | tail -10` (if it errors, fix release.py; likely it
-   expects results/final_run_info.json, which final_eval did not write because calibrate stopped there; it can be
-   written by hand with the date, reason and git commit). Upload `release/*final*.zip` to Zenodo; record the DOI in PREREG s14.
-2. **Circularity check (high priority):** re-score blind RNU2-2 with v4, S and CADD using only labels whose
-   classification did not rest on in-silico/conservation evidence (use `source`/`review_status` columns of
-   sealed/blind_labels.tsv). Write `circularity_check.py` (copy v4_blind_eval.py, add a label filter); report AUROCs.
-3. **v4 calibration (post hoc):** run calibrate.py's local-LR method on results_v4/v4_scores.tsv.gz (all labels
-   incl. blind) -> PP3/BP4 thresholds for v4. Label "post hoc" in PREREG s14.
-4. **ClinVar VUS table:** score all ClinVar snRNA VUS (labels.py fetches ClinVar) with v4 and the calibrated
-   thresholds; count reclassifiable ones.
-5. **Novelty check:** paste NOVELTY_CHECK_PROMPT.md into a web-search AI; add the line "Also list any published
-   SGE/MPRA/functional screens of RNU4ATAC, RNU2-2, RNU5B-1, RNU12, RNU6ATAC, RNU6-x or other snRNAs (data
-   availability)". If an untouched screen exists, test frozen v4 on it (third validation).
-6. **Timestamps/registry:** `ots upgrade *.ots` (needs the `ots` client), deposit PREREG.md + amendment_*_manifest.txt
-   + .ots files on OSF.
-7. **Lookup webpage** (static, from the release scores + thresholds).
-8. **Figures:** gene-discovery ranking; blind ROC (v4, S, CADD on RNU2-2); calibration (local LR curves); ablation
-   bar chart; v2/v3/v4 Aim 2 comparison.
-9. **Paper** (draft in paper/methods.md): target GIM; fallback Genome Medicine / npj Genomic Medicine.
-   Framing: pre-registered study; the primary selection model failed per variant (v2, v3, informative negative);
-   the frozen v4 beat CADD blind on RNU2-2 (0.89 vs 0.50); RNA-family profiles carry the signal; calibrated
-   PP3/BP4 for labs; gene discovery and inheritance as secondary findings. State limitations: one blind gene (22
-   variants), v4 designed after v2 results (frozen before unsealing), no functional/clinical validation, solo author.
-10. Preprint on medRxiv after the draft.
+## Claims withdrawn or qualified (do not reintroduce)
+- "0.89 vs CADD 0.50" as the headline: report excess over the rarity null instead.
+- "Family-profile advantage generalises to RNA genes" (A7 failed).
+- "Failure is due to multicopy/hypermutable loci" (refuted by the mechanism table).
+- v4 adds nothing over the parameter-free Rfam feature (+0.03 ns): lead with the family profile, v4 = clinical product.
+- Gene discovery is largely prior art (Chen 2024, Messaoud medRxiv 2026).
+
+## Still running / remaining tasks
+1. **A10 SpliceAI** (DGX): `conda run -n spliceai pip install -q "setuptools<70"` then the spliceai, spliceai_parse, eval
+   steps of `run_next.sh part5`. **A11 NCBoost re-analysis** (DGX, `part6`). Log both in PREREG s14.
+2. **Get DGX outputs into git** (the DGX cannot push): bundle `results/ a9/fetch_info.json a10/*.json a11/fetch_info.json
+   paper/figures release/` and copy it into the repo from another machine; or set up a GitHub token on the DGX.
+3. Figures: `pip install matplotlib && python figures.py` on the DGX (8 figures); add an A10 missense panel.
+4. `python make_lookup.py` -> `release/lookup.html`. Zenodo upload of `release/snrna-vep-v2-final-*.zip` + lookup page
+   (user; set author in zenodo.json). Record the DOI in PREREG s14.
+5. Optional: RarityBench (packaged benchmark sets + per-tool nulls + `rarity_null.py`) after A10/A11.
+6. Manuscript: expand `paper/MANUSCRIPT.md` to journal length; framing decision pending (clinical-first for Human
+   Mutation/GIM vs methods-first for Genome Medicine/Genome Biology). medRxiv preprint after.
+
+## DGX notes
+`~/snrna-run/snrna`, conda env `evo2`; `INFERNAL_BIN=/home/jovyan/.conda/envs/evo2/bin`; ViennaRNA 2.7.0 pip-installed;
+separate env `spliceai`; data/hg38.fa and data/AlphaMissense_hg38.tsv.gz downloaded. Runner `run_next.sh part1..part6`
+logs each step to logs/next_<step>.log. Git identity set; `git config pull.rebase false`.
 
 ## Rules that still apply
 - Never re-run v4.py or edit results_v4/ (hash-frozen, A5). Post hoc analyses are labelled exploratory in PREREG s14.
-- Commits: end messages with the Claude-Session line only (no co-author line). No model names in commits.
-- Do not publish the seal passphrase.
+- Commit messages: no co-author or model-name lines. Do not publish the seal passphrase.
