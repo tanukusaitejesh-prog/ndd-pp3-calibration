@@ -33,5 +33,12 @@ case "${1:-}" in
     step a9_eval  python a9_inflation.py eval
     echo; echo "NEXT: git add a9/window_snvs.tsv.gz results/a9_* && git commit -m 'A9 evaluation' && git push"
     ;;
-  *) echo "usage: bash run_next.sh part1|part2|part3"; exit 1 ;;
+  part4)  # post hoc robustness after A8/A9 (~25 min, mostly the UCSC phyloP requests)
+    step a8_sens   python extras.py a8_sensitivity --blind $B
+    step mechanism python extras.py mechanism --blind $B
+    step a9_phylop python extras.py a9_phylop
+    step figures   python figures.py
+    echo; echo "NEXT: git add results/ a9_phylop/ paper/figures && git commit -m 'Post hoc robustness and figures' && (git push || true)"
+    ;;
+  *) echo "usage: bash run_next.sh part1|part2|part3|part4"; exit 1 ;;
 esac
