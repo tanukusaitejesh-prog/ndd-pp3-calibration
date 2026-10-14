@@ -1,0 +1,18 @@
+{
+ "clinvar_fileDate": "2026-10-11",
+ "available_by_class": {
+  "intronic": 3438,
+  "5'UTR": 148,
+  "ncRNA exon": 85,
+  "3'UTR": 51,
+  "upstream": 3
+ },
+ "kept_by_class": {
+  "intronic": 1500,
+  "5'UTR": 148,
+  "ncRNA exon": 85,
+  "3'UTR": 51,
+  "upstream": 3
+ },
+ "utc": "2026-10-14T10:30:56Z"
+}

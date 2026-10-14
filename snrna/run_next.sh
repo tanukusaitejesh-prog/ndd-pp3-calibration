@@ -27,5 +27,11 @@ case "${1:-}" in
     step a7_eval python a7_ncrna.py eval --acmg
     echo; echo "NEXT: git add results/a7_* && git commit -m 'A7 evaluation' && git push"
     ;;
-  *) echo "usage: bash run_next.sh part1|part2"; exit 1 ;;
+  part3)  # A9: genome-wide rarity inflation (positives are committed in a9/; needs internet; ~1-2 h)
+    pip install -q pyBigWig 2>/dev/null || echo "pyBigWig not installed: phyloP447 will be skipped"
+    step a9_fetch python a9_inflation.py fetch --workers 8
+    step a9_eval  python a9_inflation.py eval
+    echo; echo "NEXT: git add a9/window_snvs.tsv.gz results/a9_* && git commit -m 'A9 evaluation' && git push"
+    ;;
+  *) echo "usage: bash run_next.sh part1|part2|part3"; exit 1 ;;
 esac
