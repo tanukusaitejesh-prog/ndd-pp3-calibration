@@ -113,6 +113,26 @@ def main():
                         row["v4_minus"], row["d_lo"], row["d_hi"] = paired(yv, v.v4[okv].to_numpy(float),
                                                                            v.loc[okv, col].to_numpy(float), a.boot, rng)
                 rows.append(row)
+    # 5. rarity-only null: L3 is "common", so any score that tracks rarity separates a random rare SNV from L3.
+    #    Draw as many random non-L3, non-P/LP RNU2-2 SNVs as there are positives (1,000 draws); the AUROC each score
+    #    reaches against L3 is what rarity alone buys. The real AUROC must clear this, not 0.5.
+    print("  rarity-only null (1,000 draws of random rare SNVs as pseudo-positives)", flush=True)
+    neg = v.L3_benign_like.astype(bool).to_numpy() & ~pos.to_numpy()
+    pool = np.flatnonzero(~v.L3_benign_like.astype(bool).to_numpy() & ~pos.to_numpy())
+    npos = int(pos.sum())
+    for col, lab in scores:
+        x = v[col].to_numpy(float)
+        x = np.where(np.isnan(x), np.nanmedian(x), x)
+        nulls = []
+        for _ in range(1000):
+            pick = rng.choice(pool, npos, replace=False)
+            idx = np.r_[pick, np.flatnonzero(neg)]
+            nulls.append(S.auroc(np.r_[np.ones(npos, bool), np.zeros(neg.sum(), bool)], x[idx]))
+        real = S.auroc(pos.to_numpy()[pos.to_numpy() | neg], x[pos.to_numpy() | neg])
+        nulls = np.array(nulls)
+        rows.append({"negatives": "L3 AC>=9 (frozen)", "positions": "RARITY-ONLY NULL", "score": lab, "n_P": npos,
+                     "n_N": int(neg.sum()), "auroc": real, "null_mean": float(np.nanmean(nulls)),
+                     "null_hi95": float(np.nanpercentile(nulls, 95)), "p_vs_null": float((np.sum(nulls >= real) + 1) / (len(nulls) + 1))})
     out = pd.DataFrame(rows)
     out.to_csv(os.path.join(a.results, "blind_robustness.tsv"), sep="\t", index=False, float_format="%.4f")
     rep = [f"Blind RNU2-2 robustness (post hoc, exploratory; frozen v4 hash verified). Positives: {int(pos.sum())} P/LP SNVs; "
@@ -120,12 +140,18 @@ def main():
     for (nname, sname), x in out.groupby(["negatives", "positions"], sort=False):
         rep.append(f"{nname} | {sname}: {x.n_P.iloc[0]} P vs {x.n_N.iloc[0]} N")
         for r in x.itertuples():
+            if sname == "RARITY-ONLY NULL":
+                rep.append(f"  {r.score:40s} real {r.auroc:.3f}  rarity null mean {r.null_mean:.3f} (95th pct {r.null_hi95:.3f})"
+                           f"  excess {r.auroc - r.null_mean:+.3f}  p {r.p_vs_null:.4f}")
+                continue
             au = f"AUROC {r.auroc:.3f} [{r.lo:.3f}, {r.hi:.3f}]" if pd.notna(getattr(r, "auroc", np.nan)) else "n/a"
             dv = f"   v4 - this {r.v4_minus:+.3f} [{r.d_lo:+.3f}, {r.d_hi:+.3f}]" if pd.notna(getattr(r, "v4_minus", np.nan)) else ""
             rep.append(f"  {r.score:40s} {au}{dv}")
         rep.append("")
     rep.append("Reading: v4 is more than position if 'v4 - this' excludes 0 for every BASELINE row, and it ranks within the "
-               "region if its 'inside n.1-67' AUROC interval excludes 0.5.")
+               "region if its 'inside n.1-67' AUROC interval excludes 0.5. The RARITY-ONLY NULL rows give what each score "
+               "earns by separating any rare SNV from common ones; the honest effect is the excess over that null. "
+               "'position unobserved in gnomAD' counts the negative's own allele, so it is optimistic by construction.")
     open(os.path.join(a.results, "blind_robustness.txt"), "w").write("\n".join(rep) + "\n")
     print("\n".join(rep))
 
