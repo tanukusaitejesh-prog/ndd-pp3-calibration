@@ -1,0 +1,17 @@
+RarityBench: rarity-only inflation across benchmarks (exploratory summary of A9-A13)
+
+missing (skipped): a9_results.tsv
+
+A10 ClinVar missense / SpliceAI
+  pooled         AlphaMissense  raw 0.920  null 0.762  inflation +0.262  corrected +0.158  rarity share 62%
+  pooled         CADD v1.7      raw 0.813  null 0.654  inflation +0.154  corrected +0.159  rarity share 49%
+  pooled         GPN-MSA        raw 0.870  null 0.801  inflation +0.301  corrected +0.068  rarity share 81%
+  pooled         phyloP447      raw 0.721  null 0.621  inflation +0.121  corrected +0.100  rarity share 55%
+
+A11 NCBoost (published)
+  all            CADD v1.7      raw 0.826  null 0.708  inflation +0.208  corrected +0.117  rarity share 64%
+  all            ReMM v0.4      raw 0.817  null 0.774  inflation +0.274  corrected +0.043  rarity share 86%
+  all            GPN-MSA        raw 0.837  null 0.812  inflation +0.312  corrected +0.025  rarity share 93%
+  all            phyloP447      raw 0.772  null 0.695  inflation +0.195  corrected +0.076  rarity share 72%
+
+Median share of above-chance AUROC explained by rarity, per tool: GPN-MSA 87%; ReMM v0.4 86%; phyloP447 63%; AlphaMissense 62%; CADD v1.7 57%

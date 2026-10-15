@@ -1,0 +1,12 @@
+A10: rarity-only inflation in missense and SpliceAI benchmarks, and two fixes
+
+== MISSENSE (1484 ClinVar P/LP with an AlphaMissense score)
+pooled: 1484 P/LP vs 1592 common SNVs; pool 369504; ClinVar B/LB 1078
+  AlphaMissense  raw 0.920  null 0.762  inflation +0.262  corrected +0.158  | rarity-matched 0.694  vs ClinVar B/LB 0.916
+  CADD v1.7      raw 0.813  null 0.654  inflation +0.154  corrected +0.159  | rarity-matched 0.690  vs ClinVar B/LB 0.857
+  GPN-MSA        raw 0.870  null 0.802  inflation +0.302  corrected +0.068  | rarity-matched 0.555  vs ClinVar B/LB 0.827
+  phyloP447      raw 0.721  null 0.621  inflation +0.121  corrected +0.100  | rarity-matched 0.622  vs ClinVar B/LB 0.725
+
+H1 (AlphaMissense pooled inflation >= 0.05): MET (+0.262)
+
+H3 (descriptive): rarity-matched AUROC closer to corrected+0.5 than raw is, in 100% of tool x unit rows

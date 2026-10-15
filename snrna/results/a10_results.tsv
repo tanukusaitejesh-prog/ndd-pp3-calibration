@@ -1,0 +1,5 @@
+unit	tool	n_P	n_N	raw_auroc	null_mean	inflation	corrected	rarity_matched_auroc	auroc_vs_clinvar_blb	n_blb	set
+pooled	AlphaMissense	1484	1592	0.9197	0.7622	0.2622	0.1575	0.6936	0.9164	1078	missense
+pooled	CADD v1.7	1484	1592	0.8128	0.6542	0.1542	0.1586	0.6904	0.8574	1078	missense
+pooled	GPN-MSA	1484	1592	0.8700	0.8015	0.3015	0.0684	0.5545	0.8272	1078	missense
+pooled	phyloP447	1484	1592	0.7210	0.6207	0.1207	0.1003	0.6216	0.7251	1078	missense
