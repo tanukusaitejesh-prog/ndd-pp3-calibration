@@ -78,5 +78,16 @@ case "${1:-}" in
     step raritybench python raritybench.py
     echo; echo "NEXT: git add a13/ results/a13_* results/raritybench* && git commit -m 'A13 evaluation' && (git push || true)"
     ;;
-  *) echo "usage: bash run_next.sh part1|part2|part3|part4|part5|part6|part7|part8"; exit 1 ;;
+  part9)  # A14: ClinGen PP3/BP4 recalibration with rare benign variants (~2-3 h; AlphaMissense file in data/)
+    [ -f a14/selected.tsv ] || { echo "run: python a14_recalibration.py select --vcf <ClinVar VCF>, then commit a14/"; exit 1; }
+    step a14_fetch python a14_recalibration.py fetch ${REVEL:+--revel $REVEL}
+    step a14_eval  python a14_recalibration.py eval
+    echo; echo "NEXT: git add -f a14/ results/a14_* && git commit -m 'A14 evaluation' && (git push || true)"
+    ;;
+  part10) # A15: simulation + window-bootstrap intervals for A9/A10/A11/A13 (~1-3 h CPU)
+    step a15_sim python a15_null_validity.py simulate
+    for x in a9 a10 a11 a13:traitgym_mendelian; do step "a15_ci_${x%%:*}" python a15_null_validity.py ci $x; done
+    echo; echo "NEXT: git add results/a15_* && git commit -m 'A15 intervals' && (git push || true)"
+    ;;
+  *) echo "usage: bash run_next.sh part1|...|part10"; exit 1 ;;
 esac
