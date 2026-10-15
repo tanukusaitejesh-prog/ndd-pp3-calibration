@@ -1,0 +1,7 @@
+# Amendment A16, 2026-10-15T18:07Z, after the A14 results and BEFORE any A16 window was sampled or scored.
+30571cf11144e26b24e20cd282afba38f82eacbf62f7596d0917935c8b1b93c2  PREREG.md
+8e1ab78aa752112debabe2b24e77f840c250475ee7c214b31d4f37c836bff688  a16_population_calibration.py
+c14354102f1e45ec435890a3ddc7bfbe8cf719ddba5fedaa760ac37c108975be  paper_tables.py
+70b5cdfeafff51b29475b0577a2e6652dcdea6ebec3122f2bb77a80aecfa1b2d  tests/test_a16_tables.py
+96ed036183549344b9c42ead61338aeb319598c756dff1b767c4596e45b8aa75  run_next.sh
+3ae874c4add4d66184c62201af088ee3dc696deb627e1d1fa5d2f1277c067a08  sync_dgx_outputs.sh

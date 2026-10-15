@@ -23,6 +23,8 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 | `a13_benchmarks.py`, `raritybench.py` | A13: rarity-only null on other published benchmarks (TraitGym first); summary table across A9-A13 |
 | `a14_recalibration.py` | A14: ClinGen PP3/BP4 thresholds recalibrated with rare benign variants (AlphaMissense, CADD, GPN-MSA, REVEL) |
 | `a15_null_validity.py` | A15: ground-truth simulation of the rarity-only null; bootstrap intervals for corrected AUROCs |
+| `a16_population_calibration.py` | A16: PP3 band evidence against random rare missense variants (positive-unlabelled; three-way verdicts, break-even pi) |
+| `paper_tables.py` | Main tables and the rarity forest plot from result files (`paper/tables.md`, fig10) |
 | `sync_dgx_outputs.sh` | DGX: commit every DGX-only output (never decrypted labels), or pack a tarball |
 | `table2_regions.tsv` | Guidance Table 2 regions, verified from the full text |
 | `results/` | All outputs, committed |

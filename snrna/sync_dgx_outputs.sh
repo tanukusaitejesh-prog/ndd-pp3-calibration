@@ -13,6 +13,7 @@ CANDIDATES=(
   a10/missense_window_snvs.tsv.gz a10/missense_fetch_info.json a10/spliceai_scores.tsv
   a11/positives_GRCh38.tsv a11/negatives_GRCh38.tsv a11/window_snvs.tsv.gz a11/fetch_info.json
   a13/*/window_snvs.tsv.gz a13/*/fetch_info.json a14/scores.tsv.gz a14/fetch_info.json
+  a16/unlabelled.tsv.gz a16/fetch_info.json a10/spliceai_out.vcf paper/tables.md results/*.tsv.gz
   evo2_run/features/deltas.tsv evo2_run/features/run_info.json
   model_runs/*.json model_runs/preds/*.json
   model_inputs_v3/v3_counts.json
