@@ -386,6 +386,17 @@ python a15_null_validity.py ci a11 --boot 200 --draws 50
 
 One-command version: `bash run_next.sh part10`.
 
+## A18g. Amendment A16: PP3 evidence against the rare-variant population
+
+```bash
+python a16_population_calibration.py sample                      # 3,000 random 1-kb windows; commit a16/ before fetch
+python a16_population_calibration.py fetch --vcf data/a12_clinvar_<date>.vcf.gz   # [NET] ~2-3 h; add --revel <csv> if A14 had REVEL
+python a16_population_calibration.py eval                        # -> results/a16_report.txt, a16_bands.tsv
+python paper_tables.py                                           # paper/tables.md + fig10 forest plot from results/
+```
+
+One-command versions: `bash run_next.sh part11` (A16), then `bash run_next.sh part12` (RarityBench, tables, figures).
+
 ## A18f. Put the DGX-only outputs into git
 
 ```bash
