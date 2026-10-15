@@ -56,8 +56,8 @@ def log(*a):
     print(time.strftime("%H:%M:%S"), *a, flush=True)
 
 
-def md5(p):
-    return hashlib.md5(open(p, "rb").read()).hexdigest()
+def md5(p):  # line endings normalised, so a Windows and a Linux checkout give the same hash
+    return hashlib.md5(open(p, "rb").read().replace(b"\r\n", b"\n")).hexdigest()
 
 
 def normalise(d, group=None):
@@ -97,7 +97,7 @@ def cmd_freeze(a):
         d = d[d.pos > 0]
     d["ID"] = d.chrom + "-" + d.pos.astype(str) + "-" + d.ref + "-" + d.alt
     bp = os.path.join(od, "benchmark.tsv")
-    d.to_csv(bp, sep="\t", index=False)
+    d.to_csv(bp, sep="\t", index=False, lineterminator="\n")
     info = {"name": a.name, "source": src, "build_in": build, "n_pos": int(d.label.sum()), "n_neg": int((d.label == 0).sum()),
             "has_groups": "group" in d, "benchmark_md5": md5(bp), "utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "cite": pre.get("cite", "")}
