@@ -6,7 +6,8 @@ summary; reads committed results only and computes nothing new beyond ratios.
 
 For each benchmark x unit x tool: raw AUROC, rarity-only null, inflation (null - 0.5), corrected (raw - null), the
 share of the above-chance AUROC that rarity alone explains (inflation / (raw - 0.5)), and the rarity-matched AUROC
-where the source analysis computed one. Missing result files are listed and skipped.
+where the source analysis computed one, deattenuated for an assumed damaging fraction pi of the rare pool (0.05-0.20).
+A15's simulation showed corrected AUROC over-corrects, so the deattenuated rarity-matched AUROC is the magnitude to cite. Missing result files are listed and skipped.
 """
 import glob
 import os
@@ -18,8 +19,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(HERE, "results")
 SOURCES = [("A9 ClinVar non-coding", "a9_results.tsv"), ("A10 ClinVar missense / SpliceAI", "a10_results.tsv"),
            ("A11 NCBoost (published)", "a11_results.tsv")]
+PIS = (0.05, 0.10, 0.20)   # assumed damaging fraction of the rare pool (A15: deattenuated M = (M - pi/2)/(1 - pi))
 COLS = ["benchmark", "unit", "tool", "n_P", "n_N", "raw_auroc", "null_mean", "inflation", "corrected", "share_from_rarity",
-        "rarity_matched_auroc"]
+        "rarity_matched_auroc"] + [f"deattenuated_pi{int(p * 100):02d}" for p in PIS]
 
 
 def collect(res=RES):
@@ -43,6 +45,8 @@ def collect(res=RES):
     t = pd.concat(parts, ignore_index=True)
     above = t.raw_auroc - 0.5
     t["share_from_rarity"] = np.where(above > 0.02, t.inflation / above, np.nan)
+    for p in PIS:
+        t[f"deattenuated_pi{int(p * 100):02d}"] = (t.rarity_matched_auroc - p / 2) / (1 - p)
     return t[COLS], missing
 
 
@@ -57,7 +61,7 @@ def main():
         rep.append(f"\n{b}")
         for r in x.itertuples():
             rep.append(f"  {str(r.unit):14s} {r.tool:14s} raw {r.raw_auroc:.3f}  null {r.null_mean:.3f}  inflation {r.inflation:+.3f}"
-                       f"  corrected {r.corrected:+.3f}  rarity share {r.share_from_rarity:.0%}" if np.isfinite(r.share_from_rarity) else
+                       f"  rarity share {r.share_from_rarity:.0%}  rarity-matched {r.rarity_matched_auroc:.3f} (deattenuated {r.deattenuated_pi05:.3f}-{r.deattenuated_pi20:.3f})" if np.isfinite(r.share_from_rarity) else
                        f"  {str(r.unit):14s} {r.tool:14s} raw {r.raw_auroc:.3f}  null {r.null_mean:.3f}  inflation {r.inflation:+.3f}")
     if len(t):
         s = t.groupby("tool").share_from_rarity.median().sort_values(ascending=False)

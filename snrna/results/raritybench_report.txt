@@ -3,15 +3,15 @@ RarityBench: rarity-only inflation across benchmarks (exploratory summary of A9-
 missing (skipped): a9_results.tsv
 
 A10 ClinVar missense / SpliceAI
-  pooled         AlphaMissense  raw 0.920  null 0.762  inflation +0.262  corrected +0.158  rarity share 62%
-  pooled         CADD v1.7      raw 0.813  null 0.654  inflation +0.154  corrected +0.159  rarity share 49%
-  pooled         GPN-MSA        raw 0.870  null 0.801  inflation +0.301  corrected +0.068  rarity share 81%
-  pooled         phyloP447      raw 0.721  null 0.621  inflation +0.121  corrected +0.100  rarity share 55%
+  pooled         AlphaMissense  raw 0.920  null 0.762  inflation +0.262  rarity share 62%  rarity-matched 0.694 (deattenuated 0.704-0.742)
+  pooled         CADD v1.7      raw 0.813  null 0.654  inflation +0.154  rarity share 49%  rarity-matched 0.690 (deattenuated 0.700-0.738)
+  pooled         GPN-MSA        raw 0.870  null 0.801  inflation +0.301  rarity share 81%  rarity-matched 0.554 (deattenuated 0.557-0.568)
+  pooled         phyloP447      raw 0.721  null 0.621  inflation +0.121  rarity share 55%  rarity-matched 0.622 (deattenuated 0.628-0.652)
 
 A11 NCBoost (published)
-  all            CADD v1.7      raw 0.826  null 0.708  inflation +0.208  corrected +0.117  rarity share 64%
-  all            ReMM v0.4      raw 0.817  null 0.774  inflation +0.274  corrected +0.043  rarity share 86%
-  all            GPN-MSA        raw 0.837  null 0.812  inflation +0.312  corrected +0.025  rarity share 93%
-  all            phyloP447      raw 0.772  null 0.695  inflation +0.195  corrected +0.076  rarity share 72%
+  all            CADD v1.7      raw 0.826  null 0.708  inflation +0.208  rarity share 64%  rarity-matched 0.660 (deattenuated 0.669-0.700)
+  all            ReMM v0.4      raw 0.817  null 0.774  inflation +0.274  rarity share 86%  rarity-matched 0.616 (deattenuated 0.622-0.645)
+  all            GPN-MSA        raw 0.837  null 0.812  inflation +0.312  rarity share 93%  rarity-matched 0.573 (deattenuated 0.577-0.592)
+  all            phyloP447      raw 0.772  null 0.695  inflation +0.195  rarity share 72%  rarity-matched 0.610 (deattenuated 0.615-0.637)
 
 Median share of above-chance AUROC explained by rarity, per tool: GPN-MSA 87%; ReMM v0.4 86%; phyloP447 63%; AlphaMissense 62%; CADD v1.7 57%
