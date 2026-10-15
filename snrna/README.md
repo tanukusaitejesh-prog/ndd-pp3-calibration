@@ -21,6 +21,9 @@ A selection-supervised, ClinGen-calibrated variant-effect framework for spliceos
 | `tests/` | Known-answer self-tests: `python -m pytest -q tests` (pipeline, model on synthetic counts, mock Evo 2, sealing) |
 | `a12_new_variants.py` | A12: prospective blind tests on new patient variants (monthly ClinVar scan + literature, `lit/A12_TALLY_PROMPT.md`) |
 | `a13_benchmarks.py`, `raritybench.py` | A13: rarity-only null on other published benchmarks (TraitGym first); summary table across A9-A13 |
+| `a14_recalibration.py` | A14: ClinGen PP3/BP4 thresholds recalibrated with rare benign variants (AlphaMissense, CADD, GPN-MSA, REVEL) |
+| `a15_null_validity.py` | A15: ground-truth simulation of the rarity-only null; bootstrap intervals for corrected AUROCs |
+| `sync_dgx_outputs.sh` | DGX: commit every DGX-only output (never decrypted labels), or pack a tarball |
 | `table2_regions.tsv` | Guidance Table 2 regions, verified from the full text |
 | `results/` | All outputs, committed |
 

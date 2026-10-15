@@ -1,0 +1,7 @@
+# Amendments A14 + A15, 2026-10-15T06:28Z, BEFORE any A14 selection/score and before the A15 simulation or intervals.
+1d19450fb35f0327a5e40e12ef8e75dd434dad5e66e8c44158bc69bd99ec4c4a  PREREG.md
+13fe417b8bbaffc79c31459fce9a78aade0f1d652b1f11d824bf00a61b6cc488  a14_recalibration.py
+8fe811dd9977358e0c47747b52c8635bb6fa76922bb0dd8d91d2aa5776cc5962  a15_null_validity.py
+00f8760648c73d7adc2494d7c8f615c1e139dc626710619005c683c19cf43de4  tests/test_a14_a15.py
+b87da646c1b61e91ed7481cfafd3ab13e05b092b2179b1f12286759a2d34f1c7  sync_dgx_outputs.sh
+ac73a01bc747ea6fae10027457fcc7fddbe443ffb4cab77c4dbda2bacf363408  run_next.sh
