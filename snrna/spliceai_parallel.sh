@@ -14,11 +14,13 @@ if [ "$MODE" = gpu ]; then
     conda create -y -q -n spliceai-gpu -c conda-forge python=3.10 && \
       conda run -n spliceai-gpu pip install -q "tensorflow[and-cuda]==2.15.1" "setuptools<70" spliceai
   fi
-  conda run -n spliceai-gpu python -c "import tensorflow as tf; g=tf.config.list_physical_devices('GPU'); print('GPUs visible to TensorFlow:', len(g)); assert g, 'no GPU: use cpu mode'" || exit 1
+  echo "== checking that TensorFlow sees a GPU (first CUDA start can take 1-3 min; gives up after 5 min) $(date +%H:%M:%S)"
+  timeout 300 conda run --no-capture-output -n spliceai-gpu python -c "import tensorflow as tf; g=tf.config.list_physical_devices('GPU'); print('GPUs visible to TensorFlow:', len(g)); assert g, 'no GPU'"     || { echo "!! TensorFlow GPU check failed or hung: run 'bash spliceai_parallel.sh cpu 16' instead"; exit 1; }
   THREADS=""
 else
   ENV=spliceai; THREADS="OMP_NUM_THREADS=1 TF_NUM_INTRAOP_THREADS=1 TF_NUM_INTEROP_THREADS=1"
 fi
+rm -f "$WORK"/part_*   # stale chunks from an earlier run (another N) would otherwise be merged twice
 grep "^#" "$IN" > "$WORK/header.vcf"
 grep -v "^#" "$IN" > "$WORK/body.txt"
 TOTAL=$(wc -l < "$WORK/body.txt")
@@ -26,7 +28,7 @@ split -n l/"$N" -d -a 2 "$WORK/body.txt" "$WORK/part_"
 echo "== $TOTAL variants in $N chunks, mode $MODE ($(date +%H:%M:%S))"
 for f in "$WORK"/part_??; do
   cat "$WORK/header.vcf" "$f" > "$f.vcf"
-  ( env $THREADS conda run -n "$ENV" spliceai -I "$f.vcf" -O "$f.out.vcf" -R data/hg38.fa -A grch38 -D 50 \
+  ( env $THREADS conda run --no-capture-output -n "$ENV" spliceai -I "$f.vcf" -O "$f.out.vcf" -R data/hg38.fa -A grch38 -D 50 \
       > "logs/spliceai_$(basename "$f").log" 2>&1 && echo "   chunk $(basename "$f") done ($(date +%H:%M:%S))" ) &
 done
 while [ "$(jobs -r | wc -l)" -gt 0 ]; do
