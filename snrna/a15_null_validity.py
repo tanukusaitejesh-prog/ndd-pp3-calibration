@@ -64,7 +64,7 @@ def cmd_simulate(a):
         reps = pd.DataFrame([simulate_once(beta, gamma, pi, rng) for _ in range(a.reps)])
         m = reps.mean()
         rows.append({"beta": beta, "gamma": gamma, "pi": pi, **{k: m[k] for k in reps},
-                     "raw_err": m.raw - m.T, "matched_err": m.matched - m["T"], "deatt_err": m.matched_deattenuated - m["T"],
+                     "raw_err": m.raw - m["T"], "matched_err": m.matched - m["T"], "deatt_err": m.matched_deattenuated - m["T"],
                      "corr_err": m.corrected_plus_half - m["T"]})
     t = pd.DataFrame(rows)
     g = t[t.gamma > 0]
