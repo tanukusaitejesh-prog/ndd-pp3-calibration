@@ -89,5 +89,17 @@ case "${1:-}" in
     for x in a9 a10 a11 a13:traitgym_mendelian; do step "a15_ci_${x%%:*}" python a15_null_validity.py ci $x; done
     echo; echo "NEXT: git add results/a15_* && git commit -m 'A15 intervals' && (git push || true)"
     ;;
-  *) echo "usage: bash run_next.sh part1|...|part10"; exit 1 ;;
+  part11) # A16: PP3 evidence against the rare-variant population (~2-4 h: AlphaMissense stream + remote fetch)
+    [ -f a16/windows.tsv ] || { echo "run: python a16_population_calibration.py sample, then commit a16/"; exit 1; }
+    V=$(ls -t data/a12_clinvar_*.vcf.gz data/clinvar_GRCh38.vcf.gz 2>/dev/null | head -1)
+    step a16_fetch python a16_population_calibration.py fetch ${V:+--vcf $V} ${REVEL:+--revel $REVEL}
+    step a16_eval  python a16_population_calibration.py eval
+    echo; echo "NEXT: bash run_next.sh part12, then bash sync_dgx_outputs.sh"
+    ;;
+  part12) # paper tables, RarityBench, figures (seconds)
+    step raritybench python raritybench.py
+    step paper_tables python paper_tables.py
+    step figures python figures.py --blind $B
+    ;;
+  *) echo "usage: bash run_next.sh part1|...|part12"; exit 1 ;;
 esac
