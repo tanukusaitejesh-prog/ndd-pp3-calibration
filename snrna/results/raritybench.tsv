@@ -1,9 +1,9 @@
-benchmark	unit	tool	n_P	n_N	raw_auroc	null_mean	inflation	corrected	share_from_rarity	rarity_matched_auroc
-A10 ClinVar missense / SpliceAI	pooled	AlphaMissense	1484	1592	0.9197	0.7622	0.2622	0.1575	0.6247	0.6936
-A10 ClinVar missense / SpliceAI	pooled	CADD v1.7	1484	1592	0.8128	0.6542	0.1542	0.1586	0.4930	0.6904
-A10 ClinVar missense / SpliceAI	pooled	GPN-MSA	1484	1592	0.8700	0.8015	0.3015	0.0684	0.8149	0.5545
-A10 ClinVar missense / SpliceAI	pooled	phyloP447	1484	1592	0.7210	0.6207	0.1207	0.1003	0.5462	0.6216
-A11 NCBoost (published)	all	CADD v1.7	655	6494	0.8255	0.7083	0.2083	0.1172	0.6399	0.6602
-A11 NCBoost (published)	all	ReMM v0.4	655	6494	0.8174	0.7744	0.2744	0.0430	0.8645	0.6156
-A11 NCBoost (published)	all	GPN-MSA	655	6494	0.8366	0.8118	0.3118	0.0249	0.9263	0.5732
-A11 NCBoost (published)	all	phyloP447	655	6494	0.7720	0.6954	0.1954	0.0765	0.7184	0.6097
+benchmark	unit	tool	n_P	n_N	raw_auroc	null_mean	inflation	corrected	share_from_rarity	rarity_matched_auroc	deattenuated_pi05	deattenuated_pi10	deattenuated_pi20
+A10 ClinVar missense / SpliceAI	pooled	AlphaMissense	1484	1592	0.9197	0.7622	0.2622	0.1575	0.6247	0.6936	0.7038	0.7151	0.7420
+A10 ClinVar missense / SpliceAI	pooled	CADD v1.7	1484	1592	0.8128	0.6542	0.1542	0.1586	0.4930	0.6904	0.7004	0.7116	0.7380
+A10 ClinVar missense / SpliceAI	pooled	GPN-MSA	1484	1592	0.8700	0.8015	0.3015	0.0684	0.8149	0.5545	0.5574	0.5606	0.5681
+A10 ClinVar missense / SpliceAI	pooled	phyloP447	1484	1592	0.7210	0.6207	0.1207	0.1003	0.5462	0.6216	0.6280	0.6351	0.6520
+A11 NCBoost (published)	all	CADD v1.7	655	6494	0.8255	0.7083	0.2083	0.1172	0.6399	0.6602	0.6686	0.6780	0.7003
+A11 NCBoost (published)	all	ReMM v0.4	655	6494	0.8174	0.7744	0.2744	0.0430	0.8645	0.6156	0.6217	0.6284	0.6445
+A11 NCBoost (published)	all	GPN-MSA	655	6494	0.8366	0.8118	0.3118	0.0249	0.9263	0.5732	0.5771	0.5813	0.5915
+A11 NCBoost (published)	all	phyloP447	655	6494	0.7720	0.6954	0.1954	0.0765	0.7184	0.6097	0.6155	0.6219	0.6371

@@ -365,6 +365,34 @@ python -m pytest -q tests/test_a12_a13.py
 
 One-command version: `bash run_next.sh part8`.
 
+## A18d. Amendment A14: PP3/BP4 recalibration with rare benign variants
+
+```bash
+python a14_recalibration.py select --vcf data/a12_clinvar_<date>.vcf.gz   # or any ClinVar GRCh38 VCF; commit a14/ before fetch
+python a14_recalibration.py fetch                                # [NET] gnomAD AC, CADD, GPN-MSA, AlphaMissense (~2 h)
+python a14_recalibration.py fetch --revel revel_with_transcript_ids.csv   # with REVEL v1.3, if downloaded
+python a14_recalibration.py eval                                 # -> results/a14_report.txt
+```
+
+One-command version: `bash run_next.sh part9` (set `REVEL=<path>` first to include REVEL).
+
+## A18e. Amendment A15: null validity (simulation) and bootstrap intervals
+
+```bash
+python a15_null_validity.py simulate                             # CPU, no data (already run and committed)
+python a15_null_validity.py ci a9                                # window bootstrap; also a10, a11, a13:traitgym_mendelian
+python a15_null_validity.py ci a11 --boot 200 --draws 50
+```
+
+One-command version: `bash run_next.sh part10`.
+
+## A18f. Put the DGX-only outputs into git
+
+```bash
+bash sync_dgx_outputs.sh --list                                  # what would be added; prints full v4 hashes
+bash sync_dgx_outputs.sh                                         # commit + push, or a tarball if push fails
+```
+
 ## A19. Figures, release and lookup page
 
 ```bash
