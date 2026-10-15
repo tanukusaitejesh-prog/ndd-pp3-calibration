@@ -1,0 +1,8 @@
+# Amendments A12 + A13, 2026-10-15T04:29Z, BEFORE any A12 label was built or any A13 score fetched.
+bd6de3249cd6c5ac058bf4d97ed219c59988ef09c4fa5bcf4950a33fab584691  PREREG.md
+55cb334a61cf9bef4478fa48b67a95af12c022bc11bffcb52f2e654c9c26e24a  a12_new_variants.py
+dfdba6c17d6b938d3d20da70e106579717de7e267331c20c3166fd57a8c65ca9  a13_benchmarks.py
+11410f8896cbfbab482cad66dd2eb5a8eecf9a0108493f841e0c4531278a42d7  raritybench.py
+7764b840392dfb533561c1ef96bd3cfe39c657bf0d17c4b2c02d8697b9ebba07  lit/A12_TALLY_PROMPT.md
+d9e263ead0c985b38b4047314f901469396875eb235f4952f15a771a1be00b82  tests/test_a12_a13.py
+af76329425da921131b53dfbca55e31013df3f79422d2f0ba28f9754d999238f  run_next.sh

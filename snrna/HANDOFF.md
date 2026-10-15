@@ -48,6 +48,12 @@ A7 (no advantage on RMRP/TERC/SNORD118/RNU7-1).
 6. Manuscript: expand `paper/MANUSCRIPT.md` to journal length; framing decision pending (clinical-first for Human
    Mutation/GIM vs methods-first for Genome Medicine/Genome Biology). medRxiv preprint after.
 
+## Added 15 Oct 2026 (A12, A13; pre-registered before any data)
+- **A12** `a12_new_variants.py`: monthly `scan` of ClinVar + literature tallies (`lit/A12_TALLY_PROMPT.md`) -> `build --blind`
+  -> commit -> `eval --unit <U>` once per unit at its minimum (U1 RNU6 adRP >= 8, U2 RNU5A-1/RNU5B-1 >= 5, U3 RNU2-2 >= 8).
+  `bash run_next.sh part7` on the DGX. v4 scores (results_v4/) are needed for the decision.
+- **A13** `a13_benchmarks.py`: TraitGym Mendelian frozen in a13/; `bash run_next.sh part8` (fetch, eval, `raritybench.py`).
+
 ## DGX notes
 `~/snrna-run/snrna`, conda env `evo2`; `INFERNAL_BIN=/home/jovyan/.conda/envs/evo2/bin`; ViennaRNA 2.7.0 pip-installed;
 separate env `spliceai`; data/hg38.fa and data/AlphaMissense_hg38.tsv.gz downloaded. Runner `run_next.sh part1..part6`
