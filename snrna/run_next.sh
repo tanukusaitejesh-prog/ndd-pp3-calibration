@@ -63,5 +63,20 @@ case "${1:-}" in
     step a11_eval  python a11_ncboost.py eval
     echo; echo "NEXT: git add a11/ results/ && git commit -m 'A11 evaluation' && (git push || true)"
     ;;
-  *) echo "usage: bash run_next.sh part1|part2|part3|part4|part5|part6"; exit 1 ;;
+  part7)  # A12: prospective blind tests on new patient variants (monthly ClinVar scan; eval one unit at a time)
+    step a12_scan  python a12_new_variants.py scan
+    ls lit/a12_*.tsv >/dev/null 2>&1 && step a12_map python a12_new_variants.py map lit/a12_*.tsv
+    step a12_build python a12_new_variants.py build --blind $B
+    python a12_new_variants.py status
+    echo; echo "NEXT: git add a12/ labels/A12_* && git commit -m 'A12 scan and labels' && (git push || true)"
+    echo "      then, for each unit at its minimum: python a12_new_variants.py eval --unit <U> --blind $B"
+    ;;
+  part8)  # A13: TraitGym re-scored with the rarity-only null, then the RarityBench summary (~1-2 h)
+    [ -f a13/traitgym_mendelian/benchmark.tsv ] || { echo "run: python a13_benchmarks.py freeze traitgym_mendelian, then commit"; exit 1; }
+    step a13_fetch python a13_benchmarks.py fetch traitgym_mendelian
+    step a13_eval  python a13_benchmarks.py eval traitgym_mendelian
+    step raritybench python raritybench.py
+    echo; echo "NEXT: git add a13/ results/a13_* results/raritybench* && git commit -m 'A13 evaluation' && (git push || true)"
+    ;;
+  *) echo "usage: bash run_next.sh part1|part2|part3|part4|part5|part6|part7|part8"; exit 1 ;;
 esac
