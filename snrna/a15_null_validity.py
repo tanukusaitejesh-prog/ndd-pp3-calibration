@@ -122,7 +122,7 @@ def metrics(s, units, sel, global_neg, rng, draws):
 
 
 def cluster_assign(d, units, gneg):
-    """Bug fix (5 Nov 2026, post hoc; PREREG s14): give every negative and pool SNV ONE home cluster (the window of the
+    """Bug fix (4 Nov 2026, post hoc; PREREG s14): give every negative and pool SNV ONE home cluster (the window of the
     nearest positive), so a window bootstrap can carry each variant with the multiplicity of its cluster. The original
     `metrics` collapsed repeated negatives/pool variants with np.unique while positives kept their multiplicity, and
     never resampled published negatives (A11/A13), which makes the intervals too narrow."""
@@ -241,7 +241,7 @@ def main():
     c.add_argument("--boot", type=int, default=200)
     c.add_argument("--draws", type=int, default=50)
     c.add_argument("--cluster", action="store_true",
-                   help="corrected cluster bootstrap (5 Nov 2026 bug fix): every variant carries its home window's "
+                   help="corrected cluster bootstrap (4 Nov 2026 bug fix): every variant carries its home window's "
                         "multiplicity; published negatives resampled -> results/a15_ci_<x>_cluster.tsv")
     a = ap.parse_args()
     os.makedirs(RES, exist_ok=True)

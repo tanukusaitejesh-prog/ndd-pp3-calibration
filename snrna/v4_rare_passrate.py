@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exploratory, post hoc, written 5 Nov 2026 before running: do the v4 PP3 thresholds hold against random RARE variants?
+"""Exploratory, post hoc, written 4 Nov 2026 before running: do the v4 PP3 thresholds hold against random RARE variants?
 
 The v4 calibration (v4_calibrate.py) used L3 negatives (gnomAD v4.1 PASS AC >= 9; median AF 1.8e-4). Because scores track
 population rarity, a likelihood ratio against population-observed variants can overstate evidence for a rare variant.

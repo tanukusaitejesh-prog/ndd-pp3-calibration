@@ -1,0 +1,8 @@
+score	n	rho	lo	hi
+Rfam ref column freq	435	0.459	0.377	0.539
+Rfam alt rarity	435	0.389	0.311	0.464
+CADD v1.7	435	0.088	-0.004	0.178
+GPN-MSA	435	0.143	0.053	0.236
+phyloP447	435	-0.024	-0.117	0.067
+ReMM v0.4	435	0.062	-0.025	0.152
+ViennaRNA ddG_bind	435	0.237	0.142	0.320
