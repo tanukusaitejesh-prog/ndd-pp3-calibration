@@ -55,7 +55,7 @@ Inside n.1–67 (13 vs 14 variants), v4 reached 0.780 [0.582, 0.940] and 5′ pr
 
 **Independence of the two blind tests.** The A8 test uses 16 new positives against 125 L3, of which 125 are shared with the sealed test's 127. It replicates on new positives in the same gene against nearly the same negatives.
 
-**Label-rule sensitivity (A8; exploratory).** These runs used 122 L3 for all rules; extras.py removed the curator's STRICT IDs from the negatives, so its "frozen rule" row differs from the primary A8 run by ≤ 0.004.
+**Label-rule sensitivity (A8; exploratory).** These runs used 122 L3 for all rules; extras.py removed the curator's STRICT IDs from the negatives, so its "frozen rule" row differs from the primary A8 run (125 L3; main Table 1) by up to 0.007 in excess (+0.126 vs +0.133) and 0.002 in Δ vs CADD (+0.300 vs +0.298). The audit log first described this as "≤ 0.004"; the figures here are the exact ones.
 
 | Label rule | New positives | v4 − CADD | v4 excess over null | Rfam reference-column frequency excess |
 |---|---|---|---|---|
@@ -64,16 +64,17 @@ Inside n.1–67 (13 vs 14 variants), v4 reached 0.780 [0.582, 0.940] and 5′ pr
 | Union | 27 | +0.237 [0.124, 0.349] | +0.068 (p 0.068) | +0.084 (p 0.049) |
 
 ## S4. Functional readouts
-**RNU4-2 SGE, 435 SNVs (Spearman with −function score; 1,000 bootstraps; reproduced independently on 4 Nov 2026):**
+**RNU4-2 SGE, 435 SNVs** (Spearman with −function score; 1,000 bootstraps, seed 20261104; `sge_spearman.py` → `results/sge_spearman.tsv`; point estimates identical to the earlier runs):
 
-| Score | ρ |
+| Score | ρ [95% CI] |
 |---|---|
-| Rfam reference-column frequency | 0.459 [0.375, 0.533] |
-| Rfam alternative-base rarity | 0.389 [0.307, 0.465] |
-| GPN-MSA | 0.143 [0.056, 0.235] |
-| CADD | 0.088 [−0.009, 0.184] |
-| ReMM | 0.062 [−0.032, 0.151] |
-| phyloP447 | −0.024 [−0.120, 0.071] |
+| Rfam reference-column frequency | 0.459 [0.377, 0.539] |
+| Rfam alternative-base rarity | 0.389 [0.311, 0.464] |
+| ViennaRNA intermolecular ΔΔG | 0.237 [0.142, 0.320] |
+| GPN-MSA | 0.143 [0.053, 0.236] |
+| CADD | 0.088 [−0.004, 0.178] |
+| ReMM | 0.062 [−0.025, 0.152] |
+| phyloP447 | −0.024 [−0.117, 0.067] |
 
 v4 refitted without the RNU4 cluster reached 0.382, computed on CPU without the Evo 2 feature.
 
@@ -92,6 +93,20 @@ v4 refitted without the RNU4 cluster reached 0.382, computed on CPU without the 
 
 17/23 are training labels, so v4 is not evaluated on this assay.
 
+**RNU4-2 SGE classification** (post hoc, specified before running: `sge_classes.py` committed in e2085a0 before the result in 87fc8d8; `results/sge_classes.tsv`). Class "depleted" = function score < −0.302 (the study's threshold); "strong" = < −0.9. AUROC [95% CI], 2,000 class-stratified bootstraps; paired differences use the same resamples.
+
+| Score | Depleted, all (106 vs 329) | Depleted, critical region (31 vs 8) | Depleted, outside (75 vs 321) | Strong, all (43 vs 392) | Strong, outside (25 vs 371) |
+|---|---|---|---|---|---|
+| Rfam reference-column frequency | 0.802 [0.753, 0.848] | 0.681 [0.454, 0.879] | 0.774 [0.711, 0.834] | 0.865 [0.822, 0.904] | 0.872 [0.817, 0.922] |
+| Rfam alternative-base rarity | 0.733 [0.681, 0.785] | 0.702 [0.468, 0.899] | 0.722 [0.662, 0.779] | 0.771 [0.717, 0.823] | 0.775 [0.708, 0.837] |
+| ViennaRNA ΔΔG (intermolecular) | 0.629 [0.568, 0.690] | 0.484 [0.310, 0.669] | 0.624 [0.556, 0.690] | 0.637 [0.540, 0.733] | 0.665 [0.548, 0.782] |
+| GPN-MSA | 0.604 [0.547, 0.662] | 0.478 [0.232, 0.730] | 0.572 [0.505, 0.641] | 0.617 [0.543, 0.690] | 0.607 [0.507, 0.701] |
+| CADD v1.7 | 0.564 [0.503, 0.624] | 0.683 [0.464, 0.875] | 0.510 [0.435, 0.583] | 0.633 [0.555, 0.714] | 0.583 [0.474, 0.697] |
+| ReMM v0.4 | 0.513 [0.451, 0.577] | 0.736 [0.526, 0.917] | 0.495 [0.413, 0.577] | 0.636 [0.566, 0.705] | 0.662 [0.547, 0.778] |
+| phyloP447 | 0.489 [0.435, 0.543] | 0.500 (constant) | 0.473 [0.403, 0.542] | 0.502 [0.421, 0.584] | 0.479 [0.345, 0.610] |
+
+Paired differences, Rfam reference-column frequency minus each genome-wide score: depleted/all +0.197 to +0.313 and depleted/outside +0.202 to +0.302 (every interval excludes 0); strong/all +0.228 to +0.363 (every interval excludes 0); inside the critical region −0.054 to +0.204 (every interval includes 0). For alternative-base rarity, depleted/all +0.129 to +0.244 (every interval excludes 0). phyloP447 is constant inside the critical region (see S5b), so its AUROC there is exactly 0.5. These analyses use the same 435 variants as the Spearman correlations above.
+
 ## S5. Cross-family test (A7; pre-registered; not met)
 Scores were frozen at commit 55033c3 before labels were fetched.
 
@@ -101,6 +116,20 @@ Scores were frozen at commit 55033c3 before labels were fetched.
 | SNORD118 + RNU7-1 (11 vs 134) | 0.879 [0.793, 0.948] | 0.883 | 0.816 | 0.860 | 0.875 | 0.840 | 0.923 |
 
 TERC had 15 P vs 3 N and was not evaluable. Weighted Δ (primary − CADD) −0.251 [−0.368, −0.133]; v4 − CADD −0.005 [−0.060, 0.050].
+
+## S5b. Alignment depth at snRNA loci (exploratory, specified before running)
+`alignment_depth.py` was committed (b768536) before the result (0b2117f); `results/alignment_depth.tsv`. Per named gene: the 95th percentile of phyloP447 and phyloP100 over positions (ceiling), the fraction of positions sharing the modal phyloP447 value (flat), and the per-position Spearman between phyloP447 and Rfam reference-column frequency (agreement). CADD AUROC is over all labels per gene (deviation log).
+
+| Gene | phyloP447 ceiling | Flat fraction | Agreement with Rfam | phyloP100 ceiling | CADD AUROC |
+|---|---|---|---|---|---|
+| RNU4-2 | 0.90 | 0.59 | −0.01 | 3.49 | 0.52 |
+| RNU2-2 | 4.46 | 0.07 | 0.39 | 2.62 | 0.55 |
+| RNU12 | 7.71 | 0.22 | 0.36 | 9.68 | 0.45 |
+| RNU6ATAC | 7.75 | 0.16 | 0.40 | 9.32 | 0.71 |
+| RNU4ATAC | 7.67 | 0.19 | 0.55 | 8.65 | 0.77 |
+| RNU4-1 (paralog of RNU4-2) | 8.03 | 0.34 | 0.32 | 3.61 | — |
+
+Across the five genes with CADD estimates, agreement tracked CADD AUROC (Spearman +0.90); the ceiling did not (+0.20). At RNU4-2, phyloP447 is flat at 0.687 across n.60–82, one of the most conserved stretches of U4 snRNA. RNU12 does not fit the low-ceiling pattern. The UCSC alignment itself could not be inspected (API unreachable), so the paralog explanation is a candidate, not a finding. Five genes; descriptive only.
 
 ## S6. Rarity-only null across benchmarks (A9–A15)
 **Definitions.** Population-observed = gnomAD v4.1 genome PASS AC ≥ 9. Pool = SNVs in the positives' ±100-bp windows that are neither positives nor population-observed. Inflation = null − 0.5. Rarity-matched AUROC = positives vs the pool.
@@ -177,4 +206,14 @@ A within-locus 20-nt window-depletion score, with the mutation scale fitted with
 1000 Genomes 30× genotypes and Geuvadis LCL junction counts (462 samples). Carriers of rare SNVs in minor-spliceosome snRNAs (n = 72) did not differ in minor-intron junction usage from non-carriers (n = 195): one-sided p = 0.29. Predicted-damaging carriers (n = 39) gave p = 0.33, and major-snRNA carriers (n = 195) p = 0.65. About 58% of samples carried a "rare" variant at these loci, which suggests unreliable short-read calls at multicopy snRNA loci.
 
 ## S11. Prospective test (A12; ongoing)
-ClinVar scans (11 October and 1 November 2026) and a literature tally (Nakano 2026, Sevilla-Porras 2026, Park 2026; 29 SNVs mapped) left every pre-registered unit below its minimum. Remaining candidates: RNU2-2 n.155C>G and n.104T>G, and RNU5B-1 n.37G>C, pending the sealed-set check. Scans continue monthly.
+ClinVar scans (11 October and 1 November 2026) and a literature tally (Nakano 2026, Sevilla-Porras 2026, Park 2026; 29 SNVs mapped) left every pre-registered unit below its minimum. Remaining candidates: RNU2-2 n.155C>G and n.104T>G, and RNU5B-1 n.37G>C, pending the sealed-set check. Rius et al. 2026 (Sup. Table 7) lists 9 RNU4-2 P/LP SNVs, but all 9 were training labels before the freeze, so none qualifies (4 Nov 2026).
+
+| Unit | Role | New positives | Minimum |
+|---|---|---|---|
+| U1 RNU6 adRP | primary | 0 | 8 |
+| U2 U5 (RNU5A-1, RNU5B-1) | primary | 0 | 5 |
+| U3 RNU2-2 (beyond sealed and A8) | primary | 0 | 8 |
+| U4 other untrained loci | secondary | 4 (RNU4-1; flagged: the source calls interpretation limited) | 5 |
+| U5 trained genes (new variants) | secondary | 4 (RNU4-2 ×3, RNU4ATAC ×1) | 5 |
+
+Scans continue monthly. Each unit is evaluated once, when it reaches its minimum.
