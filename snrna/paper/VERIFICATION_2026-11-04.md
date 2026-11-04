@@ -23,7 +23,7 @@ Caveats recorded in the paper: the sealed-label event log (`sealed/SEALED_MANIFE
 
 ## 3. Code audit
 
-An independent audit (48/48 tests pass) found no leakage into the blind RNU2-2 result:
+An independent audit found no leakage (test suite 49/49 passing on 4 Nov, including the new cluster-bootstrap test) into the blind RNU2-2 result:
 - RNU2-2 is alone in its paralog cluster;
 - no training ID is in the blind genes;
 - within-gene ranks use no labels;
