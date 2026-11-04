@@ -1,0 +1,6 @@
+ID	gene	reason
+chr11-62841706-A-C	RNU2-2	sealed gene: rebuild with --blind on the DGX
+chr11-62841778-A-C	RNU2-2	sealed gene: rebuild with --blind on the DGX
+chr11-62841662-G-T	RNU2-2	sealed gene: rebuild with --blind on the DGX
+chr11-62841655-G-C	RNU2-2	sealed gene: rebuild with --blind on the DGX
+chr15-65304713-G-C	RNU5B-1	sealed gene: rebuild with --blind on the DGX
