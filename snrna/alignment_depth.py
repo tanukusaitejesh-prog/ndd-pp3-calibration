@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exploratory mechanism check (written 5 Nov 2026 before running; PREREG s14): are genome-wide conservation scores
+"""Exploratory mechanism check (written 4 Nov 2026 before running; PREREG s14): are genome-wide conservation scores
 capped at some snRNA loci because whole-genome alignments capture few species there?
 
 Per named snRNA gene (positions in the transcript), from comparators/comparators.tsv.gz:

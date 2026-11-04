@@ -4,7 +4,7 @@
 
 **Author:** [Author name]¹ — ¹[Affiliation]. Correspondence: [email]
 
-*Manuscript draft, version of 5 November 2026. Every number is traceable to the dated deviation log (`snrna/PREREG.md` §14), the result files in `snrna/results/`, and the verification report `paper/VERIFICATION_2026-11-05.md`.*
+*Manuscript draft, version of 4 November 2026. Every number is traceable to the dated deviation log (`snrna/PREREG.md` §14), the result files in `snrna/results/`, and the verification report `paper/VERIFICATION_2026-11-04.md`.*
 
 ---
 
@@ -290,7 +290,7 @@ The study used only public, de-identified data: ClinVar, gnomAD, UK Biobank alle
 [To be completed by the author.] AI assistance: analysis code, literature curation support and drafting were assisted by an AI system under the author's direction; all decisions and the final text are the author's responsibility.
 
 ## References
-[Numbered reference list in `paper/REFERENCES.md`; every entry verified against Crossref/Europe PMC on 5 November 2026.]
+[Numbered reference list in `paper/REFERENCES.md`; every entry verified against Crossref/Europe PMC on 4 November 2026.]
 
 ## Figure legends
 **Figure 1.** Blind RNU2-2 receiver-operating characteristic curves for frozen v4, Rfam alternative-base rarity, phyloP447 and CADD. (A) Sealed labels (22 P/LP vs 127 L3). (B) Literature-only labels (16 vs 125).

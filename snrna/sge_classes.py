@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exploratory, post hoc (written 5 Nov 2026 BEFORE running; PREREG s14): population-free classification test on
+"""Exploratory, post hoc (written 4 Nov 2026 BEFORE running; PREREG s14): population-free classification test on
 RNU4-2 saturation genome editing (De Jonghe et al. 2026). No population-derived label or negative is involved, so the
 rarity contrast that affects every L2-vs-L3 AUROC cannot arise here.
 
