@@ -1,22 +1,24 @@
-# Rarity inflates non-coding variant benchmarks; RNA-family profiles predict pathogenic snRNA variants beyond it: a pre-registered evaluation with two blind tests
+# RNA-family profiles give calibrated, blind-validated evidence for pathogenic variants in spliceosomal snRNA genes: a pre-registered study with a rarity-adjusted benchmark
 
-*Draft, 14 October 2026. Every number is traceable to `PREREG.md` section 14 (dated deviation log) and `results/`.*
+*Draft, 14 October 2026; reframed snRNA-first on 4 November 2026 after a novelty audit (`NOVELTY_AUDIT_RARITY_2026-11-04.md`). Every number is traceable to `PREREG.md` section 14 (dated deviation log) and `results/`.*
 
 ## Abstract
 
-**Background.** Variants in spliceosomal small nuclear RNA (snRNA) genes cause neurodevelopmental disorders (RNU4-2, RNU2-2, RNU5B-1, RNU4ATAC, RNU12), but clinical guidance published in 2026 notes that no in silico tool has been designed or calibrated for these genes. Genome-wide scores perform at chance on RNU2-2.
+**Background.** Variants in spliceosomal small nuclear RNA (snRNA) genes cause neurodevelopmental disorders (RNU4-2, RNU2-2, RNU5B-1, RNU4ATAC, RNU12), but clinical guidance published in 2026 notes that no in silico tool has been designed or calibrated for these genes. Genome-wide scores perform at chance on RNU2-2. Benchmarks that use common population variants as negatives are known to flatter predictors (Grimm 2015; Niroula & Vihinen 2019; Rastogi 2025), which makes any comparison in these genes easy to over-read.
 
-**Methods.** We pre-registered and timestamped an evaluation of variant-effect scores across 55 snRNA loci (17,385 possible SNVs), with patient labels for two genes sealed in an encrypted file before any model was fitted. A selection-supervised graph model (primary, v2) and a regularised stacked model (v4, frozen before unsealing) were evaluated blind. Because "benign" controls drawn from common gnomAD variants let any rarity-tracking score separate random rare variants from controls, we report each score's excess over a rarity-only null. Post hoc and pre-registered follow-up analyses tested circularity, position-only baselines, measured function (RNU4-2 saturation genome editing), a second blind label set curated from the 2025–2026 literature, generalisation to other disease RNA genes, the size of the rarity effect across ClinVar's non-coding variants, and ClinGen PP3/BP4 calibration.
+**Methods.** We pre-registered and timestamped an evaluation of variant-effect scores across 55 snRNA loci (17,385 possible SNVs), with patient labels for two genes sealed in an encrypted file before any model was fitted. A selection-supervised graph model (primary, v2) and a regularised stacked model (v4, frozen before unsealing) were evaluated blind. To separate pathogenicity signal from this known frequency bias, we report each score's excess over a score-specific rarity-only null (random rare, unlabelled variants scored against the same common controls). Post hoc and pre-registered follow-up analyses tested circularity, position-only baselines, measured function (RNU4-2 saturation genome editing), a second blind label set curated from the 2025–2026 literature, generalisation to other disease RNA genes, the size of the rarity effect across ClinVar's non-coding variants, and ClinGen PP3/BP4 calibration.
 
-**Results.** The pre-registered primary model failed its per-variant endpoints. The frozen v4 model separated RNU2-2 patient variants from population variants in the sealed test (AUROC 0.892 vs CADD 0.501; excess over its rarity null +0.108, p = 0.014) and replicated on 16 patient variants reported only in the literature (0.910; excess +0.133, p = 0.012; Δ vs CADD +0.298 [0.153, 0.426]). The signal beyond rarity was carried by parameter-free RNA-family (Rfam) profile features (excess +0.17, p = 0.001), not by CADD, GPN-MSA, ReMM or phyloP. On measured RNU4-2 function, Rfam features correlated at ρ = 0.39–0.46 versus 0.09 (CADD) and −0.02 (phyloP). A pre-registered test on four non-snRNA disease RNA genes was not met: genome-wide scores perform well there (CADD 0.86 on RMRP), so the advantage is specific to the snRNA genes where genome-wide scores fail (RNU2-2, RNU4-2, RNU12). Calibrated v4 thresholds reach PP3 Supporting within RNU2-2, RNU4-2 and RNU4ATAC, where CADD reaches none, and 37 ClinVar VUS reach PP3 under thresholds from their own gene. Across 1,787 ClinVar non-coding pathogenic SNVs genome-wide, the rarity-only null was 0.62–0.68 for CADD, GPN-MSA, phyloP447 and ReMM, so 40–58% of their above-chance AUROC against common controls reflects rarity alone (pre-registered; met).
+**Results.** The pre-registered primary model failed its per-variant endpoints. The frozen v4 model separated RNU2-2 patient variants from population variants in the sealed test (AUROC 0.892 vs CADD 0.501; excess over its rarity null +0.108, p = 0.014) and replicated on 16 patient variants reported only in the literature (0.910; excess +0.133, p = 0.012; Δ vs CADD +0.298 [0.153, 0.426]). The signal beyond rarity was carried by parameter-free RNA-family (Rfam) profile features (excess +0.17, p = 0.001), not by CADD, GPN-MSA, ReMM or phyloP. On measured RNU4-2 function, Rfam features correlated at ρ = 0.39–0.46 versus 0.09 (CADD) and −0.02 (phyloP). A pre-registered test on four non-snRNA disease RNA genes was not met: genome-wide scores perform well there (CADD 0.86 on RMRP), so the advantage is specific to the snRNA genes where genome-wide scores fail (RNU2-2, RNU4-2, RNU12). Calibrated v4 thresholds reach PP3 Supporting within RNU2-2, RNU4-2 and RNU4ATAC, where CADD reaches none, and 37 ClinVar VUS reach PP3 under thresholds from their own gene. Applied genome-wide to 1,787 ClinVar non-coding pathogenic SNVs, the same null was 0.62–0.68 for CADD, GPN-MSA, phyloP447 and ReMM: 40–58% of their above-chance AUROC against common controls reflects rarity alone (pre-registered; met), quantifying a bias previously reported qualitatively.
 
-**Conclusions.** Benchmarks that use population-common variants as negatives overstate non-coding predictors by a score-specific rarity effect, which should be reported. Measured beyond it, RNA-family profiles provide calibrated in silico evidence for spliceosomal snRNA variants where genome-wide scores do not.
+**Conclusions.** RNA-family profiles provide blind-validated, ClinGen-calibrated in silico evidence for spliceosomal snRNA variants where genome-wide scores do not, and the advantage survives adjustment for rarity. Benchmarks with population controls should report each score's rarity null, whose size we show is large and score-specific.
 
 ## Introduction
 
 Monoallelic variants in RNU4-2 cause ReNU syndrome, one of the most common single-gene causes of neurodevelopmental disorder identified by genome sequencing (Chen et al. 2024; Greene et al. 2024). RNU2-2, RNU5B-1 and RNU5A-1 followed (Greene 2025; Jackson 2025; Nava 2025), with recessive forms of RNU4-2 and RNU2-2 (Rius 2026; Greene 2026), and longer-known recessive disorders of the minor spliceosome (RNU4ATAC, RNU12, RNU6ATAC). Laboratories now report snRNA variants routinely, yet the 2026 classification guidance (D'Souza et al. 2026) recommends PP3/BP4 only once a tool has been calibrated for snRNAs, and notes that CADD gives benign-range scores to recurrent pathogenic RNU2-2 variants.
 
 Two features of these genes make generic scores unreliable. First, they are multicopy: each snRNA has paralogs and hundreds of pseudogene copies, which complicate genome alignment and conservation estimates. Second, they are hypermutable, with de novo rates far above background (Seplyarskiy 2023; D'Souza 2026), so population depletion is weaker and harder to model than in protein-coding genes. RNA-family covariance models (Rfam) describe each snRNA family's sequence and structure across many species and paralogs without relying on whole-genome alignment.
+
+Evaluation is a second obstacle. Benign sets drawn from common population variants inflate predictor performance, because rarity alone correlates with conservation and constraint; this has been noted for missense predictors (Grimm 2015; Niroula & Vihinen 2019; Gunning 2021) and examined with allele-frequency-matched subsets (Rastogi 2025). ClinGen calibration therefore restricts benign variants to allele frequency below 1% (Pejaver 2022), and some non-coding benchmarks include rare-negative sensitivity analyses (Caron 2019), while functional assays offer a frequency-free alternative (Livesey & Marsh 2023). Here we make the bias explicit for every score: a rarity-only null against the same controls, with performance reported as the excess over it.
 
 We designed the study to be falsifiable. The analysis plan, operational definitions and decision gates were frozen and timestamped before analysis; patient labels for two genes were sealed before any model was fitted; every later change is listed with what had been seen when it was made. We report the failures alongside the successes.
 
@@ -88,9 +90,9 @@ We tested the Rfam alternative-base rarity zero-shot on four other disease RNA g
 
 The frozen v4 tied CADD (Δ −0.005). Genome-wide scores work on these RNA genes, so their failure is not a property of RNA genes in general. Nor is it explained by hypermutability: across eight genes, the fraction of possible SNVs observed in gnomAD did not track CADD's performance (Spearman +0.21). CADD fails in RNU2-2 (0.55), RNU4-2 (0.52) and RNU12 (0.45) but not in RNU4ATAC (0.77), RNU6ATAC (0.71) or the A7 genes, and the cause remains open.
 
-### 8. Genome-wide rarity inflation of non-coding benchmarks (pre-registered, A9)
+### 8. The rarity effect is general and large (pre-registered, A9)
 
-Is the RNU2-2 rarity effect peculiar to snRNAs? We pre-registered a genome-wide test before fetching any score (A9).
+Frequency bias in benchmarks is known (Introduction); its size for non-coding scores has not, to our knowledge, been measured per score. Is the RNU2-2 rarity effect peculiar to snRNAs? We pre-registered a genome-wide test before fetching any score (A9).
 - **Design.** 1,787 ClinVar non-coding P/LP SNVs (intronic 1,500 of 3,438, sampled; 5′UTR 148; ncRNA exon 85; 3′UTR 51) against 8,666 gnomAD PASS SNVs with AC ≥ 9 within ±100 bp. The window-matched rarity null drew, for each positive, a random non-positive, non-common SNV from its own window.
 - **Result.** Pooled, the null was 0.632 for CADD, 0.676 for GPN-MSA, 0.647 for phyloP447 and 0.618 for ReMM, against raw AUROCs of 0.828, 0.805, 0.776 and 0.730 (Table 2). Rarity alone therefore accounts for 40%, 58%, 53% and 51% of each tool's above-chance AUROC.
 - **By class.** The inflation was +0.10 to +0.19 in every class, and largest in ncRNA exons.
@@ -136,7 +138,7 @@ Three results carry the paper:
 
 Why genome-wide scores fail in some snRNA genes and not others is unresolved. Hypermutability does not explain it. A plausible, untested explanation is that whole-genome alignments mis-place reads from paralogous copies at some loci; Rfam covariance models, built from curated RNA families, do not depend on those alignments.
 
-The rarity-only null matters beyond snRNAs. When negatives are common population variants, a score that tracks constraint or conservation earns a large AUROC from rarity alone. On RNU2-2 the null was 0.80 for GPN-MSA and 0.53 for CADD, so raw AUROC comparisons between such scores mislead. Genome-wide, the same null is 0.62–0.68 for CADD, GPN-MSA, phyloP447 and ReMM across ClinVar's non-coding pathogenic variants, so this is a general property of the benchmark design rather than of snRNAs. We suggest that benchmarks using population controls report each score's rarity null.
+The rarity-only null matters beyond snRNAs. When negatives are common population variants, a score that tracks constraint or conservation earns a large AUROC from rarity alone. On RNU2-2 the null was 0.80 for GPN-MSA and 0.53 for CADD, so raw AUROC comparisons between such scores mislead. Genome-wide, the same null is 0.62–0.68 for CADD, GPN-MSA, phyloP447 and ReMM across ClinVar's non-coding pathogenic variants, so this is a general property of the benchmark design rather than of snRNAs. The bias itself is known (Rastogi 2025; Niroula & Vihinen 2019); our contribution is a per-score null that can be added to any benchmark with population controls, and its measured size. Re-analyses of published benchmarks (NCBoost, TraitGym Mendelian, whose controls are common and not frequency-matched; Benegas 2025) and of missense predictors are in the Supplement. For missense, our rarity-matched ClinVar comparison differs in endpoint from rare-variant trait benchmarks in which AlphaMissense ranks first (Tabet 2024), and the two should not be read as contradictory. ClinGen calibration already excludes common benign variants (Pejaver 2022); our calibration analyses address only residual frequency structure within rare variants.
 
 **Limitations.**
 - The blind evidence comes from one gene in two label sets (38 positives), and RNU5B-1 could not be evaluated.
@@ -145,6 +147,20 @@ The rarity-only null matters beyond snRNAs. When negatives are common population
 - Calibration reaches only Supporting strength.
 - The literature curation was AI-assisted under a fixed rule, and the curated table is released for audit.
 - There is no new functional data, and the study has a single author.
+
+## References (verified 4 Nov 2026; full list to be completed)
+
+- Benegas G, Eraslan G, Song YS. TraitGym. bioRxiv 2025. doi:10.1101/2025.02.11.637758
+- Caron B et al. NCBoost. Genome Biol 2019. doi:10.1186/s13059-019-1634-2
+- Cheng J et al. AlphaMissense. Science 2023. doi:10.1126/science.adg7492
+- Grimm DG et al. Circularity in missense predictor evaluation. Hum Mutat 2015. doi:10.1002/humu.22768
+- Gunning AC et al. J Med Genet 2021. PMID 32843488
+- Livesey BJ, Marsh JA. Mol Syst Biol 2023. doi:10.15252/msb.202211474
+- Niroula A, Vihinen M. PLoS Comput Biol 2019. doi:10.1371/journal.pcbi.1006481
+- Pejaver V et al. AJHG 2022. PMC9748256
+- Rastogi R et al. Hum Genet 2025. doi:10.1007/s00439-025-02732-2
+- Tabet D et al. Genome Biol 2024. doi:10.1186/s13059-024-03314-7
+- snRNA genetics and guidance: see `NOVELTY_AUDIT_2026-10-14.md` (Chen 2024; Greene 2024; D'Souza 2026; Messaoud 2026; Rius 2026; Seplyarskiy 2023; De Jonghe 2026).
 
 ## Data and code availability
 
