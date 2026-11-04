@@ -121,6 +121,50 @@ def metrics(s, units, sel, global_neg, rng, draws):
     return raw, null, raw - null, M
 
 
+def cluster_assign(d, units, gneg):
+    """Bug fix (5 Nov 2026, post hoc; PREREG s14): give every negative and pool SNV ONE home cluster (the window of the
+    nearest positive), so a window bootstrap can carry each variant with the multiplicity of its cluster. The original
+    `metrics` collapsed repeated negatives/pool variants with np.unique while positives kept their multiplicity, and
+    never resampled published negatives (A11/A13), which makes the intervals too narrow."""
+    ppos = np.array([d.pos[i] for i, _, _ in units])
+    pchr = np.array([d.chrom[i] for i, _, _ in units])
+    home = {}
+    for k, (i, pl, nl) in enumerate(units):
+        for j in list(pl) + ([] if nl is None else list(nl)):
+            dist = abs(int(d.pos[j]) - int(ppos[k])) if d.chrom[j] == pchr[k] else 10 ** 12
+            if j not in home or dist < home[j][0]:
+                home[j] = (dist, k)
+    owned_pool = [[] for _ in units]
+    owned_neg = [[] for _ in units]
+    for k, (i, pl, nl) in enumerate(units):
+        for j in pl:
+            if home[j][1] == k:
+                owned_pool[k].append(j)
+        if nl is not None:
+            for j in nl:
+                if home[j][1] == k:
+                    owned_neg[k].append(j)
+    return [np.array(x, int) for x in owned_pool], [np.array(x, int) for x in owned_neg]
+
+
+def metrics_cluster(s, units, sel, owned_pool, owned_neg, gneg_sample, rng, draws):
+    """As `metrics`, but every variant enters with the multiplicity of its (resampled) home cluster. The null draws
+    each selected positive's pseudo-positive from its own full window pool, as before. For published negatives
+    (A11/A13), `gneg_sample` is an independently resampled (with replacement) copy of the global negatives."""
+    pos = np.array([units[k][0] for k in sel])
+    pools = [units[k][1] for k in sel]
+    if gneg_sample is None:
+        neg = np.concatenate([owned_neg[k] for k in sel]) if len(sel) else np.array([], int)
+    else:
+        neg = gneg_sample
+    y = np.r_[np.ones(len(pos), bool), np.zeros(len(neg), bool)]
+    raw = auroc(y, s[np.r_[pos, neg]])
+    null = np.mean([auroc(y, s[np.r_[np.array([rng.choice(p) for p in pools]), neg]]) for _ in range(draws)])
+    allpool = np.concatenate([owned_pool[k] for k in sel])
+    M = auroc(np.r_[np.ones(len(pos), bool), np.zeros(len(allpool), bool)], s[np.r_[pos, allpool]])
+    return raw, null, raw - null, M
+
+
 def cmd_ci(a):
     which, _, name = a.analysis.partition(":")
     if which == "a9":
@@ -155,8 +199,15 @@ def cmd_ci(a):
     full = np.arange(len(units))
     point = {t: metrics(S[t], units, full, gneg, rng, a.draws) for t in tools}
     boots = {t: [] for t in tools}
+    if getattr(a, "cluster", False):
+        owned_pool, owned_neg = cluster_assign(d, units, gneg)
     for b in range(a.boot):
         sel = rng.integers(0, len(units), len(units))
+        if getattr(a, "cluster", False):
+            gs = None if gneg is None else rng.choice(gneg, len(gneg))
+            for t in tools:
+                boots[t].append(metrics_cluster(S[t], units, sel, owned_pool, owned_neg, gs, rng, a.draws))
+            continue
         for t in tools:
             boots[t].append(metrics(S[t], units, sel, gneg, rng, a.draws))
         if (b + 1) % 20 == 0:
@@ -174,7 +225,7 @@ def cmd_ci(a):
             rows.append({"analysis": a.analysis, "tool": f"{t1} - {t2}", "metric": f"diff_{nm}",
                          "point": point[t1][k] - point[t2][k], "lo": lo, "hi": hi})
     out = pd.DataFrame(rows)
-    tag = a.analysis.replace(":", "_")
+    tag = a.analysis.replace(":", "_") + ("_cluster" if getattr(a, "cluster", False) else "")
     out.to_csv(os.path.join(RES, f"a15_ci_{tag}.tsv"), sep="\t", index=False, float_format="%.4f", lineterminator="\n")
     print(f"A15 CIs for {a.analysis}: {len(units)} positives with windows; {a.boot} window-bootstrap replicates")
     print(out.round(3).to_string(index=False))
@@ -189,6 +240,9 @@ def main():
     c.add_argument("analysis", help="a9, a10, a11 or a13:<name>")
     c.add_argument("--boot", type=int, default=200)
     c.add_argument("--draws", type=int, default=50)
+    c.add_argument("--cluster", action="store_true",
+                   help="corrected cluster bootstrap (5 Nov 2026 bug fix): every variant carries its home window's "
+                        "multiplicity; published negatives resampled -> results/a15_ci_<x>_cluster.tsv")
     a = ap.parse_args()
     os.makedirs(RES, exist_ok=True)
     {"simulate": cmd_simulate, "ci": cmd_ci}[a.cmd](a)

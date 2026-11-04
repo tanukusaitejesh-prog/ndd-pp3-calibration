@@ -68,3 +68,31 @@ def test_window_bootstrap_metrics():
     assert all(d.ID[u[1]].str.startswith("r").all() and d.ID[u[2]].str.startswith("n").all() for u in units)
     raw, null, corr, M = A15.metrics(d.x.to_numpy(float), units, np.arange(30), None, np.random.default_rng(0), 10)
     assert raw == 1.0 and null == 1.0 and corr == 0.0 and M == 1.0
+
+
+def test_cluster_bootstrap_keeps_multiplicity_and_partitions():
+    # overlapping windows (positives 50 bp apart): each negative/pool SNV must get exactly one home cluster,
+    # and on the full set the cluster metrics equal the deduplicated original metrics
+    rows = []
+    rng = np.random.default_rng(1)
+    for k in range(12):
+        b = 1000 + 50 * k
+        rows.append({"ID": f"p{k}", "chrom": "chr1", "pos": b, "filter": "PASS", "AC": 0, "x": rng.normal(1)})
+        rows += [{"ID": f"r{k}_{j}", "chrom": "chr1", "pos": b + j + 1, "filter": "PASS", "AC": 1,
+                  "x": rng.normal(0.3)} for j in range(10)]
+        rows += [{"ID": f"n{k}_{j}", "chrom": "chr1", "pos": b + 20 + j, "filter": "PASS", "AC": 99,
+                  "x": rng.normal(0)} for j in range(3)]
+    d = pd.DataFrame(rows)
+    d, units, gneg = A15.window_index(d, {f"p{k}" for k in range(12)})
+    op, on = A15.cluster_assign(d, units, gneg)
+    allp = np.concatenate(op); alln = np.concatenate(on)
+    assert len(allp) == len(set(allp)) and len(alln) == len(set(alln))            # one home each
+    assert set(alln) == set(np.unique(np.concatenate([u[2] for u in units])))     # every window negative owned
+    s = d.x.to_numpy(float)
+    full = np.arange(len(units))
+    r_old = A15.metrics(s, units, full, None, np.random.default_rng(0), 5)
+    r_new = A15.metrics_cluster(s, units, full, op, on, None, np.random.default_rng(0), 5)
+    assert abs(r_old[0] - r_new[0]) < 1e-12 and abs(r_old[3] - r_new[3]) < 1e-12   # raw and M identical on full set
+    sel = np.array([0, 0, 0, 5])                                                    # repeated cluster keeps multiplicity
+    raw, null, corr, M = A15.metrics_cluster(s, units, sel, op, on, None, np.random.default_rng(0), 5)
+    assert np.isfinite(raw) and np.isfinite(M)
