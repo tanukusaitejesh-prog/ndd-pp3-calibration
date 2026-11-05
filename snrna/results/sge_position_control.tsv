@@ -1,0 +1,26 @@
+test	subset	score	n_pos_sites	value	lo	hi
+cluster AUROC	all	Rfam ref column freq	145	0.802	0.721	0.876
+cluster AUROC	all	CADD v1.7	145	0.564	0.471	0.654
+cluster diff (ref - score)	all	CADD v1.7	145	0.237	0.130	0.350
+cluster AUROC	all	GPN-MSA	145	0.604	0.546	0.660
+cluster diff (ref - score)	all	GPN-MSA	145	0.197	0.101	0.284
+cluster AUROC	all	phyloP447	145	0.489	0.408	0.568
+cluster diff (ref - score)	all	phyloP447	145	0.313	0.199	0.430
+cluster AUROC	all	ReMM v0.4	145	0.513	0.414	0.611
+cluster diff (ref - score)	all	ReMM v0.4	145	0.288	0.188	0.386
+cluster AUROC	all	Rfam alt rarity	145	0.733	0.664	0.804
+cluster AUROC	outside critical region	Rfam ref column freq	132	0.774	0.664	0.868
+cluster AUROC	outside critical region	CADD v1.7	132	0.510	0.401	0.611
+cluster diff (ref - score)	outside critical region	CADD v1.7	132	0.265	0.129	0.405
+cluster AUROC	outside critical region	GPN-MSA	132	0.572	0.504	0.640
+cluster diff (ref - score)	outside critical region	GPN-MSA	132	0.202	0.076	0.319
+cluster AUROC	outside critical region	phyloP447	132	0.473	0.370	0.579
+cluster diff (ref - score)	outside critical region	phyloP447	132	0.302	0.157	0.447
+cluster AUROC	outside critical region	ReMM v0.4	132	0.495	0.367	0.627
+cluster diff (ref - score)	outside critical region	ReMM v0.4	132	0.279	0.150	0.412
+cluster AUROC	outside critical region	Rfam alt rarity	132	0.722	0.639	0.801
+within-position Spearman	all	Rfam alt rarity	145	0.119	0.009	0.225
+within-position Spearman	all	CADD v1.7	145	-0.073	-0.189	0.046
+within-position Spearman	all	GPN-MSA	145	0.135	0.012	0.249
+within-position Spearman	all	ReMM v0.4	145	-0.012	-0.042	0.019
+within-position Spearman	all	ViennaRNA ddG_bind	145	0.117	-0.002	0.234
