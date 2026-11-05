@@ -83,32 +83,44 @@ An independent audit found no leakage (test suite 49/49 passing on 4 Nov, includ
 
 None of these can strengthen a claim beyond what the manuscript states. Items 1–2 can only weaken the calibration or ranking statements, which are already worded as provisional or descriptive.
 
-## 7. Rating (honest, 4 Nov 2026)
+## 6b. External review (5 Nov 2026) and what changed
 
-| | Before this audit | Now |
-|---|---|---|
-| Novelty | ≈ 3.5 / 5 | **4 / 5** |
-| Q1 potential | ≈ 3.5–4 / 5 | **4 / 5** |
+An external AI review of the 4 Nov packet listed fatal, major and minor issues. Its factual claims were checked against the log and hold. Changes made without the analysis server (each new analysis committed before it was run):
 
-**Why it holds at 4.**
-- **Gap.** A recognised, explicitly stated gap (no snRNA-calibrated tool) is filled with a blind, Bitcoin-anchored test and a replication on labels curated afterwards.
-- **Rarity-free evidence.** The rarity objection, the main threat to the blind result, is answered by functional data with no population labels. On RNU4-2 SGE, the Rfam profile reached 0.80 against 0.49–0.60, with every paired interval excluding 0, including outside the critical region.
-- **Corrected framing.** The reported scope is now accurate: failed endpoints, the A7 negative, multiplicity, shared negatives and provisional calibration are all disclosed.
+| Review point | Response |
+|---|---|
+| Title and abstract oversell "pre-registered, blind-validated evidence" | Retitled around what survives: whole-genome conservation fails at key snRNA genes and family alignments recover position-level signal; v4 described as a post-failure model; Rfam features stated as identified after unsealing |
+| Rarity null confounded by region and position ascertainment | New `rnu2_position_control.py` on 35 public RNU2-2 positives. The region baseline alone matches the Rfam N0 excess (+0.16 vs +0.18), which confirms the point. After region × pairing matching, Rfam keeps +0.07 (p 0.009) and genome-wide scores ≈ 0; under ±5-nt matching it is a trend (+0.04, p 0.07). Reported in Table 1 |
+| SGE bootstrap treats SNVs as independent | New `sge_position_control.py`: position-cluster intervals (Rfam 0.80 [0.72, 0.88]; every difference still excludes 0, also outside the critical region). Within position, Rfam ties GPN-MSA (0.12 vs 0.14), so the claim is stated as position-level |
+| Supervised position floor (G1) omitted | Reported: AUROC 0.859 on the same SNVs, as a ceiling that uses SGE data |
+| G1, G2, A1 outcomes absent | Reported in Results |
+| Pre-specified RNU2-2 score S not shown | S = 0.784 reported; its calibration flagged as pending on the server |
+| A14 validity failure not in paper | Reported in Methods and Supplement S8 |
+| BP4 unsafe with population negatives in recessive genes | BP4 removed from the main text; PP3 thresholds labelled exploratory |
+| Rfam never shown for RNU12, RNU6ATAC | New `per_gene_rfam.py`: Rfam ≥ CADD in all 5 genes; gain where CADD fails (RNU2-2, RNU4-2, RNU12); ties in RNU4ATAC, RNU6ATAC; alignment-agreement prediction ρ −0.80, p 0.067 |
+| Benchmark-inflation section is weak and secondary | Moved to Supplement S6; one descriptive paragraph in the main text |
+| OpenTimestamps claimed for all amendments; seal log absent | Methods now state A1–A6 Bitcoin-anchored, A7–A16 git only, seal log pending release with a proof |
+| Header claimed every number traces to committed files | Server-transcribed numbers now marked ‡ |
+| Missing comparators (AlphaGenome, covariation, structure tools, ortholog-only baseline) | Listed as limitations; not run |
 
-**What keeps it below 4.5.**
-- The blind evidence is one gene with 38 positives.
-- The Rfam features were chosen post hoc.
-- The SGE classification re-expresses the same 435 variants as the earlier Spearman result, so it is not independent new data.
-- The calibration is provisional.
-- No new wet-lab data; single author.
+Still requiring the analysis server: v4 under the matched nulls on the sealed set; the rare-variant threshold check; the calibration of S and prior-0.0441 results; leave-own-position likelihood ratios; the seal log with an OpenTimestamps proof; corrected benchmark intervals.
 
-**What would move it to 4.5.**
-- an A12 primary unit reaching its minimum and passing;
-- functional data for a second snRNA gene, for example a future RNU2-2 editing screen;
-- an independent external replication.
+## 7. Rating (revised 5 Nov 2026, after the external review)
 
-**Target journals.**
-- realistic: Genetics in Medicine, Genome Medicine, Human Genetics, Human Mutation;
-- stretch: AJHG.
+The external review rated the 4 Nov version 3.0 / 3.0. That was fairer than my 4 / 4: the earlier framing claimed more than the evidence carried.
 
-**What could lower the rating.** A failed `v4_rare_passrate.py` check would remove the threshold claim but not the discrimination results. Novelty is unaffected by the open items.
+| | 4 Nov (own) | External (4 Nov version) | Now (own estimate, reframed version) |
+|---|---|---|---|
+| Novelty | 4 | 3.0 | 3.0–3.5 |
+| Q1 potential | 4 | 3.0 | 3.5 |
+
+**Why higher than 3.0 now.** The paper now claims only what survives the review's main test:
+- position-level conservation recovered by family alignments, with position-cluster intervals on functional data;
+- a residual Rfam excess after region and structure matching that no genome-wide score shows;
+- a per-gene pattern consistent with an alignment failure.
+
+The undisclosed results the review found are now reported.
+
+**Why not higher.** It is still one gene for blind patient evidence and one gene for function. The Rfam features were found post hoc. The finding is a conservation repair, not a new principle. There is no new data and the paper has a single author.
+
+**What would change it.** Functional data in a second snRNA gene, or an A12 U5-gene unit passing, would add about +0.5 to Q1. A failed rare-variant threshold check would remove the PP3 statement but not the main result.

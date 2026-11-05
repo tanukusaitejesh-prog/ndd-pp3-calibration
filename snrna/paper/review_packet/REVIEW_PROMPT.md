@@ -56,6 +56,7 @@ The code and data are in a GitHub repository named in the manuscript (folder `sn
    - "Single most important fix: …"
 
 ## Context for fair judgement
+- This is a **revised** version. An earlier version was reviewed once; section 6b of the verification report lists what that review raised and what changed. Judge the current version on its merits, and say whether the changes resolve the earlier points.
 - The study has a single author with no wet-lab work. Every input is public data (ClinVar, gnomAD, UK Biobank summaries, published SGE and assay data, the literature).
 - The pre-registered primary model (v2) failed its endpoints, and the paper says so. The model that succeeded (v4) was designed after that failure, then frozen and timestamped before the sealed labels were opened.
 - Some items are pending because they run on a separate GPU server; they are listed in the verification report, section 6. Judge the paper as it stands, and say how those pending results could change your view.

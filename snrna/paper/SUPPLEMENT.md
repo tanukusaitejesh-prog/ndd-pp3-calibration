@@ -3,6 +3,8 @@
 *RNA-family profiles provide blind-validated computational evidence for spliceosomal snRNA variants. Every number below is from the dated deviation log (`snrna/PREREG.md` §14) or from committed result files.*
 
 ## S1. Timeline of freezes and results
+The pre-registration, code and amendments A1–A6 are anchored in Bitcoin blocks (`paper/TIMELINE.md`). Amendments A7–A16 and every post hoc analysis rest on git commit times only. The seal/unseal log (`sealed/SEALED_MANIFEST.jsonl`) is on the analysis server and will be released with an OpenTimestamps proof.
+
 See `paper/TIMELINE.md` (Supplementary Table S1). The v4 code and output hashes (amendment A5) are anchored in Bitcoin block 971362 (2026-10-14 05:58 UTC). The A6 rule is anchored in block 971363 (06:04 UTC). Both precede the blind results, which were committed at 06:44 UTC.
 
 ## S2. Primary model (v2) and its endpoints
@@ -63,6 +65,24 @@ Inside n.1–67 (13 vs 14 variants), v4 reached 0.780 [0.582, 0.940] and 5′ pr
 | Curator STRICT | 20 | +0.267 [0.148, 0.387] | +0.079 (p 0.069) | +0.096 (p 0.051) |
 | Union | 27 | +0.237 [0.124, 0.349] | +0.068 (p 0.068) | +0.084 (p 0.049) |
 
+## S3b. Region- and structure-matched rarity nulls on RNU2-2 (post hoc, specified before running; after an external review)
+`rnu2_position_control.py` (committed ed12221 before the result dad9b58); `results/rnu2_position_control.tsv`. Positives: the 35 public RNU2-2 SNVs accepted by the frozen A8 rule (16 A8-new, 19 also in the sealed set). Negatives: 125 RNU2-2 L3. Pool: 413 SNVs that are neither. 10,000 draws per null. N0 gene-wide; N1 matched on Table 2 region status × reference pairing; N2 within ±5 nt. Inside n.1–67: 25 vs 14; outside: 10 vs 111.
+
+| Score | AUROC | Rarity-matched AUROC | N0 null / excess (p) | N1 null / excess (p) | N2 null / excess (p) | AUROC inside | AUROC outside |
+|---|---|---|---|---|---|---|---|
+| Rfam ref column freq | 0.846 | 0.710 | 0.667 / +0.179 (0.0001) | 0.775 / +0.071 (0.0088) | 0.805 / +0.041 (0.0686) | 0.587 | 0.811 |
+| Rfam alt rarity | 0.844 | 0.696 | 0.683 / +0.161 (0.0001) | 0.771 / +0.073 (0.0176) | 0.800 / +0.044 (0.0884) | 0.660 | 0.811 |
+| CADD v1.7 | 0.555 | 0.514 | 0.536 / +0.019 (0.3304) | 0.543 / +0.013 (0.3689) | 0.517 / +0.038 (0.1019) | 0.483 | 0.578 |
+| phyloP447 | 0.745 | 0.532 | 0.684 / +0.061 (0.0896) | 0.744 / +0.001 (0.5027) | 0.755 / -0.010 (0.6202) | 0.609 | 0.808 |
+| GPN-MSA | 0.771 | 0.452 | 0.795 / -0.024 (0.7423) | 0.821 / -0.050 (0.9129) | 0.823 / -0.052 (0.9552) | 0.591 | 0.769 |
+| ReMM v0.4 | 0.514 | 0.485 | 0.526 / -0.013 (0.6001) | 0.489 / +0.024 (0.3072) | 0.450 / +0.064 (0.0607) | 0.396 | 0.772 |
+| BASELINE in region n.1-67 | 0.801 | 0.661 | 0.640 / +0.161 (0.0001) | 0.801 / +0.000 (1.0000) | 0.796 / +0.005 (0.6567) | 0.500 | 0.500 |
+| BASELINE distance to region | 0.790 | 0.652 | 0.641 / +0.149 (0.0012) | 0.802 / -0.011 (0.6904) | 0.790 / +0.000 (0.4579) | 0.500 | 0.458 |
+| BASELINE 5' proximity | 0.813 | 0.648 | 0.653 / +0.160 (0.0008) | 0.823 / -0.011 (0.6791) | 0.813 / -0.000 (0.5406) | 0.776 | 0.458 |
+| BASELINE position unobserved | 0.731 | 0.517 | 0.717 / +0.014 (0.3856) | 0.817 / -0.086 (0.9939) | 0.833 / -0.102 (0.9989) | 0.691 | 0.497 |
+
+Reading: under N0 the region baseline gets as much excess as Rfam, so the N0 excess cannot separate pathogenicity from ascertainment. Under N1 only the Rfam features keep a significant excess. Under N2 every excess is ≤ +0.064 and none is significant. "Position unobserved" counts the negative's own allele and is optimistic by construction.
+
 ## S4. Functional readouts
 **RNU4-2 SGE, 435 SNVs** (Spearman with −function score; 1,000 bootstraps, seed 20261104; `sge_spearman.py` → `results/sge_spearman.tsv`; point estimates identical to the earlier runs):
 
@@ -92,6 +112,43 @@ v4 refitted without the RNU4 cluster reached 0.382, computed on CPU without the 
 | ViennaRNA | 0.147 | |
 
 17/23 are training labels, so v4 is not evaluated on this assay.
+
+**Position-cluster bootstrap and within-position test** (post hoc, specified before running after the external review: `sge_position_control.py`, committed before its result; `results/sge_position_control.tsv`). Reference-column frequency is constant within a position, so the SNV-level intervals above are too narrow. Resampling the 145 positions (132 outside the critical region), 2,000 draws:
+
+| Subset | Test | Score | Value [95% CI] |
+|---|---|---|---|
+| all | cluster AUROC | Rfam ref column freq | 0.802 [0.721, 0.876] |
+| all | cluster AUROC | CADD v1.7 | 0.564 [0.471, 0.654] |
+| all | cluster diff (ref - score) | CADD v1.7 | +0.237 [+0.130, +0.350] |
+| all | cluster AUROC | GPN-MSA | 0.604 [0.546, 0.660] |
+| all | cluster diff (ref - score) | GPN-MSA | +0.197 [+0.101, +0.284] |
+| all | cluster AUROC | phyloP447 | 0.489 [0.408, 0.568] |
+| all | cluster diff (ref - score) | phyloP447 | +0.313 [+0.199, +0.430] |
+| all | cluster AUROC | ReMM v0.4 | 0.513 [0.414, 0.611] |
+| all | cluster diff (ref - score) | ReMM v0.4 | +0.288 [+0.188, +0.386] |
+| all | cluster AUROC | Rfam alt rarity | 0.733 [0.664, 0.804] |
+| outside critical region | cluster AUROC | Rfam ref column freq | 0.774 [0.664, 0.868] |
+| outside critical region | cluster AUROC | CADD v1.7 | 0.510 [0.401, 0.611] |
+| outside critical region | cluster diff (ref - score) | CADD v1.7 | +0.265 [+0.129, +0.405] |
+| outside critical region | cluster AUROC | GPN-MSA | 0.572 [0.504, 0.640] |
+| outside critical region | cluster diff (ref - score) | GPN-MSA | +0.202 [+0.076, +0.319] |
+| outside critical region | cluster AUROC | phyloP447 | 0.473 [0.370, 0.579] |
+| outside critical region | cluster diff (ref - score) | phyloP447 | +0.302 [+0.157, +0.447] |
+| outside critical region | cluster AUROC | ReMM v0.4 | 0.495 [0.367, 0.627] |
+| outside critical region | cluster diff (ref - score) | ReMM v0.4 | +0.279 [+0.150, +0.412] |
+| outside critical region | cluster AUROC | Rfam alt rarity | 0.722 [0.639, 0.801] |
+
+Within position (score and −function score centred within each position; position-cluster intervals):
+
+| Score | Within-position Spearman |
+|---|---|
+| Rfam alt rarity | +0.119 [+0.009, +0.225] |
+| CADD v1.7 | -0.073 [-0.189, +0.046] |
+| GPN-MSA | +0.135 [+0.012, +0.249] |
+| ReMM v0.4 | -0.012 [-0.042, +0.019] |
+| ViennaRNA ddG_bind | +0.117 [-0.002, +0.234] |
+
+Reading: the Rfam advantage survives position clustering but is position-level; within a position, alternative-base rarity ties GPN-MSA. The G1 supervised position floor (fitted on neighbouring SGE scores, leave-one-position-out) reached ρ 0.518 and AUROC 0.859 on these SNVs (`results/g1_report.txt`).
 
 **RNU4-2 SGE classification** (post hoc, specified before running: `sge_classes.py` committed in e2085a0 before the result in 87fc8d8; `results/sge_classes.tsv`). Class "depleted" = function score < −0.302 (the study's threshold); "strong" = < −0.9. AUROC [95% CI], 2,000 class-stratified bootstraps; paired differences use the same resamples.
 
@@ -130,6 +187,19 @@ TERC had 15 P vs 3 N and was not evaluable. Weighted Δ (primary − CADD) −0.
 | RNU4-1 (paralog of RNU4-2) | 8.03 | 0.34 | 0.32 | 3.61 | — |
 
 Across the five genes with CADD estimates, agreement tracked CADD AUROC (Spearman +0.90); the ceiling did not (+0.20). At RNU4-2, phyloP447 is flat at 0.687 across n.60–82, one of the most conserved stretches of U4 snRNA. RNU12 does not fit the low-ceiling pattern. The UCSC alignment itself could not be inspected (API unreachable), so the paralog explanation is a candidate, not a finding. Five genes; descriptive only.
+
+## S5c. Per-gene comparison on public labels (post hoc, specified before running)
+`per_gene_rfam.py`; `results/per_gene_rfam.tsv`. AUROC (excess over the gene-wide rarity null, 2,000 draws) against the gene's L3.
+
+| Gene | P vs L3 | Rfam ref | Rfam alt | CADD | phyloP447 | GPN-MSA | Rfam ref − CADD [95% CI] |
+|---|---|---|---|---|---|---|---|
+| RNU2-2 | 35 vs 125 | 0.846 (+0.180, p 0.0005) | 0.844 (+0.162) | 0.555 (+0.021) | 0.745 (+0.063) | 0.771 (-0.022) | +0.290 [+0.164, +0.409] |
+| RNU4-2 | 26 vs 52 | 0.913 (+0.288, p 0.0005) | 0.828 (+0.110) | 0.519 (+0.077) | 0.515 (-0.053) | 0.825 (+0.027) | +0.394 [+0.250, +0.537] |
+| RNU4ATAC | 37 vs 65 | 0.832 (+0.279, p 0.0005) | 0.803 (+0.129) | 0.769 (+0.204) | 0.712 (+0.133) | 0.813 (+0.131) | +0.063 [-0.026, +0.154] |
+| RNU12 | 8 vs 79 | 0.695 (+0.122, p 0.1304) | 0.750 (+0.078) | 0.453 (+0.030) | 0.577 (+0.002) | 0.748 (+0.037) | +0.241 [+0.005, +0.432] |
+| RNU6ATAC | 5 vs 18 | 0.744 (+0.120, p 0.1919) | 0.689 (+0.027) | 0.706 (+0.154) | 0.644 (+0.059) | 0.672 (-0.054) | +0.039 [-0.350, +0.467] |
+
+Across the five genes, the Rfam − CADD advantage correlated with phyloP447–Rfam agreement at Spearman −0.80 (prediction: negative; exact one-sided permutation p = 0.067).
 
 ## S6. Rarity-only null across benchmarks (A9–A15)
 **Definitions.** Population-observed = gnomAD v4.1 genome PASS AC ≥ 9. Pool = SNVs in the positives' ±100-bp windows that are neither positives nor population-observed. Inflation = null − 0.5. Rarity-matched AUROC = positives vs the pool.
@@ -197,6 +267,9 @@ The local-constraint score counts the variant's own allele, however. In this set
 - **v4 (post hoc):** out-of-sample scores, using frozen v4 for the blind genes and v4 refitted without each gene's paralog cluster elsewhere. Pooled thresholds therefore mix scores from different cross-fitted models.
 - **Negatives:** L3 (population-observed), not curated benign variants. A likelihood ratio against population-observed variants can overstate evidence for a rare variant.
 - **Rarity check:** `v4_rare_passrate.py`, pre-specified on 4 Nov 2026, computes for each threshold the pass rate among P/LP and among never-labelled rare SNVs. Their ratio is a lower bound on the LR against rare benign variants; the rule is "robust" if ≥ 2.08.
+- **BP4 not reported in the main text:** population-observed variants of recessive genes (RNU2-2, RNU4ATAC, RNU12, RNU6ATAC) can be pathogenic carrier alleles, so BP4 against L3 is unsafe. The logged BP4 values (pooled v4 ≤ −1.35; v2 RNU4ATAC S ≤ −0.046) are kept here for completeness only.
+- **Implementation check (A14):** our local-LR procedure gave AlphaMissense thresholds 0.627/0.841/0.985 against the published 0.792/0.906/0.972 (Bergquist et al.), so thresholds from it are approximate.
+- **Pending (analysis server):** the calibration of the pre-specified RNU2-2 score S, all results at prior 0.0441, the rare-variant pass-rate check, and likelihood ratios with leave-own-position local constraint.
 - **VUS:** 279 ClinVar VUS/conflicting SNVs in the named genes. With pooled v4 thresholds, 61 reach PP3 and 35 BP4; with own-gene thresholds, 37 reach PP3. CADD pooled: 73 PP3, 36 BP4.
 
 ## S9. Gene-level constraint (exploratory; replication of Chen et al. 2024 and Messaoud et al. 2026)
