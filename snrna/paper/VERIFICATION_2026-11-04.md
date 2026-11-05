@@ -102,6 +102,8 @@ An external AI review of the 4 Nov packet listed fatal, major and minor issues. 
 | OpenTimestamps claimed for all amendments; seal log absent | Methods now state A1–A6 Bitcoin-anchored, A7–A16 git only, seal log pending release with a proof |
 | Header claimed every number traces to committed files | Server-transcribed numbers now marked ‡ |
 | Missing comparators (AlphaGenome, covariation, structure tools, ortholog-only baseline) | Listed as limitations; not run |
+| Paralog explanation for RNU4-2 unchecked against the alignment | New `alignment_species.py` reads the UCSC 447-way alignment directly: RNU4-2 is aligned in 186 species, all primates (0 of 204 non-primates), against 442 species at RNU4-1. The mechanism is now a demonstrated alignment fact for RNU4-2; it does not explain RNU12 |
+| Figures not drawn, Table 4 empty cells | Figures 1–4 drawn from public inputs (`figures_paper.py`); Figure 1 uses the 35 public RNU2-2 variants because the sealed-set v4 scores are on the server |
 
 Still requiring the analysis server: v4 under the matched nulls on the sealed set; the rare-variant threshold check; the calibration of S and prior-0.0441 results; leave-own-position likelihood ratios; the seal log with an OpenTimestamps proof; corrected benchmark intervals.
 

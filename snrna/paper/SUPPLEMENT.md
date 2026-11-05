@@ -186,7 +186,21 @@ TERC had 15 P vs 3 N and was not evaluable. Weighted Δ (primary − CADD) −0.
 | RNU4ATAC | 7.67 | 0.19 | 0.55 | 8.65 | 0.77 |
 | RNU4-1 (paralog of RNU4-2) | 8.03 | 0.34 | 0.32 | 3.61 | — |
 
-Across the five genes with CADD estimates, agreement tracked CADD AUROC (Spearman +0.90); the ceiling did not (+0.20). At RNU4-2, phyloP447 is flat at 0.687 across n.60–82, one of the most conserved stretches of U4 snRNA. RNU12 does not fit the low-ceiling pattern. The UCSC alignment itself could not be inspected (API unreachable), so the paralog explanation is a candidate, not a finding. Five genes; descriptive only.
+Across the five genes with CADD estimates, agreement tracked CADD AUROC (Spearman +0.90); the ceiling did not (+0.20). At RNU4-2, phyloP447 is flat at 0.687 across n.60–82, one of the most conserved stretches of U4 snRNA. RNU12 does not fit the low-ceiling pattern. Five genes; descriptive only.
+
+**Direct check of the 447-way alignment** (`alignment_species.py`, specified before running; `alignment_species_clades.py`, descriptive extension written after the counts; `results/alignment_species*.tsv`). Species aligned over ≥ 50% of the gene:
+
+| Gene | Aligned species | Primates | Non-primates | Median species per position (min) | Identity to human |
+|---|---|---|---|---|---|
+| RNU4-2 | 186 | 186 | 0 | 186 (177) | 0.995 |
+| RNU4-1 | 442 | 240 | 202 | 442 (435) | 0.975 |
+| RNU2-2 | 363 | 215 | 148 | 359 (193) | 0.959 |
+| RNU12 | 431 | 229 | 202 | 430 (389) | 0.968 |
+| RNU4ATAC | 439 | 240 | 199 | 438.5 (0) | 0.923 |
+| RNU6ATAC | 432 | 235 | 197 | 432 (14) | 0.970 |
+| RNU5B-1 | 425 | 236 | 189 | 418 (399) | 0.949 |
+
+The tree holds 242 primates (excluding human) and 204 non-primate mammals. The paralog explanation of the flat RNU4-2 phyloP track is therefore confirmed in the sense that no non-primate sequence is aligned to RNU4-2.
 
 ## S5c. Per-gene comparison on public labels (post hoc, specified before running)
 `per_gene_rfam.py`; `results/per_gene_rfam.tsv`. AUROC (excess over the gene-wide rarity null, 2,000 draws) against the gene's L3.

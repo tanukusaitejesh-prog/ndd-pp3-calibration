@@ -86,7 +86,7 @@ Five documents follow: manuscript, supplement, timeline, verification report and
 
 **Methods.** We pre-registered and timestamped an evaluation of variant-effect scores at 55 snRNA loci (17,385 possible single-nucleotide variants). Patient labels for RNU2-2 and RNU5B-1 were sealed before any model was fitted. Because negatives in small genes are population-observed variants, scores were compared against rarity-only nulls matched on gene, disease region and RNA structure.
 
-**Results.** The pre-registered model, built on population allele counts, failed its endpoints. A model designed afterwards and frozen before unsealing reached an AUROC of 0.892 on 22 sealed RNU2-2 patient variants (CADD 0.501). Its best single inputs were two parameter-free Rfam features, identified post hoc. Across 35 public RNU2-2 patient variants, the disease region explained most of the Rfam signal beyond rarity. A residual excess survived matching on region and base pairing (+0.07, p = 0.009), which no genome-wide score showed. In RNU4-2 saturation genome editing, with no population data involved, the Rfam reference-column frequency classified function-depleted variants with an AUROC of 0.80 (95% CI 0.72–0.88, resampling positions), against 0.49–0.60 for genome-wide scores. The advantage concerned which positions matter, not which base substitution. At RNU4-2, phyloP447 is nearly flat (maximum 0.90, against 8.03 at its paralog RNU4-1). Across five disease genes, Rfam matched or exceeded CADD, with the gains where CADD fails (RNU2-2, RNU4-2, RNU12). The advantage did not extend to other RNA families (pre-registered negative).
+**Results.** The pre-registered model, built on population allele counts, failed its endpoints. A model designed afterwards and frozen before unsealing reached an AUROC of 0.892 on 22 sealed RNU2-2 patient variants (CADD 0.501). Its best single inputs were two parameter-free Rfam features, identified post hoc. Across 35 public RNU2-2 patient variants, the disease region explained most of the Rfam signal beyond rarity. A residual excess survived matching on region and base pairing (+0.07, p = 0.009), which no genome-wide score showed. In RNU4-2 saturation genome editing, with no population data involved, the Rfam reference-column frequency classified function-depleted variants with an AUROC of 0.80 (95% CI 0.72–0.88, resampling positions), against 0.49–0.60 for genome-wide scores. The advantage concerned which positions matter, not which base substitution. At RNU4-2, the 447-way whole-genome alignment contains only primate sequences (186 species and no non-primate mammal, against 442 species at its paralog RNU4-1), which caps phyloP447 at 0.90. Across five disease genes, Rfam matched or exceeded CADD, with the gains where CADD fails (RNU2-2, RNU4-2, RNU12). The advantage did not extend to other RNA families (pre-registered negative).
 
 **Conclusion.** At several spliceosomal snRNA genes, whole-genome alignments carry little usable conservation, and curated RNA-family alignments recover position-level signal. snRNA-specific computational evidence should be built on family alignments. Clinical calibration remains exploratory.
 
@@ -185,6 +185,7 @@ All three used 10,000 draws. We report the excess (AUROC − null mean) with a o
 #### Gene-level analyses
 - **Per gene** (post hoc, specified before running): Rfam, CADD, phyloP447 and GPN-MSA AUROC in every gene with ≥ 5 public P/LP SNVs (RNU2-2 literature set, RNU4-2, RNU4ATAC, RNU12, RNU6ATAC).
 - **Alignment depth** (exploratory, specified before running): the phyloP447 ceiling (95th percentile), the fraction of positions sharing one value, and per-position agreement with the Rfam profile. We predicted that the Rfam advantage over CADD would be larger where phyloP447 agrees less with the profile.
+- **Direct alignment check** (post hoc, specified before running): the UCSC Cactus 447-way alignment (bigMaf), read by HTTP range requests, gave the number of species aligned at each human position of seven genes. We predicted that fewer species would be aligned at RNU4-2 than at RNU4-1 and the other genes. A descriptive extension, written after the counts were seen, split aligned species into primates and non-primates using UCSC's species tree.
 - **Cross-family test (A7, pre-registered):** zero-shot scoring of RMRP, TERC, SNORD118 and RNU7-1, with scores frozen before labels were fetched.
 
 #### Calibration (exploratory for v4)
@@ -287,7 +288,14 @@ A v4 refitted without the RNU4 paralog cluster reached ρ = 0.382 on SGE, comput
 
 These are AUROCs against population-observed negatives, so they carry the rarity and region contrasts shown in Table 1; excess is over the gene-wide null (N0), which does not remove region. GPN-MSA's high AUROCs in RNU4-2 and RNU12 are almost entirely its rarity null (excess +0.03 and +0.04). The Rfam excess is significant in RNU2-2, RNU4-2 and RNU4ATAC (p ≤ 0.001) but not in RNU12 or RNU6ATAC, which have 8 and 5 positives.
 
-**Alignment depth.** At RNU4-2, phyloP447 reaches at most 0.90, and 59% of positions share a single value. Its tandem paralog RNU4-1 reaches 8.03. Across the five genes, the Rfam advantage over CADD was larger where phyloP447 agreed less with the Rfam profile (Spearman −0.80, as predicted; exact one-sided p = 0.067). RNU12 has a high phyloP447 ceiling (7.71), yet CADD fails there. Alignment depth is therefore one candidate explanation, clearest at RNU4-2, and the paralog mechanism was not checked against the alignment itself. Across eight genes, the fraction of possible SNVs observed in gnomAD did not track CADD's performance (Spearman +0.21).
+**Alignment depth.** At RNU4-2, phyloP447 reaches at most 0.90, and 59% of positions share a single value. Its tandem paralog RNU4-1 reaches 8.03. The alignment itself explains this (Fig. 4A):
+- **RNU4-2:** 186 species are aligned, every one a primate, and none of the 204 non-primate mammals in the alignment. The aligned sequences match human at 99.5% identity, so the gene is conserved, but only across short primate branches. That caps phyloP.
+- **RNU4-1:** 442 species are aligned, 202 of them non-primate mammals.
+- **Other disease genes:** 425–439 species (189–202 non-primates). RNU2-2 has 363 (148 non-primates).
+
+No non-primate information therefore reaches RNU4-2 in the whole-genome alignment. We did not resolve whether non-primate orthologs align to RNU4-1 instead or the duplication is primate-specific.
+
+Across the five genes, the Rfam advantage over CADD was larger where phyloP447 agreed less with the Rfam profile (Spearman −0.80, as predicted; exact one-sided p = 0.067; Fig. 4B). RNU12 is fully aligned (202 non-primates) yet CADD fails there, so alignment explains RNU4-2, in part RNU2-2, and not RNU12. Across eight genes, the fraction of possible SNVs observed in gnomAD did not track CADD's performance (Spearman +0.21).
 
 **Other RNA families (A7, pre-registered; not met).** Rfam alternative-base rarity did not beat genome-wide scores on RMRP, SNORD118, RNU7-1 or TERC: weighted ΔAUROC vs CADD −0.251 [−0.368, −0.133]. On these single-copy RNA genes, genome-wide scores already work (RMRP: CADD 0.863, phyloP447 0.844).
 
@@ -318,7 +326,7 @@ No pre-registered unit has reached its minimum. Units in genes never seen in tra
 Across 1,787 ClinVar non-coding P/LP SNVs, a random rare variant from the same window reached AUROCs of 0.62–0.68 against population-observed negatives (CADD 0.632, GPN-MSA 0.676). Rarity matching reordered tools on two published benchmarks. Intervals for these orderings, and the cleaning of the null pools, are incomplete, so this part is descriptive. It quantifies a known caveat<sup>25,28,29</sup> and is not a main claim of this paper.
 
 ### Discussion
-At RNU4-2, RNU2-2 and RNU12, genome-wide predictors carry little information beyond rarity about which variants are pathogenic or functionally damaging. A curated RNA-family alignment recovers position-level conservation that they miss. The clearest evidence is functional and free of population labels. In RNU4-2 SGE, the Rfam profile classified function-depleted variants at 0.80, against at most 0.60, with intervals that respect position clustering. The 447-way phyloP track is nearly flat across this deeply conserved gene, while its paralog RNU4-1 is not, which points to a failure of the whole-genome alignment at this locus.
+At RNU4-2, RNU2-2 and RNU12, genome-wide predictors carry little information beyond rarity about which variants are pathogenic or functionally damaging. A curated RNA-family alignment recovers position-level conservation that they miss. The clearest evidence is functional and free of population labels. In RNU4-2 SGE, the Rfam profile classified function-depleted variants at 0.80, against at most 0.60, with intervals that respect position clustering. The reason at RNU4-2 is concrete. In the 447-way whole-genome alignment, only primates are aligned there, so phyloP is computed over short branches and capped at 0.90. Its paralog RNU4-1 is aligned across 442 mammals. A curated family alignment does not depend on that orthology assignment.
 
 The patient-variant evidence is weaker than our earlier framing implied. A frozen model separated sealed RNU2-2 patient variants from population variants (0.892 vs CADD 0.501) and met its pre-registered replication on literature variants. But its strength came from Rfam features identified after unsealing. Both label sets come from one gene with shared negatives. Most of the signal beyond rarity is explained by the disease region where patient variants are ascertained. A residual Rfam excess survived matching on region and structure (+0.07), and no genome-wide score showed one.
 
@@ -332,7 +340,7 @@ The calibration is not yet fit for clinical use. Population-observed negatives i
 - **Blind evidence from one gene.** The blind evidence comes from one gene (38 positives in two overlapping sets with shared negatives). RNU5B-1 could not be evaluated, and no prospective unit has reached its minimum.
 - **Post hoc features.** The Rfam features were identified post hoc, and their first confirmatory test outside the spliceosomal snRNAs (A7) failed. The region-matched and functional analyses are post hoc analyses of public data.
 - **Function in one gene, at position level.** The population-free evidence comes from RNU4-2 alone, from a haploid-cell loss-of-function readout. Inside the critical region no score separated variants.
-- **Uncertain mechanism.** The alignment-depth explanation is descriptive, five genes, and does not fit RNU12.
+- **Incomplete mechanism.** The alignment explains RNU4-2 (primates only) and partly RNU2-2, but not RNU12, which is fully aligned yet poorly scored by CADD. The gene-level association is five genes (p = 0.067).
 - **Record of order.** Amendments after A6 rest on git times, not Bitcoin anchoring, and the seal log is not yet released.
 - **Population data at multicopy loci.** gnomAD calls at multicopy snRNA loci may include mapping artefacts (Supplement S10).
 - **Missing comparators.** AlphaGenome, covariation scores and RNA structure-effect tools were not evaluated, and we did not build an ortholog-only conservation baseline.
@@ -404,13 +412,13 @@ The study used only public, de-identified data: ClinVar, gnomAD, UK Biobank alle
 46. Babazade A, Dolas Y, Duzenli T, Vural O, Furtana C, Ergun MA. Calibration of AlphaGenome Variant Impact and SpliceAI2 scores as PP3/BP4 evidence for missense, non-coding, and synonymous variants. bioRxiv [Preprint]. 2026 Oct 24. doi:10.64898/2026.10.21.760715.
 
 ### Figure legends
-**Figure 1.** Sealed RNU2-2 test. (A) ROC curves for frozen v4, the Rfam features, phyloP447 and CADD (22 P/LP vs 127 L3). (B) Literature-only labels (16 vs 125).
+**Figure 1.** RNU2-2 patient variants against population variants. ROC curves for Rfam reference-column frequency, GPN-MSA, phyloP447 and CADD on the 35 public patient SNVs vs 125 L3 (AUROC in the legend). The sealed-set curves for frozen v4 require the analysis server and will be added.
 
-**Figure 2.** RNU2-2 excess over three rarity-only nulls (gene-wide, region × pairing, ±5 nt) for each score and position baseline (Table 1).
+**Figure 2.** RNU2-2: excess AUROC over three rarity-only nulls (gene-wide; region × pairing; ±5-nt window) for each score and two position baselines (Table 1). * one-sided p < 0.05.
 
-**Figure 3.** RNU4-2 SGE. (A) AUROC for function-depleted variants with position-cluster intervals, overall and outside the critical region. (B) phyloP447 and Rfam reference-column frequency along RNU4-2, with SGE function, showing the flat phyloP447 track.
+**Figure 3.** RNU4-2 saturation genome editing. (A) AUROC for function-depleted variants with 95% position-cluster intervals, overall and outside the critical region. (B) Along RNU4-2: Rfam reference-column frequency, phyloP447 (note the flat, low track) and the minimum SGE function score per position.
 
-**Figure 4.** Per-gene Rfam − CADD advantage against phyloP447–Rfam agreement (Table 3).
+**Figure 4.** Why genome-wide conservation fails at RNU4-2. (A) Species aligned over at least half of each gene in the UCSC 447-way alignment, split into primates and non-primate mammals: RNU4-2 is aligned only in primates. (B) Per-gene Rfam − CADD AUROC difference (95% CI) against the agreement of phyloP447 with the Rfam profile (Table 3).
 
 ‡ Transcribed from analysis-server outputs into the dated deviation log at the time they were produced; the files will be released with the scores.
 
@@ -606,7 +614,21 @@ TERC had 15 P vs 3 N and was not evaluable. Weighted Δ (primary − CADD) −0.
 | RNU4ATAC | 7.67 | 0.19 | 0.55 | 8.65 | 0.77 |
 | RNU4-1 (paralog of RNU4-2) | 8.03 | 0.34 | 0.32 | 3.61 | — |
 
-Across the five genes with CADD estimates, agreement tracked CADD AUROC (Spearman +0.90); the ceiling did not (+0.20). At RNU4-2, phyloP447 is flat at 0.687 across n.60–82, one of the most conserved stretches of U4 snRNA. RNU12 does not fit the low-ceiling pattern. The UCSC alignment itself could not be inspected (API unreachable), so the paralog explanation is a candidate, not a finding. Five genes; descriptive only.
+Across the five genes with CADD estimates, agreement tracked CADD AUROC (Spearman +0.90); the ceiling did not (+0.20). At RNU4-2, phyloP447 is flat at 0.687 across n.60–82, one of the most conserved stretches of U4 snRNA. RNU12 does not fit the low-ceiling pattern. Five genes; descriptive only.
+
+**Direct check of the 447-way alignment** (`alignment_species.py`, specified before running; `alignment_species_clades.py`, descriptive extension written after the counts; `results/alignment_species*.tsv`). Species aligned over ≥ 50% of the gene:
+
+| Gene | Aligned species | Primates | Non-primates | Median species per position (min) | Identity to human |
+|---|---|---|---|---|---|
+| RNU4-2 | 186 | 186 | 0 | 186 (177) | 0.995 |
+| RNU4-1 | 442 | 240 | 202 | 442 (435) | 0.975 |
+| RNU2-2 | 363 | 215 | 148 | 359 (193) | 0.959 |
+| RNU12 | 431 | 229 | 202 | 430 (389) | 0.968 |
+| RNU4ATAC | 439 | 240 | 199 | 438.5 (0) | 0.923 |
+| RNU6ATAC | 432 | 235 | 197 | 432 (14) | 0.970 |
+| RNU5B-1 | 425 | 236 | 189 | 418 (399) | 0.949 |
+
+The tree holds 242 primates (excluding human) and 204 non-primate mammals. The paralog explanation of the flat RNU4-2 phyloP track is therefore confirmed in the sense that no non-primate sequence is aligned to RNU4-2.
 
 ### S5c. Per-gene comparison on public labels (post hoc, specified before running)
 `per_gene_rfam.py`; `results/per_gene_rfam.tsv`. AUROC (excess over the gene-wide rarity null, 2,000 draws) against the gene's L3.
@@ -854,6 +876,8 @@ An external AI review of the 4 Nov packet listed fatal, major and minor issues. 
 | OpenTimestamps claimed for all amendments; seal log absent | Methods now state A1–A6 Bitcoin-anchored, A7–A16 git only, seal log pending release with a proof |
 | Header claimed every number traces to committed files | Server-transcribed numbers now marked ‡ |
 | Missing comparators (AlphaGenome, covariation, structure tools, ortholog-only baseline) | Listed as limitations; not run |
+| Paralog explanation for RNU4-2 unchecked against the alignment | New `alignment_species.py` reads the UCSC 447-way alignment directly: RNU4-2 is aligned in 186 species, all primates (0 of 204 non-primates), against 442 species at RNU4-1. The mechanism is now a demonstrated alignment fact for RNU4-2; it does not explain RNU12 |
+| Figures not drawn, Table 4 empty cells | Figures 1–4 drawn from public inputs (`figures_paper.py`); Figure 1 uses the 35 public RNU2-2 variants because the sealed-set v4 scores are on the server |
 
 Still requiring the analysis server: v4 under the matched nulls on the sealed set; the rare-variant threshold check; the calibration of S and prior-0.0441 results; leave-own-position likelihood ratios; the seal log with an OpenTimestamps proof; corrected benchmark intervals.
 
